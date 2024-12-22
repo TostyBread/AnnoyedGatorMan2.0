@@ -1,0 +1,368 @@
+fileFormatVersion: 2
+guid: 507493411362c2d4da1a6ec8118b4507
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GatorManSprite_WalkCycle1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 705
+        width: 205
+        height: 294
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a55f47ac500e62749a68d67e67bef914
+      internalID: -1550175508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_WalkCycle2
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 701
+        width: 205
+        height: 294
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54fe39a5a2d2c5c4ab5ba4f7d6390c96
+      internalID: 432259068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_WalkCycle3
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 704
+        width: 205
+        height: 294
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cff775ff3777ad84f9d3a5dc163e9c4a
+      internalID: -914492707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_WalkCycle4
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 705
+        width: 205
+        height: 294
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f83520432955d4f8d9abfe181a5618
+      internalID: -530510337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_IdleCycle1
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 388
+        width: 205
+        height: 294
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e2a90c1234b50847900a1dd326dfad1
+      internalID: 1446131287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_IdleCycle2
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 388
+        width: 205
+        height: 294
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a0a11cdc32eee24481b14b8a2d712a6
+      internalID: 1367350575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_IdleCycle3
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 389
+        width: 205
+        height: 294
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a19cde808b8de2459cf8e5d0a6f66fd
+      internalID: 1481189181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_DealthAnim4
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 367
+        width: 294
+        height: 205
+      alignment: 9
+      pivot: {x: 0.2, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2777877af6087764f870744ff4c3dc5e
+      internalID: -232721447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_DealthAnim1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 61
+        width: 205
+        height: 294
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b75cc6965bd529249bda4058ecc31918
+      internalID: -1953524815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_DealthAnim2
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 60
+        width: 205
+        height: 294
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f355c988b3702424b9d266d8c416b852
+      internalID: 801925403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GatorManSprite_DealthAnim3
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 79
+        width: 316
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c0fc4b21a3ae7249a8ab6ac3d91a6c8
+      internalID: 380163330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      GatorManSprite_0: 1680446287
+      GatorManSprite_11: 412777632
+      GatorManSprite_13: 2078224786
+      GatorManSprite_15: -1095370699
+      GatorManSprite_17: 401574689
+      GatorManSprite_18: 1826985156
+      GatorManSprite_19: 1826110589
+      GatorManSprite_21: -1441537220
+      GatorManSprite_3: 456845956
+      GatorManSprite_5: -1215517516
+      GatorManSprite_7: 80038412
+      GatorManSprite_9: 1317359646
+      GatorManSprite_DealthAnim1: -1953524815
+      GatorManSprite_DealthAnim2: 801925403
+      GatorManSprite_DealthAnim3: 380163330
+      GatorManSprite_DealthAnim4: -232721447
+      GatorManSprite_IdleCycle1: 1446131287
+      GatorManSprite_IdleCycle2: 1367350575
+      GatorManSprite_IdleCycle3: 1481189181
+      GatorManSprite_WalkCycle1: -1550175508
+      GatorManSprite_WalkCycle2: 432259068
+      GatorManSprite_WalkCycle3: -914492707
+      GatorManSprite_WalkCycle4: -530510337
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
