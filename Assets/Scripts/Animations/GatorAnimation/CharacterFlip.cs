@@ -31,4 +31,9 @@ public class CharacterFlip : MonoBehaviour
         localScale.x = isFacingRight ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
         transform.localScale = localScale;
     }
+
+    public bool IsFacingRight()
+    {
+        return isFacingRight;
+    }
 }
