@@ -11,7 +11,7 @@ public class CharacterFlip : MonoBehaviour
 
     private void HandleFlip()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
 
         // Determine if the character should face right or left
         bool shouldFaceRight = mousePosition.x >= transform.position.x;

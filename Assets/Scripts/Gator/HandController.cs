@@ -45,7 +45,7 @@ public class HandController : MonoBehaviour
     private void RotateHand()
     {
         // Get mouse position in world coordinates
-        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
 
         // Calculate the direction from the pivot point to the mouse position
         Vector3 direction = mousePosition - pivotPoint.position;
