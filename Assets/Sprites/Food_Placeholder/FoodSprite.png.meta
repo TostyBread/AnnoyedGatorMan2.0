@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 507493411362c2d4da1a6ec8118b4507
+guid: 645429a716642a946a303fdaaaed71b2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,232 +97,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GatorManSprite_WalkCycle1
+      name: Fish
       rect:
         serializedVersion: 2
-        x: 14
-        y: 705
-        width: 205
-        height: 294
+        x: 291
+        y: 843
+        width: 196
+        height: 76
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a55f47ac500e62749a68d67e67bef914
-      internalID: -1550175508
+      spriteID: 4903b7bbc8c1f1047a4ec20d2e09b464
+      internalID: -182668575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GatorManSprite_WalkCycle2
+      name: SlicedCake
       rect:
         serializedVersion: 2
-        x: 225
-        y: 701
-        width: 205
-        height: 294
+        x: 825
+        y: 879
+        width: 128
+        height: 71
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54fe39a5a2d2c5c4ab5ba4f7d6390c96
-      internalID: 432259068
+      spriteID: 98ccb96c9d9effc49ac9cd37e2cbf4a3
+      internalID: 1511926719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GatorManSprite_WalkCycle3
+      name: Hotdog
       rect:
         serializedVersion: 2
-        x: 438
-        y: 704
-        width: 205
-        height: 294
+        x: 318
+        y: 693
+        width: 139
+        height: 79
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cff775ff3777ad84f9d3a5dc163e9c4a
-      internalID: -914492707
+      spriteID: 7013dbbf688107c41badc9f6f4e6e639
+      internalID: 949688743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GatorManSprite_WalkCycle4
+      name: SlicedPizza
       rect:
         serializedVersion: 2
-        x: 652
-        y: 706
-        width: 205
-        height: 294
+        x: 815
+        y: 710
+        width: 147
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8f83520432955d4f8d9abfe181a5618
-      internalID: -530510337
+      spriteID: bbcb1ea5c59f6164eb569058b31ab1af
+      internalID: 423542174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GatorManSprite_IdleCycle1
+      name: Burger
       rect:
         serializedVersion: 2
-        x: 10
+        x: 322
+        y: 537
+        width: 121
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3c348a1becf90945bff92dce767d304
+      internalID: 38156173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Donut
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 539
+        width: 109
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b96646c56ec02541b707471d5da84ab
+      internalID: -1780691870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Noodle
+      rect:
+        serializedVersion: 2
+        x: 327
         y: 388
-        width: 205
-        height: 294
+        width: 127
+        height: 79
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e2a90c1234b50847900a1dd326dfad1
-      internalID: 1446131287
+      spriteID: 506be0c30eec00245beb570946524131
+      internalID: -1598090532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GatorManSprite_IdleCycle2
+      name: Banana
       rect:
         serializedVersion: 2
-        x: 222
-        y: 388
-        width: 205
-        height: 294
+        x: 808
+        y: 351
+        width: 152
+        height: 117
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a0a11cdc32eee24481b14b8a2d712a6
-      internalID: 1367350575
+      spriteID: b10bfc3438f3dad4f8dd657be0e90e18
+      internalID: -367559351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GatorManSprite_IdleCycle3
+      name: CupNoodle
       rect:
         serializedVersion: 2
-        x: 435
-        y: 389
-        width: 205
-        height: 294
+        x: 340
+        y: 245
+        width: 81
+        height: 88
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a19cde808b8de2459cf8e5d0a6f66fd
-      internalID: 1481189181
+      spriteID: 0283298c34b778e4d8e18e7fa76f40ba
+      internalID: -1981969288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GatorManSprite_DealthAnim4
+      name: MixedRice
       rect:
         serializedVersion: 2
-        x: 664
-        y: 368
-        width: 294
-        height: 205
+        x: 818
+        y: 243
+        width: 144
+        height: 76
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2777877af6087764f870744ff4c3dc5e
-      internalID: -232721447
+      spriteID: 2efff2852c742624aa9e9ef9b473836a
+      internalID: -1584949759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GatorManSprite_DealthAnim1
+      name: DrumStick
       rect:
         serializedVersion: 2
-        x: 3
-        y: 61
-        width: 205
-        height: 294
+        x: 328
+        y: 58
+        width: 93
+        height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b75cc6965bd529249bda4058ecc31918
-      internalID: -1953524815
+      spriteID: b00a696265725e14e935075f70ad3282
+      internalID: -665258664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GatorManSprite_DealthAnim2
+      name: Shit
       rect:
         serializedVersion: 2
-        x: 211
-        y: 60
-        width: 205
-        height: 294
+        x: 814
+        y: 94
+        width: 139
+        height: 90
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f355c988b3702424b9d266d8c416b852
-      internalID: 801925403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GatorManSprite_DealthAnim3
-      rect:
-        serializedVersion: 2
-        x: 425
-        y: 79
-        width: 316
-        height: 227
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c0fc4b21a3ae7249a8ab6ac3d91a6c8
-      internalID: 380163330
+      spriteID: d9e9b46b2af81544481ad2ab0c72f99f
+      internalID: -1021870561
       vertices: []
       indices: 
       edges: []
@@ -338,29 +359,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GatorManSprite_0: 1680446287
-      GatorManSprite_11: 412777632
-      GatorManSprite_13: 2078224786
-      GatorManSprite_15: -1095370699
-      GatorManSprite_17: 401574689
-      GatorManSprite_18: 1826985156
-      GatorManSprite_19: 1826110589
-      GatorManSprite_21: -1441537220
-      GatorManSprite_3: 456845956
-      GatorManSprite_5: -1215517516
-      GatorManSprite_7: 80038412
-      GatorManSprite_9: 1317359646
-      GatorManSprite_DealthAnim1: -1953524815
-      GatorManSprite_DealthAnim2: 801925403
-      GatorManSprite_DealthAnim3: 380163330
-      GatorManSprite_DealthAnim4: -232721447
-      GatorManSprite_IdleCycle1: 1446131287
-      GatorManSprite_IdleCycle2: 1367350575
-      GatorManSprite_IdleCycle3: 1481189181
-      GatorManSprite_WalkCycle1: -1550175508
-      GatorManSprite_WalkCycle2: 432259068
-      GatorManSprite_WalkCycle3: -914492707
-      GatorManSprite_WalkCycle4: -530510337
+      Banana: -367559351
+      Burger: 38156173
+      CupNoodle: -1981969288
+      Donut: -1780691870
+      DrumStick: -665258664
+      Fish: -182668575
+      FoodSprite_0: -964679766
+      FoodSprite_10: 1575475037
+      FoodSprite_12: -1035855589
+      FoodSprite_14: -1446523064
+      FoodSprite_16: -39624984
+      FoodSprite_18: -876619211
+      FoodSprite_2: -1772514067
+      FoodSprite_20: 1631136001
+      FoodSprite_22: 212204446
+      FoodSprite_4: -248457381
+      FoodSprite_6: -666354997
+      FoodSprite_8: 1010064301
+      Hotdog: 949688743
+      MixedRice: -1584949759
+      Noodle: -1598090532
+      Shit: -1021870561
+      SlicedCake: 1511926719
+      SlicedPizza: 423542174
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

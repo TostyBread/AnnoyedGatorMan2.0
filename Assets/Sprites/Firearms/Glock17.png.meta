@@ -97,85 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Glock17_Pickup
+      name: Glock17_Neutral
       rect:
         serializedVersion: 2
-        x: 479
-        y: 770
-        width: 273
-        height: 194
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 39
+        y: 548
+        width: 235
+        height: 161
+      alignment: 9
+      pivot: {x: 0.50122756, y: 0.49104035}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d951960cee3f73428e5649f385cb3b3
-      internalID: 343725690
+      spriteID: 2292424c75eeba94cb5cde1bedc40196
+      internalID: -1804502545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glock17_FireAnim1
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 542
-        width: 250
-        height: 167
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22b5caac284bc9d4a9d35d14f28c5095
-      internalID: 1107356277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Glock17_FireAnim2
+      name: Glock17_Fired
       rect:
         serializedVersion: 2
         x: 337
-        y: 542
+        y: 548
         width: 380
-        height: 196
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 190
+      alignment: 9
+      pivot: {x: 0.3989199, y: 0.4151833}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ad257af909f6694c8b417e15c098cc9
-      internalID: 2118729358
+      spriteID: 4bba68726cf51c648803098611082f00
+      internalID: 1006988891
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glock17_FireAnim3
+      name: Glock17_Recovery
       rect:
         serializedVersion: 2
-        x: 734
-        y: 542
-        width: 250
-        height: 177
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 743
+        y: 548
+        width: 241
+        height: 171
+      alignment: 9
+      pivot: {x: 0.51196975, y: 0.4628831}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f7fac27cd36644459628d17d5669b10
-      internalID: 2142556333
+      spriteID: 0190fc31a3e4e8044ab1e429fbb02c36
+      internalID: -474012367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glock17_Empty
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 308
+        width: 271
+        height: 163
+      alignment: 9
+      pivot: {x: 0.56178325, y: 0.48408592}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8ccf448a5d3f6d4eb78912a615c939c
+      internalID: 793166950
       vertices: []
       indices: 
       edges: []
@@ -191,38 +191,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Glock17_0: 1735281582
-      Glock17_1: -1656682820
-      Glock17_10: -1926538156
-      Glock17_14: -1689418047
-      Glock17_15: 611228482
-      Glock17_16: 500536793
-      Glock17_17: 927969438
-      Glock17_18: 1765897457
-      Glock17_19: 741661110
-      Glock17_20: -1496188570
-      Glock17_21: 1638771163
-      Glock17_22: -566059930
-      Glock17_23: 739013160
-      Glock17_24: -1696621115
-      Glock17_25: -81651728
-      Glock17_26: -1436233366
-      Glock17_27: -988028551
-      Glock17_28: -895809196
-      Glock17_29: -1239883991
-      Glock17_3: 1205747464
-      Glock17_30: 1642198765
-      Glock17_31: 777255263
-      Glock17_4: -1858974657
-      Glock17_5: -2011729581
-      Glock17_6: 1627221650
-      Glock17_7: 283278541
-      Glock17_8: 1154897395
-      Glock17_9: -1349116628
-      Glock17_FireAnim1: 1107356277
-      Glock17_FireAnim2: 2118729358
-      Glock17_FireAnim3: 2142556333
-      Glock17_Pickup: 343725690
+      Glock17_1: -1827755831
+      Glock17_4: 671793894
+      Glock17_Empty: 793166950
+      Glock17_Fired: 1006988891
+      Glock17_Neutral: -1804502545
+      Glock17_Recovery: -474012367
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

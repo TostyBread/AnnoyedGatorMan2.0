@@ -17,21 +17,6 @@ public class HandController : MonoBehaviour
     {
         mainCamera = Camera.main;
 
-        if (pivotPoint == null)
-        {
-            //Debug.LogWarning("Pivot Point is not assigned! Defaulting to this Transform.");
-            pivotPoint = transform;
-        }
-
-        //if (hand == null)
-        //{
-        //    Debug.LogWarning("Hand Transform is not assigned! The script may not work as expected.");
-        //}
-
-        //if (characterFlip == null)
-        //{
-        //    Debug.LogWarning("CharacterFlip reference is not assigned! Ensure to assign it for proper flipping.");
-        //}
     }
 
     void Update()
@@ -71,10 +56,6 @@ public class HandController : MonoBehaviour
     private void FlipHand(float mouseDirectionX, bool isFacingRight)
     {
         Vector3 handScale = hand.localScale;
-
-        // Flip the hand's horizontal and vertical scale based on the mouse's X position
-        //handScale.x = mouseDirectionX >= 0 ? Mathf.Abs(handScale.x) : -Mathf.Abs(handScale.x);
-        //handScale.y = isFacingRight ? Mathf.Abs(handScale.y) : -Mathf.Abs(handScale.y);
 
         // Set the flipped scale
         hand.localScale = handScale;

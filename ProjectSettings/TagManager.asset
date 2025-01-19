@@ -4,12 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Weapons
+  - Weapon
+  - Food
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Fist
   - Water
   - UI
   - 

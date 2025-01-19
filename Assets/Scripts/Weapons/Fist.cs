@@ -13,9 +13,9 @@ public class Fist : MonoBehaviour
         hitbox.enabled = false; // Disable the hitbox initially
     }
 
-    void Update()
+    public void TriggerPunch()
     {
-        if (Input.GetMouseButtonDown(0) && !isPunching)
+        if (!isPunching)
         {
             Punch();
         }

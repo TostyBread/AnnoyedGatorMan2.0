@@ -14,23 +14,14 @@ public class CharacterMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        HandleInput();
-    }
-
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         Move();
     }
 
-    private void HandleInput()
+    public void SetMovement(Vector2 newMovement)
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        // Normalize movement vector for consistent speed in all directions
-        movement = movement.normalized;
+        movement = newMovement;
     }
 
     private void Move()
