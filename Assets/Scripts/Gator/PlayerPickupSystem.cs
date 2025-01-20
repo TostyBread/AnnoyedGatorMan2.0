@@ -8,17 +8,31 @@ public class PlayerPickupSystem : MonoBehaviour
     public Transform handPosition; // Position where picked-up items will be held
     public float dropForce = 5f; // Force magnitude applied to dropped items
 
-    public List<string> validTags = new List<string> { "Weapon", "Food", "CookingTools" }; // Valid tags for pickupable items
+    public List<string> validTags = new List<string>(); // Valid tags for pickupable items
 
     private Collider2D targetItem = null; // The item currently being targeted
     private GameObject heldItem = null; // The currently held item
     private Coroutine pickupCoroutine = null; // Reference to the active pickup coroutine
-    public CharacterFlip characterFlip; // Reference to the CharacterFlip script
+    private bool isHoldingPickupKey = false; // Tracks if the player is holding the pickup key
 
+    public HandSpriteManager handSpriteManager; // Reference to HandSpriteManager
+    public CharacterFlip characterFlip; // Reference to CharacterFlip
+
+    // Public property to check if the player is holding an item
+    public bool HasItemHeld => heldItem != null;
+
+    // Public property to get the tag of the held item
+    public string HeldItemTag => heldItem != null ? heldItem.tag : null;
 
     void Update()
     {
         HandleItemDetection();
+
+        // Resume pickup if E key is held and conditions are met
+        if (isHoldingPickupKey && targetItem != null && pickupCoroutine == null)
+        {
+            StartPickup();
+        }
     }
 
     private void HandleItemDetection()
@@ -35,14 +49,10 @@ public class PlayerPickupSystem : MonoBehaviour
         // Check if the mouse is pointing at any valid item within range
         foreach (var collider in colliders)
         {
-            if (IsPickupable(collider)) // Check if the item has a valid tag
+            if (IsPickupable(collider) && collider.OverlapPoint(mouseWorldPos))
             {
-                // Check if the mouse is over this item
-                if (collider.OverlapPoint(mouseWorldPos))
-                {
-                    targetItem = collider;
-                    break;
-                }
+                targetItem = collider;
+                break;
             }
         }
     }
@@ -55,7 +65,6 @@ public class PlayerPickupSystem : MonoBehaviour
 
     public void StartPickup()
     {
-        // Start the pickup process if an item is targeted and no coroutine is active
         if (targetItem != null && pickupCoroutine == null)
         {
             pickupCoroutine = StartCoroutine(PickupItemCoroutine());
@@ -64,13 +73,20 @@ public class PlayerPickupSystem : MonoBehaviour
 
     public void HoldPickup()
     {
-        // This method is called continuously while the key is held
-        // You could add visual feedback for the hold progress here if needed
+        isHoldingPickupKey = true;
+
+        // Resume pickup if conditions are met
+        if (targetItem != null && pickupCoroutine == null)
+        {
+            StartPickup();
+        }
     }
 
     public void CancelPickup()
     {
-        // Cancel the pickup process if the key is released
+        isHoldingPickupKey = false;
+
+        // Stop the active pickup process if it exists
         if (pickupCoroutine != null)
         {
             StopCoroutine(pickupCoroutine);
@@ -83,17 +99,23 @@ public class PlayerPickupSystem : MonoBehaviour
         float holdTime = 0.3f; // Time required to hold the key to pick up the item
         float elapsedTime = 0f;
 
-        // Wait for the hold time to elapse
+        // Wait until the hold time is reached
         while (elapsedTime < holdTime)
         {
+            // Cancel the pickup if the target becomes invalid or the key is released
+            if (targetItem == null || !isHoldingPickupKey)
+            {
+                yield break;
+            }
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Successfully picked up the item
+        // Successfully pick up the item
         if (targetItem != null)
         {
-            // Drop the currently held item (if any) before picking up the new item
+            // Drop the currently held item if necessary
             if (heldItem != null)
             {
                 DropItem();
@@ -110,7 +132,6 @@ public class PlayerPickupSystem : MonoBehaviour
         // Disable the item's collider and make it a child of the handPosition
         item.GetComponent<Collider2D>().enabled = false;
 
-        // If the item has a Rigidbody2D, freeze its movement
         Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -123,52 +144,75 @@ public class PlayerPickupSystem : MonoBehaviour
         item.transform.localPosition = Vector3.zero; // Snap to hand position
         item.transform.localRotation = Quaternion.identity; // Reset rotation
 
-        heldItem = item; // Update the heldItem reference
+        // Update the sprite's sorting order
+        SpriteLayerManager layerManager = item.GetComponent<SpriteLayerManager>();
+        if (layerManager != null)
+        {
+            layerManager.ChangeToHoldingOrder();
+        }
+
+        heldItem = item; // Update the reference to the held item
         Debug.Log("Picked up: " + item.name);
+
+        // Notify the HandSpriteManager to update the player's hand sprite
+        if (handSpriteManager != null)
+        {
+            handSpriteManager.UpdateHandSprite();
+        }
     }
 
-    private void DropItem()
+    public void DropItem()
     {
         if (heldItem != null)
         {
-            // Get the character's facing direction (right = -1, left = 1)
+            // Calculate drop position based on character facing direction
             bool isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
-            float horizontalOffset = isFacingRight ? -0.5f : 0.5f; // Adjust offset based on facing direction
+            float horizontalOffset = isFacingRight ? -0.5f : 0.5f;
+            Vector3 dropPosition = handPosition.position + new Vector3(horizontalOffset, -0.5f, 0f);
 
-            // Offset the item's starting position based on the hand's position and character's facing direction
-            Vector3 dropPosition = handPosition.position + new Vector3(horizontalOffset, -0.5f, 0f); // Slightly below the hand
             heldItem.transform.position = dropPosition;
+            heldItem.transform.SetParent(null); // Detach the item
 
-            // Detach the held item from the handPosition
-            heldItem.transform.SetParent(null);
+            // Revert the sprite's sorting order
+            SpriteLayerManager layerManager = heldItem.GetComponent<SpriteLayerManager>();
+            if (layerManager != null)
+            {
+                layerManager.RevertToOriginalOrder();
+            }
 
-            // Enable the item's collider
+            // Re-enable the item's collider
             Collider2D itemCollider = heldItem.GetComponent<Collider2D>();
             if (itemCollider != null)
             {
                 itemCollider.enabled = true;
             }
 
-            // Calculate direction to mouse position
-            Vector2 mouseWorldPos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
-            Vector2 direction = (mouseWorldPos - (Vector2)dropPosition).normalized; // Normalized direction vector
-
-            // If the item has a Rigidbody2D, apply a force in the direction of the mouse
             Rigidbody2D rb = heldItem.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
                 rb.isKinematic = false;
+
+                // Calculate direction to mouse position
+                Vector2 mouseWorldPos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
+                Vector2 direction = (mouseWorldPos - (Vector2)dropPosition).normalized;
                 rb.AddForce(direction * dropForce, ForceMode2D.Impulse);
             }
 
-            Debug.Log("Dropped: " + heldItem.name + " towards mouse.");
-            heldItem = null; // Clear the heldItem reference
+            Debug.Log("Dropped: " + heldItem.name);
+
+            // Clear the held item reference
+            heldItem = null;
+
+            // Notify the HandSpriteManager to revert to the default sprite
+            if (handSpriteManager != null)
+            {
+                handSpriteManager.UpdateHandSprite();
+            }
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Draw the pickup radius in the scene view for debugging
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, pickupRadius);
     }

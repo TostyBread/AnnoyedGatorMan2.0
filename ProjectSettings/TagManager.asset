@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Weapon
-  - Food
+  - WeaponShort
+  - WeaponLong
+  - FoodBig
+  - FoodSmall
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,12 @@ public class Fist : MonoBehaviour
 
     public void TriggerPunch()
     {
+        // Ensure the fist GameObject is active before executing
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
+
         if (!isPunching)
         {
             Punch();
@@ -24,21 +30,35 @@ public class Fist : MonoBehaviour
     private void Punch()
     {
         isPunching = true;
-        animator.Play("PunchAnim");
-        Invoke("EnableHitbox", 0.1f); // Adjust timing to match animation
+
+        // Ensure the fist GameObject is still active before starting animation
+        if (gameObject.activeSelf)
+        {
+            animator.Play("PunchAnim");
+            Invoke("EnableHitbox", 0.1f); // Adjust timing to match animation
+        }
     }
 
-    // Enable the hitbox for the duration of the punch
     private void EnableHitbox()
     {
-        hitbox.enabled = true;
-        Invoke("DisableHitbox", 0.2f); // Adjust timing to match animation
+        // Ensure the fist GameObject is still active before enabling the hitbox
+        if (gameObject.activeSelf)
+        {
+            hitbox.enabled = true;
+            Invoke("DisableHitbox", 0.2f); // Adjust timing to match animation
+        }
     }
 
     private void DisableHitbox()
     {
-        hitbox.enabled = false;
-        isPunching = false;
-        animator.Play("FistAnim"); // Return to idle animation
+        // Ensure the fist GameObject is still active before resetting
+        if (gameObject.activeSelf)
+        {
+            hitbox.enabled = false;
+            isPunching = false;
+
+            // Return to idle animation
+            animator.Play("FistAnim");
+        }
     }
 }

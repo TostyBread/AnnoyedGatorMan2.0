@@ -52,23 +52,23 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandlePickupInput()
     {
-        if (playerPickupSystem != null)
+        if (playerPickupSystem == null) return;
+
+        // Handle E key input
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            // Notify PlayerPickupSystem when E is pressed or held
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                playerPickupSystem.StartPickup();
-            }
-
-            if (Input.GetKey(KeyCode.E))
-            {
-                playerPickupSystem.HoldPickup();
-            }
-
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                playerPickupSystem.CancelPickup();
-            }
+            // Start a new pickup process
+            playerPickupSystem.StartPickup();
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            // Continue pickup while the E key is held
+            playerPickupSystem.HoldPickup();
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            // Cancel the pickup process when the E key is released
+            playerPickupSystem.CancelPickup();
         }
     }
 }
