@@ -5,6 +5,7 @@ public class Fist : MonoBehaviour
     private Animator animator;
     private Collider2D hitbox;
     private bool isPunching = false;
+    private bool isThrowing = false;
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class Fist : MonoBehaviour
     public void TriggerPunch()
     {
         // Ensure the fist GameObject is active before executing
-        if (!gameObject.activeSelf)
+        if (!gameObject.activeSelf || isThrowing) // Prevent punching during throw animation
         {
             return;
         }
@@ -41,7 +42,6 @@ public class Fist : MonoBehaviour
 
     private void EnableHitbox()
     {
-        // Ensure the fist GameObject is still active before enabling the hitbox
         if (gameObject.activeSelf)
         {
             hitbox.enabled = true;
@@ -51,7 +51,6 @@ public class Fist : MonoBehaviour
 
     private void DisableHitbox()
     {
-        // Ensure the fist GameObject is still active before resetting
         if (gameObject.activeSelf)
         {
             hitbox.enabled = false;

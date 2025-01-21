@@ -1,0 +1,281 @@
+fileFormatVersion: 2
+guid: b96a90ad91a208145ae980c2fac7a3ed
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SmokePuff_Anim1
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 473
+        width: 245
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ab6a03bc7db754bb796fde6d4cad24
+      internalID: 387810689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SparkSpurt_Anim1
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 425
+        width: 355
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2253a2591934fca4dbd339a5c0fcb56c
+      internalID: -1066234906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SparkSpurt_Anim2
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 257
+        width: 355
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93a8e5b7aaa45f64cbf96b5f9aa467e4
+      internalID: -1399581542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmokePuff_Anim2
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 316
+        width: 245
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d756934196efd32428423a8d2e9eb1bd
+      internalID: -2004467416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmokePuff_Anim3
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 127
+        width: 296
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6efcdf7ad0b420247a4cad3199db1f8d
+      internalID: -1654203015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SparkSpurt_Anim3
+      rect:
+        serializedVersion: 2
+        x: 1608
+        y: 81
+        width: 355
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87632c0039a7e2f4b962ede7cc921d31
+      internalID: 534225864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      SmokePuff_Anim1: 387810689
+      SmokePuff_Anim2: -2004467416
+      SmokePuff_Anim3: -1654203015
+      SparkSpurt_Anim1: -1066234906
+      SparkSpurt_Anim2: -1399581542
+      SparkSpurt_Anim3: 534225864
+      TankgameSpriteTanks_10: 480506030
+      TankgameSpriteTanks_11: -679334226
+      TankgameSpriteTanks_12: -871307941
+      TankgameSpriteTanks_14: -1252812178
+      TankgameSpriteTanks_16: -1361703560
+      TankgameSpriteTanks_17: 1687132478
+      TankgameSpriteTanks_18: -1862694337
+      TankgameSpriteTanks_19: -1778538366
+      TankgameSpriteTanks_20: -399680579
+      TankgameSpriteTanks_21: -626997594
+      TankgameSpriteTanks_22: 1707722866
+      TankgameSpriteTanks_23: 1482157524
+      TankgameSpriteTanks_24: 380861604
+      TankgameSpriteTanks_26: 1888795350
+      TankgameSpriteTanks_27: 1151845372
+      TankgameSpriteTanks_28: 1856313603
+      TankgameSpriteTanks_29: -1368416527
+      TankgameSpriteTanks_3: -1578298831
+      TankgameSpriteTanks_30: 1283202974
+      TankgameSpriteTanks_31: 1576130386
+      TankgameSpriteTanks_32: 767969114
+      TankgameSpriteTanks_33: -1929838412
+      TankgameSpriteTanks_34: 468280085
+      TankgameSpriteTanks_35: -1706840844
+      TankgameSpriteTanks_36: -1860048300
+      TankgameSpriteTanks_37: -1294696890
+      TankgameSpriteTanks_38: 178501899
+      TankgameSpriteTanks_39: -790092194
+      TankgameSpriteTanks_4: 2110723960
+      TankgameSpriteTanks_40: 157140734
+      TankgameSpriteTanks_5: -1766416752
+      TankgameSpriteTanks_6: 329464497
+      TankgameSpriteTanks_7: 1625571260
+      TankgameSpriteTanks_8: 560833887
+      TankgameSpriteTanks_9: 1819363160
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

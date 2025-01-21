@@ -35,6 +35,12 @@ public class PlayerPickupSystem : MonoBehaviour
         }
     }
 
+    // Public method to get the currently held item
+    public GameObject GetHeldItem()
+    {
+        return heldItem; // Return the reference to the currently held item
+    }
+
     private void HandleItemDetection()
     {
         // Get the mouse position in world space
@@ -132,6 +138,9 @@ public class PlayerPickupSystem : MonoBehaviour
         // Disable the item's collider and make it a child of the handPosition
         item.GetComponent<Collider2D>().enabled = false;
 
+        // Store the item's original scale
+        Vector3 originalScale = item.transform.localScale;
+
         Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -140,9 +149,15 @@ public class PlayerPickupSystem : MonoBehaviour
             rb.angularVelocity = 0f;
         }
 
+        // Parent the item to the handPosition
         item.transform.SetParent(handPosition);
-        item.transform.localPosition = Vector3.zero; // Snap to hand position
-        item.transform.localRotation = Quaternion.identity; // Reset rotation
+
+        // Reset the item's local position and rotation
+        item.transform.localPosition = Vector3.zero;
+        item.transform.localRotation = Quaternion.identity;
+
+        // Restore the original scale of the item
+        item.transform.localScale = originalScale;
 
         // Update the sprite's sorting order
         SpriteLayerManager layerManager = item.GetComponent<SpriteLayerManager>();
@@ -152,7 +167,7 @@ public class PlayerPickupSystem : MonoBehaviour
         }
 
         heldItem = item; // Update the reference to the held item
-        Debug.Log("Picked up: " + item.name);
+        //Debug.Log("Picked up: " + item.name);
 
         // Notify the HandSpriteManager to update the player's hand sprite
         if (handSpriteManager != null)
@@ -160,6 +175,7 @@ public class PlayerPickupSystem : MonoBehaviour
             handSpriteManager.UpdateHandSprite();
         }
     }
+
 
     public void DropItem()
     {
@@ -198,7 +214,10 @@ public class PlayerPickupSystem : MonoBehaviour
                 rb.AddForce(direction * dropForce, ForceMode2D.Impulse);
             }
 
-            Debug.Log("Dropped: " + heldItem.name);
+            // Restore the item's original scale in case of any unintended changes
+            heldItem.transform.localScale = Vector3.one;
+
+            //Debug.Log("Dropped: " + heldItem.name);
 
             // Clear the held item reference
             heldItem = null;

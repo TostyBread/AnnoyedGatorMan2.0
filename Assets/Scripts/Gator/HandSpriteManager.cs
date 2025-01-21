@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class HandSpriteManager : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class HandSpriteManager : MonoBehaviour
     public GameObject twoHandedSprite;       // GameObject for 2-handed items
     public GameObject oneHandedFirearmSprite;  // GameObject for 1-handed firearms
     public GameObject twoHandedFirearmSprite;  // GameObject for 2-handed firearms
+    public GameObject throwSprite;          // GameObject for the throw animation sprite
 
     [Header("References")]
     public PlayerPickupSystem playerPickupSystem; // Reference to PlayerPickupSystem
+
+    private Coroutine throwSpriteCoroutine; // Tracks the active throw sprite coroutine
 
     void Start()
     {
@@ -42,6 +46,48 @@ public class HandSpriteManager : MonoBehaviour
         }
     }
 
+    public void ShowThrowSprite(float duration)
+    {
+        // Cancel any ongoing throw sprite coroutine
+        if (throwSpriteCoroutine != null)
+        {
+            StopCoroutine(throwSpriteCoroutine);
+        }
+
+        // Start a new coroutine to briefly show the throw sprite
+        throwSpriteCoroutine = StartCoroutine(ActivateThrowSprite(duration));
+    }
+
+    private IEnumerator ActivateThrowSprite(float duration)
+    {
+        // Deactivate all sprites first
+        DeactivateAllSprites();
+
+        // Activate the throw sprite
+        if (throwSprite != null)
+        {
+            throwSprite.SetActive(true);
+        }
+
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+
+        // After the throw sprite duration, switch back to the fist sprite
+        if (fistSprite != null)
+        {
+            fistSprite.SetActive(true);
+        }
+
+        // Ensure the throw sprite is deactivated
+        if (throwSprite != null)
+        {
+            throwSprite.SetActive(false);
+        }
+
+        // Clear the coroutine reference
+        throwSpriteCoroutine = null;
+    }
+
     private void ToggleSprite(string itemTag)
     {
         // Deactivate all sprites first
@@ -53,13 +99,13 @@ public class HandSpriteManager : MonoBehaviour
             case "FoodSmall":
                 oneHandedSprite.SetActive(true);
                 break;
-            case "TwoHandedWeapon":
+            case "FoodBig":
                 twoHandedSprite.SetActive(true);
                 break;
             case "WeaponShort":
                 oneHandedFirearmSprite.SetActive(true);
                 break;
-            case "Firearm2H":
+            case "WeaponLong":
                 twoHandedFirearmSprite.SetActive(true);
                 break;
             case "Fist":
@@ -80,6 +126,7 @@ public class HandSpriteManager : MonoBehaviour
         if (twoHandedSprite != null) twoHandedSprite.SetActive(false);
         if (oneHandedFirearmSprite != null) oneHandedFirearmSprite.SetActive(false);
         if (twoHandedFirearmSprite != null) twoHandedFirearmSprite.SetActive(false);
+        if (throwSprite != null) throwSprite.SetActive(false);
     }
 
     public bool IsFistActive()

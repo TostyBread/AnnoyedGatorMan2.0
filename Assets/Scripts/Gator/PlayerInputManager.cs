@@ -6,6 +6,7 @@ public class PlayerInputManager : MonoBehaviour
     private CharacterMovement characterMovement;
     private Fist fist;
     private PlayerPickupSystem playerPickupSystem;
+    private PlayerThrowManager playerThrowManager;
 
     private Vector2 movementInput;
 
@@ -15,6 +16,7 @@ public class PlayerInputManager : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>(); // Assuming Fist is a child object
         playerPickupSystem = GetComponent<PlayerPickupSystem>(); // Pickup system on the same GameObject
+        playerThrowManager = GetComponent<PlayerThrowManager>(); // Throw manager on the same GameObject
     }
 
     void Update()
@@ -22,6 +24,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleMovementInput();
         HandleActionInput();
         HandlePickupInput();
+        HandleThrowInput();
     }
 
     private void HandleMovementInput()
@@ -57,18 +60,32 @@ public class PlayerInputManager : MonoBehaviour
         // Handle E key input
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // Start a new pickup process
             playerPickupSystem.StartPickup();
         }
         else if (Input.GetKey(KeyCode.E))
         {
-            // Continue pickup while the E key is held
             playerPickupSystem.HoldPickup();
         }
         else if (Input.GetKeyUp(KeyCode.E))
         {
-            // Cancel the pickup process when the E key is released
             playerPickupSystem.CancelPickup();
+        }
+    }
+
+    private void HandleThrowInput()
+    {
+        if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+
+        // Start preparing to throw when RMB is pressed
+        if (Input.GetMouseButtonDown(1))
+        {
+            playerThrowManager.StartPreparingThrow();
+        }
+
+        // Throw the item when LMB is clicked while RMB is held
+        if (Input.GetMouseButtonUp(0) && Input.GetMouseButton(1))
+        {
+            playerThrowManager.Throw();
         }
     }
 }
