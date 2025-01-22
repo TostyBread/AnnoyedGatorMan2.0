@@ -10,6 +10,8 @@ public class PlayerInputManager : MonoBehaviour
 
     private Vector2 movementInput;
 
+    private bool usableItemModeEnabled = false; // Tracks if usable item mode is active
+
     void Start()
     {
         // Get references to the required components
@@ -25,6 +27,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleActionInput();
         HandlePickupInput();
         HandleThrowInput();
+        HandleUsableItemInput();
     }
 
     private void HandleMovementInput()
@@ -86,6 +89,36 @@ public class PlayerInputManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && Input.GetMouseButton(1))
         {
             playerThrowManager.Throw();
+        }
+    }
+
+    private void HandleUsableItemInput()
+    {
+        if (playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+
+        MonoBehaviour usableFunction = playerPickupSystem.GetUsableFunction();
+
+        if (usableFunction == null)
+        {
+            Debug.Log("No usable function found for the held item.");
+            return;
+        }
+
+        // Toggle usable item mode with Q key
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            usableItemModeEnabled = !usableItemModeEnabled;
+            Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
+        }
+
+        // Trigger the usable function on left-click if mode is enabled
+        if (usableItemModeEnabled && Input.GetMouseButtonDown(0))
+        {
+            if (usableFunction is FirearmController firearmController)
+            {
+                Debug.Log("Attempting to fire firearm...");
+                firearmController.Fire();
+            }
         }
     }
 }

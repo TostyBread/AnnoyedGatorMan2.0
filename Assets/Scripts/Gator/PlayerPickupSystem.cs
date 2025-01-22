@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerPickupSystem : MonoBehaviour
 {
+    [Header("Pickup Settings")]
     public float pickupRadius = 2f; // Range in which the player can pick up items
     public Transform handPosition; // Position where picked-up items will be held
     public float dropForce = 5f; // Force magnitude applied to dropped items
@@ -18,11 +19,16 @@ public class PlayerPickupSystem : MonoBehaviour
     public HandSpriteManager handSpriteManager; // Reference to HandSpriteManager
     public CharacterFlip characterFlip; // Reference to CharacterFlip
 
+    private MonoBehaviour usableItemController; // Reference to the usable item's controller (e.g., FirearmController)
+
     // Public property to check if the player is holding an item
     public bool HasItemHeld => heldItem != null;
 
     // Public property to get the tag of the held item
     public string HeldItemTag => heldItem != null ? heldItem.tag : null;
+
+    // Public property to check if the held item has a usable function
+    public bool HasUsableFunction => usableItemController != null;
 
     void Update()
     {
@@ -33,12 +39,6 @@ public class PlayerPickupSystem : MonoBehaviour
         {
             StartPickup();
         }
-    }
-
-    // Public method to get the currently held item
-    public GameObject GetHeldItem()
-    {
-        return heldItem; // Return the reference to the currently held item
     }
 
     private void HandleItemDetection()
@@ -167,7 +167,14 @@ public class PlayerPickupSystem : MonoBehaviour
         }
 
         heldItem = item; // Update the reference to the held item
-        //Debug.Log("Picked up: " + item.name);
+
+        // After re-parenting, re-fetch the usable function (e.g., FirearmController)
+        usableItemController = heldItem.GetComponent<FirearmController>();
+
+        // Debug to ensure detection works
+        Debug.Log(usableItemController != null
+            ? $"Usable item detected: {usableItemController.GetType().Name}"
+            : "No usable item detected.");
 
         // Notify the HandSpriteManager to update the player's hand sprite
         if (handSpriteManager != null)
@@ -176,14 +183,13 @@ public class PlayerPickupSystem : MonoBehaviour
         }
     }
 
-
     public void DropItem()
     {
         if (heldItem != null)
         {
             // Calculate drop position based on character facing direction
             bool isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
-            float horizontalOffset = isFacingRight ? -0.5f : 0.5f;
+            float horizontalOffset = isFacingRight ? -0.2f : 0.5f;
             Vector3 dropPosition = handPosition.position + new Vector3(horizontalOffset, -0.5f, 0f);
 
             heldItem.transform.position = dropPosition;
@@ -214,13 +220,8 @@ public class PlayerPickupSystem : MonoBehaviour
                 rb.AddForce(direction * dropForce, ForceMode2D.Impulse);
             }
 
-            // Restore the item's original scale in case of any unintended changes
-            heldItem.transform.localScale = Vector3.one;
-
-            //Debug.Log("Dropped: " + heldItem.name);
-
-            // Clear the held item reference
-            heldItem = null;
+            heldItem = null; // Clear the held item reference
+            usableItemController = null; // Clear the usable function reference
 
             // Notify the HandSpriteManager to revert to the default sprite
             if (handSpriteManager != null)
@@ -228,6 +229,16 @@ public class PlayerPickupSystem : MonoBehaviour
                 handSpriteManager.UpdateHandSprite();
             }
         }
+    }
+
+    public GameObject GetHeldItem()
+    {
+        return heldItem;
+    }
+
+    public MonoBehaviour GetUsableFunction()
+    {
+        return usableItemController;
     }
 
     private void OnDrawGizmosSelected()
