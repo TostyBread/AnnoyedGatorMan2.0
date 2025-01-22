@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 5762952288829310691}
   m_Layer: 0
   m_Name: 9mm_Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81505acefe72284ca417fb3d888a43b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 3
+  lifetime: 5
   destroyOnCollision: 1
 --- !u!50 &8687144792717956823
 Rigidbody2D:

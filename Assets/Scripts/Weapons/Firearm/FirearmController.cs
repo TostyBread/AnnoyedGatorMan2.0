@@ -41,14 +41,14 @@ public class FirearmController : MonoBehaviour
     {
         if (isOutOfAmmo)
         {
-            PlayAnimation("_Dry"); // Play the DryFire animation
+            PlayAnimation("_Dry"); // Play the DryFire animation and keep it looping
             Debug.Log("Out of ammo!");
             return;
         }
 
         if (currentAmmo == 1)
         {
-            PlayOnce("_FireToDry"); // Last-shot animation
+            PlayOnce("_FireToDry", shouldGoToDry: true); // Last-shot animation, transitions to _Dry
             currentAmmo = 0; // Ammo depleted
         }
         else
@@ -74,16 +74,23 @@ public class FirearmController : MonoBehaviour
         }
     }
 
-    private void PlayOnce(string suffix)
+    private void PlayOnce(string suffix, bool shouldGoToDry = false)
     {
         if (animator != null)
         {
             string animationName = firearmPrefix + suffix;
             animator.Play(animationName);
 
-            // Return to _Neutral after the animation finishes
+            // Return to the appropriate state after the animation finishes
             float animationDuration = GetAnimationClipLength(animationName);
-            Invoke(nameof(ResetToNeutral), animationDuration);
+            if (shouldGoToDry)
+            {
+                Invoke(nameof(ResetToDry), animationDuration); // Transition to _Dry after _FireToDry
+            }
+            else
+            {
+                Invoke(nameof(ResetToNeutral), animationDuration); // Default back to _Neutral
+            }
         }
         else
         {
@@ -94,6 +101,11 @@ public class FirearmController : MonoBehaviour
     private void ResetToNeutral()
     {
         PlayAnimation("_Neutral");
+    }
+
+    private void ResetToDry()
+    {
+        PlayAnimation("_Dry");
     }
 
     private void PlayAnimation(string suffix)

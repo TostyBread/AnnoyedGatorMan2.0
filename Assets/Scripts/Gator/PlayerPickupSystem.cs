@@ -133,13 +133,10 @@ public class PlayerPickupSystem : MonoBehaviour
         pickupCoroutine = null;
     }
 
-    private void PickUpItem(GameObject item)
+    private void PickUpItem(GameObject item) //NEW Version
     {
         // Disable the item's collider and make it a child of the handPosition
         item.GetComponent<Collider2D>().enabled = false;
-
-        // Store the item's original scale
-        Vector3 originalScale = item.transform.localScale;
 
         Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
         if (rb != null)
@@ -156,8 +153,10 @@ public class PlayerPickupSystem : MonoBehaviour
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
 
-        // Restore the original scale of the item
-        item.transform.localScale = originalScale;
+        // Ensure the item's scale is set correctly
+        Vector3 correctedScale = item.transform.localScale;
+        correctedScale.x = 1; // Always set X-axis scale to 1
+        item.transform.localScale = correctedScale;
 
         // Update the sprite's sorting order
         SpriteLayerManager layerManager = item.GetComponent<SpriteLayerManager>();
@@ -168,8 +167,8 @@ public class PlayerPickupSystem : MonoBehaviour
 
         heldItem = item; // Update the reference to the held item
 
-        // After re-parenting, re-fetch the usable function (e.g., FirearmController)
-        usableItemController = heldItem.GetComponent<FirearmController>();
+        // Check if the item has a usable function (e.g., FirearmController)
+        usableItemController = heldItem.GetComponent<MonoBehaviour>();
 
         // Debug to ensure detection works
         Debug.Log(usableItemController != null
@@ -181,6 +180,8 @@ public class PlayerPickupSystem : MonoBehaviour
         {
             handSpriteManager.UpdateHandSprite();
         }
+
+        Debug.Log($"{item.name} has been picked up with corrected scale.");
     }
 
     public void DropItem()

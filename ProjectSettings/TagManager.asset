@@ -8,6 +8,8 @@ TagManager:
   - WeaponLong
   - FoodBig
   - FoodSmall
+  - Fist
+  - Projectile
   layers:
   - Default
   - TransparentFX
