@@ -15,12 +15,20 @@ public class PlayerThrowManager : MonoBehaviour
 
     private bool isPreparingToThrow = false; // Tracks if the player is preparing to throw
     private Vector2 storedThrowPosition; // Stores the last mouse click position
+    private MonoBehaviour usableFunction; // Cache of the usable function (if any)
 
     public void StartPreparingThrow()
     {
         if (playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
 
         isPreparingToThrow = true;
+
+        // Disable the usable function of the held item, if it has one
+        usableFunction = playerPickupSystem.GetUsableFunction();
+        if (usableFunction != null && usableFunction is IUsable usableItem)
+        {
+            usableItem.DisableUsableFunction();
+        }
 
         // Optional: Add visual feedback for the throw arc here
         Debug.Log("Preparing to throw...");
@@ -74,6 +82,20 @@ public class PlayerThrowManager : MonoBehaviour
         // Start coroutine to handle re-enabling collider partway through trajectory
         StartCoroutine(EnableColliderDuringTrajectory(heldItem, rb, itemCollider, distance));
         isPreparingToThrow = false; // Reset throw state
+    }
+
+    public void CancelThrow()
+    {
+        if (!isPreparingToThrow || playerPickupSystem == null) return;
+
+        // Re-enable the usable function of the held item, if it has one
+        if (usableFunction != null && usableFunction is IUsable usableItem)
+        {
+            usableItem.EnableUsableFunction();
+        }
+
+        isPreparingToThrow = false;
+        Debug.Log("Throw preparation canceled.");
     }
 
     private IEnumerator EnableColliderDuringTrajectory(GameObject item, Rigidbody2D rb, Collider2D itemCollider, float totalDistance)

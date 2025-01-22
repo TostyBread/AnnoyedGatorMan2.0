@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FirearmController : MonoBehaviour
+public class FirearmController : MonoBehaviour, IUsable
 {
     [Header("Firearm Settings")]
     public int maxAmmo = 10; // Maximum ammo the firearm can hold
@@ -12,16 +12,19 @@ public class FirearmController : MonoBehaviour
     public string firearmPrefix = "Glock17"; // Prefix for firearm animations
     public Animator animator; // Reference to the Animator component
 
-    private int currentAmmo; // Current ammo count
+    [Header("References")]
+    public CharacterFlip characterFlip; // Reference to the CharacterFlip script
 
-    private bool isOutOfAmmo => currentAmmo <= 0;
+    private int currentAmmo; // Current ammo count
+    private bool isUsable = true; // Whether the firearm can currently be used
+    private bool isFacingRight; // Tracks the player's current facing direction
+
+    private bool isOutOfAmmo => currentAmmo <= 0; // Check if the firearm is out of ammo
 
     void Awake()
     {
-        // Initialize ammo count
         currentAmmo = maxAmmo;
 
-        // If the animator is not manually assigned, try finding it in children
         if (animator == null)
         {
             animator = GetComponentInChildren<Animator>();
@@ -29,50 +32,109 @@ public class FirearmController : MonoBehaviour
 
         if (animator == null)
         {
-            Debug.LogWarning($"Animator is missing on {gameObject.name} or its children.");
+            Debug.LogWarning($"Animator is missing on {gameObject.name}.");
         }
         else
         {
-            PlayAnimation("_Neutral"); // Set to the neutral animation at the start
+            PlayAnimation("_Neutral"); // Start in the neutral state
+        }
+
+        // Initialize facing direction
+        isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
+        AdjustMuzzlePoint(); // Ensure muzzlePoint is set correctly at the start
+    }
+
+    void Update()
+    {
+        if (characterFlip == null) return;
+
+        // Check if the player's facing direction has changed
+        bool currentFacingRight = characterFlip.IsFacingRight();
+        if (currentFacingRight != isFacingRight)
+        {
+            isFacingRight = currentFacingRight;
+            AdjustMuzzlePoint(); // Only adjust when facing direction changes
         }
     }
 
     public void Fire()
     {
+        if (!isUsable)
+        {
+            Debug.Log("Firearm is currently disabled.");
+            return;
+        }
+
         if (isOutOfAmmo)
         {
-            PlayAnimation("_Dry"); // Play the DryFire animation and keep it looping
+            PlayAnimation("_Dry"); // Play the dry-fire animation
             Debug.Log("Out of ammo!");
             return;
         }
 
         if (currentAmmo == 1)
         {
-            PlayOnce("_FireToDry", shouldGoToDry: true); // Last-shot animation, transitions to _Dry
-            currentAmmo = 0; // Ammo depleted
+            PlayOnce("_FireToDry", shouldGoToDry: true); // Last shot logic
+            currentAmmo = 0; // Set ammo to zero
         }
         else
         {
-            PlayOnce("_Fire"); // Regular fire animation
-            currentAmmo--;
+            PlayOnce("_Fire"); // Regular firing animation
+            currentAmmo--; // Decrease ammo
         }
 
         SpawnProjectile();
         Debug.Log($"Fired! Ammo remaining: {currentAmmo}/{maxAmmo}");
     }
 
+    public void EnableUsableFunction()
+    {
+        isUsable = true;
+        Debug.Log("Firearm usable function enabled.");
+    }
+
+    public void DisableUsableFunction()
+    {
+        isUsable = false;
+        Debug.Log("Firearm usable function disabled.");
+    }
+
     private void SpawnProjectile()
     {
         if (projectilePrefab != null && muzzlePoint != null)
         {
+            // Instantiate the projectile at the muzzle point
             GameObject projectile = Instantiate(projectilePrefab, muzzlePoint.position, muzzlePoint.rotation);
+
+            // Set the velocity of the projectile
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = muzzlePoint.right * projectileSpeed; // Forward direction based on the muzzle
+                // Ensure velocity direction matches the muzzlePoint's local facing direction
+                Vector2 direction = muzzlePoint.right.normalized; // Use the local "right" direction of the muzzle
+                rb.velocity = direction * projectileSpeed;
             }
         }
     }
+
+    private void AdjustMuzzlePoint()
+    {
+        if (characterFlip == null || muzzlePoint == null) return;
+
+        // Check the player's facing direction
+        bool isFacingRight = characterFlip.IsFacingRight();
+
+        // Flip the muzzlePoint's local position based on the facing direction
+        Vector3 muzzleLocalPosition = muzzlePoint.localPosition;
+        muzzleLocalPosition.x = Mathf.Abs(muzzleLocalPosition.x) * (isFacingRight ? 1 : -1); // Flip X position
+        muzzlePoint.localPosition = muzzleLocalPosition;
+
+        // Flip the muzzlePoint's rotation based on the facing direction
+        Vector3 muzzleRotation = muzzlePoint.localEulerAngles;
+        muzzleRotation.y = isFacingRight ? 0 : 180; // Flip the Y-axis rotation
+        muzzlePoint.localEulerAngles = muzzleRotation;
+    }
+
 
     private void PlayOnce(string suffix, bool shouldGoToDry = false)
     {
@@ -81,15 +143,15 @@ public class FirearmController : MonoBehaviour
             string animationName = firearmPrefix + suffix;
             animator.Play(animationName);
 
-            // Return to the appropriate state after the animation finishes
+            // Calculate animation duration and schedule a state change
             float animationDuration = GetAnimationClipLength(animationName);
             if (shouldGoToDry)
             {
-                Invoke(nameof(ResetToDry), animationDuration); // Transition to _Dry after _FireToDry
+                Invoke(nameof(ResetToDry), animationDuration); // Transition to _Dry
             }
             else
             {
-                Invoke(nameof(ResetToNeutral), animationDuration); // Default back to _Neutral
+                Invoke(nameof(ResetToNeutral), animationDuration); // Transition to _Neutral
             }
         }
         else
@@ -100,12 +162,12 @@ public class FirearmController : MonoBehaviour
 
     private void ResetToNeutral()
     {
-        PlayAnimation("_Neutral");
+        PlayAnimation("_Neutral"); // Return to neutral animation
     }
 
     private void ResetToDry()
     {
-        PlayAnimation("_Dry");
+        PlayAnimation("_Dry"); // Stay in dry state when out of ammo
     }
 
     private void PlayAnimation(string suffix)

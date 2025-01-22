@@ -3401,9 +3401,10 @@ MonoBehaviour:
   maxAmmo: 10
   projectilePrefab: {fileID: 7024173470581301209, guid: 2484b13aeb71a284cbd270aef8cdf8d4, type: 3}
   muzzlePoint: {fileID: 1856114158}
-  projectileSpeed: 10
+  projectileSpeed: 15
   firearmPrefix: Glock17
   animator: {fileID: 1057009264}
+  characterFlip: {fileID: 284036863}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

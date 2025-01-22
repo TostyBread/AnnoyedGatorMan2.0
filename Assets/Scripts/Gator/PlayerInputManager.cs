@@ -90,6 +90,12 @@ public class PlayerInputManager : MonoBehaviour
         {
             playerThrowManager.Throw();
         }
+
+        // Cancel throw preparation when RMB is released
+        if (Input.GetMouseButtonUp(1))
+        {
+            playerThrowManager.CancelThrow();
+        }
     }
 
     private void HandleUsableItemInput()

@@ -11,14 +11,6 @@ public class HandController : MonoBehaviour
     [Header("Character Flip Reference")]
     public CharacterFlip characterFlip; // Reference to the CharacterFlip script
 
-    private Camera mainCamera;
-
-    void Start()
-    {
-        mainCamera = Camera.main;
-
-    }
-
     void Update()
     {
         if (pivotPoint != null && hand != null)

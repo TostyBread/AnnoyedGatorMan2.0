@@ -133,7 +133,7 @@ public class PlayerPickupSystem : MonoBehaviour
         pickupCoroutine = null;
     }
 
-    private void PickUpItem(GameObject item) //NEW Version
+    private void PickUpItem(GameObject item)
     {
         // Disable the item's collider and make it a child of the handPosition
         item.GetComponent<Collider2D>().enabled = false;
@@ -170,10 +170,11 @@ public class PlayerPickupSystem : MonoBehaviour
         // Check if the item has a usable function (e.g., FirearmController)
         usableItemController = heldItem.GetComponent<MonoBehaviour>();
 
-        // Debug to ensure detection works
-        Debug.Log(usableItemController != null
-            ? $"Usable item detected: {usableItemController.GetType().Name}"
-            : "No usable item detected.");
+        // Re-enable the usable function if it implements IUsable
+        if (usableItemController != null && usableItemController is IUsable usableItem)
+        {
+            usableItem.EnableUsableFunction(); // Ensure usable function is re-enabled
+        }
 
         // Notify the HandSpriteManager to update the player's hand sprite
         if (handSpriteManager != null)
