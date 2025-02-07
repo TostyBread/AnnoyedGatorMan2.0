@@ -1,54 +1,56 @@
+using System.Collections;
 using UnityEngine;
 
 public class CookingStove : MonoBehaviour
 {
-    [Header("Stove Settings")]
-    public GameObject fireCollider; // The fire collider that enables cooking
-    public bool isStoveOn = false;
+    public GameObject fireCollider; // Fire collider to apply heat
+    public bool isOn = false;
+    public float fireActivationDelay = 0.5f; // Delay before fire starts
 
-    [Header("Detection Settings")]
-    public float activationRange = 2.5f; // Range within which the stove can be turned on
-    public string[] ignitableTags = {}; // Tags that can ignite the stove
-
-    private Transform playerTransform; // Reference to the player
+    private Coroutine fireActivationCoroutine;
 
     private void Start()
     {
-        playerTransform = FindObjectOfType<CharacterMovement>().transform; // Dynamically find player
+        fireCollider.SetActive(false); // Ensure fire is off at start
     }
 
-    private void Update()
+    public void ToggleStove()
     {
-        if (Input.GetMouseButtonDown(2)) // Middle-click to toggle stove
+        if (isOn)
         {
-            Vector2 mouseWorldPos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
-            Collider2D hit = Physics2D.OverlapPoint(mouseWorldPos);
-
-            if (hit != null && hit.gameObject == gameObject && Vector2.Distance(transform.position, playerTransform.position) <= activationRange)
+            isOn = false;
+            StopFire();
+        }
+        else
+        {
+            isOn = true;
+            if (fireActivationCoroutine == null)
             {
-                ToggleStove();
+                fireActivationCoroutine = StartCoroutine(StartFireWithDelay());
             }
         }
+        Debug.Log("Stove " + (isOn ? "Turning On..." : "Turning Off"));
     }
 
-    public void ToggleStove() // Changed to 'public' so PlayerInputManager can access it
+    private IEnumerator StartFireWithDelay()
     {
-        isStoveOn = !isStoveOn;
-        fireCollider.SetActive(isStoveOn);
-        Debug.Log($"Stove toggled: {(isStoveOn ? "ON" : "OFF")}");
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        foreach (string tag in ignitableTags)
+        yield return new WaitForSeconds(fireActivationDelay);
+        if (isOn) // Ensure stove wasn't turned off during the delay
         {
-            if (collision.gameObject.CompareTag(tag))
-            {
-                isStoveOn = true;
-                fireCollider.SetActive(true);
-                Debug.Log("Stove ignited by external fire source.");
-                break;
-            }
+            fireCollider.SetActive(true);
+            Debug.Log("Fire Activated");
         }
+        fireActivationCoroutine = null; // Reset coroutine reference
+    }
+
+    private void StopFire()
+    {
+        if (fireActivationCoroutine != null)
+        {
+            StopCoroutine(fireActivationCoroutine);
+            fireActivationCoroutine = null;
+        }
+        fireCollider.SetActive(false);
+        Debug.Log("Fire Deactivated");
     }
 }

@@ -13,6 +13,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private Collider2D targetItem = null; // The item currently being targeted
     private GameObject heldItem = null; // The currently held item
+    private Collider2D targetInteractable = null;
     private Coroutine pickupCoroutine = null; // Reference to the active pickup coroutine
     private bool isHoldingPickupKey = false; // Tracks if the player is holding the pickup key
 
@@ -43,22 +44,21 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private void HandleItemDetection()
     {
-        // Get the mouse position in world space
         Vector2 mouseWorldPos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
-
-        // Find all colliders within the pickup radius
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, pickupRadius);
 
-        // Reset the targetItem
         targetItem = null;
+        targetInteractable = null;
 
-        // Check if the mouse is pointing at any valid item within range
         foreach (var collider in colliders)
         {
             if (IsPickupable(collider) && collider.OverlapPoint(mouseWorldPos))
             {
                 targetItem = collider;
-                break;
+            }
+            else if (collider.CompareTag("EnviroInteract") && collider.OverlapPoint(mouseWorldPos))
+            {
+                targetInteractable = collider;
             }
         }
     }
@@ -67,6 +67,18 @@ public class PlayerPickupSystem : MonoBehaviour
     {
         // Check if the collider's tag matches any in the validTags list
         return validTags.Contains(collider.tag);
+    }
+
+    public void StartInteraction()
+    {
+        if (targetInteractable != null)
+        {
+            CookingStove stove = targetInteractable.GetComponent<CookingStove>();
+            if (stove != null)
+            {
+                stove.ToggleStove();
+            }
+        }
     }
 
     public void StartPickup()

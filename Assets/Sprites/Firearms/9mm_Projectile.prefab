@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 419005131559993274}
   - component: {fileID: 9100324607890703574}
+  - component: {fileID: 1943127613447256179}
   - component: {fileID: 8687144792717956823}
   - component: {fileID: 5762952288829310691}
   m_Layer: 0
@@ -133,6 +134,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 5
   destroyOnCollision: 1
+--- !u!114 &1943127613447256179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024173470581301209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc6995464398c3488c1a67683949ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 0
+  damageAmount: 0
+  heatAmount: 40
 --- !u!50 &8687144792717956823
 Rigidbody2D:
   serializedVersion: 4

@@ -10,6 +10,8 @@ TagManager:
   - FoodSmall
   - Fist
   - Projectile
+  - EnviroInteract
+  - Fire
   layers:
   - Default
   - TransparentFX

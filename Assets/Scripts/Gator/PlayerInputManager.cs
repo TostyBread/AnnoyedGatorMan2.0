@@ -28,7 +28,7 @@ public class PlayerInputManager : MonoBehaviour
         HandlePickupInput();
         HandleThrowInput();
         HandleUsableItemInput();
-        HandleStoveInput();
+        HandleEnviromentalInteractInput();
 
     }
 
@@ -130,21 +130,11 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleStoveInput()
+    private void HandleEnviromentalInteractInput()
     {
-        if (Input.GetMouseButtonDown(2)) // Middle-click
+        if (Input.GetMouseButtonDown(2) && playerPickupSystem != null)
         {
-            Vector2 mouseWorldPos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
-            Collider2D hit = Physics2D.OverlapPoint(mouseWorldPos);
-
-            if (hit != null)
-            {
-                CookingStove stove = hit.GetComponent<CookingStove>();
-                if (stove != null)
-                {
-                    stove.ToggleStove();
-                }
-            }
+            playerPickupSystem.StartInteraction();
         }
     }
 
