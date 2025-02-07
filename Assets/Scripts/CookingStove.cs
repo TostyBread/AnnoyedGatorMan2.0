@@ -6,6 +6,7 @@ public class CookingStove : MonoBehaviour
     public GameObject fireCollider; // Fire collider to apply heat
     public bool isOn = false;
     public float fireActivationDelay = 0.5f; // Delay before fire starts
+    public float requiredImpactForce = 5f; // Minimum force required to toggle stove
 
     private Coroutine fireActivationCoroutine;
 
@@ -52,5 +53,14 @@ public class CookingStove : MonoBehaviour
         }
         fireCollider.SetActive(false);
         Debug.Log("Fire Deactivated");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Rigidbody2D rb = collision.rigidbody;
+        if (rb != null && rb.velocity.magnitude >= requiredImpactForce)
+        {
+            ToggleStove();
+        }
     }
 }

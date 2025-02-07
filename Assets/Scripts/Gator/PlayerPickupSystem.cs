@@ -56,7 +56,7 @@ public class PlayerPickupSystem : MonoBehaviour
             {
                 targetItem = collider;
             }
-            else if (collider.CompareTag("EnviroInteract") && collider.OverlapPoint(mouseWorldPos))
+            else if (collider.CompareTag("EnviroInteract") && collider.OverlapPoint(mouseWorldPos)) //Specifically for Enviromental Interact detection
             {
                 targetInteractable = collider;
             }

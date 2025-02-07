@@ -6,7 +6,7 @@ public class PlayerThrowManager : MonoBehaviour
     [Header("Throw Settings")]
     public float throwForceMultiplier = 2f; // Multiplier to scale throw force based on distance
     public float spinSpeed = 360f; // Spin speed of the item during flight
-    public float quarterDistanceFactor = 0.25f; // When to re-enable collider (25% of trajectory)
+    public float quarterDistanceFactor = 0.5f; // When to re-enable collider (50% of trajectory)
     public float throwSpriteDuration = 0.5f; // Duration to show the throw sprite
 
     [Header("References")]
@@ -102,14 +102,12 @@ public class PlayerThrowManager : MonoBehaviour
     {
         if (itemCollider == null) yield break;
 
-        // Wait until the item has traveled 25% of the total distance to the target
-        float quarterDistance = totalDistance * quarterDistanceFactor;
-        while (Vector2.Distance(item.transform.position, storedThrowPosition) > totalDistance - quarterDistance)
-        {
-            yield return null; // Wait for the next frame
-        }
+        float enableDelay = Mathf.Clamp(totalDistance * 0.05f, 0.1f, 0.3f); // Adjust based on distance
+        yield return new WaitForSeconds(enableDelay);
 
-        // Re-enable the collider
-        itemCollider.enabled = true;
+        if (itemCollider != null)
+        {
+            itemCollider.enabled = true;
+        }
     }
 }

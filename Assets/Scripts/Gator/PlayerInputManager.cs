@@ -124,7 +124,6 @@ public class PlayerInputManager : MonoBehaviour
         {
             if (usableFunction is FirearmController firearmController)
             {
-                Debug.Log("Attempting to fire firearm...");
                 firearmController.Fire();
             }
         }

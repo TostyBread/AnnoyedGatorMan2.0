@@ -4,7 +4,6 @@ using UnityEngine;
 // 1. Item System: Handles durability, cooking, breaking, and hitpoints
 public class ItemSystem : MonoBehaviour
 {
-    public string itemName;
     public bool canBeCooked;
     public bool canBreak;
     public int durabilityUncooked;
@@ -24,8 +23,8 @@ public class ItemSystem : MonoBehaviour
 
     private int currentDurability;
     private float currentCookPoints = 0f;
-    private bool isCooked = false;
-    private bool isBurned = false;
+    public bool isCooked = false;
+    public bool isBurned = false;
     private float lastDamageTime = -1f;
 
     public enum DamageType { Bash, Cut, Shot }
