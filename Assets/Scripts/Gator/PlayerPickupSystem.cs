@@ -188,6 +188,8 @@ public class PlayerPickupSystem : MonoBehaviour
             usableItem.EnableUsableFunction(); // Ensure usable function is re-enabled
         }
 
+        //Debug.Log($"Picked up {item.name} with usable function: {usableItemController}");
+
         // Notify the HandSpriteManager to update the player's hand sprite
         if (handSpriteManager != null)
         {

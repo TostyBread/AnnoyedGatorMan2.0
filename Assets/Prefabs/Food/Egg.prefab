@@ -1328,9 +1328,9 @@ MonoBehaviour:
   brokenPartsCookedBash:
   - {fileID: 922050352936802867}
   brokenPartsUncookedCut:
-  - {fileID: 922050352936802867}
+  - {fileID: 6916611038323431012}
   brokenPartsCookedCut:
-  - {fileID: 0}
+  - {fileID: 7557139772448412433}
   brokenPartsOffsets:
   - {x: -0.06, y: 0, z: 0}
   - {x: 0.06, y: 0, z: 0}

@@ -79,30 +79,33 @@ public class ItemSystem : MonoBehaviour
 
     private void BreakItem(DamageType damageType)
     {
-        List<GameObject> breakParts;
-        if (isCooked)
+        if(!isBurned) //if the item is not overcooked
         {
-            breakParts = damageType == DamageType.Bash ? brokenPartsCookedBash : brokenPartsCookedCut;
-        }
-        else
-        {
-            breakParts = damageType == DamageType.Bash ? brokenPartsUncookedBash : brokenPartsUncookedCut;
-        }
-
-        for (int i = 0; i < breakParts.Count; i++)
-        {
-            breakParts[i].transform.SetParent(null);
-            breakParts[i].SetActive(true);
-            if (i < brokenPartsOffsets.Count)
+            List<GameObject> breakParts;
+            if (isCooked)
             {
-                breakParts[i].transform.position = transform.position + brokenPartsOffsets[i];
+                breakParts = damageType == DamageType.Bash ? brokenPartsCookedBash : brokenPartsCookedCut;
             }
             else
             {
-                breakParts[i].transform.position = transform.position;
+                breakParts = damageType == DamageType.Bash ? brokenPartsUncookedBash : brokenPartsUncookedCut;
             }
+
+            for (int i = 0; i < breakParts.Count; i++)
+            {
+                breakParts[i].transform.SetParent(null);
+                breakParts[i].SetActive(true);
+                if (i < brokenPartsOffsets.Count)
+                {
+                    breakParts[i].transform.position = transform.position + brokenPartsOffsets[i];
+                }
+                else
+                {
+                    breakParts[i].transform.position = transform.position;
+                }
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 
     public void CookItem()

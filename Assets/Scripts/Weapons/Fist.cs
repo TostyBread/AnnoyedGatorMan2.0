@@ -45,7 +45,7 @@ public class Fist : MonoBehaviour
         if (gameObject.activeSelf)
         {
             hitbox.enabled = true;
-            Invoke("DisableHitbox", 0.1f); // Adjust timing to match animation
+            Invoke("DisableHitbox", 0.2f); // Adjust timing to match animation
         }
     }
 

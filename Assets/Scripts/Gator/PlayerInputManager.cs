@@ -117,14 +117,29 @@ public class PlayerInputManager : MonoBehaviour
         {
             usableItemModeEnabled = !usableItemModeEnabled;
             Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
+
+            // Implemented during creation of knifes.
+            if (usableFunction is IUsable usableItem)
+            {
+                usableItem.EnableUsableFunction();
+            }
+
+            if (usableFunction is KnifeController knifeController)
+            {
+                knifeController.ToggleUsableMode(usableItemModeEnabled); // Use same toggle for knife
+            }
         }
 
         // Trigger the usable function on left-click if mode is enabled
         if (usableItemModeEnabled && Input.GetMouseButtonDown(0))
         {
-            if (usableFunction is FirearmController firearmController)
+            if (usableFunction is FirearmController firearmController) // firearm related controls
             {
                 firearmController.Fire();
+            }
+            else if (usableFunction is KnifeController knifeController) // knife related controls
+            {
+                knifeController.Stab();
             }
         }
     }
