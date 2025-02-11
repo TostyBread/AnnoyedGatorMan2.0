@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.89079213, b: 0, a: 1}
   m_FlipX: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1943127613447256179}
   - component: {fileID: 8687144792717956823}
   - component: {fileID: 5762952288829310691}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 9mm_Projectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 5
-  destroyOnCollision: 1
 --- !u!114 &1943127613447256179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,9 +145,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc6995464398c3488c1a67683949ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageType: 0
+  damageType: 2
   damageAmount: 0
-  heatAmount: 40
+  heatAmount: 10
+  heatCooldown: 1
+  isFireSource: 0
+  minVelocityToDamage: 0
 --- !u!50 &8687144792717956823
 Rigidbody2D:
   serializedVersion: 4

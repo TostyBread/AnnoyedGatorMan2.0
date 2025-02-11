@@ -7,50 +7,56 @@ public class DamageSource : MonoBehaviour
     public ItemSystem.DamageType damageType;
     public int damageAmount;
     public float heatAmount;
-    public float heatCooldown = 1.0f; // Time between heat applications
-    public bool isFireSource = false; // Toggle to manually define if this is a fire source
-    public float minVelocityToDamage = 0f; // Minimum velocity required to inflict damage
+    public float heatCooldown = 1.0f;
+    public bool isFireSource = false;
+    public float minVelocityToDamage = 0f;
 
     private HashSet<GameObject> objectsInFire = new HashSet<GameObject>();
     private Coroutine heatCoroutine;
+    private Rigidbody2D rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isFireSource) return; // Skip impact check for fire sources
-
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null && rb.velocity.magnitude >= minVelocityToDamage)
+        if (isFireSource || rb == null || rb.velocity.magnitude < minVelocityToDamage)
         {
-            ItemSystem item = collision.collider.GetComponent<ItemSystem>();
-            if (item != null)
-            {
-                item.ApplyCollisionEffect(gameObject);
-            }
+            return;
+        }
+
+        if (collision.collider.TryGetComponent(out ItemSystem item))
+        {
+            item.ApplyCollisionEffect(gameObject);
+            PlayHitSound(damageType);
+        }
+        else
+        {
+            AudioManager.Instance.PlaySound(damageType == ItemSystem.DamageType.Shot ? "Ricochet" : "GunHit", 1.0f, transform.position);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isFireSource)
+        if (!isFireSource) return;
+
+        if (other.TryGetComponent(out ItemSystem item) && objectsInFire.Add(other.gameObject))
         {
-            ItemSystem item = other.GetComponent<ItemSystem>();
-            if (item != null && objectsInFire.Add(other.gameObject))
+            if (heatCoroutine == null)
             {
-                if (heatCoroutine == null)
-                {
-                    heatCoroutine = StartCoroutine(ApplyHeatOverTime());
-                }
+                heatCoroutine = StartCoroutine(ApplyHeatOverTime());
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (isFireSource && objectsInFire.Remove(other.gameObject) && objectsInFire.Count == 0)
-        {
-            StopCoroutine(heatCoroutine);
-            heatCoroutine = null;
-        }
+        if (!isFireSource || !objectsInFire.Remove(other.gameObject) || objectsInFire.Count > 0) return;
+
+        StopCoroutine(heatCoroutine);
+        heatCoroutine = null;
     }
 
     private IEnumerator ApplyHeatOverTime()
@@ -59,17 +65,25 @@ public class DamageSource : MonoBehaviour
         {
             foreach (var obj in objectsInFire)
             {
-                if (obj != null)
+                if (obj != null && obj.TryGetComponent(out ItemSystem item))
                 {
-                    ItemSystem item = obj.GetComponent<ItemSystem>();
-                    if (item != null)
-                    {
-                        item.ApplyCollisionEffect(gameObject);
-                    }
+                    item.ApplyCollisionEffect(gameObject);
                 }
             }
             yield return new WaitForSeconds(heatCooldown);
         }
         heatCoroutine = null;
+    }
+
+    private void PlayHitSound(ItemSystem.DamageType type)
+    {
+        string soundName = type switch
+        {
+            ItemSystem.DamageType.Bash => "BashHit",
+            ItemSystem.DamageType.Cut => "KnifeHit",
+            ItemSystem.DamageType.Shot => "GunHit",
+            _ => "Non"
+        };
+        AudioManager.Instance.PlaySound(soundName, 1.0f, transform.position);
     }
 }

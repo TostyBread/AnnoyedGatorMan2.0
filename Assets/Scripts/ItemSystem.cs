@@ -104,6 +104,7 @@ public class ItemSystem : MonoBehaviour
                     breakParts[i].transform.position = transform.position;
                 }
             }
+            AudioManager.Instance.PlaySound("BrokenBlop", 1.0f, transform.position);
             Destroy(gameObject);
         }
     }
@@ -114,6 +115,7 @@ public class ItemSystem : MonoBehaviour
         uncookedState.SetActive(false);
         cookedState.SetActive(true);
         currentDurability = durabilityCooked;
+        AudioManager.Instance.PlaySound("Fizzle", 1.0f, transform.position);
     }
 
     public void BurnItem()
@@ -121,5 +123,6 @@ public class ItemSystem : MonoBehaviour
         isBurned = true;
         cookedState.SetActive(false);
         burnedState.SetActive(true);
+        AudioManager.Instance.PlaySound("DryFart", 1.0f, transform.position);
     }
 }

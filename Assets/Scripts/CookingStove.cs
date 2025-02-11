@@ -28,6 +28,7 @@ public class CookingStove : MonoBehaviour
             if (fireActivationCoroutine == null)
             {
                 fireActivationCoroutine = StartCoroutine(StartFireWithDelay());
+                AudioManager.Instance.PlaySound("ElectricStoveOn", 1.0f, transform.position);
             }
         }
         Debug.Log("Stove " + (isOn ? "Turning On..." : "Turning Off"));

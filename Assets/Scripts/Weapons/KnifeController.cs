@@ -36,9 +36,11 @@ public class KnifeController : MonoBehaviour, IUsable
         Debug.Log(isInUsableMode ? "Knife in stab mode." : "Knife in normal mode.");
     }
 
-    public void Stab()
+    public void Use()
     {
         if (!isUsable || !isInUsableMode || isStabbing) return;
+
+        AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
         StartCoroutine(PerformStab());
     }
 
@@ -63,10 +65,14 @@ public class KnifeController : MonoBehaviour, IUsable
     public void EnableUsableFunction()
     {
         isUsable = true;
-        if (isInUsableMode) // Ensure rotation is reapplied if mode was active
+
+        // Sync with PlayerInputManager's usable mode
+        PlayerInputManager inputManager = FindObjectOfType<PlayerInputManager>();
+        if (inputManager != null && inputManager.IsUsableModeEnabled())
         {
             ToggleUsableMode(true);
         }
+
         Debug.Log("Knife usable function enabled.");
     }
 

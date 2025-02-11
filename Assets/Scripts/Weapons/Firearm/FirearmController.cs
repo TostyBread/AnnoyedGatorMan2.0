@@ -57,7 +57,7 @@ public class FirearmController : MonoBehaviour, IUsable
         }
     }
 
-    public void Fire()
+    public void Use()
     {
         if (!isUsable)
         {
@@ -68,6 +68,7 @@ public class FirearmController : MonoBehaviour, IUsable
         if (isOutOfAmmo)
         {
             PlayAnimation("_Dry"); // Play the dry-fire animation
+            AudioManager.Instance.PlaySound("dryfire", 1.0f, transform.position); // Plays gunshot at player's position
             Debug.Log("Out of ammo!");
             return;
         }
@@ -82,6 +83,8 @@ public class FirearmController : MonoBehaviour, IUsable
             PlayOnce("_Fire"); // Regular firing animation
             currentAmmo--; // Decrease ammo
         }
+
+        AudioManager.Instance.PlaySound("glock18", 1.0f, transform.position); // Plays gunshot at player's position
 
         SpawnProjectile();
         Debug.Log($"Fired! Ammo remaining: {currentAmmo}/{maxAmmo}");

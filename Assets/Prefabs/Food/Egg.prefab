@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 2000892613, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 1228338412, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9374665db99aec140b22e05d240001a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingOrder: 2
+  holdingOrder: 3
 --- !u!114 &523382687599044790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
+  reducedBounceFactor: 0.1
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
@@ -271,7 +271,7 @@ MonoBehaviour:
   durabilityCooked: 0
   cookThreshold: 0
   burnThreshold: 0
-  damageCooldown: 0.5
+  damageCooldown: 1
   uncookedState: {fileID: 288239732091593446}
   cookedState: {fileID: 0}
   burnedState: {fileID: 0}
@@ -422,7 +422,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 320682012, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9374665db99aec140b22e05d240001a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingOrder: 2
+  holdingOrder: 3
 --- !u!114 &5789661386534505175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
+  reducedBounceFactor: 0.1
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
@@ -535,7 +535,7 @@ MonoBehaviour:
   durabilityCooked: 0
   cookThreshold: 0
   burnThreshold: 0
-  damageCooldown: 0.5
+  damageCooldown: 1
   uncookedState: {fileID: 4395056299106547353}
   cookedState: {fileID: 0}
   burnedState: {fileID: 0}
@@ -686,7 +686,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -1159475121, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -770,7 +770,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 1519650966, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -854,7 +854,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 2054749346, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -938,7 +938,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 2059039143, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1022,7 +1022,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -1608996732, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9374665db99aec140b22e05d240001a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingOrder: 2
+  holdingOrder: 3
 --- !u!114 &1008050112167468727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
+  reducedBounceFactor: 0.1
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
@@ -1137,7 +1137,7 @@ MonoBehaviour:
   durabilityCooked: 0
   cookThreshold: 60
   burnThreshold: 160
-  damageCooldown: 0.5
+  damageCooldown: 1
   uncookedState: {fileID: 3528147371313700362}
   cookedState: {fileID: 1956630603800797836}
   burnedState: {fileID: 3225500181539671706}
@@ -1268,7 +1268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9374665db99aec140b22e05d240001a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingOrder: 2
+  holdingOrder: 3
 --- !u!114 &5945348990097278197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,7 +1281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
+  reducedBounceFactor: 0.1
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
@@ -1319,7 +1319,7 @@ MonoBehaviour:
   durabilityCooked: 50
   cookThreshold: 50
   burnThreshold: 150
-  damageCooldown: 0.5
+  damageCooldown: 1
   uncookedState: {fileID: 4818201431613987624}
   cookedState: {fileID: 8712992910439870845}
   burnedState: {fileID: 100475657446244345}
@@ -1450,7 +1450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9374665db99aec140b22e05d240001a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingOrder: 2
+  holdingOrder: 3
 --- !u!114 &998545251268502762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
+  reducedBounceFactor: 0.1
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
@@ -1501,7 +1501,7 @@ MonoBehaviour:
   durabilityCooked: 0
   cookThreshold: 0
   burnThreshold: 0
-  damageCooldown: 0.5
+  damageCooldown: 1
   uncookedState: {fileID: 5259045617153689612}
   cookedState: {fileID: 0}
   burnedState: {fileID: 0}
@@ -1652,7 +1652,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 2059039143, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 0.9339623, g: 0.7413414, b: 0.5683072, a: 1}
   m_FlipX: 0

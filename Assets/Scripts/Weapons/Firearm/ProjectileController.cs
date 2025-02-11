@@ -4,7 +4,6 @@ public class ProjectileController : MonoBehaviour
 {
     [Header("Projectile Settings")]
     public float lifetime = 5f; // How long the projectile lives before being disabled
-    public bool destroyOnCollision = true; // Whether the projectile should be destroyed upon collision
 
     private float elapsedTime = 0f;
 
@@ -15,21 +14,18 @@ public class ProjectileController : MonoBehaviour
         // Disable or destroy the projectile after its lifetime expires
         if (elapsedTime >= lifetime)
         {
-            DisableOrDestroy();
+            DestroyBullet();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (destroyOnCollision)
-        {
-            DisableOrDestroy();
-        }
+        DestroyBullet();
     }
 
-    private void DisableOrDestroy()
+    private void DestroyBullet()
     {
-        // Implement pooling if needed
         Destroy(gameObject);
     }
+
 }

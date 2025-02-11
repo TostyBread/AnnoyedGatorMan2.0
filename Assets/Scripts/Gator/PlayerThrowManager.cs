@@ -15,22 +15,16 @@ public class PlayerThrowManager : MonoBehaviour
 
     private bool isPreparingToThrow = false; // Tracks if the player is preparing to throw
     private Vector2 storedThrowPosition; // Stores the last mouse click position
-    private MonoBehaviour usableFunction; // Cache of the usable function (if any)
+    private IUsable usableFunction; // Cache of the usable function (if any)
 
     public void StartPreparingThrow()
     {
         if (playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
 
         isPreparingToThrow = true;
+        usableFunction = playerPickupSystem.GetUsableFunction() as IUsable;
+        usableFunction?.DisableUsableFunction();
 
-        // Disable the usable function of the held item, if it has one
-        usableFunction = playerPickupSystem.GetUsableFunction();
-        if (usableFunction != null && usableFunction is IUsable usableItem)
-        {
-            usableItem.DisableUsableFunction();
-        }
-
-        // Optional: Add visual feedback for the throw arc here
         Debug.Log("Preparing to throw...");
     }
 
@@ -41,68 +35,48 @@ public class PlayerThrowManager : MonoBehaviour
         GameObject heldItem = playerPickupSystem.GetHeldItem();
         if (heldItem == null) return;
 
-        // Detach the item from the player's hand
         playerPickupSystem.DropItem();
+        handSpriteManager?.ShowThrowSprite(throwSpriteDuration);
 
-        // Notify HandSpriteManager to show the throw sprite
-        if (handSpriteManager != null)
-        {
-            handSpriteManager.ShowThrowSprite(throwSpriteDuration);
-        }
-
-        // Store the mouse position at the moment of the throw
         storedThrowPosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
-
-        // Calculate the distance to the target and scale the throw force
         float distance = Vector2.Distance(transform.position, storedThrowPosition);
         float adjustedThrowForce = distance * throwForceMultiplier;
 
-        // Add a Rigidbody2D to the item if not already present
-        Rigidbody2D rb = heldItem.GetComponent<Rigidbody2D>();
-        if (rb == null)
+        if (!heldItem.TryGetComponent(out Rigidbody2D rb))
         {
             rb = heldItem.AddComponent<Rigidbody2D>();
         }
 
-        // Disable the item's collider during flight
-        Collider2D itemCollider = heldItem.GetComponent<Collider2D>();
-        if (itemCollider != null)
+        if (heldItem.TryGetComponent(out Collider2D itemCollider))
         {
             itemCollider.enabled = false; // Disable collider during flight
         }
 
-        // Calculate the throw direction and apply force
         Vector2 throwDirection = (storedThrowPosition - (Vector2)transform.position).normalized;
         rb.isKinematic = false;
         rb.velocity = throwDirection * adjustedThrowForce;
+        rb.angularVelocity = spinSpeed * (throwDirection.x > 0 ? -1 : 1);
 
-        // Add angular velocity for spinning effect
-        rb.angularVelocity = spinSpeed * (throwDirection.x > 0 ? -1 : 1); // Spin clockwise or counterclockwise based on direction
+        StartCoroutine(EnableColliderDuringTrajectory(heldItem, itemCollider, distance));
+        isPreparingToThrow = false;
 
-        // Start coroutine to handle re-enabling collider partway through trajectory
-        StartCoroutine(EnableColliderDuringTrajectory(heldItem, rb, itemCollider, distance));
-        isPreparingToThrow = false; // Reset throw state
+        AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
     }
 
     public void CancelThrow()
     {
         if (!isPreparingToThrow || playerPickupSystem == null) return;
 
-        // Re-enable the usable function of the held item, if it has one
-        if (usableFunction != null && usableFunction is IUsable usableItem)
-        {
-            usableItem.EnableUsableFunction();
-        }
-
+        usableFunction?.EnableUsableFunction();
         isPreparingToThrow = false;
         Debug.Log("Throw preparation canceled.");
     }
 
-    private IEnumerator EnableColliderDuringTrajectory(GameObject item, Rigidbody2D rb, Collider2D itemCollider, float totalDistance)
+    private IEnumerator EnableColliderDuringTrajectory(GameObject item, Collider2D itemCollider, float totalDistance)
     {
         if (itemCollider == null) yield break;
 
-        float enableDelay = Mathf.Clamp(totalDistance * 0.05f, 0.1f, 0.3f); // Adjust based on distance
+        float enableDelay = Mathf.Clamp(totalDistance * 0.05f, 0.1f, 0.3f);
         yield return new WaitForSeconds(enableDelay);
 
         if (itemCollider != null)

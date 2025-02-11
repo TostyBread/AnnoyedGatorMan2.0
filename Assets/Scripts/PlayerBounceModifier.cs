@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerBounceModifier : MonoBehaviour
 {
     [Header("Bounciness Settings")]
-    public float reducedBounceFactor = 0.3f; // Reduced bounce factor when colliding with the player
+    public float reducedBounceFactor = 0.1f; // Reduced bounce factor when colliding with the player
     public float normalBounceFactor = 1f;   // Normal bounce factor for other collisions
     public float playerBounceDamping = 0.5f; // Damping factor to reduce velocity upon player collision
 

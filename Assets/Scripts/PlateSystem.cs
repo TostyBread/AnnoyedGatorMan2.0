@@ -7,39 +7,45 @@ public class PlateRequirement
     public string itemName;
     public ItemDescriber.CookingState cookingState;
     public ItemDescriber.Condition condition;
-    public Vector3 positionOffset; // Offset relative to plate
-    public int sortingOrder; // Sorting order for layering
-    public bool isFilled = false; // Tracks if this requirement is already satisfied
+    public Vector3 positionOffset;
+    public int sortingOrder;
+    public bool isFilled = false;
 }
 
 public class PlateSystem : MonoBehaviour
 {
-    public Transform plateParent; // Parent to hold items
-    public List<PlateRequirement> plateRequirements; // Structured list for validation
+    private Transform plateParent;
+    public List<PlateRequirement> plateRequirements;
     private Dictionary<PlateRequirement, GameObject> placedItems = new Dictionary<PlateRequirement, GameObject>();
+
+    private void Awake()
+    {
+        plateParent = transform.parent;
+        if (plateParent == null)
+        {
+            Debug.LogError("PlateSystem: No parent object found! Assign a parent plate.");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        ItemDescriber itemDescriber = other.GetComponent<ItemDescriber>();
-        if (itemDescriber != null)
+        if (!other.TryGetComponent(out ItemDescriber itemDescriber)) return;
+
+        PlateRequirement matchedRequirement = GetMatchingRequirement(itemDescriber);
+        if (matchedRequirement != null && !matchedRequirement.isFilled)
         {
-            PlateRequirement matchedRequirement = GetMatchingRequirement(itemDescriber);
-            if (matchedRequirement != null && !matchedRequirement.isFilled)
-            {
-                AttachToPlate(other.gameObject, matchedRequirement);
-            }
+            AttachToPlate(other.gameObject, matchedRequirement);
+            CheckIfAllRequirementsMet();
         }
     }
 
     private PlateRequirement GetMatchingRequirement(ItemDescriber item)
     {
-        foreach (PlateRequirement req in plateRequirements)
+        foreach (var req in plateRequirements)
         {
-            if (!req.isFilled && req.itemName == item.itemName &&
-                req.cookingState == item.currentCookingState &&
-                req.condition == item.currentCondition)
+            if (!req.isFilled && req.itemName == item.itemName && req.cookingState == item.currentCookingState && req.condition == item.currentCondition)
             {
-                return req; // Return the first available matching requirement
+                return req;
             }
         }
         return null;
@@ -48,7 +54,7 @@ public class PlateSystem : MonoBehaviour
     private void AttachToPlate(GameObject item, PlateRequirement requirement)
     {
         item.transform.SetParent(plateParent);
-        item.transform.localPosition = requirement.positionOffset; // Ensures correct offset relative to plate
+        item.transform.localPosition = requirement.positionOffset;
         placedItems[requirement] = item;
         requirement.isFilled = true;
 
@@ -58,8 +64,7 @@ public class PlateSystem : MonoBehaviour
 
     private void UpdateSpriteSorting(GameObject item, int sortingOrder)
     {
-        SpriteRenderer spriteRenderer = item.GetComponentInChildren<SpriteRenderer>();
-        if (spriteRenderer != null)
+        if (item.TryGetComponent(out SpriteRenderer spriteRenderer))
         {
             spriteRenderer.sortingOrder = sortingOrder;
         }
@@ -67,20 +72,27 @@ public class PlateSystem : MonoBehaviour
 
     private void FreezeItem(GameObject item)
     {
-        Collider2D collider = item.GetComponent<Collider2D>();
-        if (collider != null)
-        {
-            collider.enabled = false;
-        }
+        if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
 
-        Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if (item.TryGetComponent(out Rigidbody2D rb))
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
-            rb.gravityScale = 0f; // Disable gravity
-            rb.bodyType = RigidbodyType2D.Kinematic; // Allow movement with parent
+            rb.gravityScale = 0f;
+            rb.bodyType = RigidbodyType2D.Kinematic;
         }
     }
 
+    private void CheckIfAllRequirementsMet()
+    {
+        foreach (var req in plateRequirements)
+        {
+            if (!req.isFilled)
+            {
+                AudioManager.Instance.PlaySound("bell1", 1.0f, transform.position);
+                return;
+            }
+        }
+        AudioManager.Instance.PlaySound("TaskComplete", 1.0f, transform.position);
+    }
 }
