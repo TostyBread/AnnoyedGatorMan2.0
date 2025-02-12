@@ -4022,7 +4022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7433794083183702492, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_Name
-      value: Egg (1)
+      value: Egg
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7400,7 +7400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b049628e1390bd349b56e58129fc0ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 15
+  maxAmmo: 20
   projectilePrefab: {fileID: 7024173470581301209, guid: 2484b13aeb71a284cbd270aef8cdf8d4, type: 3}
   muzzlePoint: {fileID: 1856114158}
   projectileSpeed: 15
