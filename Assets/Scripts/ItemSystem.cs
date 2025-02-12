@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// 1. Item System: Handles durability, cooking, breaking, and hitpoints
 public class ItemSystem : MonoBehaviour
 {
     public bool canBeCooked;
@@ -10,7 +9,7 @@ public class ItemSystem : MonoBehaviour
     public int durabilityCooked;
     public float cookThreshold;
     public float burnThreshold;
-    public float damageCooldown = 0.5f; // Cooldown time in seconds
+    public float damageCooldown = 0.5f;
 
     public GameObject uncookedState;
     public GameObject cookedState;
@@ -36,77 +35,50 @@ public class ItemSystem : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Time.time - lastDamageTime >= damageCooldown)
-        {
-            ApplyCollisionEffect(collision.gameObject);
-            lastDamageTime = Time.time; // Update last damage time
-        }
+        if (Time.time - lastDamageTime < damageCooldown) return;
+
+        ApplyCollisionEffect(collision.gameObject);
+        lastDamageTime = Time.time;
     }
 
     public void ApplyCollisionEffect(GameObject source)
     {
-        DamageSource sourceDamage = source.GetComponent<DamageSource>();
-        if (sourceDamage == null) return;
+        if (!source.TryGetComponent(out DamageSource sourceDamage)) return;
 
-        DamageType damageType = sourceDamage.damageType;
-        int damage = sourceDamage.damageAmount;
-        float heat = sourceDamage.heatAmount;
+        DamageType damageType = sourceDamage.damageType == DamageType.Shot ?
+            (Random.value > 0.5f ? DamageType.Bash : DamageType.Cut) : sourceDamage.damageType;
 
-        if (damageType == DamageType.Shot)
-            damageType = Random.value > 0.5f ? DamageType.Bash : DamageType.Cut;
-
-        currentDurability -= damage;
+        currentDurability -= sourceDamage.damageAmount;
 
         if (canBeCooked)
         {
-            currentCookPoints += heat;
+            currentCookPoints += sourceDamage.heatAmount;
 
-            if (!isCooked && currentCookPoints >= cookThreshold)
-            {
-                CookItem();
-            }
-            else if (!isBurned && currentCookPoints >= burnThreshold)
-            {
-                BurnItem();
-            }
+            if (!isCooked && currentCookPoints >= cookThreshold) CookItem();
+            else if (!isBurned && currentCookPoints >= burnThreshold) BurnItem();
         }
 
-        if (currentDurability <= 0 && canBreak)
-        {
-            BreakItem(damageType);
-        }
+        if (currentDurability <= 0 && canBreak) BreakItem(damageType);
     }
 
     private void BreakItem(DamageType damageType)
     {
-        if(!isBurned) //if the item is not overcooked
-        {
-            List<GameObject> breakParts;
-            if (isCooked)
-            {
-                breakParts = damageType == DamageType.Bash ? brokenPartsCookedBash : brokenPartsCookedCut;
-            }
-            else
-            {
-                breakParts = damageType == DamageType.Bash ? brokenPartsUncookedBash : brokenPartsUncookedCut;
-            }
+        if (isBurned) return; // Prevent breaking if overcooked
 
-            for (int i = 0; i < breakParts.Count; i++)
-            {
-                breakParts[i].transform.SetParent(null);
-                breakParts[i].SetActive(true);
-                if (i < brokenPartsOffsets.Count)
-                {
-                    breakParts[i].transform.position = transform.position + brokenPartsOffsets[i];
-                }
-                else
-                {
-                    breakParts[i].transform.position = transform.position;
-                }
-            }
-            AudioManager.Instance.PlaySound("BrokenBlop", 1.0f, transform.position);
-            Destroy(gameObject);
+        List<GameObject> breakParts = isCooked
+            ? (damageType == DamageType.Bash ? brokenPartsCookedBash : brokenPartsCookedCut)
+            : (damageType == DamageType.Bash ? brokenPartsUncookedBash : brokenPartsUncookedCut);
+
+        for (int i = 0; i < breakParts.Count; i++)
+        {
+            GameObject part = breakParts[i];
+            part.transform.SetParent(null);
+            part.SetActive(true);
+            part.transform.position = transform.position + (i < brokenPartsOffsets.Count ? brokenPartsOffsets[i] : Vector3.zero);
         }
+
+        AudioManager.Instance.PlaySound("BrokenBlop", 1.0f, transform.position);
+        Destroy(gameObject);
     }
 
     public void CookItem()

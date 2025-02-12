@@ -31,10 +31,12 @@ public class DamageSource : MonoBehaviour
         {
             item.ApplyCollisionEffect(gameObject);
             PlayHitSound(damageType);
+            DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, damageType);
         }
         else
         {
             AudioManager.Instance.PlaySound(damageType == ItemSystem.DamageType.Shot ? "Ricochet" : "GunHit", 1.0f, transform.position);
+            DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, "SparkSpurt");
         }
     }
 
