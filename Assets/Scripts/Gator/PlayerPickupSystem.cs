@@ -44,17 +44,20 @@ public class PlayerPickupSystem : MonoBehaviour
 
         foreach (var collider in colliders)
         {
-            if (collider.gameObject.TryGetComponent<Interactable>(out Interactable interactable1) && IsPickupable(collider) && collider.OverlapPoint(mouseWorldPos))
+            bool isPickupable = IsPickupable(collider);
+            bool isMouseOver = collider.OverlapPoint(mouseWorldPos);
+            bool hasInteractable = collider.gameObject.TryGetComponent<Interactable>(out Interactable interactable);
+
+            // If the item is both interactable and pickupable
+            if (isPickupable && isMouseOver)
             {
-                // if the item is both interactable and pickupable
-                targetItem = collider;
-                targetInteractable = collider;
-            }
-            else if (IsPickupable(collider) && collider.OverlapPoint(mouseWorldPos))
-            {
+                if (hasInteractable)
+                {
+                    targetInteractable = collider;
+                }
                 targetItem = collider;
             }
-            else if (collider.gameObject.TryGetComponent<Interactable>(out Interactable interactable2) && collider.OverlapPoint(mouseWorldPos))
+            else if (hasInteractable && isMouseOver)
             {
                 targetInteractable = collider;
             }
