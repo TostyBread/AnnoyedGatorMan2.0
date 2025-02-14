@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Cabbage
+  itemID: 1
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &4502639535351587092
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Cabbage
+  itemID: 12
   currentCookingState: 0
   currentCondition: 1
 --- !u!114 &4104167479912779745
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Cabbage
+  itemID: 11
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &6286189875489304977
@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Cabbage
+  itemID: 13
   currentCookingState: 0
   currentCondition: 2
 --- !u!114 &2981667690835889831
@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Cabbage
+  itemID: 12
   currentCookingState: 0
   currentCondition: 1
 --- !u!114 &3352016264546360438
@@ -1404,7 +1404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Cabbage
+  itemID: 11
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &4024395388699078272
@@ -1585,7 +1585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Cabbage
+  itemID: 12
   currentCookingState: 0
   currentCondition: 1
 --- !u!114 &4370945558073491231
@@ -1931,7 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Cabbage
+  itemID: 12
   currentCookingState: 0
   currentCondition: 1
 --- !u!114 &8602837884005524439
@@ -2277,7 +2277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Cabbage
+  itemID: 13
   currentCookingState: 0
   currentCondition: 2
 --- !u!114 &5822833794278578817

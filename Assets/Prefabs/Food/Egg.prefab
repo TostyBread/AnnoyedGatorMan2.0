@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: HardBoiledEgg
+  itemID: 22
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &1749431612780186350
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: HardBoiledEggBashed
+  itemID: 221
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &3361774795666416300
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: EggYoke
+  itemID: 21
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &5351414366867298714
@@ -1298,7 +1298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Egg
+  itemID: 2
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &4966081042607188577
@@ -1480,7 +1480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: HardBoiledEggCut
+  itemID: 222
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &3686137789906717744

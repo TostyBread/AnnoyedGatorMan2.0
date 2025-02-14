@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Bread
+  itemID: 3
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &5938916818223057696

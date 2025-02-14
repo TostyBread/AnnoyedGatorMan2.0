@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Tomato
+  itemID: 42
   currentCookingState: 0
   currentCondition: 2
 --- !u!114 &2648737509463755666
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Tomato
+  itemID: 41
   currentCookingState: 0
   currentCondition: 1
 --- !u!114 &7988921223145785647
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Tomato
+  itemID: 42
   currentCookingState: 0
   currentCondition: 2
 --- !u!114 &3750120868193136655
@@ -953,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Tomato
+  itemID: 4
   currentCookingState: 0
   currentCondition: 0
 --- !u!114 &590381820657620924

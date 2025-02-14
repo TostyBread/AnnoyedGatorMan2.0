@@ -44,11 +44,17 @@ public class PlayerPickupSystem : MonoBehaviour
 
         foreach (var collider in colliders)
         {
-            if (IsPickupable(collider) && collider.OverlapPoint(mouseWorldPos))
+            if (collider.gameObject.TryGetComponent<Interactable>(out Interactable interactable1) && IsPickupable(collider) && collider.OverlapPoint(mouseWorldPos))
+            {
+                // if the item is both interactable and pickupable
+                targetItem = collider;
+                targetInteractable = collider;
+            }
+            else if (IsPickupable(collider) && collider.OverlapPoint(mouseWorldPos))
             {
                 targetItem = collider;
             }
-            else if (collider.CompareTag("EnviroInteract") && collider.OverlapPoint(mouseWorldPos))
+            else if (collider.gameObject.TryGetComponent<Interactable>(out Interactable interactable2) && collider.OverlapPoint(mouseWorldPos))
             {
                 targetInteractable = collider;
             }
@@ -62,6 +68,10 @@ public class PlayerPickupSystem : MonoBehaviour
         if (targetInteractable != null && targetInteractable.TryGetComponent(out CookingStove stove))
         {
             stove.ToggleStove();
+        }
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out ItemPackage package))
+        {
+            package.TakingOutItem();
         }
     }
 

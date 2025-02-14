@@ -5,7 +5,7 @@ public class ItemDescriber : MonoBehaviour
     public enum CookingState { Uncooked, Cooked, Overcooked }
     public enum Condition { Normal, Bashed, Cut }
 
-    public string itemName;
+    public int itemID; // itemID Must be manually assigned
     public CookingState currentCookingState = CookingState.Uncooked;
     public Condition currentCondition = Condition.Normal;
 
@@ -14,7 +14,6 @@ public class ItemDescriber : MonoBehaviour
     void Start()
     {
         itemSystem = GetComponent<ItemSystem>();
-        itemName = gameObject.name; // Automatically assign GameObject name
     }
 
     void Update()

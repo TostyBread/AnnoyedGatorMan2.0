@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlateRequirement
 {
-    public string itemName;
+    public int itemID;
     public ItemDescriber.CookingState cookingState;
     public ItemDescriber.Condition condition;
     public Vector3 positionOffset;
@@ -43,7 +43,7 @@ public class PlateSystem : MonoBehaviour
     {
         foreach (var req in plateRequirements)
         {
-            if (!req.isFilled && req.itemName == item.itemName && req.cookingState == item.currentCookingState && req.condition == item.currentCondition)
+            if (!req.isFilled && req.itemID == item.itemID && req.cookingState == item.currentCookingState && req.condition == item.currentCondition)
             {
                 return req;
             }
