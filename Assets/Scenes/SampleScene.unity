@@ -4441,13 +4441,7 @@ MonoBehaviour:
   normalBounceFactor: 1
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 0}
-  playerTag:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  playerTag: []
 --- !u!114 &713178750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4974,13 +4968,7 @@ MonoBehaviour:
   normalBounceFactor: 1
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 0}
-  playerTag:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  playerTag: []
 --- !u!50 &1041717363
 Rigidbody2D:
   serializedVersion: 4
@@ -8830,9 +8818,7 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTag:
-  - Player
-  - Player2
+  playerTag: []
 --- !u!114 &1907081567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8851,7 +8837,6 @@ MonoBehaviour:
   projectileSpeed: 15
   firearmPrefix: Glock17
   animator: {fileID: 1057009264}
-  characterFlip: {fileID: 284036863}
 --- !u!1 &1916355240
 GameObject:
   m_ObjectHideFlags: 0
