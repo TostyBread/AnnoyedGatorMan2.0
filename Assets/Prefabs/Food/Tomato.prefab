@@ -235,7 +235,7 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTag: Player
+  playerTag: []
 --- !u!114 &9214245172780400358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTag: Player
+  playerTag: []
 --- !u!114 &5997857508350087915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,7 +591,7 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTag: Player
+  playerTag: []
 --- !u!114 &1073136704812625612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,7 +940,9 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTag: Player
+  playerTag:
+  - Player
+  - Player2
 --- !u!114 &3844615439724221598
 MonoBehaviour:
   m_ObjectHideFlags: 0

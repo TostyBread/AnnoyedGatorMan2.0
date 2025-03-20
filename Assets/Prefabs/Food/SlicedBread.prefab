@@ -153,7 +153,9 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTag: Player
+  playerTag:
+  - Player
+  - Player2
 --- !u!114 &3434327535344885170
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,6 +48,8 @@ public class FirearmController : MonoBehaviour, IUsable
     {
         if (characterFlip == null) return;
 
+        characterFlip = GameObject.FindGameObjectWithTag("Player2").GetComponent<CharacterFlip>();
+
         // Check if the player's facing direction has changed
         bool currentFacingRight = characterFlip.IsFacingRight();
         if (currentFacingRight != isFacingRight)

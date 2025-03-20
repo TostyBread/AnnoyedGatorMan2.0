@@ -12,6 +12,7 @@ TagManager:
   - Projectile
   - EnviroInteract
   - Fire
+  - Player2
   layers:
   - Default
   - TransparentFX
