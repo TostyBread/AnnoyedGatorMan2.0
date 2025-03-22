@@ -49,7 +49,6 @@ public class FirearmController : MonoBehaviour, IUsable
     void Update()
     {
         characterFlip = GetComponentInParent<CharacterFlip>();
-        Debug.Log(characterFlip);
 
         if (characterFlip == null) return;
 

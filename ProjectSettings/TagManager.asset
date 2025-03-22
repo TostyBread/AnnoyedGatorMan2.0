@@ -13,6 +13,7 @@ TagManager:
   - EnviroInteract
   - Fire
   - Player2
+  - Mob
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Wall
   - Player
   - Projectile
-  - 
+  - Mob
   - 
   - 
   - 
