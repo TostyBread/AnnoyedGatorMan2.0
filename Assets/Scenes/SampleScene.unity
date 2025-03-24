@@ -4468,7 +4468,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 832
+    m_Bits: 3904
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 191
@@ -7405,7 +7405,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 3328
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 767
@@ -8588,6 +8588,8 @@ MonoBehaviour:
   - {fileID: 1187287212}
   - {fileID: 233954672}
   - {fileID: 28206443}
+  minSpawnInterval: 2
+  maxSpawnInterval: 5
   sanity: {fileID: 1244825997}
 --- !u!1 &1697570300
 GameObject:

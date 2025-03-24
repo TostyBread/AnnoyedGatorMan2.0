@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PestSpawner : MonoBehaviour
@@ -7,11 +8,13 @@ public class PestSpawner : MonoBehaviour
     [Header("Spawner Settings")]
     public GameObject[] pests;
     public GameObject[] spawnPos;
+    public float minSpawnInterval;
+    public float maxSpawnInterval;
 
     [Header("References")]
     public Sanity sanity;
 
-    private bool pestSpawned = false;
+    private bool isSpawning = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +28,10 @@ public class PestSpawner : MonoBehaviour
         if (sanity == null) return;
 
         // Check if sanity is depleted
-        if (sanity.RemainSanity <= 0 && !pestSpawned)
+        if (sanity.RemainSanity <= 0)
         {
-            SpawnPest();
-            pestSpawned = true; // Set the flag to prevent further spawning
+            if (!isSpawning) StartCoroutine(RepeatSpawnPest(minSpawnInterval, maxSpawnInterval));
         }
-
-        if (Input.GetKeyDown(KeyCode.Q)) pestSpawned = false;
     }
 
     private void SpawnPest()
@@ -60,5 +60,13 @@ public class PestSpawner : MonoBehaviour
         // Spawn the selected pest at the spawn position
         Instantiate(pestToSpawn, spawnPos[spawnPosRandomIndex].transform.position, spawnPos[spawnPosRandomIndex].transform.rotation);
         Debug.Log("Pest spawned: " + pestToSpawn.name);
+    }
+
+    IEnumerator RepeatSpawnPest(float minInterval, float maxInterval)
+    {
+        isSpawning = true;
+        yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
+        SpawnPest();
+        isSpawning = false;
     }
 }

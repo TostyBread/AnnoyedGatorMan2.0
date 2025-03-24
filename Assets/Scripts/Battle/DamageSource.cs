@@ -38,6 +38,11 @@ public class DamageSource : MonoBehaviour
             AudioManager.Instance.PlaySound(damageType == ItemSystem.DamageType.Shot ? "Ricochet" : "GunHit", 1.0f, transform.position);
             DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, "SparkSpurt");
         }
+
+        if (collision.collider.TryGetComponent(out HealthManager health))
+        {
+            health.TryDamage(damageAmount);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

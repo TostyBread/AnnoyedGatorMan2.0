@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: -8511537340873798694}
   - component: {fileID: 2255416782146593324}
   - component: {fileID: 4023542574777166747}
+  - component: {fileID: 6256088542410090027}
   m_Layer: 10
   m_Name: Mob
   m_TagString: Mob
@@ -204,3 +205,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+--- !u!114 &6256088542410090027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5695865575272404912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
