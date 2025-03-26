@@ -657,6 +657,7 @@ GameObject:
   - component: {fileID: 284036861}
   - component: {fileID: 284036864}
   - component: {fileID: 284036865}
+  - component: {fileID: 284036872}
   - component: {fileID: 284036871}
   - component: {fileID: 284036867}
   - component: {fileID: 284036869}
@@ -733,7 +734,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284036857}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ea141bb7581dc64ba788e98fe5bb41d, type: 3}
   m_Name: 
@@ -915,6 +916,19 @@ MonoBehaviour:
   - FoodBig
   handSpriteManager: {fileID: 36479099}
   characterFlip: {fileID: 284036869}
+  p2AimSystem: {fileID: 1518752050}
+--- !u!114 &284036872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284036857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &288328633
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class P2Input : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     private Fist fist;
-    private PlayerPickupSystem playerPickupSystem;
+    private P2PickSystem playerPickupSystem;
     private PlayerThrowManager playerThrowManager;
     private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
@@ -15,7 +15,7 @@ public class P2Input : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
-        playerPickupSystem = GetComponent<PlayerPickupSystem>();
+        playerPickupSystem = GetComponent<P2PickSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
     }
 

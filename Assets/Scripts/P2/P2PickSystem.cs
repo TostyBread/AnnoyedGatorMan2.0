@@ -25,6 +25,13 @@ public class P2PickSystem : MonoBehaviour
     public string HeldItemTag => heldItem != null ? heldItem.tag : null;
     public bool HasUsableFunction => usableItemController != null;
 
+    public P2AimSystem p2AimSystem;
+    private GameObject Target;
+
+    private void Start()
+    {
+        Target = p2AimSystem.NearestTarget();    
+    }
 
     void Update()
     {
@@ -37,7 +44,6 @@ public class P2PickSystem : MonoBehaviour
 
     private void HandleItemDetection()
     {
-        Vector2 mouseWorldPos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, pickupRadius);
 
         targetItem = null;
@@ -46,11 +52,11 @@ public class P2PickSystem : MonoBehaviour
         foreach (var collider in colliders)
         {
             bool isPickupable = IsPickupable(collider);
-            bool isMouseOver = collider.OverlapPoint(mouseWorldPos);
+            bool HasTarget = p2AimSystem.NearestTarget();
             bool hasInteractable = collider.gameObject.TryGetComponent<Interactable>(out Interactable interactable);
 
             // If the item is both interactable and pickupable
-            if (isPickupable && isMouseOver)
+            if (isPickupable && HasTarget)
             {
                 if (hasInteractable)
                 {
@@ -58,7 +64,7 @@ public class P2PickSystem : MonoBehaviour
                 }
                 targetItem = collider;
             }
-            else if (hasInteractable && isMouseOver)
+            else if (hasInteractable && HasTarget)
             {
                 targetInteractable = collider;
             }
