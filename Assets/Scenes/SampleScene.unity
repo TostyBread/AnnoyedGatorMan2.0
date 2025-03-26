@@ -1001,6 +1001,7 @@ GameObject:
   - component: {fileID: 284036864}
   - component: {fileID: 284036865}
   - component: {fileID: 284036867}
+  - component: {fileID: 284036869}
   m_Layer: 8
   m_Name: GatorMan
   m_TagString: Player
@@ -1126,7 +1127,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -1219,6 +1220,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &284036869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284036857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
 --- !u!1 &288328633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4830,7 +4844,9 @@ MonoBehaviour:
   normalBounceFactor: 1
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTags: []
+  playerTags:
+  - Player
+  - Player2
 --- !u!114 &713178750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5357,7 +5373,9 @@ MonoBehaviour:
   normalBounceFactor: 1
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 0}
-  playerTags: []
+  playerTags:
+  - Player
+  - Player2
 --- !u!50 &1041717363
 Rigidbody2D:
   serializedVersion: 4
@@ -5878,7 +5896,7 @@ GameObject:
   - component: {fileID: 1244825997}
   m_Layer: 5
   m_Name: Sanity
-  m_TagString: Untagged
+  m_TagString: Sanity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5917,7 +5935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6bcd17d5833e1d4fb94ac4a26b45db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSanity: 10
+  MaxSanity: 100
   RemainSanity: 0
   SanityBar: {fileID: 193943471}
 --- !u!1 &1264540079
@@ -6012,6 +6030,7 @@ GameObject:
   - component: {fileID: 1271634419}
   - component: {fileID: 1271634411}
   - component: {fileID: 1271634410}
+  - component: {fileID: 1271634420}
   m_Layer: 8
   m_Name: GatorMan2
   m_TagString: Player2
@@ -6144,7 +6163,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -6230,6 +6249,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673c82998b577af40b6ef5fb4bf2bd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1271634420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271634409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
 --- !u!1 &1298616707
 GameObject:
   m_ObjectHideFlags: 0
@@ -8763,7 +8795,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

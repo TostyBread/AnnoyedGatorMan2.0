@@ -20,19 +20,14 @@ public class Sanity : MonoBehaviour
     {
         SanityBar.fillAmount = RemainSanity / MaxSanity;
 
-        DecreaseSanity();
-
         if (RemainSanity < 0)
         {
             RemainSanity = 0;
         }
     }
 
-    private void DecreaseSanity()
+    public void DecreaseSanity(float decreaseAmount)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RemainSanity -= 5;
-        }
+        RemainSanity -= decreaseAmount;        
     }
 }

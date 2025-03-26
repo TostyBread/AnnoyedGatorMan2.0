@@ -15,14 +15,17 @@ public class DamageSource : MonoBehaviour
     private Coroutine heatCoroutine;
     private Rigidbody2D rb;
 
+    private Sanity sanity;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isFireSource || rb == null || rb.velocity.magnitude < minVelocityToDamage)
+        if (isFireSource || rb == null || sanity == null || rb.velocity.magnitude < minVelocityToDamage)
         {
             return;
         }
@@ -42,6 +45,7 @@ public class DamageSource : MonoBehaviour
         if (collision.collider.TryGetComponent(out HealthManager health))
         {
             health.TryDamage(damageAmount);
+            sanity.DecreaseSanity(damageAmount);
         }
     }
 

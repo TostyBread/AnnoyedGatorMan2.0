@@ -13,6 +13,8 @@ TagManager:
   - EnviroInteract
   - Fire
   - Player2
+  - Mob
+  - Sanity
   layers:
   - Default
   - TransparentFX
