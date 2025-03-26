@@ -1,8 +1,8 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class PlayerPickupSystem : MonoBehaviour
+public class P2PickSystem : MonoBehaviour
 {
     [Header("Pickup Settings")]
     public float pickupRadius = 2f;
@@ -17,7 +17,7 @@ public class PlayerPickupSystem : MonoBehaviour
     private bool isHoldingPickupKey = false;
 
     public HandSpriteManager handSpriteManager;
-    public CharacterFlip characterFlip;
+    public P2Flip characterFlip;
 
     private IUsable usableItemController;
 
