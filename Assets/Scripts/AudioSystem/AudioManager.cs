@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
 
     private Queue<AudioSource> audioPool = new Queue<AudioSource>();
     private Dictionary<string, List<AudioClip>> audioClips = new Dictionary<string, List<AudioClip>>();
+    private List<AudioSource> activeSources = new List<AudioSource>(); // Track active sources
 
     private void Awake()
     {
@@ -36,14 +37,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // GUIDE ON HOW TO USE RANDOM VARIABLE SOUND:
-    // you must name your audio file in "Example_1" as in name followed by underscore before a number
-    // like "Example_1" "Example_2" will be recognize and stored as "Example"
-    // and when you want to instantiate it, you need to put the following code:
-    // AudioManager.Instance.PlaySound("Example"); or AudioManager.Instance.PlaySound("Example", 1f, transform.position);
-    // not "Example_1", the system will not recognize it
-    // IF THERE IS NO VARIATION, DO NOT USE UNDERSCORE
-
     public void PlaySound(string soundName, float volume = 1.0f, Vector3? position = null)
     {
         if (!audioClips.TryGetValue(soundName, out List<AudioClip> clips) || clips.Count == 0)
@@ -61,7 +54,23 @@ public class AudioManager : MonoBehaviour
             source.gameObject.SetActive(true);
             source.transform.position = position ?? Vector3.zero;
             source.Play();
+            activeSources.Add(source); // Track active source
             StartCoroutine(ReturnAudioSourceToPool(source, clip.length));
+        }
+    }
+
+    public void StopSound(string soundName)
+    {
+        for (int i = activeSources.Count - 1; i >= 0; i--)
+        {
+            AudioSource source = activeSources[i];
+            if (source.isPlaying && source.clip != null && audioClips.ContainsKey(soundName) && audioClips[soundName].Contains(source.clip))
+            {
+                source.Stop();
+                source.gameObject.SetActive(false);
+                audioPool.Enqueue(source);
+                activeSources.RemoveAt(i);
+            }
         }
     }
 
@@ -82,6 +91,7 @@ public class AudioManager : MonoBehaviour
         source.Stop();
         source.gameObject.SetActive(false);
         audioPool.Enqueue(source);
+        activeSources.Remove(source);
     }
 
     public void RegisterSound(string soundName, AudioClip clip)

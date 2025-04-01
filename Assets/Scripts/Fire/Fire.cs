@@ -5,15 +5,26 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     public float burnRadius = 2f;
-    public float spreadInterval = 3f; 
-    public int maxFireInstances = 10; 
+    public float spreadInterval = 3f;
+    public int maxFireInstances = 10;
 
-    private static int fireCount = 0; 
+    private AudioSource fireSound;
+
+    private static int fireCount = 0;
+    private bool isPlayingSound = false;
 
     void Start()
     {
+        fireSound = GetComponent<AudioSource>();
+
         fireCount++;
+
         StartCoroutine(SpreadFire());
+    }
+
+    void Update()
+    {
+        PlayFireSoundOnce();       
     }
 
     private IEnumerator SpreadFire()
@@ -26,6 +37,15 @@ public class Fire : MonoBehaviour
             Vector2 spawnPosition = (Vector2)transform.position + randomOffset;
 
             Instantiate(this.gameObject, spawnPosition, Quaternion.identity);
+        }
+    }
+
+    private void PlayFireSoundOnce()
+    {
+        if (!isPlayingSound)
+        {
+            fireSound.Play();
+            isPlayingSound = true;
         }
     }
 

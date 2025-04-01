@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PestSpawner : MonoBehaviour
@@ -10,25 +9,22 @@ public class PestSpawner : MonoBehaviour
     public GameObject[] spawnPos;
     public float minSpawnInterval;
     public float maxSpawnInterval;
+    public int maxPestCount = 5; // Maximum number of pests allowed at a time
 
     [Header("References")]
     public Sanity sanity;
 
     private bool isSpawning = false;
+    private List<GameObject> spawnedPests = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (sanity == null) return;
 
-        // Check if sanity is depleted
-        if (sanity.RemainSanity <= 0)
+        // Remove destroyed pests from the list
+        spawnedPests.RemoveAll(pest => pest == null);
+
+        if (sanity.RemainSanity <= 0 && spawnedPests.Count < maxPestCount)
         {
             if (!isSpawning) StartCoroutine(RepeatSpawnPest(minSpawnInterval, maxSpawnInterval));
         }
@@ -36,37 +32,38 @@ public class PestSpawner : MonoBehaviour
 
     private void SpawnPest()
     {
-        // Ensure there are pests to spawn
         if (pests == null || pests.Length == 0)
         {
             Debug.LogError("No pest prefabs assigned.");
             return;
         }
-
-        // Ensure spawn position is assigned
-        if (spawnPos == null)
+        if (spawnPos == null || spawnPos.Length == 0)
         {
-            Debug.LogError("Spawn position is not assigned.");
+            Debug.LogError("Spawn positions not assigned.");
+            return;
+        }
+        if (spawnedPests.Count >= maxPestCount)
+        {
+            Debug.Log("Max pest count reached, stopping spawn.");
             return;
         }
 
-        // Select a random pest from the array
         int pestRandomIndex = Random.Range(0, pests.Length);
-        GameObject pestToSpawn = pests[pestRandomIndex];
-
-        // Select a random spawnPos from the array
         int spawnPosRandomIndex = Random.Range(0, spawnPos.Length);
 
-        // Spawn the selected pest at the spawn position
-        Instantiate(pestToSpawn, spawnPos[spawnPosRandomIndex].transform.position, spawnPos[spawnPosRandomIndex].transform.rotation);
-        Debug.Log("Pest spawned: " + pestToSpawn.name);
+        GameObject spawnedPest = Instantiate(pests[pestRandomIndex], spawnPos[spawnPosRandomIndex].transform.position, spawnPos[spawnPosRandomIndex].transform.rotation);
+        spawnedPests.Add(spawnedPest);
+        Debug.Log("Pest spawned: " + spawnedPest.name);
     }
 
     IEnumerator RepeatSpawnPest(float minInterval, float maxInterval)
     {
         isSpawning = true;
         yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
-        SpawnPest();
+        if (spawnedPests.Count < maxPestCount)
+        {
+            SpawnPest();
+        }
         isSpawning = false;
     }
 }
