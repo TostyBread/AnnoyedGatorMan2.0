@@ -22,9 +22,11 @@ public class Timer : MonoBehaviour
         TimerBar.fillAmount = RemainTime / MaxTime;
         RemainTime -= Time.deltaTime;
 
-        if (RemainTime < 0)
+        RemainTime = Mathf.Clamp(RemainTime, 0, MaxTime);
+
+        if (Input.GetKey(KeyCode.Space))
         {
-            RemainTime = 0;
+            RemainTime += 1;
         }
     }
 }

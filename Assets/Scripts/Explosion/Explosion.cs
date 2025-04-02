@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public Animator animator;
 
     private float currentTime;
     private Vector3 initialScale;
     private Vector2 initialColliderSize;
-    private CapsuleCollider2D capsuleCollider2D;
     private float animationLength;
+
+    private AudioSource explodeSound;
+    private bool isPlayingSound = false;
+
+    [Header("Reference")]
+    public Animator animator;
+    public CapsuleCollider2D heatCollider;
+    private CapsuleCollider2D capsuleCollider2D;
 
     void Start()
     {
@@ -23,20 +29,32 @@ public class Explosion : MonoBehaviour
             animationLength = stateInfo.length > 0 ? stateInfo.length : 0.5f; // Default fallback
         }
 
-        AudioManager.Instance.PlaySound("Explosion", 1.0f, transform.position);
+        explodeSound = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         currentTime += Time.deltaTime;
+        if (heatCollider != null) heatCollider.size = capsuleCollider2D.size;
 
         // Linearly scale the collider instead of exponential growth
         float scaleFactor = 1.2f * Time.deltaTime; // Adjust this as needed
         capsuleCollider2D.size += new Vector2(scaleFactor, scaleFactor);
 
+        PlayExplodeSoundOnce();
+
         if (currentTime >= animationLength)
         {
            Destroy(gameObject);
+        }
+    }
+
+    private void PlayExplodeSoundOnce()
+    {
+        if (!isPlayingSound)
+        {
+            explodeSound.Play();
+            isPlayingSound = true;
         }
     }
 }

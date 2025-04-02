@@ -69,7 +69,7 @@ MonoBehaviour:
   damageType: 0
   damageAmount: 0
   heatAmount: 20
-  heatCooldown: 1
+  heatCooldown: 0.5
   isFireSource: 1
   minVelocityToDamage: 0
 --- !u!70 &4289771224545664985

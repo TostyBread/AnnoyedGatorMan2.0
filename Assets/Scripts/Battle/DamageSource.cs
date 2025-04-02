@@ -45,7 +45,11 @@ public class DamageSource : MonoBehaviour
         if (collision.collider.TryGetComponent(out HealthManager health))
         {
             health.TryDamage(damageAmount);
-            sanity.DecreaseSanity(damageAmount);
+
+            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
+            {
+                sanity.decreaseSanity(damageAmount);             
+            }
         }
     }
 
