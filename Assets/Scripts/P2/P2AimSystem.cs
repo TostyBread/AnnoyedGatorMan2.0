@@ -44,6 +44,7 @@ public class P2AimSystem : MonoBehaviour
 
         if (NearestTarget() != null)
         {
+
             HandRotation(NearestTarget().transform.position);
 
             //set the arrow to the top of targeted gameobject
@@ -63,15 +64,18 @@ public class P2AimSystem : MonoBehaviour
 
     public GameObject NearestTarget()
     {
-        if (detectTarget.AllItemInRange.Count == 0)
-        {
-            return null;
-        }
+        
+            if (detectTarget.AllItemInRange.Count == 0)
+            {
+                return null;
+            }
 
-        // Ensure index is within bounds
-        currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, detectTarget.AllItemInRange.Count - 1);
 
+            // Ensure index is within bounds
+            currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, detectTarget.AllItemInRange.Count - 1);
+        
         return detectTarget.AllItemInRange[currentTargetIndex];
+        
     }
 
     private void ChangeTarget()

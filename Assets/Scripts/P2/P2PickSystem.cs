@@ -28,13 +28,10 @@ public class P2PickSystem : MonoBehaviour
     public P2AimSystem p2AimSystem;
     private GameObject Target;
 
-    private void Start()
-    {
-        Target = p2AimSystem.NearestTarget();    
-    }
-
     void Update()
     {
+        Target = p2AimSystem.NearestTarget();
+
         HandleItemDetection();
         if (isHoldingPickupKey && targetItem != null && pickupCoroutine == null)
         {
@@ -52,7 +49,7 @@ public class P2PickSystem : MonoBehaviour
         foreach (var collider in colliders)
         {
             bool isPickupable = IsPickupable(collider);
-            bool HasTarget = p2AimSystem.NearestTarget();
+            bool HasTarget = Target;
             bool hasInteractable = collider.gameObject.TryGetComponent<Interactable>(out Interactable interactable);
 
             // If the item is both interactable and pickupable

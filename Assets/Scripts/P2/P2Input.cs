@@ -54,6 +54,7 @@ public class P2Input : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.E)) playerPickupSystem.CancelPickup();
     }
 
+
     private void HandleThrowInput()
     {
         if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;

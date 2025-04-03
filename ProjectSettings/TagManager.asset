@@ -12,6 +12,7 @@ TagManager:
   - Projectile
   - EnviroInteract
   - Fire
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - Wall
   - Player
   - Projectile
-  - 
-  - 
+  - Enemy
+  - Ignore Me
   - 
   - 
   - 
