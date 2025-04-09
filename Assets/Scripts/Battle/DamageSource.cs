@@ -68,30 +68,43 @@ public class DamageSource : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!isFireSource || !objectsInFire.Remove(other.gameObject) || objectsInFire.Count > 0) return;
+        if (!isFireSource) return;
 
-        StopCoroutine(heatCoroutine);
-        heatCoroutine = null;
+        if (objectsInFire.Remove(other.gameObject) && objectsInFire.Count == 0)
+        {
+            if (heatCoroutine != null)
+            {
+                StopCoroutine(heatCoroutine);
+                heatCoroutine = null;
+            }
+        }
     }
 
     private IEnumerator ApplyHeatOverTime()
     {
         while (objectsInFire.Count > 0)
         {
-            foreach (var obj in objectsInFire)
+            // Create a temporary copy to safely iterate
+            var objectsSnapshot = new List<GameObject>(objectsInFire);
+
+            foreach (var obj in objectsSnapshot)
             {
                 if (obj != null && obj.TryGetComponent(out ItemSystem item))
                 {
                     item.ApplyCollisionEffect(gameObject);
                 }
             }
+
             yield return new WaitForSeconds(heatCooldown);
         }
+
         heatCoroutine = null;
     }
 
     private void PlayHitSound(ItemSystem.DamageType type)
     {
+        if (AudioManager.Instance == null) return;
+
         string soundName = type switch
         {
             ItemSystem.DamageType.Bash => "BashHit",

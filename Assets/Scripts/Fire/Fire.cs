@@ -7,6 +7,7 @@ public class Fire : MonoBehaviour
     public float burnRadius = 2f;
     public float spreadInterval = 3f;
     public int maxFireInstances = 10;
+    public LayerMask wallLayer;
 
     private AudioSource fireSound;
 
@@ -36,7 +37,11 @@ public class Fire : MonoBehaviour
             Vector2 randomOffset = Random.insideUnitCircle * burnRadius;
             Vector2 spawnPosition = (Vector2)transform.position + randomOffset;
 
-            Instantiate(this.gameObject, spawnPosition, Quaternion.identity);
+            Collider2D hit = Physics2D.OverlapCircle(spawnPosition, 1f, wallLayer);
+            if (hit == null)
+            {
+                Instantiate(this.gameObject, spawnPosition, Quaternion.identity);
+            }
         }
     }
 

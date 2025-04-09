@@ -972,6 +972,7 @@ GameObject:
   - component: {fileID: 4069354687643541684}
   - component: {fileID: 1777956265871523957}
   - component: {fileID: 4034342515493834415}
+  - component: {fileID: 5725035431540513155}
   m_Layer: 8
   m_Name: GatorMan
   m_TagString: Player
@@ -1211,6 +1212,35 @@ MonoBehaviour:
   characterAnimation: {fileID: 4838559159962518523}
   hand: {fileID: 6606420664885157339}
   HealthBar: {fileID: 4299897855130126091}
+--- !u!114 &5725035431540513155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199007613480025098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6e82a859d2cee479c1a9992294e9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeCooked: 0
+  canBreak: 0
+  durabilityUncooked: 0
+  durabilityCooked: 0
+  cookThreshold: 60
+  burnThreshold: 120
+  damageCooldown: 1
+  uncookedState: {fileID: 7199007613480025098}
+  cookedState: {fileID: 7199007613480025098}
+  burnedState: {fileID: 7199007613480025098}
+  brokenPartsUncookedBash: []
+  brokenPartsCookedBash: []
+  brokenPartsUncookedCut: []
+  brokenPartsCookedCut: []
+  brokenPartsOffsets: []
+  isCooked: 0
+  isBurned: 0
 --- !u!1 &7357411553977680397
 GameObject:
   m_ObjectHideFlags: 0

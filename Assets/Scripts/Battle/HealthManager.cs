@@ -20,6 +20,7 @@ public class HealthManager : MonoBehaviour
     private PlayerInputManager playerInputManager;
     private CharacterFlip characterFlip;
     private CharacterMovement characterMovement;
+    private ItemSystem cookCharacterSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class HealthManager : MonoBehaviour
         playerInputManager = GetComponent<PlayerInputManager>();
         characterFlip = GetComponent<CharacterFlip>();
         characterMovement = GetComponent<CharacterMovement>();
+        cookCharacterSystem = GetComponent<ItemSystem>();
 
         currentHealth = Health;
     }
@@ -45,6 +47,7 @@ public class HealthManager : MonoBehaviour
                 if (playerInputManager != null) { playerInputManager.enabled = false; }
                 if (characterFlip != null) { characterFlip.enabled = false; }
                 if (characterMovement != null) { characterMovement.SetMovement(Vector2.zero); }
+                if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = true; }
 
                 if (hand != null) { hand.SetActive(false); }
 
@@ -57,7 +60,7 @@ public class HealthManager : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    reviveTime += reviveSpeed;
+                    reviveTime += reviveSpeed / 2;
                 }
 
                 HealthBar.fillAmount = reviveTime / Health;
@@ -74,6 +77,7 @@ public class HealthManager : MonoBehaviour
             {
                 if (playerInputManager != null) { playerInputManager.enabled = true; }
                 if (characterFlip != null) { characterFlip.enabled = true; }
+                if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = false; }
 
                 if (hand != null) { hand.SetActive(true); }
             }
