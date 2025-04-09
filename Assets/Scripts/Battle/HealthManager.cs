@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class HealthManager : MonoBehaviour
     [Header("References")]
     public CharacterAnimation characterAnimation;
     public GameObject hand;
+    public Image HealthBar;
 
     private PlayerInputManager playerInputManager;
     private CharacterFlip characterFlip;
@@ -32,6 +34,8 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (HealthBar != null) HealthBar.fillAmount = currentHealth / Health;
+
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -55,6 +59,8 @@ public class HealthManager : MonoBehaviour
                 {
                     reviveTime += reviveSpeed;
                 }
+
+                HealthBar.fillAmount = reviveTime / Health;
             }
             else
             {

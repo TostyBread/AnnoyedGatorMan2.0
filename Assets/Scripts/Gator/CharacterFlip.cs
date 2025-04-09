@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterFlip : MonoBehaviour
 {
-    private bool isFacingRight = true; // Tracks the character's facing direction
+    public bool isFacingRight = true; // Tracks the character's facing direction
 
     void Update()
     {
