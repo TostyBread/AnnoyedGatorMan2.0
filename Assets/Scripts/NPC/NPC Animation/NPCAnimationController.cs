@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Flexible 2D NPC animation controller. Supports idle and moving states.
-/// Works with both Rigidbody2D or manual movement.
-/// </summary>
 [RequireComponent(typeof(Animator))]
 public class NPCAnimationController : MonoBehaviour
 {
@@ -19,49 +15,48 @@ public class NPCAnimationController : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-
     private Vector2 lastPosition;
+    private Vector2 smoothedVelocity;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (useRigidbody2D)
+        if (useRigidbody2D && targetRigidbody == null)
         {
-            if (targetRigidbody == null)
-            {
-                targetRigidbody = GetComponentInParent<Rigidbody2D>();
-            }
+            targetRigidbody = GetComponentInParent<Rigidbody2D>();
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector2 velocity = Vector2.zero;
 
         if (useRigidbody2D && targetRigidbody != null)
         {
-            velocity = targetRigidbody.velocity;
+            velocity = ((Vector2)transform.position - lastPosition) / Time.fixedDeltaTime;
         }
         else
         {
             velocity = (Vector2)transform.position - lastPosition;
-            lastPosition = transform.position;
         }
 
-        bool isMoving = velocity.magnitude > movementThreshold;
+        lastPosition = transform.position;
+
+        smoothedVelocity = Vector2.Lerp(smoothedVelocity, velocity, 0.5f);
+
+        bool isMoving = smoothedVelocity.magnitude > movementThreshold;
         animator.SetBool(moveParameter, isMoving);
 
-        if (flipSpriteOnX && velocity.x != 0 && spriteRenderer != null)
+        if (flipSpriteOnX && Mathf.Abs(smoothedVelocity.x) > 0.01f && spriteRenderer != null)
         {
-            spriteRenderer.flipX = velocity.x < 0;
+            spriteRenderer.flipX = smoothedVelocity.x < 0;
         }
     }
 
     private void OnEnable()
     {
-        if (!useRigidbody2D)
-            lastPosition = transform.position;
+        lastPosition = transform.position;
     }
 }

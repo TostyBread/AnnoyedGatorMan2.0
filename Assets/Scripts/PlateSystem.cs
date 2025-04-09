@@ -17,9 +17,12 @@ public class PlateSystem : MonoBehaviour
     private Transform plateParent;
     public List<PlateRequirement> plateRequirements;
     private Dictionary<PlateRequirement, GameObject> placedItems = new Dictionary<PlateRequirement, GameObject>();
+    //public bool foodComplete = false; // For NPCBehavior to accept food when its complete
 
     private void Awake()
     {
+        //foodComplete = false;
+
         plateParent = transform.parent;
         if (plateParent == null)
         {
@@ -94,5 +97,6 @@ public class PlateSystem : MonoBehaviour
             }
         }
         AudioManager.Instance.PlaySound("TaskComplete", 1.0f, transform.position);
+        //foodComplete = true; // When dish is complete
     }
 }
