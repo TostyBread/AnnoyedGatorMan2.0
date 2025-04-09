@@ -24,9 +24,9 @@ public class Timer : MonoBehaviour
 
         RemainTime = Mathf.Clamp(RemainTime, 0, MaxTime);
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            RemainTime += 1;
-        }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    RemainTime += 1;
+        //}
     }
 }

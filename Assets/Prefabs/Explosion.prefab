@@ -268,10 +268,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 0
-  damageAmount: 0
+  damageAmount: 999
   heatAmount: 999
   heatCooldown: 0
-  isFireSource: 1
+  isFireSource: 0
   minVelocityToDamage: 0
 --- !u!82 &9066369336685794472
 AudioSource:

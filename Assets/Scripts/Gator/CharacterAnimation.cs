@@ -5,20 +5,20 @@ public class CharacterAnimation : MonoBehaviour
     private Animator animator;
     private CharacterMovement movementScript;
 
-    private bool isDead = false; // Placeholder for health logic
-    private bool hasPlayedDeathAnimation = false;
+    private HealthManager healthManager;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         movementScript = GetComponentInParent<CharacterMovement>();
+        healthManager = GetComponentInParent<HealthManager>();
     }
 
     void Update()
     {
-        if (isDead)
+        if (healthManager.currentHealth <= 0)
         {
-            HandleDeathAnimation();
+            animator.SetBool("IsDead", true);
         }
         else
         {
@@ -28,6 +28,8 @@ public class CharacterAnimation : MonoBehaviour
 
     private void UpdateAnimationState()
     {
+        animator.SetBool("IsDead", false);
+
         if (movementScript.IsMoving)
         {
             animator.Play("Gator_MoveAnim");
@@ -36,19 +38,5 @@ public class CharacterAnimation : MonoBehaviour
         {
             animator.Play("Gator_IdleAnim");
         }
-    }
-
-    private void HandleDeathAnimation()
-    {
-        if (!hasPlayedDeathAnimation)
-        {
-            animator.Play("Gator_DeathAnim");
-            hasPlayedDeathAnimation = true;
-        }
-    }
-
-    public void Die()
-    {
-        isDead = true;
     }
 }

@@ -9,6 +9,8 @@ public class PlayerInputManager : MonoBehaviour
     private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
 
+    public bool Player2;
+
     void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
@@ -31,7 +33,8 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        if (!Player2) movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        if (Player2) movementInput = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized;
         characterMovement?.SetMovement(movementInput);
     }
 

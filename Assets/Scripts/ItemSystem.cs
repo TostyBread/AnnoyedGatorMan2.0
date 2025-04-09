@@ -33,6 +33,20 @@ public class ItemSystem : MonoBehaviour
         currentDurability = durabilityUncooked;
     }
 
+    private void Update()
+    {
+        if (!canBeCooked || isBurned) return;
+
+        if (!isCooked && currentCookPoints >= cookThreshold)
+        {
+            CookItem();
+        }
+        else if (!isBurned && currentCookPoints >= burnThreshold)
+        {
+            BurnItem();
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (Time.time - lastDamageTime < damageCooldown) return;
