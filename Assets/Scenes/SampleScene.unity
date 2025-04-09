@@ -132,7 +132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 35620097}
   - component: {fileID: 35620100}
-  - component: {fileID: 35620099}
   - component: {fileID: 35620098}
   m_Layer: 11
   m_Name: CanMoveCheck
@@ -150,8 +149,8 @@ Transform:
   m_GameObject: {fileID: 35620096}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1549043300}
@@ -169,33 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMoveThisWay: 1
---- !u!50 &35620099
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35620096}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 2048
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &35620100
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -759,6 +731,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dcaa9de0cd968c42a90515304c84d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tags:
+  - WeaponShort
+  - WeaponLong
+  - FoodBig
+  - FoodSmall
+  - Interectable
   EnemyDetected: 0
   AllItemInRange: []
 --- !u!1 &284036857
@@ -778,7 +756,7 @@ GameObject:
   - component: {fileID: 284036865}
   - component: {fileID: 284036872}
   - component: {fileID: 284036871}
-  - component: {fileID: 284036867}
+  - component: {fileID: 284036874}
   - component: {fileID: 284036869}
   - component: {fileID: 284036870}
   m_Layer: 8
@@ -912,7 +890,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15, y: 0}
+  m_Offset: {x: -0.14999998, y: -0.34390128}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -923,26 +901,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 0.6}
+  m_Size: {x: 1.2, y: 1.2878026}
   m_EdgeRadius: 0
---- !u!114 &284036867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284036857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2003e146d5437a14c832105fd89e9c1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throwForceMultiplier: 2.1
-  spinSpeed: 900
-  quarterDistanceFactor: 0.75
-  throwSpriteDuration: 0.3
-  playerPickupSystem: {fileID: 284036865}
-  handSpriteManager: {fileID: 36479099}
 --- !u!61 &284036868
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -995,7 +955,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284036857}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: faa68677db304964f9f78dde11ad7702, type: 3}
   m_Name: 
@@ -1008,11 +968,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284036857}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4afdbad4f02fee04cab22f531648d320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  p2System: {fileID: 1518752048}
 --- !u!114 &284036871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,9 +994,9 @@ MonoBehaviour:
   - WeaponLong
   - FoodSmall
   - FoodBig
+  Target: {fileID: 0}
   handSpriteManager: {fileID: 36479099}
-  characterFlip: {fileID: 284036869}
-  p2AimSystem: {fileID: 1518752050}
+  characterFlip: {fileID: 284036870}
 --- !u!114 &284036872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,6 +1009,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &284036874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284036857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2003e146d5437a14c832105fd89e9c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwForceMultiplier: 2.1
+  spinSpeed: 900
+  quarterDistanceFactor: 0.75
+  throwSpriteDuration: 0.3
+  playerPickupSystem: {fileID: 284036865}
+  handSpriteManager: {fileID: 36479099}
 --- !u!1 &288328633
 GameObject:
   m_ObjectHideFlags: 0
@@ -5037,14 +5016,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Nulled: {fileID: 3186628466530934036, guid: 3075ee87cca016b4e9e12ff8a37da223, type: 3}
-  speed: 3
-  TargetedGrid: {fileID: 0}
+  speed: 1
+  gapBetweenGrid: 1
   SeeGrid: {fileID: 1003748745570276690, guid: 39fe410485cdd2c4e9f2d1a4ff92aa48, type: 3}
   MoveGridSize: 5
   MidOfSpawnedGrid: {fileID: 0}
   EnemyGrid: []
   SightGrid: {fileID: 1758351962352912170, guid: 9ec44baa364353b4abc7e8c04fc06f32, type: 3}
-  sightSize: 3
+  sightSize: 7
   MOSP: {fileID: 0}
   EnemySight: []
 --- !u!50 &1159861450
@@ -7080,9 +7059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivotPoint: {fileID: 36479097}
   hand: {fileID: 36479097}
-  characterFlip: {fileID: 284036869}
+  characterFlip: {fileID: 284036870}
   Range: {fileID: 257729125}
-  CurrentTarget: {fileID: 0}
   HandControl: {fileID: 36479096}
   Arrow: {fileID: 1561040656}
   ArrowOffset: {x: 0, y: 1, z: 0}
@@ -7573,7 +7551,7 @@ GameObject:
   - component: {fileID: 1699978881}
   m_Layer: 0
   m_Name: GasStove
-  m_TagString: Untagged
+  m_TagString: Interectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

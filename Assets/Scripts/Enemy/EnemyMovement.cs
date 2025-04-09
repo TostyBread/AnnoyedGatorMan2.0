@@ -14,7 +14,8 @@ public class EnemyMovement : MonoBehaviour
     private CannotMoveThisWay cmty;
     public float speed = 3;
     private bool MoveNext = true;
-    public Transform TargetedGrid;
+    private Transform TargetedGrid;
+    public float gapBetweenGrid;
 
     private GameObject player;
 
@@ -45,7 +46,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-       EnemyWonderAround();
+        MOSP.transform.position = transform.position;
+        EnemyWonderAround();
     }
 
     private void CreateEnemyField()
@@ -77,7 +79,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         MidOfSpawnedGrid.transform.position = this.gameObject.transform.position;
-        MidOfSpawnedGrid.transform.localScale = Vector3.one * 1.5f;
+        MidOfSpawnedGrid.transform.localScale = Vector3.one * gapBetweenGrid;
     }
 
     private void CreateEnemySight()
@@ -109,15 +111,14 @@ public class EnemyMovement : MonoBehaviour
         }
 
         MOSP.transform.position = this.gameObject.transform.position;
-        MOSP.transform.localScale = Vector3.one * 1.5f;
-        MOSP.transform.parent = transform;
+        MOSP.transform.localScale = Vector3.one * gapBetweenGrid;
     }
 
     private void enemyMovement(Transform Target)
     {
         if (cmty.canMoveThisWay == false)
         {
-            return;
+            //return;
         }
 
         transform.position = Vector2.MoveTowards(transform.position,Target.transform.position,speed * Time.deltaTime);
@@ -157,7 +158,30 @@ public class EnemyMovement : MonoBehaviour
             {
                 enemyMovement(TargetedGrid);
             }
+        }
+    }
 
+    private void EnemyFindTarget(GameObject Target)
+    {
+        bool Detected = false;
+
+        foreach (var sight in EnemySight)
+        {
+            if (Target != null)
+            {
+                if (Vector3.Distance(Target.transform.position, sight.transform.position) < 0.1f * gapBetweenGrid)
+                {
+                    Detected = true;
+                    Debug.Log("target detected = " + Target);
+                    TargetedGrid = Target.transform;
+                    break;
+                }
+            }
+        }
+
+        if (!Detected)
+        {
+            EnemyWonderAround();
         }
     }
 

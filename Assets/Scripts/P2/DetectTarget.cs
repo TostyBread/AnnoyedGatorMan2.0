@@ -4,32 +4,42 @@ using UnityEngine;
 
 public class DetectTarget : MonoBehaviour
 {
+    public List<string> Tags = new List<string>();
     public bool EnemyDetected;
     public List<GameObject> AllItemInRange = new List<GameObject>();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("WeaponLong") || collision.CompareTag("WeaponShort") || collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall"))
+        foreach (var tags in Tags)
         {
-            EnemyDetected = true;
-            AllItemInRange.Add(collision.gameObject);
+            if (collision.CompareTag(tags))
+            {
+                EnemyDetected = true;
+                AllItemInRange.Add(collision.gameObject);
+            }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("WeaponLong") || collision.CompareTag("WeaponShort") || collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall"))  
+        foreach (var tags in Tags)
         {
-            EnemyDetected = true;
+            if (collision.CompareTag(tags))
+            {
+                EnemyDetected = true;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("WeaponLong") || collision.CompareTag("WeaponShort") || collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall"))
+        foreach (var tags in Tags)
         {
-            EnemyDetected = false;
-            AllItemInRange.Remove(collision.gameObject);
+            if (collision.CompareTag(tags))
+            {
+                EnemyDetected = false;
+                AllItemInRange.Remove(collision.gameObject);
+            }
         }
     }
 }

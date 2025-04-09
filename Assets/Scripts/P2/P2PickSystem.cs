@@ -1,6 +1,6 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class P2PickSystem : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class P2PickSystem : MonoBehaviour
     public Transform handPosition;
     public float dropForce = 5f;
     public List<string> validTags = new List<string>();
+    public GameObject Target;
 
     private Collider2D targetItem = null;
     private GameObject heldItem = null;
@@ -17,7 +18,7 @@ public class P2PickSystem : MonoBehaviour
     private bool isHoldingPickupKey = false;
 
     public HandSpriteManager handSpriteManager;
-    public P2Flip characterFlip;
+    public CharacterFlip characterFlip;
 
     private IUsable usableItemController;
 
@@ -25,12 +26,9 @@ public class P2PickSystem : MonoBehaviour
     public string HeldItemTag => heldItem != null ? heldItem.tag : null;
     public bool HasUsableFunction => usableItemController != null;
 
-    public P2AimSystem p2AimSystem;
-    private GameObject Target;
-
     void Update()
     {
-        Target = p2AimSystem.NearestTarget();
+        Target = GetComponentInChildren<P2AimSystem>().NearestTarget();
 
         HandleItemDetection();
         if (isHoldingPickupKey && targetItem != null && pickupCoroutine == null)
@@ -41,32 +39,28 @@ public class P2PickSystem : MonoBehaviour
 
     private void HandleItemDetection()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, pickupRadius);
-
         targetItem = null;
         targetInteractable = null;
 
-        foreach (var collider in colliders)
-        {
-            bool isPickupable = IsPickupable(collider);
-            bool HasTarget = Target;
-            bool hasInteractable = collider.gameObject.TryGetComponent<Interactable>(out Interactable interactable);
+        if (Target == null) return;
 
-            // If the item is both interactable and pickupable
-            if (isPickupable && HasTarget)
-            {
-                if (hasInteractable)
-                {
-                    targetInteractable = collider;
-                }
-                targetItem = collider;
-            }
-            else if (hasInteractable && HasTarget)
-            {
-                targetInteractable = collider;
-            }
+        float distanceToTarget = Vector2.Distance(transform.position, Target.transform.position);
+        if (distanceToTarget > pickupRadius) return;
+
+        Collider2D targetCollider = Target.GetComponent<Collider2D>();
+        if (targetCollider == null) return;
+
+        if (IsPickupable(targetCollider))
+        {
+            targetItem = targetCollider;
+        }
+
+        if (Target.TryGetComponent(out Interactable interactable))
+        {
+            targetInteractable = targetCollider;
         }
     }
+
 
     private bool IsPickupable(Collider2D collider) => validTags.Contains(collider.tag);
 
@@ -181,7 +175,11 @@ public class P2PickSystem : MonoBehaviour
         if (heldItem.TryGetComponent(out Rigidbody2D rb))
         {
             rb.isKinematic = false;
-            Vector2 direction = (ScreenToWorldPointMouse.Instance.GetMouseWorldPosition() - (Vector2)dropPosition).normalized;
+            Vector2 direction = ((Vector2)Target.transform.position - (Vector2)dropPosition).normalized;
+            if (direction == Vector2.zero)
+            {
+                direction = isFacingRight ? Vector2.right : Vector2.left;
+            }
             rb.AddForce(direction * dropForce, ForceMode2D.Impulse);
         }
 
@@ -191,14 +189,14 @@ public class P2PickSystem : MonoBehaviour
     }
 
     public GameObject GetHeldItem() => heldItem;
-    public IUsable GetUsableFunction()
-    {
-        return usableItemController;
-    }
+    public IUsable GetUsableFunction() => usableItemController;
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, pickupRadius);
+        if (Target != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, pickupRadius);
+        }
     }
 }

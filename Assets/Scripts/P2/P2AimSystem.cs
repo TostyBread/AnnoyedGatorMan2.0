@@ -13,7 +13,7 @@ public class P2AimSystem : MonoBehaviour
     public Transform hand; // Reference to the hand object
 
     [Header("Character Flip Reference")]
-    public P2Flip characterFlip; // Reference to the CharacterFlip script
+    public CharacterFlip characterFlip; // Reference to the CharacterFlip script
 
 
     private DetectTarget detectTarget;
@@ -21,7 +21,7 @@ public class P2AimSystem : MonoBehaviour
     public GameObject Range;
 
     private GameObject player;
-    public GameObject CurrentTarget;
+    private GameObject CurrentTarget;
     public GameObject HandControl;
 
     public GameObject Arrow;
@@ -44,7 +44,6 @@ public class P2AimSystem : MonoBehaviour
 
         if (NearestTarget() != null)
         {
-
             HandRotation(NearestTarget().transform.position);
 
             //set the arrow to the top of targeted gameobject
@@ -60,6 +59,8 @@ public class P2AimSystem : MonoBehaviour
 
             Arrow.SetActive(false);
         }
+
+        Debug.Log("current = " + CurrentTarget);
     }
 
     public GameObject NearestTarget()
@@ -75,7 +76,6 @@ public class P2AimSystem : MonoBehaviour
             currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, detectTarget.AllItemInRange.Count - 1);
         
         return detectTarget.AllItemInRange[currentTargetIndex];
-        
     }
 
     private void ChangeTarget()

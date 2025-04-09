@@ -13,6 +13,7 @@ TagManager:
   - EnviroInteract
   - Fire
   - Enemy
+  - Interectable
   layers:
   - Default
   - TransparentFX
