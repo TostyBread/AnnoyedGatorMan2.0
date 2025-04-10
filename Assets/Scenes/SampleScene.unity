@@ -4993,7 +4993,7 @@ CompositeCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 3328
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 255
@@ -5085,7 +5085,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 3328
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 767
@@ -7767,6 +7767,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1958459269
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.5733986
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.755339
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069766564429324671, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
+      propertyPath: m_Name
+      value: GatorMan2 Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
 --- !u!1001 &1987790239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8038,63 +8095,6 @@ MonoBehaviour:
     positionOffset: {x: 0, y: -0.1, z: 0}
     sortingOrder: 7
     isFilled: 0
---- !u!1001 &2420272884225210655
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.7748594
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.2095864
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183722658006310251, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9069766564429324671, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
-      propertyPath: m_Name
-      value: GatorMan2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5d23ada9f52025645a24c1718d55e684, type: 3}
 --- !u!1001 &3467168901921637387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8397,7 +8397,7 @@ SceneRoots:
   - {fileID: 2112300806}
   - {fileID: 956372633}
   - {fileID: 5746044853496624779}
-  - {fileID: 2420272884225210655}
+  - {fileID: 1958459269}
   - {fileID: 1907081562}
   - {fileID: 5024034119811394994}
   - {fileID: 8881581656829272168}

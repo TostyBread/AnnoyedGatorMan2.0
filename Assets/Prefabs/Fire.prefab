@@ -54,6 +54,9 @@ MonoBehaviour:
   burnRadius: 3
   spreadInterval: 3
   maxFireInstances: 5
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &5238343182132767527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +185,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
+  currentHealth: 0
+  reviveSpeed: 1
+  characterAnimation: {fileID: 0}
+  hand: {fileID: 0}
+  HealthBar: {fileID: 0}
 --- !u!82 &5845081187944691371
 AudioSource:
   m_ObjectHideFlags: 0
@@ -350,7 +358,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -389083545, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
