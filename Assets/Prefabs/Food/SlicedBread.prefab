@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9374665db99aec140b22e05d240001a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingOrder: 2
+  holdingOrder: 3
 --- !u!114 &2011818704578944514
 MonoBehaviour:
   m_ObjectHideFlags: 0
