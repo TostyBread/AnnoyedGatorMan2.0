@@ -80,10 +80,17 @@ public class PlayerInputManager : MonoBehaviour
             }
         }
 
-        if (usableItemModeEnabled && Input.GetMouseButtonDown(0))
+        if (usableFunction is FirearmController gun && gun.currentFireMode == FirearmController.FireMode.Auto)
         {
-            usableFunction.Use();
+            if (Input.GetMouseButton(0))
+                usableFunction.Use();
         }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+                usableFunction.Use();
+        }
+
     }
 
     private void HandleEnvironmentalInteractInput()

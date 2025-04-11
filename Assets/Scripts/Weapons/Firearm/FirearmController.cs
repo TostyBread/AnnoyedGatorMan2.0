@@ -1,15 +1,33 @@
+// File: FirearmController.cs
+
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FirearmController : MonoBehaviour, IUsable
 {
+    public enum FireMode
+    {
+        Single,
+        Auto,
+        Shotgun
+    }
+
     [Header("Firearm Settings")]
     public int maxAmmo = 10; // Maximum ammo the firearm can hold
     public GameObject projectilePrefab; // Prefab for the projectile
     public Transform muzzlePoint; // Where the projectile spawns
     public float projectileSpeed = 10f; // Speed of the projectile
+    public float fireDelay = 0.25f; // Minimum time between shots (in seconds)
 
-    [Header("Animation Settings")]
+    [Header("Shotgun Settings")]
+    public FireMode currentFireMode = FireMode.Single; // Current fire mode (Single or Shotgun)
+    public int shotgunPelletCount = 5; // Number of projectiles fired in shotgun mode
+    public float shotgunSpreadAngle = 15f; // Total spread angle for the shotgun
+    public float shotgunRandomness = 5f; // Random angle added to each pellet (± value)
+
+    [Header("Animation and Audio Settings")]
     public string firearmPrefix = "Glock17"; // Prefix for firearm animations
+    public string firearmAudio = "glock18";
     public Animator animator; // Reference to the Animator component
 
     [Header("References")]
@@ -18,6 +36,9 @@ public class FirearmController : MonoBehaviour, IUsable
     private int currentAmmo; // Current ammo count
     private bool isUsable = true; // Whether the firearm can currently be used
     private bool isFacingRight; // Tracks the player's current facing direction
+    private float nextFireTime = 0f; // Timestamp of when the gun can fire next
+    private Dictionary<string, float> animationClipCache = new(); // Cache for animation clip lengths
+    private Vector3 initialMuzzleLocalPosition; // Cache original muzzle local position
 
     private bool isOutOfAmmo => currentAmmo <= 0; // Check if the firearm is out of ammo
 
@@ -37,10 +58,12 @@ public class FirearmController : MonoBehaviour, IUsable
         else
         {
             PlayAnimation("_Neutral"); // Start in the neutral state
+            CacheAnimationClipLengths(); // Preload animation clip lengths
         }
 
         // Initialize facing direction
         isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
+
         AdjustMuzzlePoint(); // Ensure muzzlePoint is set correctly at the start
     }
 
@@ -65,13 +88,22 @@ public class FirearmController : MonoBehaviour, IUsable
             return;
         }
 
+        // Enforce fire rate delay
+        if (Time.time < nextFireTime)
+        {
+            Debug.Log("Waiting for fire delay cooldown.");
+            return;
+        }
+
         if (isOutOfAmmo)
         {
             PlayAnimation("_Dry"); // Play the dry-fire animation
-            AudioManager.Instance.PlaySound("dryfire", 1.0f, transform.position); // Plays gunshot at player's position
+            AudioManager.Instance.PlaySound("dryfire", 1.0f, transform.position); // Plays dry fire sound at player's position
             Debug.Log("Out of ammo!");
             return;
         }
+
+        nextFireTime = Time.time + fireDelay; // Set next allowed fire time
 
         if (currentAmmo == 1)
         {
@@ -84,9 +116,9 @@ public class FirearmController : MonoBehaviour, IUsable
             currentAmmo--; // Decrease ammo
         }
 
-        AudioManager.Instance.PlaySound("glock18", 1.0f, transform.position); // Plays gunshot at player's position
+        AudioManager.Instance.PlaySound(firearmAudio, 1.0f, transform.position); // Plays gunshot at player's position
 
-        SpawnProjectile();
+        SpawnProjectile(); // Handle projectile spawning
         Debug.Log($"Fired! Ammo remaining: {currentAmmo}/{maxAmmo}");
     }
 
@@ -104,19 +136,49 @@ public class FirearmController : MonoBehaviour, IUsable
 
     private void SpawnProjectile()
     {
-        if (projectilePrefab != null && muzzlePoint != null)
-        {
-            // Instantiate the projectile at the muzzle point
-            GameObject projectile = Instantiate(projectilePrefab, muzzlePoint.position, muzzlePoint.rotation);
+        if (projectilePrefab == null || muzzlePoint == null) return;
 
-            // Set the velocity of the projectile
-            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                // Ensure velocity direction matches the muzzlePoint's local facing direction
-                Vector2 direction = muzzlePoint.right.normalized; // Use the local "right" direction of the muzzle
-                rb.velocity = direction * projectileSpeed;
-            }
+        switch (currentFireMode)
+        {
+            case FireMode.Single:
+            case FireMode.Auto:
+                FireProjectile(muzzlePoint.rotation);
+                break;
+
+            case FireMode.Shotgun:
+                // Fire multiple pellets with spread
+                float startAngle = -shotgunSpreadAngle * 0.5f;
+                float angleStep = shotgunSpreadAngle / (shotgunPelletCount - 1);
+
+                for (int i = 0; i < shotgunPelletCount; i++)
+                {
+                    float baseAngle = startAngle + angleStep * i;
+
+                    // Add random variation within ±shotgunRandomness degrees
+                    float randomOffset = Random.Range(-shotgunRandomness, shotgunRandomness);
+
+                    float totalAngle = baseAngle + randomOffset;
+
+                    // Apply the angle offset around the Z axis
+                    Quaternion spreadRotation = muzzlePoint.rotation * Quaternion.Euler(0, 0, totalAngle);
+                    FireProjectile(spreadRotation);
+                }
+                break;
+        }
+    }
+
+    private void FireProjectile(Quaternion rotation)
+    {
+        // Instantiate the projectile at the muzzle point
+        GameObject projectile = Instantiate(projectilePrefab, muzzlePoint.position, rotation);
+
+        // Set the velocity of the projectile
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            // Ensure velocity direction matches the rotated spread direction
+            Vector2 direction = rotation * Vector2.right; // Adjust for spread rotation
+            rb.velocity = direction.normalized * projectileSpeed;
         }
     }
 
@@ -124,20 +186,13 @@ public class FirearmController : MonoBehaviour, IUsable
     {
         if (characterFlip == null || muzzlePoint == null) return;
 
-        // Check the player's facing direction
+        // Only flip muzzle rotation without modifying local position
         bool isFacingRight = characterFlip.IsFacingRight();
 
-        // Flip the muzzlePoint's local position based on the facing direction
-        Vector3 muzzleLocalPosition = muzzlePoint.localPosition;
-        muzzleLocalPosition.x = Mathf.Abs(muzzleLocalPosition.x) * (isFacingRight ? 1 : -1); // Flip X position
-        muzzlePoint.localPosition = muzzleLocalPosition;
-
-        // Flip the muzzlePoint's rotation based on the facing direction
-        Vector3 muzzleRotation = muzzlePoint.localEulerAngles;
-        muzzleRotation.y = isFacingRight ? 0 : 180; // Flip the Y-axis rotation
-        muzzlePoint.localEulerAngles = muzzleRotation;
+        Vector3 localEuler = muzzlePoint.localEulerAngles;
+        localEuler.y = isFacingRight ? 0 : 180;
+        muzzlePoint.localEulerAngles = localEuler;
     }
-
 
     private void PlayOnce(string suffix, bool shouldGoToDry = false)
     {
@@ -160,6 +215,7 @@ public class FirearmController : MonoBehaviour, IUsable
         else
         {
             Debug.LogWarning($"Animator is missing or not assigned for {gameObject.name}.");
+            return;
         }
     }
 
@@ -182,24 +238,27 @@ public class FirearmController : MonoBehaviour, IUsable
         }
     }
 
-    private float GetAnimationClipLength(string animationName)
+    private void CacheAnimationClipLengths()
     {
-        if (animator == null || animator.runtimeAnimatorController == null)
-        {
-            Debug.LogWarning($"Cannot get animation length. Animator is missing or not properly set up for {gameObject.name}.");
-            return 0f;
-        }
+        if (animator == null || animator.runtimeAnimatorController == null) return;
 
-        // Search through all animation clips in the runtime controller to find the matching clip
         foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
         {
-            if (clip.name == animationName)
+            if (!animationClipCache.ContainsKey(clip.name))
             {
-                return clip.length;
+                animationClipCache[clip.name] = clip.length;
             }
         }
+    }
 
-        Debug.LogWarning($"Animation clip '{animationName}' not found for {gameObject.name}.");
+    private float GetAnimationClipLength(string animationName)
+    {
+        if (animationClipCache.TryGetValue(animationName, out float cachedLength))
+        {
+            return cachedLength;
+        }
+
+        Debug.LogWarning($"Animation clip '{animationName}' not found in cache for {gameObject.name}.");
         return 0f; // Default to 0 if not found
     }
 }

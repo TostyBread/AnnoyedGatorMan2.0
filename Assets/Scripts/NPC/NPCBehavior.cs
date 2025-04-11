@@ -6,7 +6,8 @@ public class NPCBehavior : MonoBehaviour
     public Transform menuSpawnPoint;
     public Transform plateSpawnPoint;
 
-    private Vector3 targetPosition;
+    private Vector3[] waypoints;
+    private int currentWaypointIndex = 0;
     private bool hasArrived = false;
 
     private GameObject menuPrefab;
@@ -20,15 +21,17 @@ public class NPCBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!hasArrived)
+        if (!hasArrived && waypoints != null && waypoints.Length > 0)
         {
-            MoveToTarget();
+            MoveToWaypoint();
         }
     }
 
-    public void SetTarget(Vector3 target)
+    public void SetWaypoints(Vector3[] path)
     {
-        targetPosition = target;
+        waypoints = path;
+        currentWaypointIndex = 0;
+        hasArrived = false;
     }
 
     public void SetMenuAndPlatePrefabs(GameObject menu, GameObject plate)
@@ -37,15 +40,21 @@ public class NPCBehavior : MonoBehaviour
         platePrefab = plate;
     }
 
-    private void MoveToTarget()
+    private void MoveToWaypoint()
     {
+        Vector3 targetPosition = waypoints[currentWaypointIndex];
         Vector2 newPosition = Vector2.MoveTowards(rb.position, targetPosition, moveSpeed * Time.fixedDeltaTime);
         rb.MovePosition(newPosition);
 
         if (Vector2.Distance(rb.position, targetPosition) < 0.1f)
         {
-            hasArrived = true;
-            SpawnMenuAndPlate();
+            currentWaypointIndex++;
+
+            if (currentWaypointIndex >= waypoints.Length)
+            {
+                hasArrived = true;
+                SpawnMenuAndPlate();
+            }
         }
     }
 
@@ -57,15 +66,4 @@ public class NPCBehavior : MonoBehaviour
         if (platePrefab && plateSpawnPoint)
             Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform);
     }
-
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    PlateSystem plateSystem = other.GetComponent<PlateSystem>();
-
-    //    if (plateSystem.foodComplete == true)
-    //    {
-    //        Debug.Log("Yay, my food is here!");
-    //    }
-    //    else Debug.Log("My food isn't complete!");
-    //}
 }

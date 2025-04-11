@@ -14,7 +14,6 @@ public class NPCSpawnManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        // Remove null entries (cleaned-up NPCs)
         activeNPCs.RemoveAll(npc => npc == null);
 
         if (timer >= spawnInterval && activeNPCs.Count < maxNPCs)

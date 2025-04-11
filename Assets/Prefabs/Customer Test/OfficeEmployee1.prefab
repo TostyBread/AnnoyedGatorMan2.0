@@ -236,10 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4586a8ca6a0c5346b12ac1be5f734db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 3
   menuSpawnPoint: {fileID: 1132364132505828575}
   plateSpawnPoint: {fileID: 7711344081798851309}
-  plateDetection: {fileID: -741141688839591053}
 --- !u!50 &880509381728504748
 Rigidbody2D:
   serializedVersion: 4
@@ -310,7 +309,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!58 &-741141688839591053
 CircleCollider2D:

@@ -66,7 +66,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private bool IsPickupable(Collider2D collider) => validTags.Contains(collider.tag);
 
-    public void StartInteraction()
+    public void StartInteraction() // Insert anything interactable here, especially communicating with interactable scripts
     {
         if (targetInteractable != null && targetInteractable.TryGetComponent(out CookingStove stove))
         {

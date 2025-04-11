@@ -5,11 +5,19 @@ public class ItemPackage : MonoBehaviour
     [Header("Spawn Settings")]
     public GameObject itemPrefab;
     public int itemCount;
+    public bool destroyWhenEmpty = false;
     public Transform spawnPosition;
+    public GameObject originalSprite;
+    public GameObject emptySprite;
     private int itemAvailability;
 
     private void Awake()
     {
+        if (emptySprite != null)
+        {
+            originalSprite.SetActive(true);
+            emptySprite.SetActive(false);
+        }
         itemAvailability = 0;
     }
 
@@ -29,9 +37,14 @@ public class ItemPackage : MonoBehaviour
 
     private void PackageEmpty()
     {
-        if(itemAvailability == itemCount)
+        if(itemAvailability == itemCount && destroyWhenEmpty)
         {
-            this.gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else if (itemAvailability == itemCount && !destroyWhenEmpty)
+        {
+            originalSprite.SetActive(false);
+            emptySprite.SetActive(true);
         }
     }
 }
