@@ -9,15 +9,16 @@ public class StateManager : MonoBehaviour
     public PlayerState state;
     public float stateDur;
 
-    private CharacterMovement characterMovement;
-
     private float idleMoveSpeed;
+    private CharacterMovement characterMovement;
 
     // Start is called before the first frame update
     void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
         idleMoveSpeed = characterMovement.moveSpeed;
+
+        state = PlayerState.Idle;
     }
 
     // Update is called once per frame
@@ -33,7 +34,7 @@ public class StateManager : MonoBehaviour
             characterMovement.moveSpeed = idleMoveSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && state == PlayerState.Idle)
         {
             int randomState = Random.Range(1, 4);
 
@@ -57,9 +58,19 @@ public class StateManager : MonoBehaviour
     IEnumerator Burn(float dur)
     {
         state = PlayerState.Burn;
-        Vector2 randomMovement = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-        characterMovement.SetMovement(randomMovement);
-        yield return new WaitForSeconds(dur);
+
+        float elapsed = 0f;
+        float interval = 0.5f;
+
+        while (elapsed < dur)
+        {
+            Vector2 randomMovement = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            characterMovement.SetMovement(randomMovement);
+
+            yield return new WaitForSeconds(interval);
+            elapsed += interval;
+        }
+
         state = PlayerState.Idle;
     }
 
