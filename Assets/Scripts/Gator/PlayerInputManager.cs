@@ -36,7 +36,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        if (stateManager != null && stateManager.state == StateManager.PlayerState.Burn || stateManager.state == StateManager.PlayerState.Stun)
+        if (stateManager != null && stateManager.state == StateManager.PlayerState.Burn)
         {
             return;
         }

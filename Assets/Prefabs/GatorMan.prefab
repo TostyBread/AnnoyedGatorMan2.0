@@ -1154,7 +1154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea141bb7581dc64ba788e98fe5bb41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
   Player2: 0
 --- !u!114 &4069354687643541684
 MonoBehaviour:
@@ -1255,7 +1254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd2845461f4aa14ba743a57048c3fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  state: 3
 --- !u!1 &7357411553977680397
 GameObject:
   m_ObjectHideFlags: 0
