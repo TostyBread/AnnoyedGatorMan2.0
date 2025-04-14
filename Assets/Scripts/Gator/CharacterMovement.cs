@@ -6,7 +6,6 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     private Vector2 movement;
-    private HealthManager healthManager;
 
     public bool IsMoving => movement.sqrMagnitude > 0.01f; // Public property for animation script
 

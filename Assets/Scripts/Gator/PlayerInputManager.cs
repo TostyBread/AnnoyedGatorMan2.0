@@ -10,6 +10,7 @@ public class PlayerInputManager : MonoBehaviour
     private bool usableItemModeEnabled = false;
 
     public bool Player2;
+    private StateManager stateManager;
 
     void Start()
     {
@@ -17,6 +18,8 @@ public class PlayerInputManager : MonoBehaviour
         fist = GetComponentInChildren<Fist>();
         playerPickupSystem = GetComponent<PlayerPickupSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
+
+        stateManager = GetComponent<StateManager>();
     }
 
     void Update()
@@ -33,6 +36,11 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleMovementInput()
     {
+        if (stateManager != null && stateManager.state == StateManager.PlayerState.Burn || stateManager.state == StateManager.PlayerState.Stun)
+        {
+            return;
+        }
+
         if (!Player2) movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         if (Player2) movementInput = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized;
         characterMovement?.SetMovement(movementInput);
