@@ -9,7 +9,6 @@ public class P2PickSystem : MonoBehaviour
     public Transform handPosition;
     public float dropForce = 5f;
     public List<string> validTags = new List<string>();
-    public GameObject Target;
 
     private Collider2D targetItem = null;
     private GameObject heldItem = null;
@@ -25,6 +24,9 @@ public class P2PickSystem : MonoBehaviour
     public bool HasItemHeld => heldItem != null;
     public string HeldItemTag => heldItem != null ? heldItem.tag : null;
     public bool HasUsableFunction => usableItemController != null;
+
+    [Header("Do not touch")]
+    public GameObject Target;
 
     void Update()
     {
@@ -155,7 +157,7 @@ public class P2PickSystem : MonoBehaviour
         AudioManager.Instance.PlaySound("gunpickup2", 1.0f, transform.position);
     }
 
-    public void DropItem()
+    public void DropItem(bool applyForce = true)
     {
         if (heldItem == null) return;
 
@@ -172,22 +174,27 @@ public class P2PickSystem : MonoBehaviour
         {
             itemCollider.enabled = true;
         }
+
         if (heldItem.TryGetComponent(out Rigidbody2D rb))
         {
             rb.isKinematic = false;
-            Vector2 direction = ((Vector2)Target.transform.position - (Vector2)dropPosition).normalized;
-            if (direction == Vector2.zero)
+
+            if (applyForce)
             {
-                direction = isFacingRight ? Vector2.right : Vector2.left;
+                Vector2 direction = ((Vector2)Target.transform.position - (Vector2)dropPosition).normalized;
+                if (direction == Vector2.zero)
+                {
+                    direction = isFacingRight ? Vector2.right : Vector2.left;
+                }
+
+                rb.AddForce(direction * dropForce, ForceMode2D.Impulse);
             }
-            rb.AddForce(direction * dropForce, ForceMode2D.Impulse);
         }
 
         heldItem = null;
         usableItemController = null;
         handSpriteManager?.UpdateHandSprite();
     }
-
     public GameObject GetHeldItem() => heldItem;
     public IUsable GetUsableFunction() => usableItemController;
 

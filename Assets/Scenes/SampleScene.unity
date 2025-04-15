@@ -286,7 +286,7 @@ MonoBehaviour:
   oneHandedFirearmSprite: {fileID: 373462898}
   twoHandedFirearmSprite: {fileID: 1210972037}
   throwSprite: {fileID: 95443775}
-  playerPickupSystem: {fileID: 284036865}
+  playerPickupSystem: {fileID: 0}
 --- !u!1 &39174583
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,9 +994,9 @@ MonoBehaviour:
   - WeaponLong
   - FoodSmall
   - FoodBig
-  Target: {fileID: 0}
   handSpriteManager: {fileID: 36479099}
   characterFlip: {fileID: 284036870}
+  Target: {fileID: 0}
 --- !u!114 &284036872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,8 +1025,10 @@ MonoBehaviour:
   spinSpeed: 900
   quarterDistanceFactor: 0.75
   throwSpriteDuration: 0.3
-  playerPickupSystem: {fileID: 284036865}
+  playerPickupSystem: {fileID: 0}
+  p2PickSystem: {fileID: 284036871}
   handSpriteManager: {fileID: 36479099}
+  P1FalseP2True: 1
 --- !u!1 &288328633
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,7 +5021,7 @@ MonoBehaviour:
   speed: 2
   gapBetweenGrid: 1
   TargetedGrid: {fileID: 0}
-  Detected: 0
+  currentState: 0
   SeeGrid: {fileID: 1003748745570276690, guid: 39fe410485cdd2c4e9f2d1a4ff92aa48, type: 3}
   MoveGridSize: 5
   MidOfSpawnedGrid: {fileID: 0}

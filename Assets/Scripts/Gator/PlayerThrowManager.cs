@@ -9,36 +9,58 @@ public class PlayerThrowManager : MonoBehaviour
     public float quarterDistanceFactor = 0.5f; // When to re-enable collider (50% of trajectory)
     public float throwSpriteDuration = 0.5f; // Duration to show the throw sprite
 
+    [Header("If P1, make sure p2PickSystem is null")]
+    [Header("If P2, make sure playerPickupSystem is null")]
+    public bool P1FalseP2True;
+
     [Header("References")]
     public PlayerPickupSystem playerPickupSystem; // Reference to PlayerPickupSystem
+    public P2PickSystem p2PickSystem; // Reference to P2PickSystem
     public HandSpriteManager handSpriteManager; // Reference to HandSpriteManager for sprite toggling
 
     private bool isPreparingToThrow = false; // Tracks if the player is preparing to throw
     private Vector2 storedThrowPosition; // Stores the last mouse click position
     private IUsable usableFunction; // Cache of the usable function (if any)
 
+
     public void StartPreparingThrow()
     {
-        if (playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        bool hasItem = P1FalseP2True ? p2PickSystem.HasItemHeld : playerPickupSystem.HasItemHeld;
+        if (!hasItem) return;
 
         isPreparingToThrow = true;
-        usableFunction = playerPickupSystem.GetUsableFunction() as IUsable;
-        usableFunction?.DisableUsableFunction();
 
+        usableFunction = P1FalseP2True
+            ? p2PickSystem.GetUsableFunction()
+            : playerPickupSystem.GetUsableFunction();
+
+        usableFunction?.DisableUsableFunction();
         Debug.Log("Preparing to throw...");
     }
 
     public void Throw()
     {
-        if (!isPreparingToThrow || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        if (!isPreparingToThrow) return;
 
-        GameObject heldItem = playerPickupSystem.GetHeldItem();
+        GameObject heldItem = P1FalseP2True
+            ? p2PickSystem.GetHeldItem()
+            : playerPickupSystem.GetHeldItem();
+
         if (heldItem == null) return;
 
-        playerPickupSystem.DropItem();
+        if (P1FalseP2True)
+        {
+            p2PickSystem.DropItem(false);
+        }
+        else
+        {
+            playerPickupSystem.DropItem();
+        }
+
         handSpriteManager?.ShowThrowSprite(throwSpriteDuration);
 
-        storedThrowPosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
+        storedThrowPosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition(); //this affect the direction of where P2 throw object
+
         float distance = Vector2.Distance(transform.position, storedThrowPosition);
         float adjustedThrowForce = distance * throwForceMultiplier;
 
@@ -49,7 +71,7 @@ public class PlayerThrowManager : MonoBehaviour
 
         if (heldItem.TryGetComponent(out Collider2D itemCollider))
         {
-            itemCollider.enabled = false; // Disable collider during flight
+            itemCollider.enabled = false;
         }
 
         Vector2 throwDirection = (storedThrowPosition - (Vector2)transform.position).normalized;
@@ -57,7 +79,7 @@ public class PlayerThrowManager : MonoBehaviour
         rb.velocity = throwDirection * adjustedThrowForce;
         rb.angularVelocity = spinSpeed * (throwDirection.x > 0 ? -1 : 1);
 
-        StartCoroutine(EnableColliderDuringTrajectory(heldItem, itemCollider, distance));
+        StartCoroutine(EnableColliderDuringTrajectory(heldItem, heldItem.GetComponent<Collider2D>(), distance));
         isPreparingToThrow = false;
 
         AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
@@ -65,7 +87,7 @@ public class PlayerThrowManager : MonoBehaviour
 
     public void CancelThrow()
     {
-        if (!isPreparingToThrow || playerPickupSystem == null) return;
+        if (!isPreparingToThrow) return;
 
         usableFunction?.EnableUsableFunction();
         isPreparingToThrow = false;
