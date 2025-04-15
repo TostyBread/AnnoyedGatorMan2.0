@@ -59,8 +59,6 @@ public class P2AimSystem : MonoBehaviour
 
             Arrow.SetActive(false);
         }
-
-        Debug.Log("current = " + CurrentTarget);
     }
 
     public GameObject NearestTarget()

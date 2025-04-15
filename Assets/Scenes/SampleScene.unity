@@ -5016,7 +5016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Nulled: {fileID: 3186628466530934036, guid: 3075ee87cca016b4e9e12ff8a37da223, type: 3}
-  speed: 1
+  speed: 2
   gapBetweenGrid: 1
   SeeGrid: {fileID: 1003748745570276690, guid: 39fe410485cdd2c4e9f2d1a4ff92aa48, type: 3}
   MoveGridSize: 5

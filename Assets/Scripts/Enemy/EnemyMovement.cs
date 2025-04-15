@@ -1,15 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR;
 using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private bool once;
-    private bool once2;
     public GameObject Nulled;
     private CannotMoveThisWay cmty;
     public float speed = 3;
@@ -24,19 +19,23 @@ public class EnemyMovement : MonoBehaviour
     public int MoveGridSize = 5;
     [HideInInspector] public GameObject MidOfSpawnedGrid;
     public List<GameObject> EnemyGrid = new List<GameObject>();
+    private bool onceMoveGrid;
 
     [Header("Enemy Sight Grid")]
     public GameObject SightGrid;
     public int sightSize = 3;
     [HideInInspector] public GameObject MOSP;
     public List<GameObject> EnemySight = new List<GameObject>();
+    private bool onceSightGrid;
+
+    private bool isChasingPlayer = false;
+    private bool isWaitingAfterLost = false;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
         CreateEnemyField();
-        once = false;
         CreateEnemySight();
 
         cmty = GetComponentInChildren<CannotMoveThisWay>();
@@ -47,7 +46,8 @@ public class EnemyMovement : MonoBehaviour
     private void Update()
     {
         MOSP.transform.position = transform.position;
-        EnemyWonderAround();
+
+        EnemyFindTarget(player);
     }
 
     private void CreateEnemyField()
@@ -63,10 +63,10 @@ public class EnemyMovement : MonoBehaviour
                 GameObject SpawnedGrid = Instantiate(SeeGrid, pos, transform.rotation);
                 //SpawnedGrid.transform.parent = MidOfSpawnedGrid.transform;
 
-                if (x >= MoveGridSize / 2 && y >= MoveGridSize / 2 && once == false)
+                if (x >= MoveGridSize / 2 && y >= MoveGridSize / 2 && !onceMoveGrid)
                 {
                     MidOfSpawnedGrid.transform.position = SpawnedGrid.transform.position;
-                    once = true;
+                    onceMoveGrid = true;
                 }
 
                 EnemyGrid.Add(SpawnedGrid);
@@ -95,10 +95,10 @@ public class EnemyMovement : MonoBehaviour
                 GameObject SpawnedGrid = Instantiate(SightGrid, pos, transform.rotation);
                 //SpawnedGrid.transform.parent = MidOfSpawnedGrid.transform;
 
-                if (x >= sightSize / 2 && y >= sightSize / 2 && once == false)
+                if (x >= sightSize / 2 && y >= sightSize / 2 && !onceSightGrid)
                 {
                     MOSP.transform.position = SpawnedGrid.transform.position;
-                    once = true;
+                    onceSightGrid = true;
                 }
 
                 EnemySight.Add(SpawnedGrid);
@@ -138,26 +138,19 @@ public class EnemyMovement : MonoBehaviour
 
     private void EnemyWonderAround()
     {
+        // If we’ve reached the destination, choose a new one after a delay
+        if (TargetedGrid == null || Vector3.Distance(transform.position, TargetedGrid.position) < 0.1f)
+        {
+            if (MoveNext)
+            {
+                StartCoroutine(ChangeTargetedGrid(Random.Range(1f, 3f)));
+            }
+        }
+
+        // Keep moving toward the current target if it exists
         if (TargetedGrid != null)
         {
-            if (Vector3.Distance(transform.position, TargetedGrid.position) < 0.1f)
-            {
-                if (MoveNext == true)
-                {
-                    //CurrPos = transform.position;
-                    StartCoroutine(ChangeTargetedGrid(Random.Range(1f, 3f)));
-                }
-            }
-
-            if (player == null && once2 == false)
-            {
-                TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
-                once2 = true;
-            }
-            else
-            {
-                enemyMovement(TargetedGrid);
-            }
+            enemyMovement(TargetedGrid);
         }
     }
 
@@ -167,13 +160,23 @@ public class EnemyMovement : MonoBehaviour
 
         foreach (var sight in EnemySight)
         {
-            if (Target != null)
+            if (Vector3.Distance(Target.transform.position, sight.transform.position) < 1f * gapBetweenGrid)
             {
-                if (Vector3.Distance(Target.transform.position, sight.transform.position) < 0.1f * gapBetweenGrid)
+                if (Target != null)
                 {
                     Detected = true;
-                    Debug.Log("target detected = " + Target);
+
+                    if (!isChasingPlayer)
+                    {
+                        Debug.Log("target detected = " + Target);
+                        StopAllCoroutines(); //stop waiting and random change
+                        MoveNext = false;
+
+                        isChasingPlayer = true;
+                    }
+
                     TargetedGrid = Target.transform;
+                    enemyMovement(TargetedGrid);
                     break;
                 }
             }
@@ -181,18 +184,42 @@ public class EnemyMovement : MonoBehaviour
 
         if (!Detected)
         {
-            EnemyWonderAround();
+            if (isChasingPlayer)
+            {
+                if (!isWaitingAfterLost)
+                {
+                    StartCoroutine(WaitAfterLosingPlayer(Random.Range(1f,3f)));
+                    isChasingPlayer = false;
+                }
+
+            }
+
+            if (!isWaitingAfterLost)
+            {
+                EnemyWonderAround();
+            }
         }
+    }
+
+    private IEnumerator WaitAfterLosingPlayer(float delay)
+    { 
+        isWaitingAfterLost = true;
+        Debug.Log("player lost, wait " + delay + " seconds");
+
+        yield return new WaitForSeconds(delay);
+
+        isWaitingAfterLost = false;
+        StartCoroutine(ChangeTargetedGrid(0));
     }
 
     private IEnumerator ChangeTargetedGrid(float delay)
     {
         MoveNext = false;
-        Debug.Log("Change targeted grid after " + delay + " seconds");
         yield return new WaitForSeconds(delay);
+        Debug.Log("Change targeted grid after " + delay + " seconds");
 
-        Debug.Log("Target Grid Changed");
         TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
+        Debug.Log("Target Grid Changed");
 
         MoveNext = true;
     }
