@@ -4923,10 +4923,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159861448}
+  - component: {fileID: 1159861449}
   - component: {fileID: 1159861447}
   - component: {fileID: 1159861451}
   - component: {fileID: 1159861450}
-  - component: {fileID: 1159861449}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -5036,7 +5036,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159861446}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

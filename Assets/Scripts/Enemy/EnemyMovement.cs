@@ -11,9 +11,15 @@ public class EnemyMovement : MonoBehaviour
     private bool MoveNext = true;
     public float gapBetweenGrid;
 
-    [Header("Just for debug, leave it null")]
+    [Header("Just for debug, do not touch")]
     public Transform TargetedGrid;
-    public bool Detected = false;
+    public enum EnemyState
+    {
+        Wandering,
+        Chasing,
+        WaitingToReturn
+    }
+    public EnemyState currentState = EnemyState.Wandering;
 
     private GameObject player;
 
@@ -31,8 +37,6 @@ public class EnemyMovement : MonoBehaviour
     public List<GameObject> EnemySight = new List<GameObject>();
     private bool onceSightGrid;
 
-    private bool isChasingPlayer = false;
-    private bool isWaitingAfterLost = false;
 
     private void Start()
     {
@@ -159,70 +163,69 @@ public class EnemyMovement : MonoBehaviour
 
     private void EnemyFindTarget(GameObject Target)
     {
-        Detected = false;
+        bool detectedThisFrame = false;
 
         foreach (var sight in EnemySight)
         {
             if (Vector3.Distance(Target.transform.position, sight.transform.position) < 1f * gapBetweenGrid)
             {
-                if (Target != null)
-                {
-                    Detected = true;
-
-                    if (!isChasingPlayer)
-                    {
-                        Debug.Log("target detected = " + Target);
-                        StopAllCoroutines(); //stop waiting and random change
-                        MoveNext = false;
-
-                        isChasingPlayer = true;
-                    }
-
-                    TargetedGrid = Target.transform;
-                    enemyMovement(TargetedGrid);
-                    break;
-                }
+                detectedThisFrame = true;
+                break;
             }
         }
 
-        if (!Detected)
+        if (detectedThisFrame && Target != null)
         {
-            if (isChasingPlayer)
-            {
-                if (!isWaitingAfterLost)
-                {
-                    StartCoroutine(WaitAfterLosingPlayer(Random.Range(1f,3f)));
-                    isChasingPlayer = false;
-                }
+            // If we detect player no matter the current state, snap to chase
+            StopAllCoroutines();
+            currentState = EnemyState.Chasing;
+            TargetedGrid = Target.transform;
+            enemyMovement(TargetedGrid);
+            return;
+        }
 
-            }
-
-            if (!isWaitingAfterLost)
-            {
+        // If not detected, go with normal behavior per state
+        switch (currentState)
+        {
+            case EnemyState.Wandering:
                 EnemyWonderAround();
-            }
+                break;
+
+            case EnemyState.Chasing:
+                // Lost sight but not yet handled; fall through to wait
+                Debug.Log("Player lost. Begin return wait...");
+                currentState = EnemyState.WaitingToReturn;
+                StartCoroutine(WaitAfterLosingPlayer(Random.Range(1f, 3f)));
+                break;
+
+            case EnemyState.WaitingToReturn:
+                // Do nothing while waiting, unless interrupted by detection above
+                break;
         }
     }
 
     private IEnumerator WaitAfterLosingPlayer(float delay)
     {
-        isWaitingAfterLost = true;
-        Debug.Log("player lost, wait " + delay + " seconds");
         yield return new WaitForSeconds(delay);
 
-        StartCoroutine(ChangeTargetedGrid(0));
-        
-        isWaitingAfterLost = false;
+        if (currentState == EnemyState.WaitingToReturn)
+        {
+            Debug.Log("Wait over. Resuming wandering.");
+            StartCoroutine(ChangeTargetedGrid(0));
+            currentState = EnemyState.Wandering;
+        }
     }
 
     private IEnumerator ChangeTargetedGrid(float delay)
     {
         MoveNext = false;
         yield return new WaitForSeconds(delay);
-        Debug.Log("Change targeted grid after " + delay + " seconds");
 
-        TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
-        Debug.Log("Target Grid Changed");
+        if (EnemyGrid.Count > 0)
+        {
+            TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
+            Debug.Log("Target Grid Changed to " + TargetedGrid.name);
+        }
 
         MoveNext = true;
     }
