@@ -9,8 +9,11 @@ public class EnemyMovement : MonoBehaviour
     private CannotMoveThisWay cmty;
     public float speed = 3;
     private bool MoveNext = true;
-    private Transform TargetedGrid;
     public float gapBetweenGrid;
+
+    [Header("Just for debug, leave it null")]
+    public Transform TargetedGrid;
+    public bool Detected = false;
 
     private GameObject player;
 
@@ -156,7 +159,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void EnemyFindTarget(GameObject Target)
     {
-        bool Detected = false;
+        Detected = false;
 
         foreach (var sight in EnemySight)
         {
@@ -202,14 +205,14 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private IEnumerator WaitAfterLosingPlayer(float delay)
-    { 
+    {
         isWaitingAfterLost = true;
         Debug.Log("player lost, wait " + delay + " seconds");
-
         yield return new WaitForSeconds(delay);
 
-        isWaitingAfterLost = false;
         StartCoroutine(ChangeTargetedGrid(0));
+        
+        isWaitingAfterLost = false;
     }
 
     private IEnumerator ChangeTargetedGrid(float delay)
