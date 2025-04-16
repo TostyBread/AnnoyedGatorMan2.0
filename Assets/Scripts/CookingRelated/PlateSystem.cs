@@ -17,16 +17,36 @@ public class PlateSystem : MonoBehaviour
     private Transform plateParent;
     public List<PlateRequirement> plateRequirements;
     private Dictionary<PlateRequirement, GameObject> placedItems = new Dictionary<PlateRequirement, GameObject>();
-    //public bool foodComplete = false; // For NPCBehavior to accept food when its complete
+
+    private int customerId = -1;
+    public Transform idLabelAnchor;
+    public GameObject idLabelPrefab;
 
     private void Awake()
     {
-        //foodComplete = false;
-
         plateParent = transform.parent;
         if (plateParent == null)
         {
             Debug.LogError("PlateSystem: No parent object found! Assign a parent plate.");
+        }
+    }
+
+    public void SetCustomerId(int id)
+    {
+        customerId = id;
+    }
+
+    public int GetCustomerId()
+    {
+        return customerId;
+    }
+
+    public void SpawnLabel(int id)
+    {
+        if (idLabelPrefab && idLabelAnchor)
+        {
+            GameObject label = Instantiate(idLabelPrefab, idLabelAnchor.position, Quaternion.identity, idLabelAnchor);
+            label.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = id.ToString();
         }
     }
 
@@ -97,6 +117,5 @@ public class PlateSystem : MonoBehaviour
             }
         }
         AudioManager.Instance.PlaySound("TaskComplete", 1.0f, transform.position);
-        //foodComplete = true; // When dish is complete
     }
 }

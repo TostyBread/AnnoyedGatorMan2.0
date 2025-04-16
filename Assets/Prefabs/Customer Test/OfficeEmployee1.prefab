@@ -124,6 +124,37 @@ MonoBehaviour:
   movementThreshold: 0.1
   flipSpriteOnX: 1
   targetRigidbody: {fileID: 0}
+--- !u!1 &1482225471196721313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7262767610283653091}
+  m_Layer: 0
+  m_Name: TakeOrderInteract
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7262767610283653091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482225471196721313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 28608211284768982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3847626970210989628
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +229,8 @@ GameObject:
   - component: {fileID: -7959780710742504478}
   - component: {fileID: 880509381728504748}
   - component: {fileID: 4180316551167014751}
-  - component: {fileID: -741141688839591053}
+  - component: {fileID: 4874225279319358098}
+  - component: {fileID: 3131916694288282251}
   m_Layer: 0
   m_Name: OfficeEmployee1
   m_TagString: NPC
@@ -222,6 +254,8 @@ Transform:
   - {fileID: 3424607727966349365}
   - {fileID: 1132364132505828575}
   - {fileID: 7711344081798851309}
+  - {fileID: 7262767610283653091}
+  - {fileID: 8449061880509143546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-7959780710742504478
@@ -239,6 +273,7 @@ MonoBehaviour:
   moveSpeed: 3
   menuSpawnPoint: {fileID: 1132364132505828575}
   plateSpawnPoint: {fileID: 7711344081798851309}
+  idLabelAnchor: {fileID: 8449061880509143546}
 --- !u!50 &880509381728504748
 Rigidbody2D:
   serializedVersion: 4
@@ -311,7 +346,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!58 &-741141688839591053
+--- !u!114 &4874225279319358098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9131540200826282109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2855801ae277f8749952009d170c6bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &3131916694288282251
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -343,6 +390,37 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.82, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 1
+--- !u!1 &9207026353361096624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8449061880509143546}
+  m_Layer: 0
+  m_Name: IDAnchorPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8449061880509143546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9207026353361096624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 28608211284768982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

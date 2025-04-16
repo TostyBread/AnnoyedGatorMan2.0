@@ -76,6 +76,10 @@ public class PlayerPickupSystem : MonoBehaviour
         {
             package.TakingOutItem();
         }
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out NPCBehavior npc))
+        {
+            npc.SpawnMenuAndPlate();
+        }
     }
 
     public void StartPickup()
