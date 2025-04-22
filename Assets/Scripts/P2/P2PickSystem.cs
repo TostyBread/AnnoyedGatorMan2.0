@@ -11,7 +11,6 @@ public class P2PickSystem : MonoBehaviour
     public List<string> validTags = new List<string>();
 
     private Collider2D targetItem = null;
-    private GameObject heldItem = null;
     private Collider2D targetInteractable = null;
     private Coroutine pickupCoroutine = null;
     private bool isHoldingPickupKey = false;
@@ -27,6 +26,7 @@ public class P2PickSystem : MonoBehaviour
 
     [Header("Do not touch")]
     public GameObject Target;
+    public GameObject heldItem = null;
 
     void Update()
     {

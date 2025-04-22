@@ -4,8 +4,10 @@ public class Fist : MonoBehaviour
 {
     private Animator animator;
     private Collider2D hitbox;
-    private bool isPunching = false;
-    private bool isThrowing = false;
+
+    [Header("Do not touch")]
+    public bool isPunching = false;
+    public bool isThrowing = false;
 
     void Start()
     {

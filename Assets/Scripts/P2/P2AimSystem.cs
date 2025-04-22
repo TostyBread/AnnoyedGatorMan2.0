@@ -27,6 +27,8 @@ public class P2AimSystem : MonoBehaviour
     public GameObject Arrow;
     public Vector3 ArrowOffset;
 
+    public Transform HandAim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,25 +56,24 @@ public class P2AimSystem : MonoBehaviour
         {
             //Debug.Log("set hand to default pos");
 
-            ////Set hand to default pos
-            HandControl.transform.rotation = Quaternion.identity;
+            //////Set hand to default pos
+            //HandControl.transform.rotation = Quaternion.identity;
 
+            HandRotation(HandAim.transform.position);
             Arrow.SetActive(false);
         }
     }
 
     public GameObject NearestTarget()
     {
-        
-            if (detectTarget.AllItemInRange.Count == 0)
-            {
-                return null;
-            }
+        if (detectTarget.AllItemInRange.Count == 0)
+        {
+            return null;
+        }
 
+        //Ensure index is within bounds
+        currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, detectTarget.AllItemInRange.Count - 1);
 
-            // Ensure index is within bounds
-            currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, detectTarget.AllItemInRange.Count - 1);
-        
         return detectTarget.AllItemInRange[currentTargetIndex];
     }
 

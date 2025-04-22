@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class CharacterFlip : MonoBehaviour
 {
-    private bool isFacingRight = true; // Tracks the character's facing direction
+
     private GameObject p2AimingObject;
     public GameObject p2System;
     private bool shouldFaceRight;
+
+    [Header("do not touch")]
+    public bool isFacingRight = true; // Tracks the character's facing direction
 
     void Update()
     {
