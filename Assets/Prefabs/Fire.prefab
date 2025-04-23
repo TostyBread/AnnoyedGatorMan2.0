@@ -74,6 +74,7 @@ MonoBehaviour:
   heatAmount: 20
   heatCooldown: 0.5
   isFireSource: 1
+  isColdSource: 0
   minVelocityToDamage: 0
 --- !u!70 &4289771224545664985
 CapsuleCollider2D:

@@ -454,6 +454,7 @@ MonoBehaviour:
   heatAmount: 20
   heatCooldown: 1
   isFireSource: 1
+  isColdSource: 0
   minVelocityToDamage: 0
 --- !u!1 &288328633
 GameObject:
@@ -7388,6 +7389,7 @@ MonoBehaviour:
   heatAmount: 0
   heatCooldown: 1
   isFireSource: 0
+  isColdSource: 0
   minVelocityToDamage: 0
 --- !u!50 &1781296750
 Rigidbody2D:
@@ -8297,6 +8299,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 3708809617773423326, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: BurnDur
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7199007613480025098, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
       propertyPath: m_Name
       value: GatorMan

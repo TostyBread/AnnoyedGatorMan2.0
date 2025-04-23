@@ -9,6 +9,7 @@ public class DamageSource : MonoBehaviour
     public float heatAmount;
     public float heatCooldown = 1.0f;
     public bool isFireSource = false;
+    public bool isColdSource = false;
     public float minVelocityToDamage = 0f;
 
     private HashSet<GameObject> objectsInFire = new HashSet<GameObject>();
@@ -25,7 +26,7 @@ public class DamageSource : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isFireSource || rb == null || sanity == null || rb.velocity.magnitude < minVelocityToDamage)
+        if (isFireSource || isColdSource || rb == null || sanity == null || rb.velocity.magnitude < minVelocityToDamage)
         {
             return;
         }

@@ -9,12 +9,23 @@ public class StateManager : MonoBehaviour
     public PlayerState state;
     public float stateDur;
 
+    [Header("Burn State")]
     public float MaxHeat = 100;
     public float currentHeat;
+    public float BurnDur = 3;
 
     private Dictionary<DamageSource, float> cooldowns = new();
     private HashSet<DamageSource> activeSources = new();
 
+    [Header("Freeze State")]
+    public float MaxCold = 100;
+    public float currentCold;
+    public float FreezeDur = 3;
+
+    private Dictionary<DamageSource, float> coldCooldowns = new();
+    private HashSet<DamageSource> coldSources = new();
+
+    [Header("References")]
     private float idleMoveSpeed;
     private CharacterMovement characterMovement;
 
@@ -32,15 +43,21 @@ public class StateManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && state == PlayerState.Idle)
         {
             int randomState = Random.Range(1, 4);
-            if (randomState == 1) StartCoroutine(Burn(stateDur));
+            if (randomState == 1) StartCoroutine(Burn(BurnDur));
             else if (randomState == 2) StartCoroutine(Freeze(stateDur));
             else StartCoroutine(Stun(stateDur));
         }
 
         if (currentHeat >= MaxHeat)
         {
-            StartCoroutine(Burn(stateDur));
+            StartCoroutine(Burn(BurnDur));
             currentHeat = 0;
+        }
+
+        if (currentCold >= MaxCold)
+        {
+            StartCoroutine(Freeze(FreezeDur));
+            currentCold = 0;
         }
     }
 
@@ -61,24 +78,57 @@ public class StateManager : MonoBehaviour
                 cooldowns[source] = source.heatCooldown;
             }
         }
+
+        foreach (var source in coldSources)
+        {
+            if (!coldCooldowns.ContainsKey(source))
+                coldCooldowns[source] = source.heatCooldown;
+
+            coldCooldowns[source] -= Time.fixedDeltaTime;
+
+            if (coldCooldowns[source] <= 0f)
+            {
+                currentCold += source.heatAmount;
+                coldCooldowns[source] = source.heatCooldown;
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out DamageSource damageSource) && damageSource.isFireSource)
+        if (other.TryGetComponent(out DamageSource damageSource))
         {
-            activeSources.Add(damageSource);
-            if (!cooldowns.ContainsKey(damageSource))
-                cooldowns[damageSource] = damageSource.heatCooldown;
+            if (damageSource.isFireSource)
+            {
+                activeSources.Add(damageSource);
+                if (!cooldowns.ContainsKey(damageSource))
+                    cooldowns[damageSource] = damageSource.heatCooldown;                
+            }
+
+            if (damageSource.isColdSource)
+            {
+                coldSources.Add(damageSource);
+                if (!coldCooldowns.ContainsKey(damageSource))
+                    coldCooldowns[damageSource] = damageSource.heatCooldown;
+            }
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out DamageSource damageSource) && damageSource.isFireSource)
+        if (other.TryGetComponent(out DamageSource damageSource))
         {
-            activeSources.Remove(damageSource);
-            cooldowns.Remove(damageSource);
+            if (damageSource.isFireSource)
+            {
+                activeSources.Remove(damageSource);
+                cooldowns.Remove(damageSource);            
+            }
+
+            if (damageSource.isColdSource)
+            {
+                coldSources.Remove(damageSource);
+                coldCooldowns.Remove(damageSource);
+            }
         }
     }
 
