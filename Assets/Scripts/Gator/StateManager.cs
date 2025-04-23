@@ -9,56 +9,82 @@ public class StateManager : MonoBehaviour
     public PlayerState state;
     public float stateDur;
 
+    public float MaxHeat = 100;
+    public float currentHeat;
+
+    private Dictionary<DamageSource, float> cooldowns = new();
+    private HashSet<DamageSource> activeSources = new();
+
     private float idleMoveSpeed;
     private CharacterMovement characterMovement;
 
-    // Start is called before the first frame update
     void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
         idleMoveSpeed = characterMovement.moveSpeed;
-
         state = PlayerState.Idle;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (characterMovement == null)
-        {
-            return;
-        }
-
-        if (state == PlayerState.Idle)
-        {
-            characterMovement.moveSpeed = idleMoveSpeed;
-        }
+        if (characterMovement == null) return;
 
         if (Input.GetKeyDown(KeyCode.Space) && state == PlayerState.Idle)
         {
             int randomState = Random.Range(1, 4);
+            if (randomState == 1) StartCoroutine(Burn(stateDur));
+            else if (randomState == 2) StartCoroutine(Freeze(stateDur));
+            else StartCoroutine(Stun(stateDur));
+        }
 
-            if ( randomState == 1)
-            {
-                StartCoroutine(Burn(stateDur));
-            }
+        if (currentHeat >= MaxHeat)
+        {
+            StartCoroutine(Burn(stateDur));
+            currentHeat = 0;
+        }
+    }
 
-            if (randomState == 2)
-            {
-                StartCoroutine(Freeze(stateDur));
-            }
+    void FixedUpdate()
+    {
+        if (state != PlayerState.Idle) return;
 
-            if (randomState == 3)
+        foreach (var source in activeSources)
+        {
+            if (!cooldowns.ContainsKey(source))
+                cooldowns[source] = source.heatCooldown;
+
+            cooldowns[source] -= Time.fixedDeltaTime;
+
+            if (cooldowns[source] <= 0f)
             {
-                StartCoroutine(Stun(stateDur));
+                currentHeat += source.heatAmount;
+                cooldowns[source] = source.heatCooldown;
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out DamageSource damageSource) && damageSource.isFireSource)
+        {
+            activeSources.Add(damageSource);
+            if (!cooldowns.ContainsKey(damageSource))
+                cooldowns[damageSource] = damageSource.heatCooldown;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out DamageSource damageSource) && damageSource.isFireSource)
+        {
+            activeSources.Remove(damageSource);
+            cooldowns.Remove(damageSource);
         }
     }
 
     IEnumerator Burn(float dur)
     {
         state = PlayerState.Burn;
-
         float elapsed = 0f;
         float interval = 0.5f;
 
@@ -71,6 +97,7 @@ public class StateManager : MonoBehaviour
             elapsed += interval;
         }
 
+        characterMovement.moveSpeed = idleMoveSpeed;
         state = PlayerState.Idle;
     }
 
@@ -79,6 +106,7 @@ public class StateManager : MonoBehaviour
         state = PlayerState.Freeze;
         characterMovement.moveSpeed = 1;
         yield return new WaitForSeconds(dur);
+        characterMovement.moveSpeed = idleMoveSpeed;
         state = PlayerState.Idle;
     }
 
@@ -87,6 +115,7 @@ public class StateManager : MonoBehaviour
         state = PlayerState.Stun;
         characterMovement.moveSpeed = 0;
         yield return new WaitForSeconds(dur);
+        characterMovement.moveSpeed = idleMoveSpeed;
         state = PlayerState.Idle;
     }
 }
