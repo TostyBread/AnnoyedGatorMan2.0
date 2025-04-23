@@ -7,15 +7,14 @@ public class StateManager : MonoBehaviour
     public enum PlayerState { Idle, Burn, Freeze, Stun }
 
     public PlayerState state;
-    public float stateDur;
 
     [Header("Burn State")]
     public float MaxHeat = 100;
     public float currentHeat;
     public float BurnDur = 3;
 
-    private Dictionary<DamageSource, float> cooldowns = new();
-    private HashSet<DamageSource> activeSources = new();
+    private Dictionary<DamageSource, float> burncooldowns = new();
+    private HashSet<DamageSource> burnSources = new();
 
     [Header("Freeze State")]
     public float MaxCold = 100;
@@ -24,6 +23,14 @@ public class StateManager : MonoBehaviour
 
     private Dictionary<DamageSource, float> coldCooldowns = new();
     private HashSet<DamageSource> coldSources = new();
+
+    [Header("Stun State")]
+    public float MaxStun = 100;
+    public float currentStun;
+    public float StunDur = 3;
+
+    private Dictionary<DamageSource, float> stunCooldowns = new();
+    private HashSet<DamageSource> stunSources = new();
 
     [Header("References")]
     private float idleMoveSpeed;
@@ -44,8 +51,8 @@ public class StateManager : MonoBehaviour
         {
             int randomState = Random.Range(1, 4);
             if (randomState == 1) StartCoroutine(Burn(BurnDur));
-            else if (randomState == 2) StartCoroutine(Freeze(stateDur));
-            else StartCoroutine(Stun(stateDur));
+            else if (randomState == 2) StartCoroutine(Freeze(FreezeDur));
+            else StartCoroutine(Stun(StunDur));
         }
 
         if (currentHeat >= MaxHeat)
@@ -59,23 +66,29 @@ public class StateManager : MonoBehaviour
             StartCoroutine(Freeze(FreezeDur));
             currentCold = 0;
         }
+
+        if (currentStun >= MaxStun)
+        {
+            StartCoroutine(Stun(StunDur));
+            currentStun = 0;
+        }
     }
 
     void FixedUpdate()
     {
         if (state != PlayerState.Idle) return;
 
-        foreach (var source in activeSources)
+        foreach (var source in burnSources)
         {
-            if (!cooldowns.ContainsKey(source))
-                cooldowns[source] = source.heatCooldown;
+            if (!burncooldowns.ContainsKey(source))
+                burncooldowns[source] = source.heatCooldown;
 
-            cooldowns[source] -= Time.fixedDeltaTime;
+            burncooldowns[source] -= Time.fixedDeltaTime;
 
-            if (cooldowns[source] <= 0f)
+            if (burncooldowns[source] <= 0f)
             {
                 currentHeat += source.heatAmount;
-                cooldowns[source] = source.heatCooldown;
+                burncooldowns[source] = source.heatCooldown;
             }
         }
 
@@ -92,6 +105,20 @@ public class StateManager : MonoBehaviour
                 coldCooldowns[source] = source.heatCooldown;
             }
         }
+
+        foreach (var source in stunSources)
+        {
+            if (!stunCooldowns.ContainsKey(source))
+                stunCooldowns[source] = source.heatCooldown;
+
+            stunCooldowns[source] -= Time.fixedDeltaTime;
+
+            if (stunCooldowns[source] <= 0f)
+            {
+                currentStun += source.heatAmount;
+                stunCooldowns[source] = source.heatCooldown;
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -100,9 +127,9 @@ public class StateManager : MonoBehaviour
         {
             if (damageSource.isFireSource)
             {
-                activeSources.Add(damageSource);
-                if (!cooldowns.ContainsKey(damageSource))
-                    cooldowns[damageSource] = damageSource.heatCooldown;                
+                burnSources.Add(damageSource);
+                if (!burncooldowns.ContainsKey(damageSource))
+                    burncooldowns[damageSource] = damageSource.heatCooldown;                
             }
 
             if (damageSource.isColdSource)
@@ -110,6 +137,13 @@ public class StateManager : MonoBehaviour
                 coldSources.Add(damageSource);
                 if (!coldCooldowns.ContainsKey(damageSource))
                     coldCooldowns[damageSource] = damageSource.heatCooldown;
+            }
+
+            if (damageSource.isStunSource)
+            {
+                stunSources.Add(damageSource);
+                if (!stunCooldowns.ContainsKey(damageSource))
+                    stunCooldowns[damageSource] = damageSource.heatCooldown;
             }
         }
     }
@@ -120,14 +154,23 @@ public class StateManager : MonoBehaviour
         {
             if (damageSource.isFireSource)
             {
-                activeSources.Remove(damageSource);
-                cooldowns.Remove(damageSource);            
+                burnSources.Remove(damageSource);
+                burncooldowns.Remove(damageSource);
+                currentHeat = 0;
             }
 
             if (damageSource.isColdSource)
             {
                 coldSources.Remove(damageSource);
                 coldCooldowns.Remove(damageSource);
+                currentCold = 0;
+            }
+
+            if (damageSource.isStunSource)
+            {
+                stunSources.Remove(damageSource);
+                stunCooldowns.Remove(damageSource);
+                currentStun = 0;
             }
         }
     }

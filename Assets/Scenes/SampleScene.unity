@@ -455,6 +455,7 @@ MonoBehaviour:
   heatCooldown: 1
   isFireSource: 1
   isColdSource: 0
+  isStunSource: 0
   minVelocityToDamage: 0
 --- !u!1 &288328633
 GameObject:
@@ -7390,6 +7391,7 @@ MonoBehaviour:
   heatCooldown: 1
   isFireSource: 0
   isColdSource: 0
+  isStunSource: 0
   minVelocityToDamage: 0
 --- !u!50 &1781296750
 Rigidbody2D:
