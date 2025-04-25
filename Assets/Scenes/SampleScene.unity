@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 288328635}
   m_Layer: 0
   m_Name: Obstacles_Walkable
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1335,6 +1335,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3b10b467dc52a644aa54f88c30560678, type: 3}
   - {fileID: 8300000, guid: 6432eb9b67089904088e4c2049ad23d8, type: 3}
   - {fileID: 8300000, guid: ba22687747d488c47a2c655740cc187f, type: 3}
+  - {fileID: 8300000, guid: f270f4d775a4fc14992181997cff0e00, type: 3}
 --- !u!1 &650943901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1352,7 @@ GameObject:
   - component: {fileID: 650943905}
   m_Layer: 7
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4978,7 +4979,7 @@ GameObject:
   - component: {fileID: 1370688835}
   m_Layer: 0
   m_Name: Obstacles_Behind
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5726,7 +5727,7 @@ GameObject:
   - component: {fileID: 1505096015}
   m_Layer: 0
   m_Name: Obstacles
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8301,10 +8302,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 3708809617773423326, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
-      propertyPath: BurnDur
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7199007613480025098, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
       propertyPath: m_Name
       value: GatorMan

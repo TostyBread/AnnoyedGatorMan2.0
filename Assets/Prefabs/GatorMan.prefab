@@ -732,6 +732,8 @@ MonoBehaviour:
   heatAmount: 0
   heatCooldown: 1
   isFireSource: 0
+  isColdSource: 0
+  isStunSource: 0
   minVelocityToDamage: 0
 --- !u!50 &405541712854609481
 Rigidbody2D:
@@ -974,6 +976,7 @@ GameObject:
   - component: {fileID: 4034342515493834415}
   - component: {fileID: 5725035431540513155}
   - component: {fileID: 3708809617773423326}
+  - component: {fileID: 7051173386322744479}
   m_Layer: 8
   m_Name: GatorMan
   m_TagString: Player
@@ -1255,9 +1258,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  stateDur: 3
   MaxHeat: 100
   currentHeat: 0
+  BurnDur: 3
+  MaxCold: 100
+  currentCold: 0
+  FreezeDur: 3
+  MaxStun: 100
+  currentStun: 0
+  StunDur: 3
+--- !u!114 &7051173386322744479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199007613480025098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140cb1985138b9f4392b0084287a21ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioName: WallBump
+  WallBumpSound: 1
 --- !u!1 &7357411553977680397
 GameObject:
   m_ObjectHideFlags: 0

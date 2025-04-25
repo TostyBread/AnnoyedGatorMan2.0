@@ -16,6 +16,7 @@ TagManager:
   - Mob
   - Sanity
   - Spawner
+  - Obstacle
   layers:
   - Default
   - TransparentFX
