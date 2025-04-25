@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class WallBumpDetect : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class WallBumpDetect : MonoBehaviour
     {
         if (collision.collider.CompareTag("Obstacle") && WallBumpSound)
         {
-            Debug.Log(collision.collider.name + " contact");
             AudioManager.Instance.PlaySound(AudioName, 1.0f, transform.position);
         }
     }
