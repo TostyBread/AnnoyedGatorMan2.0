@@ -13,8 +13,13 @@ public class HandSpriteManager : MonoBehaviour
 
     [Header("References")]
     public PlayerPickupSystem playerPickupSystem; // Reference to PlayerPickupSystem
+    public P2PickSystem p2PickSystem; // Reference to P2PickSystem
 
     private Coroutine throwSpriteCoroutine; // Tracks the active throw sprite coroutine
+
+    public PlayerThrowManager playerThrowManager;
+    [Header("If P1, make sure p2PickSystem is null \nIf P2, make sure playerPickupSystem is null")]
+    public bool P1FalseP2True;
 
     void Start()
     {
@@ -24,25 +29,46 @@ public class HandSpriteManager : MonoBehaviour
 
     public void UpdateHandSprite()
     {
-        if (playerPickupSystem == null)
+        if (playerPickupSystem == null && p2PickSystem == null)
         {
             Debug.LogError("PlayerPickupSystem reference is missing!");
+            Debug.LogError("P2PickSystem reference is missing!");
             return;
         }
 
-        // Check if the player is holding an item
-        if (playerPickupSystem.HasItemHeld)
+        if (playerPickupSystem != null && !P1FalseP2True)
         {
-            // Get the tag of the held item
-            string itemTag = playerPickupSystem.HeldItemTag;
+            // Check if the player is holding an item
+            if (playerPickupSystem.HasItemHeld)
+            {
+                // Get the tag of the held item
+                string itemTag = playerPickupSystem.HeldItemTag;
 
-            // Toggle the appropriate sprite based on the item's tag
-            ToggleSprite(itemTag);
+                // Toggle the appropriate sprite based on the item's tag
+                ToggleSprite(itemTag);
+            }
+            else
+            {
+                // Default to fist sprite when no item is held
+                ToggleSprite("Fist");
+            }
         }
-        else
+        else if (p2PickSystem != null && P1FalseP2True)
         {
-            // Default to fist sprite when no item is held
-            ToggleSprite("Fist");
+            // Check if the player is holding an item
+            if (p2PickSystem.HasItemHeld)
+            {
+                // Get the tag of the held item
+                string itemTag = p2PickSystem.HeldItemTag;
+
+                // Toggle the appropriate sprite based on the item's tag
+                ToggleSprite(itemTag);
+            }
+            else
+            {
+                // Default to fist sprite when no item is held
+                ToggleSprite("Fist");
+            }
         }
     }
 

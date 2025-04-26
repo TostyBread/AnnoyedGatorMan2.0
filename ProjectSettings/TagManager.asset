@@ -12,6 +12,8 @@ TagManager:
   - Projectile
   - EnviroInteract
   - Fire
+  - Enemy
+  - Interectable
   - Player2
   - Mob
   - Sanity
@@ -28,8 +30,11 @@ TagManager:
   - Wall
   - Player
   - Projectile
+  - Enemy
+  - Ignore Me
   - Mob
   - Pest
+
   - 
   - 
   - 
