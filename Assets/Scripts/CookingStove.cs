@@ -7,6 +7,7 @@ public class CookingStove : MonoBehaviour
     public bool isOn = false;
     public float fireActivationDelay = 0.5f; // Delay before fire starts
     public float requiredImpactForce = 5f; // Minimum force required to toggle stove
+    public string AudioName;
 
     private Coroutine fireActivationCoroutine;
 
@@ -28,7 +29,7 @@ public class CookingStove : MonoBehaviour
             if (fireActivationCoroutine == null)
             {
                 fireActivationCoroutine = StartCoroutine(StartFireWithDelay());
-                AudioManager.Instance.PlaySound("ElectricStoveOn", 1.0f, transform.position);
+                AudioManager.Instance.PlaySound(AudioName, 1.0f, transform.position);
             }
         }
         Debug.Log("Stove " + (isOn ? "Turning On..." : "Turning Off"));

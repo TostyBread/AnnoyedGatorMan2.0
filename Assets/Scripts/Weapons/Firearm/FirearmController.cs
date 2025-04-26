@@ -13,7 +13,7 @@ public class FirearmController : MonoBehaviour, IUsable
     public Animator animator; // Reference to the Animator component
 
     [Header("References")]
-    public CharacterFlip characterFlip; // Reference to the CharacterFlip script
+    private CharacterFlip characterFlip; // Reference to the CharacterFlip script
 
     private int currentAmmo; // Current ammo count
     private bool isUsable = true; // Whether the firearm can currently be used
@@ -39,6 +39,8 @@ public class FirearmController : MonoBehaviour, IUsable
             PlayAnimation("_Neutral"); // Start in the neutral state
         }
 
+        
+
         // Initialize facing direction
         isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
         AdjustMuzzlePoint(); // Ensure muzzlePoint is set correctly at the start
@@ -50,6 +52,7 @@ public class FirearmController : MonoBehaviour, IUsable
         { 
             characterFlip = GetComponentInParent<CharacterFlip>();
         }
+
 
         if (characterFlip == null) return;
 

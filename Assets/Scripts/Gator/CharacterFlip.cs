@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CharacterFlip : MonoBehaviour
 {
-
     private GameObject p2AimingObject;
     public GameObject p2System;
     private bool shouldFaceRight;
