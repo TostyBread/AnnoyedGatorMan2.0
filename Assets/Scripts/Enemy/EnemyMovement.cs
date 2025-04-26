@@ -11,8 +11,11 @@ public class EnemyMovement : MonoBehaviour
     private bool MoveNext = true;
     public float gapBetweenGrid;
 
+    private GameObject TargetPos;
+
     [Header("Just for debug, do not touch")]
     public Transform TargetedGrid;
+
     public enum EnemyState
     {
         Wandering,
@@ -40,6 +43,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        TargetPos = Instantiate(Nulled);
         player = GameObject.FindGameObjectWithTag("Player");
 
         CreateEnemyField();
@@ -54,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
     {
         MOSP.transform.position = transform.position;
 
-        EnemyFindTarget(player);
+        EnemyFoundTarget(player);
     }
 
     private void CreateEnemyField()
@@ -123,6 +127,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void enemyMovement(Transform Target)
     {
+        //detect obstacle, what to do next?
         if (cmty.canMoveThisWay == false)
         {
             //return;
@@ -161,7 +166,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void EnemyFindTarget(GameObject Target)
+    private void EnemyFoundTarget(GameObject Target)
     {
         bool detectedThisFrame = false;
 
@@ -170,6 +175,9 @@ public class EnemyMovement : MonoBehaviour
             if (Vector3.Distance(Target.transform.position, sight.transform.position) < 1f * gapBetweenGrid)
             {
                 detectedThisFrame = true;
+
+                //I want the TargetPos to stay at last position where sight last detect player
+                TargetPos.transform.position = sight.transform.position;
                 break;
             }
         }
@@ -179,7 +187,7 @@ public class EnemyMovement : MonoBehaviour
             // If we detect player no matter the current state, snap to chase
             StopAllCoroutines();
             currentState = EnemyState.Chasing;
-            TargetedGrid = Target.transform;
+            TargetedGrid = TargetPos.transform;
             enemyMovement(TargetedGrid);
             return;
         }

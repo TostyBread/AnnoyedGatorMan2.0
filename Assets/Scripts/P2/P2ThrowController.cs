@@ -1,67 +1,149 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class P2ThrowController : MonoBehaviour
 {
     public P2PickSystem p2;
+    private P2AimSystem p2AimSystem;
     public GameObject ThrowDirection;
     private GameObject Player;
     private CharacterFlip characterFlip;
-    public Vector3 offset;
+
+    public Transform ThrowPos;
+    private bool once;
+
+    public GameObject Range;
+    public GameObject Arrow;
+
 
     [Header("Input")]
     public KeyCode up;
     public KeyCode down;
     public KeyCode left;
     public KeyCode right;
+    public KeyCode ControlMode;
+
+    public bool controlMode;
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         if (p2 == null)
         {
             Debug.Log("P2 is null, so P2 will get P2PickSystem from its parent");
             p2 = GetComponentInParent<P2PickSystem>();
         }
 
+        p2AimSystem = GetComponentInParent<P2AimSystem>();
+
         Player = GameObject.FindGameObjectWithTag("Player");
         characterFlip = Player.GetComponent<CharacterFlip>();
 
+
         gameObject.transform.parent = null;
+
+        if (characterFlip.isFacingRight == true)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (characterFlip.isFacingRight == false)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleThrowFlip();
+        transform.position = Player.transform.position;
+
         ShowAndHideThrowDirection();
         ThrowContoller();
+
+        if (Input.GetKeyDown(ControlMode))
+        {
+            controlMode = !controlMode;
+        }
+
+        if (controlMode) 
+        CannotPickWhenHeldingObject();
+        else if (!controlMode)
+        AimAtRangeTarget();
+    }
+
+    private void CannotPickWhenHeldingObject()
+    {
+        if (p2.heldItem == null)
+        {
+            Range.SetActive(true);
+            once = false;
+        }
+        else if (p2.heldItem != null)
+        {
+            Range.SetActive(false);
+
+            if (!once)
+            {
+                if (characterFlip.isFacingRight == true)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else if (characterFlip.isFacingRight == false)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                }
+                once = true;
+            }
+        }
+    }
+
+    private void AimAtRangeTarget()
+    {
+        Range.SetActive(true);
+
+        if (p2AimSystem.NearestTarget() != null)
+        {
+            Rotation(p2AimSystem.NearestTarget().transform);
+            once = false;
+        }
+        else if (p2AimSystem.NearestTarget() == null)
+        {
+            if (!once)
+            {
+                if (characterFlip.isFacingRight == true)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else if (characterFlip.isFacingRight == false)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                }
+
+                once = true;
+            }
+        }
     }
 
     private void ShowAndHideThrowDirection()
     {
         if (ThrowDirection != null)
         {
-            if (p2.heldItem == null)
+            if (p2.heldItem != null && Arrow.activeSelf == false)
             {
-                ThrowDirection.SetActive(false);
+                ThrowDirection.SetActive(true);
             }
             else
             {
-                ThrowDirection.SetActive(true);
+                ThrowDirection.SetActive(false);
             }
         }
     }
 
-    private void HandleThrowFlip()
+    private void Rotation(Transform Target)
     {
-        if (characterFlip.isFacingRight)
-        {
-            transform.position = Player.transform.position + offset;
-        }
-        else
-        {
-            transform.position = Player.transform.position - offset;
-        }
+        Vector2 direction = Target.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void ThrowContoller()
