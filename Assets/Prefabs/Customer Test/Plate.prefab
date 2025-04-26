@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &999060479247699933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2576792758483389478}
+  m_Layer: 6
+  m_Name: IDAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2576792758483389478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999060479247699933}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.962, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1274844278774008693}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1283242322942539606
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,6 +107,8 @@ MonoBehaviour:
     positionOffset: {x: 0, y: -0.1, z: 0}
     sortingOrder: 7
     isFilled: 0
+  idLabelAnchor: {fileID: 2576792758483389478}
+  idLabelPrefab: {fileID: 1694303189033732588, guid: 7e2de8b30cd8adb428219dcbcf786d7f, type: 3}
 --- !u!58 &2251514385020554746
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -140,12 +173,13 @@ Transform:
   m_GameObject: {fileID: 3088414860971530543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.98, y: 5.47, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8868651213545987020}
   - {fileID: 4994269351274691337}
+  - {fileID: 2576792758483389478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3769679834320652242

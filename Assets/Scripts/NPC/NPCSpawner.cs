@@ -44,7 +44,7 @@ public class NPCSpawner : MonoBehaviour
 
         npcBehavior.SetWaypoints(path);
         npcBehavior.SetMenuAndPlatePrefabs(plateMenuSets[plateMenuIndex].menuPrefab, plateMenuSets[plateMenuIndex].platePrefab);
-        npcBehavior.SetCustomerId(nextCustomerId, idLabelPrefab);
+        npcBehavior.SetCustomerId(nextCustomerId);
         npcBehavior.SetExitPath(exitPaths[lineIndex].waypoints);
 
         nextCustomerId++;

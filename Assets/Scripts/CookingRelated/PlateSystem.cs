@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class PlateRequirement
@@ -43,11 +44,18 @@ public class PlateSystem : MonoBehaviour
 
     public void SpawnLabel(int id)
     {
-        if (idLabelPrefab && idLabelAnchor)
+        if (idLabelAnchor == null) return;
+
+        TextMeshPro label = idLabelAnchor.gameObject.GetComponent<TextMeshPro>();
+        if (label == null)
         {
-            GameObject label = Instantiate(idLabelPrefab, idLabelAnchor.position, Quaternion.identity, idLabelAnchor);
-            label.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = id.ToString();
+            label = idLabelAnchor.gameObject.AddComponent<TextMeshPro>();
         }
+
+        label.text = id.ToString();
+        label.fontSize = 8;
+        label.alignment = TextAlignmentOptions.Center;
+        label.color = Color.red;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

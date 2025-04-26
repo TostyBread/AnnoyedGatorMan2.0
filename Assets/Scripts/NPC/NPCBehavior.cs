@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class NPCBehavior : MonoBehaviour
 {
@@ -66,13 +67,17 @@ public class NPCBehavior : MonoBehaviour
         platePrefab = plate;
     }
 
-    public void SetCustomerId(int id, GameObject labelPrefab)
+    public void SetCustomerId(int id)
     {
         customerId = id;
-        if (labelPrefab && idLabelAnchor)
+
+        if (idLabelAnchor != null)
         {
-            GameObject label = Instantiate(labelPrefab, idLabelAnchor.position, Quaternion.identity, idLabelAnchor);
-            label.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = id.ToString();
+            TextMeshPro label = idLabelAnchor.gameObject.AddComponent<TextMeshPro>();
+            label.text = id.ToString();
+            label.fontSize = 8;
+            label.alignment = TextAlignmentOptions.Center;
+            label.color = Color.red;
         }
     }
 
@@ -109,10 +114,14 @@ public class NPCBehavior : MonoBehaviour
         if (platePrefab && plateSpawnPoint)
             attachedPlate = Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform);
 
-        if (attachedPlate != null && attachedPlate.TryGetComponent(out PlateSystem plateSys))
+        if (attachedPlate != null)
         {
-            plateSys.SetCustomerId(customerId);
-            plateSys.SpawnLabel(customerId);
+            PlateSystem plateSys = attachedPlate.GetComponent<PlateSystem>();
+            if (plateSys != null)
+            {
+                plateSys.SetCustomerId(customerId);
+                plateSys.SpawnLabel(customerId);
+            }
         }
     }
 
