@@ -9,7 +9,7 @@ public class PlayerBounceModifier : MonoBehaviour
 
     [Header("References")]
     public PhysicsMaterial2D bounceMaterial; // The Physics Material 2D assigned to the item
-    public string playerTag = "Player";      // Tag used to identify the player
+    public string[] playerTags;      // Tag used to identify the player
 
     private Rigidbody2D rb;
 
@@ -29,7 +29,19 @@ public class PlayerBounceModifier : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag(playerTag))
+        bool isPlayerCollision = false;
+
+        // Check if the collided object has any of the player tags
+        foreach (string tag in playerTags)
+        {
+            if (collision.collider.CompareTag(tag))
+            {
+                isPlayerCollision = true;
+                break; // Exit the loop early if a match is found
+            }
+        }
+
+        if (isPlayerCollision)
         {
             HandlePlayerCollision(collision);
         }

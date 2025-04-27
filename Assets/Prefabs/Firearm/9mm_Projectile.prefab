@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 2
-  damageAmount: 0
+  damageAmount: 20
   heatAmount: 10
   heatCooldown: 1
   isFireSource: 0
