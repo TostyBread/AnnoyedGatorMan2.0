@@ -15,6 +15,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Just for debug, do not touch")]
     public Transform TargetedGrid;
+    public GameObject[] player;
 
     public enum EnemyState
     {
@@ -24,7 +25,6 @@ public class EnemyMovement : MonoBehaviour
     }
     public EnemyState currentState = EnemyState.Wandering;
 
-    private GameObject player;
 
     [Header("Enemy Move Grid")]
     public GameObject SeeGrid;
@@ -44,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         TargetPos = Instantiate(Nulled);
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectsWithTag("Player");
 
         CreateEnemyField();
         CreateEnemySight();
@@ -58,6 +58,7 @@ public class EnemyMovement : MonoBehaviour
     {
         MOSP.transform.position = transform.position;
 
+        //(this is a 2 player game) have bug here
         EnemyFoundTarget(player);
     }
 
@@ -166,23 +167,26 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void EnemyFoundTarget(GameObject Target)
+    private void EnemyFoundTarget(GameObject[] Targets)
     {
         bool detectedThisFrame = false;
 
-        foreach (var sight in EnemySight)
+        foreach (var Target in Targets)
         {
-            if (Vector3.Distance(Target.transform.position, sight.transform.position) < 1f * gapBetweenGrid)
+            foreach (var sight in EnemySight)
             {
-                detectedThisFrame = true;
+                if (Vector3.Distance(Target.transform.position, sight.transform.position) < 1f * gapBetweenGrid)
+                {
+                    detectedThisFrame = true;
 
-                //I want the TargetPos to stay at last position where sight last detect player
-                TargetPos.transform.position = sight.transform.position;
-                break;
+                    //I want the TargetPos to stay at last position where sight last detect player
+                    TargetPos.transform.position = sight.transform.position;
+                    break;
+                }
             }
         }
 
-        if (detectedThisFrame && Target != null)
+        if (detectedThisFrame && Targets != null)
         {
             // If we detect player no matter the current state, snap to chase
             StopAllCoroutines();
