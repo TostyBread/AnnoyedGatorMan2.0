@@ -593,6 +593,9 @@ MonoBehaviour:
   twoHandedFirearmSprite: {fileID: 525477222578412770}
   throwSprite: {fileID: 8757873311281979710}
   playerPickupSystem: {fileID: 4069354687643541684}
+  p2PickSystem: {fileID: 0}
+  playerThrowManager: {fileID: 0}
+  P1FalseP2True: 0
 --- !u!1 &6756658700253055433
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,6 +718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e856cac154c9a84468350ea75b94b85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPunching: 0
+  isThrowing: 0
 --- !u!114 &3806834143163485174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,6 +1149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afdbad4f02fee04cab22f531648d320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  p2System: {fileID: 0}
   isFacingRight: 1
 --- !u!114 &6069821805936621821
 MonoBehaviour:
@@ -1196,7 +1202,10 @@ MonoBehaviour:
   spinSpeed: 900
   quarterDistanceFactor: 0.75
   throwSpriteDuration: 0.3
+  P1FalseP2True: 0
+  P2ThrowDirection: {fileID: 0}
   playerPickupSystem: {fileID: 4069354687643541684}
+  p2PickSystem: {fileID: 0}
   handSpriteManager: {fileID: 8242021500209219694}
 --- !u!114 &4034342515493834415
 MonoBehaviour:
@@ -1261,12 +1270,15 @@ MonoBehaviour:
   MaxHeat: 100
   currentHeat: 0
   BurnDur: 3
+  BurnAudioName: Burning
   MaxCold: 100
   currentCold: 0
   FreezeDur: 3
+  FreezeAudioName: 
   MaxStun: 100
   currentStun: 0
   StunDur: 3
+  StunAudioName: 
 --- !u!114 &7051173386322744479
 MonoBehaviour:
   m_ObjectHideFlags: 0
