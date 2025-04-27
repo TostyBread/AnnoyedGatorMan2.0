@@ -50,13 +50,13 @@ public class StateManager : MonoBehaviour
     {
         if (characterMovement == null) return;
 
-        if (Input.GetKeyDown(KeyCode.Space) && state == PlayerState.Idle)
-        {
-            int randomState = Random.Range(1, 4);
-            if (randomState == 1) StartCoroutine(Burn(BurnDur));
-            else if (randomState == 2) StartCoroutine(Freeze(FreezeDur));
-            else StartCoroutine(Stun(StunDur));
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && state == PlayerState.Idle)
+        //{
+        //    int randomState = Random.Range(1, 4);
+        //    if (randomState == 1) StartCoroutine(Burn(BurnDur));
+        //    else if (randomState == 2) StartCoroutine(Freeze(FreezeDur));
+        //    else StartCoroutine(Stun(StunDur));
+        //}
 
         if (currentHeat >= MaxHeat)
         {

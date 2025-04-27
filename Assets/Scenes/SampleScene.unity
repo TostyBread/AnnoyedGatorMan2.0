@@ -306,6 +306,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire
       objectReference: {fileID: 0}
+    - target: {fileID: 5238343182132767527, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
+      propertyPath: isColdSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238343182132767527, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
+      propertyPath: isFireSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238343182132767527, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
+      propertyPath: isStunSource
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1368,6 +1380,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6432eb9b67089904088e4c2049ad23d8, type: 3}
   - {fileID: 8300000, guid: f270f4d775a4fc14992181997cff0e00, type: 3}
   - {fileID: 8300000, guid: 89df4665869aff8478fdd091269e2702, type: 3}
+  - {fileID: 8300000, guid: 780821577b9c9024ca2f4bcd89391c33, type: 3}
+  - {fileID: 8300000, guid: 2db372ae8a8b7244a8b59ccea2c690bf, type: 3}
 --- !u!1 &650943901
 GameObject:
   m_ObjectHideFlags: 0

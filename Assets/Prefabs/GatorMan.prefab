@@ -1274,11 +1274,11 @@ MonoBehaviour:
   MaxCold: 100
   currentCold: 0
   FreezeDur: 3
-  FreezeAudioName: 
+  FreezeAudioName: Freezing
   MaxStun: 100
   currentStun: 0
-  StunDur: 3
-  StunAudioName: 
+  StunDur: 2
+  StunAudioName: Stunning
 --- !u!114 &7051173386322744479
 MonoBehaviour:
   m_ObjectHideFlags: 0
