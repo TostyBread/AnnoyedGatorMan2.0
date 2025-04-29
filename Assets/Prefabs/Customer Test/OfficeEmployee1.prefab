@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 4180316551167014751}
   - component: {fileID: 4874225279319358098}
   - component: {fileID: 3131916694288282251}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OfficeEmployee1
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -271,9 +271,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  forceEscapeThreshold: 5
+  forceEscapeThreshold: 7
   menuSpawnPoint: {fileID: 1132364132505828575}
   plateSpawnPoint: {fileID: 7711344081798851309}
+  plateReceiveAnchor: {fileID: 7262767610283653091}
 --- !u!50 &880509381728504748
 Rigidbody2D:
   serializedVersion: 4

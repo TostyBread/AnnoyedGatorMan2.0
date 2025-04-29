@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1274844278774008693}
+  m_Father: {fileID: 4994269351274691337}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2103757319356261227
 MonoBehaviour:
@@ -79,7 +79,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2576792758483389478}
   m_Father: {fileID: 1274844278774008693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2251514385020554746
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea7208b183b36c468d2a6cf492fbc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootPlateObject: {fileID: 1274844278774008693}
   plateRequirements:
   - itemID: 3
     cookingState: 1
@@ -195,7 +197,6 @@ Transform:
   m_Children:
   - {fileID: 8868651213545987020}
   - {fileID: 4994269351274691337}
-  - {fileID: 2576792758483389478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3769679834320652242
@@ -243,7 +244,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

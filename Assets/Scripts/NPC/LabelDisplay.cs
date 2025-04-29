@@ -34,6 +34,14 @@ public class LabelDisplay : MonoBehaviour
         SetLabel(id.ToString());
     }
 
+    public void DisableLabel()
+    {
+        if (label != null)
+        {
+            label.gameObject.SetActive(false);
+        }
+    }
+
     private void CreateLabel()
     {
         if (anchorPoint == null)

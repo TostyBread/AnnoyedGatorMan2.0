@@ -6,6 +6,7 @@ public class NPCBehavior : MonoBehaviour
     public float forceEscapeThreshold = 5f;
     public Transform menuSpawnPoint;
     public Transform plateSpawnPoint;
+    public Transform plateReceiveAnchor;
     public int customerId { get; private set; }
 
     private Vector3[] waypoints;
@@ -27,9 +28,7 @@ public class NPCBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (waypoints == null || waypoints.Length == 0) return;
-
-        if (!hasArrived)
+        if (!hasArrived && !isLeaving)
         {
             MoveAlongPath(waypoints);
         }
@@ -37,7 +36,7 @@ public class NPCBehavior : MonoBehaviour
         {
             MoveAlongPath(exitWaypoints);
         }
-        else if (hasArrived && Vector2.Distance(rb.position, waypoints[^1]) > 0.2f)
+        else if (hasArrived && Vector2.Distance(rb.position, waypoints[^1]) > 0.1f)
         {
             rb.MovePosition(Vector2.MoveTowards(rb.position, waypoints[^1], moveSpeed * Time.fixedDeltaTime));
         }
@@ -114,57 +113,88 @@ public class NPCBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"NPC collided with {collision.name}");
+        if (!hasArrived) return;
 
         PlateSystem plate = collision.GetComponentInChildren<PlateSystem>();
-        if (plate == null)
-        {
-            plate = collision.GetComponent<PlateSystem>();
-        }
-
         if (plate != null)
         {
-            Debug.Log("PlateSystem found on: " + plate.name);
             TryAcceptPlate(plate);
         }
-        else
-        {
-            Debug.LogWarning("PlateSystem NOT found in collision.");
-        }
-    }
 
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!hasArrived || isLeaving) return;
+        if (isLeaving) return;
 
         if (collision.relativeVelocity.magnitude > forceEscapeThreshold)
         {
-            isLeaving = true;
-            currentWaypointIndex = 0;
-
-            if (attachedMenu != null)
-            {
-                Destroy(attachedMenu);
-                attachedMenu = null;
-            }
+            ForceEscape();
         }
+    }
+
+    public void ForceEscape()
+    {
+        if (isLeaving) return;
+
+        isLeaving = true;
+        hasArrived = true;
+        currentWaypointIndex = 0;
+
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.MovePosition(transform.position); // cancel ongoing movement
+
+        if (attachedMenu != null)
+        {
+            Destroy(attachedMenu);
+            attachedMenu = null;
+        }
+
+        Debug.Log($"NPC {customerId} forced to escape!");
     }
 
     public bool TryAcceptPlate(PlateSystem plate)
     {
-        if (plate != null && plate.isReadyToServe)
+        if (plate == null)
         {
-            var label = plate.GetComponentInChildren<LabelDisplay>();
-            if (label != null && label.labelText == customerId.ToString())
-            {
-                plate.transform.SetParent(transform);
-                plate.transform.localPosition = plateSpawnPoint.localPosition;
-                isLeaving = true;
-                currentWaypointIndex = 0;
-                return true;
-            }
+            //Debug.LogWarning("Plate is null.");
+            return false;
         }
+
+        //Debug.Log("Plate found. Ready: " + plate.isReadyToServe);
+
+        if (!plate.isReadyToServe) return false;
+
+        var label = plate.GetComponentInChildren<LabelDisplay>();
+
+        if (label != null && label.labelText == customerId.ToString())
+        {
+            //Debug.Log("Plate accepted by NPC " + customerId);
+
+            Transform plateObj = plate.rootPlateObject != null ? plate.rootPlateObject : plate.transform;
+            plateObj.SetParent(plateReceiveAnchor ?? transform);
+            plateObj.localPosition = plateReceiveAnchor ? Vector3.zero : plateSpawnPoint.localPosition;
+
+            Rigidbody2D rb = plateObj.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+                rb.isKinematic = true;
+                rb.bodyType = RigidbodyType2D.Kinematic;
+                rb.simulated = false;
+            }
+            label.DisableLabel();
+            Destroy(attachedMenu);
+            attachedMenu = null;
+            isLeaving = true;
+            currentWaypointIndex = 0;
+            return true;
+        }
+
+        //Debug.Log("Label mismatch or missing.");
         return false;
     }
 }

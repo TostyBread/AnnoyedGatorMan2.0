@@ -15,6 +15,7 @@ public class PlateRequirement
 public class PlateSystem : MonoBehaviour
 {
     private Transform plateParent;
+    public Transform rootPlateObject;
     public List<PlateRequirement> plateRequirements;
     public bool isReadyToServe { get; private set; } = false;
     private Dictionary<PlateRequirement, GameObject> placedItems = new Dictionary<PlateRequirement, GameObject>();
