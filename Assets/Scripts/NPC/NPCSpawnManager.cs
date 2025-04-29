@@ -8,6 +8,7 @@ public class NPCSpawnManager : MonoBehaviour
     public int maxNPCs = 5;
 
     private float timer;
+    private int nextCustomerId = 1;
     private List<GameObject> activeNPCs = new List<GameObject>();
 
     void Update()
@@ -21,7 +22,15 @@ public class NPCSpawnManager : MonoBehaviour
             timer = 0f;
             GameObject newNPC = spawner.SpawnNPC();
             if (newNPC != null)
+            {
                 activeNPCs.Add(newNPC);
+
+                NPCBehavior npcBehavior = newNPC.GetComponent<NPCBehavior>();
+                if (npcBehavior != null)
+                {
+                    npcBehavior.SetCustomerId(nextCustomerId++);
+                }
+            }
         }
     }
 }

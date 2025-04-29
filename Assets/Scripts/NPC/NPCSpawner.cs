@@ -1,4 +1,3 @@
-// File: NPCSpawner.cs
 using UnityEngine;
 
 [System.Serializable]
@@ -19,14 +18,11 @@ public class NPCSpawner : MonoBehaviour
 {
     public GameObject[] npcPrefabs;
     public PlateMenuSet[] plateMenuSets;
-    public GameObject idLabelPrefab;
 
     [Header("Line Targets")]
     public LineWaypointSet[] lines;
     [Header("Exit Paths")]
     public LineWaypointSet[] exitPaths;
-
-    private int nextCustomerId = 1;
 
     public GameObject SpawnNPC()
     {
@@ -44,10 +40,7 @@ public class NPCSpawner : MonoBehaviour
 
         npcBehavior.SetWaypoints(path);
         npcBehavior.SetMenuAndPlatePrefabs(plateMenuSets[plateMenuIndex].menuPrefab, plateMenuSets[plateMenuIndex].platePrefab);
-        npcBehavior.SetCustomerId(nextCustomerId);
         npcBehavior.SetExitPath(exitPaths[lineIndex].waypoints);
-
-        nextCustomerId++;
 
         return npc;
     }

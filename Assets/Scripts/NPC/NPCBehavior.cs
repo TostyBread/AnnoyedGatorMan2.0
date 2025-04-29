@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 public class NPCBehavior : MonoBehaviour
 {
@@ -7,7 +6,7 @@ public class NPCBehavior : MonoBehaviour
     public float forceEscapeThreshold = 5f;
     public Transform menuSpawnPoint;
     public Transform plateSpawnPoint;
-    public Transform idLabelAnchor;
+    public int customerId { get; private set; }
 
     private Vector3[] waypoints;
     private Vector3[] exitWaypoints;
@@ -20,8 +19,6 @@ public class NPCBehavior : MonoBehaviour
     private GameObject attachedPlate;
     private GameObject attachedMenu;
     private Rigidbody2D rb;
-
-    private int customerId;
 
     void Awake()
     {
@@ -42,7 +39,6 @@ public class NPCBehavior : MonoBehaviour
         }
         else if (hasArrived && Vector2.Distance(rb.position, waypoints[^1]) > 0.2f)
         {
-            // reposition if bumped off the last point
             rb.MovePosition(Vector2.MoveTowards(rb.position, waypoints[^1], moveSpeed * Time.fixedDeltaTime));
         }
     }
@@ -67,25 +63,6 @@ public class NPCBehavior : MonoBehaviour
         platePrefab = plate;
     }
 
-    public void SetCustomerId(int id)
-    {
-        customerId = id;
-
-        if (idLabelAnchor != null)
-        {
-            TextMeshPro label = idLabelAnchor.gameObject.AddComponent<TextMeshPro>();
-            label.text = id.ToString();
-            label.fontSize = 8;
-            label.alignment = TextAlignmentOptions.Center;
-            label.color = Color.red;
-        }
-    }
-
-    public int GetCustomerId()
-    {
-        return customerId;
-    }
-
     private void MoveAlongPath(Vector3[] path)
     {
         if (currentWaypointIndex >= path.Length)
@@ -106,6 +83,17 @@ public class NPCBehavior : MonoBehaviour
         }
     }
 
+    public void SetCustomerId(int id)
+    {
+        customerId = id;
+
+        var label = GetComponentInChildren<LabelDisplay>();
+        if (label != null)
+        {
+            label.SetLabelFromId(customerId);
+        }
+    }
+
     public void SpawnMenuAndPlate()
     {
         if (menuPrefab && menuSpawnPoint)
@@ -116,24 +104,35 @@ public class NPCBehavior : MonoBehaviour
 
         if (attachedPlate != null)
         {
-            PlateSystem plateSys = attachedPlate.GetComponent<PlateSystem>();
-            if (plateSys != null)
+            var label = attachedPlate.GetComponentInChildren<LabelDisplay>();
+            if (label != null)
             {
-                plateSys.SetCustomerId(customerId);
-                plateSys.SpawnLabel(customerId);
+                label.SetLabelFromId(customerId);
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!hasArrived) return;
+        Debug.Log($"NPC collided with {collision.name}");
 
-        if (collision.TryGetComponent(out PlateSystem plate))
+        PlateSystem plate = collision.GetComponentInChildren<PlateSystem>();
+        if (plate == null)
         {
+            plate = collision.GetComponent<PlateSystem>();
+        }
+
+        if (plate != null)
+        {
+            Debug.Log("PlateSystem found on: " + plate.name);
             TryAcceptPlate(plate);
         }
+        else
+        {
+            Debug.LogWarning("PlateSystem NOT found in collision.");
+        }
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -143,12 +142,6 @@ public class NPCBehavior : MonoBehaviour
         {
             isLeaving = true;
             currentWaypointIndex = 0;
-
-            //if (attachedPlate != null)
-            //{
-            //    Destroy(attachedPlate);
-            //    attachedPlate = null;
-            //}
 
             if (attachedMenu != null)
             {
@@ -160,13 +153,17 @@ public class NPCBehavior : MonoBehaviour
 
     public bool TryAcceptPlate(PlateSystem plate)
     {
-        if (plate != null && plate.GetCustomerId() == customerId)
+        if (plate != null && plate.isReadyToServe)
         {
-            plate.transform.SetParent(transform);
-            plate.transform.localPosition = plateSpawnPoint.localPosition;
-            isLeaving = true;
-            currentWaypointIndex = 0;
-            return true;
+            var label = plate.GetComponentInChildren<LabelDisplay>();
+            if (label != null && label.labelText == customerId.ToString())
+            {
+                plate.transform.SetParent(transform);
+                plate.transform.localPosition = plateSpawnPoint.localPosition;
+                isLeaving = true;
+                currentWaypointIndex = 0;
+                return true;
+            }
         }
         return false;
     }

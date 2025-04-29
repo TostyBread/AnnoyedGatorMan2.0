@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 [System.Serializable]
 public class PlateRequirement
@@ -17,11 +16,8 @@ public class PlateSystem : MonoBehaviour
 {
     private Transform plateParent;
     public List<PlateRequirement> plateRequirements;
+    public bool isReadyToServe { get; private set; } = false;
     private Dictionary<PlateRequirement, GameObject> placedItems = new Dictionary<PlateRequirement, GameObject>();
-
-    private int customerId = -1;
-    public Transform idLabelAnchor;
-    public GameObject idLabelPrefab;
 
     private void Awake()
     {
@@ -30,32 +26,6 @@ public class PlateSystem : MonoBehaviour
         {
             Debug.LogError("PlateSystem: No parent object found! Assign a parent plate.");
         }
-    }
-
-    public void SetCustomerId(int id)
-    {
-        customerId = id;
-    }
-
-    public int GetCustomerId()
-    {
-        return customerId;
-    }
-
-    public void SpawnLabel(int id)
-    {
-        if (idLabelAnchor == null) return;
-
-        TextMeshPro label = idLabelAnchor.gameObject.GetComponent<TextMeshPro>();
-        if (label == null)
-        {
-            label = idLabelAnchor.gameObject.AddComponent<TextMeshPro>();
-        }
-
-        label.text = id.ToString();
-        label.fontSize = 8;
-        label.alignment = TextAlignmentOptions.Center;
-        label.color = Color.red;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -124,6 +94,8 @@ public class PlateSystem : MonoBehaviour
                 return;
             }
         }
+
         AudioManager.Instance.PlaySound("TaskComplete", 1.0f, transform.position);
+        isReadyToServe = true;
     }
 }

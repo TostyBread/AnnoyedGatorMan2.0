@@ -1919,7 +1919,6 @@ MonoBehaviour:
   plateMenuSets:
   - platePrefab: {fileID: 3088414860971530543, guid: 7fb13c8228e00b94e9535290df4678df, type: 3}
     menuPrefab: {fileID: 8885360682402634210, guid: 927c1a5a9d4e43b40908cef59613be78, type: 3}
-  idLabelPrefab: {fileID: 1694303189033732588, guid: 7e2de8b30cd8adb428219dcbcf786d7f, type: 3}
   lines:
   - name: Line1
     waypoints:

@@ -91,7 +91,7 @@ public class FirearmController : MonoBehaviour, IUsable
         // Enforce fire rate delay
         if (Time.time < nextFireTime)
         {
-            Debug.Log("Waiting for fire delay cooldown.");
+            //Debug.Log("Waiting for fire delay cooldown.");
             return;
         }
 
