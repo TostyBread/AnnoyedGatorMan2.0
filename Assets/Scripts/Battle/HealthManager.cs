@@ -21,6 +21,7 @@ public class HealthManager : MonoBehaviour
     private CharacterFlip characterFlip;
     private CharacterMovement characterMovement;
     private ItemSystem cookCharacterSystem;
+    private HandSpriteManager handSpriteManager;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class HealthManager : MonoBehaviour
         characterFlip = GetComponent<CharacterFlip>();
         characterMovement = GetComponent<CharacterMovement>();
         cookCharacterSystem = GetComponent<ItemSystem>();
+        handSpriteManager = hand.GetComponent<HandSpriteManager>();
 
         currentHealth = Health;
     }
@@ -49,7 +51,7 @@ public class HealthManager : MonoBehaviour
                 if (characterMovement != null) { characterMovement.SetMovement(Vector2.zero); }
                 if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = true; }
 
-                if (hand != null) { hand.SetActive(false); }
+                if (handSpriteManager != null) { handSpriteManager.UpdateHandSprite(); }
 
                 reviveTime += Time.deltaTime * reviveSpeed;
                 if (reviveTime >= Health)
