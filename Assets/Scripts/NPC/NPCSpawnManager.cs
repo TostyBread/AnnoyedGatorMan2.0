@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 public class NPCSpawnManager : MonoBehaviour
 {
+    [Header("Spawner Settings")]
     public NPCSpawner spawner;
     public float spawnInterval = 5f;
     public int maxNPCs = 5;
 
     private float timer;
     private int nextCustomerId = 1;
-    private List<GameObject> activeNPCs = new List<GameObject>();
+    private readonly List<GameObject> activeNPCs = new List<GameObject>();
 
     void Update()
     {
         timer += Time.deltaTime;
-
         activeNPCs.RemoveAll(npc => npc == null);
 
         if (timer >= spawnInterval && activeNPCs.Count < maxNPCs)
@@ -25,8 +25,7 @@ public class NPCSpawnManager : MonoBehaviour
             {
                 activeNPCs.Add(newNPC);
 
-                NPCBehavior npcBehavior = newNPC.GetComponent<NPCBehavior>();
-                if (npcBehavior != null)
+                if (newNPC.TryGetComponent(out NPCBehavior npcBehavior))
                 {
                     npcBehavior.SetCustomerId(nextCustomerId++);
                 }

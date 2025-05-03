@@ -2,24 +2,30 @@ using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
 {
+    public enum NPCState { Approaching, Arrived, Leaving, Escaping }
+
     public float moveSpeed = 2f;
     public float forceEscapeThreshold = 5f;
+    public float escapeSpeedMultiplier = 2f;
     public Transform menuSpawnPoint;
     public Transform plateSpawnPoint;
     public Transform plateReceiveAnchor;
-    public int customerId { get; private set; }
 
     private Vector3[] waypoints;
     private Vector3[] exitWaypoints;
     private int currentWaypointIndex = 0;
-    private bool hasArrived = false;
-    private bool isLeaving = false;
 
     private GameObject menuPrefab;
     private GameObject platePrefab;
     private GameObject attachedPlate;
     private GameObject attachedMenu;
     private Rigidbody2D rb;
+    private Vector3 arrivedPosition;
+    private bool returningToArrivedPoint = false;
+    private bool menuAlreadySpawned = false;
+
+    public int customerId { get; private set; }
+    private NPCState state = NPCState.Approaching;
 
     void Awake()
     {
@@ -28,17 +34,30 @@ public class NPCBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!hasArrived && !isLeaving)
+        if (rb == null) return;
+
+        if (returningToArrivedPoint)
         {
-            MoveAlongPath(waypoints);
+            float currentSpeed = moveSpeed;
+            Vector2 newPosition = Vector2.MoveTowards(rb.position, arrivedPosition, currentSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(newPosition);
+
+            if (Vector2.Distance(rb.position, arrivedPosition) < 0.05f)
+            {
+                returningToArrivedPoint = false;
+                rb.velocity = Vector2.zero;
+            }
+
+            return; // Skip other states while returning
         }
-        else if (isLeaving && exitWaypoints != null && exitWaypoints.Length > 0)
+
+        switch (state)
         {
-            MoveAlongPath(exitWaypoints);
-        }
-        else if (hasArrived && Vector2.Distance(rb.position, waypoints[^1]) > 0.1f)
-        {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, waypoints[^1], moveSpeed * Time.fixedDeltaTime));
+            case NPCState.Approaching:
+            case NPCState.Leaving:
+            case NPCState.Escaping:
+                MoveAlongPath(state == NPCState.Approaching ? waypoints : exitWaypoints);
+                break;
         }
     }
 
@@ -46,7 +65,7 @@ public class NPCBehavior : MonoBehaviour
     {
         waypoints = path;
         currentWaypointIndex = 0;
-        hasArrived = false;
+        state = NPCState.Approaching;
     }
 
     public void SetExitPath(Transform[] exitPath)
@@ -62,41 +81,20 @@ public class NPCBehavior : MonoBehaviour
         platePrefab = plate;
     }
 
-    private void MoveAlongPath(Vector3[] path)
-    {
-        if (currentWaypointIndex >= path.Length)
-        {
-            if (isLeaving) Destroy(gameObject);
-            return;
-        }
-
-        Vector3 targetPosition = path[currentWaypointIndex];
-        Vector2 newPosition = Vector2.MoveTowards(rb.position, targetPosition, moveSpeed * Time.fixedDeltaTime);
-        rb.MovePosition(newPosition);
-
-        if (Vector2.Distance(rb.position, targetPosition) < 0.1f)
-        {
-            currentWaypointIndex++;
-            if (!isLeaving && currentWaypointIndex >= path.Length)
-                hasArrived = true;
-        }
-    }
-
     public void SetCustomerId(int id)
     {
         customerId = id;
-
         var label = GetComponentInChildren<LabelDisplay>();
-        if (label != null)
-        {
-            label.SetLabelFromId(customerId);
-        }
+        if (label != null) label.SetLabelFromId(customerId);
     }
 
     public void SpawnMenuAndPlate()
     {
-        if (menuPrefab && menuSpawnPoint)
-            attachedMenu = Instantiate(menuPrefab, menuSpawnPoint.position, Quaternion.identity, transform);
+        if (!menuAlreadySpawned)
+        {
+            if (menuPrefab && menuSpawnPoint)
+                attachedMenu = Instantiate(menuPrefab, menuSpawnPoint.position, Quaternion.identity, transform); menuAlreadySpawned = true;
+        }
 
         if (platePrefab && plateSpawnPoint)
             attachedPlate = Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform);
@@ -104,97 +102,113 @@ public class NPCBehavior : MonoBehaviour
         if (attachedPlate != null)
         {
             var label = attachedPlate.GetComponentInChildren<LabelDisplay>();
-            if (label != null)
-            {
-                label.SetLabelFromId(customerId);
-            }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!hasArrived) return;
-
-        PlateSystem plate = collision.GetComponentInChildren<PlateSystem>();
-        if (plate != null)
-        {
-            TryAcceptPlate(plate);
-        }
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (isLeaving) return;
-
-        if (collision.relativeVelocity.magnitude > forceEscapeThreshold)
-        {
-            ForceEscape();
+            if (label != null) label.SetLabelFromId(customerId);
         }
     }
 
     public void ForceEscape()
     {
-        if (isLeaving) return;
+        if (state == NPCState.Escaping) return;
 
-        isLeaving = true;
-        hasArrived = true;
+        Debug.Log("ForceEscape called on NPC " + customerId);
+
+        if (waypoints != null && waypoints.Length > 0 && exitWaypoints != null && exitWaypoints.Length > 0)
+        {
+            Vector3 firstApproach = waypoints[0];
+            Vector3 lastExit = exitWaypoints[exitWaypoints.Length - 1];
+            exitWaypoints = new Vector3[] { firstApproach, lastExit };
+        }
+
+        state = NPCState.Escaping;
         currentWaypointIndex = 0;
 
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        rb.MovePosition(transform.position); // cancel ongoing movement
 
         if (attachedMenu != null)
         {
             Destroy(attachedMenu);
             attachedMenu = null;
         }
-
-        Debug.Log($"NPC {customerId} forced to escape!");
     }
 
     public bool TryAcceptPlate(PlateSystem plate)
     {
-        if (plate == null)
-        {
-            //Debug.LogWarning("Plate is null.");
-            return false;
-        }
-
-        //Debug.Log("Plate found. Ready: " + plate.isReadyToServe);
-
-        if (!plate.isReadyToServe) return false;
+        if (plate == null || !plate.isReadyToServe) return false;
 
         var label = plate.GetComponentInChildren<LabelDisplay>();
-
         if (label != null && label.labelText == customerId.ToString())
         {
-            //Debug.Log("Plate accepted by NPC " + customerId);
-
-            Transform plateObj = plate.rootPlateObject != null ? plate.rootPlateObject : plate.transform;
-            plateObj.SetParent(plateReceiveAnchor ?? transform);
-            plateObj.localPosition = plateReceiveAnchor ? Vector3.zero : plateSpawnPoint.localPosition;
-
-            Rigidbody2D rb = plateObj.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.velocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-                rb.isKinematic = true;
-                rb.bodyType = RigidbodyType2D.Kinematic;
-                rb.simulated = false;
-            }
             label.DisableLabel();
-            Destroy(attachedMenu);
-            attachedMenu = null;
-            isLeaving = true;
+
+            Transform plateRoot = plate.rootPlateObject != null ? plate.rootPlateObject : plate.transform;
+            plateRoot.SetParent(plateReceiveAnchor ?? transform);
+            plateRoot.localPosition = plateReceiveAnchor ? Vector3.zero : plateSpawnPoint.localPosition;
+
+            Rigidbody2D plateRb = plateRoot.GetComponent<Rigidbody2D>();
+            if (plateRb) plateRb.bodyType = RigidbodyType2D.Kinematic;
+            AudioManager.Instance.PlaySound("yes", 1f, transform.position);
+            state = NPCState.Leaving;
             currentWaypointIndex = 0;
+
             return true;
         }
-
-        //Debug.Log("Label mismatch or missing.");
         return false;
     }
+
+    private void MoveAlongPath(Vector3[] path)
+    {
+        if (path == null || path.Length == 0) return;
+
+        if (currentWaypointIndex >= path.Length)
+        {
+            if (state == NPCState.Leaving || state == NPCState.Escaping)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                state = NPCState.Arrived;
+                arrivedPosition = rb.position; // store this position for collision recovery
+            }
+            return;
+        }
+
+        // Move toward current waypoint
+        float currentSpeed = state == NPCState.Escaping ? moveSpeed * escapeSpeedMultiplier : moveSpeed;
+        Vector2 targetPosition = path[currentWaypointIndex];
+        Vector2 newPosition = Vector2.MoveTowards(rb.position, targetPosition, currentSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(newPosition);
+
+        // Check if reached current waypoint
+        if (Vector2.Distance(rb.position, targetPosition) < 0.05f)
+        {
+            currentWaypointIndex++;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (state != NPCState.Arrived) return;
+
+        PlateSystem plate = collision.GetComponentInChildren<PlateSystem>();
+        if (plate != null)
+            TryAcceptPlate(plate);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.relativeVelocity.magnitude > forceEscapeThreshold)
+        {
+            ForceEscape();
+            AudioManager.Instance.PlaySound("scream", 1f, transform.position);
+        }
+
+        if (state == NPCState.Arrived)
+        {
+            returningToArrivedPoint = true;
+            return;
+        }
+    }
+
 }

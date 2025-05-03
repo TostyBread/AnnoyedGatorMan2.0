@@ -2631,6 +2631,36 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 16d7ff3af73b8be4dadcdfcbda1b7b2e, type: 3}
   - {fileID: 8300000, guid: 3b10b467dc52a644aa54f88c30560678, type: 3}
   - {fileID: 8300000, guid: 6432eb9b67089904088e4c2049ad23d8, type: 3}
+  - {fileID: 8300000, guid: f0f72d3e932d53c4294d76a92c7cf851, type: 3}
+  - {fileID: 8300000, guid: 9549bc3fef82dc14f848d1008dc36069, type: 3}
+  - {fileID: 8300000, guid: 60a6609a9ad1ccb4c90dc2ecd4f7716c, type: 3}
+  - {fileID: 8300000, guid: d5d67a22453db1d438a55f2363c770ed, type: 3}
+  - {fileID: 8300000, guid: 730043d0d1176cf408a112cedfdede86, type: 3}
+  - {fileID: 8300000, guid: 7c0806d336c371f43ba72a20cc54027c, type: 3}
+  - {fileID: 8300000, guid: 121e83fe30aaffc4a809bd3d79c511ab, type: 3}
+  - {fileID: 8300000, guid: 121e83fe30aaffc4a809bd3d79c511ab, type: 3}
+  - {fileID: 8300000, guid: 2a2763377b580704db3ca1672736bdc9, type: 3}
+  - {fileID: 8300000, guid: d489d0d8d62e0c342a45ccecfc94ba9a, type: 3}
+  - {fileID: 8300000, guid: 09cab6105b8bf5b4ab1776489c469194, type: 3}
+  - {fileID: 8300000, guid: 333b868e5cd7fcf4d8591403f539bf3f, type: 3}
+  - {fileID: 8300000, guid: 7ad03e71d0f0a8c4b93275f091c06441, type: 3}
+  - {fileID: 8300000, guid: f343f8138d41e804a8567f38308ef819, type: 3}
+  - {fileID: 8300000, guid: d5dae4b62b8f19f4292ce17d3ca34ae8, type: 3}
+  - {fileID: 8300000, guid: 44e18cac9e5889e4399c8efbe2739125, type: 3}
+  - {fileID: 8300000, guid: 9d539e1779eb3374f9d610425ffb182a, type: 3}
+  - {fileID: 8300000, guid: 6ea908bbba0aac64ebb303fbb60de856, type: 3}
+  - {fileID: 8300000, guid: 8da0f86e79e2ef741a0a1482826de40a, type: 3}
+  - {fileID: 8300000, guid: efae59bbc4354814ea9be729cff2e2d1, type: 3}
+  - {fileID: 8300000, guid: 27e4f678cf309c64b83bb015b83d5b24, type: 3}
+  - {fileID: 8300000, guid: 2cfe0cb4b60b7d7478d5c695e1bdd645, type: 3}
+  - {fileID: 8300000, guid: 5ffa60dd320451e48b692729c1c1f595, type: 3}
+  - {fileID: 8300000, guid: b2d3cf551fd3b9744ae3a2e71334d018, type: 3}
+  - {fileID: 8300000, guid: 45f13bf04d4792e4f9f738040091fb5e, type: 3}
+  - {fileID: 8300000, guid: 0c2bf2c392435524e8b761265678a909, type: 3}
+  - {fileID: 8300000, guid: 7c54f03612e42294e999fe56f0c7ed18, type: 3}
+  - {fileID: 8300000, guid: 73bcb74b20ff26a428306565ee20f6c6, type: 3}
+  - {fileID: 8300000, guid: fb02be4aab8923244ad28a35f28b5707, type: 3}
+  - {fileID: 8300000, guid: d4e669242771f124abd9480ef3b87c11, type: 3}
 --- !u!1 &607543715
 GameObject:
   m_ObjectHideFlags: 0
@@ -5063,7 +5093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSourcePrefab: {fileID: 4742835750530601534, guid: 8868380bdea7e6c4b8099a2b85c55548, type: 3}
-  poolSize: 10
+  poolSize: 15
 --- !u!4 &700822914
 Transform:
   m_ObjectHideFlags: 0

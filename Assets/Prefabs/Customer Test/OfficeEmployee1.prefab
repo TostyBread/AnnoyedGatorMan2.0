@@ -272,9 +272,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   forceEscapeThreshold: 7
+  escapeSpeedMultiplier: 2
   menuSpawnPoint: {fileID: 1132364132505828575}
   plateSpawnPoint: {fileID: 7711344081798851309}
   plateReceiveAnchor: {fileID: 7262767610283653091}
+  npcDetectionDistance: 2
+  npcLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!50 &880509381728504748
 Rigidbody2D:
   serializedVersion: 4
