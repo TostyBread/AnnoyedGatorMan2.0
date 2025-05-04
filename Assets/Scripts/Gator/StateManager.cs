@@ -62,20 +62,29 @@ public class StateManager : MonoBehaviour
         {
             StartCoroutine(Burn(BurnDur));
             AudioManager.Instance.PlaySound(BurnAudioName, 1.0f, transform.position);
+
             currentHeat = 0;
+            currentCold = 0;
+            currentStun = 0;
         }
 
         if (currentCold >= MaxCold)
         {
             StartCoroutine(Freeze(FreezeDur));
             AudioManager.Instance.PlaySound(FreezeAudioName, 1.0f, transform.position);
+
+            currentHeat = 0;
             currentCold = 0;
+            currentStun = 0;
         }
 
         if (currentStun >= MaxStun)
         {
             StartCoroutine(Stun(StunDur));
             AudioManager.Instance.PlaySound(StunAudioName, 1.0f, transform.position);
+
+            currentHeat = 0;
+            currentCold = 0;
             currentStun = 0;
         }
     }

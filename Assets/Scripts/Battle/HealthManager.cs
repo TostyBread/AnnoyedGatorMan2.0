@@ -52,6 +52,7 @@ public class HealthManager : MonoBehaviour
                 if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = true; }
 
                 if (handSpriteManager != null) { handSpriteManager.UpdateHandSprite(); }
+                if (hand != null) { hand.SetActive(false); }
 
                 reviveTime += Time.deltaTime * reviveSpeed;
                 if (reviveTime >= Health)
@@ -81,7 +82,7 @@ public class HealthManager : MonoBehaviour
                 if (characterFlip != null) { characterFlip.enabled = true; }
                 if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = false; }
 
-                if (hand != null) { hand.SetActive(true); }
+                //if (hand != null) { hand.SetActive(true); }
             }
         }
     }

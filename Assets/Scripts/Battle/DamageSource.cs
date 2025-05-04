@@ -44,11 +44,11 @@ public class DamageSource : MonoBehaviour
             DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, "SparkSpurt");
         }
 
-        if (collision.collider.TryGetComponent(out HealthManager health))
+        if (collision.gameObject.TryGetComponent(out HealthManager health))
         {
             health.TryDamage(damageAmount);
 
-            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
+            if (collision.gameObject.CompareTag("Player"))
             {
                 sanity.decreaseSanity(damageAmount);             
             }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public class PlayerPickupSystem : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
     public HandSpriteManager handSpriteManager;
     public CharacterFlip characterFlip;
+    private StateManager stateManager;
 
     private IUsable usableItemController;
 
@@ -25,6 +27,10 @@ public class PlayerPickupSystem : MonoBehaviour
     public string HeldItemTag => heldItem != null ? heldItem.tag : null;
     public bool HasUsableFunction => usableItemController != null;
 
+    private void Start()
+    {
+        stateManager = GetComponent<StateManager>();
+    }
 
     void Update()
     {
@@ -73,6 +79,12 @@ public class PlayerPickupSystem : MonoBehaviour
         {
             stove.ToggleStove();
         }
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out LightSwitch lightSwitch))
+        {
+            lightSwitch.ToggleLight(stateManager);
+        }
+
         if (targetInteractable != null && targetInteractable.TryGetComponent(out ItemPackage package))
         {
             package.TakingOutItem();

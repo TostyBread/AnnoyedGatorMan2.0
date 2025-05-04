@@ -24,9 +24,14 @@ public class Sanity : MonoBehaviour
     {
         FindFoodObjects();
 
-        if (SanityBar != null) 
+        if (SanityBar != null)
         {
             SanityBar.fillAmount = RemainSanity / MaxSanity;
+        }
+
+        if (RemainSanity <= 0)
+        {
+            RemainSanity = float.MinValue;
         }
     }
 
