@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
@@ -10,6 +11,10 @@ public class NPCBehavior : MonoBehaviour
     public Transform menuSpawnPoint;
     public Transform plateSpawnPoint;
     public Transform plateReceiveAnchor;
+
+    [Header("NPC Detection")]
+    public float detectionRange = 1.0f;
+    public LayerMask npcLayer;
 
     private Vector3[] waypoints;
     private Vector3[] exitWaypoints;
@@ -114,9 +119,8 @@ public class NPCBehavior : MonoBehaviour
 
         if (waypoints != null && waypoints.Length > 0 && exitWaypoints != null && exitWaypoints.Length > 0)
         {
-            Vector3 firstApproach = waypoints[0];
             Vector3 lastExit = exitWaypoints[exitWaypoints.Length - 1];
-            exitWaypoints = new Vector3[] { firstApproach, lastExit };
+            exitWaypoints = new Vector3[] { lastExit };
         }
 
         state = NPCState.Escaping;
@@ -151,6 +155,12 @@ public class NPCBehavior : MonoBehaviour
             state = NPCState.Leaving;
             currentWaypointIndex = 0;
 
+            if (attachedMenu != null)
+            {
+                Destroy(attachedMenu);
+                attachedMenu = null;
+            }
+
             return true;
         }
         return false;
@@ -169,18 +179,32 @@ public class NPCBehavior : MonoBehaviour
             else
             {
                 state = NPCState.Arrived;
-                arrivedPosition = rb.position; // store this position for collision recovery
+                arrivedPosition = waypoints[waypoints.Length - 1];
             }
             return;
         }
 
-        // Move toward current waypoint
-        float currentSpeed = state == NPCState.Escaping ? moveSpeed * escapeSpeedMultiplier : moveSpeed;
         Vector2 targetPosition = path[currentWaypointIndex];
+        Vector2 direction = (targetPosition - rb.position).normalized;
+
+        if (state == NPCState.Approaching)
+        {
+            RaycastHit2D[] hits = Physics2D.RaycastAll(rb.position, direction, detectionRange, npcLayer);
+            foreach (var hit in hits)
+            {
+                if (hit.collider != null && hit.collider.gameObject != gameObject)
+                {
+                    rb.velocity = Vector2.zero;
+                    return;
+                }
+            }
+            Debug.DrawRay(rb.position, direction * detectionRange, Color.red);
+        }
+
+        float currentSpeed = state == NPCState.Escaping ? moveSpeed * escapeSpeedMultiplier : moveSpeed;
         Vector2 newPosition = Vector2.MoveTowards(rb.position, targetPosition, currentSpeed * Time.fixedDeltaTime);
         rb.MovePosition(newPosition);
 
-        // Check if reached current waypoint
         if (Vector2.Distance(rb.position, targetPosition) < 0.05f)
         {
             currentWaypointIndex++;
@@ -200,6 +224,11 @@ public class NPCBehavior : MonoBehaviour
     {
         if (collision.relativeVelocity.magnitude > forceEscapeThreshold)
         {
+            if (attachedMenu != null)
+            {
+                Destroy(attachedMenu);
+                attachedMenu = null;
+            }
             ForceEscape();
             AudioManager.Instance.PlaySound("scream", 1f, transform.position);
         }
@@ -210,5 +239,4 @@ public class NPCBehavior : MonoBehaviour
             return;
         }
     }
-
 }

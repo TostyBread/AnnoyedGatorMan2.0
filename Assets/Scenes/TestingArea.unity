@@ -1976,8 +1976,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 330665778}
-  spawnInterval: 5
-  maxNPCs: 1
+  baseInterval: 3
+  maxInterval: 5
+  maxNPCs: 8
+  slowDownThreshold: 2
+  intervalGrowthPerNPC: 0.5
 --- !u!1 &334346809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,6 +2664,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 73bcb74b20ff26a428306565ee20f6c6, type: 3}
   - {fileID: 8300000, guid: fb02be4aab8923244ad28a35f28b5707, type: 3}
   - {fileID: 8300000, guid: d4e669242771f124abd9480ef3b87c11, type: 3}
+  - {fileID: 8300000, guid: 7896fdeac4643d04e8cc6ea5aee7fc56, type: 3}
+  - {fileID: 8300000, guid: bafdfcc7ff01fba41842250fda4479df, type: 3}
+  - {fileID: 8300000, guid: bbcabd9fe2f78be49b3a827f80c13fcc, type: 3}
+  - {fileID: 8300000, guid: a899890729b0ad44a878af26fb1d3786, type: 3}
+  - {fileID: 8300000, guid: 5a8ae54a4d389ca4cbd26811d40a3fde, type: 3}
 --- !u!1 &607543715
 GameObject:
   m_ObjectHideFlags: 0

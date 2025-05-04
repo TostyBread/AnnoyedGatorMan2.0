@@ -21,12 +21,25 @@ public class NPCSpawner : MonoBehaviour
 
     [Header("Line Targets")]
     public LineWaypointSet[] lines;
+    private bool[] lineOccupied;
     [Header("Exit Paths")]
     public LineWaypointSet[] exitPaths;
 
-    public GameObject SpawnNPC()
+    void Awake()
     {
-        int lineIndex = Random.Range(0, lines.Length);
+        lineOccupied = new bool[lines.Length];
+    }
+
+    public void NotifyLineFreed(int lineIndex)
+    {
+        if (lineIndex >= 0 && lineIndex < lineOccupied.Length)
+        {
+            lineOccupied[lineIndex] = false;
+        }
+    }
+
+    public GameObject SpawnNPCOnLine(int lineIndex)
+    {
         int npcIndex = Random.Range(0, npcPrefabs.Length);
         int plateMenuIndex = Random.Range(0, plateMenuSets.Length);
 

@@ -111,7 +111,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private IEnumerator PickupItemCoroutine()
     {
-        float holdTime = 0.3f;
+        float holdTime = 0.2f;
         float elapsedTime = 0f;
 
         while (elapsedTime < holdTime)
