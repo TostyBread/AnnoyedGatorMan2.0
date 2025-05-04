@@ -82,7 +82,7 @@ public class HealthManager : MonoBehaviour
                 if (characterFlip != null) { characterFlip.enabled = true; }
                 if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = false; }
 
-                //if (hand != null) { hand.SetActive(true); }
+                if (hand != null) { hand.SetActive(true); }
             }
         }
     }
