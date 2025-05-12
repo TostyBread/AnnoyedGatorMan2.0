@@ -34,9 +34,6 @@ TagManager:
   - Ignore Me
   - Mob
   - Pest
-
-  - 
-  - 
   - 
   - 
   - 
@@ -58,7 +55,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: CameraSortingLayer
-    uniqueID: 2568613155
     locked: 0

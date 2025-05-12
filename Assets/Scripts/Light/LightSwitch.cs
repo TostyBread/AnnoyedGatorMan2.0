@@ -30,15 +30,14 @@ public class LightSwitch : MonoBehaviour
 
     public void ToggleLight(StateManager stateManager)
     {
-        this.stateManager = stateManager;
-        if (this.stateManager && this.stateManager.state == StateManager.PlayerState.Stun ) { return; }
+        if (stateManager != null && stateManager.state == StateManager.PlayerState.Stun) return;
 
         isOn = !isOn;
 
         AudioManager.Instance.PlaySound(AudioName, 1.0f, transform.position);
         darkZone.SetActive(!isOn);
 
-        if (Random.value <= stunChance && stateManager && stateManager.state == StateManager.PlayerState.Idle)
+        if (Random.value <= stunChance && stateManager != null && stateManager.state == StateManager.PlayerState.Idle)
         {
             stateManager.currentStun = 100;
         }
@@ -47,7 +46,7 @@ public class LightSwitch : MonoBehaviour
 
         if (Random.value <= sanityRecoverChance && sanity && sanity.RemainSanity > 0)
         {
-            sanity.RemainSanity += sanityRecover;           
+            sanity.RemainSanity += sanityRecover;
         }
     }
 

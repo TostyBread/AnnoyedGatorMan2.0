@@ -82,7 +82,8 @@ public class PlayerPickupSystem : MonoBehaviour
 
         if (targetInteractable != null && targetInteractable.TryGetComponent(out LightSwitch lightSwitch))
         {
-            lightSwitch.ToggleLight(stateManager);
+            bool inInteractRange = Physics2D.OverlapCircle(transform.position, pickupRadius);
+            lightSwitch.ToggleLight(inInteractRange ? stateManager : null);
         }
 
         if (targetInteractable != null && targetInteractable.TryGetComponent(out ItemPackage package))
