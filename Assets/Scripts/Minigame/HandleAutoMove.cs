@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuackMiniGame : MonoBehaviour
+public class HandleAutoMove : MonoBehaviour
 {
     public float sliderSpeed = 1;
 
