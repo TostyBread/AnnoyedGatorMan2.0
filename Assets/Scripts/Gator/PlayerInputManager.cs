@@ -39,7 +39,31 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            fist?.TriggerPunch();
+            if (playerPickupSystem != null && playerPickupSystem.HasItemHeld)
+            {
+                // Traverse hierarchy from heldItem = up to find hand with FistSwing
+                Transform current = playerPickupSystem.GetHeldItem()?.transform;
+                MeleeSwing swing = null;
+
+                while (current != null && swing == null)
+                {
+                    swing = current.GetComponent<MeleeSwing>();
+                    current = current.parent;
+                }
+
+                if (swing != null)
+                {
+                    swing.Use();
+                    return;
+                }
+
+                Debug.LogWarning("No FistSwing found in held item's parent hierarchy.");
+            }
+            else
+            {
+                // Use unarmed fist
+                fist?.TriggerPunch();
+            }
         }
     }
 
@@ -74,9 +98,14 @@ public class PlayerInputManager : MonoBehaviour
             Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
             usableFunction.EnableUsableFunction();
 
-            if (usableFunction is KnifeController knifeController)
+            switch (usableFunction)
             {
-                knifeController.ToggleUsableMode(usableItemModeEnabled);
+                case KnifeController knife:
+                    knife.ToggleUsableMode(usableItemModeEnabled);
+                    break;
+                case FirearmController firearm:
+                    firearm.ToggleUsableMode(usableItemModeEnabled);
+                    break;
             }
         }
 

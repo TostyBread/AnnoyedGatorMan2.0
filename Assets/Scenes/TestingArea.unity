@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 36479097}
   - component: {fileID: 36479098}
   - component: {fileID: 36479099}
+  - component: {fileID: 36479100}
   m_Layer: 0
   m_Name: HandControls
   m_TagString: Untagged
@@ -306,6 +307,26 @@ MonoBehaviour:
   twoHandedFirearmSprite: {fileID: 1210972037}
   throwSprite: {fileID: 95443775}
   playerPickupSystem: {fileID: 284036865}
+--- !u!114 &36479100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36479096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a7b2fb303703247af0149890190f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swingAngle: 90
+  swingDuration: 0.2
+  swingCooldown: 0.3
+  handTransform: {fileID: 36479097}
+  pivotPoint: {fileID: 36479097}
+  pickupSystem: {fileID: 284036865}
+  handController: {fileID: 36479098}
+  characterFlip: {fileID: 284036863}
 --- !u!1 &39174583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1375,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284036857}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

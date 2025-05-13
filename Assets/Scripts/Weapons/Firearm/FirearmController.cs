@@ -134,6 +134,12 @@ public class FirearmController : MonoBehaviour, IUsable
         Debug.Log("Firearm usable function disabled.");
     }
 
+    public void ToggleUsableMode(bool enabled)
+    {
+        isUsable = enabled;
+        Debug.Log($"Firearm usable state set to: {isUsable}");
+    }
+    public bool IsInUsableMode() => isUsable;
     private void SpawnProjectile()
     {
         if (projectilePrefab == null || muzzlePoint == null) return;
