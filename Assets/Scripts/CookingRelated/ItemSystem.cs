@@ -13,7 +13,7 @@ public class ItemSystem : MonoBehaviour
 
     public GameObject uncookedState;
     public GameObject cookedState;
-    public GameObject burnedState;
+
     public List<GameObject> brokenPartsUncookedBash;
     public List<GameObject> brokenPartsCookedBash;
     public List<GameObject> brokenPartsUncookedCut;
@@ -25,12 +25,37 @@ public class ItemSystem : MonoBehaviour
     public bool isCooked = false;
     public bool isBurned = false;
     private float lastDamageTime = -1f;
+    private SpriteRenderer cookedSpriteRenderer;
+    private Color originalCookedColor;
 
     public enum DamageType { Bash, Cut, Shot }
 
     void Start()
     {
         currentDurability = durabilityUncooked;
+        if (cookedState != null)
+        {
+            cookedSpriteRenderer = cookedState.GetComponent<SpriteRenderer>();
+            if (cookedSpriteRenderer != null)
+            {
+                originalCookedColor = cookedSpriteRenderer.color;
+            }
+        }
+    }
+
+    void Update()
+    {
+        if (canBeCooked && isCooked && !isBurned && cookedSpriteRenderer != null)
+        {
+            float range = Mathf.Max(0.01f, burnThreshold - cookThreshold);
+            float t = Mathf.Clamp01((currentCookPoints - cookThreshold) / range);
+
+            float r = Mathf.Lerp(originalCookedColor.r, 0f, t);
+            float g = Mathf.Lerp(originalCookedColor.g, 0f, t);
+            float b = Mathf.Lerp(originalCookedColor.b, 0f, t);
+
+            cookedSpriteRenderer.color = new Color(r, g, b, originalCookedColor.a);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -63,7 +88,7 @@ public class ItemSystem : MonoBehaviour
 
     private void BreakItem(DamageType damageType)
     {
-        if (isBurned) return; // Prevent breaking if overcooked
+        if (isBurned) return;
 
         List<GameObject> breakParts = isCooked
             ? (damageType == DamageType.Bash ? brokenPartsCookedBash : brokenPartsCookedCut)
@@ -93,8 +118,7 @@ public class ItemSystem : MonoBehaviour
     public void BurnItem()
     {
         isBurned = true;
-        cookedState.SetActive(false);
-        burnedState.SetActive(true);
+        cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
         AudioManager.Instance.PlaySound("DryFart", 1.0f, transform.position);
     }
 }

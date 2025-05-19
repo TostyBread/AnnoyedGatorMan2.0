@@ -1,5 +1,3 @@
-// File: MeleeSwing.cs
-
 using UnityEngine;
 using System.Collections;
 
@@ -58,12 +56,11 @@ public class MeleeSwing : MonoBehaviour
         Vector3 mousePos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
         Vector3 direction = (mousePos - pivotPoint.position).normalized;
 
-        bool isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
         float startAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        bool isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
         if (!isFacingRight)
         {
-            direction.x = -direction.x;
-            startAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            startAngle = 180f + Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         }
 
         float halfSwing = swingAngle / 2f;

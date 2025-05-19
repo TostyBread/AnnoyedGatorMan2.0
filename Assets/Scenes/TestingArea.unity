@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a7b2fb303703247af0149890190f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingAngle: 90
+  swingAngle: 120
   swingDuration: 0.2
   swingCooldown: 0.3
   handTransform: {fileID: 36479097}
@@ -1997,11 +1997,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 330665778}
-  baseInterval: 3
-  maxInterval: 5
-  maxNPCs: 8
+  baseInterval: 4
+  maxInterval: 7
+  maxNPCs: 4
   slowDownThreshold: 2
-  intervalGrowthPerNPC: 0.5
+  intervalGrowthPerNPC: 3
 --- !u!1 &334346809
 GameObject:
   m_ObjectHideFlags: 0
