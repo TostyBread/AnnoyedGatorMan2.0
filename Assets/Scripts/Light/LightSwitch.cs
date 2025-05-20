@@ -10,6 +10,7 @@ public class LightSwitch : MonoBehaviour
     public float requiredImpactForce = 5f;
 
     public Light2D light2D;
+    private float lightIntensity;
     public string AudioName;
 
     [Header("Sanity setting")]
@@ -26,7 +27,7 @@ public class LightSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        light2D.intensity = 1;
+        lightIntensity = light2D.intensity;
     }
 
     public void ToggleLight(StateManager stateManager)
@@ -36,7 +37,7 @@ public class LightSwitch : MonoBehaviour
         isOn = !isOn;
 
         AudioManager.Instance.PlaySound(AudioName, 1.0f, transform.position);
-        light2D.intensity = isOn? 1 : 0.02f;
+        light2D.intensity = isOn? lightIntensity : 0.02f;
 
         if (Random.value <= stunChance && stateManager != null && stateManager.state == StateManager.PlayerState.Idle)
         {

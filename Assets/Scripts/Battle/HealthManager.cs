@@ -69,6 +69,10 @@ public class HealthManager : MonoBehaviour
 
                 if (HealthBar != null) HealthBar.fillAmount = reviveTime / Health;
             }
+            else
+            {
+                Destroy(this.gameObject);
+            }           
         }
 
         if (currentHealth > 0)
