@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class LightSwitch : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class LightSwitch : MonoBehaviour
     public bool isOn = true;
     public float requiredImpactForce = 5f;
 
-    public GameObject darkZone;
+    public Light2D light2D;
     public string AudioName;
 
     [Header("Sanity setting")]
@@ -25,7 +26,7 @@ public class LightSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        darkZone.SetActive(false);
+        light2D.intensity = 1;
     }
 
     public void ToggleLight(StateManager stateManager)
@@ -35,7 +36,7 @@ public class LightSwitch : MonoBehaviour
         isOn = !isOn;
 
         AudioManager.Instance.PlaySound(AudioName, 1.0f, transform.position);
-        darkZone.SetActive(!isOn);
+        light2D.intensity = isOn? 1 : 0.02f;
 
         if (Random.value <= stunChance && stateManager != null && stateManager.state == StateManager.PlayerState.Idle)
         {

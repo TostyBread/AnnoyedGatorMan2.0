@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +31,7 @@ public class HealthManager : MonoBehaviour
         characterFlip = GetComponent<CharacterFlip>();
         characterMovement = GetComponent<CharacterMovement>();
         cookCharacterSystem = GetComponent<ItemSystem>();
-        handSpriteManager = hand.GetComponent<HandSpriteManager>();
+        if (hand != null) handSpriteManager = hand.GetComponent<HandSpriteManager>();
 
         currentHealth = Health;
     }
@@ -66,11 +67,7 @@ public class HealthManager : MonoBehaviour
                     reviveTime += reviveSpeed / 2;
                 }
 
-                HealthBar.fillAmount = reviveTime / Health;
-            }
-            else
-            {
-                Destroy(gameObject);                
+                if (HealthBar != null) HealthBar.fillAmount = reviveTime / Health;
             }
         }
 
