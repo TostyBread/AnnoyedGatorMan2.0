@@ -582,6 +582,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire
       objectReference: {fileID: 0}
+    - target: {fileID: 4425991877964845449, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
+      propertyPath: m_ShadowIntensityEnabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1456,6 +1460,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 780821577b9c9024ca2f4bcd89391c33, type: 3}
   - {fileID: 8300000, guid: 2db372ae8a8b7244a8b59ccea2c690bf, type: 3}
   - {fileID: 8300000, guid: 0240198c4fe630c49938ca1d8b4b9004, type: 3}
+  - {fileID: 8300000, guid: f8af833da789f09418f638eb2916cd6c, type: 3}
 --- !u!1 &650943901
 GameObject:
   m_ObjectHideFlags: 0
@@ -3980,7 +3985,6 @@ GameObject:
   - component: {fileID: 767295646}
   - component: {fileID: 767295645}
   - component: {fileID: 767295648}
-  - component: {fileID: 767295647}
   m_Layer: 0
   m_Name: SunRay
   m_TagString: Untagged
@@ -4105,26 +4109,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &767295647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767295643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc6995464398c3488c1a67683949ac9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageType: 0
-  damageAmount: 0
-  heatAmount: 5
-  heatCooldown: 1
-  isFireSource: 1
-  isColdSource: 0
-  isStunSource: 0
-  minVelocityToDamage: 0
 --- !u!60 &767295648
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5483,7 +5467,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 289d9a900f1a3044ab09f348559fff8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weather: 0
+  weather: 3
+  MinBlackOutInterval: 3
+  MaxBlackOutInterval: 5
+  light2D: {fileID: 1275599369}
+  ThunderAudioName: Thunder
+  heatMultiplier: 2
+  SunRay: {fileID: 767295643}
+  coldMultiplier: 0.5
+  FreezeArea: {fileID: 792328756}
 --- !u!1 &1235447051
 GameObject:
   m_ObjectHideFlags: 0

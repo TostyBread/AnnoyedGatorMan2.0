@@ -43,7 +43,6 @@ public class SpinningKnifeSpawner : MonoBehaviour
 
         if (sanity.RemainSanity <= 0 && !hasSpawned && wasBeingHold && !isBeingHold)
         {
-
             if (Random.value <= spawnChance)
             {
                 Instantiate(SpinningKnife, transform.position, transform.rotation);
