@@ -39,9 +39,12 @@ public class LightSwitch : MonoBehaviour
         AudioManager.Instance.PlaySound(AudioName, 1.0f, transform.position);
         light2D.intensity = isOn? lightIntensity : 0.02f;
 
-        if (Random.value <= stunChance && stateManager != null && stateManager.state == StateManager.PlayerState.Idle)
+        if (sanity.RemainSanity <= 0)
         {
-            stateManager.currentStun = 100;
+            if (Random.value <= stunChance && stateManager != null && stateManager.state == StateManager.PlayerState.Idle)
+            {
+                stateManager.currentStun = 100;
+            }
         }
 
         Debug.Log("Light " + (isOn ? "Turning On..." : "Turning Off"));
