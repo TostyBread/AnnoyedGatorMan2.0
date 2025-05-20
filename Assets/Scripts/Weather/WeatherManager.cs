@@ -17,17 +17,21 @@ public class WeatherManager : MonoBehaviour
     public float MaxBlackOutInterval;
     public Light2D light2D;
     public string ThunderAudioName;
+    public AudioClip RainingClip;
     private float currentBlackOutInterval;
 
     [Header("Hot setting")]
     public float heatMultiplier = 2;
     public GameObject SunRay;
+    public AudioClip SunnyClip;
 
     [Header("Cold setting")]
     public float coldMultiplier = 0.5f;
     public GameObject FreezeArea;
+    public AudioClip WinterClip;
 
     [Header("References")]
+    private AudioSource audioSource;
     private DamageSource[] damageSources;
     private bool[] heatMultiplied;
 
@@ -35,14 +39,26 @@ public class WeatherManager : MonoBehaviour
     void Start()
     {
         currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (weather == Weather.Normal)
+        {
+            audioSource.clip = null;
+        }
+
         //Raniy
         if (weather == Weather.Rainy)
         {
+            if (audioSource.clip != RainingClip)
+            {
+                audioSource.clip = RainingClip;
+                audioSource.Play();                
+            }
+
             if (currentBlackOutInterval > 0)
             {
                 currentBlackOutInterval -= Time.deltaTime;
@@ -60,6 +76,13 @@ public class WeatherManager : MonoBehaviour
         if (weather == Weather.Hot)
         {
             SunRay.SetActive(true);
+
+            if (audioSource.clip != SunnyClip)
+            {
+                audioSource.clip = SunnyClip;
+                audioSource.Play();
+            }
+
             GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
             damageSources = new DamageSource[fires.Length];
 
@@ -88,6 +111,13 @@ public class WeatherManager : MonoBehaviour
         if (weather == Weather.Cold)
         {
             FreezeArea.SetActive(true);
+
+            if (audioSource.clip != WinterClip)
+            {
+                audioSource.clip = WinterClip;
+                audioSource.Play();
+            }
+
             GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
             damageSources = new DamageSource[fires.Length];
 
@@ -109,7 +139,7 @@ public class WeatherManager : MonoBehaviour
         }
         else if (weather != Weather.Cold)
         {
-            SunRay.SetActive(false);
+            FreezeArea.SetActive(false);
         }
     }
 }
