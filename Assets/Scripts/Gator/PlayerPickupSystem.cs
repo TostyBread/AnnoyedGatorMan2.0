@@ -73,7 +73,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private bool IsPickupable(Collider2D collider) => validTags.Contains(collider.tag);
 
-    public void StartInteraction()
+    public void StartInteraction() // Insert anything interactable here, especially communicating with interactable scripts
     {
         if (targetInteractable != null && targetInteractable.TryGetComponent(out CookingStove stove))
         {
@@ -94,6 +94,10 @@ public class PlayerPickupSystem : MonoBehaviour
         if (targetInteractable != null && targetInteractable.TryGetComponent(out ItemPackage package))
         {
             package.TakingOutItem();
+        }
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out NPCBehavior npc))
+        {
+            npc.SpawnMenuAndPlate();
         }
     }
 
@@ -126,7 +130,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private IEnumerator PickupItemCoroutine()
     {
-        float holdTime = 0.3f;
+        float holdTime = 0.2f;
         float elapsedTime = 0f;
 
         while (elapsedTime < holdTime)

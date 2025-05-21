@@ -35,7 +35,7 @@ public class KnifeController : MonoBehaviour, IUsable
         knifeTransform.localRotation = Quaternion.Euler(0, 0, isInUsableMode ? -90f : 0f);
         Debug.Log(isInUsableMode ? "Knife in stab mode." : "Knife in normal mode.");
     }
-
+    public bool IsInUsableMode() => isInUsableMode;
     public void Use()
     {
         if (!isUsable || !isInUsableMode || isStabbing) return;
