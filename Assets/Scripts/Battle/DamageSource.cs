@@ -16,6 +16,7 @@ public class DamageSource : MonoBehaviour
     private HashSet<GameObject> objectsInFire = new HashSet<GameObject>();
     private Coroutine heatCoroutine;
     private Rigidbody2D rb;
+    private float originalHeatAmount;
 
     private Sanity sanity;
 
@@ -23,6 +24,7 @@ public class DamageSource : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
+        originalHeatAmount = heatAmount;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -115,5 +117,10 @@ public class DamageSource : MonoBehaviour
             _ => "Non"
         };
         AudioManager.Instance.PlaySound(soundName, 1.0f, transform.position);
+    }
+
+    public void ResetHeat()
+    {
+        heatAmount = originalHeatAmount;
     }
 }

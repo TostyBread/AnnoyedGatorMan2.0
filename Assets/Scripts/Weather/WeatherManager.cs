@@ -11,6 +11,7 @@ public class WeatherManager : MonoBehaviour
     public enum Weather { Normal, Rainy, Hot, Cold }
 
     public Weather weather;
+    private int randomWeather;
 
     [Header("Rainy setting")]
     public float MinBlackOutInterval;
@@ -40,14 +41,38 @@ public class WeatherManager : MonoBehaviour
     {
         currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);
         audioSource = GetComponent<AudioSource>();
+
+        randomWeather = UnityEngine.Random.Range(1,5);
+
+        switch (randomWeather) 
+        {
+            case 1:
+                weather = Weather.Normal;
+                break;
+
+            case 2:
+                weather = Weather.Rainy; 
+                break;
+
+            case 3:
+                weather = Weather.Hot;
+                break;
+
+            case 4:
+                weather = Weather.Cold;
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if (weather == Weather.Normal)
-        {
+        {          
+            if (audioSource.isPlaying) audioSource.Stop();
             audioSource.clip = null;
+
+            ResetFireHeat();
         }
 
         //Raniy
@@ -58,6 +83,8 @@ public class WeatherManager : MonoBehaviour
                 audioSource.clip = RainingClip;
                 audioSource.Play();                
             }
+
+            ResetFireHeat();
 
             if (currentBlackOutInterval > 0)
             {
@@ -83,24 +110,7 @@ public class WeatherManager : MonoBehaviour
                 audioSource.Play();
             }
 
-            GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
-            damageSources = new DamageSource[fires.Length];
-
-            if (heatMultiplied == null || heatMultiplied.Length != fires.Length)
-            {
-                heatMultiplied = new bool[fires.Length];
-            }
-
-            for (int i = 0; i < fires.Length; i++)
-            {
-                damageSources[i] = fires[i].GetComponent<DamageSource>();
-
-                if (!heatMultiplied[i])
-                {
-                    damageSources[i].heatAmount *= heatMultiplier;
-                    heatMultiplied[i] = true;
-                }
-            }
+            AdjustFireHeat(heatMultiplier);
         }
         else if (weather != Weather.Hot)
         {
@@ -118,28 +128,43 @@ public class WeatherManager : MonoBehaviour
                 audioSource.Play();
             }
 
-            GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
-            damageSources = new DamageSource[fires.Length];
-
-            if (heatMultiplied == null || heatMultiplied.Length != fires.Length)
-            {
-                heatMultiplied = new bool[fires.Length];
-            }
-
-            for (int i = 0; i < fires.Length; i++)
-            {
-                damageSources[i] = fires[i].GetComponent<DamageSource>();
-
-                if (!heatMultiplied[i])
-                {
-                    damageSources[i].heatAmount *= coldMultiplier;
-                    heatMultiplied[i] = true;
-                }
-            }
+            AdjustFireHeat(coldMultiplier);
         }
         else if (weather != Weather.Cold)
         {
             FreezeArea.SetActive(false);
+        }
+    }
+
+    private void AdjustFireHeat(float multiplier)
+    {
+        GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
+        damageSources = new DamageSource[fires.Length];
+
+        if (heatMultiplied == null || heatMultiplied.Length != fires.Length)
+        {
+            heatMultiplied = new bool[fires.Length];
+        }
+
+        for (int i = 0; i < fires.Length; i++)
+        {
+            damageSources[i] = fires[i].GetComponent<DamageSource>();
+
+            if (!heatMultiplied[i])
+            {
+                damageSources[i].heatAmount *= multiplier;
+                heatMultiplied[i] = true;
+            }
+        }
+    }
+
+    private void ResetFireHeat()
+    {
+        GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
+        foreach (var fire in fires)
+        {
+            DamageSource damageSource = fire.GetComponent<DamageSource>();
+            if (damageSource != null) damageSource.ResetHeat();
         }
     }
 }
