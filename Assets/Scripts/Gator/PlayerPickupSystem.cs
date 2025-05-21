@@ -86,6 +86,11 @@ public class PlayerPickupSystem : MonoBehaviour
             lightSwitch.ToggleLight(inInteractRange ? stateManager : null);
         }
 
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
+        {
+            window.ToogleWindow();
+        }
+
         if (targetInteractable != null && targetInteractable.TryGetComponent(out ItemPackage package))
         {
             package.TakingOutItem();

@@ -19,6 +19,7 @@ TagManager:
   - Sanity
   - Spawner
   - Obstacle
+  - Smoke
   layers:
   - Default
   - TransparentFX

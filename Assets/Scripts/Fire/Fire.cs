@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
+    [Header("Fire setting")]
     public float burnRadius = 2f;
     public float spreadInterval = 3f;
     public int maxFireInstances = 10;
+
+    [Header("References")]
     public LayerMask wallLayer;
 
     private AudioSource fireSound;
@@ -25,7 +28,7 @@ public class Fire : MonoBehaviour
 
     void Update()
     {
-        PlayFireSoundOnce();       
+        PlayFireSoundOnce();
     }
 
     private IEnumerator SpreadFire()

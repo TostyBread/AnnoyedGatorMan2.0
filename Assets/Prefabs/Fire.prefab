@@ -57,6 +57,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
+  smoke: {fileID: 7969457377182698580, guid: 8b8e0dd4a0012e44191d0f8db6dc7d31, type: 3}
 --- !u!114 &5238343182132767527
 MonoBehaviour:
   m_ObjectHideFlags: 0
