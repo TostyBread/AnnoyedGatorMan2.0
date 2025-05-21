@@ -45,6 +45,17 @@ public class ItemSystem : MonoBehaviour
 
     void Update()
     {
+        if (!canBeCooked || isBurned) return;
+
+        if (!isCooked && currentCookPoints >= cookThreshold)
+        {
+            CookItem();
+        }
+        else if (!isBurned && currentCookPoints >= burnThreshold)
+        {
+            BurnItem();
+        }
+
         if (canBeCooked && isCooked && !isBurned && cookedSpriteRenderer != null)
         {
             float range = Mathf.Max(0.01f, burnThreshold - cookThreshold);
@@ -55,20 +66,6 @@ public class ItemSystem : MonoBehaviour
             float b = Mathf.Lerp(originalCookedColor.b, 0f, t);
 
             cookedSpriteRenderer.color = new Color(r, g, b, originalCookedColor.a);
-        }
-    }
-
-    private void Update()
-    {
-        if (!canBeCooked || isBurned) return;
-
-        if (!isCooked && currentCookPoints >= cookThreshold)
-        {
-            CookItem();
-        }
-        else if (!isBurned && currentCookPoints >= burnThreshold)
-        {
-            BurnItem();
         }
     }
 

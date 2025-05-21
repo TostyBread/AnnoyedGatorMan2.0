@@ -57,7 +57,6 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
-  smoke: {fileID: 7969457377182698580, guid: 8b8e0dd4a0012e44191d0f8db6dc7d31, type: 3}
 --- !u!114 &5238343182132767527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +66,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2803993938104900538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc6995464398c3488c1a67683949ac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5773fea5176f446b42ab2aa53cd5c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 0

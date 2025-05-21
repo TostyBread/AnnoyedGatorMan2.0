@@ -529,6 +529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6092784823011451506}
   - component: {fileID: 5960891697961087395}
+  - component: {fileID: 8495067955737584282}
   - component: {fileID: 8242021500209219694}
   m_Layer: 0
   m_Name: HandControls
@@ -574,6 +575,26 @@ MonoBehaviour:
   pivotPoint: {fileID: 6092784823011451506}
   hand: {fileID: 6092784823011451506}
   characterFlip: {fileID: 5828523168871774308}
+--- !u!114 &8495067955737584282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606420664885157339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a7b2fb303703247af0149890190f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swingAngle: 90
+  swingDuration: 0.2
+  swingCooldown: 0.3
+  handTransform: {fileID: 6092784823011451506}
+  pivotPoint: {fileID: 6092784823011451506}
+  pickupSystem: {fileID: 4069354687643541684}
+  handController: {fileID: 5960891697961087395}
+  characterFlip: {fileID: 5828523168871774308}
 --- !u!114 &8242021500209219694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,7 +629,7 @@ GameObject:
   - component: {fileID: 682154946403789865}
   - component: {fileID: 2500296581554721325}
   - component: {fileID: 6733394418786738223}
-  - component: {fileID: 3806834143163485174}
+  - component: {fileID: 4401836379274751104}
   - component: {fileID: 405541712854609481}
   - component: {fileID: 1779572166603910831}
   m_Layer: 3
@@ -720,7 +741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPunching: 0
   isThrowing: 0
---- !u!114 &3806834143163485174
+--- !u!114 &4401836379274751104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -729,7 +750,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6756658700253055433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc6995464398c3488c1a67683949ac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5773fea5176f446b42ab2aa53cd5c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 0
@@ -1246,7 +1267,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 7199007613480025098}
   cookedState: {fileID: 7199007613480025098}
-  burnedState: {fileID: 7199007613480025098}
   brokenPartsUncookedBash: []
   brokenPartsCookedBash: []
   brokenPartsUncookedCut: []

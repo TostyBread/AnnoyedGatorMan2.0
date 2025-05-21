@@ -193,11 +193,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7024173470581301209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc6995464398c3488c1a67683949ac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5773fea5176f446b42ab2aa53cd5c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 2
-  damageAmount: 20
+  damageAmount: 30
   heatAmount: 10
   heatCooldown: 1
   isFireSource: 0

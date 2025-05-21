@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9036991212646575957}
   - component: {fileID: 2458728698113996335}
   - component: {fileID: 7043701527958796220}
+  - component: {fileID: 7907333980923819489}
   m_Layer: 6
   m_Name: Knife
   m_TagString: FoodSmall
@@ -164,6 +165,42 @@ MonoBehaviour:
   SpinningKnife: {fileID: 8859514281874207021, guid: 85c0c0167ddbfed47bf77c9f127d6fc9, type: 3}
   isBeingHold: 0
   spawnChance: 0.5
+--- !u!114 &7907333980923819489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706992943235291945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.21078968, y: -0.4760518, z: 0}
+  - {x: -0.20271969, y: 0.98039407, z: 0}
+  - {x: -0.1482563, y: 1.2823269, z: 0}
+  - {x: -0.06310654, y: 1.1313112, z: 0}
+  - {x: -0.0184021, y: 0.9628868, z: 0}
+  - {x: 0.012763023, y: 0.7862858, z: 0}
+  - {x: 0.035331726, y: 0.22362347, z: 0}
+  - {x: -0.07058811, y: 0.19138716, z: 0}
+  - {x: -0.08440304, y: 0.09007304, z: 0}
+  - {x: -0.03526306, y: -0.4668414, z: 0}
+  m_ShapePathHash: 1677007953
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 29668
+  m_LocalBounds:
+    m_Center: {x: -0.08772898, y: 0.40313756, z: 0}
+    m_Extent: {x: 0.1230607, y: 0.8791894, z: 0}
 --- !u!1 &7621144025468530422
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +213,7 @@ GameObject:
   - component: {fileID: 326783056799886028}
   - component: {fileID: 5969985387475216021}
   - component: {fileID: 2110993505141760519}
-  - component: {fileID: 1357655728254078832}
+  - component: {fileID: 7474308108935373552}
   m_Layer: 0
   m_Name: Sprite&Hitbox
   m_TagString: Untagged
@@ -313,7 +350,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1357655728254078832
+--- !u!114 &7474308108935373552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -322,7 +359,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7621144025468530422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc6995464398c3488c1a67683949ac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e5773fea5176f446b42ab2aa53cd5c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 1
