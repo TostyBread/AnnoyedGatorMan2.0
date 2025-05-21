@@ -7,7 +7,7 @@ public class PlayerInputManager : MonoBehaviour
     private PlayerPickupSystem playerPickupSystem;
     private PlayerThrowManager playerThrowManager;
     private Vector2 movementInput;
-    private bool usableItemModeEnabled = false;
+    private bool usableItemModeEnabled = true;
 
     void Start()
     {
