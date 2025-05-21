@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 5938916818223057696}
   - component: {fileID: 215369814498723540}
   - component: {fileID: 18536569333944202}
+  - component: {fileID: 2043678826801403287}
   m_Layer: 6
   m_Name: SlicedBread
   m_TagString: FoodSmall
@@ -276,6 +277,45 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8}
   m_EdgeRadius: 0.05
+--- !u!114 &2043678826801403287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102610347858576420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.33823562, y: -0.45735365, z: 0}
+  - {x: -0.35776067, y: 0.19189715, z: 0}
+  - {x: -0.39599633, y: 0.21101505, z: 0}
+  - {x: -0.39981997, y: 0.31425136, z: 0}
+  - {x: -0.31529438, y: 0.36558798, z: 0}
+  - {x: -0.17040552, y: 0.42513508, z: 0}
+  - {x: -0.036580548, y: 0.44425297, z: 0}
+  - {x: 0.124009386, y: 0.44425297, z: 0}
+  - {x: 0.3, y: 0.39235288, z: 0}
+  - {x: 0.39165944, y: 0.33719292, z: 0}
+  - {x: 0.38401252, y: 0.23777992, z: 0}
+  - {x: 0.31901157, y: 0.15366143, z: 0}
+  - {x: 0.326765, y: -0.4497065, z: 0}
+  m_ShapePathHash: 565855790
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -61932
+  m_LocalBounds:
+    m_Center: {x: -0.0040802658, y: -0.006550342, z: 0}
+    m_Extent: {x: 0.3957397, y: 0.4508033, z: 0}
 --- !u!1 &3634782169913733944
 GameObject:
   m_ObjectHideFlags: 0

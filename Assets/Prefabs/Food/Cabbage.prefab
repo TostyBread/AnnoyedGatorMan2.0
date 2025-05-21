@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 4502639535351587092}
   - component: {fileID: 2464484108971419931}
   - component: {fileID: 524131223899151663}
+  - component: {fileID: 4110932367303148988}
   m_Layer: 6
   m_Name: Cabbage
   m_TagString: FoodSmall
@@ -269,6 +270,48 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.58
+--- !u!114 &4110932367303148988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375330677863758934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.55283785, y: 0.19141054, z: 0}
+  - {x: -0.4115932, y: 0.44418836, z: 0}
+  - {x: -0.23510242, y: 0.52115583, z: 0}
+  - {x: -0.044734, y: 0.5637026, z: 0}
+  - {x: 0.21059155, y: 0.54995394, z: 0}
+  - {x: 0.36790192, y: 0.455966, z: 0}
+  - {x: 0.51457834, y: 0.2875595, z: 0}
+  - {x: 0.5960654, y: 0.06482816, z: 0}
+  - {x: 0.57976806, y: -0.10357833, z: 0}
+  - {x: 0.49284863, y: -0.30457973, z: 0}
+  - {x: 0.35160434, y: -0.4784187, z: 0}
+  - {x: 0.11800814, y: -0.57077074, z: 0}
+  - {x: -0.14275026, y: -0.56533825, z: 0}
+  - {x: -0.37634635, y: -0.4512564, z: 0}
+  - {x: -0.5012934, y: -0.2882824, z: 0}
+  - {x: -0.59364533, y: -0.060118437, z: 0}
+  m_ShapePathHash: -343783747
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -47918
+  m_LocalBounds:
+    m_Center: {x: 0.0012100339, y: -0.0035340786, z: 0}
+    m_Extent: {x: 0.59485537, y: 0.56723666, z: 0}
 --- !u!1 &1875274021110896611
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +988,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1029,7 +1072,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1737,7 +1780,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1821,7 +1864,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2083,7 +2126,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2167,7 +2210,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

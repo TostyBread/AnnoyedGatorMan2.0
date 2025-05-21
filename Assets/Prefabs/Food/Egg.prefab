@@ -1229,6 +1229,7 @@ GameObject:
   - component: {fileID: 4966081042607188577}
   - component: {fileID: 4070906551963866625}
   - component: {fileID: 2587759641915200401}
+  - component: {fileID: 7287302226857958814}
   m_Layer: 6
   m_Name: Egg
   m_TagString: FoodSmall
@@ -1402,6 +1403,48 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &7287302226857958814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7433794083183702492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.20000005, y: -0.2, z: 0}
+  - {x: -0.24403489, y: -0.13978668, z: 0}
+  - {x: -0.2499876, y: -0.07430714, z: 0}
+  - {x: -0.22915316, y: 0.059628237, z: 0}
+  - {x: -0.18214202, y: 0.14940219, z: 0}
+  - {x: -0.124981165, y: 0.23225601, z: 0}
+  - {x: -0.05652535, y: 0.30368826, z: 0}
+  - {x: 0.026812196, y: 0.34238073, z: 0}
+  - {x: 0.11610234, y: 0.2798775, z: 0}
+  - {x: 0.17023659, y: 0.18809463, z: 0}
+  - {x: 0.21432173, y: 0.08343895, z: 0}
+  - {x: 0.23515618, y: -0.07430714, z: 0}
+  - {x: 0.20000005, y: -0.2, z: 0}
+  - {x: 0.13693678, y: -0.31241447, z: 0}
+  - {x: 0.023835897, y: -0.3421779, z: 0}
+  - {x: -0.110099554, y: -0.3064618, z: 0}
+  m_ShapePathHash: -106419215
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -62902
+  m_LocalBounds:
+    m_Center: {x: -0.007415712, y: 0.0001014173, z: 0}
+    m_Extent: {x: 0.24257189, y: 0.34227931, z: 0}
 --- !u!1 &7557139772448412433
 GameObject:
   m_ObjectHideFlags: 0

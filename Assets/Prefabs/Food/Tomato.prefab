@@ -885,6 +885,7 @@ GameObject:
   - component: {fileID: 590381820657620924}
   - component: {fileID: 3248967860698401878}
   - component: {fileID: 3786753139440420464}
+  - component: {fileID: 5160669677167926537}
   m_Layer: 6
   m_Name: Tomato
   m_TagString: FoodSmall
@@ -1056,3 +1057,45 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &5160669677167926537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8507370457598890344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.30098057, y: -0.14539719, z: 0}
+  - {x: -0.3350811, y: -0.046418667, z: 0}
+  - {x: -0.3186264, y: 0.03836298, z: 0}
+  - {x: -0.28026295, y: 0.12787676, z: 0}
+  - {x: -0.20779991, y: 0.20886564, z: 0}
+  - {x: -0.114023685, y: 0.2706728, z: 0}
+  - {x: -0.01385355, y: 0.28346062, z: 0}
+  - {x: 0.11189222, y: 0.26214743, z: 0}
+  - {x: 0.22911263, y: 0.19820929, z: 0}
+  - {x: 0.30737495, y: 0.08145857, z: 0}
+  - {x: 0.33567667, y: -0.002131462, z: 0}
+  - {x: 0.32928324, y: -0.093776226, z: 0}
+  - {x: 0.23704243, y: -0.2178607, z: 0}
+  - {x: 0.12681103, y: -0.26854134, z: 0}
+  - {x: -0.0053281784, y: -0.2855916, z: 0}
+  - {x: -0.1864872, y: -0.23870373, z: 0}
+  m_ShapePathHash: 886322213
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -63882
+  m_LocalBounds:
+    m_Center: {x: 0.0002977848, y: -0.0010654926, z: 0}
+    m_Extent: {x: 0.3353789, y: 0.2845261, z: 0}
