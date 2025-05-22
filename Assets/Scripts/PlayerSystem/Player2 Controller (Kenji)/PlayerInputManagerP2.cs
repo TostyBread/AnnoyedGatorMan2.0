@@ -1,12 +1,10 @@
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerInputConfig
+public class PlayerInputConfigP2
 {
-    public KeyCode moveUp;
-    public KeyCode moveDown;
-    public KeyCode moveLeft;
-    public KeyCode moveRight;
+    public string joystickHorizontalAxis = "P2_LJoystick_Horizontal";
+    public string joystickVerticalAxis = "P2_LJoystick_Vertical";
 
     public KeyCode attackKey;
     public KeyCode pickupKey;
@@ -14,22 +12,17 @@ public class PlayerInputConfig
     public KeyCode interactKey;
     public KeyCode throwPrepareKey;
     public KeyCode throwConfirmKey;
-
-    public string joystickHorizontalAxis = "P2_LJoystick_Horizontal";
-    public string joystickVerticalAxis = "P2_LJoystick_Vertical";
 }
 
-public class PlayerInputManager : MonoBehaviour
+public class PlayerInputManagerP2 : MonoBehaviour
 {
-    public enum InputMode { Keyboard, Joystick }
-    public InputMode inputMode = InputMode.Keyboard;
-    public PlayerInputConfig inputConfig;
+    public PlayerInputConfigP2 inputConfig;
 
     public bool isInputEnabled = true;
     private CharacterMovement characterMovement;
     private Fist fist;
-    private PlayerPickupSystem playerPickupSystem;
-    private PlayerThrowManager playerThrowManager;
+    private PlayerPickupSystemP2 playerPickupSystemP2;
+    private PlayerThrowManagerP2 playerThrowManagerP2;
     private StateManager stateManager;
 
     private Vector2 movementInput;
@@ -39,8 +32,8 @@ public class PlayerInputManager : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
-        playerPickupSystem = GetComponent<PlayerPickupSystem>();
-        playerThrowManager = GetComponent<PlayerThrowManager>();
+        playerPickupSystemP2 = GetComponent<PlayerPickupSystemP2>();
+        playerThrowManagerP2 = GetComponent<PlayerThrowManagerP2>();
         stateManager = GetComponent<StateManager>();
     }
 
@@ -63,19 +56,8 @@ public class PlayerInputManager : MonoBehaviour
         if (stateManager != null && stateManager.state == StateManager.PlayerState.Burn) return;
 
         Vector2 move = Vector2.zero;
-
-        if (inputMode == InputMode.Keyboard)
-        {
-            if (Input.GetKey(inputConfig.moveUp)) move.y += 1;
-            if (Input.GetKey(inputConfig.moveDown)) move.y -= 1;
-            if (Input.GetKey(inputConfig.moveRight)) move.x += 1;
-            if (Input.GetKey(inputConfig.moveLeft)) move.x -= 1;
-        }
-        else if (inputMode == InputMode.Joystick)
-        {
-            move.x = Input.GetAxis(inputConfig.joystickHorizontalAxis);
-            move.y = Input.GetAxis(inputConfig.joystickVerticalAxis);
-        }
+        move.x = Input.GetAxis(inputConfig.joystickHorizontalAxis);
+        move.y = Input.GetAxis(inputConfig.joystickVerticalAxis);
 
         movementInput = move.normalized;
         characterMovement?.SetMovement(movementInput);
@@ -88,14 +70,14 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleMeleeLogic()
     {
-        if (playerPickupSystem != null && playerPickupSystem.HasItemHeld)
+        if (playerPickupSystemP2 != null && playerPickupSystemP2.HasItemHeld)
         {
-            Transform current = playerPickupSystem.GetHeldItem()?.transform;
-            MeleeSwing swing = null;
+            Transform current = playerPickupSystemP2.GetHeldItem()?.transform;
+            MeleeSwingP2 swing = null;
 
             while (current != null && swing == null)
             {
-                swing = current.GetComponent<MeleeSwing>();
+                swing = current.GetComponent<MeleeSwingP2>();
                 current = current.parent;
             }
 
@@ -113,27 +95,27 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandlePickupInput()
     {
-        if (playerPickupSystem == null) return;
+        if (playerPickupSystemP2 == null) return;
 
-        if (Input.GetKeyDown(inputConfig.pickupKey)) playerPickupSystem.StartPickup();
-        else if (Input.GetKey(inputConfig.pickupKey)) playerPickupSystem.HoldPickup();
-        else if (Input.GetKeyUp(inputConfig.pickupKey)) playerPickupSystem.CancelPickup();
+        if (Input.GetKeyDown(inputConfig.pickupKey)) playerPickupSystemP2.StartPickup();
+        else if (Input.GetKey(inputConfig.pickupKey)) playerPickupSystemP2.HoldPickup();
+        else if (Input.GetKeyUp(inputConfig.pickupKey)) playerPickupSystemP2.CancelPickup();
     }
 
     private void HandleThrowInput()
     {
-        if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        if (playerThrowManagerP2 == null || playerPickupSystemP2 == null || !playerPickupSystemP2.HasItemHeld) return;
 
-        if (Input.GetKeyDown(inputConfig.throwPrepareKey)) playerThrowManager.StartPreparingThrow();
-        if (Input.GetKeyUp(inputConfig.attackKey) && Input.GetKey(inputConfig.throwPrepareKey)) playerThrowManager.Throw();
-        if (Input.GetKeyUp(inputConfig.throwPrepareKey)) playerThrowManager.CancelThrow();
+        if (Input.GetKeyDown(inputConfig.throwPrepareKey)) playerThrowManagerP2.StartPreparingThrow();
+        if (Input.GetKeyUp(inputConfig.attackKey) && Input.GetKey(inputConfig.throwPrepareKey)) playerThrowManagerP2.Throw();
+        if (Input.GetKeyUp(inputConfig.throwPrepareKey)) playerThrowManagerP2.CancelThrow();
     }
 
     private void HandleUsableItemInput()
     {
-        if (playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        if (playerPickupSystemP2 == null || !playerPickupSystemP2.HasItemHeld) return;
 
-        IUsable usableFunction = playerPickupSystem.GetUsableFunction();
+        IUsable usableFunction = playerPickupSystemP2.GetUsableFunction();
         if (usableFunction == null) return;
 
         if (Input.GetKeyDown(inputConfig.toggleSafetyKey))
@@ -169,7 +151,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(inputConfig.interactKey))
         {
-            playerPickupSystem?.StartInteraction();
+            playerPickupSystemP2?.StartInteraction();
         }
     }
 }
