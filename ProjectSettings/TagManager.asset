@@ -10,16 +10,12 @@ TagManager:
   - FoodSmall
   - Fist
   - Projectile
-  - EnviroInteract
   - Fire
-  - Enemy
   - Interectable
-  - Player2
-  - Mob
   - Sanity
-  - Spawner
   - Obstacle
   - Smoke
+  - NPC
   layers:
   - Default
   - TransparentFX

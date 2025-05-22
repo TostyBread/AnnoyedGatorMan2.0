@@ -156,7 +156,6 @@ MonoBehaviour:
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
   playerTags:
   - Player
-  - Player2
 --- !u!114 &6564607947458497612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +192,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 461481967013461057}
   cookedState: {fileID: 0}
-  burnedState: {fileID: 0}
   brokenPartsUncookedBash:
   - {fileID: 6593049642772336694}
   - {fileID: 3313646061577380921}
@@ -308,7 +306,7 @@ MonoBehaviour:
   - {x: -0.59364533, y: -0.060118437, z: 0}
   m_ShapePathHash: -343783747
   m_Mesh: {fileID: 0}
-  m_InstanceId: -47918
+  m_InstanceId: -406004
   m_LocalBounds:
     m_Center: {x: 0.0012100339, y: -0.0035340786, z: 0}
     m_Extent: {x: 0.59485537, y: 0.56723666, z: 0}
@@ -416,7 +414,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 8416541391359163078}
   cookedState: {fileID: 0}
-  burnedState: {fileID: 0}
   brokenPartsUncookedBash: []
   brokenPartsCookedBash: []
   brokenPartsUncookedCut: []
@@ -681,7 +678,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 3081278609305405082}
   cookedState: {fileID: 0}
-  burnedState: {fileID: 0}
   brokenPartsUncookedBash:
   - {fileID: 5887237515751717174}
   - {fileID: 1875274021110896611}
@@ -862,7 +858,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 5507183326572354396}
   cookedState: {fileID: 0}
-  burnedState: {fileID: 0}
   brokenPartsUncookedBash: []
   brokenPartsCookedBash: []
   brokenPartsUncookedCut: []
@@ -1292,7 +1287,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 6902060501901354382}
   cookedState: {fileID: 0}
-  burnedState: {fileID: 0}
   brokenPartsUncookedBash: []
   brokenPartsCookedBash: []
   brokenPartsUncookedCut: []
@@ -1473,7 +1467,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 5860558909086273511}
   cookedState: {fileID: 0}
-  burnedState: {fileID: 0}
   brokenPartsUncookedBash:
   - {fileID: 7559628145904519746}
   - {fileID: 6651037354340401049}
@@ -1654,7 +1647,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 7774992924365634021}
   cookedState: {fileID: 0}
-  burnedState: {fileID: 0}
   brokenPartsUncookedBash: []
   brokenPartsCookedBash: []
   brokenPartsUncookedCut: []
@@ -2000,7 +1992,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 7246326126553514105}
   cookedState: {fileID: 0}
-  burnedState: {fileID: 0}
   brokenPartsUncookedBash: []
   brokenPartsCookedBash: []
   brokenPartsUncookedCut: []
@@ -2346,7 +2337,6 @@ MonoBehaviour:
   damageCooldown: 1
   uncookedState: {fileID: 4436739054347586881}
   cookedState: {fileID: 0}
-  burnedState: {fileID: 0}
   brokenPartsUncookedBash: []
   brokenPartsCookedBash: []
   brokenPartsUncookedCut: []

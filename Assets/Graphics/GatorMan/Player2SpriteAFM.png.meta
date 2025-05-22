@@ -1,0 +1,390 @@
+fileFormatVersion: 2
+guid: 6e3aa78f74cb83449b33fcb487088fd4
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: P2GatorMan_WalkCycle1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 704
+        width: 190
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbafcea51416919428a8e0614d701e49
+      internalID: -1752846848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_WalkCycle2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 699
+        width: 190
+        height: 263
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64de7a3e0079ba54e955577c1b229d40
+      internalID: -1966798535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_WalkCycle3
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 704
+        width: 210
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 930388fd5e6cd9f41ab3fa928bd9e540
+      internalID: -1324166251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_WalkCycle4
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 704
+        width: 199
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62fe8ccf70295e8459cd4751cfbfca8f
+      internalID: 1295082044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_IdleCycle1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 389
+        width: 190
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e422cd39bd21d046b665632eaeb0310
+      internalID: 1733963628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_IdleCycle2
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 389
+        width: 190
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 193964b5ca69d4946b982d8e39691237
+      internalID: 983522844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_IdleCycle3
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 389
+        width: 190
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a3b13dd5867e4944992cde1554daf50
+      internalID: -474627805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_DeathAnim4
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 370
+        width: 289
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baef1481a78856a45bee6ddbc58e68ec
+      internalID: 629785416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_DeathAnim1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 59
+        width: 209
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9110f38d78837084baae5c2b4d9af915
+      internalID: 134160745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_DeathAnim2
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 59
+        width: 203
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb39a3e428b8424581e6a5a1c000c4b
+      internalID: 450768208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: P2GatorMan_DeathAnim3
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 78
+        width: 260
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9065811f00d25b74cbeb461e18c181e1
+      internalID: -1354866968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player2SpriteAFM_23
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 19
+        width: 5
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeb050bb689742046b1aab0057eb8fee
+      internalID: -379716645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      P2GatorMan_DeathAnim1: 134160745
+      P2GatorMan_DeathAnim2: 450768208
+      P2GatorMan_DeathAnim3: -1354866968
+      P2GatorMan_DeathAnim4: 629785416
+      P2GatorMan_IdleCycle1: 1733963628
+      P2GatorMan_IdleCycle2: 983522844
+      P2GatorMan_IdleCycle3: -474627805
+      P2GatorMan_WalkCycle1: -1752846848
+      P2GatorMan_WalkCycle2: -1966798535
+      P2GatorMan_WalkCycle3: -1324166251
+      P2GatorMan_WalkCycle4: 1295082044
+      Player2SpriteAFM_10: 994466648
+      Player2SpriteAFM_11: 1811746141
+      Player2SpriteAFM_14: 1944843935
+      Player2SpriteAFM_15: -1274914423
+      Player2SpriteAFM_16: 1121836308
+      Player2SpriteAFM_17: -233605283
+      Player2SpriteAFM_18: -2098898671
+      Player2SpriteAFM_19: 221360851
+      Player2SpriteAFM_21: -1238521572
+      Player2SpriteAFM_22: 235165370
+      Player2SpriteAFM_23: -379716645
+      Player2SpriteAFM_4: 103629597
+      Player2SpriteAFM_9: 1643787172
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
