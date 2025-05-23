@@ -25,12 +25,10 @@ TagManager:
   - UI
   - Item
   - Wall
-  - Player
+  - Player1
   - Projectile
-  - Enemy
-  - Ignore Me
-  - Mob
-  - Pest
+  - Customer
+  - Player2
   - 
   - 
   - 
@@ -49,6 +47,8 @@ TagManager:
   - 
   - 
   - 
+  - 
+  - Interactable
   m_SortingLayers:
   - name: Default
     uniqueID: 0

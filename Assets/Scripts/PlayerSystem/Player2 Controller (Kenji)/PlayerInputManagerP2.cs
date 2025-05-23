@@ -1,24 +1,9 @@
 using UnityEngine;
-
-[System.Serializable]
-public class PlayerInputConfigP2
-{
-    public string joystickHorizontalAxis = "P2_LJoystick_Horizontal";
-    public string joystickVerticalAxis = "P2_LJoystick_Vertical";
-
-    public KeyCode attackKey;
-    public KeyCode pickupKey;
-    public KeyCode toggleSafetyKey;
-    public KeyCode interactKey;
-    public KeyCode throwPrepareKey;
-    public KeyCode throwConfirmKey;
-}
+using UnityEngine.InputSystem;
 
 public class PlayerInputManagerP2 : MonoBehaviour
 {
-    public PlayerInputConfigP2 inputConfig;
-
-    public bool isInputEnabled = true;
+    private PlayerInputActions inputActions;
     private CharacterMovement characterMovement;
     private Fist fist;
     private PlayerPickupSystemP2 playerPickupSystemP2;
@@ -27,6 +12,25 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
     private Vector2 movementInput;
     private bool usableItemModeEnabled = true;
+    public bool isInputEnabled = true;
+
+    void Awake()
+    {
+        inputActions = new PlayerInputActions();
+
+        inputActions.Player2Controller.Attack.performed += ctx => HandleActionInput();
+        inputActions.Player2Controller.Pickup.started += ctx => playerPickupSystemP2?.StartPickup();
+        inputActions.Player2Controller.Pickup.performed += ctx => playerPickupSystemP2?.HoldPickup();
+        inputActions.Player2Controller.Pickup.canceled += ctx => playerPickupSystemP2?.CancelPickup();
+        inputActions.Player2Controller.ThrowPrepare.started += ctx => playerThrowManagerP2?.StartPreparingThrow();
+        inputActions.Player2Controller.ThrowConfirm.started += ctx => playerThrowManagerP2?.Throw();
+        inputActions.Player2Controller.ThrowPrepare.canceled += ctx => playerThrowManagerP2?.CancelThrow();
+        inputActions.Player2Controller.ToggleSafety.performed += ctx => HandleUsableItemInput();
+        inputActions.Player2Controller.Interact.performed += ctx => playerPickupSystemP2?.StartInteraction();
+    }
+
+    void OnEnable() => inputActions.Enable();
+    void OnDisable() => inputActions.Disable();
 
     void Start()
     {
@@ -42,33 +46,18 @@ public class PlayerInputManagerP2 : MonoBehaviour
         if (!isInputEnabled) return;
 
         HandleMovementInput();
-        HandleActionInput();
-        HandlePickupInput();
-        HandleThrowInput();
-        HandleUsableItemInput();
-        HandleEnvironmentalInteractInput();
+        HandleAutoFire();
     }
-
-    public bool IsUsableModeEnabled() => usableItemModeEnabled;
 
     private void HandleMovementInput()
     {
         if (stateManager != null && stateManager.state == StateManager.PlayerState.Burn) return;
 
-        Vector2 move = Vector2.zero;
-        move.x = Input.GetAxis(inputConfig.joystickHorizontalAxis);
-        move.y = Input.GetAxis(inputConfig.joystickVerticalAxis);
-
-        movementInput = move.normalized;
+        movementInput = inputActions.Player2Controller.Movement.ReadValue<Vector2>().normalized;
         characterMovement?.SetMovement(movementInput);
     }
 
     private void HandleActionInput()
-    {
-        if (Input.GetKeyDown(inputConfig.attackKey)) HandleMeleeLogic();
-    }
-
-    private void HandleMeleeLogic()
     {
         if (playerPickupSystemP2 != null && playerPickupSystemP2.HasItemHeld)
         {
@@ -93,24 +82,6 @@ public class PlayerInputManagerP2 : MonoBehaviour
         }
     }
 
-    private void HandlePickupInput()
-    {
-        if (playerPickupSystemP2 == null) return;
-
-        if (Input.GetKeyDown(inputConfig.pickupKey)) playerPickupSystemP2.StartPickup();
-        else if (Input.GetKey(inputConfig.pickupKey)) playerPickupSystemP2.HoldPickup();
-        else if (Input.GetKeyUp(inputConfig.pickupKey)) playerPickupSystemP2.CancelPickup();
-    }
-
-    private void HandleThrowInput()
-    {
-        if (playerThrowManagerP2 == null || playerPickupSystemP2 == null || !playerPickupSystemP2.HasItemHeld) return;
-
-        if (Input.GetKeyDown(inputConfig.throwPrepareKey)) playerThrowManagerP2.StartPreparingThrow();
-        if (Input.GetKeyUp(inputConfig.attackKey) && Input.GetKey(inputConfig.throwPrepareKey)) playerThrowManagerP2.Throw();
-        if (Input.GetKeyUp(inputConfig.throwPrepareKey)) playerThrowManagerP2.CancelThrow();
-    }
-
     private void HandleUsableItemInput()
     {
         if (playerPickupSystemP2 == null || !playerPickupSystemP2.HasItemHeld) return;
@@ -118,40 +89,37 @@ public class PlayerInputManagerP2 : MonoBehaviour
         IUsable usableFunction = playerPickupSystemP2.GetUsableFunction();
         if (usableFunction == null) return;
 
-        if (Input.GetKeyDown(inputConfig.toggleSafetyKey))
-        {
-            usableItemModeEnabled = !usableItemModeEnabled;
-            Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
-            usableFunction.EnableUsableFunction();
+        usableItemModeEnabled = !usableItemModeEnabled;
+        Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
+        usableFunction.EnableUsableFunction();
 
-            switch (usableFunction)
-            {
-                case KnifeController knife:
-                    knife.ToggleUsableMode(usableItemModeEnabled);
-                    break;
-                case FirearmController firearm:
-                    firearm.ToggleUsableMode(usableItemModeEnabled);
-                    break;
-            }
+        switch (usableFunction)
+        {
+            case KnifeController knife:
+                knife.ToggleUsableMode(usableItemModeEnabled);
+                break;
+            case FirearmController firearm:
+                firearm.ToggleUsableMode(usableItemModeEnabled);
+                break;
         }
+    }
+
+    private void HandleAutoFire()
+    {
+        if (playerPickupSystemP2 == null || !playerPickupSystemP2.HasItemHeld) return;
+
+        IUsable usableFunction = playerPickupSystemP2.GetUsableFunction();
+        if (usableFunction == null) return;
 
         if (usableFunction is FirearmController gun && gun.currentFireMode == FirearmController.FireMode.Auto)
         {
-            if (Input.GetKeyDown(inputConfig.attackKey))
+            if (inputActions.Player2Controller.Attack.triggered)
                 usableFunction.Use();
         }
         else
         {
-            if (Input.GetKeyDown(inputConfig.attackKey))
+            if (inputActions.Player2Controller.Attack.triggered)
                 usableFunction.Use();
-        }
-    }
-
-    private void HandleEnvironmentalInteractInput()
-    {
-        if (Input.GetKeyDown(inputConfig.interactKey))
-        {
-            playerPickupSystemP2?.StartInteraction();
         }
     }
 }

@@ -152,6 +152,7 @@ public class PlayerPickupSystemP2 : MonoBehaviour
 
     private void PickUpItem(GameObject item)
     {
+        PlayerAimController.Instance.ClearLockOn(); // Remove lock on for controller
         if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
         if (item.TryGetComponent(out Rigidbody2D rb))
         {

@@ -47,6 +47,12 @@ public class MeleeSwingP2 : MonoBehaviour
             yield break;
         }
 
+        if (PlayerAimController.Instance != null)
+        {
+            PlayerAimController.Instance.LockOnEnabled = false;
+            PlayerAimController.Instance.ClearLockOn();
+        }
+
         Collider2D heldCollider = heldItem.GetComponent<Collider2D>();
         if (heldCollider != null)
         {
@@ -83,6 +89,12 @@ public class MeleeSwingP2 : MonoBehaviour
         }
 
         heldCollider.enabled = false;
+
+        if (PlayerAimController.Instance != null)
+        {
+            PlayerAimController.Instance.LockOnEnabled = true;
+        }
+
         isSwinging = false;
         yield return new WaitForSeconds(swingCooldown);
         isCooldown = false;

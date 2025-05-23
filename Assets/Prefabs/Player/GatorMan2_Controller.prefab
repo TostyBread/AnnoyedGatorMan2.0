@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 5400976351538029550}
   - component: {fileID: 6559327783794153403}
   - component: {fileID: 4324472726372610997}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: GatorMan2_Controller
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -670,15 +670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d698b33c0a4cc47926f9f75d410b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputConfig:
-    joystickHorizontalAxis: P2_LJoystick_Horizontal
-    joystickVerticalAxis: P2_LJoystick_Vertical
-    attackKey: 355
-    pickupKey: 352
-    toggleSafetyKey: 358
-    interactKey: 350
-    throwPrepareKey: 354
-    throwConfirmKey: 355
   isInputEnabled: 1
 --- !u!114 &769371959283670967
 MonoBehaviour:
