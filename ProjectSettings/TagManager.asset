@@ -15,7 +15,6 @@ TagManager:
   - Sanity
   - Obstacle
   - Smoke
-  - NPC
   layers:
   - Default
   - TransparentFX

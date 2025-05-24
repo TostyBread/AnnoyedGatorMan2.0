@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2196336423692528688}
-  heatCollider: {fileID: 6341258653121406039}
+  heatCollider: {fileID: 5652407544691076247}
 --- !u!114 &2776352902281703838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 0
-  damageAmount: 0
-  heatAmount: 0
+  damageAmount: 999
+  heatAmount: 999
   heatCooldown: 1
   isFireSource: 0
   isColdSource: 0

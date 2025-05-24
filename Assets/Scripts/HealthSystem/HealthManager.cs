@@ -6,10 +6,11 @@ public class HealthManager : MonoBehaviour
     public float Health = 20;
     public float currentHealth;
     public float reviveSpeed = 1;
-    public Image HealthBar;
-    public GameObject hand;
+    public float damageReceived;
 
     [Header("References")]
+    public Image HealthBar;
+    public GameObject hand;
     public CharacterAnimation characterAnimation;
 
     private PlayerInputManager playerInputManager;
@@ -63,7 +64,7 @@ public class HealthManager : MonoBehaviour
 
         if (!CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Destroy(gameObject,0.1f);
             return;
         }
 
@@ -122,5 +123,6 @@ public class HealthManager : MonoBehaviour
     public void TryDamage(float damage)
     {
         currentHealth -= damage;
+        damageReceived = damage;
     }
 }
