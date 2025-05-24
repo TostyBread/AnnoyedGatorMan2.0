@@ -5,6 +5,7 @@ public class ItemSystem : MonoBehaviour
 {
     public bool canBeCooked;
     public bool canBreak;
+    public bool skipCookedStateVisual = false;
     public int durabilityUncooked;
     public int durabilityCooked;
     public float cookThreshold;
@@ -24,16 +25,19 @@ public class ItemSystem : MonoBehaviour
     private float currentCookPoints = 0f;
     public bool isCooked = false;
     public bool isBurned = false;
-    private float lastDamageTime = -1f;
     private SpriteRenderer cookedSpriteRenderer;
     private Color originalCookedColor;
+
+    private Dictionary<GameObject, float> lastDamageTimestamps = new();
+    private float cleanupInterval = 5f;
+    private float nextCleanupTime = 0f;
 
     public enum DamageType { Bash, Cut, Shot }
 
     void Start()
     {
         currentDurability = durabilityUncooked;
-        if (cookedState != null)
+        if (!skipCookedStateVisual && cookedState != null)
         {
             cookedSpriteRenderer = cookedState.GetComponent<SpriteRenderer>();
             if (cookedSpriteRenderer != null)
@@ -67,18 +71,29 @@ public class ItemSystem : MonoBehaviour
 
             cookedSpriteRenderer.color = new Color(r, g, b, originalCookedColor.a);
         }
+
+        if (Time.time >= nextCleanupTime)
+        {
+            CleanupStaleTimestamps();
+            nextCleanupTime = Time.time + cleanupInterval;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Time.time - lastDamageTime < damageCooldown) return;
-
         ApplyCollisionEffect(collision.gameObject);
-        lastDamageTime = Time.time;
     }
 
     public void ApplyCollisionEffect(GameObject source)
     {
+        float currentTime = Time.time;
+        if (lastDamageTimestamps.TryGetValue(source, out float lastTime))
+        {
+            if (currentTime - lastTime < damageCooldown) return;
+        }
+
+        lastDamageTimestamps[source] = currentTime;
+
         if (!source.TryGetComponent(out DamageSource sourceDamage)) return;
 
         DamageType damageType = sourceDamage.damageType == DamageType.Shot ?
@@ -95,6 +110,25 @@ public class ItemSystem : MonoBehaviour
         }
 
         if (currentDurability <= 0 && canBreak) BreakItem(damageType);
+    }
+
+    private void CleanupStaleTimestamps()
+    {
+        float currentTime = Time.time;
+        List<GameObject> keysToRemove = new();
+
+        foreach (var entry in lastDamageTimestamps)
+        {
+            if (entry.Key == null || currentTime - entry.Value > damageCooldown + 1f)
+            {
+                keysToRemove.Add(entry.Key);
+            }
+        }
+
+        foreach (var key in keysToRemove)
+        {
+            lastDamageTimestamps.Remove(key);
+        }
     }
 
     private void BreakItem(DamageType damageType)
@@ -121,7 +155,7 @@ public class ItemSystem : MonoBehaviour
     {
         isCooked = true;
         uncookedState.SetActive(false);
-        cookedState.SetActive(true);
+        if (!skipCookedStateVisual && cookedState != null) cookedState.SetActive(true);
         currentDurability = durabilityCooked;
         AudioManager.Instance.PlaySound("Fizzle", 1.0f, transform.position);
     }
@@ -129,7 +163,10 @@ public class ItemSystem : MonoBehaviour
     public void BurnItem()
     {
         isBurned = true;
-        cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
+        if (!skipCookedStateVisual && cookedSpriteRenderer != null)
+        {
+            cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
+        }
         AudioManager.Instance.PlaySound("DryFart", 1.0f, transform.position);
     }
 }

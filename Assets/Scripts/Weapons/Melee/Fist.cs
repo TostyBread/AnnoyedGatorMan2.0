@@ -7,6 +7,7 @@ public class Fist : MonoBehaviour
 
     [Header("Do not touch")]
     public bool isPunching = false;
+    public bool isThrowing = false;
 
     void Start()
     {
@@ -17,6 +18,12 @@ public class Fist : MonoBehaviour
 
     public void TriggerPunch()
     {
+        // Ensure the fist GameObject is active before executing
+        if (!gameObject.activeSelf || isThrowing) // Prevent punching during throw animation
+        {
+            return;
+        }
+
         if (!isPunching)
         {
             Punch();
