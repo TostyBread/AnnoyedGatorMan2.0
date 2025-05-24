@@ -1,3 +1,7 @@
+using System.Diagnostics.Tracing;
+using TMPro;
+using UnityEditor.U2D.Aseprite;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class PlayerBounceModifier : MonoBehaviour

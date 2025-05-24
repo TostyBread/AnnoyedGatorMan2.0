@@ -158,5 +158,14 @@ public class PlayerInputManager : MonoBehaviour
         {
             playerPickupSystem?.StartInteraction();
         }
+
+        if (Input.GetKey(inputConfig.interactKey))
+        {
+            playerPickupSystem?.StartLongInteraction(true);
+        }
+        else
+        {
+            playerPickupSystem?.StartLongInteraction(false);
+        }
     }
 }

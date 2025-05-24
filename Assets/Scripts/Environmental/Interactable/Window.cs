@@ -21,9 +21,9 @@ public class Window : MonoBehaviour
 
     }
 
-    public void ToogleWindow()
+    public void SetWindowState(bool state)
     {
-        isOn = !isOn;
+        isOn = state;
     }
 
     private void OnTriggerStay2D(Collider2D other)
