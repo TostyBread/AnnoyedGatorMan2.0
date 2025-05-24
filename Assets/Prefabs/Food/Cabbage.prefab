@@ -181,15 +181,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6e82a859d2cee479c1a9992294e9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeCooked: 0
+  canBeCooked: 1
   canBreak: 1
   durabilityUncooked: 70
-  durabilityCooked: 0
-  cookThreshold: 0
-  burnThreshold: 0
+  durabilityCooked: 1
+  cookThreshold: 50
+  burnThreshold: 50
   damageCooldown: 1
   uncookedState: {fileID: 461481967013461057}
-  cookedState: {fileID: 0}
+  cookedState: {fileID: 461481967013461057}
   brokenPartsUncookedBash:
   - {fileID: 6593049642772336694}
   - {fileID: 3313646061577380921}
@@ -304,7 +304,7 @@ MonoBehaviour:
   - {x: -0.59364533, y: -0.060118437, z: 0}
   m_ShapePathHash: -343783747
   m_Mesh: {fileID: 0}
-  m_InstanceId: -2274
+  m_InstanceId: -1966
   m_LocalBounds:
     m_Center: {x: 0.0012100339, y: -0.0035340786, z: 0}
     m_Extent: {x: 0.59485537, y: 0.56723666, z: 0}

@@ -24,7 +24,7 @@ public class PlayerThrowManagerP2 : MonoBehaviour
         isPreparingToThrow = true;
         usableFunction = playerPickupSystemP2.GetUsableFunction();
         usableFunction?.DisableUsableFunction();
-        Debug.Log("Preparing to throw...");
+        //Debug.Log("Preparing to throw...");
     }
 
     public void Throw()
@@ -74,7 +74,7 @@ public class PlayerThrowManagerP2 : MonoBehaviour
 
         usableFunction?.EnableUsableFunction();
         isPreparingToThrow = false;
-        Debug.Log("Throw preparation canceled.");
+        //Debug.Log("Throw preparation canceled.");
     }
 
     private IEnumerator EnableColliderDuringTrajectory(GameObject item, Collider2D itemCollider, float totalDistance)

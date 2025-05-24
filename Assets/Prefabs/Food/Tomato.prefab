@@ -235,7 +235,6 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTags: []
 --- !u!114 &9214245172780400358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +411,6 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTags: []
 --- !u!114 &5997857508350087915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,7 +587,6 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTags: []
 --- !u!114 &1073136704812625612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,8 +935,6 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTags:
-  - Player
 --- !u!114 &3844615439724221598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -970,12 +965,12 @@ MonoBehaviour:
   canBeCooked: 0
   canBreak: 1
   durabilityUncooked: 60
-  durabilityCooked: 0
-  cookThreshold: 0
-  burnThreshold: 0
+  durabilityCooked: 1
+  cookThreshold: 50
+  burnThreshold: 50
   damageCooldown: 1
   uncookedState: {fileID: 5208384000727610501}
-  cookedState: {fileID: 0}
+  cookedState: {fileID: 5208384000727610501}
   brokenPartsUncookedBash:
   - {fileID: 2212680630652734836}
   brokenPartsCookedBash: []
@@ -1090,7 +1085,7 @@ MonoBehaviour:
   - {x: -0.1864872, y: -0.23870373, z: 0}
   m_ShapePathHash: 886322213
   m_Mesh: {fileID: 0}
-  m_InstanceId: -406380
+  m_InstanceId: -2594
   m_LocalBounds:
     m_Center: {x: 0.0002977848, y: -0.0010654926, z: 0}
     m_Extent: {x: 0.3353789, y: 0.2845261, z: 0}

@@ -5,7 +5,6 @@ public class ItemSystem : MonoBehaviour
 {
     public bool canBeCooked;
     public bool canBreak;
-    public bool skipCookedStateVisual = false;
     public int durabilityUncooked;
     public int durabilityCooked;
     public float cookThreshold;
@@ -37,7 +36,7 @@ public class ItemSystem : MonoBehaviour
     void Start()
     {
         currentDurability = durabilityUncooked;
-        if (!skipCookedStateVisual && cookedState != null)
+        if (cookedState != null)
         {
             cookedSpriteRenderer = cookedState.GetComponent<SpriteRenderer>();
             if (cookedSpriteRenderer != null)
@@ -155,7 +154,7 @@ public class ItemSystem : MonoBehaviour
     {
         isCooked = true;
         uncookedState.SetActive(false);
-        if (!skipCookedStateVisual && cookedState != null) cookedState.SetActive(true);
+        cookedState.SetActive(true);
         currentDurability = durabilityCooked;
         AudioManager.Instance.PlaySound("Fizzle", 1.0f, transform.position);
     }
@@ -163,10 +162,7 @@ public class ItemSystem : MonoBehaviour
     public void BurnItem()
     {
         isBurned = true;
-        if (!skipCookedStateVisual && cookedSpriteRenderer != null)
-        {
-            cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
-        }
+        cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
         AudioManager.Instance.PlaySound("DryFart", 1.0f, transform.position);
     }
 }
