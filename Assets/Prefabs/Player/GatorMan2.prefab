@@ -8,6 +8,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.moveUp
+      value: 273
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.moveDown
+      value: 274
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.moveLeft
+      value: 276
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.attackKey
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.moveRight
+      value: 275
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.pickupKey
+      value: 257
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.interactKey
+      value: 259
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.throwConfirmKey
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.throwPrepareKey
+      value: 258
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069821805936621821, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: inputConfig.toggleSafetyKey
+      value: 260
+      objectReference: {fileID: 0}
     - target: {fileID: 7199007613480025098, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
       propertyPath: m_Name
       value: GatorMan2

@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 5400976351538029550}
   - component: {fileID: 6559327783794153403}
   - component: {fileID: 4324472726372610997}
+  - component: {fileID: 1862175856854452489}
   m_Layer: 11
   m_Name: GatorMan2_Controller
   m_TagString: Player
@@ -671,6 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInputEnabled: 1
+  canThrow: 1
 --- !u!114 &769371959283670967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,6 +771,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: WallBump
   WallBumpSound: 0
+--- !u!114 &1862175856854452489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372032603978279671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12afdfb6290801e42b6a19ded59b4db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 1
+  detectionRadius: 0.05
+  tilemapLayer:
+    serializedVersion: 2
+    m_Bits: 1073741824
 --- !u!1 &4754584776472674703
 GameObject:
   m_ObjectHideFlags: 0

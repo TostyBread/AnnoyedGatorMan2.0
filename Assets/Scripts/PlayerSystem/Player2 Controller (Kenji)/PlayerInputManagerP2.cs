@@ -13,6 +13,7 @@ public class PlayerInputManagerP2 : MonoBehaviour
     private Vector2 movementInput;
     private bool usableItemModeEnabled = true;
     public bool isInputEnabled = true;
+    public bool canThrow = true;
 
     void Awake()
     {
@@ -22,9 +23,16 @@ public class PlayerInputManagerP2 : MonoBehaviour
         inputActions.Player2Controller.Pickup.started += ctx => playerPickupSystemP2?.StartPickup();
         inputActions.Player2Controller.Pickup.performed += ctx => playerPickupSystemP2?.HoldPickup();
         inputActions.Player2Controller.Pickup.canceled += ctx => playerPickupSystemP2?.CancelPickup();
-        inputActions.Player2Controller.ThrowPrepare.started += ctx => playerThrowManagerP2?.StartPreparingThrow();
-        inputActions.Player2Controller.ThrowConfirm.started += ctx => playerThrowManagerP2?.Throw();
-        inputActions.Player2Controller.ThrowPrepare.canceled += ctx => playerThrowManagerP2?.CancelThrow();
+        inputActions.Player2Controller.ThrowPrepare.started += ctx => {
+            if (canThrow) playerThrowManagerP2?.StartPreparingThrow();
+        };
+        inputActions.Player2Controller.ThrowConfirm.started += ctx => {
+            if (canThrow) playerThrowManagerP2?.Throw();
+        };
+        inputActions.Player2Controller.ThrowPrepare.canceled += ctx => {
+            if (canThrow) playerThrowManagerP2?.CancelThrow();
+        };
+        // Above 3 lines are specifically added for ability to disable throwing when no throw zone is being tripped
         inputActions.Player2Controller.ToggleSafety.performed += ctx => HandleUsableItemInput();
         inputActions.Player2Controller.Interact.performed += ctx => playerPickupSystemP2?.StartInteraction();
     }

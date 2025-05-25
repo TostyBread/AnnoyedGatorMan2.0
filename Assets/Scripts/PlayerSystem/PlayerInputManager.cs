@@ -34,6 +34,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private Vector2 movementInput;
     private bool usableItemModeEnabled = true;
+    public bool canThrow = true;
 
     void Start()
     {
@@ -120,13 +121,19 @@ public class PlayerInputManager : MonoBehaviour
         else if (Input.GetKeyUp(inputConfig.pickupKey)) playerPickupSystem.CancelPickup();
     }
 
-    private void HandleThrowInput()
+    private void HandleThrowInput() // Script has been updated to support no throw zone
     {
-        if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        if (!canThrow || playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld)
+            return;
 
-        if (Input.GetKeyDown(inputConfig.throwPrepareKey)) playerThrowManager.StartPreparingThrow();
-        if (Input.GetKeyUp(inputConfig.attackKey) && Input.GetKey(inputConfig.throwPrepareKey)) playerThrowManager.Throw();
-        if (Input.GetKeyUp(inputConfig.throwPrepareKey)) playerThrowManager.CancelThrow();
+        if (Input.GetKeyDown(inputConfig.throwPrepareKey))
+            playerThrowManager.StartPreparingThrow();
+
+        if (Input.GetKeyUp(inputConfig.attackKey) && Input.GetKey(inputConfig.throwPrepareKey))
+            playerThrowManager.Throw();
+
+        if (Input.GetKeyUp(inputConfig.throwPrepareKey))
+            playerThrowManager.CancelThrow();
     }
 
     private void HandleUsableItemInput()
