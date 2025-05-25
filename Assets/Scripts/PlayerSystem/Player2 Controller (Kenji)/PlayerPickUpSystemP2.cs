@@ -85,18 +85,22 @@ public class PlayerPickupSystemP2 : MonoBehaviour
             lightSwitch.ToggleLight(inInteractRange ? stateManager : null);
         }
 
-        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
-        {
-            window.ToogleWindow();
-        }
-
         if (targetInteractable != null && targetInteractable.TryGetComponent(out ItemPackage package))
         {
             package.TakingOutItem();
         }
+
         if (targetInteractable != null && targetInteractable.TryGetComponent(out NPCBehavior npc))
         {
             npc.SpawnMenuAndPlate();
+        }
+    }
+
+    public void StartLongInteraction(bool isPressed) // Similar to StartInteraction, but require player to keep pressing to interect
+    {
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
+        {
+            window.SetWindowState(isPressed);
         }
     }
 

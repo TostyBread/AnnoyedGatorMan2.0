@@ -6,6 +6,7 @@ public class HealthManager : MonoBehaviour
     public float Health = 20;
     public float currentHealth;
     public float reviveSpeed = 1;
+    public float damageReceived; // For the duck explosion
     public Image HealthBar;
     public GameObject hand;
     public bool isPlayer2 = false;
@@ -168,5 +169,6 @@ public class HealthManager : MonoBehaviour
     public void TryDamage(float damage)
     {
         currentHealth -= damage;
+        damageReceived = damage; // duck explosion deals damage
     }
 }
