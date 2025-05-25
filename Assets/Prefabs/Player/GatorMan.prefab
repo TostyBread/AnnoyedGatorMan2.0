@@ -998,6 +998,7 @@ GameObject:
   - component: {fileID: 4034342515493834415}
   - component: {fileID: 3708809617773423326}
   - component: {fileID: 7051173386322744479}
+  - component: {fileID: 2208173053573196899}
   m_Layer: 8
   m_Name: GatorMan
   m_TagString: Player
@@ -1134,6 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea141bb7581dc64ba788e98fe5bb41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputMode: 0
   inputConfig:
     moveUp: 119
     moveDown: 115
@@ -1145,7 +1147,10 @@ MonoBehaviour:
     interactKey: 325
     throwPrepareKey: 324
     throwConfirmKey: 323
+    joystickHorizontalAxis: 
+    joystickVerticalAxis: 
   isInputEnabled: 1
+  canThrow: 1
 --- !u!114 &4069354687643541684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,6 +1208,7 @@ MonoBehaviour:
   reviveSpeed: 10
   HealthBar: {fileID: 4299897855130126091}
   hand: {fileID: 6606420664885157339}
+  isPlayer2: 0
   characterAnimation: {fileID: 4838559159962518523}
 --- !u!114 &3708809617773423326
 MonoBehaviour:
@@ -1243,6 +1249,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: WallBump
   WallBumpSound: 0
+--- !u!114 &2208173053573196899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199007613480025098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12afdfb6290801e42b6a19ded59b4db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 0
+  detectionRadius: 0.05
+  tilemapLayer:
+    serializedVersion: 2
+    m_Bits: 1073741824
 --- !u!1 &7357411553977680397
 GameObject:
   m_ObjectHideFlags: 0

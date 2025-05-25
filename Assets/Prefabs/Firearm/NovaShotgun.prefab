@@ -68,8 +68,7 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTags:
-  - Player
+  playerTag: Player
 --- !u!114 &6308969702795743837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +217,7 @@ MonoBehaviour:
   - {x: -0.39794922, y: 0.25055313, z: 0}
   m_ShapePathHash: 36938929
   m_Mesh: {fileID: 0}
-  m_InstanceId: -497686
+  m_InstanceId: -7412
   m_LocalBounds:
     m_Center: {x: 1.4380834, y: -0.04985881, z: 0}
     m_Extent: {x: 2.0469997, y: 0.47969747, z: 0}

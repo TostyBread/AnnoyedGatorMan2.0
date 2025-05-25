@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerPickupSystem : MonoBehaviour
+public class PlayerPickupSystemP2 : MonoBehaviour
 {
     [Header("Pickup Settings")]
     public float pickupRadius = 2f;
@@ -16,8 +16,8 @@ public class PlayerPickupSystem : MonoBehaviour
     private Coroutine pickupCoroutine = null;
     private bool isHoldingPickupKey = false;
 
-    public HandSpriteManager handSpriteManager;
-    public CharacterFlip characterFlip;
+    public HandSpriteManagerP2 handSpriteManagerP2;
+    public CharacterFlipP2 characterFlipP2;
     private StateManager stateManager;
 
     private IUsable usableItemController;
@@ -42,7 +42,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private void HandleItemDetection()
     {
-        Vector2 mouseWorldPos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
+        Vector2 virtualMousPos = PlayerAimController.Instance.GetCursorPosition();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, pickupRadius);
 
         targetItem = null;
@@ -51,7 +51,7 @@ public class PlayerPickupSystem : MonoBehaviour
         foreach (var collider in colliders)
         {
             bool isPickupable = IsPickupable(collider);
-            bool isMouseOver = collider.OverlapPoint(mouseWorldPos);
+            bool isMouseOver = collider.OverlapPoint(virtualMousPos);
             bool hasInteractable = collider.gameObject.TryGetComponent<Interactable>(out Interactable interactable);
 
             // If the item is both interactable and pickupable
@@ -85,22 +85,18 @@ public class PlayerPickupSystem : MonoBehaviour
             lightSwitch.ToggleLight(inInteractRange ? stateManager : null);
         }
 
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
+        {
+            window.ToogleWindow();
+        }
+
         if (targetInteractable != null && targetInteractable.TryGetComponent(out ItemPackage package))
         {
             package.TakingOutItem();
         }
-
         if (targetInteractable != null && targetInteractable.TryGetComponent(out NPCBehavior npc))
         {
             npc.SpawnMenuAndPlate();
-        }
-    }
-
-    public void StartLongInteraction(bool isPressed) // Similar to StartInteraction, but require player to keep pressing to interect
-    {
-        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
-        {
-            window.SetWindowState(isPressed);
         }
     }
 
@@ -156,6 +152,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private void PickUpItem(GameObject item)
     {
+        PlayerAimController.Instance.ClearLockOn(); // Remove lock on for controller
         if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
         if (item.TryGetComponent(out Rigidbody2D rb))
         {
@@ -183,7 +180,7 @@ public class PlayerPickupSystem : MonoBehaviour
             layerManager.ChangeToHoldingOrder();
         }
 
-        handSpriteManager?.UpdateHandSprite();
+        handSpriteManagerP2?.UpdateHandSprite();
 
         AudioManager.Instance.PlaySound("gunpickup2", 1.0f, transform.position);
     }
@@ -199,7 +196,7 @@ public class PlayerPickupSystem : MonoBehaviour
     {
         if (heldItem == null) return;
 
-        bool isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
+        bool isFacingRight = characterFlipP2 != null && characterFlipP2.IsFacingRight();
         Vector3 dropPosition = handPosition.position + new Vector3(isFacingRight ? -0.2f : 0.5f, -0.5f, 0f);
         heldItem.transform.position = dropPosition;
         if (heldItem.TryGetComponent(out FirearmController firearm)) // When player let go of firearm, it will remove the characterflip associate to that player
@@ -219,13 +216,14 @@ public class PlayerPickupSystem : MonoBehaviour
         if (heldItem.TryGetComponent(out Rigidbody2D rb))
         {
             rb.isKinematic = false;
-            Vector2 direction = (ScreenToWorldPointMouse.Instance.GetMouseWorldPosition() - (Vector2)dropPosition).normalized;
+            Vector2 virtualMousPos = PlayerAimController.Instance.GetCursorPosition();
+            Vector2 direction = (virtualMousPos - (Vector2)dropPosition).normalized;
             rb.AddForce(direction * dropForce, ForceMode2D.Impulse);
         }
 
         heldItem = null;
         usableItemController = null;
-        handSpriteManager?.UpdateHandSprite();
+        handSpriteManagerP2?.UpdateHandSprite();
     }
 
     public GameObject GetHeldItem() => heldItem;

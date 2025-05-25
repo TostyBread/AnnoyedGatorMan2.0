@@ -1,7 +1,7 @@
 using UnityEngine;
 using static FirearmController;
 
-public class CharacterFlip : MonoBehaviour, ICharacterFlip
+public class CharacterFlipP2 : MonoBehaviour, ICharacterFlip
 {
     public bool isFacingRight = true; // Tracks the character's facing direction
     public bool isFlippingEnabled = true;
@@ -14,7 +14,7 @@ public class CharacterFlip : MonoBehaviour, ICharacterFlip
 
     private void HandleFlip()
     {
-        Vector3 mousePosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
+        Vector3 mousePosition = PlayerAimController.Instance.GetCursorPosition();
 
         // Determine if the character should face right or left
         bool shouldFaceRight = mousePosition.x >= transform.position.x;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerThrowManager : MonoBehaviour
+public class PlayerThrowManagerP2 : MonoBehaviour
 {
     [Header("Throw Settings")]
     public float throwForceMultiplier = 2f;
@@ -10,8 +10,8 @@ public class PlayerThrowManager : MonoBehaviour
     public float throwSpriteDuration = 0.5f;
 
     [Header("References")]
-    public PlayerPickupSystem playerPickupSystem;
-    public HandSpriteManager handSpriteManager;
+    public PlayerPickupSystemP2 playerPickupSystemP2;
+    public HandSpriteManagerP2 handSpriteManagerP2;
 
     private bool isPreparingToThrow = false;
     private Vector2 storedThrowPosition;
@@ -19,10 +19,10 @@ public class PlayerThrowManager : MonoBehaviour
 
     public void StartPreparingThrow()
     {
-        if (!playerPickupSystem.HasItemHeld) return;
+        if (!playerPickupSystemP2.HasItemHeld) return;
 
         isPreparingToThrow = true;
-        usableFunction = playerPickupSystem.GetUsableFunction();
+        usableFunction = playerPickupSystemP2.GetUsableFunction();
         usableFunction?.DisableUsableFunction();
         //Debug.Log("Preparing to throw...");
     }
@@ -31,7 +31,7 @@ public class PlayerThrowManager : MonoBehaviour
     {
         if (!isPreparingToThrow) return;
 
-        GameObject heldItem = playerPickupSystem.GetHeldItem();
+        GameObject heldItem = playerPickupSystemP2.GetHeldItem();
         if (heldItem == null) return;
 
         if (heldItem.TryGetComponent(out FirearmController firearm))
@@ -39,10 +39,10 @@ public class PlayerThrowManager : MonoBehaviour
             firearm.ClearOwner();
         }
 
-        playerPickupSystem.DropItem();
-        handSpriteManager?.ShowThrowSprite(throwSpriteDuration);
+        playerPickupSystemP2.DropItem();
+        handSpriteManagerP2?.ShowThrowSprite(throwSpriteDuration);
 
-        storedThrowPosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
+        storedThrowPosition = PlayerAimController.Instance.GetCursorPosition();
 
         float distance = Vector2.Distance(transform.position, storedThrowPosition);
         float adjustedThrowForce = distance * throwForceMultiplier;

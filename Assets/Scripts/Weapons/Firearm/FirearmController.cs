@@ -1,4 +1,3 @@
-// FirearmController.cs
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -30,7 +29,7 @@ public class FirearmController : MonoBehaviour, IUsable
     private float nextFireTime = 0f;
     private Dictionary<string, float> animationClipCache = new();
 
-    private CharacterFlip ownerFlip;
+    private ICharacterFlip ownerFlip;
     private Vector3 initialMuzzleLocalPosition;
     private GameObject owner;
 
@@ -58,10 +57,15 @@ public class FirearmController : MonoBehaviour, IUsable
         }
     }
 
+    public interface ICharacterFlip
+    {
+        bool IsFacingRight();
+    }
+
     public void SetOwner(GameObject newOwner)
     {
         owner = newOwner;
-        ownerFlip = newOwner.GetComponent<CharacterFlip>();
+        ownerFlip = newOwner.GetComponent<ICharacterFlip>();
         isFacingRight = ownerFlip != null && ownerFlip.IsFacingRight();
         AdjustMuzzlePoint();
     }

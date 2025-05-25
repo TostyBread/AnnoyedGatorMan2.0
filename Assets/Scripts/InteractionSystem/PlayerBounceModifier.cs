@@ -13,36 +13,22 @@ public class PlayerBounceModifier : MonoBehaviour
 
     [Header("References")]
     public PhysicsMaterial2D bounceMaterial; // The Physics Material 2D assigned to the item
-    public string[] playerTags;      // Tag used to identify the player
 
     private Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //if (rb == null)
-        //{
-        //    Debug.LogError($"Rigidbody2D missing on {gameObject.name}");
-        //}
-
-        //if (bounceMaterial == null)
-        //{
-        //    Debug.LogError($"PhysicsMaterial2D missing on {gameObject.name}");
-        //}
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         bool isPlayerCollision = false;
 
-        // Check if the collided object has any of the player tags
-        foreach (string tag in playerTags)
+        // Removed List of Player collider, because its fucking dumb of you to implement
+        if (collision.collider.CompareTag("Player"))
         {
-            if (collision.collider.CompareTag(tag))
-            {
-                isPlayerCollision = true;
-                break; // Exit the loop early if a match is found
-            }
+            isPlayerCollision = true;
         }
 
         if (isPlayerCollision)

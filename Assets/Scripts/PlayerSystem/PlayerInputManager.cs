@@ -14,14 +14,18 @@ public class PlayerInputConfig
     public KeyCode interactKey;
     public KeyCode throwPrepareKey;
     public KeyCode throwConfirmKey;
-}
 
+    public string joystickHorizontalAxis = "P2_LJoystick_Horizontal";
+    public string joystickVerticalAxis = "P2_LJoystick_Vertical";
+}
 
 public class PlayerInputManager : MonoBehaviour
 {
+    public enum InputMode { Keyboard, Joystick }
+    public InputMode inputMode = InputMode.Keyboard;
     public PlayerInputConfig inputConfig;
 
-    public bool isInputEnabled = true; // Use for HealthManager to trigger the controls on or off
+    public bool isInputEnabled = true;
     private CharacterMovement characterMovement;
     private Fist fist;
     private PlayerPickupSystem playerPickupSystem;
@@ -30,6 +34,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private Vector2 movementInput;
     private bool usableItemModeEnabled = true;
+    public bool canThrow = true;
 
     void Start()
     {
@@ -59,10 +64,19 @@ public class PlayerInputManager : MonoBehaviour
         if (stateManager != null && stateManager.state == StateManager.PlayerState.Burn) return;
 
         Vector2 move = Vector2.zero;
-        if (Input.GetKey(inputConfig.moveUp)) move.y += 1;
-        if (Input.GetKey(inputConfig.moveDown)) move.y -= 1;
-        if (Input.GetKey(inputConfig.moveRight)) move.x += 1;
-        if (Input.GetKey(inputConfig.moveLeft)) move.x -= 1;
+
+        if (inputMode == InputMode.Keyboard)
+        {
+            if (Input.GetKey(inputConfig.moveUp)) move.y += 1;
+            if (Input.GetKey(inputConfig.moveDown)) move.y -= 1;
+            if (Input.GetKey(inputConfig.moveRight)) move.x += 1;
+            if (Input.GetKey(inputConfig.moveLeft)) move.x -= 1;
+        }
+        else if (inputMode == InputMode.Joystick)
+        {
+            move.x = Input.GetAxis(inputConfig.joystickHorizontalAxis);
+            move.y = Input.GetAxis(inputConfig.joystickVerticalAxis);
+        }
 
         movementInput = move.normalized;
         characterMovement?.SetMovement(movementInput);
@@ -107,13 +121,19 @@ public class PlayerInputManager : MonoBehaviour
         else if (Input.GetKeyUp(inputConfig.pickupKey)) playerPickupSystem.CancelPickup();
     }
 
-    private void HandleThrowInput()
+    private void HandleThrowInput() // Script has been updated to support no throw zone
     {
-        if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        if (!canThrow || playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld)
+            return;
 
-        if (Input.GetKeyDown(inputConfig.throwPrepareKey)) playerThrowManager.StartPreparingThrow();
-        if (Input.GetKeyUp(inputConfig.attackKey) && Input.GetKey(inputConfig.throwPrepareKey)) playerThrowManager.Throw();
-        if (Input.GetKeyUp(inputConfig.throwPrepareKey)) playerThrowManager.CancelThrow();
+        if (Input.GetKeyDown(inputConfig.throwPrepareKey))
+            playerThrowManager.StartPreparingThrow();
+
+        if (Input.GetKeyUp(inputConfig.attackKey) && Input.GetKey(inputConfig.throwPrepareKey))
+            playerThrowManager.Throw();
+
+        if (Input.GetKeyUp(inputConfig.throwPrepareKey))
+            playerThrowManager.CancelThrow();
     }
 
     private void HandleUsableItemInput()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2694798964202256284}
   - component: {fileID: 913611080747187696}
   - component: {fileID: 8209671904776693231}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: LightSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
