@@ -17,6 +17,7 @@ public class Smoke : MonoBehaviour
     public bool isWeed = false;
     public float sanityRecover = 10;
     public bool isSmoking = false;
+    public string SmokeAudioName;
 
     [Header("Random scale & rotation")]
     public float Min;
@@ -82,6 +83,7 @@ public class Smoke : MonoBehaviour
             if (transform.localScale.x <= 0.3f)
             {
                 sanity.RemainSanity += sanityRecover;
+                AudioManager.Instance.PlaySound(SmokeAudioName, 1.0f, transform.position);
                 Destroy(gameObject);
             }
         }

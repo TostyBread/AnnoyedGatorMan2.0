@@ -158,6 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7864936329689687182}
   - component: {fileID: 8754958788580642743}
+  - component: {fileID: 2031930583862482097}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -232,3 +233,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2031930583862482097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5907340962156393107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.38012075, y: -0.32546806, z: 0}
+  - {x: -0.46369505, y: -0.2083478, z: 0}
+  - {x: -0.50605917, y: -0.09396553, z: 0}
+  - {x: -0.5102954, y: 0.011944056, z: 0}
+  - {x: -0.49335003, y: 0.14327192, z: 0}
+  - {x: -0.42980433, y: 0.26189065, z: 0}
+  - {x: -0.35172653, y: 0.36443543, z: 0}
+  - {x: -0.27305794, y: 0.4313457, z: 0}
+  - {x: -0.17562103, y: 0.47794604, z: 0}
+  - {x: -0.065475464, y: 0.507601, z: 0}
+  - {x: 0.07008886, y: 0.5033643, z: 0}
+  - {x: 0.20141697, y: 0.47794604, z: 0}
+  - {x: 0.3327446, y: 0.39745498, z: 0}
+  - {x: 0.41950893, y: 0.2881806, z: 0}
+  - {x: 0.48101807, y: 0.16021752, z: 0}
+  - {x: 0.51490927, y: 0.037362337, z: 0}
+  - {x: 0.4937272, y: -0.13632941, z: 0}
+  - {x: 0.4047637, y: -0.31002092, z: 0}
+  - {x: 0.26276207, y: -0.44069052, z: 0}
+  - {x: 0.09127092, y: -0.4964218, z: 0}
+  - {x: -0.09745836, y: -0.49474096, z: 0}
+  - {x: -0.1901741, y: -0.46220636, z: 0}
+  - {x: -0.26882172, y: -0.42016697, z: 0}
+  - {x: -0.34384203, y: -0.3760593, z: 0}
+  m_ShapePathHash: 282113933
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -70906
+  m_LocalBounds:
+    m_Center: {x: 0.0023069382, y: 0.0055896044, z: 0}
+    m_Extent: {x: 0.5126023, y: 0.5020114, z: 0}

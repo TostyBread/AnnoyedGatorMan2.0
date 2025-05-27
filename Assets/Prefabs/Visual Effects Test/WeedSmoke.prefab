@@ -160,6 +160,7 @@ MonoBehaviour:
   isWeed: 1
   sanityRecover: 20
   isSmoking: 0
+  SmokeAudioName: SmokeWeed
   Min: 0.5
   Max: 1
   rotationMin: 0
