@@ -19,17 +19,23 @@ public class WeatherManager : MonoBehaviour
     public Light2D light2D;
     public string ThunderAudioName;
     public AudioClip RainingClip;
+    [Range(0f, 1f)]
+    public float rainingAudioVolume;
     private float currentBlackOutInterval;
 
     [Header("Hot setting")]
     public float heatMultiplier = 2;
     public GameObject SunRay;
     public AudioClip SunnyClip;
+    [Range(0f, 1f)]
+    public float sunnyAudioVolume;
 
     [Header("Cold setting")]
     public float coldMultiplier = 0.5f;
     public GameObject FreezeArea;
     public AudioClip WinterClip;
+    [Range(0f, 1f)]
+    public float winterAudioVolume;
 
     [Header("References")]
     private AudioSource audioSource;
@@ -70,7 +76,8 @@ public class WeatherManager : MonoBehaviour
     void Update()
     {
         if (weather == Weather.Normal)
-        {          
+        {
+            audioSource.volume = 1;
             if (audioSource.isPlaying) audioSource.Stop();
             audioSource.clip = null;
 
@@ -83,6 +90,7 @@ public class WeatherManager : MonoBehaviour
             if (audioSource.clip != RainingClip)
             {
                 audioSource.clip = RainingClip;
+                audioSource.volume = rainingAudioVolume;
                 audioSource.Play();                
             }
 
@@ -109,6 +117,7 @@ public class WeatherManager : MonoBehaviour
             if (audioSource.clip != SunnyClip)
             {
                 audioSource.clip = SunnyClip;
+                audioSource.volume = sunnyAudioVolume;
                 audioSource.Play();
             }
 
@@ -127,6 +136,7 @@ public class WeatherManager : MonoBehaviour
             if (audioSource.clip != WinterClip)
             {
                 audioSource.clip = WinterClip;
+                audioSource.volume = winterAudioVolume;
                 audioSource.Play();
             }
 
