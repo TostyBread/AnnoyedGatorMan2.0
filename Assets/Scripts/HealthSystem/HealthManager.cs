@@ -88,7 +88,7 @@ public class HealthManager : MonoBehaviour
 
         if (!CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1f);
             return;
         }
 
