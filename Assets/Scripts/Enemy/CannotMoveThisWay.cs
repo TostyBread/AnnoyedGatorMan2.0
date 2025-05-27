@@ -19,8 +19,8 @@ public class CannotMoveThisWay : MonoBehaviour
         { 
             canMoveThisWay = false;
 
-            Debug.Log("can move this way = " + canMoveThisWay);
-            Debug.Log("collision with = " + collision);
+            //Debug.Log("can move this way = " + canMoveThisWay);
+            //Debug.Log("collision with = " + collision);
         }
     }
 
@@ -30,8 +30,8 @@ public class CannotMoveThisWay : MonoBehaviour
         {
             canMoveThisWay = false;
 
-            Debug.Log("can move this way = " + canMoveThisWay);
-            Debug.Log("collision with = " + collision);
+            //Debug.Log("can move this way = " + canMoveThisWay);
+            //Debug.Log("collision with = " + collision);
         }
     }
 
@@ -41,8 +41,8 @@ public class CannotMoveThisWay : MonoBehaviour
         {
             canMoveThisWay = true;
 
-            Debug.Log("can move this way = " + canMoveThisWay);
-            Debug.Log("collision with = " + collision);
+            //Debug.Log("can move this way = " + canMoveThisWay);
+            //Debug.Log("collision with = " + collision);
         }
     }
 
@@ -52,8 +52,8 @@ public class CannotMoveThisWay : MonoBehaviour
         {
             canMoveThisWay = true;
 
-            Debug.Log("can move this way = " + canMoveThisWay);
-            Debug.Log("collision with = " + collision);
+            //Debug.Log("can move this way = " + canMoveThisWay);
+            //Debug.Log("collision with = " + collision);
         }
     }
 

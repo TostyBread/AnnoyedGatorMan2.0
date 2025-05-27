@@ -83,7 +83,7 @@ public class EnemyMovement : MonoBehaviour
         //instantiate empty gameobject to record TargetPos
         TargetPos = Instantiate(TargetPos);
         TargetPos.name = name + " TargetPos";
-        TargetPos.transform.position = this.gameObject.transform.position;
+        TargetPos.transform.position = transform.position;
         TargetPos.transform.parent = this.gameObject.transform.parent;
 
 
@@ -103,7 +103,7 @@ public class EnemyMovement : MonoBehaviour
         cmty = GetComponentInChildren<CannotMoveThisWay>();
 
         if (EnemyGrid.Count != 0)
-            TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
+        TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
 
         StartCoroutine(ChangeTargetedGrid(Random.Range(1f, 3f)));
     }
@@ -157,7 +157,7 @@ public class EnemyMovement : MonoBehaviour
         MidOfSpawnedGrid.transform.position = this.gameObject.transform.position;
         MidOfSpawnedGrid.transform.localScale = Vector3.one * gapBetweenGrid;
         //result is the gap between points will be wider or narrower
-
+        
         MidOfSpawnedGrid.transform.parent = this.gameObject.transform.parent;
     }
 
@@ -206,6 +206,22 @@ public class EnemyMovement : MonoBehaviour
         MOSP.transform.parent = this.gameObject.transform.parent;
     }
 
+    private float GetSightRange()
+    {
+        float maxDistance = 0f;
+
+        foreach (GameObject sightPoint in EnemySight)
+        {
+            float distance = Vector2.Distance(transform.position, sightPoint.transform.position);
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+            }
+        }
+
+        return maxDistance;
+    }
+
     private void enemyMovement(Transform Target)
     {
         if (cmty.canMoveThisWay == false)
@@ -219,15 +235,14 @@ public class EnemyMovement : MonoBehaviour
             //lets do attack here
             if (!isAttacking)
             {
-                attackCoroutine = StartCoroutine(Attack(DurationBeforeAttack, RecoveryFrame));
+                attackCoroutine = StartCoroutine(Attack(DurationBeforeAttack,RecoveryFrame));
                 isAttacking = true;
             }
 
             return;
         }
 
-        if (!isAttacking)
-        {
+        
             ////stop coroutine of attack
             //if (attackCoroutine != null)
             //{
@@ -259,7 +274,7 @@ public class EnemyMovement : MonoBehaviour
                 Vector2 newPos = Vector2.MoveTowards(rb2d.position, Target.position, speed * Time.deltaTime);
                 rb2d.MovePosition(newPos);
             }
-        }
+        
 
         //prevent the force of player pushing affect enemy movement
         rb2d.velocity = Vector2.zero;
@@ -270,7 +285,7 @@ public class EnemyMovement : MonoBehaviour
         Vector2 direction = Target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion Rotation = Quaternion.Euler(0, 0, angle);
-
+        
         transform.rotation = Rotation;
         //transform.rotation = Quaternion.Lerp(transform.rotation, Rotation, Time.deltaTime * 5f);
     }
@@ -287,7 +302,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         // Keep moving toward the current target if it exists
-        else if (TargetedGrid != null)
+        if (TargetedGrid != null)
         {
             enemyMovement(TargetedGrid);
         }
@@ -295,46 +310,47 @@ public class EnemyMovement : MonoBehaviour
 
     private void EnemyFoundTarget(GameObject[] Targets)
     {
-        bool detectedThisFrame = false;
+        bool PlayerFound = false;
 
-        foreach (GameObject Target in Targets)
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 5f, LayerMask.GetMask("Player"));
+        foreach (var hit in hits)
         {
-            foreach (var sight in EnemySight)
+            Vector2 dirToTarget = hit.transform.position - transform.position;
+            float sightRange = GetSightRange();
+            RaycastHit2D ray = Physics2D.Raycast(
+                transform.position,
+                dirToTarget.normalized,
+                sightRange,
+                LayerMask.GetMask("Player", "Obstacles")
+            );
+
+            if (ray.collider != null && ray.collider.CompareTag("Player"))
             {
-                if (Vector3.Distance(Target.transform.position, sight.transform.position) < 1f)
-                {
-                    detectedThisFrame = true;
-                    TargetPos.transform.position = sight.transform.position;
-
-                    // need enemy to rotate here because want enemy to aim player before shoot
-                    enemyRotation(Target.transform);
-
-                    break;
-                }
+                PlayerFound = true;
+                TargetPos.transform.position = hit.transform.position;
+                break;
             }
         }
 
-        if (detectedThisFrame)
-        {
-            //here is the Shoot manager
-            if (CanShoot && Targets != null)
-            {
-                time += Time.deltaTime;
-                if (time >= ShootIntervel)
-                {
-                    GameObject LOS = Instantiate(Projectile, transform.position, transform.rotation);
-                    LOS.transform.parent = ProjectileStorage.transform;
-                    time = 0;
-                }
-                else
-                {
-                    time = 0; // Reset if no longer detecting
-                }
-            }
+        //foreach (GameObject Target in Targets) 
+        //{
+        //    foreach (GameObject sight in EnemySight)
+        //    {
+        //        if (Vector2.Distance(Target.transform.position, sight.transform.position) <= 1f)
+        //        {
+        //            PlayerFound = true;
+        //            TargetPos.transform.position = sight.transform.position;
+        //            break;
+        //        }
+        //    }
+        //}
 
+        if (PlayerFound)
+        {
             // Force chasing no matter what
             GameObject closestTarget = GetClosestTarget(Targets);
-            if (closestTarget != null)
+            if (closestTarget != null && currentState != EnemyState.Chasing)
             {
                 SwitchToChaseMode(closestTarget);
                 return;
@@ -366,7 +382,7 @@ public class EnemyMovement : MonoBehaviour
                     else
                     {
                         // Use transform distance for flying enemies
-                        if (Vector3.Distance(transform.position, TargetedGrid.position) < 0.1f)
+                        if (Vector3.Distance(transform.position, TargetedGrid.position) <= 0.1f)
                         {
                             reachedDestination = true;
                         }
@@ -374,7 +390,7 @@ public class EnemyMovement : MonoBehaviour
 
                     if (reachedDestination)
                     {
-                        Debug.Log("Reached last known player position. Begin wait...");
+                        //Debug.Log("Reached last known player position. Begin wait...");
                         currentState = EnemyState.WaitingToReturn;
                         waitCoroutine = StartCoroutine(WaitAfterLosingPlayer(Random.Range(1f, 3f)));
                         isMovingToLastSeenPos = false;
@@ -406,6 +422,7 @@ public class EnemyMovement : MonoBehaviour
 
         // Set new state
         currentState = EnemyState.Chasing;
+
         TargetPos.transform.position = playerTarget.transform.position;
         TargetedGrid = TargetPos.transform;
         isMovingToLastSeenPos = true;
@@ -438,7 +455,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (currentState == EnemyState.WaitingToReturn)
         {
-            Debug.Log("Wait over. Resuming wandering.");
+            //Debug.Log("Wait over. Resuming wandering.");
             StartCoroutine(ChangeTargetedGrid(0));
             currentState = EnemyState.Wandering;
         }
@@ -452,19 +469,20 @@ public class EnemyMovement : MonoBehaviour
         if (EnemyGrid.Count > 0)
         {
             TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
-            Debug.Log("Target Grid Changed to " + TargetedGrid.name);
+            TargetPos.transform.position = TargetedGrid.transform.position;
+            //Debug.Log("Target Grid Changed to " + TargetedGrid.name);
         }
 
         MoveNext = true;
     }
 
-    private IEnumerator Attack(float dba, float recoverFrame)
+    private IEnumerator Attack(float dba,float recoverFrame)
     {
 
-        Debug.Log("ready to attack " + dba);
+        //Debug.Log("ready to attack " + dba);
         yield return new WaitForSeconds(dba);
 
-        Debug.Log("attack");
+        //Debug.Log("attack");
         Hitbox.SetActive(true);
 
         yield return new WaitForSeconds(recoverFrame);

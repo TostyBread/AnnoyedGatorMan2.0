@@ -14,7 +14,7 @@ public class HitBox : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("attack " + collision.name);
+            //Debug.Log("attack " + collision.name);
 
             collision.GetComponentInChildren<HealthManager>().currentHealth -= damage;
         }
@@ -25,7 +25,7 @@ public class HitBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("attack " + collision.gameObject.name);
+            //Debug.Log("attack " + collision.gameObject.name);
 
             collision.gameObject.GetComponentInChildren<HealthManager>().currentHealth -= damage;
         }
