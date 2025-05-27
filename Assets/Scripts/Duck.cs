@@ -24,7 +24,7 @@ public class Duck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InZone = detectZone.inDetactZone;
+        if (detectZone) InZone = detectZone.inDetactZone;
 
         if (healthManager.currentHealth <= 0)
         {
@@ -37,8 +37,13 @@ public class Duck : MonoBehaviour
     {
         if (healthManager.currentHealth != currentHealth)
         {
-            if (detectZone.inDetactZone)
+            if (detectZone && detectZone.inDetactZone)
             { 
+                sanity.RemainSanity += healthManager.damageReceived;
+            }
+
+            if (!detectZone)
+            {
                 sanity.RemainSanity += healthManager.damageReceived;
             }
             
