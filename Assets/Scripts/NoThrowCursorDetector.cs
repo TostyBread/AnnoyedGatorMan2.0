@@ -30,11 +30,14 @@ public class NoThrowCursorDetector : MonoBehaviour
             _ => Vector2.zero
         };
 
-        if (cursorPos == Vector2.zero) return; // invalid mouse or fallback
+        if (cursorPos == Vector2.zero) return;
 
         Vector2 origin = transform.position;
         Vector2 direction = (cursorPos - origin).normalized;
         float distance = Vector2.Distance(origin, cursorPos);
+
+        // Optional: clamp distance to prevent very far cursor abuse
+        distance = Mathf.Min(distance, 20f);
 
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, wallLayer);
 
@@ -47,19 +50,20 @@ public class NoThrowCursorDetector : MonoBehaviour
             inputManagerP2.canThrow = canThrow;
     }
 
+
     void OnDrawGizmosSelected()
     {
         Vector2 origin = transform.position;
         Vector2 target = Application.isPlaying
             ? (inputType == InputType.Mouse
-                ? ScreenToWorldPointMouse.Instance.GetMouseWorldPosition()
-                : PlayerAimController.Instance.GetCursorPosition())
+                ? ScreenToWorldPointMouse.Instance?.GetMouseWorldPosition() ?? origin
+                : PlayerAimController.Instance?.GetCursorPosition() ?? origin)
             : origin + Vector2.right;
 
         Vector2 direction = (target - origin).normalized;
         float distance = Vector2.Distance(origin, target);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(origin, direction * distance);
+        Gizmos.DrawRay(origin, direction * Mathf.Min(distance, 20f));
     }
 }

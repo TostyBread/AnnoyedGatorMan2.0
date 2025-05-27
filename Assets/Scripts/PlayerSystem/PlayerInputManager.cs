@@ -128,9 +128,14 @@ public class PlayerInputManager : MonoBehaviour
         if (!isInputEnabled || playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld)
             return;
 
+        // Begin preparing
         if (Input.GetKeyDown(inputConfig.throwPrepareKey))
+        {
             isPreparingHeld = true;
+            throwStarted = false;
+        }
 
+        // Cancel when letting go of prepare
         if (Input.GetKeyUp(inputConfig.throwPrepareKey))
         {
             isPreparingHeld = false;
@@ -139,16 +144,29 @@ public class PlayerInputManager : MonoBehaviour
             return;
         }
 
+        // Start preparing logic
         if (isPreparingHeld && !throwStarted && canThrow)
         {
             throwStarted = true;
             playerThrowManager.StartPreparingThrow();
         }
 
-        if (Input.GetKeyUp(inputConfig.attackKey) && isPreparingHeld && throwStarted)
+        // Final throw condition
+        if (Input.GetKeyUp(inputConfig.attackKey))
         {
-            playerThrowManager.Throw();
-            throwStarted = false;
+            if (isPreparingHeld && throwStarted && canThrow)
+            {
+                playerThrowManager.Throw();
+
+                // RESET STATES after throw
+                isPreparingHeld = false;
+                throwStarted = false;
+            }
+            else
+            {
+                // Always clear throw state if not valid
+                throwStarted = false;
+            }
         }
     }
 
