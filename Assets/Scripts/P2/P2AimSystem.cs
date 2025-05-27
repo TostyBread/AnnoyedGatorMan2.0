@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR;
 
 public class P2AimSystem : MonoBehaviour
@@ -20,7 +21,7 @@ public class P2AimSystem : MonoBehaviour
     private int currentTargetIndex;
     public GameObject Range;
 
-    private GameObject player;
+    public GameObject P2Player;
     private GameObject CurrentTarget;
     public GameObject HandControl;
 
@@ -29,11 +30,16 @@ public class P2AimSystem : MonoBehaviour
 
     public Transform HandAim;
 
+    public bool P3;
+    public GameObject P3Cursor;
+    [Header("Input")]
+    public KeyCode NextTarget;
+    public KeyCode PreviousTarget;
+
     // Start is called before the first frame update
     void Start()
     {
         detectTarget = Range.GetComponent<DetectTarget>();
-        player = GameObject.FindGameObjectWithTag("Player");
 
         Arrow.transform.parent = null;
     }
@@ -46,20 +52,19 @@ public class P2AimSystem : MonoBehaviour
 
         if (NearestTarget() != null)
         {
-            HandRotation(NearestTarget().transform.position);
-
             //set the arrow to the top of targeted gameobject
             Arrow.transform.position = NearestTarget().transform.position + ArrowOffset;
+            HandRotation(NearestTarget().transform.position);
             Arrow.SetActive(true);
         }
         else if (NearestTarget() == null) 
         {
-            //Debug.Log("set hand to default pos");
+            //set weapon that follow the rotation of P3Cursor
+            if (P3 && GetComponentInParent<P2PickSystem>().heldItem != null)
+                HandRotation(P3Cursor.transform.position);
+            else 
+                HandRotation(HandAim.transform.position);
 
-            //////Set hand to default pos
-            //HandControl.transform.rotation = Quaternion.identity;
-
-            HandRotation(HandAim.transform.position);
             Arrow.SetActive(false);
         }
     }
@@ -81,13 +86,13 @@ public class P2AimSystem : MonoBehaviour
     {
         if (detectTarget.AllItemInRange.Count > 0)
         {
-            if (Input.GetKeyDown(KeyCode.Tab)) // Switch to the next enemy
+            if (Input.GetKeyDown(NextTarget) || P3 && Gamepad.current.leftTrigger.wasPressedThisFrame) // Switch to the next enemy
             {
                 //int can't be float, so 0.001 still count as 1, except 0
                 currentTargetIndex = (currentTargetIndex + 1) % detectTarget.AllItemInRange.Count;
             }
 
-            if (Input.GetKeyDown(KeyCode.CapsLock)) // Switch to the previous enemy
+            if (Input.GetKeyDown(PreviousTarget) || P3 && Gamepad.current.leftShoulder.wasPressedThisFrame) // Switch to the previous enemy
             {
                 currentTargetIndex--;
                 if (currentTargetIndex < 0)
@@ -98,7 +103,7 @@ public class P2AimSystem : MonoBehaviour
 
     private void HandRotation(Vector3 Target)
     {
-        Vector2 direction = Target - player.transform.position;
+        Vector2 direction = Target - P2Player.transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         hand.transform.rotation = Quaternion.Euler(0, 0, angle);
 

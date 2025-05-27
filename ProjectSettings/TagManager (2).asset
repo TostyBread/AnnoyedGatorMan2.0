@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - WeaponShort
+  - WeaponLong
+  - FoodBig
+  - FoodSmall
+  - Fist
+  - Projectile
+  - EnviroInteract
+  - Fire
+  - Player2
+  - Mob
+  - Sanity
+  - Spawner
+  - Obstacle
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Fist
+  - Water
+  - UI
+  - Item
+  - Wall
+  - Player
+  - Projectile
+  - Mob
+  - Pest
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: CameraSortingLayer
+    uniqueID: 2568613155
+    locked: 0

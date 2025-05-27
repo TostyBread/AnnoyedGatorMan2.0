@@ -12,6 +12,7 @@ public class StateManager : MonoBehaviour
     public float MaxHeat = 100;
     public float currentHeat;
     public float BurnDur = 3;
+    public string BurnAudioName;
 
     private Dictionary<DamageSource, float> burncooldowns = new();
     private HashSet<DamageSource> burnSources = new();
@@ -20,6 +21,7 @@ public class StateManager : MonoBehaviour
     public float MaxCold = 100;
     public float currentCold;
     public float FreezeDur = 3;
+    public string FreezeAudioName;
 
     private Dictionary<DamageSource, float> coldCooldowns = new();
     private HashSet<DamageSource> coldSources = new();
@@ -28,6 +30,7 @@ public class StateManager : MonoBehaviour
     public float MaxStun = 100;
     public float currentStun;
     public float StunDur = 3;
+    public string StunAudioName;
 
     private Dictionary<DamageSource, float> stunCooldowns = new();
     private HashSet<DamageSource> stunSources = new();
@@ -47,29 +50,32 @@ public class StateManager : MonoBehaviour
     {
         if (characterMovement == null) return;
 
-        if (Input.GetKeyDown(KeyCode.Space) && state == PlayerState.Idle)
-        {
-            int randomState = Random.Range(1, 4);
-            if (randomState == 1) StartCoroutine(Burn(BurnDur));
-            else if (randomState == 2) StartCoroutine(Freeze(FreezeDur));
-            else StartCoroutine(Stun(StunDur));
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && state == PlayerState.Idle)
+        //{
+        //    int randomState = Random.Range(1, 4);
+        //    if (randomState == 1) StartCoroutine(Burn(BurnDur));
+        //    else if (randomState == 2) StartCoroutine(Freeze(FreezeDur));
+        //    else StartCoroutine(Stun(StunDur));
+        //}
 
         if (currentHeat >= MaxHeat)
         {
             StartCoroutine(Burn(BurnDur));
+            AudioManager.Instance.PlaySound(BurnAudioName, 1.0f, transform.position);
             currentHeat = 0;
         }
 
         if (currentCold >= MaxCold)
         {
             StartCoroutine(Freeze(FreezeDur));
+            AudioManager.Instance.PlaySound(FreezeAudioName, 1.0f, transform.position);
             currentCold = 0;
         }
 
         if (currentStun >= MaxStun)
         {
             StartCoroutine(Stun(StunDur));
+            AudioManager.Instance.PlaySound(StunAudioName, 1.0f, transform.position);
             currentStun = 0;
         }
     }

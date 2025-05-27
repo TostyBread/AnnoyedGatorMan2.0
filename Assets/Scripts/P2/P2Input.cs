@@ -11,6 +11,13 @@ public class P2Input : MonoBehaviour
     private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
 
+    [Header("Input")]
+    public KeyCode Use;
+    public KeyCode Throw;
+    public KeyCode Pick;
+    public KeyCode Interact;
+    public KeyCode Toggle;
+
     void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
@@ -22,56 +29,56 @@ public class P2Input : MonoBehaviour
     void Update()
     {
         HandleMovementInput();
-        HandleActionInput();
-        HandlePickupInput();
-        HandleThrowInput();
-        HandleUsableItemInput();
-        HandleEnvironmentalInteractInput();
+        HandleActionInput(Use);
+        HandlePickupInput(Pick);
+        HandleThrowInput(Throw);
+        HandleUsableItemInput(Toggle);
+        HandleEnvironmentalInteractInput(Interact);
     }
 
     public bool IsUsableModeEnabled() => usableItemModeEnabled;
 
     private void HandleMovementInput()
     {
-        movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        movementInput = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized;
         characterMovement?.SetMovement(movementInput);
     }
 
-    private void HandleActionInput()
+    private void HandleActionInput(KeyCode a)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(a))
         {
             fist?.TriggerPunch();
         }
     }
 
-    private void HandlePickupInput()
+    private void HandlePickupInput(KeyCode a)
     {
         if (playerPickupSystem == null) return;
 
-        if (Input.GetKeyDown(KeyCode.E)) playerPickupSystem.StartPickup();
-        else if (Input.GetKey(KeyCode.E)) playerPickupSystem.HoldPickup();
-        else if (Input.GetKeyUp(KeyCode.E)) playerPickupSystem.CancelPickup();
+        if (Input.GetKeyDown(a)) playerPickupSystem.StartPickup();
+        else if (Input.GetKey(a)) playerPickupSystem.HoldPickup();
+        else if (Input.GetKeyUp(a)) playerPickupSystem.CancelPickup();
     }
 
 
-    private void HandleThrowInput()
+    private void HandleThrowInput(KeyCode a)
     {
         if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
 
-        if (Input.GetMouseButtonDown(1)) playerThrowManager.StartPreparingThrow();
-        if (Input.GetMouseButtonUp(0) && Input.GetMouseButton(1)) playerThrowManager.Throw();
-        if (Input.GetMouseButtonUp(1)) playerThrowManager.CancelThrow();
+        if (Input.GetKeyDown(a)) playerThrowManager.StartPreparingThrow();
+        if (Input.GetKeyDown(Use) && Input.GetKey(a)) playerThrowManager.Throw();
+        if (Input.GetKeyUp(a)) playerThrowManager.CancelThrow();
     }
 
-    private void HandleUsableItemInput()
+    private void HandleUsableItemInput(KeyCode a)
     {
         if (playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
 
         IUsable usableFunction = playerPickupSystem.GetUsableFunction();
         if (usableFunction == null) return;
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(a))
         {
             usableItemModeEnabled = !usableItemModeEnabled;
             Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
@@ -83,15 +90,15 @@ public class P2Input : MonoBehaviour
             }
         }
 
-        if (usableItemModeEnabled && Input.GetMouseButtonDown(0))
+        if (usableItemModeEnabled && Input.GetKeyDown(Use))
         {
             usableFunction.Use();
         }
     }
 
-    private void HandleEnvironmentalInteractInput()
+    private void HandleEnvironmentalInteractInput(KeyCode a)
     {
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetKeyDown(a))
         {
             playerPickupSystem?.StartInteraction();
         }

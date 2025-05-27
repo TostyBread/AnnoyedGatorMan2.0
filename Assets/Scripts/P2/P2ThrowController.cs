@@ -1,12 +1,15 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 public class P2ThrowController : MonoBehaviour
 {
     public P2PickSystem p2;
     private P2AimSystem p2AimSystem;
+
     public GameObject ThrowDirection;
-    private GameObject Player;
+    public GameObject P2Player;
     private CharacterFlip characterFlip;
 
     public Transform ThrowPos;
@@ -14,7 +17,6 @@ public class P2ThrowController : MonoBehaviour
 
     public GameObject Range;
     public GameObject Arrow;
-
 
     [Header("Input")]
     public KeyCode up;
@@ -27,7 +29,7 @@ public class P2ThrowController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
         if (p2 == null)
         {
             Debug.Log("P2 is null, so P2 will get P2PickSystem from its parent");
@@ -36,28 +38,28 @@ public class P2ThrowController : MonoBehaviour
 
         p2AimSystem = GetComponentInParent<P2AimSystem>();
 
-        Player = GameObject.FindGameObjectWithTag("Player");
-        characterFlip = Player.GetComponent<CharacterFlip>();
+        characterFlip = P2Player.GetComponent<CharacterFlip>();
 
 
         gameObject.transform.parent = null;
 
         if (characterFlip.isFacingRight == true)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         else if (characterFlip.isFacingRight == false)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 180);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Player.transform.position;
+        transform.position = P2Player.transform.position;
 
         ShowAndHideThrowDirection();
+
         ThrowContoller();
 
         if (Input.GetKeyDown(ControlMode))
@@ -65,10 +67,10 @@ public class P2ThrowController : MonoBehaviour
             controlMode = !controlMode;
         }
 
-        if (controlMode) 
-        CannotPickWhenHeldingObject();
+        if (controlMode)
+            CannotPickWhenHeldingObject();
         else if (!controlMode)
-        AimAtRangeTarget();
+            AimAtRangeTarget();
     }
 
     private void CannotPickWhenHeldingObject()
@@ -82,6 +84,7 @@ public class P2ThrowController : MonoBehaviour
         {
             Range.SetActive(false);
 
+            //reset the Hand Pos once
             if (!once)
             {
                 if (characterFlip.isFacingRight == true)
@@ -110,15 +113,8 @@ public class P2ThrowController : MonoBehaviour
         {
             if (!once)
             {
-                if (characterFlip.isFacingRight == true)
-                {
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                }
-                else if (characterFlip.isFacingRight == false)
-                {
-                    transform.rotation = Quaternion.Euler(0, 0, 180);
-                }
-
+                //here is where you set the hand pos after no target
+                ThrowContoller2();
                 once = true;
             }
         }
@@ -145,6 +141,7 @@ public class P2ThrowController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
+
 
     private void ThrowContoller()
     {
@@ -177,6 +174,43 @@ public class P2ThrowController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         else if (Input.GetKeyDown(right))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
+    //just to reset the Hand Pos, if not the hand will fly randomly
+    private void ThrowContoller2()
+    {
+        if (Input.GetKey(up) && Input.GetKey(right))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 45);
+        }
+        else if (Input.GetKey(up) && Input.GetKey(left))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 135);
+        }
+        else if (Input.GetKey(down) && Input.GetKey(left))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -135);
+        }
+        else if (Input.GetKey(down) && Input.GetKey(right))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -45);
+        }
+        else if (Input.GetKey(up))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else if (Input.GetKey(down))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if (Input.GetKey(left))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (Input.GetKey(right))
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }

@@ -21,7 +21,7 @@ public class MobSpawner : MonoBehaviour
     {
         if (timer == null) return;
 
-        if (timer.RemainTime == 0 && mobSpawned == false)
+        if (timer.RemainTime == 0 && mobSpawned == false && mob != null)
         {
             GameObject.Instantiate(mob, spawnPos.transform.position, spawnPos.transform.rotation);
             mobSpawned = true;

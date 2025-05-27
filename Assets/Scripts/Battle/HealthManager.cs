@@ -12,12 +12,16 @@ public class HealthManager : MonoBehaviour
     private float reviveTime;
     public float reviveSpeed = 1;
 
+    public bool enemy;
     [Header("References")]
     public CharacterAnimation characterAnimation;
     public GameObject hand;
     public Image HealthBar;
 
     private PlayerInputManager playerInputManager;
+    private P2Input p2Input;
+    private P3Input p3Input;
+
     private CharacterFlip characterFlip;
     private CharacterMovement characterMovement;
     private ItemSystem cookCharacterSystem;
@@ -26,6 +30,9 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         playerInputManager = GetComponent<PlayerInputManager>();
+        p2Input = GetComponent<P2Input>();
+        p3Input = GetComponent<P3Input>();
+
         characterFlip = GetComponent<CharacterFlip>();
         characterMovement = GetComponent<CharacterMovement>();
         cookCharacterSystem = GetComponent<ItemSystem>();
@@ -45,6 +52,9 @@ public class HealthManager : MonoBehaviour
             if (gameObject.CompareTag("Player"))
             {
                 if (playerInputManager != null) { playerInputManager.enabled = false; }
+                if (p2Input != null) { p2Input.enabled = false; }
+                if (p3Input != null) { p3Input.enabled = false; }
+
                 if (characterFlip != null) { characterFlip.enabled = false; }
                 if (characterMovement != null) { characterMovement.SetMovement(Vector2.zero); }
                 if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = true; }
@@ -67,6 +77,11 @@ public class HealthManager : MonoBehaviour
             }
             else
             {
+                if (enemy)
+                {
+                    Destroy(transform.parent.gameObject);
+                }
+                else
                 Destroy(gameObject);                
             }
         }
@@ -76,6 +91,9 @@ public class HealthManager : MonoBehaviour
             if (gameObject.CompareTag("Player"))
             {
                 if (playerInputManager != null) { playerInputManager.enabled = true; }
+                if (p2Input != null) { p2Input.enabled = true; }
+                if (p3Input != null) { p3Input.enabled = true; }
+
                 if (characterFlip != null) { characterFlip.enabled = true; }
                 if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = false; }
 

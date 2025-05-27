@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     private Fist fist;
     private PlayerPickupSystem playerPickupSystem;
+    private P2PickSystem p2PickSystem;
     private PlayerThrowManager playerThrowManager;
     private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
@@ -17,6 +19,7 @@ public class PlayerInputManager : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
         playerPickupSystem = GetComponent<PlayerPickupSystem>();
+        p2PickSystem = GetComponent<P2PickSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
 
         stateManager = GetComponent<StateManager>();
@@ -42,7 +45,8 @@ public class PlayerInputManager : MonoBehaviour
         }
 
         if (!Player2) movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        if (Player2) movementInput = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized;
+        else if (Player2) movementInput = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized; 
+
         characterMovement?.SetMovement(movementInput);
     }
 
@@ -72,9 +76,9 @@ public class PlayerInputManager : MonoBehaviour
 
         if (Player2)
         {
-            if (Input.GetKeyDown(KeyCode.Keypad1)) playerPickupSystem.StartPickup();
-            else if (Input.GetKey(KeyCode.Keypad1)) playerPickupSystem.HoldPickup();
-            else if (Input.GetKeyUp(KeyCode.Keypad1)) playerPickupSystem.CancelPickup();
+            if (Input.GetKeyDown(KeyCode.Keypad1)) p2PickSystem.StartPickup();
+            else if (Input.GetKey(KeyCode.Keypad1)) p2PickSystem.HoldPickup();
+            else if (Input.GetKeyUp(KeyCode.Keypad1)) p2PickSystem.CancelPickup();
         }
     }
 

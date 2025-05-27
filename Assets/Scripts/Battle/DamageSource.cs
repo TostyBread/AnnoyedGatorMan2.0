@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DamageSource : MonoBehaviour
@@ -32,6 +33,13 @@ public class DamageSource : MonoBehaviour
             return;
         }
 
+        //This will prevent player hurting themselves while attacking
+        if (collision.transform.root == transform.root)
+        {
+            Physics2D.IgnoreCollision(collision.collider,gameObject.GetComponent<Collider2D>());
+            return;
+        }
+
         if (collision.collider.TryGetComponent(out ItemSystem item))
         {
             item.ApplyCollisionEffect(gameObject);
@@ -50,9 +58,10 @@ public class DamageSource : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
             {
-                sanity.decreaseSanity(damageAmount);             
+                sanity.decreaseSanity(damageAmount);
             }
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

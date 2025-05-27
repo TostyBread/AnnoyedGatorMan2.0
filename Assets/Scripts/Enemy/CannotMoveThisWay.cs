@@ -10,25 +10,51 @@ public class CannotMoveThisWay : MonoBehaviour
         canMoveThisWay = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        canMoveThisWay = false;
+    //use OnTrigger and OnCollision to ensure the checking is always correct
+    //if not OnTrigger might not get the correct respond(canMoveThisWay)
 
-        Debug.Log("can move this way = " + canMoveThisWay);
-        Debug.Log("collision with = " + collision);
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        { 
+            canMoveThisWay = false;
+
+            Debug.Log("can move this way = " + canMoveThisWay);
+            Debug.Log("collision with = " + collision);
+        }
     }
 
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    canMoveThisWay = false;
-    //}
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            canMoveThisWay = false;
+
+            Debug.Log("can move this way = " + canMoveThisWay);
+            Debug.Log("collision with = " + collision);
+        }
+    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        canMoveThisWay = true;
+        if (collision.CompareTag("Player"))
+        {
+            canMoveThisWay = true;
 
-        Debug.Log("can move this way = " + canMoveThisWay);
-        Debug.Log("collision with = " + collision);
+            Debug.Log("can move this way = " + canMoveThisWay);
+            Debug.Log("collision with = " + collision);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            canMoveThisWay = true;
+
+            Debug.Log("can move this way = " + canMoveThisWay);
+            Debug.Log("collision with = " + collision);
+        }
     }
 
     //private void OnCollisionEnter2D(Collision2D collision)

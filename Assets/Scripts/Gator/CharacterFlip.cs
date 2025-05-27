@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterFlip : MonoBehaviour
 {
@@ -6,8 +8,19 @@ public class CharacterFlip : MonoBehaviour
     public GameObject p2System;
     private bool shouldFaceRight;
 
+    public P3Input p3Input;
+    P3Controls controls;
+    Vector2 P3move;
+
     [Header("do not touch")]
     public bool isFacingRight = true; // Tracks the character's facing direction
+    private void Start()
+    {
+        controls = new P3Controls();
+
+        controls.Gameplay.Move.performed += context => P3move = context.ReadValue<Vector2>();
+        controls.Gameplay.Move.canceled += context => P3move = Vector2.zero;
+    }
 
     void Update()
     {
@@ -46,7 +59,16 @@ public class CharacterFlip : MonoBehaviour
         }
         else
         {
-            float a = Input.GetAxis("Horizontal");
+            float a = 0f;
+
+            if (p3Input != null)
+            {
+                a = p3Input.P3move.x;
+            }
+            else
+            {
+                a = Input.GetAxisRaw("Horizontal2");
+            }
 
             if (a > 0)
             {
