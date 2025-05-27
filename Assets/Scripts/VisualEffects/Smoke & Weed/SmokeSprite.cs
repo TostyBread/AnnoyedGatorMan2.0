@@ -16,8 +16,6 @@ public class SmokeSprite : MonoBehaviour
 
         randomSpriteIndex = Random.Range(0, sprite.Length);
         spriteRenderer.sprite = sprite[randomSpriteIndex];
-
-        transform.localScale = transform.localScale * Random.Range(0.8f,1.2f);
     }
 
     // Update is called once per frame

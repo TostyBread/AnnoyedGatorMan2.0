@@ -1206,6 +1206,7 @@ MonoBehaviour:
   Health: 100
   currentHealth: 0
   reviveSpeed: 10
+  damageReceived: 0
   HealthBar: {fileID: 4299897855130126091}
   hand: {fileID: 6606420664885157339}
   isPlayer2: 0

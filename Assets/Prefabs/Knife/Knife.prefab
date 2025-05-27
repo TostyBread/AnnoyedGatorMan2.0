@@ -85,8 +85,6 @@ MonoBehaviour:
   normalBounceFactor: 1
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTags:
-  - Player
 --- !u!70 &9036991212646575957
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -196,7 +194,7 @@ MonoBehaviour:
   - {x: -0.03526306, y: -0.4668414, z: 0}
   m_ShapePathHash: 1677007953
   m_Mesh: {fileID: 0}
-  m_InstanceId: -405288
+  m_InstanceId: -2444
   m_LocalBounds:
     m_Center: {x: -0.08772898, y: 0.40313756, z: 0}
     m_Extent: {x: 0.1230607, y: 0.8791894, z: 0}

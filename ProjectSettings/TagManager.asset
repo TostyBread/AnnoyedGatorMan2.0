@@ -15,6 +15,7 @@ TagManager:
   - Sanity
   - Obstacle
   - Smoke
+  - Window
   layers:
   - Default
   - TransparentFX

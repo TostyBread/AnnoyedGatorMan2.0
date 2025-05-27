@@ -8,17 +8,18 @@ public class StressReleaser: MonoBehaviour
 
     [Header("References")]
     public DetectZone detectZone;
-    public Sanity sanity;
     public GameObject explosion;
 
     private HealthManager healthManager;
     private float currentHealth;
+    private Sanity sanity;
 
     // Start is called before the first frame update
     void Start()
     {
         healthManager = GetComponent<HealthManager>();
         currentHealth = healthManager.currentHealth;
+        sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class StressReleaser: MonoBehaviour
             GameObject.Instantiate(explosion, transform.position, transform.rotation);
         }
 
-        IncreaseSanity();
+        if (sanity) IncreaseSanity();
     }
     public void IncreaseSanity()
     {

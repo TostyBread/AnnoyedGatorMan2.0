@@ -102,6 +102,11 @@ public class PlayerPickupSystem : MonoBehaviour
         {
             window.SetWindowState(isPressed);
         }
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Smoke smoke))
+        {
+            smoke.SetSmokeState(isPressed, this.gameObject);
+        }
     }
 
     public void StartPickup()
