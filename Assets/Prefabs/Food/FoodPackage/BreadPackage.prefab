@@ -54,8 +54,6 @@ MonoBehaviour:
   normalBounceFactor: 1.5
   playerBounceDamping: 0.5
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTags:
-  - Player
 --- !u!114 &9072030398173530536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af28f74b78e2f194f98c7420ff34f5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 2102610347858576420, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+  itemPrefab: {fileID: 1569449229976335002, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
   itemCount: 6
   destroyWhenEmpty: 1
   spawnPosition: {fileID: 540607618788025328}
@@ -197,7 +195,7 @@ MonoBehaviour:
   - {x: 0.6, y: -1.0999999, z: 0}
   m_ShapePathHash: -490885473
   m_Mesh: {fileID: 0}
-  m_InstanceId: -405404
+  m_InstanceId: -13914
   m_LocalBounds:
     m_Center: {x: 0, y: 0.004229784, z: 0}
     m_Extent: {x: 0.6, y: 1.1042297, z: 0}
