@@ -14,6 +14,9 @@ public class PlayerInputManagerP2 : MonoBehaviour
     private bool usableItemModeEnabled = true;
     public bool isInputEnabled = true;
     public bool canThrow = true;
+    private bool isPreparingHeld = false;
+    private bool throwStarted = false;
+
 
     void Awake()
     {
@@ -24,14 +27,20 @@ public class PlayerInputManagerP2 : MonoBehaviour
         inputActions.Player2Controller.Pickup.performed += ctx => playerPickupSystemP2?.HoldPickup();
         inputActions.Player2Controller.Pickup.canceled += ctx => playerPickupSystemP2?.CancelPickup();
         inputActions.Player2Controller.ThrowPrepare.started += ctx => {
-            if (canThrow) playerThrowManagerP2?.StartPreparingThrow();
+            isPreparingHeld = true;
+            TryStartThrow();
         };
-        inputActions.Player2Controller.ThrowConfirm.started += ctx => {
-            if (canThrow) playerThrowManagerP2?.Throw();
-        };
+
         inputActions.Player2Controller.ThrowPrepare.canceled += ctx => {
+            isPreparingHeld = false;
+            throwStarted = false;
             if (canThrow) playerThrowManagerP2?.CancelThrow();
         };
+
+        inputActions.Player2Controller.ThrowConfirm.started += ctx => {
+            if (canThrow && throwStarted) playerThrowManagerP2?.Throw();
+        };
+
         // Above 3 lines are specifically added for ability to disable throwing when no throw zone is being tripped
         inputActions.Player2Controller.ToggleSafety.performed += ctx => HandleUsableItemInput();
         inputActions.Player2Controller.Interact.performed += ctx => playerPickupSystemP2?.StartInteraction();
@@ -55,6 +64,8 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
         HandleMovementInput();
         HandleAutoFire();
+        if (isPreparingHeld && !throwStarted && canThrow)
+            TryStartThrow();
     }
 
     private void HandleMovementInput()
@@ -87,6 +98,15 @@ public class PlayerInputManagerP2 : MonoBehaviour
         else
         {
             fist?.TriggerPunch();
+        }
+    }
+
+    private void TryStartThrow()
+    {
+        if (!throwStarted && canThrow)
+        {
+            throwStarted = true;
+            playerThrowManagerP2?.StartPreparingThrow();
         }
     }
 

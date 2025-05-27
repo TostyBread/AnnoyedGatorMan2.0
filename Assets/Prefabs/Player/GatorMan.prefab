@@ -1206,6 +1206,7 @@ MonoBehaviour:
   Health: 100
   currentHealth: 0
   reviveSpeed: 10
+  damageReceived: 0
   HealthBar: {fileID: 4299897855130126091}
   hand: {fileID: 6606420664885157339}
   isPlayer2: 0
@@ -1262,10 +1263,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputType: 0
-  detectionRadius: 0.05
-  tilemapLayer:
+  wallLayer:
     serializedVersion: 2
-    m_Bits: 1073741824
+    m_Bits: 128
 --- !u!1 &7357411553977680397
 GameObject:
   m_ObjectHideFlags: 0

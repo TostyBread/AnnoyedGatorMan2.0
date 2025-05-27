@@ -35,6 +35,8 @@ public class PlayerInputManager : MonoBehaviour
     private Vector2 movementInput;
     private bool usableItemModeEnabled = true;
     public bool canThrow = true;
+    private bool isPreparingHeld = false;
+    private bool throwStarted = false;
 
     void Start()
     {
@@ -121,19 +123,33 @@ public class PlayerInputManager : MonoBehaviour
         else if (Input.GetKeyUp(inputConfig.pickupKey)) playerPickupSystem.CancelPickup();
     }
 
-    private void HandleThrowInput() // Script has been updated to support no throw zone
+    private void HandleThrowInput()
     {
-        if (!canThrow || playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld)
+        if (!isInputEnabled || playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld)
             return;
 
         if (Input.GetKeyDown(inputConfig.throwPrepareKey))
-            playerThrowManager.StartPreparingThrow();
-
-        if (Input.GetKeyUp(inputConfig.attackKey) && Input.GetKey(inputConfig.throwPrepareKey))
-            playerThrowManager.Throw();
+            isPreparingHeld = true;
 
         if (Input.GetKeyUp(inputConfig.throwPrepareKey))
+        {
+            isPreparingHeld = false;
+            throwStarted = false;
             playerThrowManager.CancelThrow();
+            return;
+        }
+
+        if (isPreparingHeld && !throwStarted && canThrow)
+        {
+            throwStarted = true;
+            playerThrowManager.StartPreparingThrow();
+        }
+
+        if (Input.GetKeyUp(inputConfig.attackKey) && isPreparingHeld && throwStarted)
+        {
+            playerThrowManager.Throw();
+            throwStarted = false;
+        }
     }
 
     private void HandleUsableItemInput()

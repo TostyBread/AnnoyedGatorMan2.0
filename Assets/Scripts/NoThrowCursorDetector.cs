@@ -1,20 +1,11 @@
 using UnityEngine;
 
-public static class CursorPhysicsHelper
-{
-    public static bool IsCursorOverTilemap(Vector2 position, float radius, LayerMask tilemapLayer)
-    {
-        return Physics2D.OverlapCircle(position, radius, tilemapLayer);
-    }
-}
-
 public class NoThrowCursorDetector : MonoBehaviour
 {
-    public enum InputType { Keyboard, Joystick }
+    public enum InputType { Mouse, Joystick }
     public InputType inputType;
 
-    [SerializeField] private float detectionRadius = 0.05f;
-    [SerializeField] private LayerMask tilemapLayer = default;
+    [SerializeField] private LayerMask wallLayer;
 
     private PlayerInputManager inputManager;
     private PlayerInputManagerP2 inputManagerP2;
@@ -25,21 +16,50 @@ public class NoThrowCursorDetector : MonoBehaviour
         inputManagerP2 = GetComponent<PlayerInputManagerP2>();
     }
 
-    void Update()
+    void LateUpdate()
+    {
+        UpdateThrowBlocking();
+    }
+
+    void UpdateThrowBlocking()
     {
         Vector2 cursorPos = inputType switch
         {
-            InputType.Keyboard => ScreenToWorldPointMouse.Instance.GetMouseWorldPosition(),
-            InputType.Joystick => PlayerAimController.Instance.GetCursorPosition(),
+            InputType.Mouse => ScreenToWorldPointMouse.Instance?.GetMouseWorldPosition() ?? Vector2.zero,
+            InputType.Joystick => PlayerAimController.Instance?.GetCursorPosition() ?? Vector2.zero,
             _ => Vector2.zero
         };
 
-        bool isOverNoThrow = Physics2D.OverlapCircle(cursorPos, detectionRadius, tilemapLayer);
+        if (cursorPos == Vector2.zero) return; // invalid mouse or fallback
+
+        Vector2 origin = transform.position;
+        Vector2 direction = (cursorPos - origin).normalized;
+        float distance = Vector2.Distance(origin, cursorPos);
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, wallLayer);
+
+        bool canThrow = hit.collider == null;
 
         if (inputManager != null)
-            inputManager.canThrow = !isOverNoThrow;
+            inputManager.canThrow = canThrow;
 
         if (inputManagerP2 != null)
-            inputManagerP2.canThrow = !isOverNoThrow;
+            inputManagerP2.canThrow = canThrow;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Vector2 origin = transform.position;
+        Vector2 target = Application.isPlaying
+            ? (inputType == InputType.Mouse
+                ? ScreenToWorldPointMouse.Instance.GetMouseWorldPosition()
+                : PlayerAimController.Instance.GetCursorPosition())
+            : origin + Vector2.right;
+
+        Vector2 direction = (target - origin).normalized;
+        float distance = Vector2.Distance(origin, target);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(origin, direction * distance);
     }
 }
