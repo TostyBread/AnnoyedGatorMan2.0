@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af28f74b78e2f194f98c7420ff34f5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 8507370457598890344, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+  itemPrefab: {fileID: 3751379003110135289, guid: a4a19a31d009417409bb7927842531a9, type: 3}
   itemCount: 99
   destroyWhenEmpty: 1
   spawnPosition: {fileID: 8189320201251714892}
