@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   burnRadius: 3
   spreadInterval: 3
-  maxFireInstances: 5
+  maxFireInstances: 10
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -188,9 +188,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   currentHealth: 0
-  reviveSpeed: 1
+  reviveSpeed: 0
+  damageReceived: 0
   HealthBar: {fileID: 0}
   hand: {fileID: 0}
+  isPlayer2: 0
   characterAnimation: {fileID: 0}
 --- !u!82 &5845081187944691371
 AudioSource:

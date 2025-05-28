@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8488393999469201092}
   - component: {fileID: 5553216037730147590}
   - component: {fileID: 8799210416239654817}
+  - component: {fileID: 1289997084620002019}
   - component: {fileID: 1251759017432472433}
   - component: {fileID: 2945873591766036078}
   - component: {fileID: 1620718888784923987}
@@ -116,6 +117,28 @@ MonoBehaviour:
   - {x: 0, y: 0.06, z: 0}
   isCooked: 0
   isBurned: 0
+--- !u!114 &1289997084620002019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569449229976335002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2abfb7e17e5ed4e9855ee4ab25bf22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  MaxHeat: 100
+  currentHeat: 0
+  heatCooldown: 0
+  BurnAudioName: 
+  spawnObject: {fileID: 2803993938104900538, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
+  MaxCold: 100
+  currentCold: 0
+  coldCooldown: 0
+  FreezeAudioName: 
 --- !u!50 &1251759017432472433
 Rigidbody2D:
   serializedVersion: 4
@@ -223,7 +246,7 @@ MonoBehaviour:
   - {x: 0.326765, y: -0.4497065, z: 0}
   m_ShapePathHash: 565855790
   m_Mesh: {fileID: 0}
-  m_InstanceId: -3088
+  m_InstanceId: -2478
   m_LocalBounds:
     m_Center: {x: -0.0040802658, y: -0.006550342, z: 0}
     m_Extent: {x: 0.3957397, y: 0.4508033, z: 0}

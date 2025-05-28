@@ -60,26 +60,21 @@ public class Smoke : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, window.transform.position, smokeMoveSpeed * Time.deltaTime);
         }
 
-        if (sanity != null && isWeed) StartSmoking();
+        if (sanity != null && isWeed && sanity.RemainSanity < sanity.MaxSanity) StartSmoking();
     }
 
     private void StartSmoking()
     {
         if (isWeed && isSmoking)
         {
-            // Calculate distance to the player
+            // Calculate distance to the player and adjust smoke speed base on distance
             float distance = Vector2.Distance(transform.position, smokingPlayer.transform.position);
-
-            // Adjust speed based on distance (tweak multiplier as needed)
             float adjustedSpeed = smokeMoveSpeed * distance;
 
-            // Move toward the player
+            // Move toward the player while shriking
             transform.position = Vector2.MoveTowards(transform.position, smokingPlayer.transform.position, adjustedSpeed * Time.deltaTime);
-
-            // Shrink the smoke
             transform.localScale -= transform.localScale * Time.deltaTime;
 
-            // Check if it's small enough to be "used up"
             if (transform.localScale.x <= 0.3f)
             {
                 sanity.RemainSanity += sanityRecover;

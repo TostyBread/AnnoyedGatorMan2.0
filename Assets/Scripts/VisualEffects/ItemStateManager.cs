@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using static StateManager;
 
@@ -12,6 +13,7 @@ public class ItemStateManager : MonoBehaviour
     [Header("Burn State")]
     public float MaxHeat = 100;
     public float currentHeat;
+    public float heatCooldown;
     public string BurnAudioName;
     public GameObject spawnObject;
 
@@ -21,6 +23,7 @@ public class ItemStateManager : MonoBehaviour
     [Header("Freeze State")]
     public float MaxCold = 100;
     public float currentCold;
+    public float coldCooldown;
     public string FreezeAudioName;
 
     private Dictionary<DamageSource, float> coldCooldowns = new();
@@ -28,20 +31,31 @@ public class ItemStateManager : MonoBehaviour
 
     [Header("References")]
     private ItemSystem itemSystem;
+    private bool wasBurnableLastFrame = false;
+    private Collider2D thisCollider;
 
     void Start()
     {
         itemSystem = GetComponent<ItemSystem>();
+        thisCollider = GetComponent<Collider2D>();
         state = ItemState.Idle;
     }
 
     void Update()
     {
+        bool isCurrentlyBurnable = itemSystem != null && itemSystem.isBurned;
+
+        if (!wasBurnableLastFrame && isCurrentlyBurnable)
+        {
+            RefreshBurnSources();
+        }
+
+        wasBurnableLastFrame = isCurrentlyBurnable;
+
         if (currentHeat >= MaxHeat)
         {
             ItemBurn();
             AudioManager.Instance.PlaySound(BurnAudioName, 1.0f, transform.position);
-
             currentHeat = 0;
             currentCold = 0;
         }
@@ -50,7 +64,6 @@ public class ItemStateManager : MonoBehaviour
         {
             ItemFreeze();
             AudioManager.Instance.PlaySound(FreezeAudioName, 1.0f, transform.position);
-
             currentHeat = 0;
             currentCold = 0;
         }
@@ -95,9 +108,12 @@ public class ItemStateManager : MonoBehaviour
         {
             if (damageSource.isFireSource)
             {
-                burnSources.Add(damageSource);
-                if (!burncooldowns.ContainsKey(damageSource))
-                    burncooldowns[damageSource] = damageSource.heatCooldown;
+                if (itemSystem == null || itemSystem.isBurned)
+                {
+                    burnSources.Add(damageSource);
+                    if (!burncooldowns.ContainsKey(damageSource))
+                        burncooldowns[damageSource] = damageSource.heatCooldown;
+                }
             }
 
             if (damageSource.isColdSource)
@@ -129,11 +145,28 @@ public class ItemStateManager : MonoBehaviour
         }
     }
 
+    void RefreshBurnSources()
+    {
+        var hits = Physics2D.OverlapBoxAll(thisCollider.bounds.center, thisCollider.bounds.size, 0);
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent(out DamageSource damageSource))
+            {
+                if (damageSource.isFireSource)
+                {
+                    burnSources.Add(damageSource);
+                    if (!burncooldowns.ContainsKey(damageSource))
+                        burncooldowns[damageSource] = damageSource.heatCooldown;
+                }
+            }
+        }
+    }
+
     private void ItemBurn()
     {
         state = ItemState.Burn;
         GameObject.Instantiate(spawnObject, transform.position, Quaternion.identity);
-        Destroy(this.gameObject, 0.1f);
+        Destroy(this.gameObject);
     }
 
     private void ItemFreeze()
