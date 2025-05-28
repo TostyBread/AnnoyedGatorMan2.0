@@ -58,6 +58,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleUsableItemInput();
         HandleEnvironmentalInteractInput();
     }
+    public bool IsPreparingHeld() => isPreparingHeld;
 
     public bool IsUsableModeEnabled() => usableItemModeEnabled;
 
