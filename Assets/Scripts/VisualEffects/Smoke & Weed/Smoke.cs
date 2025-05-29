@@ -65,7 +65,7 @@ public class Smoke : MonoBehaviour
 
     private void StartSmoking()
     {
-        if (isWeed && isSmoking && sanity.RemainSanity < sanity.MaxSanity)
+        if (isWeed && isSmoking)
         {
             // Calculate distance to the player and adjust smoke speed base on distance
             float distance = Vector2.Distance(transform.position, smokingPlayer.transform.position);
