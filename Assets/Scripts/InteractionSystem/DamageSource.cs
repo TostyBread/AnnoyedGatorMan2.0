@@ -60,7 +60,7 @@ public class DamageSource : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isFireSource) return;
+        if (!isFireSource || !isColdSource || isStunSource) return;
 
         if (other.TryGetComponent(out ItemSystem item) && objectsInFire.Add(other.gameObject))
         {
@@ -73,7 +73,7 @@ public class DamageSource : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!isFireSource) return;
+        if (!isFireSource || !isColdSource || isStunSource) return;
 
         if (objectsInFire.Remove(other.gameObject) && objectsInFire.Count == 0)
         {

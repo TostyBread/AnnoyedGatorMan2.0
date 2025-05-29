@@ -224,10 +224,11 @@ public class StateManager : MonoBehaviour
     IEnumerator Stun(float dur)
     {
         state = PlayerState.Stun;
-        characterMovement.moveSpeed = 0;
+        characterMovement.canMove = false;
         characterMovement.SetMovement(Vector2.zero);
         yield return new WaitForSeconds(dur);
         characterMovement.moveSpeed = idleMoveSpeed;
+        characterMovement.canMove = true;
         state = PlayerState.Idle;
     }
 }

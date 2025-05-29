@@ -11,6 +11,7 @@ public class WeatherManager : MonoBehaviour
     public enum Weather { Normal, Rainy, Hot, Cold }
 
     public Weather weather;
+    public bool randomWeatherActivate;
     private int randomWeather;
 
     [Header("Rainy setting")]
@@ -48,25 +49,28 @@ public class WeatherManager : MonoBehaviour
         currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);
         audioSource = GetComponent<AudioSource>();
 
-        randomWeather = UnityEngine.Random.Range(1,5);
-
-        switch (randomWeather) 
+        if (randomWeatherActivate)
         {
-            case 1:
-                weather = Weather.Normal;
-                break;
+            randomWeather = UnityEngine.Random.Range(1, 5);
 
-            case 2:
-                weather = Weather.Rainy; 
-                break;
+            switch (randomWeather)
+            {
+                case 1:
+                    weather = Weather.Normal;
+                    break;
 
-            case 3:
-                weather = Weather.Hot;
-                break;
+                case 2:
+                    weather = Weather.Rainy;
+                    break;
 
-            case 4:
-                weather = Weather.Cold;
-                break;
+                case 3:
+                    weather = Weather.Hot;
+                    break;
+
+                case 4:
+                    weather = Weather.Cold;
+                    break;
+            }
         }
     }
 

@@ -1,10 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    private Rigidbody2D rb;
+    public bool canMove { get; set; } = true;
 
+    private Rigidbody2D rb;
     private Vector2 movement;
 
     public bool IsMoving => movement.sqrMagnitude > 0.01f; // Public property for animation script
@@ -16,12 +18,18 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!canMove)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
         Move();
     }
 
     public void SetMovement(Vector2 newMovement)
     {
-        movement = newMovement;
+        movement = canMove ? newMovement : Vector2.zero;
     }
 
     private void Move()

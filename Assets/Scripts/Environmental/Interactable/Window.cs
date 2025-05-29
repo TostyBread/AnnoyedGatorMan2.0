@@ -28,9 +28,9 @@ public class Window : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Smoke"))
+        if (other.TryGetComponent<Smoke>(out Smoke smoke))
         {
-            Destroy(other.gameObject);
+            smoke.DestroySmoke();
         }
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Smoke : MonoBehaviour
 {
     [Header("Smoke setting")]
-    public GameObject smokePrefeb;
     public bool willSpread = true;
     public float smokeRadius = 2f;
     public float smokeSpreadInterval;
@@ -61,12 +60,15 @@ public class Smoke : MonoBehaviour
         }
 
         if (sanity != null && canSmoke) StartSmoking();
+        Debug.Log("Smoke: " + smokeCount);
     }
 
     private void StartSmoking()
     {
         if (canSmoke && isSmoking)
         {
+            if (smokingPlayer == null) return;
+
             // Calculate distance to the player and adjust smoke speed base on distance
             float distance = Vector2.Distance(transform.position, smokingPlayer.transform.position);
             float adjustedSpeed = smokeMoveSpeed * distance;
@@ -77,9 +79,10 @@ public class Smoke : MonoBehaviour
 
             if (transform.localScale.x <= 0.3f)
             {
+                AudioManager.Instance.StopSound(SmokeAudioName);
                 sanity.RemainSanity += sanityRecover;
                 AudioManager.Instance.PlaySound(SmokeAudioName, 1.0f, transform.position);
-                Destroy(gameObject);
+                DestroySmoke();
             }
         }
     }
@@ -94,9 +97,9 @@ public class Smoke : MonoBehaviour
             Vector2 spawnPosition = (Vector2)transform.position + randomOffset;
 
             Collider2D hit = Physics2D.OverlapCircle(spawnPosition, 1f, wallLayer);
-            if (hit == null && smokePrefeb)
+            if (hit == null)
             {
-                Instantiate(smokePrefeb, spawnPosition, Quaternion.identity);
+                Instantiate(this.gameObject, spawnPosition, Quaternion.identity);
             }
         }
     }
@@ -111,5 +114,11 @@ public class Smoke : MonoBehaviour
     {
         isSmoking = state;
         smokingPlayer = player;
+    }
+
+    public void DestroySmoke()
+    {
+        smokeCount--;
+        Destroy(gameObject);
     }
 }
