@@ -81,10 +81,12 @@ MonoBehaviour:
   state: 0
   MaxHeat: 50
   currentHeat: 0
+  heatCooldown: 0
   BurnAudioName: Fizzle
   spawnObject: {fileID: 8608703003332102440, guid: f3e3fbd3d16c56d4585d72d814387a10, type: 3}
   MaxCold: 100
   currentCold: 0
+  coldCooldown: 0
   FreezeAudioName: 
 --- !u!50 &3962942707464195845
 Rigidbody2D:
@@ -221,7 +223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.19607845, g: 0.5372549, b: 0.18039216, a: 1}
   m_FlipX: 0
@@ -279,7 +281,7 @@ MonoBehaviour:
   - {x: -0.34384203, y: -0.3760593, z: 0}
   m_ShapePathHash: 282113933
   m_Mesh: {fileID: 0}
-  m_InstanceId: -70906
+  m_InstanceId: -26252
   m_LocalBounds:
     m_Center: {x: 0.0023069382, y: 0.0055896044, z: 0}
     m_Extent: {x: 0.5126023, y: 0.5020114, z: 0}
