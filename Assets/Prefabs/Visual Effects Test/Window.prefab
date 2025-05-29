@@ -367,12 +367,15 @@ MonoBehaviour:
   light2D: {fileID: 0}
   ThunderAudioName: Thunder
   RainingClip: {fileID: 8300000, guid: 9767810a314081646b319a193f4dc2bb, type: 3}
+  rainingAudioVolume: 0.5
   heatMultiplier: 2
   SunRay: {fileID: 8161110251486840855}
   SunnyClip: {fileID: 8300000, guid: da55c59d67b1be843bde56dd90790112, type: 3}
+  sunnyAudioVolume: 1
   coldMultiplier: 0.5
   FreezeArea: {fileID: 2529040808014472557}
   WinterClip: {fileID: 8300000, guid: 7956bf2d9735d324d81ece0c36d80a7d, type: 3}
+  winterAudioVolume: 0.5
 --- !u!82 &8082368769978326062
 AudioSource:
   m_ObjectHideFlags: 0

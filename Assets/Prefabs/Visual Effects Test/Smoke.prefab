@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 3386629225382357682}
   - component: {fileID: 842708787869370503}
   - component: {fileID: 6735226475227876696}
+  - component: {fileID: 2145687506161142885}
   m_Layer: 0
   m_Name: Smoke
   m_TagString: Smoke
@@ -155,18 +156,17 @@ MonoBehaviour:
   smokeSpreadInterval: 3
   maxSmokeInstances: 5
   smokeMoveSpeed: 3
-  isWeed: 0
-  sanityRecover: 10
+  canSmoke: 1
+  sanityRecover: -10
   isSmoking: 0
+  SmokeAudioName: Coughing
   Min: 0.5
   Max: 1
   rotationMin: 0
   rotationMax: 360
-  window: {fileID: 0}
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
-  sanity: {fileID: 0}
 --- !u!70 &842708787869370503
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -229,3 +229,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2145687506161142885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969457377182698580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2855801ae277f8749952009d170c6bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

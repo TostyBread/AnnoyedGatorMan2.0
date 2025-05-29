@@ -157,7 +157,7 @@ MonoBehaviour:
   smokeSpreadInterval: 0
   maxSmokeInstances: 0
   smokeMoveSpeed: 4
-  isWeed: 1
+  canSmoke: 1
   sanityRecover: 20
   isSmoking: 0
   SmokeAudioName: SmokeWeed

@@ -12,6 +12,7 @@ public class DamageSource : MonoBehaviour
     public bool isColdSource = false;
     public bool isStunSource = false;
     public float minVelocityToDamage = 0f;
+    public bool playHitSound = true;
 
     private HashSet<GameObject> objectsInFire = new HashSet<GameObject>();
     private Coroutine heatCoroutine;
@@ -37,12 +38,12 @@ public class DamageSource : MonoBehaviour
         if (collision.collider.TryGetComponent(out ItemSystem item))
         {
             item.ApplyCollisionEffect(gameObject);
-            PlayHitSound(damageType);
+            if (playHitSound) PlayHitSound(damageType);
             DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, damageType);
         }
         else
         {
-            AudioManager.Instance.PlaySound(damageType == ItemSystem.DamageType.Shot ? "Ricochet" : "GunHit", 1.0f, transform.position);
+            if (playHitSound) AudioManager.Instance.PlaySound(damageType == ItemSystem.DamageType.Shot ? "Ricochet" : "GunHit", 1.0f, transform.position);
             DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, "SparkSpurt");
         }
 

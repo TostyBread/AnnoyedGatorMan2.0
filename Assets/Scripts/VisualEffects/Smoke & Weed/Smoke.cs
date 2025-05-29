@@ -14,7 +14,7 @@ public class Smoke : MonoBehaviour
     public float smokeMoveSpeed = 1;
 
     [Header("Weed Smoke setting")]
-    public bool isWeed = false;
+    public bool canSmoke = false;
     public float sanityRecover = 10;
     public bool isSmoking = false;
     public string SmokeAudioName;
@@ -60,12 +60,12 @@ public class Smoke : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, window.transform.position, smokeMoveSpeed * Time.deltaTime);
         }
 
-        if (sanity != null && isWeed) StartSmoking();
+        if (sanity != null && canSmoke) StartSmoking();
     }
 
     private void StartSmoking()
     {
-        if (isWeed && isSmoking)
+        if (canSmoke && isSmoking)
         {
             // Calculate distance to the player and adjust smoke speed base on distance
             float distance = Vector2.Distance(transform.position, smokingPlayer.transform.position);

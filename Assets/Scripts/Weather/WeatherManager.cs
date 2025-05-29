@@ -68,8 +68,6 @@ public class WeatherManager : MonoBehaviour
                 weather = Weather.Cold;
                 break;
         }
-
-        Debug.Log("Weather: " + weather);
     }
 
     // Update is called once per frame

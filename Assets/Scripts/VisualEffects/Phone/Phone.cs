@@ -11,6 +11,7 @@ public class Phone : MonoBehaviour
     public WeatherManager window;
 
     private Transform previousParent;
+    private Coroutine currentCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class Phone : MonoBehaviour
     void Update()
     {
         if (window.weather != WeatherManager.Weather.Rainy) return;
+        if (currentCoroutine != null) return;
 
         if (transform.parent != null)
         {
@@ -30,14 +32,16 @@ public class Phone : MonoBehaviour
 
         if (transform.parent == null && previousParent != null)
         {
-            StartCoroutine(ThunderStrike(spawnDelay));
+            currentCoroutine = StartCoroutine(Spawnthunder(spawnDelay));
             previousParent = null;
         }
     }
 
-    IEnumerator ThunderStrike(float sec)
+    IEnumerator Spawnthunder(float sec)
     {
         yield return new WaitForSeconds(sec);
-        Debug.Log("Thunder strike");
+        GameObject.Instantiate(thunder, transform.position, Quaternion.identity);
+
+        currentCoroutine = null;
     }
 }
