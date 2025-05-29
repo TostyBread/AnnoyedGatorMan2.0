@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerInputManagerP2 : MonoBehaviour
 {
@@ -67,6 +66,7 @@ public class PlayerInputManagerP2 : MonoBehaviour
         if (isPreparingHeld && !throwStarted && canThrow)
             TryStartThrow();
     }
+    public bool IsPreparingHeld() => isPreparingHeld;
 
     private void HandleMovementInput()
     {

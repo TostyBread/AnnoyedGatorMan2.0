@@ -18,7 +18,20 @@ public class NoThrowCursorDetector : MonoBehaviour
 
     void LateUpdate()
     {
-        UpdateThrowBlocking();
+        bool isPreparing =
+            (inputManager != null && inputManager.IsPreparingHeld()) ||
+            (inputManagerP2 != null && inputManagerP2.IsPreparingHeld());
+
+        if (isPreparing)
+        {
+            UpdateThrowBlocking();
+        }
+        else
+        {
+            // Disable throw if not preparing
+            if (inputManager != null) inputManager.canThrow = false;
+            if (inputManagerP2 != null) inputManagerP2.canThrow = false;
+        }
     }
 
     void UpdateThrowBlocking()
@@ -36,9 +49,6 @@ public class NoThrowCursorDetector : MonoBehaviour
         Vector2 direction = (cursorPos - origin).normalized;
         float distance = Vector2.Distance(origin, cursorPos);
 
-        // Optional: clamp distance to prevent very far cursor abuse
-        distance = Mathf.Min(distance, 20f);
-
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, wallLayer);
 
         bool canThrow = hit.collider == null;
@@ -50,8 +60,7 @@ public class NoThrowCursorDetector : MonoBehaviour
             inputManagerP2.canThrow = canThrow;
     }
 
-
-    void OnDrawGizmosSelected()
+void OnDrawGizmosSelected()
     {
         Vector2 origin = transform.position;
         Vector2 target = Application.isPlaying
