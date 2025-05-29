@@ -60,7 +60,6 @@ public class Smoke : MonoBehaviour
         }
 
         if (sanity != null && canSmoke) StartSmoking();
-        Debug.Log("Smoke: " + smokeCount);
     }
 
     private void StartSmoking()

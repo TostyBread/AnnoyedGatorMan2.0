@@ -106,7 +106,7 @@ public class ItemStateManager : MonoBehaviour
     {
         if (other.TryGetComponent(out DamageSource damageSource))
         {
-            if (damageSource.isFireSource)
+            if (damageSource.isFireSource || damageSource.isStunSource)
             {
                 if (itemSystem == null || itemSystem.isBurned)
                 {
