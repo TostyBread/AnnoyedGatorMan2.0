@@ -38,17 +38,20 @@ public class StateManager : MonoBehaviour
     [Header("References")]
     private float idleMoveSpeed;
     private CharacterMovement characterMovement;
+    private HealthManager healthManager;
 
     void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
+        healthManager = GetComponent<HealthManager>();
+
         idleMoveSpeed = characterMovement.moveSpeed;
         state = PlayerState.Idle;
     }
 
     void Update()
     {
-        if (characterMovement == null) return;
+        if (characterMovement == null || healthManager.currentHealth <= 0) return;
 
         //if (Input.GetKeyDown(KeyCode.Space) && state == PlayerState.Idle)
         //{
@@ -222,6 +225,7 @@ public class StateManager : MonoBehaviour
     {
         state = PlayerState.Stun;
         characterMovement.moveSpeed = 0;
+        characterMovement.SetMovement(Vector2.zero);
         yield return new WaitForSeconds(dur);
         characterMovement.moveSpeed = idleMoveSpeed;
         state = PlayerState.Idle;
