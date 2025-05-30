@@ -63,7 +63,7 @@ public class ItemStateManager : MonoBehaviour
 
         if (currentCold >= MaxCold)
         {
-            //ItemFreeze();
+            ItemFreeze();
             AudioManager.Instance.PlaySound(FreezeAudioName, 1.0f, transform.position);
             currentHeat = 0;
             currentCold = 0;
@@ -170,14 +170,14 @@ public class ItemStateManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    //private void ItemFreeze()
-    //{
-    //    if (itemSystem)
-    //    {
-    //        state = ItemState.Freeze;
-    //        Debug.Log(gameObject.name + " is Freezed");
-    //        itemSystem.cookThreshold += heatRequiredToCook;
-    //        itemSystem.burnThreshold += heatRequiredToCook;
-    //    }
-    //}
+    private void ItemFreeze()
+    {
+        if (itemSystem)
+        {
+            state = ItemState.Freeze;
+            Debug.Log(gameObject.name + " is Freezed");
+            itemSystem.cookThreshold += heatRequiredToCook;
+            itemSystem.burnThreshold += heatRequiredToCook;
+        }
+    }
 }

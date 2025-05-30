@@ -105,7 +105,6 @@ public class ItemSystem : MonoBehaviour
             if (sourceDamage.isFireSource || sourceDamage.isStunSource)
             {
                 currentCookPoints += sourceDamage.heatAmount;
-                Debug.Log(gameObject.name + " : " + currentCookPoints);
             }
 
             if (!isCooked && currentCookPoints >= cookThreshold) CookItem();
