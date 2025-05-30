@@ -247,6 +247,7 @@ MonoBehaviour:
   isColdSource: 1
   isStunSource: 0
   minVelocityToDamage: 0
+  playHitSound: 1
 --- !u!114 &5834200962248556772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,8 +363,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weather: 0
-  MinBlackOutInterval: 8
-  MaxBlackOutInterval: 16
+  randomWeatherActivate: 1
+  MinBlackOutInterval: 10
+  MaxBlackOutInterval: 20
   light2D: {fileID: 0}
   ThunderAudioName: Thunder
   RainingClip: {fileID: 8300000, guid: 9767810a314081646b319a193f4dc2bb, type: 3}

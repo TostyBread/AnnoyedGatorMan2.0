@@ -290,7 +290,7 @@ MonoBehaviour:
   - {x: -6.2044983, y: -2.5438144, z: 0}
   m_ShapePathHash: 365628945
   m_Mesh: {fileID: 0}
-  m_InstanceId: 44992
+  m_InstanceId: -2338
   m_LocalBounds:
     m_Center: {x: -0.048265457, y: 0.031505585, z: 0}
     m_Extent: {x: 8.45625, y: 8.453963, z: 0}
@@ -401,6 +401,7 @@ MonoBehaviour:
   isColdSource: 0
   isStunSource: 0
   minVelocityToDamage: 0
+  playHitSound: 1
 --- !u!114 &579020278113565167
 MonoBehaviour:
   m_ObjectHideFlags: 0

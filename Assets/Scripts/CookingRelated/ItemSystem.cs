@@ -102,7 +102,10 @@ public class ItemSystem : MonoBehaviour
 
         if (canBeCooked)
         {
-            currentCookPoints += sourceDamage.heatAmount;
+            if (sourceDamage.isFireSource || sourceDamage.isStunSource)
+            {
+                currentCookPoints += sourceDamage.heatAmount;
+            }
 
             if (!isCooked && currentCookPoints >= cookThreshold) CookItem();
             else if (!isBurned && currentCookPoints >= burnThreshold) BurnItem();

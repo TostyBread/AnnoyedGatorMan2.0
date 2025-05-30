@@ -204,6 +204,7 @@ MonoBehaviour:
   isColdSource: 0
   isStunSource: 0
   minVelocityToDamage: 0
+  playHitSound: 1
 --- !u!50 &4968603192802626325
 Rigidbody2D:
   serializedVersion: 4
@@ -246,7 +247,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4608
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

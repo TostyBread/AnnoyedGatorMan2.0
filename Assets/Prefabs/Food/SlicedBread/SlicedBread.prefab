@@ -138,6 +138,7 @@ MonoBehaviour:
   MaxCold: 100
   currentCold: 0
   coldCooldown: 0
+  heatRequiredToCook: 20
   FreezeAudioName: 
 --- !u!50 &1251759017432472433
 Rigidbody2D:
@@ -246,7 +247,7 @@ MonoBehaviour:
   - {x: 0.326765, y: -0.4497065, z: 0}
   m_ShapePathHash: 565855790
   m_Mesh: {fileID: 0}
-  m_InstanceId: -2478
+  m_InstanceId: -3078
   m_LocalBounds:
     m_Center: {x: -0.0040802658, y: -0.006550342, z: 0}
     m_Extent: {x: 0.3957397, y: 0.4508033, z: 0}

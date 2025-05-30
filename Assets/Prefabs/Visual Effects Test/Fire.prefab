@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 936230806028435358}
   - component: {fileID: 6073913075650183365}
   - component: {fileID: 5845081187944691371}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Fire
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -77,6 +77,7 @@ MonoBehaviour:
   isColdSource: 0
   isStunSource: 0
   minVelocityToDamage: 0
+  playHitSound: 1
 --- !u!70 &4289771224545664985
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

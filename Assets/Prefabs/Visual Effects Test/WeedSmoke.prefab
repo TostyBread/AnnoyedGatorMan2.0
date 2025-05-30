@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 9121859616744365729}
   - component: {fileID: 6934679240504116782}
   - component: {fileID: 5662415481529903161}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: WeedSmoke
   m_TagString: Smoke
   m_Icon: {fileID: 0}
@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9100a2b9aad95224fa6ab84cde9ea809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smokePrefeb: {fileID: 0}
   willSpread: 0
   smokeRadius: 0
   smokeSpreadInterval: 0

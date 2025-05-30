@@ -24,6 +24,7 @@ public class ItemStateManager : MonoBehaviour
     public float MaxCold = 100;
     public float currentCold;
     public float coldCooldown;
+    public float heatRequiredToCook = 20;
     public string FreezeAudioName;
 
     private Dictionary<DamageSource, float> coldCooldowns = new();
@@ -172,6 +173,11 @@ public class ItemStateManager : MonoBehaviour
     private void ItemFreeze()
     {
         state = ItemState.Freeze;
-        if (itemSystem) itemSystem.cookThreshold *= 2;
+        if (itemSystem)
+        {
+            Debug.Log(gameObject.name + " is Freezed");
+            itemSystem.cookThreshold += heatRequiredToCook;
+            itemSystem.burnThreshold += heatRequiredToCook;
+        }
     }
 }
