@@ -58,6 +58,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleUsableItemInput();
         HandleEnvironmentalInteractInput();
     }
+
     public bool IsPreparingHeld() => isPreparingHeld;
 
     public bool IsUsableModeEnabled() => usableItemModeEnabled;
@@ -89,42 +90,55 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (playerPickupSystem == null) return;
 
+        bool used = false;
+
         if (playerPickupSystem.HasItemHeld)
         {
             IUsable usableFunction = playerPickupSystem.GetUsableFunction();
-            if (usableFunction == null) return;
-
-            if (usableFunction is FirearmController gun)
+            if (usableFunction != null && usableItemModeEnabled)
             {
-                if (gun.currentFireMode == FirearmController.FireMode.Auto)
+                switch (usableFunction)
                 {
-                    if (Input.GetKey(inputConfig.attackKey))
-                        gun.Use();
-                }
-                else
-                {
-                    if (Input.GetKeyDown(inputConfig.attackKey))
-                        gun.Use();
-                }
+                    case FirearmController gun:
+                        if (gun.currentFireMode == FirearmController.FireMode.Auto)
+                        {
+                            if (Input.GetKey(inputConfig.attackKey))
+                            {
+                                gun.Use();
+                                used = true;
+                            }
+                        }
+                        else if (Input.GetKeyDown(inputConfig.attackKey))
+                        {
+                            gun.Use();
+                            used = true;
+                        }
 
-                if (Input.GetKeyUp(inputConfig.attackKey))
-                    gun.OnFireKeyReleased();
+                        if (Input.GetKeyUp(inputConfig.attackKey))
+                            gun.OnFireKeyReleased();
+                        break;
+
+                    case KnifeController knife:
+                        if (Input.GetKey(inputConfig.attackKey))
+                        {
+                            knife.Use();
+                            used = true;
+                        }
+                        break;
+                }
             }
-            else
+
+            if (!used && Input.GetKeyDown(inputConfig.attackKey))
             {
-                // It's not a gun => fallback to melee
-                if (Input.GetKeyDown(inputConfig.attackKey))
-                    HandleMeleeLogic();
+                HandleMeleeLogic();
             }
         }
         else
         {
-            // No item held => default to fist
             if (Input.GetKeyDown(inputConfig.attackKey))
                 fist?.TriggerPunch();
         }
     }
-
 
     private void HandleMeleeLogic()
     {
@@ -145,10 +159,8 @@ public class PlayerInputManager : MonoBehaviour
                 return;
             }
         }
-        else
-        {
-            fist?.TriggerPunch();
-        }
+
+        fist?.TriggerPunch();
     }
 
     private void HandlePickupInput()
@@ -165,14 +177,12 @@ public class PlayerInputManager : MonoBehaviour
         if (!isInputEnabled || playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld)
             return;
 
-        // Begin preparing
         if (Input.GetKeyDown(inputConfig.throwPrepareKey))
         {
             isPreparingHeld = true;
             throwStarted = false;
         }
 
-        // Cancel when letting go of prepare
         if (Input.GetKeyUp(inputConfig.throwPrepareKey))
         {
             isPreparingHeld = false;
@@ -181,27 +191,22 @@ public class PlayerInputManager : MonoBehaviour
             return;
         }
 
-        // Start preparing logic
         if (isPreparingHeld && !throwStarted && canThrow)
         {
             throwStarted = true;
             playerThrowManager.StartPreparingThrow();
         }
 
-        // Final throw condition
         if (Input.GetKeyUp(inputConfig.attackKey))
         {
             if (isPreparingHeld && throwStarted && canThrow)
             {
                 playerThrowManager.Throw();
-
-                // RESET STATES after throw
                 isPreparingHeld = false;
                 throwStarted = false;
             }
             else
             {
-                // Always clear throw state if not valid
                 throwStarted = false;
             }
         }
@@ -214,8 +219,6 @@ public class PlayerInputManager : MonoBehaviour
         IUsable usableFunction = playerPickupSystem.GetUsableFunction();
         if (usableFunction == null) return;
 
-        // Fire input moved to HandleActionInput(), do not repeat it here
-        // This block now only toggles usable mode (safety on/off)
         if (Input.GetKeyDown(inputConfig.toggleSafetyKey))
         {
             usableItemModeEnabled = !usableItemModeEnabled;
@@ -232,7 +235,6 @@ public class PlayerInputManager : MonoBehaviour
                     break;
             }
         }
-
     }
 
     private void HandleEnvironmentalInteractInput()

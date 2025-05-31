@@ -67,6 +67,7 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
         HandleMovementInput();
         HandleFireModes();
+        HandleKnife();
 
         if (isPreparingHeld && !throwStarted && canThrow)
             TryStartThrow();
@@ -96,6 +97,19 @@ public class PlayerInputManagerP2 : MonoBehaviour
         wasFiringLastFrame = isPressed;
     }
 
+    private void HandleKnife()
+    {
+        if (playerPickupSystemP2 == null || !playerPickupSystemP2.HasItemHeld) return;
+
+        IUsable usable = playerPickupSystemP2.GetUsableFunction();
+        if (usable == null) return;
+
+        if (usable is KnifeController knife)
+        {
+            if (inputActions.Player2Controller.Attack.ReadValue<float> () > 0.5f)
+                knife.Use();
+        }
+    }
     public bool IsPreparingHeld() => isPreparingHeld;
 
     private void HandleMovementInput()

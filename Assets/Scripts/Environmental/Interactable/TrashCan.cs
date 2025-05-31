@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TrashCan : MonoBehaviour
@@ -17,10 +18,11 @@ public class TrashCan : MonoBehaviour
 
     public GameObject emptyTrashCan;
     public GameObject fullTrashCan;
+
     private TrashBag currentBag;
     private int currentCount = 0;
-    private Coroutine addRoutine;
     private bool alreadyFull = false;
+    private HashSet<GameObject> overlappingItems = new();
 
     private void Start()
     {
@@ -34,34 +36,35 @@ public class TrashCan : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!alreadyFull && addRoutine == null)
-        {
-            if (other.GetComponent<TrashBag>() != null)
-                return;
+        if (alreadyFull || other.GetComponent<TrashBag>() != null) return;
 
-            addRoutine = StartCoroutine(AddToBagWithDelay(other.gameObject));
+        GameObject obj = other.gameObject;
+
+        if (overlappingItems.Add(obj))
+        {
+            StartCoroutine(AddToBagWithDelay(obj));
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        overlappingItems.Remove(other.gameObject);
     }
 
     private IEnumerator AddToBagWithDelay(GameObject obj)
     {
         yield return new WaitForSeconds(addToBagDelay);
 
-        if (currentBag == null)
-        {
-            addRoutine = null;
-            yield break;
-        }
+        if (currentBag == null || obj == null || !overlappingItems.Contains(obj)) yield break;
 
         obj.transform.SetParent(currentBag.transform);
         obj.SetActive(false);
 
+        overlappingItems.Remove(obj);
         currentCount++;
         alreadyFull = currentCount >= bagCapacity;
 
-        addRoutine = null;
-
-        if (currentCount >= bagCapacity)
+        if (alreadyFull)
         {
             emptyTrashCan.SetActive(false);
             fullTrashCan.SetActive(true);
@@ -77,7 +80,7 @@ public class TrashCan : MonoBehaviour
         currentBag = newBagObj.GetComponent<TrashBag>();
         currentBag.gameObject.SetActive(false);
 
-        emptyTrashCan.SetActive(true); // empty trash can sprite activates
+        emptyTrashCan.SetActive(true);
         fullTrashCan.SetActive(false);
     }
 
@@ -87,9 +90,12 @@ public class TrashCan : MonoBehaviour
         {
             currentBag.transform.SetParent(null);
             currentBag.gameObject.SetActive(true);
+
             currentCount = 0;
             alreadyFull = false;
             currentBag = null;
+
+            overlappingItems.Clear();
             SpawnNewBag();
         }
     }
