@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StressReleaser: MonoBehaviour
@@ -10,6 +11,7 @@ public class StressReleaser: MonoBehaviour
     public DetectZone detectZone;
     public GameObject explosion;
 
+    private bool isSpawned;
     private HealthManager healthManager;
     private float currentHealth;
     private Sanity sanity;
@@ -18,8 +20,9 @@ public class StressReleaser: MonoBehaviour
     void Start()
     {
         healthManager = GetComponent<HealthManager>();
-        currentHealth = healthManager.currentHealth;
         sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
+
+        currentHealth = healthManager.currentHealth;
     }
 
     // Update is called once per frame
@@ -27,9 +30,10 @@ public class StressReleaser: MonoBehaviour
     {
         if (detectZone) InZone = detectZone.inDetactZone;
 
-        if (healthManager.currentHealth <= 0)
-        {
-            GameObject.Instantiate(explosion, transform.position, transform.rotation);
+        if (healthManager.currentHealth <= 0 && !isSpawned)
+        {   
+            GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+            isSpawned = true;
         }
 
         if (sanity) IncreaseSanity();

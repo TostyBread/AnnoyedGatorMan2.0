@@ -11,6 +11,7 @@ public class FirearmController : MonoBehaviour, IUsable
     public Transform muzzlePoint;
     public float projectileSpeed = 10f;
     public float fireDelay = 0.25f;
+    public bool playDrySound = true;
 
     [Header("Shotgun Settings")]
     public FireMode currentFireMode = FireMode.Single;
@@ -83,7 +84,7 @@ public class FirearmController : MonoBehaviour, IUsable
         if (isOutOfAmmo)
         {
             PlayAnimation("_Dry");
-            AudioManager.Instance.PlaySound("dryfire", 1.0f, transform.position);
+            if (playDrySound) AudioManager.Instance.PlaySound("dryfire", 1.0f, transform.position);
             return;
         }
 

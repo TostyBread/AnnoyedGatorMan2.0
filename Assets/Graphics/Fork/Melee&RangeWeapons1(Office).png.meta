@@ -1,0 +1,489 @@
+fileFormatVersion: 2
+guid: a4deb4a502b28564cb6decf7638a5271
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 847
+        width: 107
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 180ec5ac6faeb874dbff8b0033445705
+      internalID: 2046078377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_1
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 837
+        width: 120
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e5d8c4a616d5454e9666fa017bad8e5
+      internalID: -420645856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_2
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 770
+        width: 168
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cbadb54c0f2be94d9e0a0f90e85c7e7
+      internalID: -392385544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_3
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 790
+        width: 235
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2905dc9a2c7a73d4a9081c2d754fb654
+      internalID: 1389172925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_4
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 498
+        width: 102
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 366da48894ef1df4696e85d4e149d02c
+      internalID: -1564667522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_5
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 513
+        width: 165
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 131fcc89deb721144a0a0f2bd8329743
+      internalID: -1566403223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_6
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 525
+        width: 292
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4929dfb357e499c4fb82a967072f28b6
+      internalID: -282732694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_7
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 613
+        width: 247
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a0065ed37f5ca04681787ccb30812b7
+      internalID: 1499852766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_9
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 493
+        width: 73
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b9ac8913f4b25479aa046d7980eaad
+      internalID: 885856749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_10
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 174
+        width: 143
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a999d838fe2be8488f76f875eb4934d
+      internalID: -501692020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_11
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 174
+        width: 155
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3832d7d35e4384ca45d6871417c3f6
+      internalID: 2144606330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_12
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 174
+        width: 289
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d149f3443997be44ca4153fd3027da4b
+      internalID: 1313331829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_13
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 361
+        width: 95
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a22d088dfc5cf1640bb8378c2d65fbde
+      internalID: -1632560969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_14
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 7
+        width: 206
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e4ffab7b0764ec42bffce23ebb4ab02
+      internalID: -1849388817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_15
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 170
+        width: 93
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69e44b0da1bcd5a4fa568163bac0ac93
+      internalID: 263589236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_16
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 170
+        width: 123
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ae1c8d21db4da4b9832d154a12af91
+      internalID: 606436193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Melee&RangeWeapons1(Office)_17
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 55
+        width: 232
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c21491e044a67224f9e059cf0e19a3f6
+      internalID: -1901539909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Melee&RangeWeapons1(Office)_0: 2046078377
+      Melee&RangeWeapons1(Office)_1: -420645856
+      Melee&RangeWeapons1(Office)_10: -501692020
+      Melee&RangeWeapons1(Office)_11: 2144606330
+      Melee&RangeWeapons1(Office)_12: 1313331829
+      Melee&RangeWeapons1(Office)_13: -1632560969
+      Melee&RangeWeapons1(Office)_14: -1849388817
+      Melee&RangeWeapons1(Office)_15: 263589236
+      Melee&RangeWeapons1(Office)_16: 606436193
+      Melee&RangeWeapons1(Office)_17: -1901539909
+      Melee&RangeWeapons1(Office)_2: -392385544
+      Melee&RangeWeapons1(Office)_3: 1389172925
+      Melee&RangeWeapons1(Office)_4: -1564667522
+      Melee&RangeWeapons1(Office)_5: -1566403223
+      Melee&RangeWeapons1(Office)_6: -282732694
+      Melee&RangeWeapons1(Office)_7: 1499852766
+      Melee&RangeWeapons1(Office)_8: -935977360
+      Melee&RangeWeapons1(Office)_9: 885856749
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
