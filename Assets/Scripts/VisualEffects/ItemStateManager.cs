@@ -34,11 +34,13 @@ public class ItemStateManager : MonoBehaviour
     private ItemSystem itemSystem;
     private bool wasBurnableLastFrame = false;
     private Collider2D thisCollider;
+    private WeatherManager weatherManager;
 
     void Start()
     {
         itemSystem = GetComponent<ItemSystem>();
         thisCollider = GetComponent<Collider2D>();
+        weatherManager = GameObject.FindGameObjectWithTag("Window").GetComponent<WeatherManager>();
         state = ItemState.Idle;
     }
 
@@ -53,7 +55,7 @@ public class ItemStateManager : MonoBehaviour
 
         wasBurnableLastFrame = isCurrentlyBurnable;
 
-        if (currentHeat >= MaxHeat)
+        if (currentHeat >= MaxHeat && weatherManager.weather == WeatherManager.Weather.Hot)
         {
             ItemBurn();
             AudioManager.Instance.PlaySound(BurnAudioName, 1.0f, transform.position);
@@ -61,7 +63,7 @@ public class ItemStateManager : MonoBehaviour
             currentCold = 0;
         }
 
-        if (currentCold >= MaxCold)
+        if (currentCold >= MaxCold && weatherManager.weather == WeatherManager.Weather.Cold)
         {
             ItemFreeze();
             AudioManager.Instance.PlaySound(FreezeAudioName, 1.0f, transform.position);

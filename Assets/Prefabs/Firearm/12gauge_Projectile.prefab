@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5773fea5176f446b42ab2aa53cd5c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageType: 0
+  damageType: 2
   damageAmount: 0
   heatAmount: 10
   heatCooldown: 1

@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6e82a859d2cee479c1a9992294e9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeCooked: 1
+  canBeCooked: 0
   canBreak: 1
   durabilityUncooked: 70
   durabilityCooked: 1
@@ -195,7 +195,8 @@ MonoBehaviour:
   - {fileID: 1416207139476019059}
   brokenPartsCookedBash: []
   brokenPartsUncookedCut:
-  - {fileID: 0}
+  - {fileID: 702300247687442851}
+  - {fileID: 1416207139476019059}
   brokenPartsCookedCut: []
   brokenPartsOffsets:
   - {x: -0.06, y: 0, z: 0}
@@ -304,7 +305,7 @@ MonoBehaviour:
   - {x: -0.59364533, y: -0.060118437, z: 0}
   m_ShapePathHash: -343783747
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1582
+  m_InstanceId: -2888
   m_LocalBounds:
     m_Center: {x: 0.0012100339, y: -0.0035340786, z: 0}
     m_Extent: {x: 0.59485537, y: 0.56723666, z: 0}
@@ -356,6 +357,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2710431304623271680, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: brokenPartsUncookedCut.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710431304623271680, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: brokenPartsUncookedCut.Array.data[0]
+      value: 
+      objectReference: {fileID: 702300247687442851}
+    - target: {fileID: 2710431304623271680, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: brokenPartsUncookedCut.Array.data[1]
+      value: 
+      objectReference: {fileID: 1416207139476019059}
     - target: {fileID: 6798161795731262118, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
       propertyPath: m_Name
       value: CabbageSliced
@@ -423,6 +436,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2710431304623271680, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: brokenPartsUncookedCut.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710431304623271680, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: brokenPartsUncookedCut.Array.data[0]
+      value: 
+      objectReference: {fileID: 702300247687442851}
+    - target: {fileID: 2710431304623271680, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: brokenPartsUncookedCut.Array.data[1]
+      value: 
+      objectReference: {fileID: 1416207139476019059}
     - target: {fileID: 6798161795731262118, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
       propertyPath: m_Name
       value: CabbageSliced (1)
