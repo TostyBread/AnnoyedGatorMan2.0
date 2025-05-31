@@ -34,7 +34,7 @@ public class DamageSource : MonoBehaviour
             return;
         }
 
-        if (collision.collider.TryGetComponent(out ItemSystem item))
+        if (collision.collider.TryGetComponent(out ItemSystem item)) // For damaging Item
         {
             item.ApplyCollisionEffect(gameObject);
             PlayHitSound(damageType);
@@ -46,7 +46,7 @@ public class DamageSource : MonoBehaviour
             DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, "SparkSpurt");
         }
 
-        if (collision.gameObject.TryGetComponent(out HealthManager health))
+        if (collision.gameObject.TryGetComponent(out HealthManager health)) // For damaging health
         {
             health.TryDamage(damageAmount);
 
@@ -54,6 +54,11 @@ public class DamageSource : MonoBehaviour
             {
                 sanity.decreaseSanity(damageAmount);             
             }
+        }
+
+        if (collision.collider.TryGetComponent(out TrashBag trashBag)) // For damaging trash bag health
+        {
+            trashBag.TryDamaging(damageAmount);
         }
     }
 

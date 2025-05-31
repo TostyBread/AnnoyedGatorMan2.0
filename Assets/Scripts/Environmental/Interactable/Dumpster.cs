@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrashCan : MonoBehaviour
+public class Dumpster : MonoBehaviour
 {
     [Tooltip("Seconds before an object is destroyed in the trash can")]
     public float destroyDelay = 2f;
