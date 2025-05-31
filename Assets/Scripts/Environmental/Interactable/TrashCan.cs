@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrashCan : MonoBehaviour
@@ -16,25 +15,31 @@ public class TrashCan : MonoBehaviour
     [Tooltip("Max number of items the trash bag can hold before taking out")]
     public int bagCapacity = 5;
 
+    public GameObject emptyTrashCan;
+    public GameObject fullTrashCan;
     private TrashBag currentBag;
-    private Queue<GameObject> bagContents = new();
+    private int currentCount = 0;
     private Coroutine addRoutine;
     private bool alreadyFull = false;
 
     private void Start()
     {
+        if (alreadyFull)
+        {
+            emptyTrashCan.SetActive(false);
+            fullTrashCan.SetActive(true);
+        }
         SpawnNewBag();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!alreadyFull)
+        if (!alreadyFull && addRoutine == null)
         {
             if (other.GetComponent<TrashBag>() != null)
-                return; // Don't trash a trash bag
+                return;
 
-            if (addRoutine == null)
-                addRoutine = StartCoroutine(AddToBagWithDelay(other.gameObject));
+            addRoutine = StartCoroutine(AddToBagWithDelay(other.gameObject));
         }
     }
 
@@ -43,47 +48,49 @@ public class TrashCan : MonoBehaviour
         yield return new WaitForSeconds(addToBagDelay);
 
         if (currentBag == null)
+        {
+            addRoutine = null;
             yield break;
+        }
 
         obj.transform.SetParent(currentBag.transform);
-        obj.SetActive(false); // Hide inside the bag
-        bagContents.Enqueue(obj);
+        obj.SetActive(false);
 
-        if (bagContents.Count >= bagCapacity)
-        {
-            alreadyFull = true;
-        }
-        else
-        {
-            alreadyFull = false;
-        }
+        currentCount++;
+        alreadyFull = currentCount >= bagCapacity;
 
         addRoutine = null;
+
+        if (currentCount >= bagCapacity)
+        {
+            emptyTrashCan.SetActive(false);
+            fullTrashCan.SetActive(true);
+        }
     }
 
     private void SpawnNewBag()
     {
         GameObject newBagObj = Instantiate(trashBagPrefab, bagParent);
         newBagObj.transform.localPosition = Vector3.zero;
-        newBagObj.SetActive(false); // hidden initially
+        newBagObj.SetActive(false);
 
         currentBag = newBagObj.GetComponent<TrashBag>();
         currentBag.gameObject.SetActive(false);
+
+        emptyTrashCan.SetActive(true); // empty trash can sprite activates
+        fullTrashCan.SetActive(false);
     }
 
     public void TakeOutTrash()
     {
-        if (currentBag != null && bagContents.Count > 0) // the trash should at least have something
+        if (currentBag != null && currentCount > 0)
         {
             currentBag.transform.SetParent(null);
-            currentBag.gameObject.SetActive(true); // reveal the bag
-            bagContents.Clear();
+            currentBag.gameObject.SetActive(true);
+            currentCount = 0;
+            alreadyFull = false;
             currentBag = null;
+            SpawnNewBag();
         }
-        else
-        {
-            return; // ignore it
-        }
-        SpawnNewBag();
     }
 }

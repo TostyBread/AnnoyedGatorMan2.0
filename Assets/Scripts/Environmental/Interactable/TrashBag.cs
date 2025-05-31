@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TrashBag : MonoBehaviour
 {
@@ -7,13 +8,19 @@ public class TrashBag : MonoBehaviour
 
     private void Awake()
     {
-        currentDuration = trashBagDuration; // Assign health
+        currentDuration = trashBagDuration;
     }
+
     public void SpillAndDestroy()
     {
+        List<Transform> children = new();
+
         foreach (Transform child in transform)
+            children.Add(child);
+
+        foreach (Transform child in children)
         {
-            child.gameObject.SetActive(true); // Reactivate
+            child.gameObject.SetActive(true);
             child.SetParent(null);
         }
 

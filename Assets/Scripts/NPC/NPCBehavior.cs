@@ -28,6 +28,7 @@ public class NPCBehavior : MonoBehaviour
     private Vector3 arrivedPosition;
     private bool returningToArrivedPoint = false;
     private bool menuAlreadySpawned = false;
+    private bool plateAlreadySpawned = false;
 
     public int customerId { get; private set; }
     private NPCState state = NPCState.Approaching;
@@ -101,8 +102,11 @@ public class NPCBehavior : MonoBehaviour
                 attachedMenu = Instantiate(menuPrefab, menuSpawnPoint.position, Quaternion.identity, transform); menuAlreadySpawned = true;
         }
 
-        if (platePrefab && plateSpawnPoint)
-            attachedPlate = Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform);
+        if (!plateAlreadySpawned)
+        {
+            if (platePrefab && plateSpawnPoint)
+                attachedPlate = Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform); plateAlreadySpawned = true;
+        }
 
         if (attachedPlate != null)
         {
