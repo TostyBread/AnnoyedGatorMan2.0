@@ -87,8 +87,44 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleActionInput()
     {
-        if (Input.GetKeyDown(inputConfig.attackKey)) HandleMeleeLogic();
+        if (playerPickupSystem == null) return;
+
+        if (playerPickupSystem.HasItemHeld)
+        {
+            IUsable usableFunction = playerPickupSystem.GetUsableFunction();
+            if (usableFunction == null) return;
+
+            if (usableFunction is FirearmController gun)
+            {
+                if (gun.currentFireMode == FirearmController.FireMode.Auto)
+                {
+                    if (Input.GetKey(inputConfig.attackKey))
+                        gun.Use();
+                }
+                else
+                {
+                    if (Input.GetKeyDown(inputConfig.attackKey))
+                        gun.Use();
+                }
+
+                if (Input.GetKeyUp(inputConfig.attackKey))
+                    gun.OnFireKeyReleased();
+            }
+            else
+            {
+                // It's not a gun => fallback to melee
+                if (Input.GetKeyDown(inputConfig.attackKey))
+                    HandleMeleeLogic();
+            }
+        }
+        else
+        {
+            // No item held => default to fist
+            if (Input.GetKeyDown(inputConfig.attackKey))
+                fist?.TriggerPunch();
+        }
     }
+
 
     private void HandleMeleeLogic()
     {
@@ -178,6 +214,8 @@ public class PlayerInputManager : MonoBehaviour
         IUsable usableFunction = playerPickupSystem.GetUsableFunction();
         if (usableFunction == null) return;
 
+        // Fire input moved to HandleActionInput(), do not repeat it here
+        // This block now only toggles usable mode (safety on/off)
         if (Input.GetKeyDown(inputConfig.toggleSafetyKey))
         {
             usableItemModeEnabled = !usableItemModeEnabled;
@@ -195,16 +233,6 @@ public class PlayerInputManager : MonoBehaviour
             }
         }
 
-        if (usableFunction is FirearmController gun && gun.currentFireMode == FirearmController.FireMode.Auto)
-        {
-            if (Input.GetKeyDown(inputConfig.attackKey))
-                usableFunction.Use();
-        }
-        else
-        {
-            if (Input.GetKeyDown(inputConfig.attackKey))
-                usableFunction.Use();
-        }
     }
 
     private void HandleEnvironmentalInteractInput()

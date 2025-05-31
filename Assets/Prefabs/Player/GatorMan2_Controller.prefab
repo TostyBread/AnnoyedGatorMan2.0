@@ -535,6 +535,7 @@ GameObject:
   - component: {fileID: 6559327783794153403}
   - component: {fileID: 4324472726372610997}
   - component: {fileID: 1862175856854452489}
+  - component: {fileID: 1038566192339957926}
   m_Layer: 11
   m_Name: GatorMan2_Controller
   m_TagString: Player
@@ -788,6 +789,18 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1038566192339957926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372032603978279671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0b5175d015854982ae137bea84a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4754584776472674703
 GameObject:
   m_ObjectHideFlags: 0
