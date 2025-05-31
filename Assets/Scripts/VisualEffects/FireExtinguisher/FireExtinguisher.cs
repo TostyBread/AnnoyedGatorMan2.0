@@ -45,7 +45,12 @@ public class FireExtinguisher : MonoBehaviour
 
             animator.SetBool("Usable", true);
 
-            if (currentSprayDur <= 0 || currentGasAmount <= 0) Projectile.SetActive(false);
+            if (currentSprayDur <= 0 || currentGasAmount <= 0)
+            {
+                Projectile.SetActive(false);
+                AudioManager.Instance.StopSound(sprayAudioName);
+                isPlayingSound = false;
+            }
 
             playerInputManager = holdingPlayer.GetComponent<PlayerInputManager>();
 

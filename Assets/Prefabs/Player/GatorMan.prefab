@@ -758,6 +758,7 @@ MonoBehaviour:
   isColdSource: 0
   isStunSource: 0
   minVelocityToDamage: 0
+  playHitSound: 1
 --- !u!50 &405541712854609481
 Rigidbody2D:
   serializedVersion: 4
