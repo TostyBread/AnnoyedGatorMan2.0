@@ -55,14 +55,19 @@ public class PlateSystem : MonoBehaviour
 
     private void AttachToPlate(GameObject item, PlateRequirement requirement)
     {
-        item.transform.SetParent(plateParent);
+        item.transform.SetParent(transform); // Attach to plate directly
         item.transform.localPosition = requirement.positionOffset;
         placedItems[requirement] = item;
         requirement.isFilled = true;
 
-        UpdateSpriteSorting(item, requirement.sortingOrder);
+        int plateSortingOrder = 0;
+        if (TryGetComponent(out SpriteRenderer plateRenderer))
+            plateSortingOrder = plateRenderer.sortingOrder;
+
+        UpdateSpriteSorting(item, plateSortingOrder + requirement.sortingOrder);
         FreezeItem(item);
     }
+
 
     private void UpdateSpriteSorting(GameObject item, int sortingOrder)
     {

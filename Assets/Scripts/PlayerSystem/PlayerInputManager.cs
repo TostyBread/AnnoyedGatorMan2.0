@@ -95,37 +95,41 @@ public class PlayerInputManager : MonoBehaviour
         if (playerPickupSystem.HasItemHeld)
         {
             IUsable usableFunction = playerPickupSystem.GetUsableFunction();
-            if (usableFunction != null && usableItemModeEnabled)
+
+            switch (usableFunction)
             {
-                switch (usableFunction)
-                {
-                    case FirearmController gun:
-                        if (gun.currentFireMode == FirearmController.FireMode.Auto)
-                        {
-                            if (Input.GetKey(inputConfig.attackKey))
-                            {
-                                gun.Use();
-                                used = true;
-                            }
-                        }
-                        else if (Input.GetKeyDown(inputConfig.attackKey))
+                case FirearmController gun when usableItemModeEnabled:
+                    if (gun.currentFireMode == FirearmController.FireMode.Auto)
+                    {
+                        if (Input.GetKey(inputConfig.attackKey))
                         {
                             gun.Use();
                             used = true;
                         }
+                    }
+                    else if (Input.GetKeyDown(inputConfig.attackKey))
+                    {
+                        gun.Use();
+                        used = true;
+                    }
 
-                        if (Input.GetKeyUp(inputConfig.attackKey))
-                            gun.OnFireKeyReleased();
-                        break;
+                    if (Input.GetKeyUp(inputConfig.attackKey))
+                        gun.OnFireKeyReleased();
+                    break;
 
-                    case KnifeController knife:
-                        if (Input.GetKey(inputConfig.attackKey))
-                        {
-                            knife.Use();
-                            used = true;
-                        }
-                        break;
-                }
+                case KnifeController knife when usableItemModeEnabled:
+                    if (Input.GetKey(inputConfig.attackKey))
+                    {
+                        knife.Use();
+                        used = true;
+                    }
+                    break;
+
+                default:
+                    // Allow MeleeSwing even if usableItemMode is disabled
+                    if (Input.GetKeyDown(inputConfig.attackKey))
+                        HandleMeleeLogic();
+                    break;
             }
 
             if (!used && Input.GetKeyDown(inputConfig.attackKey))
@@ -204,6 +208,9 @@ public class PlayerInputManager : MonoBehaviour
                 playerThrowManager.Throw();
                 isPreparingHeld = false;
                 throwStarted = false;
+
+                // Reset usable mode after throw
+                usableItemModeEnabled = true;
             }
             else
             {

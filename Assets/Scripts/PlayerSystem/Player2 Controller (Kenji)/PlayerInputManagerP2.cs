@@ -42,7 +42,13 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
         inputActions.Player2Controller.ThrowConfirm.started += ctx =>
         {
-            if (canThrow && throwStarted) playerThrowManagerP2?.Throw();
+            if (canThrow && throwStarted)
+            {
+                playerThrowManagerP2?.Throw();
+                isPreparingHeld = false;
+                throwStarted = false;
+                usableItemModeEnabled = true; // Reset usable mode after throw
+            }
         };
 
         inputActions.Player2Controller.ToggleSafety.performed += ctx => HandleUsableItemInput();
@@ -75,6 +81,7 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
     private void HandleFireModes()
     {
+        if (!usableItemModeEnabled) return;
         if (playerPickupSystemP2 == null || !playerPickupSystemP2.HasItemHeld) return;
 
         IUsable usable = playerPickupSystemP2.GetUsableFunction();
@@ -99,6 +106,7 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
     private void HandleKnife()
     {
+        if (!usableItemModeEnabled) return;
         if (playerPickupSystemP2 == null || !playerPickupSystemP2.HasItemHeld) return;
 
         IUsable usable = playerPickupSystemP2.GetUsableFunction();
@@ -106,10 +114,11 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
         if (usable is KnifeController knife)
         {
-            if (inputActions.Player2Controller.Attack.ReadValue<float> () > 0.5f)
+            if (inputActions.Player2Controller.Attack.ReadValue<float>() > 0.5f)
                 knife.Use();
         }
     }
+
     public bool IsPreparingHeld() => isPreparingHeld;
 
     private void HandleMovementInput()

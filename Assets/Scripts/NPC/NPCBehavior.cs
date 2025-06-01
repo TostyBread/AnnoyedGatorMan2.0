@@ -32,10 +32,12 @@ public class NPCBehavior : MonoBehaviour
 
     public int customerId { get; private set; }
     private NPCState state = NPCState.Approaching;
+    private Collider2D npcCollider;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        npcCollider = GetComponent<Collider2D>(); // Cache collider
     }
 
     void FixedUpdate()
@@ -234,6 +236,7 @@ public class NPCBehavior : MonoBehaviour
                 attachedMenu = null;
             }
             ForceEscape();
+            npcCollider.enabled = false; // Disable their collider when escaping
             AudioManager.Instance.PlaySound("scream", 1f, transform.position);
         }
 
