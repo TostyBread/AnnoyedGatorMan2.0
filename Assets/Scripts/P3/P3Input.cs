@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph;
@@ -61,11 +62,21 @@ public class P3Input : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.Gameplay.Enable();
+        //if no console detected...
+        if (Gamepad.current == null)
+        {
+            Debug.LogWarning("no console detected");
+            //gameObject.SetActive(false);
+        }
+        else
+        {
+            controls.Gameplay.Enable();
+        }
     }
 
     private void OnDisable()
     {
+        if (Gamepad.current != null)
         controls.Gameplay.Disable();
     }
 

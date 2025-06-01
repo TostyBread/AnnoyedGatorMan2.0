@@ -13,6 +13,9 @@ public class HealthManager : MonoBehaviour
     public float reviveSpeed = 1;
 
     public bool enemy;
+    public HealthManager sharedHealthSource;
+
+
     [Header("References")]
     public CharacterAnimation characterAnimation;
     public GameObject hand;
@@ -51,15 +54,7 @@ public class HealthManager : MonoBehaviour
 
             if (gameObject.CompareTag("Player"))
             {
-                if (playerInputManager != null) { playerInputManager.enabled = false; }
-                if (p2Input != null) { p2Input.enabled = false; }
-                if (p3Input != null) { p3Input.enabled = false; }
-
-                if (characterFlip != null) { characterFlip.enabled = false; }
-                if (characterMovement != null) { characterMovement.SetMovement(Vector2.zero); }
-                if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = true; }
-
-                if (hand != null) { hand.SetActive(false); }
+                SetPlayerActive(false); // on death
 
                 reviveTime += Time.deltaTime * reviveSpeed;
                 if (reviveTime >= Health)
@@ -90,20 +85,31 @@ public class HealthManager : MonoBehaviour
         {
             if (gameObject.CompareTag("Player"))
             {
-                if (playerInputManager != null) { playerInputManager.enabled = true; }
-                if (p2Input != null) { p2Input.enabled = true; }
-                if (p3Input != null) { p3Input.enabled = true; }
-
-                if (characterFlip != null) { characterFlip.enabled = true; }
-                if (cookCharacterSystem != null) { cookCharacterSystem.canBeCooked = false; }
-
-                if (hand != null) { hand.SetActive(true); }
+                SetPlayerActive(true);
             }
         }
     }
 
-    public void TryDamage(float Damage)
+    private void SetPlayerActive(bool isActive)
     {
-        currentHealth -= Damage;
+        if (playerInputManager != null) playerInputManager.enabled = isActive;
+        if (p2Input != null) p2Input.enabled = isActive;
+        if (p3Input != null) p3Input.enabled = isActive;
+
+        if (characterFlip != null) characterFlip.enabled = isActive;
+        if (cookCharacterSystem != null) cookCharacterSystem.canBeCooked = !isActive;
+        if (hand != null) hand.SetActive(isActive);
     }
+
+    public void TryDamage(float damage)
+    {
+        if (sharedHealthSource != null && sharedHealthSource != this)
+        {
+            sharedHealthSource.TryDamage(damage);
+            return;
+        }
+
+        currentHealth -= damage;
+    }
+
 }

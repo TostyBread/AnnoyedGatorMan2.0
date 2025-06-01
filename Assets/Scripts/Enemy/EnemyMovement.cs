@@ -293,7 +293,7 @@ public class EnemyMovement : MonoBehaviour
     private void EnemyWonderAround()
     {
         // If we’ve reached the destination, choose a new one after a delay
-        if (TargetedGrid == null || Vector3.Distance(transform.position, TargetedGrid.position) < 0.1f)
+        if (TargetedGrid == null || Vector3.Distance(transform.position, TargetedGrid.position) < 0.01f)
         {
             if (MoveNext)
             {

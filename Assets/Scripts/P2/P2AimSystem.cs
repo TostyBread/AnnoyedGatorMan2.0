@@ -76,8 +76,10 @@ public class P2AimSystem : MonoBehaviour
             return null;
         }
 
+
         //Ensure index is within bounds
         currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, detectTarget.AllItemInRange.Count - 1);
+        
 
         return detectTarget.AllItemInRange[currentTargetIndex];
     }

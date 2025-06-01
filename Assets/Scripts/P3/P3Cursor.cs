@@ -20,20 +20,27 @@ public class P3Cursor : MonoBehaviour
 
     private void OnEnable()
     {
+        //if no console detected...
+        if (Gamepad.current == null)
+        {
+            //gameObject.SetActive(false);
+        }
+
         transform.parent = null;
         if (DefaultThrowPos != null)
         {
             transform.position = DefaultThrowPos.position;
         }
+
         controls.Gameplay.Enable();
     }
 
     private void OnDisable()
     {
-        if (DefaultThrowPos != null)
+        if (DefaultThrowPos != null && Gamepad.current != null)
         {
             transform.position = DefaultThrowPos.position;
-            transform.parent = DefaultThrowPos;
+            //transform.parent = DefaultThrowPos;
         }
         controls.Gameplay.Disable();
     }

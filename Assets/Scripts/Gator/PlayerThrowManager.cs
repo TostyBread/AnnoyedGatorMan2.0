@@ -22,6 +22,7 @@ public class PlayerThrowManager : MonoBehaviour
     private Vector2 storedThrowPosition; // Stores the last mouse click position
     private IUsable usableFunction; // Cache of the usable function (if any)
 
+    public bool doorCauseThrow;
 
     public void StartPreparingThrow()
     {
@@ -59,19 +60,26 @@ public class PlayerThrowManager : MonoBehaviour
 
         handSpriteManager?.ShowThrowSprite(throwSpriteDuration);
 
-        if (!P1FalseP2True)
+        //get slamed by door will act as drop rather than throw
+        //thus no too much force/range added
+        if (doorCauseThrow)
+        { storedThrowPosition = transform.position; }
+        else
         {
-            storedThrowPosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition(); //this affect the direction of where P1 throw object
-        }
-        else if (P1FalseP2True)
-        {
-            if (P2ThrowDirection == null)
+            if (!P1FalseP2True)
             {
-                Debug.LogError("P2ThrowDirection missing");
-                return;
+                storedThrowPosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition(); //this affect the direction of where P1 throw object
             }
+            else if (P1FalseP2True)
+            {
+                if (P2ThrowDirection == null)
+                {
+                    Debug.LogError("P2ThrowDirection missing");
+                    return;
+                }
 
-            storedThrowPosition = P2ThrowDirection.position;
+                storedThrowPosition = P2ThrowDirection.position;
+            }
         }
 
         float distance = Vector2.Distance(transform.position, storedThrowPosition);

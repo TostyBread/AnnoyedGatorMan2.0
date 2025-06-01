@@ -25,9 +25,13 @@ public class PlayerPickupSystem : MonoBehaviour
     public string HeldItemTag => heldItem != null ? heldItem.tag : null;
     public bool HasUsableFunction => usableItemController != null;
 
+    [Header("Do not touch")]
+    public GameObject HeldItem = null;
 
     void Update()
     {
+        HeldItem = heldItem;
+
         HandleItemDetection();
         if (isHoldingPickupKey && targetItem != null && pickupCoroutine == null)
         {
