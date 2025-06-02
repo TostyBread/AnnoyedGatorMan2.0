@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DoorHitBox : MonoBehaviour
@@ -22,7 +23,7 @@ public class DoorHitBox : MonoBehaviour
         StartCoroutine(DisableAfter(0.1f));
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
@@ -32,6 +33,9 @@ public class DoorHitBox : MonoBehaviour
                 colThrowManager.doorCauseThrow = true;
                 colThrowManager.StartPreparingThrow();
                 colThrowManager.Throw();
+
+                //stun the player from moving
+                colHealthManager.canMove = false;
 
                 colHealthManager.TryDamage(damage);
 
@@ -54,17 +58,19 @@ public class DoorHitBox : MonoBehaviour
 
         StartCoroutine(DisableAfterHit());
     }
+
+    
     
 
     IEnumerator DisableAfterHit()
     {
-        yield return new WaitForFixedUpdate();
+        yield return new WaitForSeconds(0.05f);
 
         if (targets.Count > 0)
             targets.Clear();
 
         if (pushback != null)
-        pushback.SetActive(true);
+            pushback.SetActive(true);
 
         gameObject.SetActive(false);
     }

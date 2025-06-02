@@ -7,12 +7,13 @@ public class Pushback : MonoBehaviour
     public DoorHitBox[] doorHitBox;
     public List<GameObject> allTargetInDoorHitbox = new List<GameObject>();
 
+    HealthManager colHealthManager;
     private void OnEnable()
     {
         // Enable collisions with targets in list
         EnableOnlyTargetCollisions();
 
-        StartCoroutine(DisableAfterPush(0.2f));
+        StartCoroutine(DisableAfterPush(0.5f));
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -27,6 +28,11 @@ public class Pushback : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(myCollider, otherCollider, true);
             }
+        }
+
+        if (col.gameObject.TryGetComponent(out HealthManager _colHealthManager))
+        {
+            colHealthManager = _colHealthManager;
         }
     }
 
@@ -54,6 +60,8 @@ public class Pushback : MonoBehaviour
 
         // Re-enable all collisions before disabling
         EnableAllCollisions();
+
+        colHealthManager.canMove = true;
 
         gameObject.SetActive(false);
     }

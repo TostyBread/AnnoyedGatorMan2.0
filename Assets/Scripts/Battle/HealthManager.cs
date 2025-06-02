@@ -15,6 +15,8 @@ public class HealthManager : MonoBehaviour
     public bool enemy;
     public HealthManager sharedHealthSource;
 
+    public bool canMove;
+    public bool isDefeated;
 
     [Header("References")]
     public CharacterAnimation characterAnimation;
@@ -41,6 +43,8 @@ public class HealthManager : MonoBehaviour
         cookCharacterSystem = GetComponent<ItemSystem>();
 
         currentHealth = Health;
+        canMove = true;
+
     }
 
     // Update is called once per frame
@@ -54,12 +58,17 @@ public class HealthManager : MonoBehaviour
 
             if (gameObject.CompareTag("Player"))
             {
-                SetPlayerActive(false); // on death
+                canMove = false; // on death
+                isDefeated = true;
 
                 reviveTime += Time.deltaTime * reviveSpeed;
                 if (reviveTime >= Health)
                 {
                     currentHealth = Health;
+
+                    canMove = true;
+                    isDefeated = false;
+
                     reviveTime = 0;
                 }
 
@@ -81,24 +90,24 @@ public class HealthManager : MonoBehaviour
             }
         }
 
-        if (currentHealth > 0)
+        if (gameObject.CompareTag("Player"))
         {
-            if (gameObject.CompareTag("Player"))
-            {
-                SetPlayerActive(true);
-            }
+            SetPlayerActive(canMove,isDefeated);
         }
     }
 
-    private void SetPlayerActive(bool isActive)
+    public void SetPlayerActive(bool isActive,bool isDefeated)
     {
         if (playerInputManager != null) playerInputManager.enabled = isActive;
         if (p2Input != null) p2Input.enabled = isActive;
         if (p3Input != null) p3Input.enabled = isActive;
 
         if (characterFlip != null) characterFlip.enabled = isActive;
-        if (cookCharacterSystem != null) cookCharacterSystem.canBeCooked = !isActive;
-        if (hand != null) hand.SetActive(isActive);
+
+
+        if (cookCharacterSystem != null) cookCharacterSystem.canBeCooked = isDefeated;
+        if (hand != null) hand.SetActive(!isDefeated);
+
     }
 
     public void TryDamage(float damage)

@@ -29,7 +29,10 @@ public class DoNotHurt : MonoBehaviour
                     {
                         if (hitboxes[i] != null && hitboxes[i].TryGetComponent(out Collider2D hitboxCol))
                         {
-                            Physics2D.IgnoreCollision(col, hitboxCol);
+                            // might have bugs because I have not set the IgnorecCollision back to false
+                            Physics2D.IgnoreCollision(col, hitboxCol,true);
+                            StartCoroutine(ReenableCollisionAfterDelay(col, hitboxCol, 0.1f)); // Delay in seconds
+
                         }
                     }
                 }
@@ -37,5 +40,26 @@ public class DoNotHurt : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void RegisterDoNotHurt(GameObject obj)
+{
+    if (obj != null && obj.TryGetComponent(out Collider2D col))
+    {
+        foreach (var hitbox in hitboxes)
+        {
+            if (hitbox != null && hitbox.TryGetComponent(out Collider2D hitboxCol))
+            {
+                Physics2D.IgnoreCollision(col, hitboxCol, true);
+                StartCoroutine(ReenableCollisionAfterDelay(col, hitboxCol, 0.5f));
+            }
+        }
+    }
+}
+
+    private IEnumerator ReenableCollisionAfterDelay(Collider2D a, Collider2D b, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Physics2D.IgnoreCollision(a, b, false);
     }
 }
