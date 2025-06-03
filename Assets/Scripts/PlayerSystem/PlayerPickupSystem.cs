@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 
 public class PlayerPickupSystem : MonoBehaviour
 {
@@ -104,12 +105,18 @@ public class PlayerPickupSystem : MonoBehaviour
 
     public void StartLongInteraction(bool isPressed) // Similar to StartInteraction, but require player to keep pressing to interect
     {
-        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window) && inInterectRange)
+        Window window1 = FindObjectOfType<Window>();
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
         {
             window.SetWindowState(isPressed);
         }
+        else
+        {
+            window1.SetWindowState(false);
+        }
 
-        if (targetInteractable != null && targetInteractable.TryGetComponent(out Smoke smoke) && inInterectRange)
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Smoke smoke))
         {
             smoke.SetSmokeState(isPressed, this.gameObject);
         }

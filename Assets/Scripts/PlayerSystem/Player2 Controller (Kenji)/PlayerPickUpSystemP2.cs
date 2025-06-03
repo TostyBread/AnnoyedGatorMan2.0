@@ -100,7 +100,7 @@ public class PlayerPickupSystemP2 : MonoBehaviour
     {
         if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
         {
-            window.SetWindowState(isPressed);
+            //window.SetWindowState(isPressed);
         }
     }
 

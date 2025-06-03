@@ -47,7 +47,7 @@ public class PlayerInputManager : MonoBehaviour
 
     void Update()
     {
-        if (!isInputEnabled) return;
+        //if (!isInputEnabled) return;
 
         HandleMovementInput();
         HandleActionInput();
@@ -179,11 +179,11 @@ public class PlayerInputManager : MonoBehaviour
             playerPickupSystem?.StartInteraction();
         }
 
-        if (Input.GetKey(inputConfig.interactKey) && playerPickupSystem.inInterectRange)
+        if (Input.GetKey(inputConfig.interactKey))
         {
             playerPickupSystem?.StartLongInteraction(true);
         }
-        else if (!playerPickupSystem.inInterectRange)
+        else
         {
             playerPickupSystem?.StartLongInteraction(false);
         }
