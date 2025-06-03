@@ -8,8 +8,10 @@ public class P2Input : MonoBehaviour
     private Fist fist;
     private P2PickSystem playerPickupSystem;
     private PlayerThrowManager playerThrowManager;
-    private Vector2 movementInput;
+    public Vector2 movementInput;
     private bool usableItemModeEnabled = false;
+
+    private HealthManager healthManager;
 
     [Header("Input")]
     public KeyCode Use;
@@ -24,6 +26,7 @@ public class P2Input : MonoBehaviour
         fist = GetComponentInChildren<Fist>();
         playerPickupSystem = GetComponent<P2PickSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
+        healthManager = GetComponent<HealthManager>();
     }
 
     void Update()
@@ -40,7 +43,13 @@ public class P2Input : MonoBehaviour
 
     private void HandleMovementInput()
     {
+        if (!healthManager.canMove)
+        {
+            movementInput = Vector2.zero;
+            return;
+        }
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized;
+
         characterMovement?.SetMovement(movementInput);
     }
 
@@ -102,6 +111,10 @@ public class P2Input : MonoBehaviour
         {
             playerPickupSystem?.StartInteraction();
         }
+    }
+    private void OnDisable()
+    {
+        movementInput = Vector2.zero;
     }
 }
 

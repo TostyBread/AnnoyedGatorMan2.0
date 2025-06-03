@@ -5,51 +5,88 @@ using UnityEngine;
 public class DoorManager : MonoBehaviour
 {
     public bool MidDoor;
-    public List<GameObject> Door = new List<GameObject>();
-    public List<GameObject> hitBox = new List<GameObject>();
+    public GameObject rightDoor;
+    public GameObject leftDoor;
+    public GameObject midDoor;
+
+    public GameObject hitBoxL;
+    public GameObject hitBoxR;
+
     public bool PlayerAtTheRightPos;
     public GameObject DoNotHurt;
+    private bool canHitDoor;
+
+    Rigidbody2D rb2d;
+    private void OnEnable()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+        
+        StartCoroutine(Invaruable(0.2f));
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Fist") && PlayerAtTheRightPos)
+        if (collision.gameObject.CompareTag("Fist") && canHitDoor)
         {
             bool playerPunch = collision.gameObject.GetComponent<Fist>().isPunching;
 
             if (playerPunch)
             {
-                DoNotHurt = collision.gameObject.transform.parent.transform.parent?.gameObject;
-
-                if (MidDoor)
+                //if player at the box 
+                if (PlayerAtTheRightPos)
                 {
-                    bool isFacingRight = collision.gameObject.GetComponentInParent<CharacterFlip>().isFacingRight;
+                    DoNotHurt = collision.gameObject.transform.parent?.parent?.gameObject;
 
-                    if (isFacingRight)
+                    if (MidDoor)
                     {
-                        Door[1].SetActive(true);
-                        hitBox[0].SetActive(true);
+                        bool isFacingRight = collision.gameObject.GetComponentInParent<CharacterFlip>().isFacingRight;
+
+                        if (isFacingRight)
+                        {
+                            leftDoor.SetActive(true);
+                            hitBoxR.SetActive(true);
+                        }
+                        else if (!isFacingRight)
+                        {
+                            rightDoor.SetActive(true);
+                            hitBoxL.SetActive(true);
+                        }
                     }
-                    else if (!isFacingRight)
+                    else
                     {
-                        Door[0].SetActive(true);
-                        hitBox[1].SetActive(true);
+                        midDoor.SetActive(true);
+
+                        if (gameObject.name.Contains("Right"))
+                        {
+                            hitBoxL.SetActive(true);
+                        }
+                        else if (gameObject.name.Contains("Left"))
+                        {
+                            hitBoxR.SetActive(true);
+                        }
                     }
                 }
                 else 
                 {
-                    Door[2].SetActive(true);
+                    if (MidDoor)
+                    {
+                        bool isFacingRight = collision.gameObject.GetComponentInParent<CharacterFlip>().isFacingRight;
 
-                    if (gameObject.name.Contains("Right"))
-                    {
-                        hitBox[1].SetActive(true);
+                        if (isFacingRight)
+                        {
+                            leftDoor.SetActive(true);
+                        }
+                        else if (!isFacingRight)
+                        {
+                            rightDoor.SetActive(true);
+                        }
                     }
-                    else if (gameObject.name.Contains("Left"))
+                    else
                     {
-                        hitBox[0].SetActive(true);
+                        midDoor.SetActive(true);
                     }
                 }
             }
-
 
             ////handle the DoNotHurt = null at DoNotHurt script
             //if (DoNotHurt != null)
@@ -57,5 +94,14 @@ public class DoorManager : MonoBehaviour
 
             gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator Invaruable(float time)
+    { 
+        canHitDoor = false;
+
+        yield return new WaitForSeconds(time);
+
+        canHitDoor = true;
     }
 }

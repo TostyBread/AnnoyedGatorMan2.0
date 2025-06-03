@@ -62,6 +62,7 @@ public class EnemyMovement : MonoBehaviour
     public List<GameObject> EnemySight = new List<GameObject>();
     private bool onceSightGrid;
 
+    public bool aimForFood;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -313,7 +314,7 @@ public class EnemyMovement : MonoBehaviour
         bool PlayerFound = false;
 
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 5f, LayerMask.GetMask("Player"));
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, sightSize, LayerMask.GetMask("Player"));
         foreach (var hit in hits)
         {
             Vector2 dirToTarget = hit.transform.position - transform.position;

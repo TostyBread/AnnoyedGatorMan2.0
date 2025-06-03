@@ -10,7 +10,7 @@ public class HealthManager : MonoBehaviour
     public float currentHealth;
 
     private float reviveTime;
-    public float reviveSpeed = 1;
+    public float reviveSpeed = 1;   
 
     public bool enemy;
     public HealthManager sharedHealthSource;
@@ -31,6 +31,10 @@ public class HealthManager : MonoBehaviour
     private CharacterMovement characterMovement;
     private ItemSystem cookCharacterSystem;
 
+    [Header("Revive Settings")]
+    public KeyCode reviveBoostKey = KeyCode.Space;
+
+    private Rigidbody2D rb2d;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,23 +49,32 @@ public class HealthManager : MonoBehaviour
         currentHealth = Health;
         canMove = true;
 
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool isPlayer = gameObject.CompareTag("Player");
+
         if (HealthBar != null) HealthBar.fillAmount = currentHealth / Health;
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
 
-            if (gameObject.CompareTag("Player"))
+            if (isPlayer)
             {
                 canMove = false; // on death
                 isDefeated = true;
 
                 reviveTime += Time.deltaTime * reviveSpeed;
+
+                if (Input.GetKeyDown(reviveBoostKey))
+                {
+                    reviveTime += reviveSpeed / 2f;
+                }
+
                 if (reviveTime >= Health)
                 {
                     currentHealth = Health;
@@ -72,25 +85,19 @@ public class HealthManager : MonoBehaviour
                     reviveTime = 0;
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    reviveTime += reviveSpeed / 2;
-                }
-
                 HealthBar.fillAmount = reviveTime / Health;
             }
             else
             {
-                if (enemy)
+                if (!isPlayer)
                 {
-                    Destroy(transform.parent.gameObject);
-                }
-                else
-                Destroy(gameObject);                
+                    GameObject toDestroy = enemy && transform.parent != null ? transform.parent.gameObject : gameObject;
+                    Destroy(toDestroy);
+                }              
             }
         }
 
-        if (gameObject.CompareTag("Player"))
+        if (isPlayer)
         {
             SetPlayerActive(canMove,isDefeated);
         }
@@ -98,12 +105,25 @@ public class HealthManager : MonoBehaviour
 
     public void SetPlayerActive(bool isActive,bool isDefeated)
     {
-        if (playerInputManager != null) playerInputManager.enabled = isActive;
-        if (p2Input != null) p2Input.enabled = isActive;
-        if (p3Input != null) p3Input.enabled = isActive;
+        if (isActive == false)
+        {
+            rb2d.velocity = Vector2.zero;
+        }
+
+        if (playerInputManager != null) 
+        { 
+            playerInputManager.enabled = isActive; 
+        }
+        if (p2Input != null)
+        {
+            p2Input.enabled = isActive; 
+        }
+        if (p3Input != null)
+        {
+            p3Input.enabled = isActive;
+        }
 
         if (characterFlip != null) characterFlip.enabled = isActive;
-
 
         if (cookCharacterSystem != null) cookCharacterSystem.canBeCooked = isDefeated;
         if (hand != null) hand.SetActive(!isDefeated);

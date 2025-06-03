@@ -5,9 +5,12 @@ using UnityEngine;
 public class CannotMoveThisWay : MonoBehaviour
 {
     [SerializeField] public bool canMoveThisWay;
+    public bool aimForFood;
+
     private void Start()
     {
         canMoveThisWay = true;
+        aimForFood = GetComponentInParent<EnemyMovement>().aimForFood;
     }
 
     //use OnTrigger and OnCollision to ensure the checking is always correct
@@ -22,6 +25,11 @@ public class CannotMoveThisWay : MonoBehaviour
             //Debug.Log("can move this way = " + canMoveThisWay);
             //Debug.Log("collision with = " + collision);
         }
+
+        if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
+        {
+            canMoveThisWay = false;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -32,6 +40,11 @@ public class CannotMoveThisWay : MonoBehaviour
 
             //Debug.Log("can move this way = " + canMoveThisWay);
             //Debug.Log("collision with = " + collision);
+        }
+
+        if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
+        {
+            canMoveThisWay = false;
         }
     }
 
@@ -44,6 +57,11 @@ public class CannotMoveThisWay : MonoBehaviour
             //Debug.Log("can move this way = " + canMoveThisWay);
             //Debug.Log("collision with = " + collision);
         }
+
+        if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
+        {
+            canMoveThisWay = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -54,6 +72,11 @@ public class CannotMoveThisWay : MonoBehaviour
 
             //Debug.Log("can move this way = " + canMoveThisWay);
             //Debug.Log("collision with = " + collision);
+        }
+
+        if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
+        {
+            canMoveThisWay = true;
         }
     }
 

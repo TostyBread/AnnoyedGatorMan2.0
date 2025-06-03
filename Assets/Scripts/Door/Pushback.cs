@@ -7,7 +7,7 @@ public class Pushback : MonoBehaviour
     public DoorHitBox[] doorHitBox;
     public List<GameObject> allTargetInDoorHitbox = new List<GameObject>();
 
-    HealthManager colHealthManager;
+    List<HealthManager> colHealthManager = new List<HealthManager>();
     private void OnEnable()
     {
         // Enable collisions with targets in list
@@ -30,10 +30,12 @@ public class Pushback : MonoBehaviour
             }
         }
 
+
         if (col.gameObject.TryGetComponent(out HealthManager _colHealthManager))
         {
-            colHealthManager = _colHealthManager;
+            colHealthManager.Add(_colHealthManager);
         }
+        
     }
 
     private void EnableOnlyTargetCollisions()
@@ -61,7 +63,10 @@ public class Pushback : MonoBehaviour
         // Re-enable all collisions before disabling
         EnableAllCollisions();
 
-        colHealthManager.canMove = true;
+        foreach (HealthManager hm in colHealthManager)
+        {
+            hm.canMove = true;
+        }
 
         gameObject.SetActive(false);
     }

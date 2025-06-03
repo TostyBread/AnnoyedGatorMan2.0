@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,12 +12,13 @@ public class P3Input : MonoBehaviour
     private Fist fist;
     private P2PickSystem playerPickupSystem;
     private PlayerThrowManager playerThrowManager;
-    private Vector2 movementInput;
+    public Vector2 movementInput;
     private bool usableItemModeEnabled = false;
 
     P3Controls controls;
     public Vector2 P3move;
 
+    private HealthManager healthManager;
     void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
@@ -38,6 +40,8 @@ public class P3Input : MonoBehaviour
 
         controls.Gameplay.Move.performed += context => P3move = context.ReadValue<Vector2>();
         controls.Gameplay.Move.canceled += context => P3move = Vector2.zero;
+
+        healthManager = GetComponent<HealthManager>();
     }
 
     void Use()
@@ -76,8 +80,12 @@ public class P3Input : MonoBehaviour
 
     private void OnDisable()
     {
+        movementInput = Vector2.zero;
+
         if (Gamepad.current != null)
-        controls.Gameplay.Disable();
+        {
+            controls.Gameplay.Disable();
+        }
     }
 
     void Update()
@@ -94,7 +102,13 @@ public class P3Input : MonoBehaviour
 
     private void HandleMovementInput()
     {
+        if (!healthManager.canMove)
+        {
+            movementInput = Vector2.zero;
+            return;
+        }
         movementInput = new Vector2(P3move.x, P3move.y).normalized;
+
         characterMovement?.SetMovement(movementInput);
     }
 

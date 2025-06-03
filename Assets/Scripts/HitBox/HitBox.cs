@@ -5,20 +5,29 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
     public float damage = 10;
+    public bool aimForFood;
+
     private void Start()
     {
         gameObject.SetActive(false);
+        aimForFood = GetComponentInParent<EnemyMovement>().aimForFood;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !aimForFood)
         {
             //Debug.Log("attack " + collision.name);
 
             collision.GetComponentInChildren<HealthManager>().currentHealth -= damage;
         }
-            gameObject.SetActive(false);
+
+        if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
+        {
+            collision.GetComponentInChildren<HealthManager>().currentHealth -= damage;
+        }
+
+        gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,6 +38,12 @@ public class HitBox : MonoBehaviour
 
             collision.gameObject.GetComponentInChildren<HealthManager>().currentHealth -= damage;
         }
-            gameObject.SetActive(false);
+
+        if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
+        {
+            collision.gameObject.GetComponentInChildren<HealthManager>().currentHealth -= damage;
+        }
+
+        gameObject.SetActive(false);
     }
 }

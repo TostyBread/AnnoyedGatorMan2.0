@@ -146,9 +146,12 @@ MonoBehaviour:
   reviveSpeed: 1
   enemy: 0
   sharedHealthSource: {fileID: 0}
+  canMove: 0
+  isDefeated: 0
   characterAnimation: {fileID: 0}
   hand: {fileID: 0}
   HealthBar: {fileID: 0}
+  reviveBoostKey: 32
 --- !u!114 &8074857564522226399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,9 +530,12 @@ MonoBehaviour:
   reviveSpeed: 1
   enemy: 0
   sharedHealthSource: {fileID: 8864841713572422829}
+  canMove: 0
+  isDefeated: 0
   characterAnimation: {fileID: 0}
   hand: {fileID: 0}
   HealthBar: {fileID: 0}
+  reviveBoostKey: 32
 --- !u!114 &4334258005059596877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,13 +549,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MidDoor: 1
-  Door:
-  - {fileID: 6965825366723940535}
-  - {fileID: 6629713179701842269}
-  - {fileID: 5576673497212880175}
-  hitBox:
-  - {fileID: 2882714276529526745}
-  - {fileID: 7449579273919458380}
+  rightDoor: {fileID: 6965825366723940535}
+  leftDoor: {fileID: 6629713179701842269}
+  midDoor: {fileID: 5576673497212880175}
+  hitBoxL: {fileID: 7449579273919458380}
+  hitBoxR: {fileID: 2882714276529526745}
   PlayerAtTheRightPos: 0
   DoNotHurt: {fileID: 0}
 --- !u!1 &6629713179701842269
@@ -730,9 +734,12 @@ MonoBehaviour:
   reviveSpeed: 1
   enemy: 0
   sharedHealthSource: {fileID: 8864841713572422829}
+  canMove: 0
+  isDefeated: 0
   characterAnimation: {fileID: 0}
   hand: {fileID: 0}
   HealthBar: {fileID: 0}
+  reviveBoostKey: 32
 --- !u!114 &4744360372266287461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,13 +753,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MidDoor: 0
-  Door:
-  - {fileID: 6965825366723940535}
-  - {fileID: 6629713179701842269}
-  - {fileID: 5576673497212880175}
-  hitBox:
-  - {fileID: 2882714276529526745}
-  - {fileID: 7449579273919458380}
+  rightDoor: {fileID: 6965825366723940535}
+  leftDoor: {fileID: 6629713179701842269}
+  midDoor: {fileID: 5576673497212880175}
+  hitBoxL: {fileID: 7449579273919458380}
+  hitBoxR: {fileID: 2882714276529526745}
   PlayerAtTheRightPos: 0
   DoNotHurt: {fileID: 0}
 --- !u!1 &6965825366723940535
@@ -933,9 +938,12 @@ MonoBehaviour:
   reviveSpeed: 1
   enemy: 0
   sharedHealthSource: {fileID: 8864841713572422829}
+  canMove: 0
+  isDefeated: 0
   characterAnimation: {fileID: 0}
   hand: {fileID: 0}
   HealthBar: {fileID: 0}
+  reviveBoostKey: 32
 --- !u!114 &1406640324301924118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,13 +957,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MidDoor: 0
-  Door:
-  - {fileID: 6965825366723940535}
-  - {fileID: 6629713179701842269}
-  - {fileID: 5576673497212880175}
-  hitBox:
-  - {fileID: 2882714276529526745}
-  - {fileID: 7449579273919458380}
+  rightDoor: {fileID: 6965825366723940535}
+  leftDoor: {fileID: 6629713179701842269}
+  midDoor: {fileID: 5576673497212880175}
+  hitBoxL: {fileID: 7449579273919458380}
+  hitBoxR: {fileID: 2882714276529526745}
   PlayerAtTheRightPos: 0
   DoNotHurt: {fileID: 0}
 --- !u!1001 &1116197192024512833
@@ -982,6 +988,10 @@ PrefabInstance:
       propertyPath: pushback
       value: 
       objectReference: {fileID: 5353998872311329356}
+    - target: {fileID: 4082121046052780116, guid: f5d40c00993580b4c9e80aaf8faa217d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5013229760714382771, guid: f5d40c00993580b4c9e80aaf8faa217d, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -1085,6 +1095,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7449579273919458380}
     - target: {fileID: 5373097441058933937, guid: 5bf930b95bba59e4494f54a0554d9081, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373097441058933937, guid: 5bf930b95bba59e4494f54a0554d9081, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373097441058933937, guid: 5bf930b95bba59e4494f54a0554d9081, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1159,6 +1177,10 @@ PrefabInstance:
       propertyPath: pushback
       value: 
       objectReference: {fileID: 5353998872311329356}
+    - target: {fileID: 4082121046052780116, guid: f5d40c00993580b4c9e80aaf8faa217d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5013229760714382771, guid: f5d40c00993580b4c9e80aaf8faa217d, type: 3}
       propertyPath: m_LocalScale.x
       value: 4

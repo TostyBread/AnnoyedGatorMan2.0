@@ -59,9 +59,6 @@ public class DoorHitBox : MonoBehaviour
         StartCoroutine(DisableAfterHit());
     }
 
-    
-    
-
     IEnumerator DisableAfterHit()
     {
         yield return new WaitForSeconds(0.05f);
