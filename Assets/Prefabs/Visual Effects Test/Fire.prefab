@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 936230806028435358}
   - component: {fileID: 6073913075650183365}
   - component: {fileID: 5845081187944691371}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fire
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -189,8 +189,10 @@ MonoBehaviour:
   Health: 10
   currentHealth: 0
   reviveSpeed: 1
+  damageReceived: 0
   HealthBar: {fileID: 0}
   hand: {fileID: 0}
+  isPlayer2: 0
   characterAnimation: {fileID: 0}
 --- !u!82 &5845081187944691371
 AudioSource:
