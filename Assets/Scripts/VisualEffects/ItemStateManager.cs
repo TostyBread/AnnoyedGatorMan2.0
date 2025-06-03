@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 using static StateManager;
 
@@ -31,6 +30,7 @@ public class ItemStateManager : MonoBehaviour
     private HashSet<DamageSource> coldSources = new();
 
     [Header("References")]
+    private SpriteRenderer sprite;
     private ItemSystem itemSystem;
     private bool wasBurnableLastFrame = false;
     private Collider2D thisCollider;
@@ -41,6 +41,13 @@ public class ItemStateManager : MonoBehaviour
         itemSystem = GetComponent<ItemSystem>();
         thisCollider = GetComponent<Collider2D>();
         weatherManager = GameObject.FindGameObjectWithTag("Window").GetComponent<WeatherManager>();
+
+        sprite = GetComponent<SpriteRenderer>();
+        if (sprite == null)
+        {
+            sprite = GetComponentInChildren<SpriteRenderer>();
+        }
+
         state = ItemState.Idle;
     }
 
@@ -55,7 +62,7 @@ public class ItemStateManager : MonoBehaviour
 
         wasBurnableLastFrame = isCurrentlyBurnable;
 
-        if (currentHeat >= MaxHeat && weatherManager.weather == WeatherManager.Weather.Hot)
+        if (currentHeat >= MaxHeat)
         {
             ItemBurn();
             AudioManager.Instance.PlaySound(BurnAudioName, 1.0f, transform.position);
@@ -168,6 +175,7 @@ public class ItemStateManager : MonoBehaviour
     private void ItemBurn()
     {
         state = ItemState.Burn;
+        if (sprite != null) sprite.color = Color.red;
         GameObject.Instantiate(spawnObject, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
@@ -178,6 +186,8 @@ public class ItemStateManager : MonoBehaviour
         {
             state = ItemState.Freeze;
             Debug.Log(gameObject.name + " is Freezed");
+
+            if (sprite != null) sprite.color = Color.blue;
             itemSystem.cookThreshold += heatRequiredToCook;
             itemSystem.burnThreshold += heatRequiredToCook;
         }

@@ -30,6 +30,19 @@ public class LightSwitch : MonoBehaviour
         lightIntensity = light2D.intensity;
     }
 
+    private void Update()
+    {
+        if (isOn)
+        {
+            light2D.intensity = 1;
+        }
+
+        if (!isOn)
+        {
+            light2D.intensity = isOn ? lightIntensity : 0.02f;
+        }
+    }
+
     public void ToggleLight(StateManager stateManager)
     {
         if (stateManager != null && stateManager.state == StateManager.PlayerState.Stun) return;
@@ -37,7 +50,6 @@ public class LightSwitch : MonoBehaviour
         isOn = !isOn;
 
         AudioManager.Instance.PlaySound(AudioName, 1.0f, transform.position);
-        light2D.intensity = isOn? lightIntensity : 0.02f;
 
         if (sanity.RemainSanity <= 0)
         {
@@ -46,8 +58,6 @@ public class LightSwitch : MonoBehaviour
                 stateManager.currentStun = 100;
             }
         }
-
-        Debug.Log("Light " + (isOn ? "Turning On..." : "Turning Off"));
 
         if (Random.value <= sanityRecoverChance && sanity && sanity.RemainSanity > 0)
         {

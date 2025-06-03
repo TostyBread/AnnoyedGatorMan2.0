@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -17,7 +16,7 @@ public class WeatherManager : MonoBehaviour
     [Header("Rainy setting")]
     public float MinBlackOutInterval;
     public float MaxBlackOutInterval;
-    public Light2D light2D;
+    public LightSwitch lightSwitch;
     public string ThunderAudioName;
     public AudioClip RainingClip;
     [Range(0f, 1f)]
@@ -105,7 +104,7 @@ public class WeatherManager : MonoBehaviour
 
             if (currentBlackOutInterval <= 0)
             {
-                light2D.intensity = 0.02f;
+                lightSwitch.isOn = false;
                 AudioManager.Instance.PlaySound(ThunderAudioName, 1.0f, transform.position);
                 currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);
             }

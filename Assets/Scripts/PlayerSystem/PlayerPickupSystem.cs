@@ -16,6 +16,7 @@ public class PlayerPickupSystem : MonoBehaviour
     private Coroutine pickupCoroutine = null;
     private bool isHoldingPickupKey = false;
 
+    [Header("References")]
     public HandSpriteManager handSpriteManager;
     public CharacterFlip characterFlip;
     private StateManager stateManager;

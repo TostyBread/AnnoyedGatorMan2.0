@@ -242,7 +242,7 @@ MonoBehaviour:
   damageType: 0
   damageAmount: 0
   heatAmount: 10
-  heatCooldown: 1
+  heatCooldown: 0.5
   isFireSource: 0
   isColdSource: 1
   isStunSource: 0
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 8082368769978326062}
   - component: {fileID: 1414791623929929295}
   - component: {fileID: 5602129301568475870}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Window
   m_TagString: Window
   m_Icon: {fileID: 0}
@@ -362,8 +362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 289d9a900f1a3044ab09f348559fff8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weather: 0
-  randomWeatherActivate: 1
+  weather: 1
+  randomWeatherActivate: 0
   MinBlackOutInterval: 10
   MaxBlackOutInterval: 20
   light2D: {fileID: 0}
@@ -374,7 +374,7 @@ MonoBehaviour:
   SunRay: {fileID: 8161110251486840855}
   SunnyClip: {fileID: 8300000, guid: da55c59d67b1be843bde56dd90790112, type: 3}
   sunnyAudioVolume: 1
-  coldMultiplier: 0.5
+  coldMultiplier: 0.8
   FreezeArea: {fileID: 2529040808014472557}
   WinterClip: {fileID: 8300000, guid: 7956bf2d9735d324d81ece0c36d80a7d, type: 3}
   winterAudioVolume: 0.5
