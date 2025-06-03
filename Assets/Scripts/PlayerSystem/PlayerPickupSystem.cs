@@ -10,6 +10,9 @@ public class PlayerPickupSystem : MonoBehaviour
     public float dropForce = 5f;
     public List<string> validTags = new List<string>();
 
+    [Header("Interactable Settings")]
+    public bool inInterectRange;
+
     private Collider2D targetItem = null;
     private GameObject heldItem = null;
     private Collider2D targetInteractable = null;
@@ -39,6 +42,8 @@ public class PlayerPickupSystem : MonoBehaviour
         {
             StartPickup();
         }
+
+        SetInInterectRange();
     }
 
     private void HandleItemDetection()
@@ -99,14 +104,26 @@ public class PlayerPickupSystem : MonoBehaviour
 
     public void StartLongInteraction(bool isPressed) // Similar to StartInteraction, but require player to keep pressing to interect
     {
-        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window) && inInterectRange)
         {
             window.SetWindowState(isPressed);
         }
 
-        if (targetInteractable != null && targetInteractable.TryGetComponent(out Smoke smoke))
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Smoke smoke) && inInterectRange)
         {
             smoke.SetSmokeState(isPressed, this.gameObject);
+        }
+    }
+
+    private void SetInInterectRange()
+    {
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Interactable interactable))
+        {
+            inInterectRange = true;
+        }
+        else
+        {
+            inInterectRange = false;
         }
     }
 

@@ -179,11 +179,11 @@ public class PlayerInputManager : MonoBehaviour
             playerPickupSystem?.StartInteraction();
         }
 
-        if (Input.GetKey(inputConfig.interactKey))
+        if (Input.GetKey(inputConfig.interactKey) && playerPickupSystem.inInterectRange)
         {
             playerPickupSystem?.StartLongInteraction(true);
         }
-        else
+        else if (!playerPickupSystem.inInterectRange)
         {
             playerPickupSystem?.StartLongInteraction(false);
         }
