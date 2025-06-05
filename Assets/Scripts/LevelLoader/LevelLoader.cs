@@ -11,15 +11,22 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject mainMenu;
 
+    [Header("Other UI Screens")]
+    [SerializeField] private GameObject playerNumberScreen;
+    [SerializeField] private GameObject settingScreen;
+    [SerializeField] private GameObject ShaderScreen;
+
     [Header("Slider")]
     [SerializeField] private Slider loadingSlider;
 
     private void Start()
     {
-        if (!mainMenu || !loadingScreen) return;
+        if (mainMenu) mainMenu.SetActive(true);
+        if (loadingScreen) loadingScreen.SetActive(false);
 
-        mainMenu.SetActive(true);
-        loadingScreen.SetActive(false);
+        if (playerNumberScreen) playerNumberScreen.SetActive(false);
+        if (settingScreen) settingScreen.SetActive(false);
+        if (ShaderScreen) ShaderScreen.SetActive(false);
     }
 
     private void Update()
@@ -36,6 +43,18 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevelSync(levelToLoad));
     }
 
+    public void ShowPopUpScreen()
+    {
+        playerNumberScreen.SetActive(true);
+        ShaderScreen.SetActive(true);
+    }
+
+    public void ShowSettingScreen()
+    {
+        settingScreen.SetActive(true);
+        ShaderScreen.SetActive(true);
+    }
+
     public void Quit()
     {
         Application.Quit();
@@ -43,6 +62,9 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevelSync(string levelToLoad)
     {
+        if (playerNumberScreen) playerNumberScreen.SetActive(false); 
+        if (ShaderScreen) ShaderScreen.SetActive(false);
+
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelToLoad);
 
         while (!loadOperation.isDone)
