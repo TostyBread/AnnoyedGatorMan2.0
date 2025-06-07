@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class WeatherManager : MonoBehaviour
 {
@@ -42,7 +38,6 @@ public class WeatherManager : MonoBehaviour
     private DamageSource[] damageSources;
     private bool[] heatMultiplied;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);
@@ -73,7 +68,6 @@ public class WeatherManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (weather == Weather.Normal)

@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static StateManager;
 
 public class ItemStateManager : MonoBehaviour
 {
@@ -34,7 +32,7 @@ public class ItemStateManager : MonoBehaviour
     private ItemSystem itemSystem;
     private bool wasBurnableLastFrame = false;
     private Collider2D thisCollider;
-    private WeatherManager weatherManager;
+    [SerializeField]private WeatherManager weatherManager;
 
     void Start()
     {

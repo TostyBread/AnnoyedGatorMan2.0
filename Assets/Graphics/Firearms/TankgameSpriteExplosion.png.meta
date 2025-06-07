@@ -117,6 +117,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Smoke_2
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 501
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f3c7c156c2cc5a48968e21240626810
+      internalID: -1658823367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smoke_4
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 983
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 356e8d64e137652408d539d8b90e2616
+      internalID: -1630731894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smoke_3
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 892
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46fa2839ce78dcd4a8a90a49db0cef0d
+      internalID: 664505943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -129,8 +192,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Smoke_1: -1107218155
-      Smoke_2: -1658823367
-      TankgameSpriteExplosion_0: 823645514
+      Smoke_2: 823645514
+      Smoke_3: 664505943
+      Smoke_4: -1630731894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,11 +5,17 @@ public class AutoReturnEffect : MonoBehaviour
 {
     public string effectName;
     public float overrideLifeTime = -1f; // Optional manual override
+    private Coroutine autoReturnCoroutine;
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>(); // Precache Animator for very minor optimization
+    }
 
     private void OnEnable()
     {
-        float duration = GetAnimationDuration();
-        Invoke(nameof(DisableSelf), duration);
+        autoReturnCoroutine = StartCoroutine(StartAutoReturn());
     }
 
     private float GetAnimationDuration()
@@ -17,19 +23,21 @@ public class AutoReturnEffect : MonoBehaviour
         if (overrideLifeTime > 0f) return overrideLifeTime;
 
         Animator animator = GetComponent<Animator>();
-        if (animator.runtimeAnimatorController == null) return 2f;
+        var controller = animator.runtimeAnimatorController;
+        if (controller == null || controller.animationClips.Length == 0) return 1f;
 
-        string clipName = animator.GetCurrentAnimatorStateInfo(0).IsName("Default")
-            ? "Default"
-            : animator.GetCurrentAnimatorStateInfo(0).shortNameHash.ToString();
+        // Useful for playing 1 anim clip, but useless if using for transition
+        // AnimatorStateInfo.length with yield return null if multiple state switching needed (most likely wont)
+        return controller.animationClips[0].length;
+    }
 
-        foreach (var clip in animator.runtimeAnimatorController.animationClips)
-        {
-            if (clip.name == clipName)
-                return clip.length;
-        }
 
-        return 2f; // Fallback
+    private System.Collections.IEnumerator StartAutoReturn()
+    {
+        yield return null; // Wait 1 frame to let Animator update
+
+        float duration = GetAnimationDuration();
+        Invoke(nameof(DisableSelf), duration);
     }
 
     private void DisableSelf()
@@ -42,12 +50,12 @@ public class AutoReturnEffect : MonoBehaviour
 
     private void OnDisable()
     {
+        if (autoReturnCoroutine != null)
+            StopCoroutine(autoReturnCoroutine);
+
         CancelInvoke();
 
-        // Safety: ensure return to pool if not already handled
         if (EffectPool.Instance != null && gameObject.activeInHierarchy == false)
-        {
             EffectPool.Instance.ReturnEffect(effectName, gameObject);
-        }
     }
 }

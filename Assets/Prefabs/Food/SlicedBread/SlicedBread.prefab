@@ -133,13 +133,13 @@ MonoBehaviour:
   MaxHeat: 100
   currentHeat: 0
   heatCooldown: 0
-  BurnAudioName: 
+  BurnAudioName: Burning
   spawnObject: {fileID: 2803993938104900538, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
   MaxCold: 100
   currentCold: 0
   coldCooldown: 0
   heatRequiredToCook: 20
-  FreezeAudioName: 
+  FreezeAudioName: Freezing
 --- !u!50 &1251759017432472433
 Rigidbody2D:
   serializedVersion: 4
@@ -247,7 +247,7 @@ MonoBehaviour:
   - {x: 0.326765, y: -0.4497065, z: 0}
   m_ShapePathHash: 565855790
   m_Mesh: {fileID: 0}
-  m_InstanceId: -3078
+  m_InstanceId: -19748
   m_LocalBounds:
     m_Center: {x: -0.0040802658, y: -0.006550342, z: 0}
     m_Extent: {x: 0.3957397, y: 0.4508033, z: 0}

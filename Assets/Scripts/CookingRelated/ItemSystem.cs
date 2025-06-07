@@ -107,6 +107,8 @@ public class ItemSystem : MonoBehaviour
                 currentCookPoints += sourceDamage.heatAmount;
             }
 
+            EffectPool.Instance.SpawnEffect("FoodSteam", transform.position, Quaternion.identity); // Deploy steam anim
+
             if (!isCooked && currentCookPoints >= cookThreshold) CookItem();
             else if (!isBurned && currentCookPoints >= burnThreshold) BurnItem();
         }
