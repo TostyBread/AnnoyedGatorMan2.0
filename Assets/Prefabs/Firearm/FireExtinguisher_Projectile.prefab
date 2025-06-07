@@ -197,13 +197,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 0
-  damageAmount: 30
-  heatAmount: 10
+  damageAmount: 2
+  heatAmount: 0
   heatCooldown: 1
   isFireSource: 0
-  isColdSource: 1
+  isColdSource: 0
   isStunSource: 0
   minVelocityToDamage: 0
+  playHitSound: 1
 --- !u!50 &4968603192802626325
 Rigidbody2D:
   serializedVersion: 4
@@ -243,10 +244,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 3221229376
+    m_Bits: 4608
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
