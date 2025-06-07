@@ -11,7 +11,6 @@ public class FirearmController : MonoBehaviour, IUsable
     public Transform muzzlePoint;
     public float projectileSpeed = 10f;
     public float fireDelay = 0.25f;
-    public bool playDrySound = true;
 
     [Header("Shotgun Settings")]
     public FireMode currentFireMode = FireMode.Single;
@@ -35,6 +34,7 @@ public class FirearmController : MonoBehaviour, IUsable
     private GameObject owner;
 
     private bool isOutOfAmmo => currentAmmo <= 0;
+    private bool hasPlayedDryFire = false;
 
     void Awake()
     {
@@ -77,18 +77,28 @@ public class FirearmController : MonoBehaviour, IUsable
         ownerFlip = null;
     }
 
+    public void OnFireKeyReleased()
+    {
+        hasPlayedDryFire = false;
+    }
+
     public void Use()
     {
         if (!isUsable || Time.time < nextFireTime) return;
 
         if (isOutOfAmmo)
         {
-            PlayAnimation("_Dry");
-            if (playDrySound) AudioManager.Instance.PlaySound("dryfire", 1.0f, transform.position);
+            if (!hasPlayedDryFire)
+            {
+                PlayAnimation("_Dry");
+                AudioManager.Instance.PlaySound("dryfire", 1.0f, transform.position);
+                hasPlayedDryFire = true;
+            }
             return;
         }
 
         nextFireTime = Time.time + fireDelay;
+        hasPlayedDryFire = false;
 
         if (currentAmmo == 1)
         {

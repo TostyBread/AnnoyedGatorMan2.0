@@ -19,12 +19,11 @@ public class PlayerThrowManager : MonoBehaviour
 
     public void StartPreparingThrow()
     {
-        if (!playerPickupSystem.HasItemHeld) return;
+        if (isPreparingToThrow || !playerPickupSystem.HasItemHeld) return;
 
         isPreparingToThrow = true;
         usableFunction = playerPickupSystem.GetUsableFunction();
         usableFunction?.DisableUsableFunction();
-        //Debug.Log("Preparing to throw...");
     }
 
     public void Throw()

@@ -105,6 +105,11 @@ public class PlayerPickupSystem : MonoBehaviour
         {
             npc.SpawnMenuAndPlate();
         }
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out TrashCan trashCan)) // take out trash
+        {
+            trashCan.TakeOutTrash();
+        }
     }
 
     public void StartLongInteraction(bool isPressed) // Similar to StartInteraction, but require player to keep pressing to interect

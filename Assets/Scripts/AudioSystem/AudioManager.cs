@@ -27,6 +27,21 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // In case if a pooled AudioSource GameObject is disabled externally (e.g. scene unload),
+    // it may leave stale references in activeSources. So just a precaution for memory leak
+    private void OnDisable()
+    {
+        for (int i = activeSources.Count - 1; i >= 0; i--)
+        {
+            if (!activeSources[i].isPlaying)
+            {
+                activeSources[i].gameObject.SetActive(false);
+                audioPool.Enqueue(activeSources[i]);
+                activeSources.RemoveAt(i);
+            }
+        }
+    }
+
     private void InitializeAudioPool()
     {
         for (int i = 0; i < poolSize; i++)
@@ -37,6 +52,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // GUIDE ON HOW TO USE RANDOM VARIABLE SOUND:
+    // you must name your audio file in "Example_1" as in name followed by underscore before a number
+    // like "Example_1" "Example_2" will be recognize and stored as "Example"
+    // and when you want to instantiate it, you need to put the following code:
+    // AudioManager.Instance.PlaySound("Example"); or AudioManager.Instance.PlaySound("Example", 1f, transform.position);
+    // not "Example_1", the system will not recognize it
+    // IF THERE IS NO VARIATION, DO NOT USE UNDERSCORE
     public void PlaySound(string soundName, float volume = 1.0f, Vector3? position = null)
     {
         if (!audioClips.TryGetValue(soundName, out List<AudioClip> clips) || clips.Count == 0)

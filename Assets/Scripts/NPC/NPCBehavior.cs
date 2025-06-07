@@ -28,13 +28,16 @@ public class NPCBehavior : MonoBehaviour
     private Vector3 arrivedPosition;
     private bool returningToArrivedPoint = false;
     private bool menuAlreadySpawned = false;
+    private bool plateAlreadySpawned = false;
 
     public int customerId { get; private set; }
     private NPCState state = NPCState.Approaching;
+    private Collider2D npcCollider;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        npcCollider = GetComponent<Collider2D>(); // Cache collider
     }
 
     void FixedUpdate()
@@ -101,8 +104,11 @@ public class NPCBehavior : MonoBehaviour
                 attachedMenu = Instantiate(menuPrefab, menuSpawnPoint.position, Quaternion.identity, transform); menuAlreadySpawned = true;
         }
 
-        if (platePrefab && plateSpawnPoint)
-            attachedPlate = Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform);
+        if (!plateAlreadySpawned)
+        {
+            if (platePrefab && plateSpawnPoint)
+                attachedPlate = Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform); plateAlreadySpawned = true;
+        }
 
         if (attachedPlate != null)
         {
@@ -230,6 +236,7 @@ public class NPCBehavior : MonoBehaviour
                 attachedMenu = null;
             }
             ForceEscape();
+            npcCollider.enabled = false; // Disable their collider when escaping
             AudioManager.Instance.PlaySound("scream", 1f, transform.position);
         }
 

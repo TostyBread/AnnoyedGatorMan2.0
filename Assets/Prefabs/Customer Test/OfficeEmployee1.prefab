@@ -276,7 +276,7 @@ MonoBehaviour:
   menuSpawnPoint: {fileID: 1132364132505828575}
   plateSpawnPoint: {fileID: 7711344081798851309}
   plateReceiveAnchor: {fileID: 7262767610283653091}
-  detectionRange: 3.5
+  detectionRange: 3.6
   npcLayer:
     serializedVersion: 2
     m_Bits: 1024

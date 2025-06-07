@@ -35,6 +35,8 @@ public class PlayerInputManager : MonoBehaviour
     private Vector2 movementInput;
     private bool usableItemModeEnabled = true;
     public bool canThrow = true;
+    private bool isPreparingHeld = false;
+    private bool throwStarted = false;
 
     void Start()
     {
@@ -56,6 +58,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleUsableItemInput();
         HandleEnvironmentalInteractInput();
     }
+
+    public bool IsPreparingHeld() => isPreparingHeld;
 
     public bool IsUsableModeEnabled() => usableItemModeEnabled;
 
@@ -84,7 +88,60 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleActionInput()
     {
-        if (Input.GetKeyDown(inputConfig.attackKey)) HandleMeleeLogic();
+        if (playerPickupSystem == null) return;
+
+        bool used = false;
+
+        if (playerPickupSystem.HasItemHeld)
+        {
+            IUsable usableFunction = playerPickupSystem.GetUsableFunction();
+
+            switch (usableFunction)
+            {
+                case FirearmController gun when usableItemModeEnabled:
+                    if (gun.currentFireMode == FirearmController.FireMode.Auto)
+                    {
+                        if (Input.GetKey(inputConfig.attackKey))
+                        {
+                            gun.Use();
+                            used = true;
+                        }
+                    }
+                    else if (Input.GetKeyDown(inputConfig.attackKey))
+                    {
+                        gun.Use();
+                        used = true;
+                    }
+
+                    if (Input.GetKeyUp(inputConfig.attackKey))
+                        gun.OnFireKeyReleased();
+                    break;
+
+                case KnifeController knife when usableItemModeEnabled:
+                    if (Input.GetKey(inputConfig.attackKey))
+                    {
+                        knife.Use();
+                        used = true;
+                    }
+                    break;
+
+                default:
+                    // Allow MeleeSwing even if usableItemMode is disabled
+                    if (Input.GetKeyDown(inputConfig.attackKey))
+                        HandleMeleeLogic();
+                    break;
+            }
+
+            if (!used && Input.GetKeyDown(inputConfig.attackKey))
+            {
+                HandleMeleeLogic();
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(inputConfig.attackKey))
+                fist?.TriggerPunch();
+        }
     }
 
     private void HandleMeleeLogic()
@@ -106,10 +163,8 @@ public class PlayerInputManager : MonoBehaviour
                 return;
             }
         }
-        else
-        {
-            fist?.TriggerPunch();
-        }
+
+        fist?.TriggerPunch();
     }
 
     private void HandlePickupInput()
@@ -121,19 +176,47 @@ public class PlayerInputManager : MonoBehaviour
         else if (Input.GetKeyUp(inputConfig.pickupKey)) playerPickupSystem.CancelPickup();
     }
 
-    private void HandleThrowInput() // Script has been updated to support no throw zone
+    private void HandleThrowInput()
     {
-        if (!canThrow || playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld)
+        if (!isInputEnabled || playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld)
             return;
 
         if (Input.GetKeyDown(inputConfig.throwPrepareKey))
-            playerThrowManager.StartPreparingThrow();
-
-        if (Input.GetKeyUp(inputConfig.attackKey) && Input.GetKey(inputConfig.throwPrepareKey))
-            playerThrowManager.Throw();
+        {
+            isPreparingHeld = true;
+            throwStarted = false;
+        }
 
         if (Input.GetKeyUp(inputConfig.throwPrepareKey))
+        {
+            isPreparingHeld = false;
+            throwStarted = false;
             playerThrowManager.CancelThrow();
+            return;
+        }
+
+        if (isPreparingHeld && !throwStarted && canThrow)
+        {
+            throwStarted = true;
+            playerThrowManager.StartPreparingThrow();
+        }
+
+        if (Input.GetKeyUp(inputConfig.attackKey))
+        {
+            if (isPreparingHeld && throwStarted && canThrow)
+            {
+                playerThrowManager.Throw();
+                isPreparingHeld = false;
+                throwStarted = false;
+
+                // Reset usable mode after throw
+                usableItemModeEnabled = true;
+            }
+            else
+            {
+                throwStarted = false;
+            }
+        }
     }
 
     private void HandleUsableItemInput()
@@ -158,17 +241,6 @@ public class PlayerInputManager : MonoBehaviour
                     firearm.ToggleUsableMode(usableItemModeEnabled);
                     break;
             }
-        }
-
-        if (usableFunction is FirearmController gun && gun.currentFireMode == FirearmController.FireMode.Auto)
-        {
-            if (Input.GetKeyDown(inputConfig.attackKey))
-                usableFunction.Use();
-        }
-        else
-        {
-            if (Input.GetKeyDown(inputConfig.attackKey))
-                usableFunction.Use();
         }
     }
 
