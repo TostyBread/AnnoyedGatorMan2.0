@@ -155,6 +155,7 @@ public class NPCBehavior : MonoBehaviour
             plateRoot.SetParent(plateReceiveAnchor ?? transform);
             plateRoot.localPosition = plateReceiveAnchor ? Vector3.zero : plateSpawnPoint.localPosition;
 
+            npcCollider.enabled = false; // Disable their collider when also taken food to avoid plate collider pushing the customer to run like hell
             Rigidbody2D plateRb = plateRoot.GetComponent<Rigidbody2D>();
             if (plateRb) plateRb.bodyType = RigidbodyType2D.Kinematic;
             AudioManager.Instance.PlaySound("yes", 1f, transform.position);

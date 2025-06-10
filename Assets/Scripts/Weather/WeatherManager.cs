@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WeatherManager : MonoBehaviour
 {
+    public static WeatherManager Instance { get; private set; } // Get Set for the FireExtinguisher
     public enum Weather { Normal, Rainy, Hot, Cold }
 
     public Weather weather;
@@ -38,6 +39,7 @@ public class WeatherManager : MonoBehaviour
     private DamageSource[] damageSources;
     private bool[] heatMultiplied;
 
+    void Awake() => Instance = this; // Instance for the FireExtinguisherProjectile
     void Start()
     {
         currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);

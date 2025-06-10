@@ -49,7 +49,7 @@ public class PlayerInputManager : MonoBehaviour
 
     void Update()
     {
-        //if (!isInputEnabled) return;
+        if (!isInputEnabled) return;
 
         HandleMovementInput();
         HandleActionInput();
