@@ -36,8 +36,8 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevelButton(string levelToLoad)
     {
-        mainMenu.SetActive(false);
-        loadingScreen.SetActive(true);
+        if (mainMenu) mainMenu.SetActive(false);
+        if (loadingScreen) loadingScreen.SetActive(true);
 
         //Run Async
         StartCoroutine(LoadLevelSync(levelToLoad));
@@ -65,12 +65,14 @@ public class LevelLoader : MonoBehaviour
         if (playerNumberScreen) playerNumberScreen.SetActive(false); 
         if (ShaderScreen) ShaderScreen.SetActive(false);
 
+        if (loadingScreen) yield return new WaitForSeconds(3f);
+
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelToLoad);
 
         while (!loadOperation.isDone)
         {
             float progressValue = Mathf.Clamp01(loadOperation.progress / 0.9f);
-            loadingSlider.value = progressValue;
+            if (loadingSlider) loadingSlider.value = progressValue;
             yield return null;
         }
     }

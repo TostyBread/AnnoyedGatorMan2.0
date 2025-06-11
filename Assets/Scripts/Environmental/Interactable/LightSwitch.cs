@@ -7,10 +7,11 @@ public class LightSwitch : MonoBehaviour
 {
     [Header("Switch setting")]
     public bool isOn = true;
+    public Color lightOffColor;
+    private Color originalColor;
     public float requiredImpactForce = 5f;
 
     public Light2D light2D;
-    private float lightIntensity;
     public string AudioName;
 
     [Header("Sanity setting")]
@@ -27,19 +28,19 @@ public class LightSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lightIntensity = light2D.intensity;
+        originalColor = light2D.color;
     }
 
     private void Update()
     {
         if (isOn)
         {
-            light2D.intensity = 1;
+            light2D.color = originalColor;
         }
 
         if (!isOn)
         {
-            light2D.intensity = isOn ? lightIntensity : 0.02f;
+            light2D.color = lightOffColor;
         }
     }
 

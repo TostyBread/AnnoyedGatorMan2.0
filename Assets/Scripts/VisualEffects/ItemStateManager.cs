@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ItemStateManager : MonoBehaviour
 {
     public enum ItemState { Idle, Burn, Freeze }
 
     public ItemState state;
+    public bool playSound;
 
     [Header("Burn State")]
     public float MaxHeat = 100;
@@ -23,16 +25,17 @@ public class ItemStateManager : MonoBehaviour
     public float coldCooldown;
     public float heatRequiredToCook = 20;
     public string FreezeAudioName;
+    public Color freezedColor;
 
     private Dictionary<DamageSource, float> coldCooldowns = new();
     private HashSet<DamageSource> coldSources = new();
 
     [Header("References")]
+    [SerializeField]private WeatherManager weatherManager;
     private SpriteRenderer sprite;
     private ItemSystem itemSystem;
     private bool wasBurnableLastFrame = false;
     private Collider2D thisCollider;
-    [SerializeField]private WeatherManager weatherManager;
 
     void Start()
     {
@@ -63,7 +66,7 @@ public class ItemStateManager : MonoBehaviour
         if (currentHeat >= MaxHeat)
         {
             ItemBurn();
-            AudioManager.Instance.PlaySound(BurnAudioName, 1.0f, transform.position);
+            if (playSound) AudioManager.Instance.PlaySound(BurnAudioName, 1.0f, transform.position);
             currentHeat = 0;
             currentCold = 0;
         }
@@ -71,7 +74,7 @@ public class ItemStateManager : MonoBehaviour
         if (currentCold >= MaxCold && weatherManager.weather == WeatherManager.Weather.Cold)
         {
             ItemFreeze();
-            AudioManager.Instance.PlaySound(FreezeAudioName, 1.0f, transform.position);
+            if (playSound) AudioManager.Instance.PlaySound(FreezeAudioName, 1.0f, transform.position);
             currentHeat = 0;
             currentCold = 0;
         }
@@ -185,7 +188,7 @@ public class ItemStateManager : MonoBehaviour
             state = ItemState.Freeze;
             Debug.Log(gameObject.name + " is Freezed");
 
-            if (sprite != null) sprite.color = Color.blue;
+            if (sprite != null) sprite.color = freezedColor;
             itemSystem.cookThreshold += heatRequiredToCook;
             itemSystem.burnThreshold += heatRequiredToCook;
         }
