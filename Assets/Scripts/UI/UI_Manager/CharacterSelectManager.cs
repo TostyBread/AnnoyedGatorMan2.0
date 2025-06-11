@@ -5,14 +5,34 @@ using UnityEngine.UI;
 
 public class CharacterSelectManager : MonoBehaviour
 {
-    public int characterIndex = 0;
-    public Image[] characters;
+    [Header("Character References")]
+    public SpriteRenderer playerSprite;
+    public SpriteRenderer[] sprites;
+
+    private static int characterIndex = 0;
+    private static int lastCharacterIndex = -1;
 
     private void Update()
     {
-        for (int i = 0; i < characters.Length; i++)
+        if (characterIndex != lastCharacterIndex)
         {
-            characters[i].gameObject.SetActive(i == characterIndex);
+            UpdateCharacter();
+            lastCharacterIndex = characterIndex;
+        }
+
+        if (playerSprite != null)
+        {
+            playerSprite.sprite = sprites[characterIndex].sprite;
+        }
+
+        Debug.Log(characterIndex);
+    }
+
+    private void UpdateCharacter()
+    {
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            sprites[i].gameObject.SetActive(i == characterIndex);
         }
     }
 

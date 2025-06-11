@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GatorMan2
       objectReference: {fileID: 0}
+    - target: {fileID: 7199007613480025098, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8044598331109883934, guid: 3dcdf717771d3654a9d880b7a96dfd3d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.5733986
