@@ -12,14 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/CustomerTesting.unity
     guid: 17b439684fa9a0c4e8169ddb8a341616
   - enabled: 1
-    path: Assets/Scenes/ArtTestScene.unity
+    path: Assets/Scenes/ArtTestScene(1 Player).unity
     guid: 3264ded806fbac1479228afe345b6a01
+  - enabled: 1
+    path: Assets/Scenes/ArtTestScene(2 Player).unity
+    guid: cee31efb25722634f91a623172f99d1d
   - enabled: 1
     path: Assets/Scenes/MixScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/1CharacterSelect.unity
     guid: 91ebec9d7d5834f4a83f575ad94f9447
+  - enabled: 1
+    path: Assets/Scenes/2CharacterSelect.unity
+    guid: 76fec1eaede076041af51d22e0fcd777
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2ab3cc0e43b20c4408e96c477bff2ef7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0205221c2159bbc4a82638bdb0764aaa, type: 3}

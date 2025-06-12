@@ -55,6 +55,11 @@ public class LevelLoader : MonoBehaviour
         ShaderScreen.SetActive(true);
     }
 
+    public void ChangeScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
+
     public void Quit()
     {
         Application.Quit();
