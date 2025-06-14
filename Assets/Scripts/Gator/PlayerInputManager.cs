@@ -8,7 +8,7 @@ public class PlayerInputManager : MonoBehaviour
     private PlayerPickupSystem playerPickupSystem;
     private P2PickSystem p2PickSystem;
     private PlayerThrowManager playerThrowManager;
-    public Vector2 movementInput;
+    private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
 
     private StateManager stateManager;

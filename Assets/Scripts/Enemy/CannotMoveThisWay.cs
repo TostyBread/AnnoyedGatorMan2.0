@@ -5,7 +5,7 @@ using UnityEngine;
 public class CannotMoveThisWay : MonoBehaviour
 {
     [SerializeField] public bool canMoveThisWay;
-    public bool aimForFood;
+    private bool aimForFood;
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class CannotMoveThisWay : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !aimForFood)
         { 
             canMoveThisWay = false;
 
@@ -28,13 +28,14 @@ public class CannotMoveThisWay : MonoBehaviour
 
         if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
         {
-            canMoveThisWay = false;
+            if (collision.gameObject.GetComponent<HealthManager>() != null)
+                canMoveThisWay = false;
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !aimForFood)
         {
             canMoveThisWay = false;
 
@@ -44,13 +45,14 @@ public class CannotMoveThisWay : MonoBehaviour
 
         if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
         {
-            canMoveThisWay = false;
+            if (collision.gameObject.GetComponent<HealthManager>() != null)
+                canMoveThisWay = false;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !aimForFood)
         {
             canMoveThisWay = true;
 
@@ -60,13 +62,14 @@ public class CannotMoveThisWay : MonoBehaviour
 
         if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
         {
-            canMoveThisWay = true;
+            if (collision.gameObject.GetComponent<HealthManager>() != null)
+                canMoveThisWay = true;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !aimForFood)
         {
             canMoveThisWay = true;
 
@@ -76,7 +79,8 @@ public class CannotMoveThisWay : MonoBehaviour
 
         if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
         {
-            canMoveThisWay = true;
+            if (collision.gameObject.GetComponent<HealthManager>() != null)
+                canMoveThisWay = true;
         }
     }
 

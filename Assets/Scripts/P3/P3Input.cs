@@ -12,13 +12,14 @@ public class P3Input : MonoBehaviour
     private Fist fist;
     private P2PickSystem playerPickupSystem;
     private PlayerThrowManager playerThrowManager;
-    public Vector2 movementInput;
+    private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
 
     P3Controls controls;
     public Vector2 P3move;
 
     private HealthManager healthManager;
+    IUsable usableFunction;
     void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
@@ -29,6 +30,9 @@ public class P3Input : MonoBehaviour
         controls = new P3Controls();
 
         controls.Gameplay.Use.performed += context => Use();
+        controls.Gameplay.Toggle.performed += context => HandleUsableItemInput();
+        controls.Gameplay.Throw.performed += context => HandleThrowInput();
+
 
         if (playerPickupSystem == null) return;
         else
@@ -36,17 +40,29 @@ public class P3Input : MonoBehaviour
             controls.Gameplay.Pickup.started += context => StartPickup();
             controls.Gameplay.Pickup.performed += context => HoldPickup();
             controls.Gameplay.Pickup.canceled += context => CancelPickup();
+            controls.Gameplay.Interect.performed += context => playerPickupSystem.StartInteraction();
         }
 
         controls.Gameplay.Move.performed += context => P3move = context.ReadValue<Vector2>();
         controls.Gameplay.Move.canceled += context => P3move = Vector2.zero;
 
+        
         healthManager = GetComponent<HealthManager>();
     }
 
     void Use()
     {
-        fist?.TriggerPunch();
+        
+            if (usableItemModeEnabled && playerPickupSystem != null && playerPickupSystem.HasItemHeld)
+            {
+                usableFunction = playerPickupSystem.GetUsableFunction();
+                usableFunction?.Use();
+            }
+            else
+            {
+                fist?.TriggerPunch();
+            }
+        
     }
 
     void StartPickup()
@@ -87,15 +103,24 @@ public class P3Input : MonoBehaviour
             controls.Gameplay.Disable();
         }
     }
+    void Start()
+    {
+        characterMovement = GetComponent<CharacterMovement>();
+        fist = GetComponentInChildren<Fist>();
+        playerPickupSystem = GetComponent<P2PickSystem>();
+        playerThrowManager = GetComponent<PlayerThrowManager>();
+        healthManager = GetComponent<HealthManager>();
+    }
 
     void Update()
     {
         HandleMovementInput();
+        HandleThrowInput();
+
         //HandleActionInput();
         //HandlePickupInput();
-        HandleThrowInput();
-        HandleUsableItemInput();
-        HandleEnvironmentalInteractInput();
+        //HandleUsableItemInput(Gamepad.current.rightShoulder.wasPressedThisFrame);
+        //HandleEnvironmentalInteractInput();
     }
 
     public bool IsUsableModeEnabled() => usableItemModeEnabled;
@@ -134,33 +159,34 @@ public class P3Input : MonoBehaviour
     {
         if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
 
-        if (Gamepad.current.buttonSouth.wasPressedThisFrame) playerThrowManager.StartPreparingThrow();
-        if (Gamepad.current.buttonWest.wasPressedThisFrame && Gamepad.current.buttonSouth.isPressed) playerThrowManager.Throw();
-        if (Gamepad.current.buttonSouth.wasReleasedThisFrame) playerThrowManager.CancelThrow();
+        if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+            playerThrowManager.StartPreparingThrow();
+
+        if (Gamepad.current.buttonWest.wasPressedThisFrame && Gamepad.current.buttonSouth.isPressed)
+        {
+            playerThrowManager.Throw();
+            usableFunction = null;
+            usableItemModeEnabled = false;
+        }
+
+        if (Gamepad.current.buttonSouth.wasReleasedThisFrame)
+            playerThrowManager.CancelThrow();
     }
 
     private void HandleUsableItemInput()
     {
         if (playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
 
-        IUsable usableFunction = playerPickupSystem.GetUsableFunction();
+        usableFunction = playerPickupSystem.GetUsableFunction();
         if (usableFunction == null) return;
 
-        if (Gamepad.current.rightShoulder.wasPressedThisFrame)
-        {
-            usableItemModeEnabled = !usableItemModeEnabled;
-            Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
-            usableFunction.EnableUsableFunction();
+        usableItemModeEnabled = !usableItemModeEnabled;
+        Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
+        usableFunction.EnableUsableFunction();
 
-            if (usableFunction is KnifeController knifeController)
-            {
-                knifeController.ToggleUsableMode(usableItemModeEnabled);
-            }
-        }
-
-        if (usableItemModeEnabled && Gamepad.current.buttonWest.wasPressedThisFrame|| Gamepad.current.rightTrigger.wasPressedThisFrame)
+        if (usableFunction is KnifeController knifeController)
         {
-            usableFunction.Use();
+            knifeController.ToggleUsableMode(usableItemModeEnabled);
         }
     }
 

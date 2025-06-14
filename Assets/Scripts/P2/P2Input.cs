@@ -8,7 +8,7 @@ public class P2Input : MonoBehaviour
     private Fist fist;
     private P2PickSystem playerPickupSystem;
     private PlayerThrowManager playerThrowManager;
-    public Vector2 movementInput;
+    private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
 
     private HealthManager healthManager;

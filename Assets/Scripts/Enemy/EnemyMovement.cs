@@ -62,7 +62,10 @@ public class EnemyMovement : MonoBehaviour
     public List<GameObject> EnemySight = new List<GameObject>();
     private bool onceSightGrid;
 
+    Collider2D[] hits;
     public bool aimForFood;
+    private bool justReturnedFromWait = false;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -96,7 +99,7 @@ public class EnemyMovement : MonoBehaviour
         player = GameObject.FindGameObjectsWithTag("Player");
 
         StartCoroutine(CreateEnemyField());
-        StartCoroutine(CreateEnemySight());
+        //StartCoroutine(CreateEnemySight());
 
         //CreateEnemyField();
         //CreateEnemySight();
@@ -111,7 +114,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MOSP.transform.position = transform.position;
+        //MOSP.transform.position = transform.position;
 
         EnemyFoundTarget(player);
         //agent.SetDestination(player[0].transform.position);
@@ -209,18 +212,20 @@ public class EnemyMovement : MonoBehaviour
 
     private float GetSightRange()
     {
-        float maxDistance = 0f;
+        //float maxDistance = 0f;
 
-        foreach (GameObject sightPoint in EnemySight)
-        {
-            float distance = Vector2.Distance(transform.position, sightPoint.transform.position);
-            if (distance > maxDistance)
-            {
-                maxDistance = distance;
-            }
-        }
+        //foreach (GameObject sightPoint in EnemySight)
+        //{
+        //    float distance = Vector2.Distance(transform.position, sightPoint.transform.position);
+        //    if (distance > maxDistance)
+        //    {
+        //        maxDistance = distance;
+        //    }
+        //}
 
-        return maxDistance;
+        //return maxDistance;
+
+        return sightSize;
     }
 
     private void enemyMovement(Transform Target)
@@ -243,18 +248,7 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        
-            ////stop coroutine of attack
-            //if (attackCoroutine != null)
-            //{
-            //    isAttacking = false;
-
-            //    StopCoroutine(attackCoroutine);
-            //    attackCoroutine = null;
-            //}
-
             // Allow movement again if previously stopped
-
             if (!FlyingEnemy && agent.isStopped)
             {
                 agent.isStopped = false;
@@ -311,51 +305,50 @@ public class EnemyMovement : MonoBehaviour
 
     private void EnemyFoundTarget(GameObject[] Targets)
     {
-        bool PlayerFound = false;
+        bool TargetFound = false;
 
+        if (!aimForFood)
+        {
+            hits = Physics2D.OverlapCircleAll(transform.position, sightSize, LayerMask.GetMask("Player"));
+        }
+        else 
+        {
+            hits = Physics2D.OverlapCircleAll(transform.position, sightSize, LayerMask.GetMask("Item"));
+        }
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, sightSize, LayerMask.GetMask("Player"));
         foreach (var hit in hits)
         {
+            if (hit == null) continue;
+
+            // Skip if it doesn't have HealthManager
+            if (hit.GetComponent<HealthManager>() == null) continue;
+
             Vector2 dirToTarget = hit.transform.position - transform.position;
             float sightRange = GetSightRange();
             RaycastHit2D ray = Physics2D.Raycast(
                 transform.position,
                 dirToTarget.normalized,
                 sightRange,
-                LayerMask.GetMask("Player", "Obstacles")
+                LayerMask.GetMask("Player", "Obstacles", "Item")
             );
+            Debug.DrawRay(transform.position, dirToTarget.normalized * sightRange, Color.red, 0.1f);
 
-            if (ray.collider != null && ray.collider.CompareTag("Player"))
+            if (ray.collider != null && ray.collider.gameObject == hit.gameObject)
             {
-                PlayerFound = true;
+                // Add reachability check for grounded enemies
+                if (!CanReachTarget(hit.transform.position)) continue;
+
+                TargetFound = true;
                 TargetPos.transform.position = hit.transform.position;
                 break;
             }
         }
+    
 
-        //foreach (GameObject Target in Targets) 
-        //{
-        //    foreach (GameObject sight in EnemySight)
-        //    {
-        //        if (Vector2.Distance(Target.transform.position, sight.transform.position) <= 1f)
-        //        {
-        //            PlayerFound = true;
-        //            TargetPos.transform.position = sight.transform.position;
-        //            break;
-        //        }
-        //    }
-        //}
-
-        if (PlayerFound)
+        if (TargetFound && currentState != EnemyState.Chasing && currentState != EnemyState.WaitingToReturn && !justReturnedFromWait)
         {
-            // Force chasing no matter what
-            GameObject closestTarget = GetClosestTarget(Targets);
-            if (closestTarget != null && currentState != EnemyState.Chasing)
-            {
-                SwitchToChaseMode(closestTarget);
-                return;
-            }
+            SwitchToChaseMode(TargetPos);
+            return;
         }
 
         // If not detected, go with normal behavior per state
@@ -409,23 +402,14 @@ public class EnemyMovement : MonoBehaviour
     private void SwitchToChaseMode(GameObject playerTarget)
     {
         // Cancel wandering/waiting
-        if (wanderCoroutine != null)
-        {
-            StopCoroutine(wanderCoroutine);
-            wanderCoroutine = null;
-        }
+        if (wanderCoroutine != null) StopCoroutine(wanderCoroutine);
+        if (waitCoroutine != null) StopCoroutine(waitCoroutine);
 
-        if (waitCoroutine != null)
-        {
-            StopCoroutine(waitCoroutine);
-            waitCoroutine = null;
-        }
-
-        // Set new state
         currentState = EnemyState.Chasing;
 
         TargetPos.transform.position = playerTarget.transform.position;
         TargetedGrid = TargetPos.transform;
+
         isMovingToLastSeenPos = true;
 
         enemyRotation(playerTarget.transform);
@@ -456,10 +440,19 @@ public class EnemyMovement : MonoBehaviour
 
         if (currentState == EnemyState.WaitingToReturn)
         {
-            //Debug.Log("Wait over. Resuming wandering.");
-            StartCoroutine(ChangeTargetedGrid(0));
             currentState = EnemyState.Wandering;
+
+            justReturnedFromWait = true;
+            StartCoroutine(GracePeriodAfterReturn(2f));
+
+            StartCoroutine(ChangeTargetedGrid(0));
         }
+    }
+
+    private IEnumerator GracePeriodAfterReturn(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        justReturnedFromWait = false;
     }
 
     private IEnumerator ChangeTargetedGrid(float delay)
@@ -488,5 +481,37 @@ public class EnemyMovement : MonoBehaviour
 
         yield return new WaitForSeconds(recoverFrame);
         isAttacking = false;
+    }
+
+    // draw the target area
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightSize);
+    }
+
+    private bool CanReachTarget(Vector3 targetPosition)
+    {
+        if (FlyingEnemy) return true; // Flying enemies can always "fly" to targets
+
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(targetPosition, path);
+
+        // Path is complete only if it is valid and not partial or invalid
+        return path.status == NavMeshPathStatus.PathComplete;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") 
+            && currentState == EnemyState.Chasing)
+        {
+            Debug.Log("Hit wall, pausing chase.");
+
+            // Stop chasing and wait before returning
+            currentState = EnemyState.WaitingToReturn;
+            waitCoroutine = StartCoroutine(WaitAfterLosingPlayer(Random.Range(1f, 3f)));
+            isMovingToLastSeenPos = false;
+        }
     }
 }

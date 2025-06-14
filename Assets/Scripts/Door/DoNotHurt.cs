@@ -32,7 +32,6 @@ public class DoNotHurt : MonoBehaviour
                             // might have bugs because I have not set the IgnorecCollision back to false
                             Physics2D.IgnoreCollision(col, hitboxCol,true);
                             StartCoroutine(ReenableCollisionAfterDelay(col, hitboxCol, 0.1f)); // Delay in seconds
-
                         }
                     }
                 }

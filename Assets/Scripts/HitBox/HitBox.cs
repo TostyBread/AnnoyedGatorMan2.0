@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class HitBox : MonoBehaviour
@@ -41,7 +42,10 @@ public class HitBox : MonoBehaviour
 
         if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
         {
-            collision.gameObject.GetComponentInChildren<HealthManager>().currentHealth -= damage;
+            if (collision.gameObject.GetComponentInChildren<HealthManager>() != null)
+                collision.gameObject.GetComponentInChildren<HealthManager>().currentHealth -= damage;
+            else
+                Debug.LogWarning(collision + "children has no HealthManager");
         }
 
         gameObject.SetActive(false);
