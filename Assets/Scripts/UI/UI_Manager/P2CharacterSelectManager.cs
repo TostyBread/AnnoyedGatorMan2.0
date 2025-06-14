@@ -20,6 +20,7 @@ public class P2CharacterSelectManager : MonoBehaviour
         {
             UpdateP2Character();
             P2lastCharacterIndex = P2characterIndex;
+
         }
 
         if (player2Sprite != null)

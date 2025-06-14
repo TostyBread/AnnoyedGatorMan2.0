@@ -20,6 +20,7 @@ public class P1CharacterSelectManager : MonoBehaviour
         {
             UpdateP1Character();
             P1lastCharacterIndex = P1characterIndex;
+
         }
 
         if (player1Sprite != null)
