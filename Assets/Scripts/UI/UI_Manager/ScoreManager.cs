@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public int scoreToClear = 0;
 
-    private int currentScore = 0;
+    public int currentScore = 0;
     public bool isCleared;
 
     private void Update()

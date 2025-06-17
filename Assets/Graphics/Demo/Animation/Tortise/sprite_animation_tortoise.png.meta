@@ -1,0 +1,258 @@
+fileFormatVersion: 2
+guid: b9f4337f9daaa6349aa6889b17145f8c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sprite_animation_tortoise_2
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 4606
+        width: 771
+        height: 1073
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 215f9cb009710e945acf670f8ca81472
+      internalID: 1590903011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_tortoise_3
+      rect:
+        serializedVersion: 2
+        x: 2643
+        y: 4620
+        width: 772
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5bf2a7d1a3bd154685c0d68610cc4a2
+      internalID: 1902799408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_tortoise_4
+      rect:
+        serializedVersion: 2
+        x: 3748
+        y: 4618
+        width: 773
+        height: 1061
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66f229da6fd90bb40bdcdb9ce6993637
+      internalID: 120415174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_tortoise_8
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 5272
+        width: 460
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7223baf32b860dd4d9ca5759f3a1610f
+      internalID: -1870008009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprite_animation_tortoise_0: 133098069
+      sprite_animation_tortoise_1: 1113315737
+      sprite_animation_tortoise_10: -535712118
+      sprite_animation_tortoise_11: -426253649
+      sprite_animation_tortoise_12: 1563876144
+      sprite_animation_tortoise_13: 559551407
+      sprite_animation_tortoise_14: 1226280373
+      sprite_animation_tortoise_15: -1337276643
+      sprite_animation_tortoise_16: -1492634851
+      sprite_animation_tortoise_17: 1981983612
+      sprite_animation_tortoise_18: 1233508867
+      sprite_animation_tortoise_19: -870890285
+      sprite_animation_tortoise_2: 1590903011
+      sprite_animation_tortoise_20: 1058807404
+      sprite_animation_tortoise_21: 1976371368
+      sprite_animation_tortoise_22: -2015579187
+      sprite_animation_tortoise_23: -619260998
+      sprite_animation_tortoise_24: 954562849
+      sprite_animation_tortoise_25: -1299382828
+      sprite_animation_tortoise_26: -1630294102
+      sprite_animation_tortoise_27: 1351127587
+      sprite_animation_tortoise_28: -1675572417
+      sprite_animation_tortoise_29: 1116729055
+      sprite_animation_tortoise_3: 1902799408
+      sprite_animation_tortoise_30: 200449381
+      sprite_animation_tortoise_31: 930816640
+      sprite_animation_tortoise_32: -1909065905
+      sprite_animation_tortoise_33: 1454444634
+      sprite_animation_tortoise_34: 674786260
+      sprite_animation_tortoise_35: 1929828616
+      sprite_animation_tortoise_36: -1292176904
+      sprite_animation_tortoise_37: -1992947164
+      sprite_animation_tortoise_38: -880452905
+      sprite_animation_tortoise_39: -1502049421
+      sprite_animation_tortoise_4: 120415174
+      sprite_animation_tortoise_40: 1077954386
+      sprite_animation_tortoise_41: -1780237751
+      sprite_animation_tortoise_42: -1162454173
+      sprite_animation_tortoise_43: -582018607
+      sprite_animation_tortoise_44: 1386879689
+      sprite_animation_tortoise_45: 414208340
+      sprite_animation_tortoise_46: -1739632294
+      sprite_animation_tortoise_47: 513422550
+      sprite_animation_tortoise_48: 2061437745
+      sprite_animation_tortoise_49: -1459943863
+      sprite_animation_tortoise_5: -8572919
+      sprite_animation_tortoise_50: 71436517
+      sprite_animation_tortoise_51: 307345255
+      sprite_animation_tortoise_52: 228116877
+      sprite_animation_tortoise_53: 1315664117
+      sprite_animation_tortoise_54: -163596270
+      sprite_animation_tortoise_55: -96869817
+      sprite_animation_tortoise_56: 1007679367
+      sprite_animation_tortoise_57: 2057442017
+      sprite_animation_tortoise_58: 1010423818
+      sprite_animation_tortoise_59: 316493552
+      sprite_animation_tortoise_6: 1341112309
+      sprite_animation_tortoise_7: 1953941741
+      sprite_animation_tortoise_8: -1870008009
+      sprite_animation_tortoise_9: -40799168
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

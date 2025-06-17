@@ -1,0 +1,233 @@
+fileFormatVersion: 2
+guid: 40b84c22cde02be428d3da1ee95c9ef0
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sprite_animation_gator_0
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 4393
+        width: 864
+        height: 1032
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec8d77ec34bdc1f46bd807d4e17ff8fd
+      internalID: 73125701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_gator_2
+      rect:
+        serializedVersion: 2
+        x: 2772
+        y: 4403
+        width: 862
+        height: 1020
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc16896c10848464cbfe67727bebc93f
+      internalID: 2054282485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_gator_4
+      rect:
+        serializedVersion: 2
+        x: 3757
+        y: 4395
+        width: 862
+        height: 1028
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e089238a907208438afe7c61ac1fc34
+      internalID: 1400841965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_gator_1
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 4911
+        width: 454
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f73ec5173d55cd548824286762f17428
+      internalID: -100210593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprite_animation_gator_0: 73125701
+      sprite_animation_gator_1: -100210593
+      sprite_animation_gator_10: 1646548476
+      sprite_animation_gator_11: 1444841658
+      sprite_animation_gator_12: -1327359200
+      sprite_animation_gator_13: -2144277345
+      sprite_animation_gator_14: -15900252
+      sprite_animation_gator_15: -1071018805
+      sprite_animation_gator_16: -1524563999
+      sprite_animation_gator_17: 717291759
+      sprite_animation_gator_18: -1907646826
+      sprite_animation_gator_19: -2028584555
+      sprite_animation_gator_2: 2054282485
+      sprite_animation_gator_20: 838493712
+      sprite_animation_gator_21: 56013474
+      sprite_animation_gator_22: 181734331
+      sprite_animation_gator_23: 1582353051
+      sprite_animation_gator_24: 1116738778
+      sprite_animation_gator_25: -1426091457
+      sprite_animation_gator_26: -1973262876
+      sprite_animation_gator_27: 1638037244
+      sprite_animation_gator_28: -598365380
+      sprite_animation_gator_29: 1780469825
+      sprite_animation_gator_3: 1658334371
+      sprite_animation_gator_30: -996520231
+      sprite_animation_gator_31: -1316782004
+      sprite_animation_gator_32: -1597420801
+      sprite_animation_gator_33: -2030174166
+      sprite_animation_gator_34: 428089838
+      sprite_animation_gator_4: 1400841965
+      sprite_animation_gator_5: 1653366872
+      sprite_animation_gator_6: -972135109
+      sprite_animation_gator_7: -1318626959
+      sprite_animation_gator_8: -844424218
+      sprite_animation_gator_9: 1264888466
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
