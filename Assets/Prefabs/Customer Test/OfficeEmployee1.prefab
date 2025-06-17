@@ -280,6 +280,7 @@ MonoBehaviour:
   npcLayer:
     serializedVersion: 2
     m_Bits: 1024
+  score: 1
 --- !u!50 &880509381728504748
 Rigidbody2D:
   serializedVersion: 4

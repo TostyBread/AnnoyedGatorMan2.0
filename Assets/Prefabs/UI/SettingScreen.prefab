@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 1440492036626023247}
   - component: {fileID: 2969830796823200362}
   - component: {fileID: 690732827833845342}
+  - component: {fileID: 964359623922970147}
   m_Layer: 5
   m_Name: SettingScreen
   m_TagString: Untagged
@@ -451,6 +452,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &964359623922970147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961886101235548119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fa7db7c5931c94a8cafc26ff02f47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screens:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 6961886101235548119}
 --- !u!1 &7588615839485749100
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +629,6 @@ GameObject:
   - component: {fileID: 7368547058385412642}
   - component: {fileID: 7828838022467605471}
   - component: {fileID: 2432640561577345371}
-  - component: {fileID: 8905305925885884936}
   - component: {fileID: 1884194909622343631}
   m_Layer: 5
   m_Name: Background
@@ -678,22 +694,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8905305925885884936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8916647582004882548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74fa7db7c5931c94a8cafc26ff02f47b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  screens:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 6961886101235548119}
 --- !u!61 &1884194909622343631
 BoxCollider2D:
   m_ObjectHideFlags: 0

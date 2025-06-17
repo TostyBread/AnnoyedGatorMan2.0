@@ -23,7 +23,7 @@ public class P1CharacterSelectManager : MonoBehaviour
 
         }
 
-        if (player1Sprite != null)
+        if (player1Sprite != null && sprites[P1characterIndex] != null)
         {
             player1Sprite.sprite = sprites[P1characterIndex].sprite;
         }

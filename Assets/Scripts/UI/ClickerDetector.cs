@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class ClickerDetector : MonoBehaviour
 {
     public GameObject[] screens;
+    private TransitionManager transitionManager;
+
+    private void Start()
+    {
+        transitionManager = FindObjectOfType<TransitionManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -17,6 +23,8 @@ public class ClickerDetector : MonoBehaviour
 
             if (hit.collider == null)
             {
+                if (transitionManager != null) transitionManager.changeBackground = false;
+
                 foreach (GameObject screen in screens) 
                 {
                     screen.SetActive(false);
@@ -26,6 +34,8 @@ public class ClickerDetector : MonoBehaviour
 
         if (Input.GetMouseButtonUp(1))
         {
+            if (transitionManager != null) transitionManager.changeBackground = false;
+
             foreach (GameObject screen in screens)
             {
                 screen.SetActive(false);

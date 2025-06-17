@@ -34,10 +34,15 @@ public class NPCBehavior : MonoBehaviour
     private NPCState state = NPCState.Approaching;
     private Collider2D npcCollider;
 
+    [Header("Score")]
+    public int score;
+    private ScoreManager scoreManager;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         npcCollider = GetComponent<Collider2D>(); // Cache collider
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     void FixedUpdate()
@@ -160,6 +165,8 @@ public class NPCBehavior : MonoBehaviour
             AudioManager.Instance.PlaySound("yes", 1f, transform.position);
             state = NPCState.Leaving;
             currentWaypointIndex = 0;
+
+            scoreManager.AddScore(score);
 
             if (attachedMenu != null)
             {

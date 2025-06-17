@@ -23,7 +23,7 @@ public class P2CharacterSelectManager : MonoBehaviour
 
         }
 
-        if (player2Sprite != null)
+        if (player2Sprite != null && sprites[P2characterIndex] != null)
         {
             player2Sprite.sprite = sprites[P2characterIndex].sprite;
         }
