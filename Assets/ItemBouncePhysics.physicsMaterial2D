@@ -8,4 +8,8 @@ PhysicsMaterial2D:
   m_PrefabAsset: {fileID: 0}
   m_Name: ItemBouncePhysics
   friction: 1.5
+<<<<<<< Updated upstream
   bounciness: 1
+=======
+  bounciness: 0.1
+>>>>>>> Stashed changes
