@@ -10,7 +10,8 @@ public class NumberPopUp : MonoBehaviour
     public float fixedDisplayTime = 0.5f; // Time staying still before disappearing
 
     [Header("References")]
-    public TMP_Text numberText;
+    public GameObject numberGameObject;
+    private TMP_Text servedCustomerText;
 
     private float currentMoveTime;
     private Coroutine currentCoroutine;
@@ -21,17 +22,19 @@ public class NumberPopUp : MonoBehaviour
     void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
+        if (numberGameObject != null) { servedCustomerText = numberGameObject.GetComponentInChildren<TMP_Text>(); }
+
         initialPosition = transform.position;
-        numberText.gameObject.SetActive(false);
+        numberGameObject.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (numberText.gameObject.activeSelf)
+        if (numberGameObject.gameObject.activeSelf)
         {
             if (currentMoveTime < moveDuration)
             {
-                numberText.transform.position += new Vector3(0, moveSpeedY) * Time.deltaTime;
+                numberGameObject.transform.position += new Vector3(0, moveSpeedY) * Time.deltaTime;
                 currentMoveTime += Time.deltaTime;
             }
         }
@@ -47,9 +50,9 @@ public class NumberPopUp : MonoBehaviour
     {
         // Reset position and state
         initialPosition = transform.position;
-        numberText.transform.position = initialPosition;
-        numberText.text = scoreManager.currentScore.ToString();
-        numberText.gameObject.SetActive(true);
+        numberGameObject.transform.position = initialPosition;
+        servedCustomerText.text = scoreManager.currentScore.ToString();
+        numberGameObject.gameObject.SetActive(true);
 
         currentMoveTime = 0f;
 
@@ -66,6 +69,6 @@ public class NumberPopUp : MonoBehaviour
     IEnumerator DisappearAfterTime()
     {
         yield return new WaitForSeconds(moveDuration + fixedDisplayTime);
-        numberText.gameObject.SetActive(false);
+        numberGameObject.gameObject.SetActive(false);
     }
 }
