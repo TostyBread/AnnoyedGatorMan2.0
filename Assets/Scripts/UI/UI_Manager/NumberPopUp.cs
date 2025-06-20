@@ -1,47 +1,71 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
 public class NumberPopUp : MonoBehaviour
 {
-    public TMP_Text numberText;
+    [Header("Pop Up Setting")]
     public float moveSpeedY = 1f;
+    public float moveDuration = 0.5f; // Time moving upward
+    public float fixedDisplayTime = 0.5f; // Time staying still before disappearing
 
-    public float LifeTime = 1f;
-    private float currentTime;
+    [Header("References")]
+    public TMP_Text numberText;
 
+    private float currentMoveTime;
+    private Coroutine currentCoroutine;
     private ScoreManager scoreManager;
     private int lastScore = 0;
+    private Vector3 initialPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
+        initialPosition = transform.position;
+        numberText.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (currentTime < LifeTime)
+        if (numberText.gameObject.activeSelf)
         {
-            numberText.transform.position += new Vector3(0, moveSpeedY) * Time.deltaTime;
-            currentTime += Time.deltaTime;
-        }
-        else
-        {
-            numberText.gameObject.SetActive(false);
+            if (currentMoveTime < moveDuration)
+            {
+                numberText.transform.position += new Vector3(0, moveSpeedY) * Time.deltaTime;
+                currentMoveTime += Time.deltaTime;
+            }
         }
 
         if (lastScore != scoreManager.currentScore)
         {
-            numberText.gameObject.SetActive(true);
-            numberText.transform.position = transform.position;
-            numberText.text = scoreManager.currentScore.ToString();
-
+            TriggerPopUp();
             lastScore = scoreManager.currentScore;
-            currentTime = 0f;
         }
+    }
+
+    void TriggerPopUp()
+    {
+        // Reset position and state
+        initialPosition = transform.position;
+        numberText.transform.position = initialPosition;
+        numberText.text = scoreManager.currentScore.ToString();
+        numberText.gameObject.SetActive(true);
+
+        currentMoveTime = 0f;
+
+        // Stop any existing coroutine
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+
+        // Start new disappearance timer
+        currentCoroutine = StartCoroutine(DisappearAfterTime());
+    }
+
+    IEnumerator DisappearAfterTime()
+    {
+        yield return new WaitForSeconds(moveDuration + fixedDisplayTime);
+        numberText.gameObject.SetActive(false);
     }
 }

@@ -1,18 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class P1CharacterSelectManager : MonoBehaviour
 {
     [Header("Character References")]
-    public SpriteRenderer player1Sprite;
-    public SpriteRenderer[] sprites;
+    public SpriteRenderer[] sprites;    // UI selection sprites
+    public GameObject[] characters;    // Actual character prefabs
 
-    [Header("Player1 References")]
     private static int P1characterIndex = 0;
     private static int P1lastCharacterIndex = -1;
+
+    private void Awake()
+    {
+        // Initialize all characters as inactive
+        if (characters != null &&
+            P1characterIndex >= 0 &&
+            P1characterIndex < characters.Length &&
+            characters[P1characterIndex] != null)
+        {
+            foreach (var character in characters)
+            {
+                if (character != null) character.SetActive(false);
+            }
+            characters[P1characterIndex].SetActive(true);
+        }
+    }
 
     private void Update()
     {
@@ -20,32 +31,29 @@ public class P1CharacterSelectManager : MonoBehaviour
         {
             UpdateP1Character();
             P1lastCharacterIndex = P1characterIndex;
-
         }
-
-        if (player1Sprite != null && sprites[P1characterIndex] != null)
-        {
-            player1Sprite.sprite = sprites[P1characterIndex].sprite;
-        }
-
-        Debug.Log("P1 Index: " + P1characterIndex);
     }
 
     private void UpdateP1Character()
     {
+        if (sprites == null) return;
+
         for (int i = 0; i < sprites.Length; i++)
         {
-            sprites[i].gameObject.SetActive(i == P1characterIndex);
+            if (sprites[i] != null)
+                sprites[i].gameObject.SetActive(i == P1characterIndex);
         }
     }
 
     public void P1NextCharacter()
     {
-        if (P1characterIndex < sprites.Length - 1) P1characterIndex++;
+        if (sprites != null && P1characterIndex < sprites.Length - 1)
+            P1characterIndex++;
     }
 
-    public void P1PreviousCharacter() 
+    public void P1PreviousCharacter()
     {
-        if (P1characterIndex > 0) P1characterIndex--;
+        if (P1characterIndex > 0)
+            P1characterIndex--;
     }
 }

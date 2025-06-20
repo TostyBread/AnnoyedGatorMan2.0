@@ -15,17 +15,17 @@ public class LevelSelectManager : MonoBehaviour
 
     public void ChangeLevelName(string name)
     {
-        levelText.text = name;
+        if (name != null) levelText.text = name;
     }
 
     public void ChangeLevelImage(Sprite image)
     {
-        levelImage.sprite = image;
+        if (image != null) levelImage.sprite = image;
     }
 
     public void ChangeLevelCondition(string condition)
     {
-        clearConditionText.text = condition;
+        if (condition != null) clearConditionText.text = condition;
     }
 
     public void ReturnSelectedLevel(int levelIndex)
