@@ -1,25 +1,69 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static FirearmController;
 
 public class CharacterFlip : MonoBehaviour, ICharacterFlip
 {
+    [Header("Facing Control")]
     public bool isFacingRight = true; // Tracks the character's facing direction
     public bool isFlippingEnabled = true;
 
-    void Update()
+    [Header("P2 / Alt Control Settings")]
+    public bool useP2System = false;
+    public GameObject p2System;
+    private GameObject p2AimingObject;
+    public P3Input p3Input;
+
+    private bool shouldFaceRight;
+
+    private void Update()
     {
         if (!isFlippingEnabled) return;
-        HandleFlip();
+
+        if (useP2System && p2System != null)
+        {
+            p2AimingObject = p2System.GetComponent<P2AimSystem>()?.NearestTarget();
+            HandleP2Flip();
+        }
+        else
+        {
+            HandleMouseFlip();
+        }
     }
 
-    private void HandleFlip()
+    private void HandleMouseFlip()
     {
         Vector3 mousePosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
-
-        // Determine if the character should face right or left
         bool shouldFaceRight = mousePosition.x >= transform.position.x;
 
-        // If the direction changes, flip the character
+        if (shouldFaceRight != isFacingRight)
+        {
+            isFacingRight = shouldFaceRight;
+            FlipCharacter();
+        }
+    }
+
+    private void HandleP2Flip()
+    {
+        if (p2AimingObject != null)
+        {
+            shouldFaceRight = p2AimingObject.transform.position.x >= transform.position.x;
+        }
+        else
+        {
+            float x = 0f;
+
+            if (p3Input != null)
+                x = p3Input.P3move.x;
+            else
+                x = Input.GetAxisRaw("Horizontal2");
+
+            if (x > 0)
+                shouldFaceRight = true;
+            else if (x < 0)
+                shouldFaceRight = false;
+        }
+
         if (shouldFaceRight != isFacingRight)
         {
             isFacingRight = shouldFaceRight;
@@ -29,14 +73,10 @@ public class CharacterFlip : MonoBehaviour, ICharacterFlip
 
     private void FlipCharacter()
     {
-        // Adjust the X scale to flip the entire character
         Vector3 localScale = transform.localScale;
         localScale.x = isFacingRight ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
         transform.localScale = localScale;
     }
 
-    public bool IsFacingRight()
-    {
-        return isFacingRight;
-    }
+    public bool IsFacingRight() => isFacingRight;
 }
