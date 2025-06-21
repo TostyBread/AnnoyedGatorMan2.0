@@ -287,7 +287,9 @@ MonoBehaviour:
   lifetime: 5
   growthDuration: 1
   startScaleValue: 0.5
+  fadeDuration: 0.8
   FreezeBox: {fileID: 7204523270222158169}
+  spriteRenderer: {fileID: 8671342677566332787}
 --- !u!114 &1265367951176116025
 MonoBehaviour:
   m_ObjectHideFlags: 0

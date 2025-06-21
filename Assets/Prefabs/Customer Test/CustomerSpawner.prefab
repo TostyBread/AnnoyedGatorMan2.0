@@ -83,12 +83,6 @@ MonoBehaviour:
   plateMenuSets:
   - platePrefab: {fileID: 3088414860971530543, guid: 7fb13c8228e00b94e9535290df4678df, type: 3}
     menuPrefab: {fileID: 8885360682402634210, guid: 927c1a5a9d4e43b40908cef59613be78, type: 3}
-  - platePrefab: {fileID: 3088414860971530543, guid: 8bcc47d6551e75a459c596cc28c868d3, type: 3}
-    menuPrefab: {fileID: 8885360682402634210, guid: 3382427dd1ee00445abce3d5167d7e59, type: 3}
-  - platePrefab: {fileID: 3088414860971530543, guid: 0b43c3df3cfcb78408f35eb9f3186490, type: 3}
-    menuPrefab: {fileID: 8885360682402634210, guid: 9312a466ee553044680c37f0ad6627fc, type: 3}
-  - platePrefab: {fileID: 3088414860971530543, guid: 9757da9b8ba16de4885fae80f8e4ff78, type: 3}
-    menuPrefab: {fileID: 8885360682402634210, guid: 33bae1c18996a4145847bcd506540f3f, type: 3}
   lines:
   - name: Line1
     waypoints:
@@ -150,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 2970475970309814468}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

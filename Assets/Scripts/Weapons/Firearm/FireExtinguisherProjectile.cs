@@ -1,3 +1,5 @@
+// File: FireExtinguisherProjectile.cs
+
 using UnityEngine;
 
 public class FireExtinguisherProjectile : MonoBehaviour
@@ -6,15 +8,20 @@ public class FireExtinguisherProjectile : MonoBehaviour
     public float lifetime = 5f;
     public float growthDuration = 1.5f;
     public float startScaleValue = 0.2f;
+    public float fadeDuration = 1f;
 
     private float elapsedTime = 0f;
     private float growthElapsedTime = 0f;
+    private float fadeElapsedTime = 0f;
 
     private WeatherManager window;
     public Collider2D FreezeBox;
+    private SpriteRenderer spriteRenderer;
 
     private Vector3 startScale;
     private Vector3 targetScale = Vector3.one;
+
+    private bool isFading = false;
 
     void Awake()
     {
@@ -23,10 +30,27 @@ public class FireExtinguisherProjectile : MonoBehaviour
 
         startScale = Vector3.one * startScaleValue;
         transform.localScale = startScale;
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
     {
+        if (isFading)
+        {
+            fadeElapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(fadeElapsedTime / fadeDuration);
+            Color currentColor = spriteRenderer.color;
+            currentColor.a = Mathf.Lerp(1f, 0f, t);
+            spriteRenderer.color = currentColor;
+
+            if (fadeElapsedTime >= fadeDuration)
+            {
+                DestroyBullet();
+            }
+            return;
+        }
+
         elapsedTime += Time.deltaTime;
 
         if (growthElapsedTime < growthDuration)
@@ -45,7 +69,14 @@ public class FireExtinguisherProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        DestroyBullet();
+        if (isFading) return;
+
+        FreezeBox.enabled = false;
+        if (TryGetComponent<Collider2D>(out var col))
+            col.enabled = false;
+
+        isFading = true;
+        fadeElapsedTime = 0f;
     }
 
     private void DestroyBullet()
