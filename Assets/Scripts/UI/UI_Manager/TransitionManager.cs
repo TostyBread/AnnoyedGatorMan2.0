@@ -1,33 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TransitionManager : MonoBehaviour
 {
-    public Image background;
+    public float transitionTime = 1f;
+    public bool playTransitionOnStart = true;
 
-    private Sprite originalImage;
-    public bool changeBackground = false;
+    private Animator transition;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        transition = GetComponentInChildren<Animator>();
+
+        transition.SetBool("PlayTransitionOnStart", playTransitionOnStart);
+    }
+
     void Start()
     {
-        originalImage = background.sprite;
+        if (!playTransitionOnStart) transition.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadSceneWithTransition(string SceneName)
     {
-        if (changeBackground == false)
-        {
-            background.sprite = originalImage;
-        }
+        transition.gameObject.SetActive(true);
+        StartCoroutine(LoadLevel(SceneName));
     }
 
-    public void ChangeBackground(Sprite sprite)
+    IEnumerator LoadLevel(string SceneName)
     {
-        background.sprite = sprite;
-        changeBackground = true;
+        transition.SetTrigger("StartTransition");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(SceneName);
     }
 }

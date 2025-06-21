@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ClickerDetector : MonoBehaviour
 {
     public GameObject[] screens;
-    private TransitionManager transitionManager;
+
+    private BackgroundImageManager backgroundImageManager;
 
     private void Start()
     {
-        transitionManager = FindObjectOfType<TransitionManager>();
+        backgroundImageManager = FindObjectOfType<BackgroundImageManager>();
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class ClickerDetector : MonoBehaviour
 
             if (hit.collider == null)
             {
-                if (transitionManager != null) transitionManager.changeBackground = false;
+                if (backgroundImageManager != null) backgroundImageManager.changeBackground = false;
 
                 foreach (GameObject screen in screens) 
                 {
@@ -34,7 +36,7 @@ public class ClickerDetector : MonoBehaviour
 
         if (Input.GetMouseButtonUp(1))
         {
-            if (transitionManager != null) transitionManager.changeBackground = false;
+            if (backgroundImageManager != null) backgroundImageManager.changeBackground = false;
 
             foreach (GameObject screen in screens)
             {
