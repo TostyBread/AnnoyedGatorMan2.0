@@ -221,6 +221,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingRight: 1
   isFlippingEnabled: 1
+  useP2System: 0
+  p2System: {fileID: 0}
+  p3Input: {fileID: 0}
 --- !u!114 &3890743425518271701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,8 +244,8 @@ MonoBehaviour:
     moveRight: 100
     attackKey: 323
     pickupKey: 101
-    toggleSafetyKey: 113
-    interactKey: 325
+    toggleSafetyKey: 0
+    interactKey: 101
     throwPrepareKey: 324
     throwConfirmKey: 323
     joystickHorizontalAxis: 
@@ -288,8 +291,12 @@ MonoBehaviour:
   spinSpeed: 900
   quarterDistanceFactor: 0.75
   throwSpriteDuration: 0.3
+  P1FalseP2True: 0
+  P2ThrowDirection: {fileID: 0}
   playerPickupSystem: {fileID: 6465942881015571612}
+  p2PickSystem: {fileID: 0}
   handSpriteManager: {fileID: 1415096406257699910}
+  doorCauseThrow: 0
 --- !u!114 &6214467660641618567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +316,12 @@ MonoBehaviour:
   HealthBar: {fileID: 6516332751300887331}
   hand: {fileID: 4209841844562024947}
   isPlayer2: 0
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  canMove: 1
+  isDefeated: 0
   characterAnimation: {fileID: 2514389193953707987}
+  reviveBoostKey: 32
 --- !u!114 &5961273867213844214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1120,9 @@ MonoBehaviour:
   twoHandedFirearmSprite: {fileID: 7388219999953754314}
   throwSprite: {fileID: 1749880649287755030}
   playerPickupSystem: {fileID: 6465942881015571612}
+  p2PickSystem: {fileID: 0}
+  playerThrowManager: {fileID: 0}
+  P1FalseP2True: 0
 --- !u!114 &1451969984161687218
 MonoBehaviour:
   m_ObjectHideFlags: 0

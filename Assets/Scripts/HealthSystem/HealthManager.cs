@@ -132,6 +132,7 @@ public class HealthManager : MonoBehaviour
             reviveTime = 0;
             canMove = true;
             isDefeated = false;
+            handSpriteManager?.UpdateHandSprite();
         }
     }
 
@@ -140,7 +141,9 @@ public class HealthManager : MonoBehaviour
         hasDroppedOnDeath = false;
 
         if (CompareTag("Player"))
+        {
             EnablePlayerControls();
+        }
     }
 
     private void EnablePlayerControls()
