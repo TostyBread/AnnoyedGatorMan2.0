@@ -16,6 +16,7 @@ TagManager:
   - Obstacle
   - Smoke
   - Window
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Player2
   - Smoke
   - Fire
-  - 
+  - Player3
   - 
   - 
   - 
