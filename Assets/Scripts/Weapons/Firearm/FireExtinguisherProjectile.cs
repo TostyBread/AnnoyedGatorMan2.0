@@ -22,6 +22,7 @@ public class FireExtinguisherProjectile : MonoBehaviour
     private Vector3 targetScale = Vector3.one;
 
     private bool isFading = false;
+    private bool fadingTriggered = false;
 
     void Awake()
     {
@@ -35,6 +36,44 @@ public class FireExtinguisherProjectile : MonoBehaviour
     }
 
     void Update()
+    {
+        FadingEffect();
+        elapsedTime += Time.deltaTime;
+        SmokeEnlarge();
+
+        if (elapsedTime >= lifetime)
+        {
+            TriggerFade();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isFading) return;
+
+        FreezeBox.enabled = false;
+        if (TryGetComponent<Collider2D>(out var col))
+            col.enabled = false;
+
+        TriggerFade();
+    }
+
+    private void DestroyBullet()
+    {
+        Destroy(gameObject);
+    }
+
+    private void TriggerFade()
+    {
+        if (!fadingTriggered)
+        {
+            isFading = true;
+            fadeElapsedTime = 0f;
+            fadingTriggered = true;
+        }
+    }
+
+    private void FadingEffect()
     {
         if (isFading)
         {
@@ -50,9 +89,10 @@ public class FireExtinguisherProjectile : MonoBehaviour
             }
             return;
         }
+    }
 
-        elapsedTime += Time.deltaTime;
-
+    private void SmokeEnlarge()
+    {
         if (growthElapsedTime < growthDuration)
         {
             growthElapsedTime += Time.deltaTime;
@@ -60,27 +100,5 @@ public class FireExtinguisherProjectile : MonoBehaviour
             t = Mathf.SmoothStep(0f, 1f, t);
             transform.localScale = Vector3.Lerp(startScale, targetScale, t);
         }
-
-        if (elapsedTime >= lifetime)
-        {
-            DestroyBullet();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (isFading) return;
-
-        FreezeBox.enabled = false;
-        if (TryGetComponent<Collider2D>(out var col))
-            col.enabled = false;
-
-        isFading = true;
-        fadeElapsedTime = 0f;
-    }
-
-    private void DestroyBullet()
-    {
-        Destroy(gameObject);
     }
 }
