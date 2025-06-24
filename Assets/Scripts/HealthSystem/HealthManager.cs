@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +36,6 @@ public class HealthManager : MonoBehaviour
     private PlayerPickupSystem playerPickupSystem;
 
     private PlayerInputManagerP2 playerInputManagerP2;
-    private CharacterFlipP2 characterFlipP2;
     private HandSpriteManagerP2 handSpriteManagerP2;
     private PlayerPickupSystemP2 playerPickupSystemP2;
 
@@ -50,20 +50,20 @@ public class HealthManager : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
 
+        playerInputManager = GetComponent<PlayerInputManager>();
+        p2Input = GetComponent<P2Input>();
+        p3Input = GetComponent<P3Input>();
+
         if (isPlayer2)
         {
             playerInputManagerP2 = GetComponent<PlayerInputManagerP2>();
-            characterFlipP2 = GetComponent<CharacterFlipP2>();
+
             handSpriteManagerP2 = GetComponent<HandSpriteManagerP2>();
             playerPickupSystemP2 = GetComponent<PlayerPickupSystemP2>();
             if (hand != null) handSpriteManagerP2 = hand.GetComponent<HandSpriteManagerP2>();
         }
         else
         {
-            playerInputManager = GetComponent<PlayerInputManager>();
-            p2Input = GetComponent<P2Input>();
-            p3Input = GetComponent<P3Input>();
-
             characterFlip = GetComponent<CharacterFlip>();
             characterMovement = GetComponent<CharacterMovement>();
             playerPickupSystem = GetComponent<PlayerPickupSystem>();
@@ -148,15 +148,12 @@ public class HealthManager : MonoBehaviour
 
     private void EnablePlayerControls()
     {
+        if (playerInputManager != null) playerInputManager.isInputEnabled = true;
+        if (characterFlip != null) characterFlip.isFlippingEnabled = true;
+
         if (isPlayer2)
-        {
+        {         
             if (playerInputManagerP2 != null) playerInputManagerP2.isInputEnabled = true;
-            if (characterFlipP2 != null) characterFlipP2.isFlippingEnabled = true;
-        }
-        else
-        {
-            if (playerInputManager != null) playerInputManager.isInputEnabled = true;
-            if (characterFlip != null) characterFlip.isFlippingEnabled = true;
         }
 
         if (cookCharacterSystem != null)
@@ -179,13 +176,30 @@ public class HealthManager : MonoBehaviour
             rb2d.bodyType = RigidbodyType2D.Dynamic;
         }
 
-        if (playerInputManager != null) playerInputManager.enabled = isActive;
+        if (playerInputManager != null) playerInputManager.isInputEnabled = isActive;
         if (p2Input != null) p2Input.enabled = isActive;
         if (p3Input != null) p3Input.enabled = isActive;
         if (characterFlip != null) characterFlip.enabled = isActive;
 
+        if (isPlayer2)
+        {
+            if (playerInputManager.isInputEnabled == false)
+            {
+                playerInputManager.enabled = false;
+            }
+            else if (playerInputManager.isInputEnabled == true)
+            {
+                playerInputManager.enabled = true;
+            }
+        }
+
         if (cookCharacterSystem != null) cookCharacterSystem.canBeCooked = defeated;
         if (hand != null) hand.SetActive(!defeated);
+    }
+
+    private IEnumerator waitFor(float delay)
+    { 
+        yield return new WaitForSeconds(delay);
     }
 
     public void TryDamage(float damage)

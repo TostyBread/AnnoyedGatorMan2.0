@@ -12,10 +12,16 @@ public class Pushback : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("Pushback: OnEnable called");
+        StartCoroutine(DisableAfterPush());
+
         // Enable collisions with targets in list
         EnableOnlyTargetCollisions();
+    }
 
-        StartCoroutine(DisableAfterPush(0.5f));
+    private void Start()
+    {
+        StartCoroutine(DisableAfterPush());
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -37,7 +43,6 @@ public class Pushback : MonoBehaviour
         {
             colHealthManager.Add(_colHealthManager);
         }
-        
     }
 
     private void EnableOnlyTargetCollisions()
@@ -56,24 +61,37 @@ public class Pushback : MonoBehaviour
         }
     }
 
-    protected IEnumerator DisableAfterPush(float time)
+    private IEnumerator DisableAfterPush()
     {
-        yield return new WaitForSeconds(time);
+        Debug.Log("Pushback: Starting disable coroutine");
+
+        yield return new WaitForSeconds(0.5f);
+
+        Debug.Log("Pushback: Disabling now");
+
+        // reset collisions
+        foreach (GameObject target in allTargetInDoorHitbox)
+        {
+            if (target != null)
+            {
+                Physics2D.IgnoreCollision(target.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
+            }
+        }
 
         allTargetInDoorHitbox.Clear();
 
-        // Re-enable all collisions before disabling
-        EnableAllCollisions();
-
         foreach (HealthManager hm in colHealthManager)
         {
-            hm.canMove = true;
+            if (hm != null)
+            {
+                hm.canMove = true;
+            }
         }
 
-        if (OnPushbackFinished != null)
-            OnPushbackFinished.Invoke();
+        colHealthManager.Clear();
 
-        gameObject.SetActive(false);
+        OnPushbackFinished?.Invoke();
+        gameObject.SetActive(false);  // <--- THIS is the important line
     }
 
     private void EnableAllCollisions()

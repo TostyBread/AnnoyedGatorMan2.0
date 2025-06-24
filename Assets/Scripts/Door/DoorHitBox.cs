@@ -58,13 +58,11 @@ public class DoorHitBox : MonoBehaviour
             pushbackScript.allTargetInDoorHitbox.Add(col.gameObject);
         }
 
-        StartCoroutine(DisableAfterHit());
+        StartCoroutine(EnablePushback());
     }
 
-    IEnumerator DisableAfterHit()
+    private IEnumerator EnablePushback()
     {
-        yield return new WaitForSeconds(0.1f);
-
         if (targets.Count > 0)
             Debug.Log("Hit targets: " + targets.Count);
 
@@ -77,6 +75,8 @@ public class DoorHitBox : MonoBehaviour
         {
             Debug.LogWarning("Pushback is null!");
         }
+
+        yield return new WaitForSeconds(0.1f);
 
         gameObject.SetActive(false);
     }
