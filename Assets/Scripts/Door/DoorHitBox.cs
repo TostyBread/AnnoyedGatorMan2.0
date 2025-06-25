@@ -20,6 +20,7 @@ public class DoorHitBox : MonoBehaviour
     private void OnEnable()
     {
         //set end time
+        Debug.Log("enable");
         StartCoroutine(DisableAfter(0.1f));
     }
 

@@ -33,12 +33,12 @@ TagManager:
   - Smoke
   - Fire
   - Player3
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Ignore Me
+  - Obstacles
+  - Player
+  - Fist1
+  - Fist2
   - 
   - 
   - 
