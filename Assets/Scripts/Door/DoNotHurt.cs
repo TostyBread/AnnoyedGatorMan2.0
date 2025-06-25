@@ -12,15 +12,15 @@ public class DoNotHurt : MonoBehaviour
     private Collider2D storedCol;
     private Collider2D storedHitboxCol;
 
-    void OnEnable()
-    {
-        Pushback.OnPushbackFinished += ReenableCollisionFromPushback;
-    }
+    //void OnEnable()
+    //{
+    //    Pushback.OnPushbackFinished += ReenableCollisionFromPushback;
+    //}
 
-    void OnDisable()
-    {
-        Pushback.OnPushbackFinished -= ReenableCollisionFromPushback;
-    }
+    //void OnDisable()
+    //{
+    //    Pushback.OnPushbackFinished -= ReenableCollisionFromPushback;
+    //}
 
     void ReenableCollisionFromPushback()
     {

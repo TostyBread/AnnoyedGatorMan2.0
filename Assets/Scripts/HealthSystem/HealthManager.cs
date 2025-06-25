@@ -152,7 +152,7 @@ public class HealthManager : MonoBehaviour
         if (characterFlip != null) characterFlip.isFlippingEnabled = true;
 
         if (isPlayer2)
-        {         
+        {
             if (playerInputManagerP2 != null) playerInputManagerP2.isInputEnabled = true;
         }
 
@@ -169,7 +169,7 @@ public class HealthManager : MonoBehaviour
             rb2d.velocity = Vector2.zero;
 
             if (defeated)
-            rb2d.bodyType = RigidbodyType2D.Static;
+                rb2d.bodyType = RigidbodyType2D.Static;
         }
         else
         {
@@ -198,7 +198,7 @@ public class HealthManager : MonoBehaviour
     }
 
     private IEnumerator waitFor(float delay)
-    { 
+    {
         yield return new WaitForSeconds(delay);
     }
 

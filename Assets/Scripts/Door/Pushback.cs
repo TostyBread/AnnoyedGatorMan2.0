@@ -13,15 +13,10 @@ public class Pushback : MonoBehaviour
     private void OnEnable()
     {
         Debug.Log("Pushback: OnEnable called");
-        StartCoroutine(DisableAfterPush());
+        StartCoroutine(DisableAfterPush(0.5f));
 
         // Enable collisions with targets in list
         EnableOnlyTargetCollisions();
-    }
-
-    private void Start()
-    {
-        StartCoroutine(DisableAfterPush());
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -61,11 +56,11 @@ public class Pushback : MonoBehaviour
         }
     }
 
-    private IEnumerator DisableAfterPush()
+    private IEnumerator DisableAfterPush(float delay)
     {
         Debug.Log("Pushback: Starting disable coroutine");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(delay);
 
         Debug.Log("Pushback: Disabling now");
 

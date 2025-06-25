@@ -89,7 +89,7 @@ public class P2AimSystem : MonoBehaviour
     {
         if (detectTarget.AllItemInRange.Count > 0)
         {
-            if (Input.GetKeyDown(NextTarget) || P3 && Gamepad.current.leftTrigger.wasPressedThisFrame) // Switch to the next enemy
+            if (Input.GetKeyDown(NextTarget) || P3 && Gamepad.current.leftTrigger.wasPressedThisFrame) // Switch to the next enemy  
             {
                 //int can't be float, so 0.001 still count as 1, except 0
                 currentTargetIndex = (currentTargetIndex + 1) % detectTarget.AllItemInRange.Count;

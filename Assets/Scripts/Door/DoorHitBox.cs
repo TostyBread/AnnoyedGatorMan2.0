@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DoorHitBox : MonoBehaviour
 {
     public float damage;
     public List<GameObject> targets = new List<GameObject>();
-    
+
     public GameObject pushback;
     private Pushback pushbackScript;
 
@@ -77,13 +76,13 @@ public class DoorHitBox : MonoBehaviour
             Debug.LogWarning("Pushback is null!");
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForEndOfFrame();
 
         gameObject.SetActive(false);
     }
 
     IEnumerator DisableAfter(float time)
-    { 
+    {
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
     }
