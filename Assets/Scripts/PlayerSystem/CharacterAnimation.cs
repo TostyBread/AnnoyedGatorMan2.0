@@ -57,6 +57,8 @@ public class CharacterAnimation : MonoBehaviour
     {
         animator.SetBool("IsMoving", movementScript.IsMoving);
 
-        animator.SetBool("IsSmoking", playerPickupSystem.isSmoking);        
+        animator.SetBool("IsSmoking", playerPickupSystem.isSmoking);
+
+        if (healthManager.currentHealth > 0) animator.SetBool("IsHurt", healthManager.isHurt);
     }
 }

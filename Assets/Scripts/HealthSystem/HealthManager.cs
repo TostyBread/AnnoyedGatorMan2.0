@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +14,13 @@ public class HealthManager : MonoBehaviour
     public bool isPlayer2 = false;
     public bool isNotPlayer = false; // Condition to check whether its a fire instead of player (Chee Seng tolong pls dont ignore ah)
 
+    [Header("Hurt Animation Setting")]
+    public bool isHurt = false; // Used for animation to check if player is hurt
+    public float isHurtDur = 1; // Duration for hurt animation
+
+    private float lastHealth;
+    private float currentHurtDur = 0; // Current duration for hurt animation
+
     [Header("Shared / Enemy Settings")]
     public bool enemy;
     public HealthManager sharedHealthSource;
@@ -24,7 +33,7 @@ public class HealthManager : MonoBehaviour
     public CharacterAnimation characterAnimation;
 
     private PlayerInputManager playerInputManager;
-    // Commented out due to unused. Please consider cleaning up your code and only reference stuff here. Don't overhaul the structure smartass
+    // Commented out due to unused. Please consider cleaning up your code and only reference stuff here. Don't overhaul the structure 
     //private P2Input p2Input;
     //private P3Input p3Input;
 
@@ -74,6 +83,7 @@ public class HealthManager : MonoBehaviour
 
         cookCharacterSystem = GetComponent<ItemSystem>();
         currentHealth = Health;
+        lastHealth = currentHealth;
     }
 
     void Update()
@@ -129,7 +139,20 @@ public class HealthManager : MonoBehaviour
         {
             EnablePlayerControls();
         }
+
+        if (lastHealth != currentHealth)
+        {
+            isHurt = true;
+            currentHurtDur = isHurtDur; // Reset hurt duration
+            lastHealth = currentHealth;
+        }
+        else if (isHurt)
+        {
+            currentHurtDur -= Time.deltaTime; // Decrease hurt duration
+            if (currentHurtDur <= 0) isHurt = false; // Reset hurt state when duration ends
+        }
     }
+
     private void HandleReviveInput()
     {
         reviveTime += Time.deltaTime * reviveSpeed;

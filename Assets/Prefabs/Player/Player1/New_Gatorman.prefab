@@ -1079,6 +1079,8 @@ MonoBehaviour:
   hand: {fileID: 7972791988772016401}
   isPlayer2: 0
   isNotPlayer: 0
+  isHurt: 0
+  isHurtDur: 1
   enemy: 0
   sharedHealthSource: {fileID: 0}
   canMove: 1
