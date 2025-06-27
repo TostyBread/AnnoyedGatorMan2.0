@@ -1,60 +1,37 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthManager : MonoBehaviour
+public class HealthManagerOld : MonoBehaviour
 {
     public float Health = 20;
     public float currentHealth;
     public float reviveSpeed = 1;
-    public float damageReceived; // From external damage source like explosion
+    public float damageReceived; // For the duck explosion
     public Image HealthBar;
     public GameObject hand;
     public bool isPlayer2 = false;
-    public bool isNotPlayer = false; // Condition to check whether its a fire instead of player (Chee Seng tolong pls dont ignore ah)
-
-    [Header("Shared / Enemy Settings")]
-    public bool enemy;
-    public HealthManager sharedHealthSource;
-
-    [Header("Player State Flags")]
-    public bool canMove = true;
-    public bool isDefeated = false;
 
     [Header("References")]
     public CharacterAnimation characterAnimation;
 
     private PlayerInputManager playerInputManager;
-    // Commented out due to unused. Please consider cleaning up your code and only reference stuff here. Don't overhaul the structure smartass
-    //private P2Input p2Input;
-    //private P3Input p3Input;
-
     private CharacterFlip characterFlip;
     private CharacterMovement characterMovement;
     private ItemSystem cookCharacterSystem;
     private HandSpriteManager handSpriteManager;
     private PlayerPickupSystem playerPickupSystem;
 
+
     private PlayerInputManagerP2 playerInputManagerP2;
     private CharacterFlipP2 characterFlipP2;
     private HandSpriteManagerP2 handSpriteManagerP2;
     private PlayerPickupSystemP2 playerPickupSystemP2;
 
-    private Rigidbody2D rb2d;
     private float reviveTime;
     private bool hasDroppedOnDeath = false;
-    private bool? lastPlayerActiveState = null; // Use this to record the last state player is in. DO NOT UPDATE REGULARLY
-
-    [Header("Revive Settings")]
-    public KeyCode reviveBoostKey = KeyCode.Space;
 
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-
-        playerInputManager = GetComponent<PlayerInputManager>();
-        //p2Input = GetComponent<P2Input>();
-        //p3Input = GetComponent<P3Input>();
-
         if (isPlayer2)
         {
             playerInputManagerP2 = GetComponent<PlayerInputManagerP2>();
@@ -65,13 +42,12 @@ public class HealthManager : MonoBehaviour
         }
         else
         {
-            playerInputManager = GetComponent<PlayerInputManager> ();
+            playerInputManager = GetComponent<PlayerInputManager>();
             characterFlip = GetComponent<CharacterFlip>();
             characterMovement = GetComponent<CharacterMovement>();
             playerPickupSystem = GetComponent<PlayerPickupSystem>();
             if (hand != null) handSpriteManager = hand.GetComponent<HandSpriteManager>();
         }
-
         cookCharacterSystem = GetComponent<ItemSystem>();
         currentHealth = Health;
     }
@@ -97,25 +73,24 @@ public class HealthManager : MonoBehaviour
     {
         currentHealth = 0;
 
-        if (!hasDroppedOnDeath) // Handle player dropping item when 0 health
+        if (!hasDroppedOnDeath)
         {
             if (isPlayer2)
+            {
                 playerPickupSystemP2?.TryManualDrop();
+            }
             else
+            {
                 playerPickupSystem?.TryManualDrop();
-
+            }
             hasDroppedOnDeath = true;
         }
 
         if (!CompareTag("Player"))
         {
-            GameObject toDestroy = enemy && transform.parent != null ? transform.parent.gameObject : gameObject; // For kitchen enemy
-            Destroy(toDestroy, 0.1f);
+            Destroy(gameObject, 0.1f);
             return;
         }
-
-        canMove = false;
-        isDefeated = true;
 
         DisablePlayerControls();
         HandleReviveInput();
@@ -130,13 +105,13 @@ public class HealthManager : MonoBehaviour
             EnablePlayerControls();
         }
     }
+
     private void HandleReviveInput()
     {
         reviveTime += Time.deltaTime * reviveSpeed;
-        if (Input.GetKeyDown(reviveBoostKey) || Input.GetKeyDown(KeyCode.Joystick1Button0))
-        {
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
             reviveTime += reviveSpeed / 2;
-        }
 
         if (reviveTime >= Health)
         {
@@ -171,7 +146,6 @@ public class HealthManager : MonoBehaviour
             if (hand != null) hand.SetActive(false);
             handSpriteManager?.UpdateHandSprite();
         }
-        SetPlayerActiveOnce(false, true); // Execute player rigidbody to static
     }
 
     private void EnablePlayerControls()
@@ -186,44 +160,15 @@ public class HealthManager : MonoBehaviour
             if (playerInputManager != null) playerInputManager.isInputEnabled = true;
             if (characterFlip != null) characterFlip.isFlippingEnabled = true;
         }
-
         if (cookCharacterSystem != null)
             cookCharacterSystem.canBeCooked = false;
 
         if (hand != null) hand.SetActive(true);
-        SetPlayerActiveOnce(true, false); // Execute player rigidbody to dynamic
-    }
-
-    private void SetPlayerActiveOnce(bool isActive, bool defeated) // Handle player rigidbody 2D state
-    {
-        if (!rb2d || isNotPlayer) return;
-
-        if (lastPlayerActiveState.HasValue && lastPlayerActiveState.Value == isActive) // Records player last active state
-            return;
-
-        lastPlayerActiveState = isActive; // Assign the value
-
-        if (!isActive) // Does if-else statement to determine to static or dynamic
-        {
-            rb2d.velocity = Vector2.zero;
-            if (defeated)
-                rb2d.bodyType = RigidbodyType2D.Static;
-        }
-        else
-        {
-            rb2d.bodyType = RigidbodyType2D.Dynamic;
-        }
     }
 
     public void TryDamage(float damage)
     {
-        if (sharedHealthSource != null && sharedHealthSource != this)
-        {
-            sharedHealthSource.TryDamage(damage);
-            return;
-        }
-
         currentHealth -= damage;
-        damageReceived = damage;
+        damageReceived = damage; // duck explosion deals damage
     }
 }

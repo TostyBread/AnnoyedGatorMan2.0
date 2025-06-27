@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 295136627851492575, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 599445101065788207, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 702300247687442851, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 914475135471142955, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_Name
       value: New Cabbage Variant
@@ -23,6 +35,14 @@ PrefabInstance:
     - target: {fileID: 963722763951774282, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317824737427914239, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416207139476019059, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1677491931163049114, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_LocalScale.x
@@ -76,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 255988455, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 4006053758610526764, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4472058364476891470, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -156,6 +180,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -848394684, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 6532224904961033786, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6563001518087193277, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -186,7 +214,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7375408521143853263, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_InstanceId
-      value: -498266
+      value: -127108
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250259529555792364, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8735644205080656466, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_LocalScale.x

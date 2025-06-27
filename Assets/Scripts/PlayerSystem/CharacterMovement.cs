@@ -34,6 +34,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void Move()
     {
+        if (rb.bodyType == RigidbodyType2D.Static) return; // (DEFENSIVE CODE) ignore incase player is in static state
+
         rb.velocity = movement * moveSpeed;
     }
 }

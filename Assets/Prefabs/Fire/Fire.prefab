@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2704018642547204201
 Transform:
   m_ObjectHideFlags: 0
@@ -187,14 +187,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 10
+  Health: 1
   currentHealth: 0
   reviveSpeed: 0
   damageReceived: 0
   HealthBar: {fileID: 0}
   hand: {fileID: 0}
   isPlayer2: 0
+  isNotPlayer: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  canMove: 1
+  isDefeated: 0
   characterAnimation: {fileID: 0}
+  reviveBoostKey: 32
 --- !u!82 &5845081187944691371
 AudioSource:
   m_ObjectHideFlags: 0

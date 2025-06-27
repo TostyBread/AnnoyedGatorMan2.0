@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR;
 
 public class P2AimSystem : MonoBehaviour
 {
@@ -89,6 +86,9 @@ public class P2AimSystem : MonoBehaviour
     {
         if (detectTarget.AllItemInRange.Count > 0)
         {
+            if (Gamepad.current == null)
+                return;     
+
             if (Input.GetKeyDown(NextTarget) || P3 && Gamepad.current.leftTrigger.wasPressedThisFrame) // Switch to the next enemy  
             {
                 //int can't be float, so 0.001 still count as 1, except 0

@@ -228,6 +228,7 @@ MonoBehaviour:
   isColdSource: 0
   isStunSource: 0
   minVelocityToDamage: 0
+  playHitSound: 1
 --- !u!50 &1527612533159564325
 Rigidbody2D:
   serializedVersion: 4
@@ -573,7 +574,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 8
+  m_Mass: 25
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -733,7 +734,13 @@ MonoBehaviour:
   HealthBar: {fileID: 1555017260617926903}
   hand: {fileID: 5383459859380473750}
   isPlayer2: 1
+  isNotPlayer: 0
+  enemy: 0
+  sharedHealthSource: {fileID: 5400976351538029550}
+  canMove: 1
+  isDefeated: 0
   characterAnimation: {fileID: 7076201207664159605}
+  reviveBoostKey: 32
 --- !u!114 &6559327783794153403
 MonoBehaviour:
   m_ObjectHideFlags: 0
