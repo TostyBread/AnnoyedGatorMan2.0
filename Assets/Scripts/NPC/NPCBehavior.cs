@@ -28,6 +28,7 @@ public class NPCBehavior : MonoBehaviour
     private bool returningToArrivedPoint = false;
     private bool menuAlreadySpawned = false;
     private bool plateAlreadySpawned = false;
+    private bool patienceAlreadyStarted = false;
 
     public int customerId { get; private set; }
     private NPCState state = NPCState.Approaching;
@@ -122,9 +123,10 @@ public class NPCBehavior : MonoBehaviour
             if (label != null) label.SetLabelFromId(customerId);
         }
 
-        if (state == NPCState.Arrived)
+        if (state == NPCState.Arrived && !patienceAlreadyStarted)
         {
             GetComponent<NPCPatience>()?.StartPatience();
+            patienceAlreadyStarted = true;
         }
     }
 

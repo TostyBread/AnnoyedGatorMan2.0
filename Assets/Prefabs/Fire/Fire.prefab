@@ -194,7 +194,13 @@ MonoBehaviour:
   HealthBar: {fileID: 0}
   hand: {fileID: 0}
   isPlayer2: 0
+  isNotPlayer: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  canMove: 1
+  isDefeated: 0
   characterAnimation: {fileID: 0}
+  reviveBoostKey: 32
 --- !u!82 &5845081187944691371
 AudioSource:
   m_ObjectHideFlags: 0
