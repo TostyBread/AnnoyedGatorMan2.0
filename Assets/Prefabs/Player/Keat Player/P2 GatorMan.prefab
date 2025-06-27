@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 333649065045818434}
   - component: {fileID: 2840141193351574708}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 7849811627016761234}
   - component: {fileID: 968856473792477771}
   - component: {fileID: 4847833768375108147}
-  m_Layer: 11
+  m_Layer: 18
   m_Name: P2 GatorMan
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 524288
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -209,7 +209,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9658048908096220}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -217,7 +217,7 @@ BoxCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 959
+    m_Bits: 695
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 100
   currentHealth: 0
-  reviveSpeed: 1
+  reviveSpeed: 10
   damageReceived: 0
   HealthBar: {fileID: 4438260573942742583}
   hand: {fileID: 4690417925107712157}
@@ -543,7 +543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 632992694025720399}
   - component: {fileID: 7846945034205951474}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -778,7 +778,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6054234899514006686}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: ThrowPos
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -810,7 +810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1474757762403078520}
   - component: {fileID: 2256464694581494384}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: P2 System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -869,7 +869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7424153045303751324}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 5304951086906625449}
   - component: {fileID: 3489024024683535440}
   - component: {fileID: 6518733421764785760}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1149,7 +1149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 711229312680654538}
   - component: {fileID: 7260901680133325896}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: P2Throw
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -1488,7 +1488,7 @@ GameObject:
   - component: {fileID: 1333976586474295901}
   - component: {fileID: 496179534170842508}
   - component: {fileID: 4935715297354527681}
-  m_Layer: 3
+  m_Layer: 19
   m_Name: Fist
   m_TagString: Fist
   m_Icon: {fileID: 0}
@@ -1765,7 +1765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8820047017409549139}
   - component: {fileID: 7051479185338523460}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1934,7 +1934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8847506835958920066}
   - component: {fileID: 6763256513553585790}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: ThrowDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

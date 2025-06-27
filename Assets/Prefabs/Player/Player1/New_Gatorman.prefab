@@ -858,7 +858,7 @@ GameObject:
   - component: {fileID: 464963915344668180}
   - component: {fileID: 6111798470902093909}
   - component: {fileID: 3147652426891288745}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: New_Gatorman
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -925,7 +925,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
