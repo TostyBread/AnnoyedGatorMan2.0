@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 2577979996888328656}
   - component: {fileID: 6610981498980649795}
   - component: {fileID: 153515373503923478}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: GasStove
   m_TagString: Untagged
   m_Icon: {fileID: 0}

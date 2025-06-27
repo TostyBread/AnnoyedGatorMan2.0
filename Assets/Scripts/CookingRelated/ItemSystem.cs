@@ -100,7 +100,7 @@ public class ItemSystem : MonoBehaviour
 
         currentDurability -= sourceDamage.damageAmount;
 
-        if (canBeCooked)
+        if (canBeCooked && sourceDamage.heatAmount != 0) // if item can be cook and the heat apply is not 0, execute this
         {
             if (sourceDamage.isFireSource || sourceDamage.isStunSource)
             {

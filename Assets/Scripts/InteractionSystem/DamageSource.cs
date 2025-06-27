@@ -30,16 +30,19 @@ public class DamageSource : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isFireSource || isColdSource || isStunSource || rb == null || sanity == null || rb.velocity.magnitude < minVelocityToDamage)
+        if ( damageAmount == 0 || isFireSource || isColdSource || isStunSource || rb == null || sanity == null || rb.velocity.magnitude < minVelocityToDamage)
         {
             return;
         }
 
         if (collision.collider.TryGetComponent(out ItemSystem item)) // For damaging Item
         {
-            item.ApplyCollisionEffect(gameObject);
-            if (playHitSound) PlayHitSound(damageType);
-            DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, damageType);
+            if (damageAmount != 0) // if no damage given, dont execute any debris effect
+            {
+                item.ApplyCollisionEffect(gameObject);
+                if (playHitSound) PlayHitSound(damageType);
+                DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, damageType);
+            }
         }
         else
         {

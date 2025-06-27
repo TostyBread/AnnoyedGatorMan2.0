@@ -1,9 +1,8 @@
-using System.Linq;
 using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
 {
-    public enum NPCState { Approaching, Arrived, Leaving, Escaping }
+    public enum NPCState { Approaching, Arrived, Leaving, Escaping, Frustrated }
 
     public float moveSpeed = 2f;
     public float forceEscapeThreshold = 5f;
@@ -68,10 +67,12 @@ public class NPCBehavior : MonoBehaviour
         {
             case NPCState.Approaching:
             case NPCState.Leaving:
+            case NPCState.Frustrated:
             case NPCState.Escaping:
                 MoveAlongPath(state == NPCState.Approaching ? waypoints : exitWaypoints);
                 break;
         }
+
     }
 
     public void SetWaypoints(Vector3[] path)
@@ -120,6 +121,11 @@ public class NPCBehavior : MonoBehaviour
             var label = attachedPlate.GetComponentInChildren<LabelDisplay>();
             if (label != null) label.SetLabelFromId(customerId);
         }
+
+        if (state == NPCState.Arrived)
+        {
+            GetComponent<NPCPatience>()?.StartPatience();
+        }
     }
 
     public void ForceEscape()
@@ -127,6 +133,7 @@ public class NPCBehavior : MonoBehaviour
         if (state == NPCState.Escaping) return;
 
         Debug.Log("ForceEscape called on NPC " + customerId);
+        GetComponent<NPCPatience>()?.StopPatience();
 
         if (waypoints != null && waypoints.Length > 0 && exitWaypoints != null && exitWaypoints.Length > 0)
         {
@@ -160,6 +167,7 @@ public class NPCBehavior : MonoBehaviour
             plateRoot.SetParent(plateReceiveAnchor ?? transform);
             plateRoot.localPosition = plateReceiveAnchor ? Vector3.zero : plateSpawnPoint.localPosition;
 
+            npcCollider.enabled = false; // Disable their collider when also taken food to avoid plate collider pushing the customer to run like hell
             Rigidbody2D plateRb = plateRoot.GetComponent<Rigidbody2D>();
             if (plateRb) plateRb.bodyType = RigidbodyType2D.Kinematic;
             AudioManager.Instance.PlaySound("yes", 1f, transform.position);
@@ -179,13 +187,37 @@ public class NPCBehavior : MonoBehaviour
         return false;
     }
 
+    public void FrustratedLeaving()
+    {
+        if (state == NPCState.Frustrated) return;
+
+        Debug.Log("NPC " + customerId + " is now frustrated and leaving.");
+
+        state = NPCState.Frustrated;
+        currentWaypointIndex = 0;
+
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
+        if (attachedMenu != null)
+        {
+            Destroy(attachedMenu);
+            attachedMenu = null;
+        }
+
+        // Disable collider to avoid physical push during frustration exit
+        npcCollider.enabled = false;
+
+        //AudioManager.Instance.PlaySound("frustrated", 1f, transform.position);
+    }
+
     private void MoveAlongPath(Vector3[] path)
     {
         if (path == null || path.Length == 0) return;
 
         if (currentWaypointIndex >= path.Length)
         {
-            if (state == NPCState.Leaving || state == NPCState.Escaping)
+            if (state == NPCState.Leaving || state == NPCState.Escaping || state == NPCState.Frustrated) // This is where when the enemy will remove itself when arrive at this point
             {
                 Destroy(gameObject);
             }
