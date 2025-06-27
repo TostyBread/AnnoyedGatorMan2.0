@@ -1036,6 +1036,7 @@ MonoBehaviour:
   inInterectRange: 0
   handSpriteManager: {fileID: 5145994137241896100}
   characterFlip: {fileID: 7343302214475969710}
+  isSmoking: 0
 --- !u!114 &3289639044335684799
 MonoBehaviour:
   m_ObjectHideFlags: 0

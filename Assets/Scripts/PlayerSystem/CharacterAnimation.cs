@@ -5,6 +5,7 @@ public class CharacterAnimation : MonoBehaviour
     private Animator animator;
     private CharacterMovement movementScript;
     private HealthManager healthManager;
+    private PlayerPickupSystem playerPickupSystem;
 
     private bool dyingTriggered = false;
 
@@ -13,6 +14,7 @@ public class CharacterAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
         movementScript = GetComponentInParent<CharacterMovement>();
         healthManager = GetComponentInParent<HealthManager>();
+        playerPickupSystem = GetComponentInParent<PlayerPickupSystem>();
     }
 
     void Update()
@@ -54,5 +56,7 @@ public class CharacterAnimation : MonoBehaviour
     private void UpdateAnimationState()
     {
         animator.SetBool("IsMoving", movementScript.IsMoving);
+
+        animator.SetBool("IsSmoking", playerPickupSystem.isSmoking);        
     }
 }

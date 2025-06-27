@@ -28,6 +28,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private Window lastWindow;
     private Smoke lastSmoke;
+    public bool isSmoking = false; // for animation to check if player is smoking
 
     private IUsable usableItemController;
 
@@ -129,12 +130,16 @@ public class PlayerPickupSystem : MonoBehaviour
         {
             smoke.SetSmokeState(isPressed, this.gameObject);
             lastSmoke = smoke;
+
+            isSmoking = smoke.isSmoking; // Update smoking state for animation purposes
         }
         else if (lastSmoke != null)
         {
             lastSmoke.SetSmokeState(false, this.gameObject);
             lastSmoke = null;
+
         }
+        else if (lastSmoke == null) isSmoking = false; // Update smoking state for animation purposes
     }
 
     private void SetInInterectRange()

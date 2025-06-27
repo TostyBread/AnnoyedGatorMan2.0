@@ -118,6 +118,7 @@ public class Smoke : MonoBehaviour
     public void DestroySmoke()
     {
         smokeCount--;
+        isSmoking = false;
         Destroy(gameObject);
     }
 }
