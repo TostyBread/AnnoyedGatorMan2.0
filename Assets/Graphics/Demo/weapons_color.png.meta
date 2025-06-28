@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0121bbc289d756d47a93fdff47f32e29
+guid: 34142492c01692348adf9aa233eb540f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,70 +95,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: character sprite copy_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 107
-        width: 1078
-        height: 1201
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 487e4ae0cb286cc4aa56aa93829742ca
-      internalID: -162771470
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character sprite copy_2
-      rect:
-        serializedVersion: 2
-        x: 1409
-        y: 109
-        width: 705
-        height: 1422
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1bbc4487f6db2df43b01d3d07c22f62a
-      internalID: 1487984578
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character sprite copy_4
-      rect:
-        serializedVersion: 2
-        x: 2318
-        y: 112
-        width: 1190
-        height: 1223
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc3a381db0b2e0243bd5e576cafec96e
-      internalID: -1500846541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -169,25 +106,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      character sprite copy_0: -162771470
-      character sprite copy_1: 1909847425
-      character sprite copy_10: -1311796387
-      character sprite copy_11: 872740703
-      character sprite copy_12: -1116265971
-      character sprite copy_13: -1996168067
-      character sprite copy_14: 322922955
-      character sprite copy_15: 1384977872
-      character sprite copy_16: 1936452190
-      character sprite copy_17: 1212499830
-      character sprite copy_2: 1487984578
-      character sprite copy_3: 809537755
-      character sprite copy_4: -1500846541
-      character sprite copy_5: 302494905
-      character sprite copy_6: -1206563532
-      character sprite copy_7: 743964900
-      character sprite copy_8: 2086234469
-      character sprite copy_9: 1515897798
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
