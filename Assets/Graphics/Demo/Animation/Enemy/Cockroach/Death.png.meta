@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c817f8c6674d72f4ea85b946881f5f14
+guid: 4d3571bfe6faf504695acf393df991ed
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CockroachTest_0
+      name: IMG_0720_1
       rect:
         serializedVersion: 2
-        x: 1798
-        y: 671
-        width: 892
-        height: 685
+        x: 782
+        y: 1230
+        width: 807
+        height: 417
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e73195d2b8649124dbd9c8605935aa2c
-      internalID: 474246449
+      spriteID: 74458b6550de26743852c61b033f4dde
+      internalID: 1737337073
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CockroachTest_0: 474246449
+      IMG_0720_0: 734516779
+      IMG_0720_1: 1737337073
+      IMG_0720_2: -605833098
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

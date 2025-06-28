@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07c34fea715244543a285a8f21622a00
+guid: b54e15f2af1c10d4f8f8e3d71ea717d9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Death_5
+      name: IMG_0713_2
       rect:
         serializedVersion: 2
-        x: 947
-        y: 1542
-        width: 234
-        height: 241
+        x: 916
+        y: 1615
+        width: 235
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de78cf156ee3e2941a1b16fbffa7a93e
-      internalID: -2014966683
+      spriteID: 892ae402f74a2684cac17b4094a811ff
+      internalID: 1282868226
       vertices: []
       indices: 
       edges: []
@@ -128,14 +128,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Death_0: 1375759009
-      Death_1: 445339604
-      Death_2: -459687302
-      Death_3: 120065079
-      Death_4: 343518736
-      Death_5: -2014966683
-      Death_6: -1914943045
-      Death_7: 1388845012
+      IMG_0713_0: 1023480880
+      IMG_0713_1: -1975012502
+      IMG_0713_2: 1282868226
+      IMG_0713_3: -1227030105
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
