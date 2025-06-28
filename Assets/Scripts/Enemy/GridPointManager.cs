@@ -6,7 +6,6 @@ public class GridPointManager : MonoBehaviour
 {
     public bool flying;
     [Header("Ignore if flying is true")]
-    public bool SeeTSightF;
     public EnemyMovement enemyMovement;
 
     private bool hasDeactivated = false;
@@ -37,12 +36,15 @@ public class GridPointManager : MonoBehaviour
 
         if (isObstacle)
         {
-            // Remove from enemy's grid/sight list
-            if (SeeTSightF)
-                enemyMovement.EnemyGrid.Remove(gameObject);
-            
             // Deactivate this grid point (to disappear)
-            gameObject.SetActive(false);
+            if (flying == false)
+            {
+                // Remove from enemy's grid/sight list
+                enemyMovement.EnemyGrid.Remove(gameObject);
+
+                gameObject.SetActive(false);
+            }
+
             hasDeactivated = true;
         }
     }
