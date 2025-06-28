@@ -42,7 +42,7 @@ public class Smoke : MonoBehaviour
 
         float scale = Random.Range(Min, Max);
         transform.localScale = new Vector2(scale, scale);
-        transform.rotation = Quaternion.Euler(0, 0, Random.Range(rotationMin, rotationMax));
+        //transform.rotation = Quaternion.Euler(0, 0, Random.Range(rotationMin, rotationMax));
 
         if (willSpread)
         {
