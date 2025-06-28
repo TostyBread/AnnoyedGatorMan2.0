@@ -142,7 +142,6 @@ public class EnemyMovement : MonoBehaviour
                 GridPointManager GPM = SpawnedGrid.GetComponent<GridPointManager>();
 
                 GPM.enemyMovement = gameObject.GetComponent<EnemyMovement>();
-                GPM.SeeTSightF = true;
                 GPM.flying = FlyingEnemy;
 
                 //SpawnedGrid.transform.parent = MidOfSpawnedGrid.transform;
@@ -187,7 +186,6 @@ public class EnemyMovement : MonoBehaviour
                 GridPointManager GPM = SpawnedGrid.GetComponent<GridPointManager>();
 
                 GPM.enemyMovement = gameObject.GetComponent<EnemyMovement>();
-                GPM.SeeTSightF = false;
                 GPM.flying = FlyingEnemy;
 
                 //SpawnedGrid.transform.parent = MidOfSpawnedGrid.transform;
