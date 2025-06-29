@@ -948,7 +948,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.1044259, y: -4.2949862}
+  m_Offset: {x: -1.1044259, y: -3.465622}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -959,7 +959,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.5004883, y: 5.593542}
+  m_Size: {x: 5.5004883, y: 3.9348145}
   m_EdgeRadius: 0
 --- !u!1 &5670927351681787801
 GameObject:
@@ -1106,7 +1106,6 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
-  parent: {fileID: 0}
 --- !u!50 &2950914432395407653
 Rigidbody2D:
   serializedVersion: 4
@@ -1337,7 +1336,7 @@ MonoBehaviour:
     attackKey: 323
     pickupKey: 101
     toggleSafetyKey: 0
-    interactKey: 101
+    interactKey: 325
     throwPrepareKey: 324
     throwConfirmKey: 323
     joystickHorizontalAxis: 

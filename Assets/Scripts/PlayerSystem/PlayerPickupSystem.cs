@@ -217,7 +217,7 @@ public class PlayerPickupSystem : MonoBehaviour
         item.transform.SetParent(handPosition);
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
-        item.transform.localScale = new Vector3(-item.transform.localScale.x, item.transform.localScale.y, item.transform.localScale.z);
+        item.transform.localScale = new Vector3(Mathf.Abs(item.transform.localScale.x), item.transform.localScale.y, item.transform.localScale.z);
 
         heldItem = item;
         usableItemController = item.GetComponent<IUsable>();
