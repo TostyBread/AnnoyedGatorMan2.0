@@ -92,7 +92,7 @@ public class P2AimSystem : MonoBehaviour
                 currentTargetIndex = (currentTargetIndex + 1) % detectTarget.AllItemInRange.Count;
             }
 
-            if (Input.GetKeyDown(PreviousTarget) || P3 && Gamepad.current.leftShoulder.wasPressedThisFrame) // Switch to the previous enemy
+            if (Input.GetKeyDown(PreviousTarget) || P3 && Gamepad.current != null && Gamepad.current.leftShoulder.wasPressedThisFrame) // Switch to the previous enemy
             {
                 currentTargetIndex--;
                 if (currentTargetIndex < 0)
