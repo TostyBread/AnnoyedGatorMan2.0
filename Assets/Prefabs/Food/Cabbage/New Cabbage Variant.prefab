@@ -251,6 +251,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 914475135471142955, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4441913227994039333}
+    - targetCorrespondingSourceObject: {fileID: 702300247687442851, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7575751815091945211}
+    - targetCorrespondingSourceObject: {fileID: 1416207139476019059, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8165288079212145153}
+    - targetCorrespondingSourceObject: {fileID: 2504115565301411561, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6963259939936024140}
   m_SourcePrefab: {fileID: 100100000, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
 --- !u!212 &475393603925725822 stripped
 SpriteRenderer:
@@ -262,11 +271,70 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1416207139476019059, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
   m_PrefabInstance: {fileID: 1970387348265742257}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8165288079212145153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648333874804996290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2abfb7e17e5ed4e9855ee4ab25bf22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  playSound: 0
+  MaxHeat: 100
+  currentHeat: 0
+  heatCooldown: 0
+  BurnAudioName: 
+  spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
+  MaxCold: 100
+  currentCold: 0
+  coldCooldown: 0
+  heatRequiredToCook: 20
+  FreezeAudioName: 
+  freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  weatherManager: {fileID: 0}
+  sprite: {fileID: 4562070558908033071}
+--- !u!212 &1221292723970445833 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 840730130967608760, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+  m_PrefabInstance: {fileID: 1970387348265742257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1362104142593105426 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 702300247687442851, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
   m_PrefabInstance: {fileID: 1970387348265742257}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7575751815091945211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362104142593105426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2abfb7e17e5ed4e9855ee4ab25bf22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  playSound: 0
+  MaxHeat: 100
+  currentHeat: 0
+  heatCooldown: 0
+  BurnAudioName: 
+  spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
+  MaxCold: 100
+  currentCold: 0
+  coldCooldown: 0
+  heatRequiredToCook: 20
+  FreezeAudioName: 
+  freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  weatherManager: {fileID: 0}
+  sprite: {fileID: 2690841103048380159}
 --- !u!1 &1722880367626741658 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 914475135471142955, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
@@ -299,3 +367,45 @@ MonoBehaviour:
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
   weatherManager: {fileID: 0}
   sprite: {fileID: 475393603925725822}
+--- !u!212 &2690841103048380159 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4472058364476891470, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+  m_PrefabInstance: {fileID: 1970387348265742257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4150171563126980952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2504115565301411561, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+  m_PrefabInstance: {fileID: 1970387348265742257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6963259939936024140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150171563126980952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2abfb7e17e5ed4e9855ee4ab25bf22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  playSound: 0
+  MaxHeat: 100
+  currentHeat: 0
+  heatCooldown: 0
+  BurnAudioName: 
+  spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
+  MaxCold: 100
+  currentCold: 0
+  coldCooldown: 0
+  heatRequiredToCook: 20
+  FreezeAudioName: 
+  freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  weatherManager: {fileID: 0}
+  sprite: {fileID: 1221292723970445833}
+--- !u!212 &4562070558908033071 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2600692282503366558, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+  m_PrefabInstance: {fileID: 1970387348265742257}
+  m_PrefabAsset: {fileID: 0}

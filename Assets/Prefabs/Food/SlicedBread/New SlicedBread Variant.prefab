@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620718888784923987, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_InstanceId
-      value: -3580
+      value: -443224
       objectReference: {fileID: 0}
     - target: {fileID: 1885411682154131413, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalScale.x
@@ -41,16 +41,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 992396472, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
     - target: {fileID: 4296829887444410253, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 9157311760264319652}
+    - target: {fileID: 4296829887444410253, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: spawnObject
       value: 
       objectReference: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
+    - target: {fileID: 4296829887444410253, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+      propertyPath: freezedColor.g
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296829887444410253, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+      propertyPath: freezedColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296829887444410253, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+      propertyPath: heatRequiredToCook
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6695687072411884551, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.27
+      value: -3.9026175
       objectReference: {fileID: 0}
     - target: {fileID: 6695687072411884551, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.66
+      value: 4.331585
       objectReference: {fileID: 0}
     - target: {fileID: 6695687072411884551, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -105,3 +121,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+--- !u!212 &9157311760264319652 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8408808837274742425, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+  m_PrefabInstance: {fileID: 839738342246644797}
+  m_PrefabAsset: {fileID: 0}
