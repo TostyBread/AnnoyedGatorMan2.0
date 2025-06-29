@@ -233,6 +233,13 @@ public class PlayerPickupSystem : MonoBehaviour
             layerManager.ChangeToHoldingOrder();
         }
 
+        DamageSource damageSource = item.GetComponentInChildren<DamageSource>();
+        if (damageSource != null)
+        {
+            damageSource.SetOwner(gameObject); // Set the player as the parent to ignore self damage and collision
+            Debug.Log("DamageSource owner set to: " + gameObject.name);
+        }
+
         handSpriteManager?.UpdateHandSprite();
 
         AudioManager.Instance.PlaySound("gunpickup2", 1.0f, transform.position);

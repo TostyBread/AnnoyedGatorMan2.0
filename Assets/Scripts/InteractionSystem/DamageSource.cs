@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
+using static FirearmController;
 
 public class DamageSource : MonoBehaviour
 {
@@ -33,10 +35,15 @@ public class DamageSource : MonoBehaviour
         playerInParent = GetPlayerInParent(transform).gameObject; // Find the top parent to ignore self damage and collision
     }
 
-    private Transform GetPlayerInParent(Transform current)
+    public Transform GetPlayerInParent(Transform current)
     {
         while (current.parent != null && !current.CompareTag("Player")) current = current.parent;
         return current;
+    }
+
+    public void SetOwner(GameObject newOwner)
+    {
+        playerInParent = newOwner;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
