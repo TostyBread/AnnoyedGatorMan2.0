@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e5741753bbba80545a1f3333012e5b3b
+guid: ab0dd2ca781af664c82cf3c3bfddc3db
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mouse Walking2_2
+      name: 4_1
       rect:
         serializedVersion: 2
-        x: 1756
-        y: 678
-        width: 939
-        height: 515
+        x: 1761
+        y: 772
+        width: 934
+        height: 525
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bca0d4f86af10b4ba691296846c3c20
-      internalID: -703776430
+      spriteID: e20c5bf34531e15489da4b1a2d1c545e
+      internalID: 508144200
       vertices: []
       indices: 
       edges: []
@@ -128,9 +128,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mouse Walking2_0: -2118306525
-      Mouse Walking2_1: -878035215
-      Mouse Walking2_2: -703776430
+      4_0: 803839186
+      4_1: 508144200
+      4_2: -426869676
+      4_3: 253560892
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

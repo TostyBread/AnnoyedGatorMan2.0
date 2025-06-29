@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mosquito_WalkAnimation
+  m_Name: Mouse_WalkAnimation
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -351304500, guid: b1717a4c20ef94d4f916a8b65bd59304, type: 3}
+      value: {fileID: 316746502, guid: 2b64ae8a4eb995a42b352ea423afecbe, type: 3}
     - time: 0.16666667
-      value: {fileID: 21083805, guid: 7894adb5b2208a94d88e22cf32a90acd, type: 3}
+      value: {fileID: 508144200, guid: ab0dd2ca781af664c82cf3c3bfddc3db, type: 3}
     - time: 0.33333334
-      value: {fileID: -351304500, guid: b1717a4c20ef94d4f916a8b65bd59304, type: 3}
+      value: {fileID: -510042317, guid: c3cdf62bdb8bcf14fbe700bb6b1e7052, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,9 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -351304500, guid: b1717a4c20ef94d4f916a8b65bd59304, type: 3}
-    - {fileID: 21083805, guid: 7894adb5b2208a94d88e22cf32a90acd, type: 3}
-    - {fileID: -351304500, guid: b1717a4c20ef94d4f916a8b65bd59304, type: 3}
+    - {fileID: 316746502, guid: 2b64ae8a4eb995a42b352ea423afecbe, type: 3}
+    - {fileID: 508144200, guid: ab0dd2ca781af664c82cf3c3bfddc3db, type: 3}
+    - {fileID: -510042317, guid: c3cdf62bdb8bcf14fbe700bb6b1e7052, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
