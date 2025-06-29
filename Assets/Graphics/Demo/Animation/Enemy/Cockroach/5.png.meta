@@ -100,12 +100,12 @@ TextureImporter:
       name: IMG_0716_4
       rect:
         serializedVersion: 2
-        x: 1272
+        x: 1155
         y: 1352
-        width: 630
+        width: 747
         height: 480
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
