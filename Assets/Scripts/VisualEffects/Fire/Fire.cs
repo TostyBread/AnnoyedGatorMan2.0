@@ -8,6 +8,7 @@ public class Fire : MonoBehaviour
     public float burnRadius = 2f;
     public float spreadInterval = 3f;
     public int maxFireInstances = 10;
+    public GameObject smoke;
 
     [Header("References")]
     public LayerMask wallLayer;
@@ -44,8 +45,19 @@ public class Fire : MonoBehaviour
             if (hit == null)
             {
                 Instantiate(this.gameObject, spawnPosition, Quaternion.identity);
+                SpreadSmokeOnce();
             }
         }
+    }
+
+    private void SpreadSmokeOnce()
+    {
+        if (smoke == null) return;
+
+        Vector2 randomOffset = Random.insideUnitCircle * burnRadius;
+        Vector2 spawnPosition = (Vector2)transform.position + randomOffset;
+
+        Instantiate(smoke, spawnPosition, Quaternion.identity);
     }
 
     private void PlayFireSoundOnce()

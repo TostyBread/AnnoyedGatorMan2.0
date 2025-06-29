@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  playSound: 1
   MaxHeat: 50
   currentHeat: 0
   heatCooldown: 0
@@ -87,7 +88,10 @@ MonoBehaviour:
   MaxCold: 100
   currentCold: 0
   coldCooldown: 0
+  heatRequiredToCook: 20
   FreezeAudioName: 
+  freezedColor: {r: 0, g: 0, b: 0, a: 0}
+  weatherManager: {fileID: 0}
 --- !u!50 &3962942707464195845
 Rigidbody2D:
   serializedVersion: 4

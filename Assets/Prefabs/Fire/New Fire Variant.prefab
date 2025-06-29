@@ -90,13 +90,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1676213073340946737, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
+      propertyPath: smoke
+      value: 
+      objectReference: {fileID: 7969457377182698580, guid: 8b8e0dd4a0012e44191d0f8db6dc7d31, type: 3}
     - target: {fileID: 2704018642547204201, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.728569
       objectReference: {fileID: 0}
     - target: {fileID: 2704018642547204201, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -4.991338
       objectReference: {fileID: 0}
     - target: {fileID: 2704018642547204201, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -133,6 +137,10 @@ PrefabInstance:
     - target: {fileID: 2803993938104900538, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_Name
       value: New Fire Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803993938104900538, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6468267316180445222, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_Size.x
