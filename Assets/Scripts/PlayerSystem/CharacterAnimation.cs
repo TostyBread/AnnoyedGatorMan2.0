@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
@@ -57,8 +58,15 @@ public class CharacterAnimation : MonoBehaviour
     {
         animator.SetBool("IsMoving", movementScript.IsMoving);
 
-        animator.SetBool("IsSmoking", playerPickupSystem.isSmoking);
-
+        try
+        {
+            animator.SetBool("IsSmoking", playerPickupSystem.isSmoking);
+        }
+        catch (NullReferenceException)
+        {
+            Debug.LogWarning(gameObject.name + " has no IsSmoking animation");
+        }
+    
         if (healthManager.currentHealth > 0) animator.SetBool("IsHurt", healthManager.isHurt);
     }
 }
