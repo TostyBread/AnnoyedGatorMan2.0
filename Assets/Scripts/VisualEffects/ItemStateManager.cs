@@ -32,7 +32,7 @@ public class ItemStateManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField]private WeatherManager weatherManager;
-    private SpriteRenderer sprite;
+    public SpriteRenderer sprite;
     private ItemSystem itemSystem;
     private bool wasBurnableLastFrame = false;
     private Collider2D thisCollider;
@@ -43,13 +43,8 @@ public class ItemStateManager : MonoBehaviour
         thisCollider = GetComponent<Collider2D>();
         weatherManager = GameObject.FindGameObjectWithTag("Window").GetComponent<WeatherManager>();
 
-        sprite = GetComponent<SpriteRenderer>();
-        if (sprite == null)
-        {
-            sprite = GetComponentInChildren<SpriteRenderer>();
-        }
-
         state = ItemState.Idle;
+        Debug.Log(sprite);
     }
 
     void Update()

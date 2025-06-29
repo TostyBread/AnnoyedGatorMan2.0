@@ -16,15 +16,16 @@ public class DamageSource : MonoBehaviour
     public float minVelocityToDamage = 0f;
     public bool playHitSound = true;
 
+    [Header("References")]
+    //Get parent to ignore self damage & self collision (must assign for fist) 
+    public GameObject owner;
+    private Collider2D ownerCollider;
+
     private HashSet<GameObject> objectsInFire = new HashSet<GameObject>();
     private Coroutine heatCoroutine;
     private Rigidbody2D rb;
     private float originalHeatAmount;
-
     private Sanity sanity;
-
-    //Get parent to ignore self damage & self collision 
-    public GameObject playerInParent;
 
     private void Awake()
     {
@@ -32,18 +33,22 @@ public class DamageSource : MonoBehaviour
         sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
         originalHeatAmount = heatAmount;
 
-        playerInParent = GetPlayerInParent(transform).gameObject; // Find the top parent to ignore self damage and collision
+        if (owner != null) ownerCollider = owner.GetComponent<Collider2D>();
     }
 
-    public Transform GetPlayerInParent(Transform current)
+    private void FixedUpdate()
     {
-        while (current.parent != null && !current.CompareTag("Player")) current = current.parent;
-        return current;
+        //Prevent self collision (Need to ignore before collide or trigger enter)
+        if (ownerCollider != null)
+        {
+            Physics2D.IgnoreCollision(ownerCollider, GetComponent<Collider2D>());
+        }
     }
 
     public void SetOwner(GameObject newOwner)
     {
-        playerInParent = newOwner;
+        owner = newOwner;
+        ownerCollider = owner.GetComponent<Collider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -70,15 +75,10 @@ public class DamageSource : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out HealthManager health)) // For damaging health
         {
-            if (playerInParent != null)
+            //Prevent self damage
+            if (owner != null)
             {
-                //Ignore self damage & collision with parent object
-                if (collision.gameObject == playerInParent)
-                {
-                    Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-                }
-
-                if (collision.gameObject != playerInParent)
+                if (collision.gameObject != owner)
                 {
                     health.TryDamage(damageAmount);
 

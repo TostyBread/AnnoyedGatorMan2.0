@@ -154,6 +154,13 @@ public class FirearmController : MonoBehaviour, IUsable
             Vector2 direction = rotation * Vector2.right;
             rb.velocity = direction.normalized * projectileSpeed;
         }
+
+        DamageSource projectileDamageSource = projectile.GetComponent<DamageSource>();
+        if (projectileDamageSource != null)
+        {
+            projectileDamageSource.SetOwner(owner); // Set the owner to the player
+        }
+
     }
 
     private void AdjustMuzzlePoint()

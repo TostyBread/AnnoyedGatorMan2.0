@@ -214,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7375408521143853263, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_InstanceId
-      value: -83862
+      value: -313424
       objectReference: {fileID: 0}
     - target: {fileID: 8250259529555792364, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_IsActive
@@ -247,7 +247,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 914475135471142955, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4441913227994039333}
   m_SourcePrefab: {fileID: 100100000, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
 --- !u!1 &648333874804996290 stripped
 GameObject:
@@ -259,3 +262,34 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 702300247687442851, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
   m_PrefabInstance: {fileID: 1970387348265742257}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1722880367626741658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 914475135471142955, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+  m_PrefabInstance: {fileID: 1970387348265742257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4441913227994039333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722880367626741658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2abfb7e17e5ed4e9855ee4ab25bf22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  playSound: 0
+  MaxHeat: 100
+  currentHeat: 0
+  heatCooldown: 0
+  BurnAudioName: 
+  spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
+  MaxCold: 100
+  currentCold: 0
+  coldCooldown: 0
+  heatRequiredToCook: 20
+  FreezeAudioName: 
+  freezedColor: {r: 0, g: 0.72459006, b: 1, a: 0}
+  weatherManager: {fileID: 0}

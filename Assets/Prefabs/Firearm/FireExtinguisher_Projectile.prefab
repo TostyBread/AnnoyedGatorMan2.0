@@ -82,13 +82,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageType: 0
   damageAmount: 0
-  heatAmount: 0
+  heatAmount: 10
   heatCooldown: 1
   isFireSource: 0
   isColdSource: 1
   isStunSource: 0
   minVelocityToDamage: 0
-  playHitSound: 1
+  playHitSound: 0
+  owner: {fileID: 0}
 --- !u!1 &6918077294880524883
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,3 +311,4 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
+  owner: {fileID: 0}
