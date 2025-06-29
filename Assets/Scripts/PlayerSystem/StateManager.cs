@@ -13,6 +13,7 @@ public class StateManager : MonoBehaviour
     public float currentHeat;
     public float BurnDur = 3;
     public string BurnAudioName;
+    public Color burnedColor;
 
     private Dictionary<DamageSource, float> burncooldowns = new();
     private HashSet<DamageSource> burnSources = new();
@@ -22,6 +23,7 @@ public class StateManager : MonoBehaviour
     public float currentCold;
     public float FreezeDur = 3;
     public string FreezeAudioName;
+    public Color freezedColor;
 
     private Dictionary<DamageSource, float> coldCooldowns = new();
     private HashSet<DamageSource> coldSources = new();
@@ -31,11 +33,14 @@ public class StateManager : MonoBehaviour
     public float currentStun;
     public float StunDur = 3;
     public string StunAudioName;
+    public Color stunnedColor;
 
     private Dictionary<DamageSource, float> stunCooldowns = new();
     private HashSet<DamageSource> stunSources = new();
 
     [Header("References")]
+    public SpriteRenderer sprite;
+    private Color originalColor;
     private float idleMoveSpeed;
     private CharacterMovement characterMovement;
     private HealthManager healthManager;
@@ -47,6 +52,8 @@ public class StateManager : MonoBehaviour
 
         idleMoveSpeed = characterMovement.moveSpeed;
         state = PlayerState.Idle;
+
+        originalColor = sprite.color;
     }
 
     void Update()
@@ -196,6 +203,7 @@ public class StateManager : MonoBehaviour
     IEnumerator Burn(float dur)
     {
         state = PlayerState.Burn;
+        if (burnedColor != null) sprite.color = burnedColor;
         float elapsed = 0f;
         float interval = 0.5f;
 
@@ -210,25 +218,30 @@ public class StateManager : MonoBehaviour
 
         characterMovement.moveSpeed = idleMoveSpeed;
         state = PlayerState.Idle;
+        sprite.color = originalColor;
     }
 
     IEnumerator Freeze(float dur)
     {
         state = PlayerState.Freeze;
+        if (freezedColor != null) sprite.color = freezedColor;
         characterMovement.moveSpeed = 1;
         yield return new WaitForSeconds(dur);
         characterMovement.moveSpeed = idleMoveSpeed;
+        sprite.color = originalColor;
         state = PlayerState.Idle;
     }
 
     IEnumerator Stun(float dur)
     {
         state = PlayerState.Stun;
+        if (stunnedColor != null) sprite.color = stunnedColor;
         characterMovement.canMove = false;
         characterMovement.SetMovement(Vector2.zero);
         yield return new WaitForSeconds(dur);
         characterMovement.moveSpeed = idleMoveSpeed;
         characterMovement.canMove = true;
+        sprite.color = originalColor;
         state = PlayerState.Idle;
     }
 }

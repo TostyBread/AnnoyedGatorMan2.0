@@ -76,16 +76,13 @@ public class DamageSource : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out HealthManager health)) // For damaging health
         {
             //Prevent self damage
-            if (owner != null)
+            if (collision.gameObject != owner)
             {
-                if (collision.gameObject != owner)
-                {
-                    health.TryDamage(damageAmount);
+                health.TryDamage(damageAmount);
 
-                    if (collision.gameObject.CompareTag("Player"))
-                    {
-                        sanity.decreaseSanity(damageAmount);
-                    }
+                if (collision.gameObject.CompareTag("Player"))
+                {
+                    sanity.decreaseSanity(damageAmount);
                 }
             }
         }

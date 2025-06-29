@@ -44,7 +44,6 @@ public class ItemStateManager : MonoBehaviour
         weatherManager = GameObject.FindGameObjectWithTag("Window").GetComponent<WeatherManager>();
 
         state = ItemState.Idle;
-        Debug.Log(sprite);
     }
 
     void Update()

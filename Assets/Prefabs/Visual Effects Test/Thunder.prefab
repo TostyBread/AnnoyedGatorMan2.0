@@ -1,5 +1,95 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &777607396080946770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5843842075960629712}
+  - component: {fileID: 4828095192803103894}
+  - component: {fileID: 3127624944129173744}
+  m_Layer: 6
+  m_Name: StunArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5843842075960629712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777607396080946770}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1806641690570162885}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &4828095192803103894
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777607396080946770}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 5, y: 5}
+  m_Direction: 0
+--- !u!114 &3127624944129173744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777607396080946770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5773fea5176f446b42ab2aa53cd5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 2
+  damageAmount: 0
+  heatAmount: 100
+  heatCooldown: 0
+  isFireSource: 0
+  isColdSource: 0
+  isStunSource: 1
+  minVelocityToDamage: 0
+  playHitSound: 0
+  owner: {fileID: 0}
 --- !u!1 &2301914689862829595
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,11 +205,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1806641690570162885}
-  - component: {fileID: 3908824400013441107}
+  - component: {fileID: 3286808564947500119}
   - component: {fileID: 8570014733804942412}
   - component: {fileID: 6433864987959687620}
-  - component: {fileID: 6066723087031760543}
-  - component: {fileID: 3286808564947500119}
   - component: {fileID: 6963658244935775298}
   - component: {fileID: 7602422426556271573}
   m_Layer: 6
@@ -143,43 +231,31 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2290486777410202057}
+  - {fileID: 5843842075960629712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &3908824400013441107
-CapsuleCollider2D:
+--- !u!114 &3286808564947500119
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5398340444453225243}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 5, y: 5}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5773fea5176f446b42ab2aa53cd5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 2
+  damageAmount: 50
+  heatAmount: 0
+  heatCooldown: 0
+  isFireSource: 0
+  isColdSource: 0
+  isStunSource: 0
+  minVelocityToDamage: 0
+  playHitSound: 0
+  owner: {fileID: 0}
 --- !u!70 &8570014733804942412
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -195,7 +271,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2097152
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -230,48 +306,6 @@ MonoBehaviour:
   thunderDamageDelay: 0.1
   thunderAnimationLength: 1.1
   thunderAudioName: Thunder
---- !u!114 &6066723087031760543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5398340444453225243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5773fea5176f446b42ab2aa53cd5c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageType: 2
-  damageAmount: 0
-  heatAmount: 100
-  heatCooldown: 0
-  isFireSource: 0
-  isColdSource: 0
-  isStunSource: 1
-  minVelocityToDamage: 0
-  playHitSound: 0
---- !u!114 &3286808564947500119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5398340444453225243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5773fea5176f446b42ab2aa53cd5c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageType: 2
-  damageAmount: 50
-  heatAmount: 0
-  heatCooldown: 0
-  isFireSource: 0
-  isColdSource: 0
-  isStunSource: 0
-  minVelocityToDamage: 0
-  playHitSound: 0
 --- !u!50 &6963658244935775298
 Rigidbody2D:
   serializedVersion: 4
