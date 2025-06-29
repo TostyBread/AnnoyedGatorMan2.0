@@ -141,15 +141,26 @@ public class P2PickSystem : MonoBehaviour
         item.transform.SetParent(handPosition);
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
-        item.transform.localScale = new Vector3(1, item.transform.localScale.y, item.transform.localScale.z);
+        item.transform.localScale = new Vector3(Mathf.Abs(item.transform.localScale.x), item.transform.localScale.y, item.transform.localScale.z);
 
         heldItem = item;
         usableItemController = item.GetComponent<IUsable>();
         usableItemController?.EnableUsableFunction();
 
+        if (item.TryGetComponent(out FirearmController firearm)) // When one of the player picks up, it will assign character flip to one of the player
+        {
+            firearm.SetOwner(gameObject); // assign ownership
+        }
+
         if (item.TryGetComponent(out SpriteLayerManager layerManager))
         {
             layerManager.ChangeToHoldingOrder();
+        }
+
+        DamageSource damageSource = item.GetComponentInChildren<DamageSource>(); // Check if the item has a DamageSource component
+        if (damageSource != null)
+        {
+            damageSource.SetOwner(gameObject); // Set the player as owner to ignore self damage and collision
         }
 
         handSpriteManager?.UpdateHandSprite();
