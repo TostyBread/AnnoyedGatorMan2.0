@@ -18,6 +18,7 @@ TagManager:
   - Window
   - Enemy
   - NPC
+  - PlayerCollision
   layers:
   - Default
   - TransparentFX

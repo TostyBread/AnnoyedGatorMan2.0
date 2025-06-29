@@ -40,6 +40,7 @@ public class WeatherManager : MonoBehaviour
     private bool[] heatMultiplied;
 
     void Awake() => Instance = this; // Instance for the FireExtinguisherProjectile
+
     void Start()
     {
         currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);

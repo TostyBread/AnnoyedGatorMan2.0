@@ -21,11 +21,22 @@ public class DamageSource : MonoBehaviour
 
     private Sanity sanity;
 
+    //Get parent to ignore self damage & self collision 
+    public GameObject playerInParent;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
         originalHeatAmount = heatAmount;
+
+        playerInParent = GetPlayerInParent(transform).gameObject; // Find the top parent to ignore self damage and collision
+    }
+
+    private Transform GetPlayerInParent(Transform current)
+    {
+        while (current.parent != null && !current.CompareTag("Player")) current = current.parent;
+        return current;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -52,11 +63,23 @@ public class DamageSource : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out HealthManager health)) // For damaging health
         {
-            health.TryDamage(damageAmount);
-
-            if (collision.gameObject.CompareTag("Player"))
+            if (playerInParent != null)
             {
-                sanity.decreaseSanity(damageAmount);             
+                //Ignore self damage & collision with parent object
+                if (collision.gameObject == playerInParent)
+                {
+                    Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+                }
+
+                if (collision.gameObject != playerInParent)
+                {
+                    health.TryDamage(damageAmount);
+
+                    if (collision.gameObject.CompareTag("Player"))
+                    {
+                        sanity.decreaseSanity(damageAmount);
+                    }
+                }
             }
         }
 
