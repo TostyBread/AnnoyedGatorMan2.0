@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 6948023836494664363}
   - component: {fileID: 1398177460472301873}
   - component: {fileID: 7468745865294067289}
+  - component: {fileID: 3681279990122354590}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -153,6 +154,71 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3681279990122354590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808879903531677094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -7.2353587, y: -1.3837515, z: -0.1}
+  - {x: -8.007031, y: -0.15409435, z: 0}
+  - {x: -8.441389, y: 1.2628372, z: 0.1}
+  - {x: -8.504516, y: 2.2074175, z: 0}
+  - {x: -8.449605, y: 3.5435593, z: 0}
+  - {x: -8.028605, y: 4.696674, z: 0}
+  - {x: -7.3147736, y: 5.977908, z: 0}
+  - {x: -6.417911, y: 6.9479823, z: 0}
+  - {x: -5.5942636, y: 7.643507, z: 0}
+  - {x: -4.313023, y: 8.229219, z: 0}
+  - {x: -2.9402704, y: 8.485469, z: 0}
+  - {x: -1.0366957, y: 8.412248, z: 0}
+  - {x: 0.17132336, y: 7.991272, z: 0}
+  - {x: 1.6224613, y: 7.078357, z: 0}
+  - {x: 2.7521498, y: 5.9046774, z: 0}
+  - {x: 3.465982, y: 4.348894, z: 0}
+  - {x: 3.8137803, y: 2.719896, z: 0}
+  - {x: 3.8137805, y: 1.3471469, z: 0}
+  - {x: 3.3928015, y: -0.04390275, z: 0}
+  - {x: 2.6057618, y: -1.4349558, z: 0}
+  - {x: 3.2646825, y: -2.1487877, z: 0}
+  - {x: 3.5209281, y: -2.3684256, z: 0}
+  - {x: 3.9419072, y: -2.2952175, z: 0}
+  - {x: 4.3629, y: -2.5880668, z: 0}
+  - {x: 8.371349, y: -6.614809, z: 0}
+  - {x: 8.407985, y: -7.163914, z: 0}
+  - {x: 8.060221, y: -7.822835, z: 0}
+  - {x: 7.4196033, y: -8.298718, z: 0}
+  - {x: 6.6998177, y: -8.422458, z: 0}
+  - {x: 2.5578945, y: -4.302644, z: 0}
+  - {x: 2.3677726, y: -3.8272884, z: 0}
+  - {x: 2.4153063, y: -3.4153113, z: 0}
+  - {x: 1.48044, y: -2.5279756, z: 0}
+  - {x: 0.6565064, y: -3.1300914, z: 0}
+  - {x: -0.7695702, y: -3.7480555, z: 0}
+  - {x: -2.1005723, y: -3.890664, z: 0}
+  - {x: -3.3206623, y: -3.8114412, z: 0}
+  - {x: -4.841793, y: -3.3836231, z: 0}
+  - {x: -6.2044983, y: -2.5438144, z: 0}
+  m_ShapePathHash: 365628945
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -2176
+  m_LocalBounds:
+    m_Center: {x: -0.048265457, y: 0.031505585, z: 0}
+    m_Extent: {x: 8.45625, y: 8.453963, z: 0}
 --- !u!1 &5826121356084179054
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,11 +400,12 @@ MonoBehaviour:
   Projectile: {fileID: 5338028073116212618, guid: 7e62e51f5d6b89d4ca810abaa8c13486, type: 3}
   CanShoot: 0
   ShootIntervel: 1
-  isAttacking: 0
   Hitbox: {fileID: 9176418919688273743}
   DurationBeforeAttack: 0.3
   RecoveryFrame: 0.5
   TargetedGrid: {fileID: 0}
+  isMoving: 0
+  isAttacking: 0
   currentState: 0
   SeeGrid: {fileID: 1003748745570276690, guid: 39fe410485cdd2c4e9f2d1a4ff92aa48, type: 3}
   MoveGridSize: 5
@@ -425,7 +492,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -476,6 +543,7 @@ MonoBehaviour:
   isHurtDur: 1
   enemy: 1
   sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 4088675956551014516, guid: 88d5fe94a08c5814d8ddc07d6ecf3aed, type: 3}
   canMove: 1
   isDefeated: 0
   characterAnimation: {fileID: 0}

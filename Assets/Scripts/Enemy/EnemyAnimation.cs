@@ -5,9 +5,9 @@ using UnityEngine.Animations;
 
 public class EnemyAnimation : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private EnemyMovement enemyMovement;
-    [SerializeField] private HealthManager healthManager;
+     private Animator animator;
+     private EnemyMovement enemyMovement;
+     private HealthManager healthManager;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,14 @@ public class EnemyAnimation : MonoBehaviour
 
     void HandleDieAni()
     {
-        animator.SetBool("isDefeated",true);
+        try
+        {
+            animator.SetBool("isDefeated", true);
+        }
+        catch
+        {
+            Debug.LogWarning("animation has no isDefeated boolean");
+        }
     }
 
     void HandleMovingAni(bool Moving)
