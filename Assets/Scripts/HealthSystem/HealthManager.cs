@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
@@ -24,6 +25,8 @@ public class HealthManager : MonoBehaviour
     [Header("Shared / Enemy Settings")]
     public bool enemy;
     public HealthManager sharedHealthSource;
+    public GameObject deadBody;
+    private bool spawnOnce = true;
 
     [Header("Player State Flags")]
     public bool canMove = true;
@@ -117,11 +120,23 @@ public class HealthManager : MonoBehaviour
             hasDroppedOnDeath = true;
         }
 
+        
         if (!CompareTag("Player"))
         {
             GameObject toDestroy = enemy && transform.parent != null ? transform.parent.gameObject : gameObject; // For kitchen enemy
-            Destroy(toDestroy, 0.1f);
+
+            if (deadBody != null)
+            {
+                if (spawnOnce == true)
+                {
+                    GameObject Deadbody = Instantiate(deadBody, this.transform.position, this.transform.rotation); //Spawn dead body of current enemy
+                    spawnOnce = false;
+                }
+            }
+
+            Destroy(toDestroy,0.1f);
             return;
+
         }
 
         canMove = false;

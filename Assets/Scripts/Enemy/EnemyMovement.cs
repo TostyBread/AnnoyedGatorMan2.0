@@ -24,7 +24,6 @@ public class EnemyMovement : MonoBehaviour
     private float time;
     public float ShootIntervel;
 
-    [SerializeField] private bool isAttacking;
     [SerializeField] private GameObject Hitbox;
     [SerializeField] private float DurationBeforeAttack;
     [SerializeField] private float RecoveryFrame;
@@ -32,6 +31,9 @@ public class EnemyMovement : MonoBehaviour
     [Header("Just for debug, do not touch")]
     [SerializeField] private Transform TargetedGrid;
     private GameObject[] player;
+
+    public bool isMoving;
+    public bool isAttacking;
 
     NavMeshAgent agent;
     Rigidbody2D rb2d;
@@ -237,45 +239,40 @@ public class EnemyMovement : MonoBehaviour
         {
             if (!FlyingEnemy)
             {
-                agent.isStopped = true; // this halts movement
+                agent.isStopped = true;
                 agent.velocity = Vector3.zero;
             }
 
-            //lets do attack here
+            // Handle attack logic
             if (!isAttacking)
             {
-                attackCoroutine = StartCoroutine(Attack(DurationBeforeAttack,RecoveryFrame));
-                isAttacking = true;
+                attackCoroutine = StartCoroutine(Attack(DurationBeforeAttack, RecoveryFrame));
             }
 
+            isMoving = false; // Not moving due to blocked path
             return;
         }
 
-            // Allow movement again if previously stopped
-            if (!FlyingEnemy && agent.isStopped)
-            {
-                agent.isStopped = false;
-            }
+        if (!FlyingEnemy && agent.isStopped)
+            agent.isStopped = false;
 
-            if (transform.position != Target.transform.position)
-            {
-                enemyRotation(Target);
-            }
+        if (transform.position != Target.transform.position)
+            enemyRotation(Target);
 
-            //detect obstacle, what to do next?
-            if (!FlyingEnemy)
-            {
-                agent.SetDestination(Target.position);
-            }
-            else
-            {
-                Vector2 newPos = Vector2.MoveTowards(rb2d.position, Target.position, speed * Time.deltaTime);
-                rb2d.MovePosition(newPos);
-            }
-        
+        // Movement logic + isMoving logic
+        if (!FlyingEnemy)
+        {
+            agent.SetDestination(Target.position);
+            isMoving = agent.velocity.magnitude > 0.05f; // small threshold to prevent false positives
+        }
+        else
+        {
+            Vector2 newPos = Vector2.MoveTowards(rb2d.position, Target.position, speed * Time.deltaTime);
+            isMoving = Vector2.Distance(rb2d.position, newPos) > 0.01f;
+            rb2d.MovePosition(newPos);
+        }
 
-        //prevent the force of player pushing affect enemy movement
-        rb2d.velocity = Vector2.zero;
+        rb2d.velocity = Vector2.zero; // Remove any physics force drag
     }
 
     private void enemyRotation(Transform Target)
@@ -474,6 +471,7 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator Attack(float dba,float recoverFrame)
     {
+        isAttacking = true;
 
         //Debug.Log("ready to attack " + dba);
         yield return new WaitForSeconds(dba);

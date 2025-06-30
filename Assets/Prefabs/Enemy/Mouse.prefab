@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3741678403769425808}
   m_Layer: 15
-  m_Name: Rat
+  m_Name: Mouse
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,11 +181,12 @@ MonoBehaviour:
   Projectile: {fileID: 5338028073116212618, guid: 7e62e51f5d6b89d4ca810abaa8c13486, type: 3}
   CanShoot: 0
   ShootIntervel: 1
-  isAttacking: 0
   Hitbox: {fileID: 4772615648063625120}
   DurationBeforeAttack: 0.3
   RecoveryFrame: 0.5
   TargetedGrid: {fileID: 0}
+  isMoving: 0
+  isAttacking: 0
   currentState: 0
   SeeGrid: {fileID: 1003748745570276690, guid: 39fe410485cdd2c4e9f2d1a4ff92aa48, type: 3}
   MoveGridSize: 5
@@ -323,6 +324,7 @@ MonoBehaviour:
   isHurtDur: 1
   enemy: 1
   sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
   canMove: 1
   isDefeated: 0
   characterAnimation: {fileID: 0}
