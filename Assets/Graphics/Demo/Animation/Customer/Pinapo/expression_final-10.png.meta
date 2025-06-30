@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fdd488c43013e9642b7af2ac585ed880
+guid: ad2ca1464f25fc84e98c7838ac02a491
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carbibara_WalkAnimation_0
+      name: expression_final-10_1
       rect:
         serializedVersion: 2
-        x: 668
-        y: 129
-        width: 560
-        height: 1234
+        x: 500
+        y: 195
+        width: 2000
+        height: 2500
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43f57251d5cde8e4bb34d26991623b4d
-      internalID: 401642783
+      spriteID: 4f7efce1e4f5c2845a33129854764d72
+      internalID: 1153811998
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Carbibara_WalkAnimation_0: 401642783
+      expression_final-10_0: -2018693417
+      expression_final-10_1: 1153811998
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

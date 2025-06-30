@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5049246bc98591a4da601b5f32378a83
+guid: 96096d5f41bf9b549906f0dc9b246588
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,22 +97,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_0585_0
+      name: Untitled_Artwork-6_0
       rect:
         serializedVersion: 2
-        x: 388
-        y: 236
-        width: 1803
-        height: 2540
+        x: 2259
+        y: 198
+        width: 1364
+        height: 2057
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd77856ab5bda2b49ae1065e5a725282
-      internalID: 1797855890
+      spriteID: a20d567095c71004697b5d14b6811837
+      internalID: 230307838
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IMG_0585_0: 1797855890
+      Untitled_Artwork-6_0: 230307838
+      Untitled_Artwork-6_1: 1971778153
+      Untitled_Artwork-6_2: 1461298508
+      Untitled_Artwork-6_3: 661340128
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

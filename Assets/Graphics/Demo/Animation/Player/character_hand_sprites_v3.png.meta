@@ -1,0 +1,513 @@
+fileFormatVersion: 2
+guid: f7b94498cb83deb469703b599e671386
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_0
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 3208
+        width: 779
+        height: 652
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d6268d663f7fc4ab59584cf25c433e
+      internalID: -998869297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_1
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 3255
+        width: 780
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83635525eaa4b2e498bf55a6fc63d3f3
+      internalID: -1493818044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_3
+      rect:
+        serializedVersion: 2
+        x: 2716
+        y: 3377
+        width: 779
+        height: 670
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eda8c5fc9d722a34084c81d16ce37f3a
+      internalID: 1273696945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_6
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 2542
+        width: 729
+        height: 459
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d21b7123a1953d4fa0d5672569b6ec6
+      internalID: -1378350018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_7
+      rect:
+        serializedVersion: 2
+        x: 1815
+        y: 2606
+        width: 731
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21bd0be505f2bbb41a1fd479d3c0fff3
+      internalID: -571798774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_8
+      rect:
+        serializedVersion: 2
+        x: 3096
+        y: 2558
+        width: 731
+        height: 443
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aabe258d6c33a00418af8aec3fd8f756
+      internalID: 1376032994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_9
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1641
+        width: 936
+        height: 461
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c79e9b2d85038545ae5678f0787c108
+      internalID: 243631660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_10
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 2098
+        width: 763
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a7908bc0a6f9724ba96d1207939da37
+      internalID: 925764944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_11
+      rect:
+        serializedVersion: 2
+        x: 1971
+        y: 2098
+        width: 729
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a1a6dca9de22e045b7c0c34d1ab487c
+      internalID: 417269581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_12
+      rect:
+        serializedVersion: 2
+        x: 3233
+        y: 2060
+        width: 784
+        height: 389
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf68c5781313a884ca6a4348b403c3cc
+      internalID: 1208814873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_13
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 1641
+        width: 939
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 614281b0db67997448c229c2f76b7526
+      internalID: 280019352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_14
+      rect:
+        serializedVersion: 2
+        x: 3196
+        y: 1540
+        width: 950
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0fb3bef9ffe3d149ba681ed3212f1b8
+      internalID: -1977450826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_15
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 933
+        width: 883
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 518e73fa86ac4324cb79e1d250527d52
+      internalID: -963954368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_16
+      rect:
+        serializedVersion: 2
+        x: 1929
+        y: 963
+        width: 859
+        height: 497
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ae763b162dfd249a55e8fb90ebeccc
+      internalID: -436266859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_17
+      rect:
+        serializedVersion: 2
+        x: 3317
+        y: 891
+        width: 887
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81b7993b2885c0548ab5f6f1bba4d4ed
+      internalID: 1990530985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_18
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 357
+        width: 656
+        height: 380
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 967c2285193aed040b3416be9a5ce637
+      internalID: 2035461725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_19
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 381
+        width: 632
+        height: 349
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 355fa6aff48a8324fbf1058c5ee68df5
+      internalID: 1893785758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: character_hand_sprites_v3_20
+      rect:
+        serializedVersion: 2
+        x: 3486
+        y: 366
+        width: 708
+        height: 403
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16afe967b358ebf4cb52d96cd7e70971
+      internalID: 1962464007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      character_hand_sprites_v3_0: -998869297
+      character_hand_sprites_v3_1: -1493818044
+      character_hand_sprites_v3_10: 925764944
+      character_hand_sprites_v3_11: 417269581
+      character_hand_sprites_v3_12: 1208814873
+      character_hand_sprites_v3_13: 280019352
+      character_hand_sprites_v3_14: -1977450826
+      character_hand_sprites_v3_15: -963954368
+      character_hand_sprites_v3_16: -436266859
+      character_hand_sprites_v3_17: 1990530985
+      character_hand_sprites_v3_18: 2035461725
+      character_hand_sprites_v3_19: 1893785758
+      character_hand_sprites_v3_2: 589207672
+      character_hand_sprites_v3_20: 1962464007
+      character_hand_sprites_v3_3: 1273696945
+      character_hand_sprites_v3_4: -1121499673
+      character_hand_sprites_v3_5: 665197484
+      character_hand_sprites_v3_6: -1378350018
+      character_hand_sprites_v3_7: -571798774
+      character_hand_sprites_v3_8: 1376032994
+      character_hand_sprites_v3_9: 243631660
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
