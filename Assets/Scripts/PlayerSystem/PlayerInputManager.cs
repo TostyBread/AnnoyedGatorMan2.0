@@ -21,7 +21,7 @@ public class PlayerInputConfig
 
 public class PlayerInputManager : MonoBehaviour
 {
-    public enum InputMode { Keyboard, Joystick }
+    public enum InputMode { Keyboard, Numpad, Joystick }
     public InputMode inputMode = InputMode.Keyboard;
     public PlayerInputConfig inputConfig;
 
@@ -37,6 +37,12 @@ public class PlayerInputManager : MonoBehaviour
     public bool canThrow = true;
     private bool isPreparingHeld = false;
     private bool throwStarted = false;
+
+    [Header("Numpad Control")] //your InputManager will always get the control from P1 (parent of PlayerInputConfig) ,even P2 will get from P1
+    public KeyCode up;
+    public KeyCode down;
+    public KeyCode left;
+    public KeyCode right;
 
     void Start()
     {
@@ -75,6 +81,13 @@ public class PlayerInputManager : MonoBehaviour
             if (Input.GetKey(inputConfig.moveDown)) move.y -= 1;
             if (Input.GetKey(inputConfig.moveRight)) move.x += 1;
             if (Input.GetKey(inputConfig.moveLeft)) move.x -= 1;
+        }
+        else if (inputMode == InputMode.Numpad)
+        {
+            if (Input.GetKey(up)) move.y += 1;
+            if (Input.GetKey(down)) move.y -= 1;
+            if (Input.GetKey(right)) move.x += 1;
+            if (Input.GetKey(left)) move.x -= 1;
         }
         else if (inputMode == InputMode.Joystick)
         {
