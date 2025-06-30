@@ -35,6 +35,7 @@ public class CharacterAnimation : MonoBehaviour
     {
         if (!dyingTriggered)
         {
+            animator.SetBool("IsHurt", false);
             dyingTriggered = true;
             animator.SetBool("IsDying", true);
         }
@@ -67,6 +68,6 @@ public class CharacterAnimation : MonoBehaviour
             Debug.LogWarning(gameObject.name + " has no IsSmoking animation");
         }
     
-        if (healthManager.currentHealth > 0) animator.SetBool("IsHurt", healthManager.isHurt);
+        animator.SetBool("IsHurt", healthManager.isHurt);
     }
 }

@@ -140,7 +140,7 @@ public class HealthManager : MonoBehaviour
             EnablePlayerControls();
         }
 
-        if (lastHealth != currentHealth)
+        if (lastHealth > currentHealth)
         {
             isHurt = true;
             currentHurtDur = isHurtDur; // Reset hurt duration
@@ -164,6 +164,12 @@ public class HealthManager : MonoBehaviour
         if (reviveTime >= Health)
         {
             currentHealth = Health;
+
+            //Reset Animation
+            lastHealth = currentHealth;
+            isHurt = false;
+            currentHurtDur = 0;
+
             reviveTime = 0;
         }
     }
