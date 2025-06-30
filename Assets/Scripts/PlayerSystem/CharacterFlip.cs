@@ -74,7 +74,9 @@ public class CharacterFlip : MonoBehaviour, ICharacterFlip
     private void FlipCharacter()
     {
         Vector3 localScale = transform.localScale;
+
         localScale.x = isFacingRight ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
+
         transform.localScale = localScale;
     }
 

@@ -171,6 +171,9 @@ public class HealthManager : MonoBehaviour
             currentHurtDur = 0;
 
             reviveTime = 0;
+
+            canMove = true;
+            isDefeated = false;
         }
     }
 
@@ -231,6 +234,15 @@ public class HealthManager : MonoBehaviour
             return;
 
         lastPlayerActiveState = isActive; // Assign the value
+
+        //try to lock all posible control
+        canMove = isActive;
+        isDefeated = defeated;
+        CharacterFlip flip = GetComponent<CharacterFlip>(); 
+        if (flip != null)
+        {
+            flip.isFlippingEnabled = isActive;
+        }
 
         if (!isActive) // Does if-else statement to determine to static or dynamic
         {

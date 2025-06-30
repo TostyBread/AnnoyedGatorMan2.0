@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public class FirearmController : MonoBehaviour, IUsable
 {
@@ -31,7 +32,9 @@ public class FirearmController : MonoBehaviour, IUsable
 
     private ICharacterFlip ownerFlip;
     private Vector3 initialMuzzleLocalPosition;
-    private GameObject owner;
+
+    [Header("Who is holding current weapon")]
+    [SerializeField]private GameObject owner; //Refrence from PickUp (PlayerPickupSystem or P2PickSystem)
 
     private bool isOutOfAmmo => currentAmmo <= 0;
     private bool hasPlayedDryFire = false;
@@ -50,6 +53,7 @@ public class FirearmController : MonoBehaviour, IUsable
     void Update()
     {
         if (ownerFlip == null) return;
+
         bool currentFacingRight = ownerFlip.IsFacingRight();
         if (currentFacingRight != isFacingRight)
         {
