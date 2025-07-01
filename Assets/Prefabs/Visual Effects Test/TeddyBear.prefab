@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 6418998697167385254}
   m_Layer: 31
   m_Name: TeddyBear
-  m_TagString: Untagged
+  m_TagString: Interectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,6 +511,7 @@ MonoBehaviour:
   isHurtDur: 1
   enemy: 0
   sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
   canMove: 1
   isDefeated: 0
   characterAnimation: {fileID: 0}
@@ -645,7 +646,7 @@ Transform:
   m_GameObject: {fileID: 7792502692736191650}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.07, y: -0.07, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -780,7 +781,7 @@ MonoBehaviour:
   - {x: -4.1161175, y: -2.73939, z: 0}
   m_ShapePathHash: 1566888226
   m_Mesh: {fileID: 0}
-  m_InstanceId: -262946
+  m_InstanceId: -372916
   m_LocalBounds:
     m_Center: {x: 0.039346218, y: 0.06034279, z: 0}
     m_Extent: {x: 4.1748757, y: 5.1594234, z: 0}

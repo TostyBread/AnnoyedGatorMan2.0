@@ -47,11 +47,12 @@ public class MeleeSwing : MonoBehaviour
             yield break;
         }
 
-        Collider2D heldCollider = heldItem.GetComponent<Collider2D>();
-        if (heldCollider != null)
-        {
-            heldCollider.enabled = true;
-        }
+        //Comment out collider enabling if not needed
+        //Collider2D heldCollider = heldItem.GetComponent<Collider2D>();
+        //if (heldCollider != null)
+        //{
+        //    heldCollider.enabled = true;
+        //}
 
         Vector3 mousePos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
         Vector3 direction = (mousePos - pivotPoint.position).normalized;
@@ -82,7 +83,7 @@ public class MeleeSwing : MonoBehaviour
             handController.enabled = true;
         }
 
-        heldCollider.enabled = false;
+        //heldCollider.enabled = false;
         isSwinging = false;
         yield return new WaitForSeconds(swingCooldown);
         isCooldown = false;

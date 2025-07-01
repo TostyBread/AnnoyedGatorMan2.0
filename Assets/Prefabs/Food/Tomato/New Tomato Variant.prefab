@@ -26,23 +26,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1929376118137404532, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1929376118137404532, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1929376118137404532, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2879619324378526756, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.8
+      value: -4.9957914
       objectReference: {fileID: 0}
     - target: {fileID: 2879619324378526756, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.66
+      value: 2.737373
       objectReference: {fileID: 0}
     - target: {fileID: 2879619324378526756, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -76,9 +76,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2879619324378526756, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2884286141917450829, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_InstanceId
-      value: -623874
+      value: -372516
       objectReference: {fileID: 0}
     - target: {fileID: 2993353709638337830, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_Sprite
@@ -87,6 +91,10 @@ PrefabInstance:
     - target: {fileID: 3751379003110135289, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_Name
       value: New Tomato Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630525856660482450, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: m_Radius
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5289692273915326832, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.x

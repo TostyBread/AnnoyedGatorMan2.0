@@ -22,24 +22,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620718888784923987, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_InstanceId
-      value: -443224
+      value: -371570
       objectReference: {fileID: 0}
     - target: {fileID: 1885411682154131413, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 1885411682154131413, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 1885411682154131413, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.15
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 2173103751890067600, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 992396472, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 2945873591766036078, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945873591766036078, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4296829887444410253, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: sprite
       value: 
@@ -100,21 +108,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6695687072411884551, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8408808837274742425, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1225939900, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
     - target: {fileID: 8533392980383762495, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 8533392980383762495, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 8533392980383762495, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.15
+      value: 0.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

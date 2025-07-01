@@ -100,7 +100,7 @@ public class P2ThrowController : MonoBehaviour
 
     private void AimAtRangeTarget()
     {
-        Range.SetActive(true);
+        if (Range != null) Range.SetActive(true);
 
         if (p2AimSystem.NearestTarget() != null)
         {

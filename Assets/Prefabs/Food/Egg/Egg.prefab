@@ -306,7 +306,7 @@ MonoBehaviour:
   - {x: -0.110099554, y: -0.3064618, z: 0}
   m_ShapePathHash: -106419215
   m_Mesh: {fileID: 0}
-  m_InstanceId: 101954
+  m_InstanceId: 310860
   m_LocalBounds:
     m_Center: {x: -0.007415712, y: 0.0001014173, z: 0}
     m_Extent: {x: 0.24257189, y: 0.34227931, z: 0}
@@ -405,6 +405,10 @@ PrefabInstance:
     - target: {fileID: 1436545795124970371, guid: 4b1824fe3879b04498e7749829a51f92, type: 3}
       propertyPath: m_Name
       value: EggYoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436545795124970371, guid: 4b1824fe3879b04498e7749829a51f92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1845529850541875737, guid: 4b1824fe3879b04498e7749829a51f92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -509,9 +513,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3147238634640558628, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7459079608383016718, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
       propertyPath: m_Name
       value: HardBoiledEgg
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459079608383016718, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394194902238992909, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737805005632761440, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
