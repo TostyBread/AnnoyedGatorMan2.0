@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -25,6 +26,10 @@ public class LightSwitch : MonoBehaviour
     public float stunChance = 0.5f;
     private StateManager stateManager;
 
+    [Header("Sprite References")]
+    public GameObject LightOn;
+    public GameObject LightOff;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +41,15 @@ public class LightSwitch : MonoBehaviour
         if (isOn)
         {
             light2D.color = originalColor;
+            LightOn.SetActive(true);
+            LightOff.SetActive(false);
         }
 
         if (!isOn)
         {
             light2D.color = lightOffColor;
+            LightOff.SetActive(true);
+            LightOn.SetActive(false);
         }
     }
 

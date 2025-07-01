@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 153515373503923478}
   m_Layer: 31
   m_Name: GasStove
-  m_TagString: Untagged
+  m_TagString: Interectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,6 +287,7 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
+  owner: {fileID: 0}
 --- !u!58 &5976374631721967582
 CircleCollider2D:
   m_ObjectHideFlags: 0

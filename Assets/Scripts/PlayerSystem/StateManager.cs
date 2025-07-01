@@ -53,6 +53,7 @@ public class StateManager : MonoBehaviour
         idleMoveSpeed = characterMovement.moveSpeed;
         state = PlayerState.Idle;
 
+        sprite = GetComponentInChildren<SpriteRenderer>();
         originalColor = sprite.color;
     }
 

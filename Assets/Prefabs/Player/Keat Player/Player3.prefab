@@ -400,6 +400,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1461795727483747606, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 6421450323599144564}
     - target: {fileID: 1822931590191129731, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -436,6 +440,58 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7239d3f50e8adeb4d9dcabb0ae315eb4, type: 2}
+    - target: {fileID: 4667282644512244343, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: Tags.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667282644512244343, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: Tags.Array.data[7]
+      value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 2438092744709112449}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: StunDur
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: burnedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: burnedColor.g
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: burnedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: freezedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: freezedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: freezedColor.g
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: stunnedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: stunnedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: stunnedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6034102254820421814, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_Name
       value: P3 GatorMan
@@ -548,6 +604,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7892161902736516420, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2113536
+      objectReference: {fileID: 0}
     - target: {fileID: 7952316059166301309, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_Name
       value: GatorSprite
@@ -654,6 +714,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+--- !u!212 &2438092744709112449 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3131474420311114819, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+  m_PrefabInstance: {fileID: 765861576594278082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6421450323599144564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6034102254820421814, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+  m_PrefabInstance: {fileID: 765861576594278082}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9013086214482788930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8625529234199299200, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
@@ -687,13 +757,65 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4667282644512244343, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: Tags.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667282644512244343, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: Tags.Array.data[7]
+      value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 217782062492553868}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: StunDur
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: burnedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: burnedColor.g
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: burnedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: freezedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: freezedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: freezedColor.g
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: stunnedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: stunnedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: stunnedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6034102254820421814, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_Name
       value: P3 Tortise
       objectReference: {fileID: 0}
     - target: {fileID: 6034102254820421814, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7079845787088072152, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_IsActive
@@ -785,6 +907,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+--- !u!212 &217782062492553868 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3131474420311114819, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+  m_PrefabInstance: {fileID: 2913983736990127823}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2914150561773584793 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 466992130348886, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
@@ -830,6 +957,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1461795727483747606, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 3135101431889565427}
     - target: {fileID: 1822931590191129731, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -870,6 +1001,58 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6f780ed3342222940845a74e9c4cd5d3, type: 2}
+    - target: {fileID: 4667282644512244343, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: Tags.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667282644512244343, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: Tags.Array.data[7]
+      value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 6001703218192654854}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: StunDur
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: burnedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: burnedColor.g
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: burnedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: freezedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: freezedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: freezedColor.g
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: stunnedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: stunnedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675853560327201663, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: stunnedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5574077031205543967, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0065
@@ -900,7 +1083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6034102254820421814, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6204688049330364818, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_IsActive
@@ -1062,6 +1245,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.09067032
       objectReference: {fileID: 0}
+    - target: {fileID: 7892161902736516420, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2113536
+      objectReference: {fileID: 0}
     - target: {fileID: 7952316059166301309, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
       propertyPath: m_Name
       value: CarbibaraSprite
@@ -1179,5 +1366,15 @@ PrefabInstance:
 --- !u!4 &1120102185894322885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8625529234199299200, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+  m_PrefabInstance: {fileID: 8664765307143644741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3135101431889565427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6034102254820421814, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
+  m_PrefabInstance: {fileID: 8664765307143644741}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6001703218192654854 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3131474420311114819, guid: 1aa44ac1004d1ca45b8d46ea818343ee, type: 3}
   m_PrefabInstance: {fileID: 8664765307143644741}
   m_PrefabAsset: {fileID: 0}

@@ -6,7 +6,9 @@ public class CharacterAnimation : MonoBehaviour
     private Animator animator;
     private CharacterMovement movementScript;
     private HealthManager healthManager;
+
     private PlayerPickupSystem playerPickupSystem;
+    private P2PickSystem p2PickSystem;
 
     private bool dyingTriggered = false;
 
@@ -15,7 +17,12 @@ public class CharacterAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
         movementScript = GetComponentInParent<CharacterMovement>();
         healthManager = GetComponentInParent<HealthManager>();
+
         playerPickupSystem = GetComponentInParent<PlayerPickupSystem>();
+        if (playerPickupSystem == null)
+        {
+            p2PickSystem = GetComponentInParent<P2PickSystem>();
+        }
     }
 
     void Update()
@@ -61,7 +68,8 @@ public class CharacterAnimation : MonoBehaviour
 
         try
         {
-            animator.SetBool("IsSmoking", playerPickupSystem.isSmoking);
+            if (playerPickupSystem) animator.SetBool("IsSmoking", playerPickupSystem.isSmoking);
+            else if (p2PickSystem) animator.SetBool("IsSmoking", p2PickSystem.isSmoking);
         }
         catch (NullReferenceException)
         {

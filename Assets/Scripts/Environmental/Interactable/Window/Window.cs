@@ -6,6 +6,10 @@ public class Window : MonoBehaviour
 {
     public bool isOn = false;
 
+    [Header("Sprite References")]
+    public GameObject WindowOn;
+    public GameObject WindowOff;
+
     private GameObject[] smokes;
     private Smoke[] smoke;
 
@@ -18,7 +22,16 @@ public class Window : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (isOn)
+        {
+            WindowOn.SetActive(true);
+            WindowOff.SetActive(false);
+        }
+        else
+        {
+            WindowOn.SetActive(false);
+            WindowOff.SetActive(true);
+        }
     }
 
     public void SetWindowState(bool state)

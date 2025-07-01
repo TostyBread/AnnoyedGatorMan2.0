@@ -24,9 +24,22 @@ public class P2PickSystem : MonoBehaviour
     public string HeldItemTag => heldItem != null ? heldItem.tag : null;
     public bool HasUsableFunction => usableItemController != null;
 
+    [Header("Interactable Settings")]
+    public bool inInterectRange;
+
     [Header("Do not touch")]
     public GameObject Target;
     public GameObject heldItem = null;
+    private StateManager stateManager;
+
+    private Window lastWindow;
+    private Smoke lastSmoke;
+    public bool isSmoking = false; // for animation to check if player is smoking
+
+    void Start()
+    {
+        stateManager = GetComponent<StateManager>();
+    }
 
     void Update()
     {
@@ -37,6 +50,8 @@ public class P2PickSystem : MonoBehaviour
         {
             StartPickup();
         }
+
+        SetInInterectRange();
     }
 
     private void HandleItemDetection()
@@ -66,15 +81,73 @@ public class P2PickSystem : MonoBehaviour
 
     private bool IsPickupable(Collider2D collider) => validTags.Contains(collider.tag);
 
-    public void StartInteraction()
+    public void StartInteraction() // Insert anything interactable here, especially communicating with interactable scripts
     {
         if (targetInteractable != null && targetInteractable.TryGetComponent(out CookingStove stove))
         {
             stove.ToggleStove();
         }
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out LightSwitch lightSwitch))
+        {
+            bool inInteractRange = Physics2D.OverlapCircle(transform.position, pickupRadius);
+            lightSwitch.ToggleLight(inInteractRange ? stateManager : null);
+        }
+
         if (targetInteractable != null && targetInteractable.TryGetComponent(out ItemPackage package))
         {
             package.TakingOutItem();
+        }
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out NPCBehavior npc))
+        {
+            npc.SpawnMenuAndPlate();
+        }
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out TrashCan trashCan)) // take out trash
+        {
+            trashCan.TakeOutTrash();
+        }
+    }
+
+    public void StartLongInteraction(bool isPressed) // Similar to StartInteraction, but require player to keep pressing to interect
+    {
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
+        {
+            window.SetWindowState(isPressed);
+            lastWindow = window;
+        }
+        else if (lastWindow != null)
+        {
+            lastWindow.SetWindowState(false);
+            lastWindow = null;
+        }
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Smoke smoke))
+        {
+            smoke.SetSmokeState(isPressed, this.gameObject);
+            lastSmoke = smoke;
+
+            isSmoking = smoke.isSmoking; // Update smoking state for animation purposes
+        }
+        else if (lastSmoke != null)
+        {
+            lastSmoke.SetSmokeState(false, this.gameObject);
+            lastSmoke = null;
+
+        }
+        else if (lastSmoke == null) isSmoking = false; // Update smoking state for animation purposes
+    }
+
+    private void SetInInterectRange()
+    {
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Interactable interactable))
+        {
+            inInterectRange = true;
+        }
+        else
+        {
+            inInterectRange = false;
         }
     }
 
