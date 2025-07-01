@@ -17,16 +17,35 @@ public class PlayerInputManagerP2 : MonoBehaviour
     private bool throwStarted = false;
 
     private bool wasFiringLastFrame = false;
+    private float pickupPressTime = 0f;
+    private const float holdThreshold = 0.5f;
 
     void Awake()
     {
         inputActions = new PlayerInputActions();
 
+        inputActions.Player2Controller.Pickup.started += ctx =>
+        {
+            pickupPressTime = Time.time;
+
+        };
+
+        inputActions.Player2Controller.Pickup.canceled += ctx =>
+        {
+            float heldDuration = Time.time - pickupPressTime;
+
+            if (heldDuration >= holdThreshold)
+            {
+                playerPickupSystemP2?.StartPickup();
+            }
+            else
+            {
+                playerPickupSystemP2?.StartInteraction();
+            }
+        };
+
         inputActions.Player2Controller.Attack.performed += ctx => HandleActionInput();
         inputActions.Player2Controller.Attack.canceled += ctx => HandleFireKeyReleased();
-        inputActions.Player2Controller.Pickup.started += ctx => playerPickupSystemP2?.StartPickup();
-        inputActions.Player2Controller.Pickup.performed += ctx => playerPickupSystemP2?.HoldPickup();
-        inputActions.Player2Controller.Pickup.canceled += ctx => playerPickupSystemP2?.CancelPickup();
         inputActions.Player2Controller.ThrowPrepare.started += ctx =>
         {
             isPreparingHeld = true;
@@ -52,7 +71,6 @@ public class PlayerInputManagerP2 : MonoBehaviour
         };
 
         inputActions.Player2Controller.ToggleSafety.performed += ctx => HandleUsableItemInput();
-        inputActions.Player2Controller.Interact.performed += ctx => playerPickupSystemP2?.StartInteraction();
     }
 
     void OnEnable() => inputActions.Enable();

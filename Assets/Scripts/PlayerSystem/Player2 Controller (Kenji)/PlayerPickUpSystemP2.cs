@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerPickupSystemP2 : MonoBehaviour
@@ -13,8 +12,6 @@ public class PlayerPickupSystemP2 : MonoBehaviour
     private Collider2D targetItem = null;
     private GameObject heldItem = null;
     private Collider2D targetInteractable = null;
-    private Coroutine pickupCoroutine = null;
-    private bool isHoldingPickupKey = false;
 
     public HandSpriteManagerP2 handSpriteManagerP2;
     public CharacterFlipP2 characterFlipP2;
@@ -34,10 +31,6 @@ public class PlayerPickupSystemP2 : MonoBehaviour
     void Update()
     {
         HandleItemDetection();
-        if (isHoldingPickupKey && targetItem != null && pickupCoroutine == null)
-        {
-            StartPickup();
-        }
     }
 
     private void HandleItemDetection()
@@ -111,43 +104,6 @@ public class PlayerPickupSystemP2 : MonoBehaviour
 
     public void StartPickup()
     {
-        if (targetItem != null && pickupCoroutine == null)
-        {
-            pickupCoroutine = StartCoroutine(PickupItemCoroutine());
-        }
-    }
-
-    public void HoldPickup()
-    {
-        isHoldingPickupKey = true;
-        if (targetItem != null && pickupCoroutine == null)
-        {
-            StartPickup();
-        }
-    }
-
-    public void CancelPickup()
-    {
-        isHoldingPickupKey = false;
-        if (pickupCoroutine != null)
-        {
-            StopCoroutine(pickupCoroutine);
-            pickupCoroutine = null;
-        }
-    }
-
-    private IEnumerator PickupItemCoroutine()
-    {
-        float holdTime = 0.2f;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < holdTime)
-        {
-            if (targetItem == null || !isHoldingPickupKey) yield break;
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
         if (targetItem != null)
         {
             if (heldItem != null)
@@ -156,8 +112,9 @@ public class PlayerPickupSystemP2 : MonoBehaviour
             }
             PickUpItem(targetItem.gameObject);
         }
-        pickupCoroutine = null;
     }
+
+    // Remove isHoldingPickupKey tracking entirely (not needed)
 
     private void PickUpItem(GameObject item)
     {
