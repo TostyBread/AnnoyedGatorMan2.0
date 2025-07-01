@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
@@ -135,7 +136,7 @@ public class NPCBehavior : MonoBehaviour
         if (state == NPCState.Escaping) return;
 
         Debug.Log("ForceEscape called on NPC " + customerId);
-        GetComponent<NPCPatience>()?.StopPatience();
+        GetComponent<NPCPatience>()?.StopPatience(); // Stop and hide patience bar
 
         if (waypoints != null && waypoints.Length > 0 && exitWaypoints != null && exitWaypoints.Length > 0)
         {
@@ -183,6 +184,7 @@ public class NPCBehavior : MonoBehaviour
                 Destroy(attachedMenu);
                 attachedMenu = null;
             }
+            GetComponent<NPCPatience>()?.StopPatience(); // Stop and hide patience bar
 
             return true;
         }
@@ -206,6 +208,8 @@ public class NPCBehavior : MonoBehaviour
             Destroy(attachedMenu);
             attachedMenu = null;
         }
+
+        GetComponent<NPCPatience>()?.StopPatience(); // Stop and hide patience bar
 
         // Disable collider to avoid physical push during frustration exit
         npcCollider.enabled = false;
