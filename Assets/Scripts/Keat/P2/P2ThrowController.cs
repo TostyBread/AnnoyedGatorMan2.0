@@ -1,11 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.GraphicsBuffer;
 
 public class P2ThrowController : MonoBehaviour
 {
-    public P2PickSystem p2;
+    public P2PickSystem p2PickSystem;
     private P2AimSystem p2AimSystem;
 
     public GameObject ThrowDirection;
@@ -30,10 +28,10 @@ public class P2ThrowController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (p2 == null)
+        if (p2PickSystem == null)
         {
             Debug.Log("P2 is null, so P2 will get P2PickSystem from its parent");
-            p2 = GetComponentInParent<P2PickSystem>();
+            p2PickSystem = GetComponentInParent<P2PickSystem>();
         }
 
         p2AimSystem = GetComponentInParent<P2AimSystem>();
@@ -75,12 +73,12 @@ public class P2ThrowController : MonoBehaviour
 
     private void CannotPickWhenHeldingObject()
     {
-        if (p2.heldItem == null)
+        if (p2PickSystem.heldItem == null)
         {
             Range.SetActive(true);
             once = false;
         }
-        else if (p2.heldItem != null)
+        else if (p2PickSystem.heldItem != null)
         {
             Range.SetActive(false);
 
@@ -124,7 +122,7 @@ public class P2ThrowController : MonoBehaviour
     {
         if (ThrowDirection != null)
         {
-            if (p2.heldItem != null && Arrow.activeSelf == false)
+            if (p2PickSystem.heldItem != null && Arrow.activeSelf == false)
             {
                 ThrowDirection.SetActive(true);
             }

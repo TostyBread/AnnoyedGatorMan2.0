@@ -6,7 +6,7 @@ public class P2Input : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     private Fist fist;
-    private P2PickSystem playerPickupSystem;
+    private P2PickSystem P2PickSystem;
     private PlayerThrowManager playerThrowManager;
     private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
@@ -24,7 +24,7 @@ public class P2Input : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
-        playerPickupSystem = GetComponent<P2PickSystem>();
+        P2PickSystem = GetComponent<P2PickSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
         healthManager = GetComponent<HealthManager>();
     }
@@ -63,17 +63,17 @@ public class P2Input : MonoBehaviour
 
     private void HandlePickupInput(KeyCode a)
     {
-        if (playerPickupSystem == null) return;
+        if (P2PickSystem == null) return;
 
-        if (Input.GetKeyDown(a)) playerPickupSystem.StartPickup();
-        else if (Input.GetKey(a)) playerPickupSystem.HoldPickup();
-        else if (Input.GetKeyUp(a)) playerPickupSystem.CancelPickup();
+        if (Input.GetKeyDown(a)) P2PickSystem.StartPickup();
+        else if (Input.GetKey(a)) P2PickSystem.HoldPickup();
+        else if (Input.GetKeyUp(a)) P2PickSystem.CancelPickup();
     }
 
 
     private void HandleThrowInput(KeyCode a)
     {
-        if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        if (playerThrowManager == null || P2PickSystem == null || !P2PickSystem.HasItemHeld) return;
 
         if (Input.GetKeyDown(a)) playerThrowManager.StartPreparingThrow();
         if (Input.GetKeyDown(Use) && Input.GetKey(a)) playerThrowManager.Throw();
@@ -82,9 +82,9 @@ public class P2Input : MonoBehaviour
 
     private void HandleUsableItemInput(KeyCode a)
     {
-        if (playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        if (P2PickSystem == null || !P2PickSystem.HasItemHeld) return;
 
-        IUsable usableFunction = playerPickupSystem.GetUsableFunction();
+        IUsable usableFunction = P2PickSystem.GetUsableFunction();
         if (usableFunction == null) return;
 
         if (Input.GetKeyDown(a))
@@ -109,7 +109,7 @@ public class P2Input : MonoBehaviour
     {
         if (Input.GetKeyDown(a))
         {
-            playerPickupSystem?.StartInteraction();
+            P2PickSystem?.StartInteraction();
         }
     }
     private void OnDisable()
