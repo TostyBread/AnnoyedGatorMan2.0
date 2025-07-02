@@ -10,7 +10,7 @@ public class P3Input : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     private Fist fist;
-    private P2PickSystem p2PickupSystem;
+    private P2PickupSystem p2PickupSystem;
     private PlayerThrowManager playerThrowManager;
     private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
@@ -24,7 +24,7 @@ public class P3Input : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
-        p2PickupSystem = GetComponent<P2PickSystem>();
+        p2PickupSystem = GetComponent<P2PickupSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
 
         controls = new P3Controls();
@@ -110,7 +110,7 @@ public class P3Input : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
-        p2PickupSystem = GetComponent<P2PickSystem>();
+        p2PickupSystem = GetComponent<P2PickupSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
         healthManager = GetComponent<HealthManager>();
     }

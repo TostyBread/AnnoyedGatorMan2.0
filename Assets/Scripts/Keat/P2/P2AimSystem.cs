@@ -58,7 +58,7 @@ public class P2AimSystem : MonoBehaviour
         else if (NearestTarget() == null) 
         {
             //set weapon that follow the rotation of P3Cursor
-            if (P3 && GetComponentInParent<P2PickSystem>().heldItem != null)
+            if (P3 && GetComponentInParent<P2PickupSystem>().heldItem != null)
                 HandRotation(P3Cursor.transform.position);
             else 
                 HandRotation(HandAim.transform.position);

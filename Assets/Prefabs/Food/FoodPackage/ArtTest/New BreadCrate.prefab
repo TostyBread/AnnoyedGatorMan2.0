@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5633687425686386562}
   m_Layer: 31
   m_Name: New BreadCrate
-  m_TagString: Untagged
+  m_TagString: Interectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   - {x: 0.6, y: -1.0999999, z: 0}
   m_ShapePathHash: -490885473
   m_Mesh: {fileID: 0}
-  m_InstanceId: -372856
+  m_InstanceId: -3162
   m_LocalBounds:
     m_Center: {x: 0, y: 0.004229784, z: 0}
     m_Extent: {x: 0.6, y: 1.1042297, z: 0}
@@ -243,7 +243,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1330160677, guid: 259485453b779f347960a8fc99e8479a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

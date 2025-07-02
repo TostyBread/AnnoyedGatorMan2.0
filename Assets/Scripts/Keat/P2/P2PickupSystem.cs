@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class P2PickSystem : MonoBehaviour
+public class P2PickupSystem : MonoBehaviour
 {
     [Header("Pickup Settings")]
     public float pickupRadius = 2f;

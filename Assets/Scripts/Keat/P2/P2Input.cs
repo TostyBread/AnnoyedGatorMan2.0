@@ -6,7 +6,7 @@ public class P2Input : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     private Fist fist;
-    private P2PickSystem P2PickSystem;
+    private P2PickupSystem P2PickSystem;
     private PlayerThrowManager playerThrowManager;
     private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
@@ -24,7 +24,7 @@ public class P2Input : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
-        P2PickSystem = GetComponent<P2PickSystem>();
+        P2PickSystem = GetComponent<P2PickupSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
         healthManager = GetComponent<HealthManager>();
     }
@@ -99,7 +99,7 @@ public class P2Input : MonoBehaviour
             }
         }
 
-        if (usableItemModeEnabled && Input.GetKeyDown(Use))
+        if (usableItemModeEnabled && Input.GetKey(Use))
         {
             usableFunction.Use();
         }
@@ -110,6 +110,15 @@ public class P2Input : MonoBehaviour
         if (Input.GetKeyDown(a))
         {
             P2PickSystem?.StartInteraction();
+        }
+
+        if (Input.GetKey(a))
+        {
+            P2PickSystem?.StartLongInteraction(true);
+        }
+        else
+        {
+            P2PickSystem?.StartLongInteraction(false);
         }
     }
     private void OnDisable()

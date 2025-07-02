@@ -8,7 +8,7 @@ public class CharacterAnimation : MonoBehaviour
     private HealthManager healthManager;
 
     private PlayerPickupSystem playerPickupSystem;
-    private P2PickSystem p2PickSystem;
+    private P2PickupSystem p2PickSystem;
 
     private bool dyingTriggered = false;
 
@@ -21,7 +21,7 @@ public class CharacterAnimation : MonoBehaviour
         playerPickupSystem = GetComponentInParent<PlayerPickupSystem>();
         if (playerPickupSystem == null)
         {
-            p2PickSystem = GetComponentInParent<P2PickSystem>();
+            p2PickSystem = GetComponentInParent<P2PickupSystem>();
         }
     }
 

@@ -16,7 +16,7 @@ public class PlayerThrowManager : MonoBehaviour
 
     [Header("References")]
     public PlayerPickupSystem playerPickupSystem;
-    public P2PickSystem p2PickSystem;
+    public P2PickupSystem p2PickupSystem;
     public HandSpriteManager handSpriteManager;
 
     private bool isPreparingToThrow = false;
@@ -29,13 +29,13 @@ public class PlayerThrowManager : MonoBehaviour
     {
         if (isPreparingToThrow) return;
 
-        bool hasItem = P1FalseP2True ? p2PickSystem.HasItemHeld : playerPickupSystem.HasItemHeld;
+        bool hasItem = P1FalseP2True ? p2PickupSystem.HasItemHeld : playerPickupSystem.HasItemHeld;
         if (!hasItem) return;
 
         isPreparingToThrow = true;
 
         usableFunction = P1FalseP2True
-            ? p2PickSystem.GetUsableFunction()
+            ? p2PickupSystem.GetUsableFunction()
             : playerPickupSystem.GetUsableFunction();
 
         usableFunction?.DisableUsableFunction();
@@ -47,7 +47,7 @@ public class PlayerThrowManager : MonoBehaviour
         if (!isPreparingToThrow) return;
 
         GameObject heldItem = P1FalseP2True
-            ? p2PickSystem.GetHeldItem()
+            ? p2PickupSystem.GetHeldItem()
             : playerPickupSystem.GetHeldItem();
 
         if (heldItem == null) return;
@@ -60,7 +60,7 @@ public class PlayerThrowManager : MonoBehaviour
 
         if (P1FalseP2True)
         {
-            p2PickSystem.DropItem(false);
+            p2PickupSystem.DropItem(false);
         }
         else
         {

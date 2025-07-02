@@ -13,7 +13,7 @@ public class HandSpriteManager : MonoBehaviour
 
     [Header("References")]
     public PlayerPickupSystem playerPickupSystem;
-    public P2PickSystem p2PickSystem;
+    public P2PickupSystem p2PickSystem;
     public PlayerThrowManager playerThrowManager;
 
     [Header("If P1, make sure p2PickSystem is null \nIf P2, make sure playerPickupSystem is null")]

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class P2ThrowController : MonoBehaviour
 {
-    public P2PickSystem p2PickSystem;
+    public P2PickupSystem p2PickSystem;
     private P2AimSystem p2AimSystem;
 
     public GameObject ThrowDirection;
@@ -30,8 +30,8 @@ public class P2ThrowController : MonoBehaviour
     {
         if (p2PickSystem == null)
         {
-            Debug.Log("P2 is null, so P2 will get P2PickSystem from its parent");
-            p2PickSystem = GetComponentInParent<P2PickSystem>();
+            Debug.Log("P2 is null, so P2 will get P2PickupSystem from its parent");
+            p2PickSystem = GetComponentInParent<P2PickupSystem>();
         }
 
         p2AimSystem = GetComponentInParent<P2AimSystem>();

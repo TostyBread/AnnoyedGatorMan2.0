@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 1109053536, guid: b56e0e4c25ecc614d9bb14cb0eebf878, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   ThunderAudioName: Thunder
   RainingClip: {fileID: 8300000, guid: 9767810a314081646b319a193f4dc2bb, type: 3}
   rainingAudioVolume: 0.5
-  heatMultiplier: 2
+  heatMultiplier: 1.2
   SunRay: {fileID: 8161110251486840855}
   SunnyClip: {fileID: 8300000, guid: da55c59d67b1be843bde56dd90790112, type: 3}
   sunnyAudioVolume: 1
@@ -639,7 +639,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1945855660, guid: b56e0e4c25ecc614d9bb14cb0eebf878, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
