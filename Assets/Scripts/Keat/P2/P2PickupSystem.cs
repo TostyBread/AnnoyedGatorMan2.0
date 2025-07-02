@@ -218,7 +218,8 @@ public class P2PickupSystem : MonoBehaviour
 
         heldItem = item;
         usableItemController = item.GetComponent<IUsable>();
-        usableItemController.EnableUsableFunction();
+        if (usableItemController != null)
+            usableItemController.EnableUsableFunction(); // do not EnableUsableFunction() if the item does not have IUsable component
 
         if (item.TryGetComponent(out FirearmController firearm)) // When one of the player picks up, it will assign character flip to one of the player
         {
@@ -280,8 +281,10 @@ public class P2PickupSystem : MonoBehaviour
         handSpriteManager?.UpdateHandSprite();
     }
     public GameObject GetHeldItem() => heldItem;
-    public IUsable GetUsableFunction() => usableItemController;
-
+    public IUsable GetUsableFunction()
+    {
+        return usableItemController;
+    }
     private void OnDrawGizmosSelected()
     {
         if (Target != null)

@@ -19,6 +19,7 @@ TagManager:
   - Enemy
   - NPC
   - PlayerCollision
+  - P2 & P3 Arrow
   layers:
   - Default
   - TransparentFX
@@ -42,8 +43,8 @@ TagManager:
   - Fist1
   - Fist2
   - PlayerCollision
-  - 
-  - 
+  - P2 & P3 Arrow
+  - P2 & P3 Range
   - 
   - 
   - 

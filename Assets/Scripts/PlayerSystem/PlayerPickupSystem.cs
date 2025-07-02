@@ -221,7 +221,8 @@ public class PlayerPickupSystem : MonoBehaviour
 
         heldItem = item;
         usableItemController = item.GetComponent<IUsable>();
-        usableItemController?.EnableUsableFunction();
+        if (usableItemController != null)
+            usableItemController?.EnableUsableFunction();
 
         if (item.TryGetComponent(out FirearmController firearm)) // When one of the player picks up, it will assign character flip to one of the player
         {

@@ -25,7 +25,8 @@ public class FirearmController : MonoBehaviour, IUsable
     public Animator animator;
 
     private int currentAmmo;
-    private bool isUsable = true;
+    [Header("Do not touch")]
+    [SerializeField] private bool isUsable = true;
     private bool isFacingRight;
     private float nextFireTime = 0f;
     private Dictionary<string, float> animationClipCache = new();

@@ -38,6 +38,9 @@ public class TrashCan : MonoBehaviour
     {
         if (alreadyFull || other.GetComponent<TrashBag>() != null) return;
 
+        if (other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Range") || 
+            other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Arrow")) return; // Ignore P2 & P3 range and arrow objects (they serve as UI)
+
         GameObject obj = other.gameObject;
 
         if (overlappingItems.Add(obj))

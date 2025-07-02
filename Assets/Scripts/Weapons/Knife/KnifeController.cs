@@ -12,9 +12,10 @@ public class KnifeController : MonoBehaviour, IUsable
     public Collider2D knifeCollider;
     public Transform knifeTransform;
 
-    private bool isUsable = true;
-    private bool isStabbing = false;
-    private bool isInUsableMode = false;
+    [Header("Do not touch")]
+    [SerializeField] private bool isUsable = true;
+    [SerializeField] private bool isStabbing = false;
+    [SerializeField] private bool isInUsableMode = false;
 
     private void Start()
     {

@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class P3Input : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class P3Input : MonoBehaviour
     private P2PickupSystem p2PickupSystem;
     private PlayerThrowManager playerThrowManager;
     private Vector2 movementInput;
-    private bool usableItemModeEnabled = false;
+    private bool usableItemModeEnabled = true;
+    public bool canThrow = true;
+    private bool isPreparingHeld = false;
+    private bool throwStarted = false;
 
     P3Controls controls;
     public Vector2 P3move;
@@ -30,9 +34,9 @@ public class P3Input : MonoBehaviour
 
         controls = new P3Controls();
 
-        controls.Gameplay.Use.performed += context => Use();
+        //controls.Gameplay.Use.performed += context => Use();
 
-        controls.Gameplay.Toggle.performed += context => HandleUsableItemInput();
+        //controls.Gameplay.Toggle.performed += context => HandleUsableItemInput();
         controls.Gameplay.Throw.performed += context => HandleThrowInput();
 
 
@@ -117,25 +121,13 @@ public class P3Input : MonoBehaviour
     {
         HandleMovementInput();
         HandleThrowInput();
+        HandleActionInput();
         HandleLongInteraction();
+        HandleUsableItemInput();
 
         //HandleActionInput();
         //HandlePickupInput();
-        //HandleUsableItemInput(Gamepad.current.rightShoulder.wasPressedThisFrame);
         //HandleEnvironmentalInteractInput();
-    }
-
-    private void HandleLongInteraction()
-    {
-        if (p2PickupSystem.Target)
-        {
-            controls.Gameplay.Interect.performed += context => p2PickupSystem.StartLongInteraction(true);
-            controls.Gameplay.Interect.canceled += context => p2PickupSystem.StartLongInteraction(false);
-        }
-        else
-        {
-            p2PickupSystem?.StartLongInteraction(false);
-        }
     }
 
     public bool IsUsableModeEnabled() => usableItemModeEnabled;
@@ -154,10 +146,84 @@ public class P3Input : MonoBehaviour
 
     private void HandleActionInput()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (p2PickupSystem == null) return;
+
+        bool used = false;
+
+        if (p2PickupSystem.HasItemHeld && Gamepad.current != null)
         {
-            fist?.TriggerPunch();
+            IUsable usableFunction = p2PickupSystem.GetUsableFunction();
+
+            switch (usableFunction)
+            {
+                case FirearmController gun when usableItemModeEnabled:
+                    if (gun.currentFireMode == FirearmController.FireMode.Auto)
+                    {
+                        if (Gamepad.current.buttonWest.isPressed)
+                        {
+                            gun.Use();
+                            used = true;
+                        }
+                    }
+                    else if (Gamepad.current.buttonWest.wasPressedThisFrame)
+                    {
+                        gun.Use();
+                        used = true;
+                    }
+
+                    if (Gamepad.current.buttonWest.wasReleasedThisFrame)
+                        gun.OnFireKeyReleased();
+                    break;
+
+                case KnifeController knife when usableItemModeEnabled:
+                    if (Gamepad.current.buttonWest.isPressed)
+                    {
+                        knife.Use();
+                        used = true;
+                    }
+                    break;
+
+                default:
+                    // Allow MeleeSwing even if usableItemMode is disabled
+                    if (Gamepad.current.buttonWest.wasPressedThisFrame)
+                        HandleMeleeLogic();
+                    break;
+            }
+
+            if (!used && Gamepad.current.buttonWest.wasPressedThisFrame)
+            {
+                HandleMeleeLogic();
+            }
         }
+        //else
+        //{
+        //    if (Gamepad.current != null && Gamepad.current.buttonWest.wasPressedThisFrame)
+        //        fist?.TriggerPunch();
+        //}
+
+    }
+
+    private void HandleMeleeLogic()
+    {
+        if (p2PickupSystem != null && p2PickupSystem.HasItemHeld)
+        {
+            Transform current = p2PickupSystem.GetHeldItem()?.transform;
+            MeleeSwing swing = null;
+
+            while (current != null && swing == null)
+            {
+                swing = current.GetComponent<MeleeSwing>();
+                current = current.parent;
+            }
+
+            if (swing != null)
+            {
+                swing.Use();
+                return;
+            }
+        }
+
+        fist?.TriggerPunch();
     }
 
     private void HandlePickupInput()
@@ -172,41 +238,75 @@ public class P3Input : MonoBehaviour
 
     private void HandleThrowInput()
     {
-        if (playerThrowManager == null || p2PickupSystem == null || !p2PickupSystem.HasItemHeld) return;
+        if (playerThrowManager == null || p2PickupSystem == null || !p2PickupSystem.HasItemHeld)
+            return;
 
         if (Gamepad.current.buttonSouth.wasPressedThisFrame)
-            playerThrowManager.StartPreparingThrow();
-
-        if (Gamepad.current.buttonWest.wasPressedThisFrame && Gamepad.current.buttonSouth.isPressed)
         {
-            playerThrowManager.Throw();
-            usableFunction = null;
-            usableItemModeEnabled = false;
+            isPreparingHeld = true;
+            throwStarted = false;
         }
 
         if (Gamepad.current.buttonSouth.wasReleasedThisFrame)
+        {
+            isPreparingHeld = false;
+            throwStarted = false;
             playerThrowManager.CancelThrow();
+            return;
+        }
+
+        if (isPreparingHeld && !throwStarted && canThrow)
+        {
+            throwStarted = true;
+            playerThrowManager.StartPreparingThrow();
+        }
+
+        if (Gamepad.current.buttonWest.wasReleasedThisFrame)
+        {
+            if (isPreparingHeld && throwStarted && canThrow)
+            {
+                playerThrowManager.Throw();
+                isPreparingHeld = false;
+                throwStarted = false;
+
+                // Reset usable mode after throw
+                usableItemModeEnabled = true;
+            }
+            else
+            {
+                throwStarted = false;
+            }
+        }
     }
+
 
     private void HandleUsableItemInput()
     {
         if (p2PickupSystem == null || !p2PickupSystem.HasItemHeld) return;
 
-        usableFunction = p2PickupSystem.GetUsableFunction();
+        IUsable usableFunction = p2PickupSystem.GetUsableFunction();
         if (usableFunction == null) return;
 
-        usableItemModeEnabled = !usableItemModeEnabled;
-        Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
-        usableFunction.EnableUsableFunction();
-
-        switch (usableFunction)
+        if (Gamepad.current != null && Gamepad.current.rightShoulder.wasPressedThisFrame)
         {
-            case KnifeController knife:
-                knife.ToggleUsableMode(usableItemModeEnabled);
-                break;
-            case FirearmController firearm:
-                firearm.ToggleUsableMode(usableItemModeEnabled);
-                break;
+            usableItemModeEnabled = !usableItemModeEnabled;
+            Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
+            usableFunction.EnableUsableFunction();
+
+            switch (usableFunction)
+            {
+                case KnifeController knife:
+                    knife.ToggleUsableMode(usableItemModeEnabled);
+                    break;
+                case FirearmController firearm:
+                    firearm.ToggleUsableMode(usableItemModeEnabled);
+                    break;
+            }
+        }
+
+        if (usableItemModeEnabled && Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame)
+        {
+            usableFunction.Use();
         }
     }
 
@@ -217,5 +317,18 @@ public class P3Input : MonoBehaviour
             p2PickupSystem?.StartInteraction();
         }
     }
+    private void HandleLongInteraction()
+    {
+        if (p2PickupSystem.Target)
+        {
+            controls.Gameplay.Interect.performed += context => p2PickupSystem.StartLongInteraction(true);
+            controls.Gameplay.Interect.canceled += context => p2PickupSystem.StartLongInteraction(false);
+        }
+        else
+        {
+            p2PickupSystem?.StartLongInteraction(false);
+        }
+    }
+
 }
 

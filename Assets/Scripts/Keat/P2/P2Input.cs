@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class P2Input : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     private Fist fist;
-    private P2PickupSystem P2PickSystem;
+    private P2PickupSystem p2PickupSystem;
     private PlayerThrowManager playerThrowManager;
     private Vector2 movementInput;
-    private bool usableItemModeEnabled = false;
+    private bool usableItemModeEnabled = true;
+    public bool canThrow = true;
+    private bool isPreparingHeld = false;
+    private bool throwStarted = false;
 
     private HealthManager healthManager;
 
@@ -24,7 +28,7 @@ public class P2Input : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
-        P2PickSystem = GetComponent<P2PickupSystem>();
+        p2PickupSystem = GetComponent<P2PickupSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
         healthManager = GetComponent<HealthManager>();
     }
@@ -34,7 +38,7 @@ public class P2Input : MonoBehaviour
         HandleMovementInput();
         HandleActionInput(Use);
         HandlePickupInput(Pick);
-        HandleThrowInput(Throw);
+        HandleThrowInput(Throw,Use);
         HandleUsableItemInput(Toggle);
         HandleEnvironmentalInteractInput(Interact);
     }
@@ -53,38 +57,146 @@ public class P2Input : MonoBehaviour
         characterMovement?.SetMovement(movementInput);
     }
 
-    private void HandleActionInput(KeyCode a)
+    private void HandleActionInput(KeyCode use)
     {
-        if (Input.GetKeyDown(a))
+        if (p2PickupSystem == null) return;
+
+        bool used = false;
+
+        if (p2PickupSystem.HasItemHeld)
         {
-            fist?.TriggerPunch();
+            IUsable usableFunction = p2PickupSystem.GetUsableFunction();
+
+            switch (usableFunction)
+            {
+                case FirearmController gun when usableItemModeEnabled:
+                    if (gun.currentFireMode == FirearmController.FireMode.Auto)
+                    {
+                        if (Input.GetKey(use))
+                        {
+                            gun.Use();
+                            used = true;
+                        }
+                    }
+                    else if (Input.GetKeyDown(use))
+                    {
+                        gun.Use();
+                        used = true;
+                    }
+
+                    if (Input.GetKeyUp(use))
+                        gun.OnFireKeyReleased();
+                    break;
+
+                case KnifeController knife when usableItemModeEnabled:
+                    if (Input.GetKey(use))
+                    {
+                        knife.Use();
+                        used = true;
+                    }
+                    break;
+
+                default:
+                    // Allow MeleeSwing even if usableItemMode is disabled
+                    if (Input.GetKeyDown(use))
+                        HandleMeleeLogic();
+                    break;
+            }
+
+            if (!used && Input.GetKeyDown(use))
+            {
+                HandleMeleeLogic();
+            }
         }
+        //else
+        //{
+        //    if (Input.GetKeyDown(use))
+        //        fist?.TriggerPunch();
+        //}
+
+    }
+
+    private void HandleMeleeLogic()
+    {
+        if (p2PickupSystem != null && p2PickupSystem.HasItemHeld)
+        {
+            Transform current = p2PickupSystem.GetHeldItem()?.transform;
+            MeleeSwing swing = null;
+
+            while (current != null && swing == null)
+            {
+                swing = current.GetComponent<MeleeSwing>();
+                current = current.parent;
+            }
+
+            if (swing != null)
+            {
+                swing.Use();
+                return;
+            }
+        }
+
+        fist?.TriggerPunch();
     }
 
     private void HandlePickupInput(KeyCode a)
     {
-        if (P2PickSystem == null) return;
+        if (p2PickupSystem == null) return;
 
-        if (Input.GetKeyDown(a)) P2PickSystem.StartPickup();
-        else if (Input.GetKey(a)) P2PickSystem.HoldPickup();
-        else if (Input.GetKeyUp(a)) P2PickSystem.CancelPickup();
+        if (Input.GetKeyDown(a)) p2PickupSystem.StartPickup();
+        else if (Input.GetKey(a)) p2PickupSystem.HoldPickup();
+        else if (Input.GetKeyUp(a)) p2PickupSystem.CancelPickup();
     }
 
 
-    private void HandleThrowInput(KeyCode a)
+    private void HandleThrowInput(KeyCode PrepareToThrow,KeyCode Use)
     {
-        if (playerThrowManager == null || P2PickSystem == null || !P2PickSystem.HasItemHeld) return;
+        if (playerThrowManager == null || p2PickupSystem == null || !p2PickupSystem.HasItemHeld)
+            return;
 
-        if (Input.GetKeyDown(a)) playerThrowManager.StartPreparingThrow();
-        if (Input.GetKeyDown(Use) && Input.GetKey(a)) playerThrowManager.Throw();
-        if (Input.GetKeyUp(a)) playerThrowManager.CancelThrow();
+        if (Input.GetKeyDown(PrepareToThrow))
+        {
+            isPreparingHeld = true;
+            throwStarted = false;
+        }
+
+        if (Input.GetKeyUp(PrepareToThrow))
+        {
+            isPreparingHeld = false;
+            throwStarted = false;
+            playerThrowManager.CancelThrow();
+            return;
+        }
+
+        if (isPreparingHeld && !throwStarted && canThrow)
+        {
+            throwStarted = true;
+            playerThrowManager.StartPreparingThrow();
+        }
+
+        if (Input.GetKeyUp(Use))
+        {
+            if (isPreparingHeld && throwStarted && canThrow)
+            {
+                playerThrowManager.Throw();
+                isPreparingHeld = false;
+                throwStarted = false;
+
+                // Reset usable mode after throw
+                usableItemModeEnabled = true;
+            }
+            else
+            {
+                throwStarted = false;
+            }
+        }
     }
 
     private void HandleUsableItemInput(KeyCode a)
     {
-        if (P2PickSystem == null || !P2PickSystem.HasItemHeld) return;
+        if (p2PickupSystem == null || !p2PickupSystem.HasItemHeld) return;
 
-        IUsable usableFunction = P2PickSystem.GetUsableFunction();
+        IUsable usableFunction = p2PickupSystem.GetUsableFunction();
         if (usableFunction == null) return;
 
         if (Input.GetKeyDown(a))
@@ -93,9 +205,14 @@ public class P2Input : MonoBehaviour
             Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
             usableFunction.EnableUsableFunction();
 
-            if (usableFunction is KnifeController knifeController)
+            switch (usableFunction)
             {
-                knifeController.ToggleUsableMode(usableItemModeEnabled);
+                case KnifeController knife:
+                    knife.ToggleUsableMode(usableItemModeEnabled);
+                    break;
+                case FirearmController firearm:
+                    firearm.ToggleUsableMode(usableItemModeEnabled);
+                    break;
             }
         }
 
@@ -109,16 +226,16 @@ public class P2Input : MonoBehaviour
     {
         if (Input.GetKeyDown(a))
         {
-            P2PickSystem?.StartInteraction();
+            p2PickupSystem?.StartInteraction();
         }
 
         if (Input.GetKey(a))
         {
-            P2PickSystem?.StartLongInteraction(true);
+            p2PickupSystem?.StartLongInteraction(true);
         }
         else
         {
-            P2PickSystem?.StartLongInteraction(false);
+            p2PickupSystem?.StartLongInteraction(false);
         }
     }
     private void OnDisable()

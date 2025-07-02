@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 5751925215967956641}
   m_Layer: 31
   m_Name: New Trashcan
-  m_TagString: Untagged
+  m_TagString: Interectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,7 +250,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2366216
+    m_Bits: 2366217
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
