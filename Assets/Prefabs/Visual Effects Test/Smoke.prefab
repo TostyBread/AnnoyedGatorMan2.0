@@ -115,13 +115,13 @@ GameObject:
   - component: {fileID: 842708787869370503}
   - component: {fileID: 6735226475227876696}
   - component: {fileID: 2145687506161142885}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Smoke
   m_TagString: Smoke
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6339518408488672943
 Transform:
   m_ObjectHideFlags: 0

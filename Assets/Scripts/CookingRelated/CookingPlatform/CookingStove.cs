@@ -75,10 +75,9 @@ public class CookingStove : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) // When enter, snap into position and record it.
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if ((itemLayer.value & (1 << other.gameObject.layer)) == 0) return;
-
         if (other.gameObject == currentSnappedObject) return;
 
         Rigidbody2D rb = other.attachedRigidbody;
@@ -86,12 +85,14 @@ public class CookingStove : MonoBehaviour
 
         if (rb.velocity.magnitude >= snapVelocityThreshold)
         {
-            if (currentSnappedObject != null) // bump previous item if it exists
+            // Bump previous object
+            if (currentSnappedObject != null)
             {
                 Rigidbody2D prevRb = currentSnappedObject.GetComponent<Rigidbody2D>();
                 if (prevRb != null)
                 {
                     Vector2 bumpDir = ((Vector2)currentSnappedObject.transform.position - (Vector2)snapPoint.position).normalized;
+                    if (bumpDir == Vector2.zero) bumpDir = Vector2.up; // safety fallback
                     Vector2 bumpPos = (Vector2)snapPoint.position + bumpDir * bumpDistance;
                     prevRb.MovePosition(bumpPos);
                 }
@@ -101,15 +102,16 @@ public class CookingStove : MonoBehaviour
             other.transform.position = snapPoint.position;
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
-            snappedObjects.Add(other.gameObject);
+
+            currentSnappedObject = other.gameObject;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) // When exit, remove the record.
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject == currentSnappedObject)
         {
-            snappedObjects.Remove(other.gameObject);
+            currentSnappedObject = null;
         }
     }
 }

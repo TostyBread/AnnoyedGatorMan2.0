@@ -1,8 +1,5 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
-using Unity.VisualScripting;
 
 public class PlayerPickupSystem : MonoBehaviour
 {
@@ -18,8 +15,6 @@ public class PlayerPickupSystem : MonoBehaviour
     private Collider2D targetItem = null;
     private GameObject heldItem = null;
     private Collider2D targetInteractable = null;
-    private Coroutine pickupCoroutine = null;
-    private bool isHoldingPickupKey = false;
 
     [Header("References")]
     public HandSpriteManager handSpriteManager;
@@ -43,11 +38,6 @@ public class PlayerPickupSystem : MonoBehaviour
     void Update()
     {
         HandleItemDetection();
-        if (isHoldingPickupKey && targetItem != null && pickupCoroutine == null)
-        {
-            StartPickup();
-        }
-
         SetInInterectRange();
     }
 
@@ -151,52 +141,14 @@ public class PlayerPickupSystem : MonoBehaviour
 
     public void StartPickup()
     {
-        if (targetItem != null && pickupCoroutine == null)
-        {
-            pickupCoroutine = StartCoroutine(PickupItemCoroutine());
-        }
-    }
+        if (targetItem == null) return;
 
-    public void HoldPickup()
-    {
-        isHoldingPickupKey = true;
-        if (targetItem != null && pickupCoroutine == null)
+        if (heldItem != null)
         {
-            StartPickup();
-        }
-    }
-
-    public void CancelPickup()
-    {
-        isHoldingPickupKey = false;
-        if (pickupCoroutine != null)
-        {
-            StopCoroutine(pickupCoroutine);
-            pickupCoroutine = null;
-        }
-    }
-
-    private IEnumerator PickupItemCoroutine()
-    {
-        float holdTime = 0.2f;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < holdTime)
-        {
-            if (targetItem == null || !isHoldingPickupKey) yield break;
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            DropItem();
         }
 
-        if (targetItem != null)
-        {
-            if (heldItem != null)
-            {
-                DropItem();
-            }
-            PickUpItem(targetItem.gameObject);
-        }
-        pickupCoroutine = null;
+        PickUpItem(targetItem.gameObject);
     }
 
     private void PickUpItem(GameObject item)
@@ -274,6 +226,7 @@ public class PlayerPickupSystem : MonoBehaviour
     }
 
     public GameObject GetHeldItem() => heldItem;
+
     public IUsable GetUsableFunction()
     {
         return usableItemController;

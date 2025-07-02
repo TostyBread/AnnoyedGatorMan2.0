@@ -17,6 +17,9 @@ public class PlayerPickupSystemP2 : MonoBehaviour
     public CharacterFlipP2 characterFlipP2;
     private StateManager stateManager;
 
+    private Window lastWindow;
+    private Smoke lastSmoke;
+
     private IUsable usableItemController;
 
     public bool HasItemHeld => heldItem != null;
@@ -98,7 +101,24 @@ public class PlayerPickupSystemP2 : MonoBehaviour
     {
         if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
         {
-            //window.SetWindowState(isPressed);
+            window.SetWindowState(isPressed);
+            lastWindow = window;
+        }
+        else if (lastWindow != null)
+        {
+            lastWindow.SetWindowState(false);
+            lastWindow = null;
+        }
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Smoke smoke))
+        {
+            smoke.SetSmokeState(isPressed, this.gameObject);
+            lastSmoke = smoke;
+        }
+        else if (lastSmoke != null)
+        {
+            lastSmoke.SetSmokeState(false, this.gameObject);
+            lastSmoke = null;
         }
     }
 

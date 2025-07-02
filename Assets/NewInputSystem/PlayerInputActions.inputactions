@@ -51,18 +51,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ThrowPrepare",
+                    "name": "Throw",
                     "type": "Button",
                     "id": "87005649-9d78-4bbb-bab1-6f6386cf4938",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ThrowConfirm",
-                    "type": "Button",
-                    "id": "6dc00350-e36d-4f08-9f55-333ed1e71ed7",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -152,7 +143,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ThrowPrepare",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -163,29 +154,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ThrowPrepare",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "11703071-6a73-464a-9b4b-fc888b94e8c7",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ThrowConfirm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "233e2120-2bdb-4c54-a5c0-b09317b5be9b",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ThrowConfirm",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -73,18 +73,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ThrowPrepare"",
+                    ""name"": ""Throw"",
                     ""type"": ""Button"",
                     ""id"": ""87005649-9d78-4bbb-bab1-6f6386cf4938"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ThrowConfirm"",
-                    ""type"": ""Button"",
-                    ""id"": ""6dc00350-e36d-4f08-9f55-333ed1e71ed7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -174,7 +165,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ThrowPrepare"",
+                    ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -185,29 +176,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ThrowPrepare"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""11703071-6a73-464a-9b4b-fc888b94e8c7"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ThrowConfirm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""233e2120-2bdb-4c54-a5c0-b09317b5be9b"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ThrowConfirm"",
+                    ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -234,8 +203,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player2Controller_Pickup = m_Player2Controller.FindAction("Pickup", throwIfNotFound: true);
         m_Player2Controller_ToggleSafety = m_Player2Controller.FindAction("ToggleSafety", throwIfNotFound: true);
         m_Player2Controller_Interact = m_Player2Controller.FindAction("Interact", throwIfNotFound: true);
-        m_Player2Controller_ThrowPrepare = m_Player2Controller.FindAction("ThrowPrepare", throwIfNotFound: true);
-        m_Player2Controller_ThrowConfirm = m_Player2Controller.FindAction("ThrowConfirm", throwIfNotFound: true);
+        m_Player2Controller_Throw = m_Player2Controller.FindAction("Throw", throwIfNotFound: true);
         m_Player2Controller_Aim = m_Player2Controller.FindAction("Aim", throwIfNotFound: true);
     }
 
@@ -308,8 +276,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player2Controller_Pickup;
     private readonly InputAction m_Player2Controller_ToggleSafety;
     private readonly InputAction m_Player2Controller_Interact;
-    private readonly InputAction m_Player2Controller_ThrowPrepare;
-    private readonly InputAction m_Player2Controller_ThrowConfirm;
+    private readonly InputAction m_Player2Controller_Throw;
     private readonly InputAction m_Player2Controller_Aim;
     public struct Player2ControllerActions
     {
@@ -320,8 +287,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Pickup => m_Wrapper.m_Player2Controller_Pickup;
         public InputAction @ToggleSafety => m_Wrapper.m_Player2Controller_ToggleSafety;
         public InputAction @Interact => m_Wrapper.m_Player2Controller_Interact;
-        public InputAction @ThrowPrepare => m_Wrapper.m_Player2Controller_ThrowPrepare;
-        public InputAction @ThrowConfirm => m_Wrapper.m_Player2Controller_ThrowConfirm;
+        public InputAction @Throw => m_Wrapper.m_Player2Controller_Throw;
         public InputAction @Aim => m_Wrapper.m_Player2Controller_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Player2Controller; }
         public void Enable() { Get().Enable(); }
@@ -347,12 +313,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @ThrowPrepare.started += instance.OnThrowPrepare;
-            @ThrowPrepare.performed += instance.OnThrowPrepare;
-            @ThrowPrepare.canceled += instance.OnThrowPrepare;
-            @ThrowConfirm.started += instance.OnThrowConfirm;
-            @ThrowConfirm.performed += instance.OnThrowConfirm;
-            @ThrowConfirm.canceled += instance.OnThrowConfirm;
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
@@ -375,12 +338,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @ThrowPrepare.started -= instance.OnThrowPrepare;
-            @ThrowPrepare.performed -= instance.OnThrowPrepare;
-            @ThrowPrepare.canceled -= instance.OnThrowPrepare;
-            @ThrowConfirm.started -= instance.OnThrowConfirm;
-            @ThrowConfirm.performed -= instance.OnThrowConfirm;
-            @ThrowConfirm.canceled -= instance.OnThrowConfirm;
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
@@ -408,8 +368,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnPickup(InputAction.CallbackContext context);
         void OnToggleSafety(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnThrowPrepare(InputAction.CallbackContext context);
-        void OnThrowConfirm(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
     }
 }

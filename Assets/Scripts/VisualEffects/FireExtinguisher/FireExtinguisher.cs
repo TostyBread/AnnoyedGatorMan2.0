@@ -51,23 +51,19 @@ public class FireExtinguisher : MonoBehaviour
 
             playerInputManager = holdingPlayer.GetComponent<PlayerInputManager>();
 
-            //Prevent from using while throwing
-            if (!Input.GetKey(playerInputManager.inputConfig.throwPrepareKey))
+            //Use fire extinguisher
+            if (Input.GetKey(playerInputManager.inputConfig.attackKey) && currentSprayDur > 0 && currentGasAmount >= 0)
             {
-                //Use fire extinguisher
-                if (Input.GetKey(playerInputManager.inputConfig.attackKey) && currentSprayDur > 0 && currentGasAmount >= 0)
+                Projectile.SetActive(true);
+
+                if (!isPlayingSound)
                 {
-                    Projectile.SetActive(true);
-
-                    if (!isPlayingSound)
-                    {
-                        AudioManager.Instance.PlaySound(sprayAudioName, 1.0f, transform.position);
-                        isPlayingSound = true;
-                    }
-
-                    currentSprayDur -= Time.deltaTime;
-                    currentGasAmount -= Time.deltaTime;
+                    AudioManager.Instance.PlaySound(sprayAudioName, 1.0f, transform.position);
+                    isPlayingSound = true;
                 }
+
+                currentSprayDur -= Time.deltaTime;
+                currentGasAmount -= Time.deltaTime;
             }
 
             if (Input.GetKeyUp(playerInputManager.inputConfig.attackKey))

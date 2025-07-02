@@ -13,12 +13,14 @@ public class PlayerInputManagerP2 : MonoBehaviour
     private bool usableItemModeEnabled = true;
     public bool isInputEnabled = true;
     public bool canThrow = true;
-    private bool isPreparingHeld = false;
-    private bool throwStarted = false;
+    private bool isPickupKeyHeld = false;
+    private bool pickupHandled = false;
 
     private bool wasFiringLastFrame = false;
     private float pickupPressTime = 0f;
-    private const float holdThreshold = 0.5f;
+    private const float holdThreshold = 0.15f;
+
+    public bool HasHeldItem() => playerPickupSystemP2 != null && playerPickupSystemP2.HasItemHeld;
 
     void Awake()
     {
@@ -27,18 +29,15 @@ public class PlayerInputManagerP2 : MonoBehaviour
         inputActions.Player2Controller.Pickup.started += ctx =>
         {
             pickupPressTime = Time.time;
-
+            isPickupKeyHeld = true;
+            pickupHandled = false;
         };
 
         inputActions.Player2Controller.Pickup.canceled += ctx =>
         {
-            float heldDuration = Time.time - pickupPressTime;
+            isPickupKeyHeld = false;
 
-            if (heldDuration >= holdThreshold)
-            {
-                playerPickupSystemP2?.StartPickup();
-            }
-            else
+            if (!pickupHandled)
             {
                 playerPickupSystemP2?.StartInteraction();
             }
@@ -46,29 +45,16 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
         inputActions.Player2Controller.Attack.performed += ctx => HandleActionInput();
         inputActions.Player2Controller.Attack.canceled += ctx => HandleFireKeyReleased();
-        inputActions.Player2Controller.ThrowPrepare.started += ctx =>
-        {
-            isPreparingHeld = true;
-            TryStartThrow();
-        };
 
-        inputActions.Player2Controller.ThrowPrepare.canceled += ctx =>
+        inputActions.Player2Controller.Throw.started += ctx =>
         {
-            isPreparingHeld = false;
-            throwStarted = false;
-            if (canThrow) playerThrowManagerP2?.CancelThrow();
-        };
-
-        inputActions.Player2Controller.ThrowConfirm.started += ctx =>
-        {
-            if (canThrow && throwStarted)
+            if (canThrow)
             {
                 playerThrowManagerP2?.Throw();
-                isPreparingHeld = false;
-                throwStarted = false;
-                usableItemModeEnabled = true; // Reset usable mode after throw
+                usableItemModeEnabled = true; // reset after throw
             }
         };
+
 
         inputActions.Player2Controller.ToggleSafety.performed += ctx => HandleUsableItemInput();
     }
@@ -93,8 +79,18 @@ public class PlayerInputManagerP2 : MonoBehaviour
         HandleFireModes();
         HandleKnife();
 
-        if (isPreparingHeld && !throwStarted && canThrow)
-            TryStartThrow();
+        if (isPickupKeyHeld && !pickupHandled) // Keep checking the input held elapsed time
+        {
+            float heldTime = Time.time - pickupPressTime;
+            if (heldTime >= holdThreshold)
+            {
+                playerPickupSystemP2?.StartPickup();
+                pickupHandled = true;
+            }
+        }
+
+        // Always stop long interaction on release
+        playerPickupSystemP2.StartLongInteraction(isPickupKeyHeld);
     }
 
     private void HandleFireModes()
@@ -137,8 +133,6 @@ public class PlayerInputManagerP2 : MonoBehaviour
         }
     }
 
-    public bool IsPreparingHeld() => isPreparingHeld;
-
     private void HandleMovementInput()
     {
         if (stateManager != null && stateManager.state == StateManager.PlayerState.Burn) return;
@@ -169,15 +163,6 @@ public class PlayerInputManagerP2 : MonoBehaviour
         else
         {
             fist?.TriggerPunch();
-        }
-    }
-
-    private void TryStartThrow()
-    {
-        if (!throwStarted && canThrow)
-        {
-            throwStarted = true;
-            playerThrowManagerP2?.StartPreparingThrow();
         }
     }
 

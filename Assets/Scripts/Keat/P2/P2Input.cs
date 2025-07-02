@@ -75,9 +75,9 @@ public class P2Input : MonoBehaviour
     {
         if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
 
-        if (Input.GetKeyDown(a)) playerThrowManager.StartPreparingThrow();
+        //if (Input.GetKeyDown(a)) playerThrowManager.StartPreparingThrow();  // Nots using it anymore
         if (Input.GetKeyDown(Use) && Input.GetKey(a)) playerThrowManager.Throw();
-        if (Input.GetKeyUp(a)) playerThrowManager.CancelThrow();
+        //if (Input.GetKeyUp(a)) playerThrowManager.CancelThrow(); // Not using it anymore
     }
 
     private void HandleUsableItemInput(KeyCode a)

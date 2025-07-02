@@ -138,7 +138,7 @@ MonoBehaviour:
     m_Bits: 64
   snapPoint: {fileID: 5344902220199650897}
   snapVelocityThreshold: 0.3
-  bumpDistance: 1
+  bumpDistance: 0.2
 --- !u!58 &6610981498980649795
 CircleCollider2D:
   m_ObjectHideFlags: 0

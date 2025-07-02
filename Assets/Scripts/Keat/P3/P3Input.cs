@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -159,8 +154,8 @@ public class P3Input : MonoBehaviour
     {
         if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
 
-        if (Gamepad.current.buttonSouth.wasPressedThisFrame)
-            playerThrowManager.StartPreparingThrow();
+        //if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+        //    playerThrowManager.StartPreparingThrow(); // Not using it anymore, change is advised
 
         if (Gamepad.current.buttonWest.wasPressedThisFrame && Gamepad.current.buttonSouth.isPressed)
         {
@@ -169,8 +164,8 @@ public class P3Input : MonoBehaviour
             usableItemModeEnabled = false;
         }
 
-        if (Gamepad.current.buttonSouth.wasReleasedThisFrame)
-            playerThrowManager.CancelThrow();
+        //if (Gamepad.current.buttonSouth.wasReleasedThisFrame)
+        //    playerThrowManager.CancelThrow(); // Not using it anymore, change is advised
     }
 
     private void HandleUsableItemInput()
