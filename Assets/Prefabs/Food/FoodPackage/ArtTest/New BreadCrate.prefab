@@ -80,7 +80,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 576
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -125,7 +125,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 931625107260084400, guid: 04f7b50dd028e7a4f82e486eb79b4072, type: 3}
   itemCount: 6
   destroyWhenEmpty: 1
-  spawnPosition: {fileID: 6972082790463810490}
+  spawnPosition: {fileID: 4080659376708024740}
   originalSprite: {fileID: 579530674687462118}
   emptySprite: {fileID: 0}
 --- !u!114 &5633687425686386562
@@ -167,7 +167,7 @@ MonoBehaviour:
   - {x: 0.6, y: -1.0999999, z: 0}
   m_ShapePathHash: -490885473
   m_Mesh: {fileID: 0}
-  m_InstanceId: -3162
+  m_InstanceId: -2598
   m_LocalBounds:
     m_Center: {x: 0, y: 0.004229784, z: 0}
     m_Extent: {x: 0.6, y: 1.1042297, z: 0}

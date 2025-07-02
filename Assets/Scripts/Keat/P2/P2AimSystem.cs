@@ -15,7 +15,7 @@ public class P2AimSystem : MonoBehaviour
 
 
     private DetectTarget detectTarget;
-    private int currentTargetIndex;
+    public int currentTargetIndex; // Index of the current target in the list, use by P3Input's long interaction
     public GameObject Range;
 
     public GameObject P2Player;

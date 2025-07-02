@@ -20,6 +20,7 @@ public class P3Input : MonoBehaviour
 
     private HealthManager healthManager;
     IUsable usableFunction;
+
     void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
@@ -40,10 +41,8 @@ public class P3Input : MonoBehaviour
             controls.Gameplay.Pickup.started += context => StartPickup();
             controls.Gameplay.Pickup.performed += context => HoldPickup();
             controls.Gameplay.Pickup.canceled += context => CancelPickup();
-            controls.Gameplay.Interect.performed += context => p2PickupSystem.StartInteraction();
 
-            controls.Gameplay.Interect.performed += context => p2PickupSystem.StartLongInteraction(true);
-            controls.Gameplay.Interect.canceled += context => p2PickupSystem.StartLongInteraction(false);
+            controls.Gameplay.Interect.performed += context => p2PickupSystem.StartInteraction();
         }
 
         controls.Gameplay.Move.performed += context => P3move = context.ReadValue<Vector2>();
@@ -55,17 +54,15 @@ public class P3Input : MonoBehaviour
 
     void Use()
     {
-        
-            if (usableItemModeEnabled && p2PickupSystem != null && p2PickupSystem.HasItemHeld)
-            {
-                usableFunction = p2PickupSystem.GetUsableFunction();
-                usableFunction?.Use();
-            }
-            else
-            {
-                fist?.TriggerPunch();
-            }
-        
+        if (usableItemModeEnabled && p2PickupSystem != null && p2PickupSystem.HasItemHeld)
+        {
+            usableFunction = p2PickupSystem.GetUsableFunction();
+            usableFunction?.Use();
+        }
+        else
+        {
+            fist?.TriggerPunch();
+        }
     }
 
     void StartPickup()
@@ -119,11 +116,25 @@ public class P3Input : MonoBehaviour
     {
         HandleMovementInput();
         HandleThrowInput();
+        HandleLongInteraction();
 
         //HandleActionInput();
         //HandlePickupInput();
         //HandleUsableItemInput(Gamepad.current.rightShoulder.wasPressedThisFrame);
         //HandleEnvironmentalInteractInput();
+    }
+
+    private void HandleLongInteraction()
+    {
+        if (p2PickupSystem.Target)
+        {
+            controls.Gameplay.Interect.performed += context => p2PickupSystem.StartLongInteraction(true);
+            controls.Gameplay.Interect.canceled += context => p2PickupSystem.StartLongInteraction(false);
+        }
+        else
+        {
+            p2PickupSystem?.StartLongInteraction(false);
+        }
     }
 
     public bool IsUsableModeEnabled() => usableItemModeEnabled;

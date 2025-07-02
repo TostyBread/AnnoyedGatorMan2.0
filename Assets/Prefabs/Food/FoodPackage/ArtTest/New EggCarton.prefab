@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0042085648, y: -0.008418322}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 0.5}
+  m_Size: {x: 2.936472, y: 0.8704057}
   m_EdgeRadius: 0
 --- !u!50 &520017608956297308
 Rigidbody2D:
@@ -177,20 +177,20 @@ MonoBehaviour:
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.8617983, y: -0.2631812, z: 0}
-  - {x: -0.9689765, y: -0.082773685, z: 0}
-  - {x: -0.95495176, y: 0.048125744, z: 0}
-  - {x: -0.84309864, y: 0.25325012, z: 0}
-  - {x: 0.86581993, y: 0.26120472, z: 0}
-  - {x: 0.9571104, y: 0.05280018, z: 0}
-  - {x: 0.9430857, y: -0.082773685, z: 0}
-  - {x: 0.8617983, y: -0.25383043, z: 0}
-  m_ShapePathHash: 1692569045
+  - {x: -1.2934961, y: -0.40708017, z: 0}
+  - {x: -1.4438457, y: -0.12114668, z: 0}
+  - {x: -1.463397, y: 0.0145487785, z: 0}
+  - {x: -1.2604065, y: 0.39714932, z: 0}
+  - {x: 1.3167057, y: 0.40510416, z: 0}
+  - {x: 1.4223843, y: 0.0048336983, z: 0}
+  - {x: 1.4275494, y: -0.12114668, z: 0}
+  - {x: 1.2887001, y: -0.3929329, z: 0}
+  m_ShapePathHash: 550143717
   m_Mesh: {fileID: 0}
-  m_InstanceId: -124334
+  m_InstanceId: -14834
   m_LocalBounds:
-    m_Center: {x: -0.0059330463, y: -0.000988245, z: 0}
-    m_Extent: {x: 0.96304345, y: 0.26219296, z: 0}
+    m_Center: {x: -0.017923832, y: -0.0009880066, z: 0}
+    m_Extent: {x: 1.4454732, y: 0.40609217, z: 0}
 --- !u!1 &6122258215447213068
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,8 +218,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 9222863915087695841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -302,8 +302,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 9222863915087695841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
