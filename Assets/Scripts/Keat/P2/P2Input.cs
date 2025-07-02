@@ -99,7 +99,7 @@ public class P2Input : MonoBehaviour
             }
         }
 
-        if (usableItemModeEnabled && Input.GetKey(Use))
+        if (usableItemModeEnabled && Input.GetKeyDown(Use))
         {
             usableFunction.Use();
         }

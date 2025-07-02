@@ -218,7 +218,7 @@ public class P2PickupSystem : MonoBehaviour
 
         heldItem = item;
         usableItemController = item.GetComponent<IUsable>();
-        usableItemController?.EnableUsableFunction();
+        usableItemController.EnableUsableFunction();
 
         if (item.TryGetComponent(out FirearmController firearm)) // When one of the player picks up, it will assign character flip to one of the player
         {

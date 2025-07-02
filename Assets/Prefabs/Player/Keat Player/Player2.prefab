@@ -293,6 +293,7 @@ MonoBehaviour:
   pivotPoint: {fileID: 6912609932458225830}
   hand: {fileID: 6912609932458225830}
   characterFlip: {fileID: 3973685239878278951}
+  currentTargetIndex: 0
   Range: {fileID: 5555540110442718837}
   P2Player: {fileID: 2818093456570068351}
   HandControl: {fileID: 2358437140388838786}
@@ -4899,6 +4900,7 @@ MonoBehaviour:
   pivotPoint: {fileID: 856436529392546531}
   hand: {fileID: 856436529392546531}
   characterFlip: {fileID: 7145373999981550946}
+  currentTargetIndex: 0
   Range: {fileID: 1807373005848929328}
   P2Player: {fileID: 8293320950161092410}
   HandControl: {fileID: 8410173730569387975}
@@ -5420,7 +5422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7180284411662709579}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.28, y: -9.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5600,6 +5602,7 @@ MonoBehaviour:
   pivotPoint: {fileID: 3587014489548489371}
   hand: {fileID: 3587014489548489371}
   characterFlip: {fileID: 6416636728494107930}
+  currentTargetIndex: 0
   Range: {fileID: 2535556260932785224}
   P2Player: {fileID: 5274495434050756418}
   HandControl: {fileID: 5662149132220043199}

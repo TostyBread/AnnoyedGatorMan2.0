@@ -31,6 +31,7 @@ public class P3Input : MonoBehaviour
         controls = new P3Controls();
 
         controls.Gameplay.Use.performed += context => Use();
+
         controls.Gameplay.Toggle.performed += context => HandleUsableItemInput();
         controls.Gameplay.Throw.performed += context => HandleThrowInput();
 
@@ -198,9 +199,14 @@ public class P3Input : MonoBehaviour
         Debug.Log(usableItemModeEnabled ? "Usable item mode enabled" : "Usable item mode disabled");
         usableFunction.EnableUsableFunction();
 
-        if (usableFunction is KnifeController knifeController)
+        switch (usableFunction)
         {
-            knifeController.ToggleUsableMode(usableItemModeEnabled);
+            case KnifeController knife:
+                knife.ToggleUsableMode(usableItemModeEnabled);
+                break;
+            case FirearmController firearm:
+                firearm.ToggleUsableMode(usableItemModeEnabled);
+                break;
         }
     }
 
