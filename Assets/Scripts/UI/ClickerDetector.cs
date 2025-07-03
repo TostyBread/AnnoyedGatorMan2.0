@@ -44,4 +44,13 @@ public class ClickerDetector : MonoBehaviour
             }
         }
     }
+
+    public void ClosePopUpScreens()
+    {
+        if (backgroundImageManager != null) backgroundImageManager.changeBackground = false;
+        foreach (GameObject screen in screens)
+        {
+            screen.SetActive(false);
+        }
+    }
 }
