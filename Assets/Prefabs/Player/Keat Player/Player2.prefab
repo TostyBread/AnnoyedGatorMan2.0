@@ -541,9 +541,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4044526143927048882}
   - component: {fileID: 3529903867465034019}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: P2 & P3 Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -626,7 +626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3858010560090123370}
   - component: {fileID: 5475557679383903271}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 8274743568540546755}
   - component: {fileID: 3274238718748333650}
   - component: {fileID: 4483962361863701572}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,6 +874,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  Layers: []
   AllItemInRange: []
 --- !u!1 &1829446166236169171
 GameObject:
@@ -1696,7 +1697,7 @@ GameObject:
   - component: {fileID: 5255918189889799867}
   - component: {fileID: 1681355676426233386}
   - component: {fileID: 297011981505819708}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1775,6 +1776,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  Layers: []
   AllItemInRange: []
 --- !u!1 &2541843595571164075
 GameObject:
@@ -2252,6 +2254,7 @@ GameObject:
   - component: {fileID: 7907473335032070475}
   - component: {fileID: 3973685239878278951}
   - component: {fileID: 4986977199350701571}
+  - component: {fileID: 5152206888217343750}
   m_Layer: 18
   m_Name: P2 GatorMan
   m_TagString: Player
@@ -2457,6 +2460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canThrow: 1
   Use: 257
   Throw: 259
   Pick: 258
@@ -2530,6 +2534,35 @@ MonoBehaviour:
   isDefeated: 0
   characterAnimation: {fileID: 8379948267315764999}
   reviveBoostKey: 32
+--- !u!114 &5152206888217343750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818093456570068351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd2845461f4aa14ba743a57048c3fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  MaxHeat: 100
+  currentHeat: 0
+  BurnDur: 3
+  BurnAudioName: Burning
+  burnedColor: {r: 1, g: 0.39215687, b: 0, a: 1}
+  MaxCold: 100
+  currentCold: 0
+  FreezeDur: 3
+  FreezeAudioName: Freezing
+  freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  MaxStun: 100
+  currentStun: 0
+  StunDur: 2
+  StunAudioName: Stunning
+  stunnedColor: {r: 1, g: 1, b: 0, a: 1}
+  sprite: {fileID: 4311160792007644495}
 --- !u!1 &2822233370122576813
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,7 +3489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7027377173111418415}
   - component: {fileID: 2301687771678965346}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3540,9 +3573,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7794923358748104951}
   - component: {fileID: 7273479128032602982}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: P2 & P3 Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3836,6 +3869,7 @@ GameObject:
   - component: {fileID: 258351894047503222}
   - component: {fileID: 6416636728494107930}
   - component: {fileID: 3106474256808062014}
+  - component: {fileID: 7410551004343331725}
   m_Layer: 18
   m_Name: P2 Tortise
   m_TagString: Player
@@ -4041,6 +4075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canThrow: 1
   Use: 257
   Throw: 259
   Pick: 258
@@ -4114,6 +4149,35 @@ MonoBehaviour:
   isDefeated: 0
   characterAnimation: {fileID: 1901269164680834362}
   reviveBoostKey: 32
+--- !u!114 &7410551004343331725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274495434050756418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd2845461f4aa14ba743a57048c3fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  MaxHeat: 100
+  currentHeat: 0
+  BurnDur: 3
+  BurnAudioName: Burning
+  burnedColor: {r: 1, g: 0.39215687, b: 0, a: 1}
+  MaxCold: 100
+  currentCold: 0
+  FreezeDur: 3
+  FreezeAudioName: Freezing
+  freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  MaxStun: 100
+  currentStun: 0
+  StunDur: 2
+  StunAudioName: Stunning
+  stunnedColor: {r: 1, g: 1, b: 0, a: 1}
+  sprite: {fileID: 6196237655693387634}
 --- !u!1 &5335690423896596879
 GameObject:
   m_ObjectHideFlags: 0
@@ -4324,7 +4388,7 @@ GameObject:
   - component: {fileID: 2799516070653768838}
   - component: {fileID: 8753947246209078295}
   - component: {fileID: 7653329241169561089}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4403,6 +4467,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  Layers: []
   AllItemInRange: []
 --- !u!1 &5579773021036151190
 GameObject:
@@ -6081,6 +6146,7 @@ GameObject:
   - component: {fileID: 4157059391178916622}
   - component: {fileID: 7145373999981550946}
   - component: {fileID: 1241136631165705286}
+  - component: {fileID: 8985772548165337478}
   m_Layer: 18
   m_Name: P2 Carbibara
   m_TagString: Player
@@ -6286,6 +6352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canThrow: 1
   Use: 257
   Throw: 259
   Pick: 258
@@ -6359,6 +6426,35 @@ MonoBehaviour:
   isDefeated: 0
   characterAnimation: {fileID: 2326009063288053058}
   reviveBoostKey: 32
+--- !u!114 &8985772548165337478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293320950161092410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd2845461f4aa14ba743a57048c3fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  MaxHeat: 100
+  currentHeat: 0
+  BurnDur: 3
+  BurnAudioName: Burning
+  burnedColor: {r: 1, g: 0.39215687, b: 0, a: 1}
+  MaxCold: 100
+  currentCold: 0
+  FreezeDur: 3
+  FreezeAudioName: Freezing
+  freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  MaxStun: 100
+  currentStun: 0
+  StunDur: 2
+  StunAudioName: Stunning
+  stunnedColor: {r: 1, g: 1, b: 0, a: 1}
+  sprite: {fileID: 8059327329797347082}
 --- !u!1 &8297526259021701608
 GameObject:
   m_ObjectHideFlags: 0
@@ -6785,7 +6881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6603205722011688535}
   - component: {fileID: 2725858673005104666}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7018,9 +7114,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6199257315191335055}
   - component: {fileID: 6833535594886470430}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: P2 & P3 Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

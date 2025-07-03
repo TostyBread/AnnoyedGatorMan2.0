@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LevelSelectManager : MonoBehaviour
 {
-    public int levelSelected = 0;
+    public string levelSelected = "Tutorial";
 
     [Header("References")]
     public TMP_Text levelText;
@@ -28,8 +28,8 @@ public class LevelSelectManager : MonoBehaviour
         if (condition != null) clearConditionText.text = condition;
     }
 
-    public void ReturnSelectedLevel(int levelIndex)
+    public void ReturnSelectedLevel(string selectedLevelName)
     {
-        levelSelected = levelIndex;
+        levelSelected = selectedLevelName;
     }
 }

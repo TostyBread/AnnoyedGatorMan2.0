@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSourcePrefab: {fileID: 4742835750530601534, guid: 8868380bdea7e6c4b8099a2b85c55548, type: 3}
   poolSize: 15
+  AdjustedVolume: 1
 --- !u!1 &7128315412531526967
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

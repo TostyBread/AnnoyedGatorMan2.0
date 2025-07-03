@@ -20,6 +20,7 @@ TagManager:
   - NPC
   - PlayerCollision
   - P2 & P3 Arrow
+  - AudioManager
   layers:
   - Default
   - TransparentFX

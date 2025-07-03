@@ -19,6 +19,9 @@ public class LevelLoader : MonoBehaviour
     [Header("Slider")]
     [SerializeField] private Slider loadingSlider;
 
+    [Header("Reference")]
+    public LevelSelectManager levelSelectManager;
+
     private void Start()
     {
         if (mainMenu) mainMenu.SetActive(true);
@@ -40,7 +43,11 @@ public class LevelLoader : MonoBehaviour
         if (loadingScreen) loadingScreen.SetActive(true);
 
         //Run Async
-        StartCoroutine(LoadLevelSync(levelToLoad));
+        if (levelSelectManager == null) StartCoroutine(LoadLevelSync(levelToLoad));
+        else
+        {
+             StartCoroutine(LoadLevelSync(levelSelectManager.levelSelected));
+        }
     }
 
     public void ShowPopUpScreen()
