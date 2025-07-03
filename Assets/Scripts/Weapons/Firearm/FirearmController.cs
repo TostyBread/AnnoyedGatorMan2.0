@@ -96,7 +96,7 @@ public class FirearmController : MonoBehaviour, IUsable
             if (!hasPlayedDryFire)
             {
                 PlayAnimation("_Dry");
-                AudioManager.Instance.PlaySound("dryfire", 1.0f, transform.position);
+                AudioManager.Instance.PlaySound("dryfire", transform.position);
                 hasPlayedDryFire = true;
             }
             return;
@@ -116,7 +116,7 @@ public class FirearmController : MonoBehaviour, IUsable
             currentAmmo--;
         }
 
-        AudioManager.Instance.PlaySound(firearmAudio, 1.0f, transform.position);
+        AudioManager.Instance.PlaySound(firearmAudio, transform.position);
         SpawnProjectile();
     }
 

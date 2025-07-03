@@ -41,7 +41,7 @@ public class KnifeController : MonoBehaviour, IUsable
     {
         if (!isUsable || !isInUsableMode || isStabbing) return;
 
-        AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("slash1", transform.position);
         StartCoroutine(PerformStab());
     }
 

@@ -12,16 +12,23 @@ public class Fire : MonoBehaviour
 
     [Header("References")]
     public LayerMask wallLayer;
+    private AudioManager audioManager; // Reference to AudioManager for sound management
 
     private AudioSource fireSound;
 
     private static int fireCount = 0;
     private bool isPlayingSound = false;
 
+    void Awake()
+    {
+        audioManager = AudioManager.Instance;
+        if (AudioManager.Instance != null) audioManager = AudioManager.Instance; // Get the AudioManager instance
+
+        fireSound = GetComponent<AudioSource>();
+    }
+
     void Start()
     {
-        fireSound = GetComponent<AudioSource>();
-
         fireCount++;
 
         StartCoroutine(SpreadFire());
@@ -29,6 +36,8 @@ public class Fire : MonoBehaviour
 
     void Update()
     {
+        fireSound.volume = audioManager.AdjustedVolume; // Ensure volume is set from AudioManager
+
         PlayFireSoundOnce();
     }
 
@@ -62,7 +71,7 @@ public class Fire : MonoBehaviour
 
     private void PlayFireSoundOnce()
     {
-        if (!isPlayingSound)
+        if (!isPlayingSound && fireSound != null)
         {
             fireSound.Play();
             isPlayingSound = true;

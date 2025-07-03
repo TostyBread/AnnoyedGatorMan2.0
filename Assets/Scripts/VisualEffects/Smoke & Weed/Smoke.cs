@@ -80,7 +80,7 @@ public class Smoke : MonoBehaviour
             {
                 AudioManager.Instance.StopSound(SmokeAudioName);
                 sanity.RemainSanity += sanityRecover;
-                AudioManager.Instance.PlaySound(SmokeAudioName, 1.0f, transform.position);
+                AudioManager.Instance.PlaySound(SmokeAudioName, transform.position);
                 DestroySmoke();
             }
         }

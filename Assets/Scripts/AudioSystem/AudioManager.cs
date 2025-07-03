@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource audioSourcePrefab; // Prefab for creating AudioSources
     public int poolSize = 10; // Number of reusable AudioSources
 
+    public float AdjustedVolume = 1.0f; // Default volume for audio sources, need to be public so SfxVolumeManager can change it
+
     private Queue<AudioSource> audioPool = new Queue<AudioSource>();
     private Dictionary<string, List<AudioClip>> audioClips = new Dictionary<string, List<AudioClip>>();
     private List<AudioSource> activeSources = new List<AudioSource>(); // Track active sources
@@ -59,7 +61,8 @@ public class AudioManager : MonoBehaviour
     // AudioManager.Instance.PlaySound("Example"); or AudioManager.Instance.PlaySound("Example", 1f, transform.position);
     // not "Example_1", the system will not recognize it
     // IF THERE IS NO VARIATION, DO NOT USE UNDERSCORE
-    public void PlaySound(string soundName, float volume = 1.0f, Vector3? position = null)
+
+    public void PlaySound(string soundName, Vector3? position = null)
     {
         if (!audioClips.TryGetValue(soundName, out List<AudioClip> clips) || clips.Count == 0)
         {
@@ -72,7 +75,7 @@ public class AudioManager : MonoBehaviour
         if (source != null)
         {
             source.clip = clip;
-            source.volume = volume;
+            source.volume = AdjustedVolume;
             source.gameObject.SetActive(true);
             source.transform.position = position ?? Vector3.zero;
             source.Play();
@@ -80,6 +83,29 @@ public class AudioManager : MonoBehaviour
             StartCoroutine(ReturnAudioSourceToPool(source, clip.length));
         }
     }
+
+    //Comenting out the PlaySound method as it's volume is not adjustable by SfxVolumeManager
+    //public void PlaySound(string soundName, float volume = 1, Vector3? position = null)
+    //{
+    //    if (!audioClips.TryGetValue(soundName, out List<AudioClip> clips) || clips.Count == 0)
+    //    {
+    //        Debug.LogWarning("AudioManager: Sound " + soundName + " not found!");
+    //        return;
+    //    }
+
+    //    AudioClip clip = clips[Random.Range(0, clips.Count)]; // Pick a random variation
+    //    AudioSource source = GetAvailableAudioSource();
+    //    if (source != null)
+    //    {
+    //        source.clip = clip;
+    //        source.volume = volume;
+    //        source.gameObject.SetActive(true);
+    //        source.transform.position = position ?? Vector3.zero;
+    //        source.Play();
+    //        activeSources.Add(source); // Track active source
+    //        StartCoroutine(ReturnAudioSourceToPool(source, clip.length));
+    //    }
+    //}
 
     public void StopSound(string soundName)
     {

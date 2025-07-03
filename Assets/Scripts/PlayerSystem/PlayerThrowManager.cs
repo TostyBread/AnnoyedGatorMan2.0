@@ -112,7 +112,7 @@ public class PlayerThrowManager : MonoBehaviour
         StartCoroutine(EnableColliderDuringTrajectory(heldItem, heldItem.GetComponent<Collider2D>(), distance));
         isPreparingToThrow = false;
 
-        AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("slash1", transform.position);
     }
 
     public void CancelThrow()

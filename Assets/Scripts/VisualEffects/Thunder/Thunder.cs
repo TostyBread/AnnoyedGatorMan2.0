@@ -33,7 +33,7 @@ public class Thunder : MonoBehaviour
     IEnumerator ThunderStrike(float delay)
     {
         yield return new WaitForSeconds(delay);
-        AudioManager.Instance.PlaySound(thunderAudioName, 1.0f, transform.position);
+        AudioManager.Instance.PlaySound(thunderAudioName, transform.position);
         capsuleCollider.enabled = true;
         light2D.enabled = true;
         Destroy(this.gameObject, thunderAnimationLength - thunderDamageDelay);

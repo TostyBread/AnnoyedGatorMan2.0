@@ -33,7 +33,7 @@ public class Fist : MonoBehaviour
     private void Punch()
     {
         isPunching = true;
-        AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("slash1", transform.position);
 
         // Ensure the fist GameObject is still active before starting animation
         if (gameObject.activeSelf)

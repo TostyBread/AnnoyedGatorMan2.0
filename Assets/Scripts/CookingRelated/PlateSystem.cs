@@ -96,12 +96,12 @@ public class PlateSystem : MonoBehaviour
         {
             if (!req.isFilled)
             {
-                AudioManager.Instance.PlaySound("bell1", 1.0f, transform.position);
+                AudioManager.Instance.PlaySound("bell1", transform.position);
                 return;
             }
         }
 
-        AudioManager.Instance.PlaySound("TaskComplete", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("TaskComplete", transform.position);
         isReadyToServe = true;
     }
 }

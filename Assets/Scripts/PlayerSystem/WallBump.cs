@@ -9,7 +9,7 @@ public class WallBumpDetect : MonoBehaviour
     {
         if (collision.collider.CompareTag("Obstacle") && WallBumpSound)
         {
-            AudioManager.Instance.PlaySound(AudioName, 1.0f, transform.position);
+            AudioManager.Instance.PlaySound(AudioName, transform.position);
         }
     }
 }

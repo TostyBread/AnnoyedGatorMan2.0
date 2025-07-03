@@ -59,7 +59,7 @@ public class LightSwitch : MonoBehaviour
 
         isOn = !isOn;
 
-        AudioManager.Instance.PlaySound(AudioName, 1.0f, transform.position);
+        AudioManager.Instance.PlaySound(AudioName, transform.position);
 
         if (sanity.RemainSanity <= 0)
         {

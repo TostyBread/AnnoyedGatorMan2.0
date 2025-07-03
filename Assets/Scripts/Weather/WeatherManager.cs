@@ -16,35 +16,37 @@ public class WeatherManager : MonoBehaviour
     public LightSwitch lightSwitch;
     public string ThunderAudioName;
     public AudioClip RainingClip;
-    [Range(0f, 1f)]
-    public float rainingAudioVolume;
     private float currentBlackOutInterval;
 
     [Header("Hot setting")]
     public float heatMultiplier = 2;
     public GameObject SunRay;
     public AudioClip SunnyClip;
-    [Range(0f, 1f)]
-    public float sunnyAudioVolume;
 
     [Header("Cold setting")]
     public float coldMultiplier = 0.5f;
     public GameObject FreezeArea;
     public AudioClip WinterClip;
-    [Range(0f, 1f)]
-    public float winterAudioVolume;
 
     [Header("References")]
+    public AudioManager audioManager; // Reference to the AudioManager
     private AudioSource audioSource;
     private DamageSource[] damageSources;
     private bool[] heatMultiplied;
 
-    void Awake() => Instance = this; // Instance for the FireExtinguisherProjectile
+    void Awake()
+    {
+        Instance = this; // Instance for the FireExtinguisherProjectile
+
+        audioManager = AudioManager.Instance;
+        if (AudioManager.Instance != null) audioManager = AudioManager.Instance; // Get the AudioManager instance
+
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
         currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);
-        audioSource = GetComponent<AudioSource>();
 
         if (randomWeatherActivate)
         {
@@ -73,9 +75,11 @@ public class WeatherManager : MonoBehaviour
 
     void Update()
     {
+        audioSource.volume = audioManager.AdjustedVolume; // Adjust volume based on AudioManager
+
+        //Normal
         if (weather == Weather.Normal)
         {
-            audioSource.volume = 1;
             if (audioSource.isPlaying) audioSource.Stop();
             audioSource.clip = null;
 
@@ -88,8 +92,7 @@ public class WeatherManager : MonoBehaviour
             if (audioSource.clip != RainingClip)
             {
                 audioSource.clip = RainingClip;
-                audioSource.volume = rainingAudioVolume;
-                audioSource.Play();                
+                audioSource.Play();            
             }
 
             ResetFireHeat();
@@ -102,7 +105,7 @@ public class WeatherManager : MonoBehaviour
             if (currentBlackOutInterval <= 0)
             {
                 lightSwitch.isOn = false;
-                AudioManager.Instance.PlaySound(ThunderAudioName, 1.0f, transform.position);
+                AudioManager.Instance.PlaySound(ThunderAudioName, transform.position);
                 currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);
             }
         }
@@ -115,7 +118,6 @@ public class WeatherManager : MonoBehaviour
             if (audioSource.clip != SunnyClip)
             {
                 audioSource.clip = SunnyClip;
-                audioSource.volume = sunnyAudioVolume;
                 audioSource.Play();
             }
 
@@ -134,7 +136,6 @@ public class WeatherManager : MonoBehaviour
             if (audioSource.clip != WinterClip)
             {
                 audioSource.clip = WinterClip;
-                audioSource.volume = winterAudioVolume;
                 audioSource.Play();
             }
 

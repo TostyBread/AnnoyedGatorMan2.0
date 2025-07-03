@@ -242,7 +242,7 @@ public class PlayerPickupSystem : MonoBehaviour
 
         handSpriteManager?.UpdateHandSprite();
 
-        AudioManager.Instance.PlaySound("gunpickup2", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("gunpickup2", transform.position);
     }
 
     public bool TryManualDrop() // This will be useful incase if other script needed to access and execute drop item

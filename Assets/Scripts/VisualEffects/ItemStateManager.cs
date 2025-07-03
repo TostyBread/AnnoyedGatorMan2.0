@@ -60,7 +60,7 @@ public class ItemStateManager : MonoBehaviour
         if (currentHeat >= MaxHeat)
         {
             ItemBurn();
-            if (playSound) AudioManager.Instance.PlaySound(BurnAudioName, 1.0f, transform.position);
+            if (playSound) AudioManager.Instance.PlaySound(BurnAudioName, transform.position);
             currentHeat = 0;
             currentCold = 0;
         }
@@ -68,7 +68,7 @@ public class ItemStateManager : MonoBehaviour
         if (currentCold >= MaxCold && weatherManager.weather == WeatherManager.Weather.Cold)
         {
             ItemFreeze();
-            if (playSound) AudioManager.Instance.PlaySound(FreezeAudioName, 1.0f, transform.position);
+            if (playSound) AudioManager.Instance.PlaySound(FreezeAudioName, transform.position);
             currentHeat = 0;
             currentCold = 0;
         }

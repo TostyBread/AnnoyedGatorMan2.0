@@ -151,7 +151,7 @@ public class ItemSystem : MonoBehaviour
             part.transform.position = transform.position + (i < brokenPartsOffsets.Count ? brokenPartsOffsets[i] : Vector3.zero);
         }
 
-        AudioManager.Instance.PlaySound("BrokenBlop", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("BrokenBlop", transform.position);
         Destroy(gameObject);
     }
 
@@ -161,13 +161,13 @@ public class ItemSystem : MonoBehaviour
         uncookedState.SetActive(false);
         cookedState.SetActive(true);
         currentDurability = durabilityCooked;
-        AudioManager.Instance.PlaySound("Fizzle", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("Fizzle", transform.position);
     }
 
     public void BurnItem()
     {
         isBurned = true;
         cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
-        AudioManager.Instance.PlaySound("DryFart", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("DryFart", transform.position);
     }
 }

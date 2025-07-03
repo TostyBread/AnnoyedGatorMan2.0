@@ -69,7 +69,7 @@ public class DamageSource : MonoBehaviour
         }
         else
         {
-            if (playHitSound) AudioManager.Instance.PlaySound(damageType == ItemSystem.DamageType.Shot ? "Ricochet" : "GunHit", 1.0f, transform.position);
+            if (playHitSound) AudioManager.Instance.PlaySound(damageType == ItemSystem.DamageType.Shot ? "Ricochet" : "GunHit", transform.position);
             DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, "SparkSpurt");
         }
 
@@ -152,7 +152,7 @@ public class DamageSource : MonoBehaviour
             ItemSystem.DamageType.Shot => "GunHit",
             _ => "Non"
         };
-        AudioManager.Instance.PlaySound(soundName, 1.0f, transform.position);
+        AudioManager.Instance.PlaySound(soundName, transform.position);
     }
 
     public void ResetHeat()

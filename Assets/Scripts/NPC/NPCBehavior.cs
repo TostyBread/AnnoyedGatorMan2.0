@@ -172,7 +172,7 @@ public class NPCBehavior : MonoBehaviour
             npcCollider.enabled = false; // Disable their collider when also taken food to avoid plate collider pushing the customer to run like hell
             Rigidbody2D plateRb = plateRoot.GetComponent<Rigidbody2D>();
             if (plateRb) plateRb.bodyType = RigidbodyType2D.Kinematic;
-            AudioManager.Instance.PlaySound("yes", 1f, transform.position);
+            AudioManager.Instance.PlaySound("yes", transform.position);
             state = NPCState.Leaving;
             currentWaypointIndex = 0;
 
@@ -278,7 +278,7 @@ public class NPCBehavior : MonoBehaviour
             }
             ForceEscape();
             npcCollider.enabled = false; // Disable their collider when escaping
-            AudioManager.Instance.PlaySound("scream", 1f, transform.position);
+            AudioManager.Instance.PlaySound("scream", transform.position);
         }
 
         if (state == NPCState.Arrived)
