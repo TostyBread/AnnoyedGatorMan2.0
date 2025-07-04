@@ -8,11 +8,11 @@ public class SfxVolumeManager : MonoBehaviour
     public Slider volumeSlider;
     public AudioManager SfxAudioSource;
     private static float currentVolume = 0.5f;
-    public GameObject audioManager;
+    private GameObject audioManager;
 
     private void Start()
     {
-        audioManager = AudioManager.Instance.gameObject; // Get the AudioManager instance
+        if (AudioManager.Instance) audioManager = AudioManager.Instance.gameObject; // Get the AudioManager instance
         if (audioManager != null)
         {
             SfxAudioSource = audioManager.GetComponentInChildren<AudioManager>(); // Get the AudioManager component
@@ -28,6 +28,8 @@ public class SfxVolumeManager : MonoBehaviour
 
     private void Update()
     {
+        if (!audioManager || !SfxAudioSource) return;
+
         currentVolume = SfxAudioSource.AdjustedVolume; // Update current volume
     }
 

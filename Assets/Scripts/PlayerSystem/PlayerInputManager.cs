@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -19,10 +20,12 @@ public class PlayerInputConfig
     public string joystickVerticalAxis = "P2_LJoystick_Vertical";
 }
 
+
 public class PlayerInputManager : MonoBehaviour
 {
     public enum InputMode { Keyboard, Numpad, Joystick }
     public InputMode inputMode = InputMode.Keyboard;
+
     public PlayerInputConfig inputConfig;
 
     public bool isInputEnabled = true;

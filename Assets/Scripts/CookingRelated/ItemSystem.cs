@@ -146,9 +146,13 @@ public class ItemSystem : MonoBehaviour
         for (int i = 0; i < breakParts.Count; i++)
         {
             GameObject part = breakParts[i];
-            part.transform.SetParent(null);
-            part.SetActive(true);
-            part.transform.position = transform.position + (i < brokenPartsOffsets.Count ? brokenPartsOffsets[i] : Vector3.zero);
+
+            if (part != null)
+            {
+                part.transform.SetParent(null);
+                part.SetActive(true);
+                part.transform.position = transform.position + (i < brokenPartsOffsets.Count ? brokenPartsOffsets[i] : Vector3.zero);
+            }
         }
 
         AudioManager.Instance.PlaySound("BrokenBlop", transform.position);

@@ -23,6 +23,8 @@ public class P1CharacterSelectManager : MonoBehaviour
             }
             characters[P1characterIndex].SetActive(true);
         }
+
+        UpdateP1Character(); // Ensure the correct sprite is active at start
     }
 
     private void Update()

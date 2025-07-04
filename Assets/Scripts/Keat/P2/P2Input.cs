@@ -108,11 +108,11 @@ public class P2Input : MonoBehaviour
                 HandleMeleeLogic();
             }
         }
-        //else
-        //{
-        //    if (Input.GetKeyDown(use))
-        //        fist?.TriggerPunch();
-        //}
+        else
+        {
+            if (Input.GetKeyDown(use))
+                fist?.TriggerPunch();
+        }
 
     }
 

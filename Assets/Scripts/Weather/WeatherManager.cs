@@ -75,7 +75,7 @@ public class WeatherManager : MonoBehaviour
 
     void Update()
     {
-        audioSource.volume = audioManager.AdjustedVolume; // Adjust volume based on AudioManager
+        if (audioManager != null) audioSource.volume = audioManager.AdjustedVolume; // Adjust volume based on AudioManager
 
         //Normal
         if (weather == Weather.Normal)

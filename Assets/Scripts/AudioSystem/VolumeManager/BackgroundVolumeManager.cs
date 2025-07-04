@@ -9,11 +9,11 @@ public class BackgroundVolumeManager : MonoBehaviour
     public Slider volumeSlider;
     public AudioSource backgroundMusicAudioSource;
     private static float currentVolume = 0.5f;
-    public GameObject audioManager;
+    private GameObject audioManager;
 
     private void Start()
     {
-        audioManager = AudioManager.Instance.gameObject; // Get the AudioManager instance
+        if (AudioManager.Instance) audioManager = AudioManager.Instance.gameObject; // Get the AudioManager instance
         if (audioManager != null)
         {
             backgroundMusicAudioSource = audioManager.GetComponentInChildren<AudioSource>(); // Get the AudioSource from AudioManager
@@ -29,6 +29,8 @@ public class BackgroundVolumeManager : MonoBehaviour
 
     private void Update()
     {
+        if (!audioManager || !backgroundMusicAudioSource) return;
+
         currentVolume = backgroundMusicAudioSource.volume; // Update current volume
     }
 
