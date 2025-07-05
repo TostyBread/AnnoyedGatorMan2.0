@@ -10,6 +10,7 @@ public class TransitionManager : MonoBehaviour
     public bool playTransitionOnStart = true;
 
     private Animator transition;
+    public bool isTransitioning = false;
 
     void Awake()
     {
@@ -20,7 +21,27 @@ public class TransitionManager : MonoBehaviour
 
     void Start()
     {
-        if (!playTransitionOnStart) transition.gameObject.SetActive(false);
+        if (playTransitionOnStart)
+        {
+            isTransitioning = true;
+            StartCoroutine(HandleStartTransition());
+        }
+        else
+        {
+            transition.gameObject.SetActive(false);
+            isTransitioning = false;
+        }
+    }
+
+    IEnumerator HandleStartTransition()
+    {
+        // Ensure the object is active in case it was disabled
+        transition.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(transitionTime);
+
+        isTransitioning = false;
+        transition.gameObject.SetActive(false);
     }
 
     public void LoadSceneWithTransition(string SceneName)
@@ -32,9 +53,11 @@ public class TransitionManager : MonoBehaviour
     IEnumerator LoadLevel(string SceneName)
     {
         transition.SetTrigger("StartTransition");
+        isTransitioning = true;
 
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(SceneName);
+        isTransitioning = false;
     }
 }

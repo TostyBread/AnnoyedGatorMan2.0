@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class SfxVolumeManager : MonoBehaviour
 {
     public Slider volumeSlider;
-    public AudioManager SfxAudioSource;
+
+    private AudioManager SfxAudioSource;
     private static float currentVolume = 0.5f;
     private GameObject audioManager;
 

@@ -21,9 +21,13 @@ public class LevelLoader : MonoBehaviour
 
     [Header("Reference")]
     public LevelSelectManager levelSelectManager;
+    private TransitionManager transitionManager;
+    private bool isLoading = false;
 
     private void Start()
     {
+        transitionManager = FindObjectOfType<TransitionManager>();
+
         if (mainMenu) mainMenu.SetActive(true);
         if (loadingScreen) loadingScreen.SetActive(false);
 
@@ -34,10 +38,21 @@ public class LevelLoader : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (settingScreen != null)
         {
-            SceneManager.LoadScene("MainMenu");
+            if (Input.GetKeyDown(KeyCode.Escape) && !transitionManager.isTransitioning && !isLoading)
+            {
+                //SceneManager.LoadScene("MainMenu");
+                ShowSettingScreen();
+            }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && !transitionManager.isTransitioning && !isLoading)
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+        }        
     }
 
     public void LoadLevelButton(string levelToLoad)
@@ -63,6 +78,7 @@ public class LevelLoader : MonoBehaviour
     {
         settingScreen.SetActive(true);
         ShaderScreen.SetActive(true);
+        Time.timeScale = 0f; // Pause the game when settings are open
     }
 
     public void ChangeScene(string scene)
@@ -77,6 +93,7 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevelSync(string levelToLoad)
     {
+        isLoading = true;
         if (playerNumberScreen) playerNumberScreen.SetActive(false); 
         if (ShaderScreen) ShaderScreen.SetActive(false);
 
@@ -88,6 +105,7 @@ public class LevelLoader : MonoBehaviour
         {
             float progressValue = Mathf.Clamp01(loadOperation.progress / 0.9f);
             if (loadingSlider) loadingSlider.value = progressValue;
+            isLoading = false;
             yield return null;
         }
     }

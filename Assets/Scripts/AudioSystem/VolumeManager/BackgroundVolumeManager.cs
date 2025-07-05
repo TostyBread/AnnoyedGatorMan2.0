@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class BackgroundVolumeManager : MonoBehaviour
 {
     public Slider volumeSlider;
-    public AudioSource backgroundMusicAudioSource;
+
+    private AudioSource backgroundMusicAudioSource;
     private static float currentVolume = 0.5f;
     private GameObject audioManager;
 

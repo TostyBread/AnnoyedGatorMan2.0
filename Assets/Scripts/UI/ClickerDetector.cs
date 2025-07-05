@@ -52,5 +52,7 @@ public class ClickerDetector : MonoBehaviour
         {
             screen.SetActive(false);
         }
+
+        Time.timeScale = 1f; // Resume the game when pop-up screens are closed
     }
 }
