@@ -21,12 +21,18 @@ public class LevelLoader : MonoBehaviour
 
     [Header("Reference")]
     public LevelSelectManager levelSelectManager;
+
     private TransitionManager transitionManager;
+    private ClickerDetector clickerDetector;
+    private PauseManager pauseManager;
+
     private bool isLoading = false;
 
     private void Start()
     {
         transitionManager = FindObjectOfType<TransitionManager>();
+        clickerDetector = FindObjectOfType<ClickerDetector>();
+        pauseManager = FindObjectOfType<PauseManager>();
 
         if (mainMenu) mainMenu.SetActive(true);
         if (loadingScreen) loadingScreen.SetActive(false);
@@ -40,23 +46,19 @@ public class LevelLoader : MonoBehaviour
     {
         if (settingScreen != null)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !transitionManager.isTransitioning && !isLoading)
+            if (Input.GetKeyDown(KeyCode.Escape) && !isLoading && !transitionManager.isTransitioning)
             {
                 //SceneManager.LoadScene("MainMenu");
+
+                if (pauseManager != null) pauseManager.PauseGame();
                 ShowSettingScreen();
             }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Escape) && !transitionManager.isTransitioning && !isLoading)
-            {
-                SceneManager.LoadScene("MainMenu");
-            }
-        }        
+        }      
     }
 
     public void LoadLevelButton(string levelToLoad)
     {
+        Time.timeScale = 1f;
         if (mainMenu) mainMenu.SetActive(false);
         if (loadingScreen) loadingScreen.SetActive(true);
 
@@ -78,7 +80,6 @@ public class LevelLoader : MonoBehaviour
     {
         settingScreen.SetActive(true);
         ShaderScreen.SetActive(true);
-        Time.timeScale = 0f; // Pause the game when settings are open
     }
 
     public void ChangeScene(string scene)
