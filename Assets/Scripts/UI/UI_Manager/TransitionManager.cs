@@ -47,7 +47,7 @@ public class TransitionManager : MonoBehaviour
     public void LoadSceneWithTransition(string SceneName)
     {
         transition.gameObject.SetActive(true);
-        StartCoroutine(LoadLevel(SceneName));
+        if (!isTransitioning) StartCoroutine(LoadLevel(SceneName));
     }
 
     IEnumerator LoadLevel(string SceneName)

@@ -17,7 +17,7 @@ public class AutoReturnEffect : MonoBehaviour
     {
         autoReturnCoroutine = StartCoroutine(StartAutoReturn());
     }
-
+    
     private float GetAnimationDuration()
     {
         if (overrideLifeTime > 0f) return overrideLifeTime;

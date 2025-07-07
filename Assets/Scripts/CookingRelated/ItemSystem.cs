@@ -36,6 +36,10 @@ public class ItemSystem : MonoBehaviour
     void Start()
     {
         currentDurability = durabilityUncooked;
+        currentCookPoints = 0f;
+        isCooked = false;
+        isBurned = false;
+
         if (cookedState != null)
         {
             cookedSpriteRenderer = cookedState.GetComponent<SpriteRenderer>();

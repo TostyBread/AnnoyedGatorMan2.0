@@ -97,11 +97,20 @@ public class DamageSource : MonoBehaviour
     {
         if (!isFireSource || isColdSource || isStunSource) return;
 
-        if (other.TryGetComponent(out ItemSystem item) && objectsInFire.Add(other.gameObject))
+        GameObject target = other.gameObject;
+
+        if (target == null) return; // Protect against destroyed refs
+
+        if (other.TryGetComponent(out ItemSystem item))
         {
-            if (heatCoroutine == null)
+            if (!objectsInFire.Contains(target))
             {
-                heatCoroutine = StartCoroutine(ApplyHeatOverTime());
+                objectsInFire.Add(target);
+
+                if (heatCoroutine == null)
+                {
+                    heatCoroutine = StartCoroutine(ApplyHeatOverTime());
+                }
             }
         }
     }
@@ -124,17 +133,21 @@ public class DamageSource : MonoBehaviour
     {
         while (objectsInFire.Count > 0)
         {
-            // Create a temporary copy to safely iterate
-            var objectsSnapshot = new List<GameObject>(objectsInFire);
+            // Remove any destroyed objects first
+            objectsInFire.RemoveWhere(obj => obj == null);
 
-            foreach (var obj in objectsSnapshot)
+            // Take snapshot
+            var snapshot = new List<GameObject>(objectsInFire);
+
+            foreach (var obj in snapshot)
             {
-                if (obj != null && obj.TryGetComponent(out ItemSystem item))
+                if (obj == null) continue;
+
+                if (obj.TryGetComponent<ItemSystem>(out var item) && item != null && item.gameObject != null)
                 {
                     item.ApplyCollisionEffect(gameObject);
                 }
             }
-
             yield return new WaitForSeconds(heatCooldown);
         }
 

@@ -45,6 +45,7 @@ public class EffectPool : MonoBehaviour
             {
                 GameObject obj = Instantiate(effect.prefab);
                 obj.SetActive(false);
+                DontDestroyOnLoad(obj);
                 queue.Enqueue(obj);
             }
 
@@ -63,10 +64,18 @@ public class EffectPool : MonoBehaviour
 
         GameObject obj = (poolDictionary.ContainsKey(effectName) && poolDictionary[effectName].Count > 0)
             ? poolDictionary[effectName].Dequeue()
-            : Instantiate(prefabLookup[effectName]);
+            : CreateNewEffectInstance(effectName);
+        //: Instantiate(prefabLookup[effectName]);
 
         obj.transform.SetPositionAndRotation(position, rotation);
         obj.SetActive(true);
+        return obj;
+    }
+
+    private GameObject CreateNewEffectInstance(string effectName)
+    {
+        var obj = Instantiate(prefabLookup[effectName]);
+        DontDestroyOnLoad(obj);
         return obj;
     }
 
@@ -93,6 +102,7 @@ public class EffectPool : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var obj = Instantiate(prefab);
+            DontDestroyOnLoad(obj);
             obj.SetActive(false);
             poolDictionary[effectName].Enqueue(obj);
         }

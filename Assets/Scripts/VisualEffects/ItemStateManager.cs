@@ -61,16 +61,16 @@ public class ItemStateManager : MonoBehaviour
         {
             ItemBurn();
             if (playSound) AudioManager.Instance.PlaySound(BurnAudioName, transform.position);
-            currentHeat = 0;
-            currentCold = 0;
+            currentHeat = Mathf.Clamp(currentHeat, 0, MaxHeat);
+            currentCold = Mathf.Clamp(currentCold, 0, MaxCold);
         }
 
         if (currentCold >= MaxCold && weatherManager.weather == WeatherManager.Weather.Cold)
         {
             ItemFreeze();
             if (playSound) AudioManager.Instance.PlaySound(FreezeAudioName, transform.position);
-            currentHeat = 0;
-            currentCold = 0;
+            currentHeat = Mathf.Clamp(currentHeat, 0, MaxHeat);
+            currentCold = Mathf.Clamp(currentCold, 0, MaxCold);
         }
     }
 
