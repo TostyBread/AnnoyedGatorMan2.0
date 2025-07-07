@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 096d94b94470afb4e881e01a3524bb2a
+guid: da5f51e7d80de23468ace8b6de8ec30b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,12 +97,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Capybara_Die_Color_3_0
+      name: Capybara_Die_Color_3.1_0
       rect:
         serializedVersion: 2
         x: 801
         y: 366
-        width: 1586
+        width: 1606
         height: 1159
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b887300820704c446b66ccbf7f01f09b
-      internalID: 964572388
+      spriteID: 5f5b837c64486d84b9a2fc6a0a3c09c2
+      internalID: -1839058256
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Capybara_Die_Color_3_0: 964572388
+      Capybara_Die_Color_3.1_0: -1839058256
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
