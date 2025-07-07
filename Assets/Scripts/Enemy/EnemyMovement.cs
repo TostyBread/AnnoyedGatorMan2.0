@@ -33,6 +33,7 @@ public class EnemyMovement : MonoBehaviour
 
     public bool isMoving;
     public bool isAttacking;
+    public bool TargetFound;
 
     NavMeshAgent agent;
     Rigidbody2D rb2d;
@@ -71,6 +72,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private LayerMask playerLayers;
     [SerializeField] private LayerMask obstacleLayers;
     [SerializeField] private LayerMask foodLayers;
+    int combinedMask;
+
+    private bool startWaitFor;
 
     private void Start()
     {
@@ -115,15 +119,17 @@ public class EnemyMovement : MonoBehaviour
         if (EnemyGrid.Count != 0)
         TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
 
+        combinedMask = playerLayers | foodLayers | obstacleLayers;
+        Debug.Log("Combined mask: " + combinedMask);
+    
+
         StartCoroutine(ChangeTargetedGrid(Random.Range(1f, 3f)));
     }
 
     private void FixedUpdate()
     {
-        //MOSP.transform.position = transform.position;
-
+        DetectTargets();
         EnemyFoundTarget(player);
-        //agent.SetDestination(player[0].transform.position);
     }
 
     private IEnumerator CreateEnemyField()
@@ -304,45 +310,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void EnemyFoundTarget(GameObject[] Targets)
     {
-        bool TargetFound = false;
-
-        if (!aimForFood)
-        {
-            hits = Physics2D.OverlapCircleAll(transform.position, sightSize, LayerMask.GetMask("Player"));
-        }
-        else
-        {
-            hits = Physics2D.OverlapCircleAll(transform.position, sightSize, LayerMask.GetMask("Item"));
-        }
-
-        foreach (var hit in hits)
-        {
-            if (hit == null) continue;
-
-            // Skip if it doesn't have HealthManager
-            if (hit.GetComponent<HealthManager>() == null) continue;
-
-            Vector2 dirToTarget = hit.transform.position - transform.position;
-            float sightRange = GetSightRange();
-            RaycastHit2D ray = Physics2D.Raycast(
-                transform.position,
-                dirToTarget.normalized,
-                sightRange,
-                LayerMask.GetMask("Player", "Obstacles", "Item")
-            );
-            Debug.DrawRay(transform.position, dirToTarget.normalized * sightRange, Color.red, 0.1f);
-
-            if (ray.collider != null && ray.collider.gameObject == hit.gameObject)
-            {
-                // Add reachability check for grounded enemies
-                if (!CanReachTarget(hit.transform.position)) continue;
-
-                TargetFound = true;
-                TargetPos.transform.position = hit.transform.position;
-                break;
-            }
-        }
-
         if (TargetFound && currentState != EnemyState.Chasing && currentState != EnemyState.WaitingToReturn && !justReturnedFromWait)
         {
             SwitchToChaseMode(TargetPos);
@@ -513,4 +480,50 @@ public class EnemyMovement : MonoBehaviour
             isMovingToLastSeenPos = false;
         }
     }
+    private void DetectTargets()
+    {
+        TargetFound = false;
+
+        LayerMask mask = aimForFood ? foodLayers : playerLayers;
+        hits = Physics2D.OverlapCircleAll(transform.position, sightSize, mask);
+
+        foreach (var hit in hits)
+        {
+            if (hit == null) continue;
+            if (hit.GetComponent<HealthManager>() == null) continue;
+
+            Vector2 dirToTarget = hit.transform.position - transform.position;
+            float sightRange = GetSightRange();
+            RaycastHit2D ray = Physics2D.Raycast(
+                transform.position,
+                dirToTarget.normalized,
+                sightRange,
+                combinedMask
+            );
+            Debug.DrawRay(transform.position, dirToTarget.normalized * sightRange, Color.red, 0.1f);
+
+            //if (ray.collider != null)
+            //{
+            //    Debug.Log("Ray hit: " + ray.collider.name);
+            //}
+            //else
+            //{
+            //    Debug.Log("Ray missed");
+            //}
+
+            if (ray.collider != null && ray.collider.transform.root == hit.transform.root)
+            {
+                //if (!CanReachTarget(hit.transform.position)) continue;
+                Debug.Log("Comparing ray hit: " + ray.collider.name + " with target: " + hit.name);
+
+                TargetFound = true;
+                TargetPos.transform.position = hit.transform.position;
+                break;
+            }
+
+            hits = Physics2D.OverlapCircleAll(transform.position, sightSize, mask);
+            //Debug.Log("Targets in range: " + hits.Length);
+        }
+    }
+
 }
