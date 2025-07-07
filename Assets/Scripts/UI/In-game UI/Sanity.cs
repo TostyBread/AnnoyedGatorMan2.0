@@ -29,10 +29,10 @@ public class Sanity : MonoBehaviour
             SanityBar.fillAmount = RemainSanity / MaxSanity;
         }
 
-        if (RemainSanity <= 0)
-        {
-            RemainSanity = float.MinValue;
-        }
+        //if (RemainSanity <= 0)
+        //{
+        //    RemainSanity = float.MinValue;
+        //}
     }
 
     public void decreaseSanity(float decreaseAmount)
