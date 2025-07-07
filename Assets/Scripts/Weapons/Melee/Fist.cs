@@ -13,17 +13,12 @@ public class Fist : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         hitbox = GetComponent<Collider2D>();
-        hitbox.enabled = false; // Disable the hitbox initially
+        hitbox.enabled = false;
     }
 
     public void TriggerPunch()
     {
-        // Ensure the fist GameObject is active before executing
-        if (!gameObject.activeSelf || isThrowing) // Prevent punching during throw animation
-        {
-            return;
-        }
-
+        if (!gameObject.activeSelf || isThrowing) return;
         if (!isPunching)
         {
             Punch();
@@ -35,11 +30,10 @@ public class Fist : MonoBehaviour
         isPunching = true;
         AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
 
-        // Ensure the fist GameObject is still active before starting animation
         if (gameObject.activeSelf)
         {
             animator.Play("PunchAnim");
-            Invoke("EnableHitbox", 0.1f); // Adjust timing to match animation
+            Invoke("EnableHitbox", 0.1f);
         }
     }
 
@@ -48,7 +42,7 @@ public class Fist : MonoBehaviour
         if (gameObject.activeSelf)
         {
             hitbox.enabled = true;
-            Invoke("DisableHitbox", 0.2f); // Adjust timing to match animation
+            Invoke("DisableHitbox", 0.2f);
         }
     }
 
@@ -59,9 +53,17 @@ public class Fist : MonoBehaviour
             hitbox.enabled = false;
             isPunching = false;
 
-            if (!isActiveAndEnabled || animator == null || !animator.isActiveAndEnabled) return; //Safety measure just in case player still tries to punch during split-transition to KO state
-            // Return to idle animation
+            if (!isActiveAndEnabled || animator == null || !animator.isActiveAndEnabled) return;
             animator.Play("FistAnim");
         }
+    }
+
+    public void CancelPunch()
+    {
+        CancelInvoke();
+        isPunching = false;
+        if (hitbox != null) hitbox.enabled = false;
+        if (animator != null && animator.isActiveAndEnabled)
+            animator.Play("FistAnim");
     }
 }

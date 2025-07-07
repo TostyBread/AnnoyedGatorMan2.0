@@ -64,11 +64,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.1
-  normalBounceFactor: 1.5
-  playerBounceDamping: 0.5
+  reducedBounceFactor: 0.3
+  normalBounceFactor: 0.5
+  playerBounceDamping: 0.1
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
-  playerTag: Player
 --- !u!114 &6308969702795743837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +216,7 @@ MonoBehaviour:
   - {x: -0.39794922, y: 0.25055313, z: 0}
   m_ShapePathHash: 36938929
   m_Mesh: {fileID: 0}
-  m_InstanceId: -7412
+  m_InstanceId: -158972
   m_LocalBounds:
     m_Center: {x: 1.4380834, y: -0.04985881, z: 0}
     m_Extent: {x: 2.0469997, y: 0.47969747, z: 0}

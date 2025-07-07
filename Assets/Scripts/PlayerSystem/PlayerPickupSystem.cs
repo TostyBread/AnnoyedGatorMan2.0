@@ -149,10 +149,12 @@ public class PlayerPickupSystem : MonoBehaviour
         }
 
         PickUpItem(targetItem.gameObject);
+
     }
 
     private void PickUpItem(GameObject item)
     {
+
         if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
         if (item.TryGetComponent(out Rigidbody2D rb))
         {

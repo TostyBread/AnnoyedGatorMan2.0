@@ -51,6 +51,10 @@ public class PlayerInputManagerP2 : MonoBehaviour
             if (canThrow)
             {
                 playerThrowManagerP2?.Throw();
+
+                if (fist != null && fist.isPunching) // Cancel punch if throwing
+                    fist.CancelPunch();
+
                 usableItemModeEnabled = true; // reset after throw
             }
         };
@@ -85,6 +89,10 @@ public class PlayerInputManagerP2 : MonoBehaviour
             if (heldTime >= holdThreshold)
             {
                 playerPickupSystemP2?.StartPickup();
+
+                if (fist != null && fist.isPunching) // Cancel punch if picking up
+                    fist.CancelPunch();
+
                 pickupHandled = true;
             }
         }

@@ -183,6 +183,10 @@ public class PlayerInputManager : MonoBehaviour
             if (heldTime >= holdThreshold)
             {
                 playerPickupSystem.StartPickup();
+
+                if (fist != null && fist.isPunching) // Cancel punch if picking up
+                    fist.CancelPunch();
+
                 pickupHandled = true;
             }
 
@@ -214,6 +218,10 @@ public class PlayerInputManager : MonoBehaviour
             if (canThrow)
             {
                 playerThrowManager.Throw();
+
+                if (fist != null && fist.isPunching) // Cancel punch if throwing
+                    fist.CancelPunch();
+
                 usableItemModeEnabled = true; // reset safety if needed
             }
         }
