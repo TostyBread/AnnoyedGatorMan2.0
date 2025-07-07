@@ -221,7 +221,7 @@ MonoBehaviour:
   aimForFood: 1
   playerLayers:
     serializedVersion: 2
-    m_Bits: 18688
+    m_Bits: 280832
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 131072
@@ -399,7 +399,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -589,7 +589,7 @@ MonoBehaviour:
   - {x: 1.1801262, y: -1.235, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -198708
+  m_InstanceId: -258226
   m_LocalBounds:
     m_Center: {x: -0.00000047683716, y: -0.00000011920929, z: 0}
     m_Extent: {x: 1.1801267, y: 1.2349999, z: 0}

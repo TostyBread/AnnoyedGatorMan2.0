@@ -16,6 +16,7 @@ public class P2Input : MonoBehaviour
     private bool throwStarted = false;
 
     private HealthManager healthManager;
+    private PlayerInputManager playerInputManager;
 
     [Header("Input")]
     public KeyCode Use;
@@ -31,10 +32,16 @@ public class P2Input : MonoBehaviour
         p2PickupSystem = GetComponent<P2PickupSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
         healthManager = GetComponent<HealthManager>();
+
+        playerInputManager = GetComponent<PlayerInputManager>();
     }
 
     void Update()
     {
+
+        if (playerInputManager != null)
+        canThrow = playerInputManager.canThrow;
+
         HandleMovementInput();
         HandleActionInput(Use);
         HandlePickupInput(Pick);
