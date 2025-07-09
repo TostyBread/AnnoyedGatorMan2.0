@@ -26,6 +26,7 @@ public class ItemStateManager : MonoBehaviour
     public float heatRequiredToCook = 20;
     public string FreezeAudioName;
     public Color freezedColor;
+    public bool isFreezed = false;
 
     private Dictionary<DamageSource, float> coldCooldowns = new();
     private HashSet<DamageSource> coldSources = new();
@@ -44,6 +45,7 @@ public class ItemStateManager : MonoBehaviour
         weatherManager = GameObject.FindGameObjectWithTag("Window").GetComponent<WeatherManager>();
 
         state = ItemState.Idle;
+        isFreezed = false;
     }
 
     void Update()
@@ -65,12 +67,14 @@ public class ItemStateManager : MonoBehaviour
             currentCold = Mathf.Clamp(currentCold, 0, MaxCold);
         }
 
-        if (currentCold >= MaxCold && weatherManager.weather == WeatherManager.Weather.Cold)
+        if (currentCold >= MaxCold && weatherManager.weather == WeatherManager.Weather.Cold && !isFreezed)
         {
             ItemFreeze();
             if (playSound) AudioManager.Instance.PlaySound(FreezeAudioName, transform.position);
             currentHeat = Mathf.Clamp(currentHeat, 0, MaxHeat);
             currentCold = Mathf.Clamp(currentCold, 0, MaxCold);
+
+            isFreezed = true;
         }
     }
 
