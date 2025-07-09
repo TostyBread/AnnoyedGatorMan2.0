@@ -10,6 +10,12 @@ public class Sanity : MonoBehaviour
     public float RemainSanity;
     public Image SanityBar;
 
+    [Header("Sanity Icons")]
+    public Image Icon;
+    public Sprite SanityFullIcon;
+    public Sprite SanityHalfIcon;
+    public Sprite SanityEmptyIcon;
+
     private Dictionary<GameObject, bool> sanityDecreased = new Dictionary<GameObject, bool>();
 
 
@@ -27,6 +33,22 @@ public class Sanity : MonoBehaviour
         if (SanityBar != null)
         {
             SanityBar.fillAmount = RemainSanity / MaxSanity;
+        }
+
+        if (Icon != null)
+        {
+            if (RemainSanity >= MaxSanity * 0.75f)
+            {
+                Icon.sprite = SanityFullIcon;
+            }
+            else if (RemainSanity >= MaxSanity * 0.25f)
+            {
+                Icon.sprite = SanityHalfIcon;
+            }
+            else
+            {
+                Icon.sprite = SanityEmptyIcon;
+            }
         }
 
         //if (RemainSanity <= 0)

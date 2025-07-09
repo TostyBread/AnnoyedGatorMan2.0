@@ -8,10 +8,13 @@ public class HitBox : MonoBehaviour
     public float damage = 10;
     public bool aimForFood;
 
+    private Sanity sanity;
+
     private void Start()
     {
         gameObject.SetActive(false);
         aimForFood = GetComponentInParent<EnemyMovement>().aimForFood;
+        sanity = FindAnyObjectByType<Sanity>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,12 +23,12 @@ public class HitBox : MonoBehaviour
         {
             //Debug.Log("attack " + collision.name);
 
-            collision.GetComponentInChildren<HealthManager>().currentHealth -= damage;
+            collision.GetComponentInChildren<HealthManager>().TryDamage(damage);
         }
 
         if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
         {
-            collision.GetComponentInChildren<HealthManager>().currentHealth -= damage;
+            collision.GetComponentInChildren<HealthManager>().TryDamage(damage);
         }
 
         gameObject.SetActive(false);
@@ -37,13 +40,14 @@ public class HitBox : MonoBehaviour
         {
             //Debug.Log("attack " + collision.gameObject.name);
 
-            collision.gameObject.GetComponentInChildren<HealthManager>().currentHealth -= damage;
+            collision.gameObject.GetComponentInChildren<HealthManager>().TryDamage(damage);
+            sanity?.decreaseSanity(damage);
         }
 
         if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
         {
             if (collision.gameObject.GetComponentInChildren<HealthManager>() != null)
-                collision.gameObject.GetComponentInChildren<HealthManager>().currentHealth -= damage;
+                collision.gameObject.GetComponentInChildren<HealthManager>().TryDamage(damage);
             else
                 Debug.LogWarning(collision + "children has no HealthManager");
         }
