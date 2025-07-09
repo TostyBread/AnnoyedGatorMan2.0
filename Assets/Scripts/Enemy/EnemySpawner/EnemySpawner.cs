@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
+using UnityEngine.AI;
 
 
 public class EnemySpawner : MonoBehaviour
@@ -62,13 +61,12 @@ public class EnemySpawner : MonoBehaviour
             SanityIsEmptyOnce = true;
         }
 
-        Timer();
+        SpawnEnemy();
     }
 
-    void Timer()
+    void SpawnEnemy()
     {
         ChargeTimer += Time.deltaTime;
-
 
         if (ChargeTimer >= ChargeReadyTime)
         {

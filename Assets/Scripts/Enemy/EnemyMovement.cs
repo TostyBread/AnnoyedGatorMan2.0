@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
     public bool isAttacking;
     public bool TargetFound;
 
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     Rigidbody2D rb2d;
 
     private Coroutine attackCoroutine;
@@ -73,8 +73,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private LayerMask obstacleLayers;
     [SerializeField] private LayerMask foodLayers;
     int combinedMask;
-
-    private bool startWaitFor;
 
     private void Start()
     {
@@ -116,8 +114,9 @@ public class EnemyMovement : MonoBehaviour
 
         cmty = GetComponentInChildren<CannotMoveThisWay>();
 
+        EnemyGrid.RemoveAll(item => item == null);
         if (EnemyGrid.Count != 0)
-        TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
+            TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
 
         combinedMask = playerLayers | foodLayers | obstacleLayers;
         Debug.Log("Combined mask: " + combinedMask);
@@ -514,7 +513,7 @@ public class EnemyMovement : MonoBehaviour
             if (ray.collider != null && ray.collider.transform.root == hit.transform.root)
             {
                 //if (!CanReachTarget(hit.transform.position)) continue;
-                Debug.Log("Comparing ray hit: " + ray.collider.name + " with target: " + hit.name);
+                //Debug.Log("Comparing ray hit: " + ray.collider.name + " with target: " + hit.name);
 
                 TargetFound = true;
                 TargetPos.transform.position = hit.transform.position;

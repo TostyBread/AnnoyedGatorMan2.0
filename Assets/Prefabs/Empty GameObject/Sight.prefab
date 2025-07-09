@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1726958068179619337}
   - component: {fileID: 289037917266585634}
   - component: {fileID: -1958965903318708111}
-  m_Layer: 11
+  m_Layer: 2
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flying: 0
-  SeeTSightF: 0
   enemyMovement: {fileID: 0}
 --- !u!61 &289037917266585634
 BoxCollider2D:
