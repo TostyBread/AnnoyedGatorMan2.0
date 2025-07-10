@@ -31,8 +31,6 @@ public class WeatherManager : MonoBehaviour
     [Header("References")]
     public AudioManager audioManager; // Reference to the AudioManager
     private AudioSource audioSource;
-    private DamageSource[] damageSources;
-    private bool[] heatMultiplied;
 
     void Awake()
     {
@@ -150,21 +148,14 @@ public class WeatherManager : MonoBehaviour
     private void AdjustFireHeat(float multiplier)
     {
         GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
-        damageSources = new DamageSource[fires.Length];
 
-        if (heatMultiplied == null || heatMultiplied.Length != fires.Length)
+        foreach (GameObject fire in fires)
         {
-            heatMultiplied = new bool[fires.Length];
-        }
-
-        for (int i = 0; i < fires.Length; i++)
-        {
-            damageSources[i] = fires[i].GetComponent<DamageSource>();
-
-            if (!heatMultiplied[i])
+            DamageSource damageSource = fire.GetComponent<DamageSource>();
+            if (damageSource != null && !damageSource.isHeatAdjusted)
             {
-                damageSources[i].heatAmount *= multiplier;
-                heatMultiplied[i] = true;
+                damageSource.heatAmount *= multiplier;
+                damageSource.isHeatAdjusted = true;
             }
         }
     }
@@ -172,10 +163,15 @@ public class WeatherManager : MonoBehaviour
     private void ResetFireHeat()
     {
         GameObject[] fires = GameObject.FindGameObjectsWithTag("Fire");
-        foreach (var fire in fires)
+
+        foreach (GameObject fire in fires)
         {
             DamageSource damageSource = fire.GetComponent<DamageSource>();
-            if (damageSource != null) damageSource.ResetHeat();
+            if (damageSource != null)
+            {
+                damageSource.ResetHeat();
+                damageSource.isHeatAdjusted = false;
+            }
         }
     }
 }

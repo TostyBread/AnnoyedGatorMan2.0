@@ -21,6 +21,8 @@ public class DamageSource : MonoBehaviour
     public GameObject owner;
     private Collider2D ownerCollider;
 
+    public bool isHeatAdjusted = false; // Used for adjusting heat amount by weather manager
+
     private HashSet<GameObject> objectsInFire = new HashSet<GameObject>();
     private Coroutine heatCoroutine;
     private Rigidbody2D rb;
