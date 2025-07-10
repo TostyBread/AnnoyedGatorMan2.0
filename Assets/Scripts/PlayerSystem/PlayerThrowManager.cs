@@ -40,7 +40,7 @@ public class PlayerThrowManager : MonoBehaviour
 
         if (P1FalseP2True)
         {
-            p2PickSystem.DropItem(false);
+            p2PickSystem.DropItem();
         }
         else
         {

@@ -164,24 +164,24 @@ public class P2PickupSystem : MonoBehaviour
 
     }
 
-    public void HoldPickup()
-    {
-        isHoldingPickupKey = true;
-        if (targetItem != null && pickupCoroutine == null)
-        {
-            StartPickup();
-        }
-    }
+    //public void HoldPickup()
+    //{
+    //    isHoldingPickupKey = true;
+    //    if (targetItem != null && pickupCoroutine == null)
+    //    {
+    //        StartPickup();
+    //    }
+    //}
 
-    public void CancelPickup()
-    {
-        isHoldingPickupKey = false;
-        if (pickupCoroutine != null)
-        {
-            StopCoroutine(pickupCoroutine);
-            pickupCoroutine = null;
-        }
-    }
+    //public void CancelPickup()
+    //{
+    //    isHoldingPickupKey = false;
+    //    if (pickupCoroutine != null)
+    //    {
+    //        StopCoroutine(pickupCoroutine);
+    //        pickupCoroutine = null;
+    //    }
+    //}
 
     private IEnumerator PickupItemCoroutine()
     {
@@ -246,14 +246,24 @@ public class P2PickupSystem : MonoBehaviour
 
         AudioManager.Instance.PlaySound("gunpickup2", transform.position);
     }
+    public bool TryManualDrop() // This will be useful incase if other script needed to access and execute drop item
+    {
+        if (!HasItemHeld) return false;
+        DropItem();
+        return true;
+    }
 
-    public void DropItem(bool applyForce = true)
+    public void DropItem()
     {
         if (heldItem == null) return;
 
         bool isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
         Vector3 dropPosition = handPosition.position + new Vector3(isFacingRight ? -0.2f : 0.5f, -0.5f, 0f);
         heldItem.transform.position = dropPosition;
+        if (heldItem.TryGetComponent(out FirearmController firearm)) // When player let go of firearm, it will remove the characterflip associate to that player
+        {
+            firearm.ClearOwner(); // remove ownership
+        }
         heldItem.transform.SetParent(null);
 
         if (heldItem.TryGetComponent(out SpriteLayerManager layerManager))
@@ -264,27 +274,18 @@ public class P2PickupSystem : MonoBehaviour
         {
             itemCollider.enabled = true;
         }
-
         if (heldItem.TryGetComponent(out Rigidbody2D rb))
         {
             rb.isKinematic = false;
-
-            if (applyForce)
-            {
-                Vector2 direction = ((Vector2)Target.transform.position - (Vector2)dropPosition).normalized;
-                if (direction == Vector2.zero)
-                {
-                    direction = isFacingRight ? Vector2.right : Vector2.left;
-                }
-
-                rb.AddForce(direction * dropForce, ForceMode2D.Impulse);
-            }
+            Vector2 direction = (ScreenToWorldPointMouse.Instance.GetMouseWorldPosition() - (Vector2)dropPosition).normalized;
+            rb.AddForce(direction * dropForce, ForceMode2D.Impulse);
         }
 
         heldItem = null;
         usableItemController = null;
         handSpriteManager?.UpdateHandSprite();
     }
+
     public GameObject GetHeldItem() => heldItem;
     public IUsable GetUsableFunction()
     {

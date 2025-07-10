@@ -1,3 +1,5 @@
+using System;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +35,37 @@ public class P2AimSystem : MonoBehaviour
     public KeyCode NextTarget;
     public KeyCode PreviousTarget;
 
+    P3Controls controls;
+
+    private void OnEnable()
+    {
+        //if no console detected...
+        if (Gamepad.current == null)
+        {
+            Debug.LogWarning("no console detected");
+            //gameObject.SetActive(false);
+        }
+        else
+        {
+            controls.Gameplay.Enable();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (Gamepad.current != null)
+        {
+            controls.Gameplay.Disable();
+        }
+    }
+
+    private void Awake()
+    {
+        controls = new P3Controls();
+
+        controls.Gameplay.NextTarget.started += context => NextTargetMethod();
+        controls.Gameplay.PreviousTarget.started += context => PreviousTargetMethod();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -86,19 +119,36 @@ public class P2AimSystem : MonoBehaviour
     {
         if (detectTarget.AllItemInRange.Count > 0)
         {
-            if (Input.GetKeyDown(NextTarget) || P3 && Gamepad.current != null && Gamepad.current.leftTrigger.wasPressedThisFrame) // Switch to the next enemy  
+            if (Input.GetKeyDown(NextTarget)) // Switch to the next enemy  
             {
-                //int can't be float, so 0.001 still count as 1, except 0
-                currentTargetIndex = (currentTargetIndex + 1) % detectTarget.AllItemInRange.Count;
+                NextTargetMethod();
             }
 
-            if (Input.GetKeyDown(PreviousTarget) || P3 && Gamepad.current != null && Gamepad.current.leftShoulder.wasPressedThisFrame) // Switch to the previous enemy
+            if (Input.GetKeyDown(PreviousTarget)) // Switch to the previous enemy
             {
-                currentTargetIndex--;
-                if (currentTargetIndex < 0)
-                    currentTargetIndex = detectTarget.AllItemInRange.Count - 1;
+                PreviousTargetMethod();
             }
         }
+    }
+
+    void NextTargetMethod()
+    {
+        //int can't be float, so 0.001 still count as 1, except 0
+        try
+        {
+            currentTargetIndex = (currentTargetIndex + 1) % detectTarget.AllItemInRange.Count;
+        }
+        catch (DivideByZeroException) //might get Divide by 0 error, so remove the error
+        { 
+        
+        }
+    }
+
+    void PreviousTargetMethod()
+    {
+        currentTargetIndex--;
+        if (currentTargetIndex < 0)
+            currentTargetIndex = detectTarget.AllItemInRange.Count - 1;
     }
 
     private void HandRotation(Vector3 Target)

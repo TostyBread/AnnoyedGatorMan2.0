@@ -89,6 +89,24 @@ public partial class @P3Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Next Target"",
+                    ""type"": ""Button"",
+                    ""id"": ""57ef9b6d-16ef-4bff-900d-fbfc36f98c87"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Previous Target"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee3eedb0-874f-4e63-84d4-3e43e9890451"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -138,6 +156,17 @@ public partial class @P3Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""29e51df2-0954-4b17-b0d7-0f183f82d92c"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""cb06d8a4-ddf2-4bd7-a537-26cd74fa2a79"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
@@ -160,12 +189,45 @@ public partial class @P3Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ef77e55d-d967-4ddd-8705-acd7745d04f7"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e28586ff-b14b-4a79-93e2-3e1e8541bb25"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09c9e89a-bec2-4e05-bd68-08c4e7ceebdd"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Next Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""745016c8-57f6-4a4f-bddf-3295d2f83dfc"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Previous Target"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -183,6 +245,8 @@ public partial class @P3Controls: IInputActionCollection2, IDisposable
         m_Gameplay_Toggle = m_Gameplay.FindAction("Toggle", throwIfNotFound: true);
         m_Gameplay_Throw = m_Gameplay.FindAction("Throw", throwIfNotFound: true);
         m_Gameplay_Interect = m_Gameplay.FindAction("Interect", throwIfNotFound: true);
+        m_Gameplay_NextTarget = m_Gameplay.FindAction("Next Target", throwIfNotFound: true);
+        m_Gameplay_PreviousTarget = m_Gameplay.FindAction("Previous Target", throwIfNotFound: true);
     }
 
     ~@P3Controls()
@@ -256,6 +320,8 @@ public partial class @P3Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Toggle;
     private readonly InputAction m_Gameplay_Throw;
     private readonly InputAction m_Gameplay_Interect;
+    private readonly InputAction m_Gameplay_NextTarget;
+    private readonly InputAction m_Gameplay_PreviousTarget;
     public struct GameplayActions
     {
         private @P3Controls m_Wrapper;
@@ -267,6 +333,8 @@ public partial class @P3Controls: IInputActionCollection2, IDisposable
         public InputAction @Toggle => m_Wrapper.m_Gameplay_Toggle;
         public InputAction @Throw => m_Wrapper.m_Gameplay_Throw;
         public InputAction @Interect => m_Wrapper.m_Gameplay_Interect;
+        public InputAction @NextTarget => m_Wrapper.m_Gameplay_NextTarget;
+        public InputAction @PreviousTarget => m_Wrapper.m_Gameplay_PreviousTarget;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -297,6 +365,12 @@ public partial class @P3Controls: IInputActionCollection2, IDisposable
             @Interect.started += instance.OnInterect;
             @Interect.performed += instance.OnInterect;
             @Interect.canceled += instance.OnInterect;
+            @NextTarget.started += instance.OnNextTarget;
+            @NextTarget.performed += instance.OnNextTarget;
+            @NextTarget.canceled += instance.OnNextTarget;
+            @PreviousTarget.started += instance.OnPreviousTarget;
+            @PreviousTarget.performed += instance.OnPreviousTarget;
+            @PreviousTarget.canceled += instance.OnPreviousTarget;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -322,6 +396,12 @@ public partial class @P3Controls: IInputActionCollection2, IDisposable
             @Interect.started -= instance.OnInterect;
             @Interect.performed -= instance.OnInterect;
             @Interect.canceled -= instance.OnInterect;
+            @NextTarget.started -= instance.OnNextTarget;
+            @NextTarget.performed -= instance.OnNextTarget;
+            @NextTarget.canceled -= instance.OnNextTarget;
+            @PreviousTarget.started -= instance.OnPreviousTarget;
+            @PreviousTarget.performed -= instance.OnPreviousTarget;
+            @PreviousTarget.canceled -= instance.OnPreviousTarget;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -348,5 +428,7 @@ public partial class @P3Controls: IInputActionCollection2, IDisposable
         void OnToggle(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnInterect(InputAction.CallbackContext context);
+        void OnNextTarget(InputAction.CallbackContext context);
+        void OnPreviousTarget(InputAction.CallbackContext context);
     }
 }
