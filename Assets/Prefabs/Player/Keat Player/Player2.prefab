@@ -2404,7 +2404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea141bb7581dc64ba788e98fe5bb41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputMode: 1
+  inputMode: 0
   inputConfig:
     moveUp: 273
     moveDown: 274
@@ -2459,7 +2459,7 @@ MonoBehaviour:
   pickupHandled: 0
   Use: 257
   Throw: 259
-  InterectPick: 0
+  InterectPick: 258
   Interact: 261
   Toggle: 256
 --- !u!114 &7907473335032070475
@@ -4015,7 +4015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea141bb7581dc64ba788e98fe5bb41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputMode: 1
+  inputMode: 0
   inputConfig:
     moveUp: 273
     moveDown: 274
@@ -4070,7 +4070,7 @@ MonoBehaviour:
   pickupHandled: 0
   Use: 257
   Throw: 259
-  InterectPick: 0
+  InterectPick: 258
   Interact: 261
   Toggle: 256
 --- !u!114 &258351894047503222
