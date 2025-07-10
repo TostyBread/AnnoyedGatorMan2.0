@@ -33,7 +33,7 @@ public class DoorHitBox : MonoBehaviour
                 col.gameObject.TryGetComponent(out HealthManager colHealthManager))
             {
                 colThrowManager.doorCauseThrow = true;
-                colThrowManager.StartPreparingThrow();
+                //colThrowManager.StartPreparingThrow(); Not using anymore
                 colThrowManager.Throw();
 
                 //stun the player from moving

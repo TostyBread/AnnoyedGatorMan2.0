@@ -1151,11 +1151,7 @@ MonoBehaviour:
     attackKey: 323
     pickupKey: 101
     toggleSafetyKey: 113
-    interactKey: 325
-    throwPrepareKey: 324
-    throwConfirmKey: 323
-    joystickHorizontalAxis: 
-    joystickVerticalAxis: 
+    throwKey: 324
   isInputEnabled: 1
   canThrow: 1
 --- !u!114 &4069354687643541684

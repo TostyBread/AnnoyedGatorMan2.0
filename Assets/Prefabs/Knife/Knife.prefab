@@ -81,9 +81,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.1
-  normalBounceFactor: 1
-  playerBounceDamping: 0.5
+  reducedBounceFactor: 0.3
+  normalBounceFactor: 0.5
+  playerBounceDamping: 0.1
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!70 &9036991212646575957
 CapsuleCollider2D:
@@ -194,7 +194,7 @@ MonoBehaviour:
   - {x: -0.03526306, y: -0.4668414, z: 0}
   m_ShapePathHash: 1677007953
   m_Mesh: {fileID: 0}
-  m_InstanceId: -2444
+  m_InstanceId: -157696
   m_LocalBounds:
     m_Center: {x: -0.08772898, y: 0.40313756, z: 0}
     m_Extent: {x: 0.1230607, y: 0.8791894, z: 0}
@@ -367,3 +367,4 @@ MonoBehaviour:
   isColdSource: 0
   isStunSource: 0
   minVelocityToDamage: 0
+  playHitSound: 1

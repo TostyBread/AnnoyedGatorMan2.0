@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reducedBounceFactor: 0.3
-  normalBounceFactor: 1.5
-  playerBounceDamping: 0.5
+  normalBounceFactor: 0.5
+  playerBounceDamping: 0.1
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &4013756412183609713
 MonoBehaviour:

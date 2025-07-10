@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerPickupSystemP2 : MonoBehaviour
@@ -13,12 +12,13 @@ public class PlayerPickupSystemP2 : MonoBehaviour
     private Collider2D targetItem = null;
     private GameObject heldItem = null;
     private Collider2D targetInteractable = null;
-    private Coroutine pickupCoroutine = null;
-    private bool isHoldingPickupKey = false;
 
     public HandSpriteManagerP2 handSpriteManagerP2;
     public CharacterFlipP2 characterFlipP2;
     private StateManager stateManager;
+
+    private Window lastWindow;
+    private Smoke lastSmoke;
 
     private IUsable usableItemController;
 
@@ -34,10 +34,6 @@ public class PlayerPickupSystemP2 : MonoBehaviour
     void Update()
     {
         HandleItemDetection();
-        if (isHoldingPickupKey && targetItem != null && pickupCoroutine == null)
-        {
-            StartPickup();
-        }
     }
 
     private void HandleItemDetection()
@@ -105,49 +101,29 @@ public class PlayerPickupSystemP2 : MonoBehaviour
     {
         if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
         {
-            //window.SetWindowState(isPressed);
+            window.SetWindowState(isPressed);
+            lastWindow = window;
+        }
+        else if (lastWindow != null)
+        {
+            lastWindow.SetWindowState(false);
+            lastWindow = null;
+        }
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Smoke smoke))
+        {
+            smoke.SetSmokeState(isPressed, this.gameObject);
+            lastSmoke = smoke;
+        }
+        else if (lastSmoke != null)
+        {
+            lastSmoke.SetSmokeState(false, this.gameObject);
+            lastSmoke = null;
         }
     }
 
     public void StartPickup()
     {
-        if (targetItem != null && pickupCoroutine == null)
-        {
-            pickupCoroutine = StartCoroutine(PickupItemCoroutine());
-        }
-    }
-
-    public void HoldPickup()
-    {
-        isHoldingPickupKey = true;
-        if (targetItem != null && pickupCoroutine == null)
-        {
-            StartPickup();
-        }
-    }
-
-    public void CancelPickup()
-    {
-        isHoldingPickupKey = false;
-        if (pickupCoroutine != null)
-        {
-            StopCoroutine(pickupCoroutine);
-            pickupCoroutine = null;
-        }
-    }
-
-    private IEnumerator PickupItemCoroutine()
-    {
-        float holdTime = 0.2f;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < holdTime)
-        {
-            if (targetItem == null || !isHoldingPickupKey) yield break;
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
         if (targetItem != null)
         {
             if (heldItem != null)
@@ -156,8 +132,9 @@ public class PlayerPickupSystemP2 : MonoBehaviour
             }
             PickUpItem(targetItem.gameObject);
         }
-        pickupCoroutine = null;
     }
+
+    // Remove isHoldingPickupKey tracking entirely (not needed)
 
     private void PickUpItem(GameObject item)
     {

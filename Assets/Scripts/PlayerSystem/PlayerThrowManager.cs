@@ -16,38 +16,18 @@ public class PlayerThrowManager : MonoBehaviour
 
     [Header("References")]
     public PlayerPickupSystem playerPickupSystem;
-    public P2PickupSystem p2PickupSystem;
+    public P2PickSystem p2PickSystem;
     public HandSpriteManager handSpriteManager;
 
-    private bool isPreparingToThrow = false;
     private Vector2 storedThrowPosition;
-    private IUsable usableFunction;
 
     public bool doorCauseThrow;
 
-    public void StartPreparingThrow()
-    {
-        if (isPreparingToThrow) return;
-
-        bool hasItem = P1FalseP2True ? p2PickupSystem.HasItemHeld : playerPickupSystem.HasItemHeld;
-        if (!hasItem) return;
-
-        isPreparingToThrow = true;
-
-        usableFunction = P1FalseP2True
-            ? p2PickupSystem.GetUsableFunction()
-            : playerPickupSystem.GetUsableFunction();
-
-        usableFunction?.DisableUsableFunction();
-        //Debug.Log("Preparing to throw...");
-    }
-
     public void Throw()
     {
-        if (!isPreparingToThrow) return;
 
         GameObject heldItem = P1FalseP2True
-            ? p2PickupSystem.GetHeldItem()
+            ? p2PickSystem.GetHeldItem()
             : playerPickupSystem.GetHeldItem();
 
         if (heldItem == null) return;
@@ -60,7 +40,7 @@ public class PlayerThrowManager : MonoBehaviour
 
         if (P1FalseP2True)
         {
-            p2PickupSystem.DropItem(false);
+            p2PickSystem.DropItem(false);
         }
         else
         {
@@ -110,19 +90,10 @@ public class PlayerThrowManager : MonoBehaviour
         rb.angularVelocity = spinSpeed * (throwDirection.x > 0 ? -1 : 1);
 
         StartCoroutine(EnableColliderDuringTrajectory(heldItem, heldItem.GetComponent<Collider2D>(), distance));
-        isPreparingToThrow = false;
 
-        AudioManager.Instance.PlaySound("slash1", transform.position);
+        AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
     }
 
-    public void CancelThrow()
-    {
-        if (!isPreparingToThrow) return;
-
-        usableFunction?.EnableUsableFunction();
-        isPreparingToThrow = false;
-        Debug.Log("Throw preparation canceled.");
-    }
 
     private IEnumerator EnableColliderDuringTrajectory(GameObject item, Collider2D itemCollider, float totalDistance)
     {

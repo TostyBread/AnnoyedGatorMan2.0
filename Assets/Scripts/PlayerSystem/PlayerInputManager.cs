@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -12,20 +11,14 @@ public class PlayerInputConfig
     public KeyCode attackKey;
     public KeyCode pickupKey;
     public KeyCode toggleSafetyKey;
-    public KeyCode interactKey;
-    public KeyCode throwPrepareKey;
-    public KeyCode throwConfirmKey;
+    public KeyCode throwKey;
 
-    public string joystickHorizontalAxis = "P2_LJoystick_Horizontal";
-    public string joystickVerticalAxis = "P2_LJoystick_Vertical";
 }
-
 
 public class PlayerInputManager : MonoBehaviour
 {
-    public enum InputMode { Keyboard, Numpad, Joystick }
+    public enum InputMode { Keyboard }
     public InputMode inputMode = InputMode.Keyboard;
-
     public PlayerInputConfig inputConfig;
 
     public bool isInputEnabled = true;
@@ -39,13 +32,13 @@ public class PlayerInputManager : MonoBehaviour
     private bool usableItemModeEnabled = true;
     public bool canThrow = true;
     private bool isPreparingHeld = false;
-    private bool throwStarted = false;
 
-    [Header("Numpad Control")] //your InputManager will always get the control from P1 (parent of PlayerInputConfig) ,even P2 will get from P1
-    public KeyCode up;
-    public KeyCode down;
-    public KeyCode left;
-    public KeyCode right;
+    private float pickupPressTime = 0f;
+    private bool isPickupKeyHeld = false;
+    private bool pickupHandled = false;
+    private const float holdThreshold = 0.15f;
+
+    public bool HasHeldItem() => playerPickupSystem != null && playerPickupSystem.HasItemHeld;
 
     void Start()
     {
@@ -65,7 +58,6 @@ public class PlayerInputManager : MonoBehaviour
         HandlePickupInput();
         HandleThrowInput();
         HandleUsableItemInput();
-        HandleEnvironmentalInteractInput();
     }
 
     public bool IsPreparingHeld() => isPreparingHeld;
@@ -84,18 +76,6 @@ public class PlayerInputManager : MonoBehaviour
             if (Input.GetKey(inputConfig.moveDown)) move.y -= 1;
             if (Input.GetKey(inputConfig.moveRight)) move.x += 1;
             if (Input.GetKey(inputConfig.moveLeft)) move.x -= 1;
-        }
-        else if (inputMode == InputMode.Numpad)
-        {
-            if (Input.GetKey(up)) move.y += 1;
-            if (Input.GetKey(down)) move.y -= 1;
-            if (Input.GetKey(right)) move.x += 1;
-            if (Input.GetKey(left)) move.x -= 1;
-        }
-        else if (inputMode == InputMode.Joystick)
-        {
-            move.x = Input.GetAxis(inputConfig.joystickHorizontalAxis);
-            move.y = Input.GetAxis(inputConfig.joystickVerticalAxis);
         }
 
         movementInput = move.normalized;
@@ -187,9 +167,45 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (playerPickupSystem == null) return;
 
-        if (Input.GetKeyDown(inputConfig.pickupKey)) playerPickupSystem.StartPickup();
-        else if (Input.GetKey(inputConfig.pickupKey)) playerPickupSystem.HoldPickup();
-        else if (Input.GetKeyUp(inputConfig.pickupKey)) playerPickupSystem.CancelPickup();
+        if (Input.GetKeyDown(inputConfig.pickupKey))
+        {
+            pickupPressTime = Time.time;
+            isPickupKeyHeld = true;
+            pickupHandled = false;
+        }
+
+        if (isPickupKeyHeld && !pickupHandled)
+        {
+            float heldTime = Time.time - pickupPressTime;
+
+            // Optional: Start showing pickup hold progress UI here
+
+            if (heldTime >= holdThreshold)
+            {
+                playerPickupSystem.StartPickup();
+
+                if (fist != null && fist.isPunching) // Cancel punch if picking up
+                    fist.CancelPunch();
+
+                pickupHandled = true;
+            }
+
+            // Long interaction support during hold
+            playerPickupSystem.StartLongInteraction(true);
+        }
+
+        if (Input.GetKeyUp(inputConfig.pickupKey))
+        {
+            isPickupKeyHeld = false;
+
+            if (!pickupHandled)
+            {
+                playerPickupSystem.StartInteraction();
+            }
+
+            // Always stop long interaction on release
+            playerPickupSystem.StartLongInteraction(false);
+        }
     }
 
     private void HandleThrowInput()
@@ -197,40 +213,16 @@ public class PlayerInputManager : MonoBehaviour
         if (!isInputEnabled || playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld)
             return;
 
-        if (Input.GetKeyDown(inputConfig.throwPrepareKey))
+        if (Input.GetKeyDown(inputConfig.throwKey)) // formerly confirm, now single-button throw
         {
-            isPreparingHeld = true;
-            throwStarted = false;
-        }
-
-        if (Input.GetKeyUp(inputConfig.throwPrepareKey))
-        {
-            isPreparingHeld = false;
-            throwStarted = false;
-            playerThrowManager.CancelThrow();
-            return;
-        }
-
-        if (isPreparingHeld && !throwStarted && canThrow)
-        {
-            throwStarted = true;
-            playerThrowManager.StartPreparingThrow();
-        }
-
-        if (Input.GetKeyUp(inputConfig.attackKey))
-        {
-            if (isPreparingHeld && throwStarted && canThrow)
+            if (canThrow)
             {
                 playerThrowManager.Throw();
-                isPreparingHeld = false;
-                throwStarted = false;
 
-                // Reset usable mode after throw
-                usableItemModeEnabled = true;
-            }
-            else
-            {
-                throwStarted = false;
+                if (fist != null && fist.isPunching) // Cancel punch if throwing
+                    fist.CancelPunch();
+
+                usableItemModeEnabled = true; // reset safety if needed
             }
         }
     }
@@ -257,23 +249,6 @@ public class PlayerInputManager : MonoBehaviour
                     firearm.ToggleUsableMode(usableItemModeEnabled);
                     break;
             }
-        }
-    }
-
-    private void HandleEnvironmentalInteractInput()
-    {
-        if (Input.GetKeyDown(inputConfig.interactKey))
-        {
-            playerPickupSystem?.StartInteraction();
-        }
-
-        if (Input.GetKey(inputConfig.interactKey))
-        {
-            playerPickupSystem?.StartLongInteraction(true);
-        }
-        else
-        {
-            playerPickupSystem?.StartLongInteraction(false);
         }
     }
 }

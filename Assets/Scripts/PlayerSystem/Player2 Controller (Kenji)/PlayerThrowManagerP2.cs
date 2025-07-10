@@ -13,24 +13,10 @@ public class PlayerThrowManagerP2 : MonoBehaviour
     public PlayerPickupSystemP2 playerPickupSystemP2;
     public HandSpriteManagerP2 handSpriteManagerP2;
 
-    private bool isPreparingToThrow = false;
     private Vector2 storedThrowPosition;
-    private IUsable usableFunction;
-
-    public void StartPreparingThrow()
-    {
-        if (!playerPickupSystemP2.HasItemHeld) return;
-
-        isPreparingToThrow = true;
-        usableFunction = playerPickupSystemP2.GetUsableFunction();
-        usableFunction?.DisableUsableFunction();
-        //Debug.Log("Preparing to throw...");
-    }
 
     public void Throw()
     {
-        if (!isPreparingToThrow) return;
-
         GameObject heldItem = playerPickupSystemP2.GetHeldItem();
         if (heldItem == null) return;
 
@@ -43,7 +29,6 @@ public class PlayerThrowManagerP2 : MonoBehaviour
         handSpriteManagerP2?.ShowThrowSprite(throwSpriteDuration);
 
         storedThrowPosition = PlayerAimController.Instance.GetCursorPosition();
-
         float distance = Vector2.Distance(transform.position, storedThrowPosition);
         float adjustedThrowForce = distance * throwForceMultiplier;
 
@@ -63,18 +48,7 @@ public class PlayerThrowManagerP2 : MonoBehaviour
         rb.angularVelocity = spinSpeed * (throwDirection.x > 0 ? -1 : 1);
 
         StartCoroutine(EnableColliderDuringTrajectory(heldItem, heldItem.GetComponent<Collider2D>(), distance));
-        isPreparingToThrow = false;
-
-        AudioManager.Instance.PlaySound("slash1", transform.position);
-    }
-
-    public void CancelThrow()
-    {
-        if (!isPreparingToThrow) return;
-
-        usableFunction?.EnableUsableFunction();
-        isPreparingToThrow = false;
-        //Debug.Log("Throw preparation canceled.");
+        AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
     }
 
     private IEnumerator EnableColliderDuringTrajectory(GameObject item, Collider2D itemCollider, float totalDistance)
