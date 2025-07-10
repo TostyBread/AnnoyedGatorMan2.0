@@ -153,10 +153,15 @@ public class P2PickupSystem : MonoBehaviour
 
     public void StartPickup()
     {
-        if (targetItem != null && pickupCoroutine == null)
+        if (targetItem == null) return;
+
+        if (heldItem != null)
         {
-            pickupCoroutine = StartCoroutine(PickupItemCoroutine());
+            DropItem();
         }
+
+        PickUpItem(targetItem.gameObject);
+
     }
 
     public void HoldPickup()

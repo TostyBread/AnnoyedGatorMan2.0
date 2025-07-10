@@ -302,8 +302,8 @@ MonoBehaviour:
   HandAim: {fileID: 8358967207088524224}
   P3: 0
   P3Cursor: {fileID: 0}
-  NextTarget: 265
-  PreviousTarget: 264
+  NextTarget: 260
+  PreviousTarget: 262
 --- !u!1 &551333787409068514
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,8 +422,8 @@ MonoBehaviour:
   down: 274
   left: 276
   right: 275
-  ControlMode: 262
-  controlMode: 0
+  ControlMode: 261
+  controlMode: 1
 --- !u!1 &989922474843367304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,10 +2406,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputMode: 1
   inputConfig:
-    moveUp: 0
-    moveDown: 0
-    moveLeft: 0
-    moveRight: 0
+    moveUp: 273
+    moveDown: 274
+    moveLeft: 276
+    moveRight: 275
     attackKey: 0
     pickupKey: 0
     toggleSafetyKey: 0
@@ -2452,9 +2452,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInputEnabled: 1
+  canThrow: 1
+  pickupPressTime: 0
+  isPickupKeyHeld: 0
+  pickupHandled: 0
   Use: 257
   Throw: 259
-  Pick: 258
+  InterectPick: 0
   Interact: 261
   Toggle: 256
 --- !u!114 &7907473335032070475
@@ -2475,8 +2480,8 @@ MonoBehaviour:
   throwSpriteDuration: 0.3
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 8358967207088524224}
-  playerPickupSystem: {fileID: 0}
-  p2PickSystem: {fileID: 0}
+  playerPickupSystem: {fileID: 4165462459781017302}
+  p2PickSystem: {fileID: 8676885671384634941}
   handSpriteManager: {fileID: 8992552589754946480}
   doorCauseThrow: 0
 --- !u!114 &3973685239878278951
@@ -2950,8 +2955,8 @@ MonoBehaviour:
   down: 274
   left: 276
   right: 275
-  ControlMode: 262
-  controlMode: 0
+  ControlMode: 261
+  controlMode: 1
 --- !u!1 &3785841810123814166
 GameObject:
   m_ObjectHideFlags: 0
@@ -4012,10 +4017,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputMode: 1
   inputConfig:
-    moveUp: 0
-    moveDown: 0
-    moveLeft: 0
-    moveRight: 0
+    moveUp: 273
+    moveDown: 274
+    moveLeft: 276
+    moveRight: 275
     attackKey: 0
     pickupKey: 0
     toggleSafetyKey: 0
@@ -4058,9 +4063,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInputEnabled: 1
+  canThrow: 1
+  pickupPressTime: 0
+  isPickupKeyHeld: 0
+  pickupHandled: 0
   Use: 257
   Throw: 259
-  Pick: 258
+  InterectPick: 0
   Interact: 261
   Toggle: 256
 --- !u!114 &258351894047503222
@@ -4081,8 +4091,8 @@ MonoBehaviour:
   throwSpriteDuration: 0.3
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 1884792541527898621}
-  playerPickupSystem: {fileID: 0}
-  p2PickSystem: {fileID: 0}
+  playerPickupSystem: {fileID: 6334197144291712235}
+  p2PickSystem: {fileID: 3466615508349821706}
   handSpriteManager: {fileID: 1360881313135534477}
   doorCauseThrow: 0
 --- !u!114 &6416636728494107930
@@ -4956,8 +4966,8 @@ MonoBehaviour:
   HandAim: {fileID: 2309552781305350533}
   P3: 0
   P3Cursor: {fileID: 0}
-  NextTarget: 265
-  PreviousTarget: 264
+  NextTarget: 260
+  PreviousTarget: 262
 --- !u!1 &6094225253138524685
 GameObject:
   m_ObjectHideFlags: 0
@@ -5566,8 +5576,8 @@ MonoBehaviour:
   down: 274
   left: 276
   right: 275
-  ControlMode: 262
-  controlMode: 0
+  ControlMode: 261
+  controlMode: 1
 --- !u!1 &7606473801261761503
 GameObject:
   m_ObjectHideFlags: 0
@@ -5658,8 +5668,8 @@ MonoBehaviour:
   HandAim: {fileID: 1884792541527898621}
   P3: 0
   P3Cursor: {fileID: 0}
-  NextTarget: 265
-  PreviousTarget: 264
+  NextTarget: 260
+  PreviousTarget: 262
 --- !u!1 &7927085980581939850
 GameObject:
   m_ObjectHideFlags: 0
@@ -6145,7 +6155,7 @@ Transform:
   m_GameObject: {fileID: 8293320950161092410}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6326,9 +6336,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInputEnabled: 1
+  canThrow: 1
+  pickupPressTime: 0
+  isPickupKeyHeld: 0
+  pickupHandled: 0
   Use: 257
   Throw: 259
-  Pick: 258
+  InterectPick: 258
   Interact: 261
   Toggle: 256
 --- !u!114 &4157059391178916622
@@ -6349,8 +6364,8 @@ MonoBehaviour:
   throwSpriteDuration: 0.3
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 2309552781305350533}
-  playerPickupSystem: {fileID: 0}
-  p2PickSystem: {fileID: 0}
+  playerPickupSystem: {fileID: 7909051494440561811}
+  p2PickSystem: {fileID: 7894489658684208211}
   handSpriteManager: {fileID: 2938559758896124405}
   doorCauseThrow: 0
 --- !u!114 &7145373999981550946
