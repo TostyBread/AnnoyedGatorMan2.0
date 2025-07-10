@@ -49,7 +49,8 @@ public class NoThrowCursorDetector : MonoBehaviour
         float distance = Vector2.Distance(origin, cursorPos);
 
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, wallLayer);
-        bool canThrow = hit.collider == null;
+        bool canThrow = true;
+        //bool canThrow = hit.collider == null;
 
         if (inputManager != null) inputManager.canThrow = canThrow;
         if (inputManagerP2 != null) inputManagerP2.canThrow = canThrow;

@@ -39,11 +39,14 @@ public class NPCBehavior : MonoBehaviour
     public int score;
     private ScoreManager scoreManager;
 
+    private Sanity sanity;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         npcCollider = GetComponent<Collider2D>(); // Cache collider
         scoreManager = FindObjectOfType<ScoreManager>();
+        sanity = FindObjectOfType<Sanity>();
     }
 
     void FixedUpdate()
@@ -177,7 +180,8 @@ public class NPCBehavior : MonoBehaviour
             state = NPCState.Leaving;
             currentWaypointIndex = 0;
 
-            scoreManager.AddScore(score);
+            scoreManager?.AddScore(score);
+            sanity.RemainSanity += sanity.MaxSanity; // Increase sanity when plate is accepted
 
             if (attachedMenu != null)
             {
