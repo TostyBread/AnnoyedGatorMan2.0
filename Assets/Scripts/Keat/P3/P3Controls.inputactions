@@ -67,6 +67,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Next Target",
+                    "type": "Button",
+                    "id": "57ef9b6d-16ef-4bff-900d-fbfc36f98c87",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Previous Target",
+                    "type": "Button",
+                    "id": "ee3eedb0-874f-4e63-84d4-3e43e9890451",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -116,6 +134,17 @@
                 },
                 {
                     "name": "",
+                    "id": "29e51df2-0954-4b17-b0d7-0f183f82d92c",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cb06d8a4-ddf2-4bd7-a537-26cd74fa2a79",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -138,12 +167,45 @@
                 },
                 {
                     "name": "",
+                    "id": "ef77e55d-d967-4ddd-8705-acd7745d04f7",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e28586ff-b14b-4a79-93e2-3e1e8541bb25",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09c9e89a-bec2-4e05-bd68-08c4e7ceebdd",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next Target",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "745016c8-57f6-4a4f-bddf-3295d2f83dfc",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Previous Target",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
