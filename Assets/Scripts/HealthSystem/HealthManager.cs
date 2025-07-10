@@ -56,6 +56,8 @@ public class HealthManager : MonoBehaviour
     private bool hasDroppedOnDeath = false;
     private bool? lastPlayerActiveState = null; // Use this to record the last state player is in. DO NOT UPDATE REGULARLY
 
+    private EnemySpawner enemySpawner;
+
     [Header("Revive Settings")]
     public KeyCode reviveBoostKey = KeyCode.Space;
 
@@ -85,6 +87,8 @@ public class HealthManager : MonoBehaviour
         }
 
         cookCharacterSystem = GetComponent<ItemSystem>();
+        enemySpawner = FindAnyObjectByType<EnemySpawner>();
+
         currentHealth = Health;
         lastHealth = currentHealth;
     }
@@ -130,13 +134,13 @@ public class HealthManager : MonoBehaviour
                 if (spawnOnce == true)
                 {
                     GameObject Deadbody = Instantiate(deadBody, this.transform.position, this.transform.rotation); //Spawn dead body of current enemy
+                    enemySpawner.currentSpawnedEnemy--;
                     spawnOnce = false;
                 }
             }
 
-            Destroy(toDestroy,0.1f);
+            Destroy(toDestroy,0.01f);
             return;
-
         }
 
         canMove = false;

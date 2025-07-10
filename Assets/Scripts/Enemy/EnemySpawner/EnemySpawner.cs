@@ -7,7 +7,10 @@ using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> Enemies = new List<GameObject>();
-    public GameObject UI; 
+    public GameObject UI;
+
+    public float MaxSpawnedEnemy = 5;
+
     private Timer timer;
     private Sanity sanity;
     public List<Transform> Spawners = new List<Transform>();
@@ -15,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("do not touch, just for Refrence")]
     [SerializeField] private float ChargeReadyTime;
     [SerializeField] private float ChargeTimer;
+    public float currentSpawnedEnemy = 0;
 
     bool SanityIsEmptyOnce;
 
@@ -66,6 +70,8 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        if (currentSpawnedEnemy >= MaxSpawnedEnemy) return;
+
         ChargeTimer += Time.deltaTime;
 
         if (ChargeTimer >= ChargeReadyTime)
@@ -73,6 +79,8 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("Charge Completed");
 
             Debug.Log("Let's spawn enemy");
+            currentSpawnedEnemy++;
+
             Transform spawner = Spawners[Random.Range(0, Spawners.Count)];
             GameObject enemy = Instantiate(Enemies[Random.Range(0, Enemies.Count)], spawner.position, spawner.rotation);
 
@@ -94,6 +102,5 @@ public class EnemySpawner : MonoBehaviour
 
             ChargeTimer = 0;
         }
-
     }
 }

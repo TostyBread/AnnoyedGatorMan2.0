@@ -524,5 +524,4 @@ public class EnemyMovement : MonoBehaviour
             //Debug.Log("Targets in range: " + hits.Length);
         }
     }
-
 }
