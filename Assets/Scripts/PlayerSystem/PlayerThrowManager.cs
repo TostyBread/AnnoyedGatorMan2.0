@@ -10,13 +10,13 @@ public class PlayerThrowManager : MonoBehaviour
     public float throwSpriteDuration = 0.5f;
 
     // NOTE: THIS STUPID CODE IS FROM OLD VERSION + CHEE SENG'S CONTROLLER SCHEME, I WILL NOT TOUCH THIS ANYMORE.
-    [Header("If P1, make sure p2PickSystem is null \nIf P2, make sure playerPickupSystem is null")]
+    [Header("If P1, make sure p2PickSystem is null \nIf P2, make sure p2PickupSystem is null")]
     public bool P1FalseP2True;
     public Transform P2ThrowDirection;
 
     [Header("References")]
     public PlayerPickupSystem playerPickupSystem;
-    public P2PickSystem p2PickSystem;
+    public P2PickupSystem p2PickSystem;
     public HandSpriteManager handSpriteManager;
 
     private Vector2 storedThrowPosition;
@@ -91,7 +91,7 @@ public class PlayerThrowManager : MonoBehaviour
 
         StartCoroutine(EnableColliderDuringTrajectory(heldItem, heldItem.GetComponent<Collider2D>(), distance));
 
-        AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("slash1", transform.position);
     }
 
 

@@ -58,7 +58,7 @@ public class FireExtinguisher : MonoBehaviour
 
                 if (!isPlayingSound)
                 {
-                    AudioManager.Instance.PlaySound(sprayAudioName, 1.0f, transform.position);
+                    AudioManager.Instance.PlaySound(sprayAudioName, transform.position);
                     isPlayingSound = true;
                 }
 

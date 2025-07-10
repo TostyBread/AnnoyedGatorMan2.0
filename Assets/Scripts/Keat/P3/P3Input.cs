@@ -5,7 +5,7 @@ public class P3Input : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     private Fist fist;
-    private P2PickSystem playerPickupSystem;
+    private P2PickupSystem p2PickupSystem;
     private PlayerThrowManager playerThrowManager;
     private Vector2 movementInput;
     private bool usableItemModeEnabled = false;
@@ -19,7 +19,7 @@ public class P3Input : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
-        playerPickupSystem = GetComponent<P2PickSystem>();
+        p2PickupSystem = GetComponent<P2PickupSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
 
         controls = new P3Controls();
@@ -29,13 +29,13 @@ public class P3Input : MonoBehaviour
         controls.Gameplay.Throw.performed += context => HandleThrowInput();
 
 
-        if (playerPickupSystem == null) return;
+        if (p2PickupSystem == null) return;
         else
         {
             controls.Gameplay.Pickup.started += context => StartPickup();
             controls.Gameplay.Pickup.performed += context => HoldPickup();
             controls.Gameplay.Pickup.canceled += context => CancelPickup();
-            controls.Gameplay.Interect.performed += context => playerPickupSystem.StartInteraction();
+            controls.Gameplay.Interect.performed += context => p2PickupSystem.StartInteraction();
         }
 
         controls.Gameplay.Move.performed += context => P3move = context.ReadValue<Vector2>();
@@ -48,9 +48,9 @@ public class P3Input : MonoBehaviour
     void Use()
     {
         
-            if (usableItemModeEnabled && playerPickupSystem != null && playerPickupSystem.HasItemHeld)
+            if (usableItemModeEnabled && p2PickupSystem != null && p2PickupSystem.HasItemHeld)
             {
-                usableFunction = playerPickupSystem.GetUsableFunction();
+                usableFunction = p2PickupSystem.GetUsableFunction();
                 usableFunction?.Use();
             }
             else
@@ -62,17 +62,17 @@ public class P3Input : MonoBehaviour
 
     void StartPickup()
     {
-        playerPickupSystem.StartPickup();
+        p2PickupSystem.StartPickup();
     }
 
     void HoldPickup()
     { 
-        playerPickupSystem.HoldPickup();
+        p2PickupSystem.HoldPickup();
     }
 
     void CancelPickup()
     {
-        playerPickupSystem.CancelPickup();
+        p2PickupSystem.CancelPickup();
     }
 
     private void OnEnable()
@@ -102,7 +102,7 @@ public class P3Input : MonoBehaviour
     {
         characterMovement = GetComponent<CharacterMovement>();
         fist = GetComponentInChildren<Fist>();
-        playerPickupSystem = GetComponent<P2PickSystem>();
+        p2PickupSystem = GetComponent<P2PickupSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
         healthManager = GetComponent<HealthManager>();
     }
@@ -142,17 +142,17 @@ public class P3Input : MonoBehaviour
 
     private void HandlePickupInput()
     {
-        if (playerPickupSystem == null) return;
+        if (p2PickupSystem == null) return;
 
-        if (Input.GetKeyDown(KeyCode.E)) playerPickupSystem.StartPickup();
-        else if (Input.GetKey(KeyCode.E)) playerPickupSystem.HoldPickup();
-        else if (Input.GetKeyUp(KeyCode.E)) playerPickupSystem.CancelPickup();
+        if (Input.GetKeyDown(KeyCode.E)) p2PickupSystem.StartPickup();
+        else if (Input.GetKey(KeyCode.E)) p2PickupSystem.HoldPickup();
+        else if (Input.GetKeyUp(KeyCode.E)) p2PickupSystem.CancelPickup();
     }
 
 
     private void HandleThrowInput()
     {
-        if (playerThrowManager == null || playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        if (playerThrowManager == null || p2PickupSystem == null || !p2PickupSystem.HasItemHeld) return;
 
         //if (Gamepad.current.buttonSouth.wasPressedThisFrame)
         //    playerThrowManager.StartPreparingThrow(); // Not using it anymore, change is advised
@@ -170,9 +170,9 @@ public class P3Input : MonoBehaviour
 
     private void HandleUsableItemInput()
     {
-        if (playerPickupSystem == null || !playerPickupSystem.HasItemHeld) return;
+        if (p2PickupSystem == null || !p2PickupSystem.HasItemHeld) return;
 
-        usableFunction = playerPickupSystem.GetUsableFunction();
+        usableFunction = p2PickupSystem.GetUsableFunction();
         if (usableFunction == null) return;
 
         usableItemModeEnabled = !usableItemModeEnabled;
@@ -189,7 +189,7 @@ public class P3Input : MonoBehaviour
     {
         if (Gamepad.current.buttonNorth.wasPressedThisFrame)
         {
-            playerPickupSystem?.StartInteraction();
+            p2PickupSystem?.StartInteraction();
         }
     }
 }

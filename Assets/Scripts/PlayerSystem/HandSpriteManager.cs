@@ -16,7 +16,7 @@ public class HandSpriteManager : MonoBehaviour
     public P2PickupSystem p2PickSystem;
     public PlayerThrowManager playerThrowManager;
 
-    [Header("If P1, make sure p2PickSystem is null \nIf P2, make sure playerPickupSystem is null")]
+    [Header("If P1, make sure p2PickSystem is null \nIf P2, make sure p2PickupSystem is null")]
     public bool P1FalseP2True;
 
     private Coroutine throwSpriteCoroutine;

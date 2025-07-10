@@ -48,7 +48,7 @@ public class PlayerThrowManagerP2 : MonoBehaviour
         rb.angularVelocity = spinSpeed * (throwDirection.x > 0 ? -1 : 1);
 
         StartCoroutine(EnableColliderDuringTrajectory(heldItem, heldItem.GetComponent<Collider2D>(), distance));
-        AudioManager.Instance.PlaySound("slash1", 1.0f, transform.position);
+        AudioManager.Instance.PlaySound("slash1", transform.position);
     }
 
     private IEnumerator EnableColliderDuringTrajectory(GameObject item, Collider2D itemCollider, float totalDistance)

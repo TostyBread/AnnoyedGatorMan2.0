@@ -2323,7 +2323,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 524288
+    m_Bits: 524416
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2406,24 +2406,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputMode: 1
   inputConfig:
-    moveUp: 273
-    moveDown: 274
-    moveLeft: 276
-    moveRight: 275
+    moveUp: 0
+    moveDown: 0
+    moveLeft: 0
+    moveRight: 0
     attackKey: 0
     pickupKey: 0
     toggleSafetyKey: 0
-    interactKey: 0
-    throwPrepareKey: 0
-    throwConfirmKey: 0
-    joystickHorizontalAxis: P2_LJoystick_Horizontal
-    joystickVerticalAxis: P2_LJoystick_Vertical
+    throwKey: 0
   isInputEnabled: 1
   canThrow: 1
-  up: 273
-  down: 274
-  left: 276
-  right: 275
 --- !u!114 &4165462459781017302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2460,7 +2452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canThrow: 1
   Use: 257
   Throw: 259
   Pick: 258
@@ -2485,7 +2476,7 @@ MonoBehaviour:
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 8358967207088524224}
   playerPickupSystem: {fileID: 0}
-  p2PickupSystem: {fileID: 8676885671384634941}
+  p2PickSystem: {fileID: 0}
   handSpriteManager: {fileID: 8992552589754946480}
   doorCauseThrow: 0
 --- !u!114 &3973685239878278951
@@ -3938,7 +3929,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -4021,24 +4012,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputMode: 1
   inputConfig:
-    moveUp: 273
-    moveDown: 274
-    moveLeft: 276
-    moveRight: 275
+    moveUp: 0
+    moveDown: 0
+    moveLeft: 0
+    moveRight: 0
     attackKey: 0
     pickupKey: 0
     toggleSafetyKey: 0
-    interactKey: 0
-    throwPrepareKey: 0
-    throwConfirmKey: 0
-    joystickHorizontalAxis: P2_LJoystick_Horizontal
-    joystickVerticalAxis: P2_LJoystick_Vertical
+    throwKey: 0
   isInputEnabled: 1
   canThrow: 1
-  up: 273
-  down: 274
-  left: 276
-  right: 275
 --- !u!114 &6334197144291712235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4075,7 +4058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canThrow: 1
   Use: 257
   Throw: 259
   Pick: 258
@@ -4100,7 +4082,7 @@ MonoBehaviour:
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 1884792541527898621}
   playerPickupSystem: {fileID: 0}
-  p2PickupSystem: {fileID: 3466615508349821706}
+  p2PickSystem: {fileID: 0}
   handSpriteManager: {fileID: 1360881313135534477}
   doorCauseThrow: 0
 --- !u!114 &6416636728494107930
@@ -6215,7 +6197,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 524288
+    m_Bits: 524416
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -6305,17 +6287,9 @@ MonoBehaviour:
     attackKey: 0
     pickupKey: 0
     toggleSafetyKey: 0
-    interactKey: 0
-    throwPrepareKey: 0
-    throwConfirmKey: 0
-    joystickHorizontalAxis: P2_LJoystick_Horizontal
-    joystickVerticalAxis: P2_LJoystick_Vertical
+    throwKey: 0
   isInputEnabled: 1
   canThrow: 1
-  up: 273
-  down: 274
-  left: 276
-  right: 275
 --- !u!114 &7909051494440561811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6352,7 +6326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b3622093ecfcc45b09674f65db6aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canThrow: 1
   Use: 257
   Throw: 259
   Pick: 258
@@ -6377,7 +6350,7 @@ MonoBehaviour:
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 2309552781305350533}
   playerPickupSystem: {fileID: 0}
-  p2PickupSystem: {fileID: 7894489658684208211}
+  p2PickSystem: {fileID: 0}
   handSpriteManager: {fileID: 2938559758896124405}
   doorCauseThrow: 0
 --- !u!114 &7145373999981550946
