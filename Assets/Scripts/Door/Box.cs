@@ -5,6 +5,7 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     private DoorManager doorManager;
+    [SerializeField] private Fist fist;
     private void Start()
     {
         doorManager = GetComponentInParent<DoorManager>();
@@ -14,7 +15,7 @@ public class Box : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) 
         {
-            Fist fist = collision.gameObject.GetComponentInChildren<Fist>();
+            fist = collision.gameObject.GetComponentInChildren<Fist>();
 
             if (fist != null)
             {

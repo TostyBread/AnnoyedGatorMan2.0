@@ -32,7 +32,7 @@ public class DoorManager : MonoBehaviour
 
             if (playerPunch)
             {
-                //if player at the box 
+                //PlayerAtTheRightPos is set by gameObject & script "Box"
                 if (PlayerAtTheRightPos)
                 {
                     DoNotHurt = collision.gameObject.transform.parent?.parent?.gameObject;
