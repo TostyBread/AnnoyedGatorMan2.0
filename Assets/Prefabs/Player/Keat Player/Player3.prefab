@@ -377,6 +377,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 3135101431889565427}
+  isHeatAdjusted: 0
 --- !u!50 &4744209738878026416
 Rigidbody2D:
   serializedVersion: 4
@@ -651,7 +652,7 @@ GameObject:
   - component: {fileID: 5539318352905799347}
   - component: {fileID: 2098097449699598510}
   - component: {fileID: 5360805134240203957}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,6 +731,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  Layers: []
   AllItemInRange: []
 --- !u!1 &1219663554708415907
 GameObject:
@@ -987,7 +989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8689806776556549274}
   - component: {fileID: 3613195007329408733}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1504,6 +1506,8 @@ MonoBehaviour:
   P3AimMove: {x: 0, y: 0}
   DefaultThrowPos: {fileID: 3729894305049041043}
   speed: 50
+  walkableArea: {fileID: 0}
+  OffsetBetweenWall: 0
 --- !u!1 &2240173346821189728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,7 +2012,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1048576
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2089,7 +2093,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4336bc0feac7e84aa4223cd103696dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInputEnabled: 1
+  canThrow: 1
   P3move: {x: 0, y: 0}
+  autoFireModeShoot: 0
+  pickupPressTime: 0
+  isPickupKeyHeld: 0
+  pickupHandled: 0
 --- !u!114 &488919215559048345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2109,7 +2119,7 @@ MonoBehaviour:
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 1633062195450330644}
   playerPickupSystem: {fileID: 0}
-  p2PickupSystem: {fileID: 3248722360353963117}
+  p2PickSystem: {fileID: 0}
   handSpriteManager: {fileID: 2772366505473075990}
   doorCauseThrow: 0
 --- !u!114 &3455622770561305545
@@ -2228,7 +2238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioName: WallBump
-  WallBumpSound: 1
+  WallBumpSound: 0
 --- !u!1 &3324805289703524311
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,7 +2475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6505461720996471959}
   - component: {fileID: 1221824024068196048}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2550,7 +2560,8 @@ GameObject:
   - component: {fileID: 7930825196721313470}
   - component: {fileID: 4597505949454135459}
   - component: {fileID: 7544945629113373880}
-  m_Layer: 0
+  - component: {fileID: 5993165339022205552}
+  m_Layer: 23
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2629,7 +2640,43 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  Layers: []
   AllItemInRange: []
+--- !u!58 &5993165339022205552
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606227184721757382}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1082130431
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &3620175315003291054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2870,6 +2917,8 @@ MonoBehaviour:
   P3AimMove: {x: 0, y: 0}
   DefaultThrowPos: {fileID: 1230415999207557278}
   speed: 50
+  walkableArea: {fileID: 0}
+  OffsetBetweenWall: 0
 --- !u!1 &4121235287553715229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3081,9 +3130,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9219101895896795782}
   - component: {fileID: 8325024586654821285}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: P2 & P3 Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4098,9 +4147,9 @@ GameObject:
   m_Component:
   - component: {fileID: 968090834344225281}
   - component: {fileID: 78778808619830050}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: P2 & P3 Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4336,6 +4385,8 @@ MonoBehaviour:
   P3AimMove: {x: 0, y: 0}
   DefaultThrowPos: {fileID: 7173352386412439577}
   speed: 50
+  walkableArea: {fileID: 0}
+  OffsetBetweenWall: 0
 --- !u!1 &5693864899981246923
 GameObject:
   m_ObjectHideFlags: 0
@@ -4678,7 +4729,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1048576
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -4759,7 +4810,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4336bc0feac7e84aa4223cd103696dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInputEnabled: 1
+  canThrow: 1
   P3move: {x: 0, y: 0}
+  autoFireModeShoot: 0
+  pickupPressTime: 0
+  isPickupKeyHeld: 0
+  pickupHandled: 0
 --- !u!114 &8383292685396171806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4779,7 +4836,7 @@ MonoBehaviour:
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 7221029706114965139}
   playerPickupSystem: {fileID: 0}
-  p2PickupSystem: {fileID: 4651203008582280569}
+  p2PickSystem: {fileID: 0}
   handSpriteManager: {fileID: 6117825142480489361}
   doorCauseThrow: 0
 --- !u!114 &6731574886544173902
@@ -4898,7 +4955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioName: WallBump
-  WallBumpSound: 1
+  WallBumpSound: 0
 --- !u!1 &6548530637104651511
 GameObject:
   m_ObjectHideFlags: 0
@@ -5045,6 +5102,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 8921064350408222329}
+  isHeatAdjusted: 0
 --- !u!50 &1268101367669797434
 Rigidbody2D:
   serializedVersion: 4
@@ -5511,7 +5569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 722801426086384669}
   - component: {fileID: 4664366504357967450}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5596,7 +5654,7 @@ GameObject:
   - component: {fileID: 4485604580988134964}
   - component: {fileID: 8035122862586478633}
   - component: {fileID: 4105852351210021938}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5675,6 +5733,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  Layers: []
   AllItemInRange: []
 --- !u!1 &7204980602707749373
 GameObject:
@@ -6339,9 +6398,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3440528782021900812}
   - component: {fileID: 2578186707062430511}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: P2 & P3 Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6812,6 +6871,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 6421450323599144564}
+  isHeatAdjusted: 0
 --- !u!50 &3695586912022503991
 Rigidbody2D:
   serializedVersion: 4
@@ -7048,7 +7108,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1048576
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -7129,7 +7189,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4336bc0feac7e84aa4223cd103696dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInputEnabled: 1
+  canThrow: 1
   P3move: {x: 0, y: 0}
+  autoFireModeShoot: 0
+  pickupPressTime: 0
+  isPickupKeyHeld: 0
+  pickupHandled: 0
 --- !u!114 &6234986882952940563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7149,7 +7215,7 @@ MonoBehaviour:
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 5108823108073852574}
   playerPickupSystem: {fileID: 0}
-  p2PickupSystem: {fileID: 3592619829345639485}
+  p2PickSystem: {fileID: 0}
   handSpriteManager: {fileID: 8518152165494807452}
   doorCauseThrow: 0
 --- !u!114 &9204007985203772227
@@ -7268,7 +7334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioName: WallBump
-  WallBumpSound: 1
+  WallBumpSound: 0
 --- !u!1 &8943011471215582428
 GameObject:
   m_ObjectHideFlags: 0
@@ -7368,7 +7434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4562775364599266421
 Transform:
   m_ObjectHideFlags: 0
