@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7be990a4d32af1e42bfb2de695f6c689
+guid: 250e097d5c0583346929f6c0bd3374cb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boomhair_final_final_1
+      name: IMG_0953_1
       rect:
         serializedVersion: 2
-        x: 1499
-        y: 524
-        width: 878
-        height: 1103
+        x: 1176
+        y: 540
+        width: 1186
+        height: 1294
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d022859e27d849b4296851c2867354e2
-      internalID: 604771265
+      spriteID: b3ee184abe202124b8fad47d4d991cee
+      internalID: 975148951
       vertices: []
       indices: 
       edges: []
@@ -128,8 +128,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boomhair_final_final_0: -128728556
-      boomhair_final_final_1: 604771265
+      IMG_0953_0: -420304051
+      IMG_0953_1: 975148951
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
