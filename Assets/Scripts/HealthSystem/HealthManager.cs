@@ -37,8 +37,6 @@ public class HealthManager : MonoBehaviour
 
     private PlayerInputManager playerInputManager;
     // Commented out due to unused. Please consider cleaning up your code and only reference stuff here. Don't overhaul the structure 
-    //private P2Input p2Input;
-    //private P3Input p3Input;
 
     private CharacterFlip characterFlip;
     private CharacterMovement characterMovement;
@@ -50,6 +48,7 @@ public class HealthManager : MonoBehaviour
     private CharacterFlipP2 characterFlipP2;
     private HandSpriteManagerP2 handSpriteManagerP2;
     private PlayerPickupSystemP2 playerPickupSystemP2;
+    private P2PickupSystem p2PickupSystem;
 
     private Rigidbody2D rb2d;
     private float reviveTime;
@@ -75,6 +74,7 @@ public class HealthManager : MonoBehaviour
             characterFlipP2 = GetComponent<CharacterFlipP2>();
             handSpriteManagerP2 = GetComponent<HandSpriteManagerP2>();
             playerPickupSystemP2 = GetComponent<PlayerPickupSystemP2>();
+            p2PickupSystem = GetComponent<P2PickupSystem>();
             if (hand != null) handSpriteManagerP2 = hand.GetComponent<HandSpriteManagerP2>();
         }
         else
@@ -117,7 +117,10 @@ public class HealthManager : MonoBehaviour
         if (!hasDroppedOnDeath) // Handle player dropping item when 0 health
         {
             if (isPlayer2)
+            {
                 playerPickupSystemP2?.TryManualDrop();
+                p2PickupSystem.TryManualDrop();
+            }
             else
                 playerPickupSystem?.TryManualDrop();
 

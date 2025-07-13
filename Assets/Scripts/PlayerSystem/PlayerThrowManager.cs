@@ -9,7 +9,6 @@ public class PlayerThrowManager : MonoBehaviour
     public float quarterDistanceFactor = 0.5f;
     public float throwSpriteDuration = 0.5f;
 
-    // NOTE: THIS STUPID CODE IS FROM OLD VERSION + CHEE SENG'S CONTROLLER SCHEME, I WILL NOT TOUCH THIS ANYMORE.
     [Header("If P1, make sure p2PickSystem is null \nIf P2, make sure p2PickupSystem is null")]
     public bool P1FalseP2True;
     public Transform P2ThrowDirection;
@@ -25,7 +24,6 @@ public class PlayerThrowManager : MonoBehaviour
 
     public void Throw()
     {
-
         GameObject heldItem = P1FalseP2True
             ? p2PickSystem.GetHeldItem()
             : playerPickupSystem.GetHeldItem();
