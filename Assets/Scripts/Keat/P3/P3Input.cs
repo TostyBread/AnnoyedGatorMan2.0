@@ -36,6 +36,9 @@ public class P3Input : MonoBehaviour
 
         controls = new P3Controls();
 
+        if (!isInputEnabled) return; // can it be if(!isInputEnabled) input is disable, if(isInputEnable) input is enable
+
+
         controls.Gameplay.Use.started += context => UseButtonPressed();
         //controls.Gameplay.Use.performed += context => UseButtonHold();
         controls.Gameplay.Use.canceled += context => UseButtonRelease();
@@ -209,56 +212,6 @@ public class P3Input : MonoBehaviour
         fist?.TriggerPunch();
     }
 
-    void StartPickup()
-    {
-        p2PickupSystem.StartPickup();
-    }
-
-    //private void HandlePickupInput()
-    //{
-    //    if (p2PickupSystem == null) return;
-
-    //    //if (Input.GetKeyDown(inputConfig.pickupKey)) //get key down: pickup
-    //    {
-    //        pickupPressTime = Time.time;
-    //        isPickupKeyHeld = true;
-    //        pickupHandled = false;
-    //    }
-
-    //    if (isPickupKeyHeld && !pickupHandled)
-    //    {
-    //        float heldTime = Time.time - pickupPressTime;
-
-    //        // Optional: Start showing pickup hold progress UI here
-
-    //        if (heldTime >= holdThreshold)
-    //        {
-    //            p2PickupSystem.StartPickup();
-
-    //            if (fist != null && fist.isPunching) // Cancel punch if picking up
-    //                fist.CancelPunch();
-
-    //            pickupHandled = true;
-    //        }
-
-    //        // Long interaction support during hold
-    //        p2PickupSystem.StartLongInteraction(true);
-    //    }
-
-    //    //if (Input.GetKeyUp(inputConfig.pickupKey)) //get key up: pickup
-    //    {
-    //        isPickupKeyHeld = false;
-
-    //        if (!pickupHandled)
-    //        {
-    //            p2PickupSystem.StartInteraction();
-    //        }
-
-    //        // Always stop long interaction on release
-    //        p2PickupSystem.StartLongInteraction(false);
-    //    }
-    //}
-
     private void OnPickupStarted()
     {
         if (p2PickupSystem == null) return;
@@ -328,6 +281,16 @@ public class P3Input : MonoBehaviour
             controls.Gameplay.Disable();
         }
     }
+
+    void EnableInput()
+    {
+        controls.Gameplay.Enable();
+    }
+
+    void DisableInput()
+    {
+        controls.Gameplay.Disable();
+    }
     void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
@@ -339,6 +302,13 @@ public class P3Input : MonoBehaviour
 
     void Update()
     {
+        if (isInputEnabled && Gamepad.current != null)
+            EnableInput();
+        else
+            DisableInput();
+
+        if (!isInputEnabled) return;
+
         HandleMovementInput();
 
         if (autoFireModeShoot)

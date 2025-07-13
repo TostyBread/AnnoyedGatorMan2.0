@@ -34,7 +34,6 @@ public class HealthManager : MonoBehaviour
 
     [Header("References")]
     public CharacterAnimation characterAnimation;
-
     private PlayerInputManager playerInputManager;
     // Commented out due to unused. Please consider cleaning up your code and only reference stuff here. Don't overhaul the structure 
 
@@ -45,6 +44,8 @@ public class HealthManager : MonoBehaviour
     private PlayerPickupSystem playerPickupSystem;
 
     private PlayerInputManagerP2 playerInputManagerP2;
+    private P2Input p2Input;
+    private P3Input p3Input;
     private CharacterFlipP2 characterFlipP2;
     private HandSpriteManagerP2 handSpriteManagerP2;
     private PlayerPickupSystemP2 playerPickupSystemP2;
@@ -65,12 +66,12 @@ public class HealthManager : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
 
         playerInputManager = GetComponent<PlayerInputManager>();
-        //p2Input = GetComponent<P2Input>();
-        //p3Input = GetComponent<P3Input>();
 
         if (isPlayer2)
         {
             playerInputManagerP2 = GetComponent<PlayerInputManagerP2>();
+            p2Input = GetComponent<P2Input>();
+            p3Input = GetComponent<P3Input>();
             characterFlipP2 = GetComponent<CharacterFlipP2>();
             handSpriteManagerP2 = GetComponent<HandSpriteManagerP2>();
             playerPickupSystemP2 = GetComponent<PlayerPickupSystemP2>();
@@ -79,7 +80,7 @@ public class HealthManager : MonoBehaviour
         }
         else
         {
-            playerInputManager = GetComponent<PlayerInputManager> ();
+            playerInputManager = GetComponent<PlayerInputManager>();
             characterFlip = GetComponent<CharacterFlip>();
             characterMovement = GetComponent<CharacterMovement>();
             playerPickupSystem = GetComponent<PlayerPickupSystem>();
@@ -204,6 +205,8 @@ public class HealthManager : MonoBehaviour
         if (isPlayer2)
         {
             if (playerInputManagerP2 != null) playerInputManagerP2.isInputEnabled = false;
+            if (p2Input != null) p2Input.isInputEnabled = false;
+            if (p3Input != null) p3Input.isInputEnabled = false;
             if (characterFlipP2 != null) characterFlipP2.isFlippingEnabled = false;
             characterMovement?.SetMovement(Vector2.zero);
 
@@ -233,6 +236,8 @@ public class HealthManager : MonoBehaviour
         if (isPlayer2)
         {
             if (playerInputManagerP2 != null) playerInputManagerP2.isInputEnabled = true;
+            if (p2Input != null) p2Input.isInputEnabled = true;
+            if (p3Input != null) p3Input.isInputEnabled = true;
             if (characterFlipP2 != null) characterFlipP2.isFlippingEnabled = true;
         }
         else

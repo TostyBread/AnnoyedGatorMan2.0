@@ -3,6 +3,7 @@ using UnityEngine;
 public class P2Input : MonoBehaviour
 {
     public bool isInputEnabled = true;
+    private PlayerInputManager playerInputManager;
     private CharacterMovement characterMovement;
     private Fist fist;
     private P2PickupSystem p2PickupSystem;
@@ -32,6 +33,7 @@ public class P2Input : MonoBehaviour
     void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
+        playerInputManager = GetComponent<PlayerInputManager>();
         fist = GetComponentInChildren<Fist>();
         p2PickupSystem = GetComponent<P2PickupSystem>();
         playerThrowManager = GetComponent<PlayerThrowManager>();
@@ -41,6 +43,8 @@ public class P2Input : MonoBehaviour
 
     void Update()
     {
+        if (!isInputEnabled) return;
+
         HandleMovementInput();
         HandleActionInput(Use);
         HandlePickupInput(InterectPick);
