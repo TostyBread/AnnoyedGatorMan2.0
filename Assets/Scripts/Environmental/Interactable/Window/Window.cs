@@ -10,6 +10,15 @@ public class Window : MonoBehaviour
     public GameObject WindowOn;
     public GameObject WindowOff;
 
+    private GameObject[] smokes;
+    private Smoke[] smoke;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {

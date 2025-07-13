@@ -83,8 +83,8 @@ public class PlayerPickupSystem : MonoBehaviour
 
         if (targetInteractable != null && targetInteractable.TryGetComponent(out LightSwitch lightSwitch))
         {
-            bool inLightInteractRange = Physics2D.OverlapCircle(transform.position, pickupRadius);
-            lightSwitch.ToggleLight(inLightInteractRange ? stateManager : null);
+            bool inInteractRange = Physics2D.OverlapCircle(transform.position, pickupRadius);
+            lightSwitch.ToggleLight(inInteractRange ? stateManager : null);
         }
 
         if (targetInteractable != null && targetInteractable.TryGetComponent(out ItemPackage package))
@@ -105,7 +105,6 @@ public class PlayerPickupSystem : MonoBehaviour
 
     public void StartLongInteraction(bool isPressed) // Similar to StartInteraction, but require player to keep pressing to interect
     {
-
         if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
         {
             window.SetWindowState(isPressed);
