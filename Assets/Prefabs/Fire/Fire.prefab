@@ -54,6 +54,7 @@ MonoBehaviour:
   burnRadius: 3
   spreadInterval: 3
   maxFireInstances: 10
+  smoke: {fileID: 7969457377182698580, guid: 8b8e0dd4a0012e44191d0f8db6dc7d31, type: 3}
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -78,6 +79,8 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
+  owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!70 &4289771224545664985
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -195,8 +198,11 @@ MonoBehaviour:
   hand: {fileID: 0}
   isPlayer2: 0
   isNotPlayer: 1
+  isHurt: 0
+  isHurtDur: 1
   enemy: 0
   sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
   canMove: 1
   isDefeated: 0
   characterAnimation: {fileID: 0}
