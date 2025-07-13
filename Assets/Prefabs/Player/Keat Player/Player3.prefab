@@ -2119,7 +2119,7 @@ MonoBehaviour:
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 1633062195450330644}
   playerPickupSystem: {fileID: 0}
-  p2PickSystem: {fileID: 0}
+  p2PickSystem: {fileID: 3248722360353963117}
   handSpriteManager: {fileID: 2772366505473075990}
   doorCauseThrow: 0
 --- !u!114 &3455622770561305545
@@ -2561,6 +2561,7 @@ GameObject:
   - component: {fileID: 4597505949454135459}
   - component: {fileID: 7544945629113373880}
   - component: {fileID: 5993165339022205552}
+  - component: {fileID: 5144282799484176078}
   m_Layer: 23
   m_Name: Range
   m_TagString: Untagged
@@ -2643,6 +2644,41 @@ MonoBehaviour:
   Layers: []
   AllItemInRange: []
 --- !u!58 &5993165339022205552
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606227184721757382}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1082130431
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!58 &5144282799484176078
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4836,7 +4872,7 @@ MonoBehaviour:
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 7221029706114965139}
   playerPickupSystem: {fileID: 0}
-  p2PickSystem: {fileID: 0}
+  p2PickSystem: {fileID: 4651203008582280569}
   handSpriteManager: {fileID: 6117825142480489361}
   doorCauseThrow: 0
 --- !u!114 &6731574886544173902
@@ -7045,7 +7081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6900787753550451279
 Transform:
   m_ObjectHideFlags: 0
@@ -7215,7 +7251,7 @@ MonoBehaviour:
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 5108823108073852574}
   playerPickupSystem: {fileID: 0}
-  p2PickSystem: {fileID: 0}
+  p2PickSystem: {fileID: 3592619829345639485}
   handSpriteManager: {fileID: 8518152165494807452}
   doorCauseThrow: 0
 --- !u!114 &9204007985203772227
@@ -7434,7 +7470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4562775364599266421
 Transform:
   m_ObjectHideFlags: 0
