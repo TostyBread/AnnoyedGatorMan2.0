@@ -249,3 +249,6 @@ AnnoyedGator_Test/Build/Annoyed Gator Man 2.0_Data/boot.config
 AnnoyedGator_Test/Build/Annoyed Gator Man 2.0_Data/globalgamemanagers
 AnnoyedGator_Test/Build/Annoyed Gator Man 2.0_Data/globalgamemanagers.assets
 AnnoyedGator_Test.zip
+Assets/Graphics/Demo/Animation/Weather/Normal.controller
+Assets/ItemBouncePhysics.physicsMaterial2D
+Assets/Scenes/2PlayerScene/Tutorial(Player2).unity
