@@ -25,7 +25,7 @@ public class P2PickupSystem : MonoBehaviour
     public bool HasUsableFunction => usableItemController != null;
 
     [Header("Interactable Settings")]
-    public bool inInterectRange;
+    public bool inWindowRange;
 
     [Header("Do not touch")]
     public GameObject Target;
@@ -51,7 +51,7 @@ public class P2PickupSystem : MonoBehaviour
             StartPickup();
         }
 
-        SetInInterectRange();
+        CheckWindowRange();
     }
 
     private void HandleItemDetection()
@@ -139,15 +139,20 @@ public class P2PickupSystem : MonoBehaviour
         else if (lastSmoke == null) isSmoking = false; // Update smoking state for animation purposes
     }
 
-    private void SetInInterectRange()
+    private void CheckWindowRange()
     {
-        if (targetInteractable != null && targetInteractable.TryGetComponent(out Interactable interactable))
+        inWindowRange = false;
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
         {
-            inInterectRange = true;
+            float distance = Vector2.Distance(transform.position, window.transform.position);
+            inWindowRange = distance <= pickupRadius;
         }
-        else
+
+        if (!inWindowRange && lastWindow != null)
         {
-            inInterectRange = false;
+            lastWindow.SetWindowState(false);
+            lastWindow = null;
         }
     }
 

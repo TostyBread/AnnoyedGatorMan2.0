@@ -10,7 +10,7 @@ public class PlayerPickupSystem : MonoBehaviour
     public List<string> validTags = new List<string>();
 
     [Header("Interactable Settings")]
-    public bool inInterectRange;
+    public bool inWindowRange;
 
     private Collider2D targetItem = null;
     private GameObject heldItem = null;
@@ -39,7 +39,7 @@ public class PlayerPickupSystem : MonoBehaviour
     void Update()
     {
         HandleItemDetection();
-        SetInInterectRange();
+        CheckWindowRange();
     }
 
     private void HandleItemDetection()
@@ -110,11 +110,6 @@ public class PlayerPickupSystem : MonoBehaviour
             window.SetWindowState(isPressed);
             lastWindow = window;
         }
-        else if (lastWindow != null)
-        { 
-            lastWindow.SetWindowState(false);
-            lastWindow = null;
-        }
 
         if (targetInteractable != null && targetInteractable.TryGetComponent(out Smoke smoke))
         {
@@ -132,15 +127,20 @@ public class PlayerPickupSystem : MonoBehaviour
         else if (lastSmoke == null) isSmoking = false; // Update smoking state for animation purposes
     }
 
-    private void SetInInterectRange()
+    private void CheckWindowRange()
     {
-        if (targetInteractable != null && targetInteractable.TryGetComponent(out Interactable interactable))
+        inWindowRange = false;
+
+        if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
         {
-            inInterectRange = true;
+            float distance = Vector2.Distance(transform.position, window.transform.position);
+            inWindowRange = distance <= pickupRadius;
         }
-        else
+
+        if (!inWindowRange && lastWindow != null)
         {
-            inInterectRange = false;
+            lastWindow.SetWindowState(false);
+            lastWindow = null;
         }
     }
 
