@@ -1022,6 +1022,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 8293320950161092410}
+  isHeatAdjusted: 0
 --- !u!50 &3697908153548041438
 Rigidbody2D:
   serializedVersion: 4
@@ -1682,7 +1683,7 @@ MonoBehaviour:
   oneHandedFirearmSprite: {fileID: 8379320732282349785}
   twoHandedFirearmSprite: {fileID: 2822233370122576813}
   throwSprite: {fileID: 6281071029595120442}
-  playerPickupSystem: {fileID: 4165462459781017302}
+  playerPickupSystem: {fileID: 0}
   p2PickSystem: {fileID: 8676885671384634941}
   playerThrowManager: {fileID: 7907473335032070475}
   P1FalseP2True: 1
@@ -1924,6 +1925,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 5274495434050756418}
+  isHeatAdjusted: 0
 --- !u!50 &681333337828859046
 Rigidbody2D:
   serializedVersion: 4
@@ -2249,7 +2251,6 @@ GameObject:
   - component: {fileID: 8304010822971714867}
   - component: {fileID: 8676885671384634941}
   - component: {fileID: 5934028520962642678}
-  - component: {fileID: 4165462459781017302}
   - component: {fileID: 7369277105014962439}
   - component: {fileID: 7907473335032070475}
   - component: {fileID: 3973685239878278951}
@@ -2261,7 +2262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5200459154275467747
 Transform:
   m_ObjectHideFlags: 0
@@ -2323,7 +2324,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 524416
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2388,7 +2389,7 @@ MonoBehaviour:
   - FoodBig
   handSpriteManager: {fileID: 8992552589754946480}
   characterFlip: {fileID: 3973685239878278951}
-  inInterectRange: 0
+  inWindowRange: 0
   Target: {fileID: 0}
   heldItem: {fileID: 0}
   isSmoking: 0
@@ -2416,30 +2417,6 @@ MonoBehaviour:
     throwKey: 0
   isInputEnabled: 1
   canThrow: 1
---- !u!114 &4165462459781017302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2818093456570068351}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e01270688804d214c99f86f137698a08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupRadius: 3
-  handPosition: {fileID: 7861414456826931372}
-  dropForce: 3
-  validTags:
-  - WeaponShort
-  - WeaponLong
-  - FoodSmall
-  - FoodBig
-  inInterectRange: 0
-  handSpriteManager: {fileID: 8992552589754946480}
-  characterFlip: {fileID: 3973685239878278951}
-  isSmoking: 0
 --- !u!114 &7369277105014962439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2480,7 +2457,7 @@ MonoBehaviour:
   throwSpriteDuration: 0.3
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 8358967207088524224}
-  playerPickupSystem: {fileID: 4165462459781017302}
+  playerPickupSystem: {fileID: 0}
   p2PickSystem: {fileID: 8676885671384634941}
   handSpriteManager: {fileID: 8992552589754946480}
   doorCauseThrow: 0
@@ -3860,7 +3837,6 @@ GameObject:
   - component: {fileID: 2095547594843332366}
   - component: {fileID: 3466615508349821706}
   - component: {fileID: 4355196105537233099}
-  - component: {fileID: 6334197144291712235}
   - component: {fileID: 607364502779857722}
   - component: {fileID: 258351894047503222}
   - component: {fileID: 6416636728494107930}
@@ -3999,7 +3975,7 @@ MonoBehaviour:
   - FoodBig
   handSpriteManager: {fileID: 1360881313135534477}
   characterFlip: {fileID: 6416636728494107930}
-  inInterectRange: 0
+  inWindowRange: 0
   Target: {fileID: 0}
   heldItem: {fileID: 0}
   isSmoking: 0
@@ -4027,30 +4003,6 @@ MonoBehaviour:
     throwKey: 0
   isInputEnabled: 1
   canThrow: 1
---- !u!114 &6334197144291712235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5274495434050756418}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e01270688804d214c99f86f137698a08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupRadius: 3
-  handPosition: {fileID: 229822649923000977}
-  dropForce: 3
-  validTags:
-  - WeaponShort
-  - WeaponLong
-  - FoodSmall
-  - FoodBig
-  inInterectRange: 0
-  handSpriteManager: {fileID: 1360881313135534477}
-  characterFlip: {fileID: 6416636728494107930}
-  isSmoking: 0
 --- !u!114 &607364502779857722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4091,7 +4043,7 @@ MonoBehaviour:
   throwSpriteDuration: 0.3
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 1884792541527898621}
-  playerPickupSystem: {fileID: 6334197144291712235}
+  playerPickupSystem: {fileID: 0}
   p2PickSystem: {fileID: 3466615508349821706}
   handSpriteManager: {fileID: 1360881313135534477}
   doorCauseThrow: 0
@@ -4607,6 +4559,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 2818093456570068351}
+  isHeatAdjusted: 0
 --- !u!50 &7448304762914500251
 Rigidbody2D:
   serializedVersion: 4
@@ -4742,7 +4695,7 @@ MonoBehaviour:
   oneHandedFirearmSprite: {fileID: 1900650404198521572}
   twoHandedFirearmSprite: {fileID: 5261245583386808720}
   throwSprite: {fileID: 4108404796530512135}
-  playerPickupSystem: {fileID: 6334197144291712235}
+  playerPickupSystem: {fileID: 0}
   p2PickSystem: {fileID: 3466615508349821706}
   playerThrowManager: {fileID: 258351894047503222}
   P1FalseP2True: 1
@@ -6133,7 +6086,6 @@ GameObject:
   - component: {fileID: 2824302046401032054}
   - component: {fileID: 7894489658684208211}
   - component: {fileID: 456496442276434099}
-  - component: {fileID: 7909051494440561811}
   - component: {fileID: 3623361525224045378}
   - component: {fileID: 4157059391178916622}
   - component: {fileID: 7145373999981550946}
@@ -6145,7 +6097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2028753347315139494
 Transform:
   m_ObjectHideFlags: 0
@@ -6207,7 +6159,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 524416
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -6272,7 +6224,7 @@ MonoBehaviour:
   - FoodBig
   handSpriteManager: {fileID: 2938559758896124405}
   characterFlip: {fileID: 7145373999981550946}
-  inInterectRange: 0
+  inWindowRange: 0
   Target: {fileID: 0}
   heldItem: {fileID: 0}
   isSmoking: 0
@@ -6300,30 +6252,6 @@ MonoBehaviour:
     throwKey: 0
   isInputEnabled: 1
   canThrow: 1
---- !u!114 &7909051494440561811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8293320950161092410}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e01270688804d214c99f86f137698a08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupRadius: 3
-  handPosition: {fileID: 4113317716684974825}
-  dropForce: 3
-  validTags:
-  - WeaponShort
-  - WeaponLong
-  - FoodSmall
-  - FoodBig
-  inInterectRange: 0
-  handSpriteManager: {fileID: 2938559758896124405}
-  characterFlip: {fileID: 7145373999981550946}
-  isSmoking: 0
 --- !u!114 &3623361525224045378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6364,7 +6292,7 @@ MonoBehaviour:
   throwSpriteDuration: 0.3
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 2309552781305350533}
-  playerPickupSystem: {fileID: 7909051494440561811}
+  playerPickupSystem: {fileID: 0}
   p2PickSystem: {fileID: 7894489658684208211}
   handSpriteManager: {fileID: 2938559758896124405}
   doorCauseThrow: 0
@@ -6685,7 +6613,7 @@ MonoBehaviour:
   oneHandedFirearmSprite: {fileID: 2325398549344250524}
   twoHandedFirearmSprite: {fileID: 8297526259021701608}
   throwSprite: {fileID: 227135691171930495}
-  playerPickupSystem: {fileID: 7909051494440561811}
+  playerPickupSystem: {fileID: 0}
   p2PickSystem: {fileID: 7894489658684208211}
   playerThrowManager: {fileID: 4157059391178916622}
   P1FalseP2True: 1

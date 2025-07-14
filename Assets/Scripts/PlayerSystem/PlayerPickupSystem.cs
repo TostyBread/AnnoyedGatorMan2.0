@@ -39,7 +39,7 @@ public class PlayerPickupSystem : MonoBehaviour
     void Update()
     {
         HandleItemDetection();
-        CheckWindowRange();
+        CheckLongInteractionRange();
     }
 
     private void HandleItemDetection()
@@ -116,19 +116,22 @@ public class PlayerPickupSystem : MonoBehaviour
             smoke.SetSmokeState(isPressed, this.gameObject);
             lastSmoke = smoke;
 
-            isSmoking = smoke.isSmoking; // Update smoking state for animation purposes
+            isSmoking = lastSmoke.isSmoking; // Update smoking state for animation purposes
         }
         else if (lastSmoke != null)
         {
             lastSmoke.SetSmokeState(false, this.gameObject);
             lastSmoke = null;
-
         }
-        else if (lastSmoke == null) isSmoking = false; // Update smoking state for animation purposes
+        else
+        {
+            isSmoking = false; // Reset smoking state if no smoke is present
+        }
     }
 
-    private void CheckWindowRange()
+    private void CheckLongInteractionRange()
     {
+        //Check if the player is within range of a window to interact with
         inWindowRange = false;
 
         if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))

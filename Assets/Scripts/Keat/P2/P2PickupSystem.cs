@@ -51,7 +51,7 @@ public class P2PickupSystem : MonoBehaviour
             StartPickup();
         }
 
-        CheckWindowRange();
+        CheckLongInteractionRange();
     }
 
     private void HandleItemDetection()
@@ -134,12 +134,11 @@ public class P2PickupSystem : MonoBehaviour
         {
             lastSmoke.SetSmokeState(false, this.gameObject);
             lastSmoke = null;
-
         }
         else if (lastSmoke == null) isSmoking = false; // Update smoking state for animation purposes
     }
 
-    private void CheckWindowRange()
+    private void CheckLongInteractionRange()
     {
         inWindowRange = false;
 
