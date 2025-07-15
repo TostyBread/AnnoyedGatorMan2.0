@@ -27,6 +27,8 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ChargeTimer = 0;
+
         if (UI == null)
         {
             UI = GameObject.Find("UI");
