@@ -24,7 +24,7 @@ public class P2Input : MonoBehaviour
     [SerializeField] private const float holdThreshold = 0.15f;
 
     [Header("Input")]
-    public KeyCode Use;
+    public KeyCode Attack;
     public KeyCode Throw;
     public KeyCode InterectPick;
     public KeyCode Interact;
@@ -46,7 +46,7 @@ public class P2Input : MonoBehaviour
         if (!isInputEnabled) return;
 
         HandleMovementInput();
-        HandleActionInput(Use);
+        HandleActionInput(Attack);
         HandlePickupInput(InterectPick);
         HandleThrowInput(Throw);
         HandleUsableItemInput(Toggle);

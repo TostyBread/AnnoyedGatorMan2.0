@@ -2077,7 +2077,7 @@ MonoBehaviour:
   - FoodBig
   handSpriteManager: {fileID: 2772366505473075990}
   characterFlip: {fileID: 3455622770561305545}
-  inInterectRange: 0
+  inWindowRange: 0
   Target: {fileID: 0}
   heldItem: {fileID: 0}
   isSmoking: 0
@@ -2138,6 +2138,7 @@ MonoBehaviour:
   isFlippingEnabled: 1
   useP2System: 1
   p2System: {fileID: 384187558237607496}
+  WASDControl: 0
   p3Input: {fileID: 4595801064096969231}
 --- !u!114 &5580755971419463573
 MonoBehaviour:
@@ -4830,7 +4831,7 @@ MonoBehaviour:
   - FoodBig
   handSpriteManager: {fileID: 6117825142480489361}
   characterFlip: {fileID: 6731574886544173902}
-  inInterectRange: 0
+  inWindowRange: 0
   Target: {fileID: 0}
   heldItem: {fileID: 0}
   isSmoking: 0
@@ -4891,6 +4892,7 @@ MonoBehaviour:
   isFlippingEnabled: 1
   useP2System: 1
   p2System: {fileID: 8632104866665838287}
+  WASDControl: 0
   p3Input: {fileID: 5573237110253916808}
 --- !u!114 &4606442261196177170
 MonoBehaviour:
@@ -7081,7 +7083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6900787753550451279
 Transform:
   m_ObjectHideFlags: 0
@@ -7209,7 +7211,7 @@ MonoBehaviour:
   - FoodBig
   handSpriteManager: {fileID: 8518152165494807452}
   characterFlip: {fileID: 9204007985203772227}
-  inInterectRange: 0
+  inWindowRange: 0
   Target: {fileID: 0}
   heldItem: {fileID: 0}
   isSmoking: 0
@@ -7270,6 +7272,7 @@ MonoBehaviour:
   isFlippingEnabled: 1
   useP2System: 1
   p2System: {fileID: 6132506772021421762}
+  WASDControl: 0
   p3Input: {fileID: 8036799228825010821}
 --- !u!114 &2106894190036905759
 MonoBehaviour:
@@ -7470,7 +7473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4562775364599266421
 Transform:
   m_ObjectHideFlags: 0
