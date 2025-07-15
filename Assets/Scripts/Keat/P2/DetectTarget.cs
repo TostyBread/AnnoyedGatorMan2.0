@@ -8,6 +8,11 @@ public class DetectTarget : MonoBehaviour
     public List<string> Layers = new List<string>();
     public List<GameObject> AllItemInRange = new List<GameObject>();
 
+    private void Update()
+    {
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         foreach (var tag in Tags)
@@ -51,4 +56,6 @@ public class DetectTarget : MonoBehaviour
             }
         }
     }
+
+
 }

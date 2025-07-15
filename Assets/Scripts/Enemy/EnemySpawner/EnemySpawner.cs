@@ -10,6 +10,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject UI;
 
     public float MaxSpawnedEnemy = 5;
+    public int MinSpawn = 25;
+    public int MaxSpawn = 30;
 
     private Timer timer;
     private Sanity sanity;
@@ -33,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
 
         timer = UI.GetComponentInChildren<Timer>();
         sanity = UI.GetComponentInChildren<Sanity>();
-        ChargeReadyTime = Random.Range(10,20);
+        ChargeReadyTime = Random.Range(MinSpawn,MaxSpawn);
 
         if (Spawners.Count == 0)
         {
@@ -81,10 +83,10 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("Let's spawn enemy");
             currentSpawnedEnemy++;
 
-            Transform spawner = Spawners[Random.Range(0, Spawners.Count)];
+            Transform spawner = Spawners[Random.Range(0, Spawners.Count)]; // Randomly select a spawner from the list
             GameObject enemy = Instantiate(Enemies[Random.Range(0, Enemies.Count)], spawner.position, spawner.rotation);
 
-            ChargeReadyTime = Random.Range(5, 10);
+            ChargeReadyTime = Random.Range(MinSpawn, MaxSpawn);
 
             if (sanity.RemainSanity <= 0) //If sanity is empty...
             {

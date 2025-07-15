@@ -40,6 +40,8 @@ public class PlayerPickupSystem : MonoBehaviour
     {
         HandleItemDetection();
         CheckLongInteractionRange();
+
+        GetInteractableInRange();
     }
 
     private void HandleItemDetection()
@@ -145,6 +147,11 @@ public class PlayerPickupSystem : MonoBehaviour
             lastWindow.SetWindowState(false);
             lastWindow = null;
         }
+    }
+
+    private void GetInteractableInRange()
+    {
+
     }
 
     public void StartPickup()
