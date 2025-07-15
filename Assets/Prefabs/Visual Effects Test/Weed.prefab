@@ -62,9 +62,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.1
-  normalBounceFactor: 1.5
-  playerBounceDamping: 0.5
+  reducedBounceFactor: 0.3
+  normalBounceFactor: 0.5
+  playerBounceDamping: 0.1
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &3059232471279035865
 MonoBehaviour:
@@ -91,7 +91,9 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0, b: 0, a: 0}
+  isFreezed: 0
   weatherManager: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!50 &3962942707464195845
 Rigidbody2D:
   serializedVersion: 4
@@ -311,7 +313,7 @@ MonoBehaviour:
   - {x: -5.8451195, y: -7.840394, z: 0}
   m_ShapePathHash: 386572175
   m_Mesh: {fileID: 0}
-  m_InstanceId: -26252
+  m_InstanceId: -24626
   m_LocalBounds:
     m_Center: {x: 0.1285677, y: 0.11383152, z: 0}
     m_Extent: {x: 9.696107, y: 9.055743, z: 0}

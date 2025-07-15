@@ -12,9 +12,9 @@ public class PlayerPickupSystem : MonoBehaviour
     [Header("Interactable Settings")]
     public bool inWindowRange;
 
-    private Collider2D targetItem = null;
+    public Collider2D targetItem = null; // public it for pickup prompt UI to access
     private GameObject heldItem = null;
-    private Collider2D targetInteractable = null;
+    public Collider2D targetInteractable = null; // public it for pickup prompt UI to access it
 
     [Header("References")]
     public HandSpriteManager handSpriteManager;

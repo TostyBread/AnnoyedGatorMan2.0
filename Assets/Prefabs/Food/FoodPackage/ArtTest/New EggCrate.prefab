@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2398141705828826229}
-  - component: {fileID: 5499977952820011501}
   - component: {fileID: 5242678709779233723}
   - component: {fileID: 2712231448871619377}
   - component: {fileID: 6121077163025620435}
@@ -38,22 +37,6 @@ Transform:
   - {fileID: 8914270112926744320}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5499977952820011501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3418914400270966977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.1
-  normalBounceFactor: 1.5
-  playerBounceDamping: 0.5
-  bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &5242678709779233723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +142,7 @@ MonoBehaviour:
   - {x: 0.8617983, y: -0.25383043, z: 0}
   m_ShapePathHash: 1692569045
   m_Mesh: {fileID: 0}
-  m_InstanceId: -373246
+  m_InstanceId: 157668
   m_LocalBounds:
     m_Center: {x: -0.0059330463, y: -0.000988245, z: 0}
     m_Extent: {x: 0.96304345, y: 0.26219296, z: 0}

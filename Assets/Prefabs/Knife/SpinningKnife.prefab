@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1f2bd71c86f3e234fadd64d230e0fa26, type: 3}
+  m_Sprite: {fileID: 82171953, guid: 6ba3beaedcd2a5944b0678543d331892, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -169,6 +169,9 @@ MonoBehaviour:
   isColdSource: 0
   isStunSource: 0
   minVelocityToDamage: 0
+  playHitSound: 1
+  owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!1 &8859514281874207021
 GameObject:
   m_ObjectHideFlags: 0

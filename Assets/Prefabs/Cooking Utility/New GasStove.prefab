@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireCollider: {fileID: 9038909520146935392}
   isOn: 0
-  fireActivationDelay: 0.5
+  fireActivationDelay: 0.3
   requiredImpactForce: 5
   AudioName: ElectricStoveOn
   itemLayer:
@@ -266,7 +266,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2378048
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -467,6 +467,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!58 &8716779898424285671
 CircleCollider2D:
   m_ObjectHideFlags: 0

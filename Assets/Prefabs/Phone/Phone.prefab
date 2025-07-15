@@ -62,9 +62,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.1
-  normalBounceFactor: 1.5
-  playerBounceDamping: 0.5
+  reducedBounceFactor: 0.3
+  normalBounceFactor: 0.5
+  playerBounceDamping: 0.1
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &2099453060003338331
 MonoBehaviour:

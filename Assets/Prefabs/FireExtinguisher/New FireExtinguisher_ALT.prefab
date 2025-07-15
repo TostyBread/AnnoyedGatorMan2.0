@@ -201,9 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.1
-  normalBounceFactor: 1.5
-  playerBounceDamping: 0.5
+  reducedBounceFactor: 0.3
+  normalBounceFactor: 0.5
+  playerBounceDamping: 0.1
   bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &2360329714211092364
 MonoBehaviour:
@@ -229,6 +229,7 @@ MonoBehaviour:
   firearmPrefix: FireExtinguisher
   firearmAudio: FireExtinguisher
   animator: {fileID: 2460957896020143347}
+  isUsable: 1
   owner: {fileID: 0}
 --- !u!50 &2498105762477864858
 Rigidbody2D:
@@ -242,7 +243,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 4
   m_LinearDrag: 2.25
   m_AngularDrag: 1.5
   m_GravityScale: 0
@@ -331,7 +332,7 @@ MonoBehaviour:
   - {x: 0.32943535, y: 0.14271113, z: 0}
   m_ShapePathHash: -808748469
   m_Mesh: {fileID: 0}
-  m_InstanceId: -504674
+  m_InstanceId: -1634
   m_LocalBounds:
     m_Center: {x: 0.0016460419, y: -0.54619986, z: 0}
     m_Extent: {x: 0.433012, y: 0.9344179, z: 0}

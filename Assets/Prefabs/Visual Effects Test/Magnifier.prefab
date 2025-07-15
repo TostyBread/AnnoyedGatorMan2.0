@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4740534620556151939}
   - component: {fileID: 804756675693213113}
   - component: {fileID: 5084439454092531256}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ MonoBehaviour:
   - {x: -6.2044983, y: -2.5438144, z: 0}
   m_ShapePathHash: 365628945
   m_Mesh: {fileID: 0}
-  m_InstanceId: -66738
+  m_InstanceId: -1606
   m_LocalBounds:
     m_Center: {x: -0.048265457, y: 0.031505585, z: 0}
     m_Extent: {x: 8.45625, y: 8.453963, z: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 5754576096126509494}
   - component: {fileID: 579020278113565167}
   - component: {fileID: 2821042672998498462}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BurningSunRay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,6 +403,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!114 &579020278113565167
 MonoBehaviour:
   m_ObjectHideFlags: 0
