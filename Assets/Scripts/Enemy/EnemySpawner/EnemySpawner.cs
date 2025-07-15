@@ -24,6 +24,11 @@ public class EnemySpawner : MonoBehaviour
 
     bool SanityIsEmptyOnce;
 
+    private Transform spawner;
+    public WeatherManager weatherManager;
+    [Header("do not touch, just for Refrence")]
+    public GameObject EnemyForCurrentWeather;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
         timer = UI.GetComponentInChildren<Timer>();
         sanity = UI.GetComponentInChildren<Sanity>();
-        ChargeReadyTime = Random.Range(MinSpawn,MaxSpawn);
+        ChargeReadyTime = Random.Range(MinSpawn, MaxSpawn);
 
         if (Spawners.Count == 0)
         {
@@ -53,6 +58,8 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
+
+        EnemyForCurrentWeather = GetEnemyByWeather();
     }
 
     // Update is called once per frame
@@ -62,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
         {
             foreach (Transform spawner in Spawners)
             {
-                GameObject enemy = Instantiate(Enemies[Random.Range(0, Enemies.Count)], spawner.position, spawner.rotation);
+                GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation);
             }
             ChargeReadyTime = Random.Range(5, 10);
             ChargeTimer = 0;
@@ -85,9 +92,8 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("Let's spawn enemy");
             currentSpawnedEnemy++;
 
-            Transform spawner = Spawners[Random.Range(0, Spawners.Count)]; // Randomly select a spawner from the list
-            GameObject enemy = Instantiate(Enemies[Random.Range(0, Enemies.Count)], spawner.position, spawner.rotation);
-
+            spawner = Spawners[Random.Range(0, Spawners.Count)]; // Randomly select a spawner from the list
+            GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation);
             ChargeReadyTime = Random.Range(MinSpawn, MaxSpawn);
 
             if (sanity.RemainSanity <= 0) //If sanity is empty...
@@ -96,7 +102,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     foreach (Transform spawnPos in Spawners)
                     {
-                        GameObject enemies = Instantiate(Enemies[Random.Range(0, Enemies.Count)], spawnPos.position, spawnPos.rotation);
+                        Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation);
                     }
                     SanityIsEmptyOnce = true;
                 }
@@ -107,4 +113,21 @@ public class EnemySpawner : MonoBehaviour
             ChargeTimer = 0;
         }
     }
+
+    GameObject GetEnemyByWeather()
+    {
+        if (weatherManager.weather == WeatherManager.Weather.Normal)
+            return Enemies.Find(e => e.name.Contains("Fly"));
+        else if (weatherManager.weather == WeatherManager.Weather.Rainy)
+            return Enemies.Find(e => e.name.Contains("Cockroach"));
+        else if (weatherManager.weather == WeatherManager.Weather.Cold)
+            return Enemies.Find(e => e.name.Contains("Mouse"));
+        else if (weatherManager.weather == WeatherManager.Weather.Hot)
+            return Enemies.Find(e => e.name.Contains("Mosquitoe"));
+
+        return null;
+    }
+
 }
+
+
