@@ -43,6 +43,7 @@ public class EnemySpawner : MonoBehaviour
         timer = UI.GetComponentInChildren<Timer>();
         sanity = UI.GetComponentInChildren<Sanity>();
         ChargeReadyTime = Random.Range(MinSpawn, MaxSpawn);
+        weatherManager = FindAnyObjectByType<WeatherManager>();
 
         if (Spawners.Count == 0)
         {
