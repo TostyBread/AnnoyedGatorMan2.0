@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 131710383803856758}
   - component: {fileID: 7563871146662979167}
   - component: {fileID: 652473883342814106}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,9 +348,9 @@ MonoBehaviour:
   enemy: 1
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 521707647301289601, guid: 25f39d37a50e40d4f88502ad76e0571d, type: 3}
+  isPlayer: 0
   canMove: 1
   isDefeated: 0
-  characterAnimation: {fileID: 0}
   reviveBoostKey: 32
 --- !u!1 &1605733860555913360
 GameObject:
@@ -362,7 +362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3754072012417083061}
   - component: {fileID: 3059057782138244606}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: EnemyMovePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 851265237261152448}
   - component: {fileID: 8125402771757236077}
   - component: {fileID: 4764890473617400535}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: CanMoveCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +670,7 @@ MonoBehaviour:
   - {x: 2.1552315, y: -2.4399996, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -12344
+  m_InstanceId: 131668
   m_LocalBounds:
     m_Center: {x: 0, y: 0.00000047683716, z: 0}
     m_Extent: {x: 2.1552315, y: 2.44, z: 0}

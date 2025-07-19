@@ -253,7 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2300930936024873380}
   - component: {fileID: 5881082056049207612}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: P2 System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2337999398782853878}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 87374135014244346}
   - component: {fileID: 863234850398818225}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: P2Throw
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -541,7 +541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044526143927048882}
   - component: {fileID: 3529903867465034019}
-  m_Layer: 22
+  m_Layer: 5
   m_Name: Arrow
   m_TagString: P2 & P3 Arrow
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3858010560090123370}
   - component: {fileID: 5475557679383903271}
-  m_Layer: 22
+  m_Layer: 5
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 8274743568540546755}
   - component: {fileID: 3274238718748333650}
   - component: {fileID: 4483962361863701572}
-  m_Layer: 23
+  m_Layer: 5
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1179,7 +1179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3612417294224215894}
   - component: {fileID: 5542450081210292888}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ThrowDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1429,7 +1429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8358967207088524224}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ThrowPos
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -1698,7 +1698,7 @@ GameObject:
   - component: {fileID: 5255918189889799867}
   - component: {fileID: 1681355676426233386}
   - component: {fileID: 297011981505819708}
-  m_Layer: 23
+  m_Layer: 5
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2503,9 +2503,9 @@ MonoBehaviour:
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
+  isPlayer: 1
   canMove: 1
   isDefeated: 0
-  characterAnimation: {fileID: 8379948267315764999}
   reviveBoostKey: 32
 --- !u!114 &5152206888217343750
 MonoBehaviour:
@@ -2854,7 +2854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1898039373030265486}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2886,7 +2886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4256856574229696386}
   - component: {fileID: 3593834388320272329}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: P2Throw
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -3019,7 +3019,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2241862870694251814}
   - component: {fileID: 6858312246700691137}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3462,7 +3462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7027377173111418415}
   - component: {fileID: 2301687771678965346}
-  m_Layer: 22
+  m_Layer: 5
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3546,7 +3546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7794923358748104951}
   - component: {fileID: 7273479128032602982}
-  m_Layer: 22
+  m_Layer: 5
   m_Name: Arrow
   m_TagString: P2 & P3 Arrow
   m_Icon: {fileID: 0}
@@ -4089,9 +4089,9 @@ MonoBehaviour:
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
+  isPlayer: 1
   canMove: 1
   isDefeated: 0
-  characterAnimation: {fileID: 1901269164680834362}
   reviveBoostKey: 32
 --- !u!114 &7410551004343331725
 MonoBehaviour:
@@ -4215,7 +4215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2309552781305350533}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ThrowPos
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -4332,7 +4332,7 @@ GameObject:
   - component: {fileID: 2799516070653768838}
   - component: {fileID: 8753947246209078295}
   - component: {fileID: 7653329241169561089}
-  m_Layer: 23
+  m_Layer: 5
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4784,7 +4784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7362760886511488275}
   - component: {fileID: 1794287099785107677}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ThrowDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4870,7 +4870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5468115525268028385}
   - component: {fileID: 401355416575060857}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: P2 System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5175,7 +5175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8157592122974519067}
   - component: {fileID: 3532152591116647676}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5259,7 +5259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5408990281171226467}
   - component: {fileID: 802120950799682692}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5451,7 +5451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5646135864065167563}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5483,7 +5483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8007205419126705607}
   - component: {fileID: 7337480013471006092}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: P2Throw
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -5572,7 +5572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8198707229315943321}
   - component: {fileID: 4590549350476241665}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: P2 System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6050,7 +6050,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1884792541527898621}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ThrowPos
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -6338,9 +6338,9 @@ MonoBehaviour:
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
+  isPlayer: 1
   canMove: 1
   isDefeated: 0
-  characterAnimation: {fileID: 2326009063288053058}
   reviveBoostKey: 32
 --- !u!114 &8985772548165337478
 MonoBehaviour:
@@ -6627,7 +6627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6631769066212408683}
   - component: {fileID: 2505013271298975909}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ThrowDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6797,7 +6797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6603205722011688535}
   - component: {fileID: 2725858673005104666}
-  m_Layer: 22
+  m_Layer: 5
   m_Name: decotrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7030,7 +7030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6199257315191335055}
   - component: {fileID: 6833535594886470430}
-  m_Layer: 22
+  m_Layer: 5
   m_Name: Arrow
   m_TagString: P2 & P3 Arrow
   m_Icon: {fileID: 0}

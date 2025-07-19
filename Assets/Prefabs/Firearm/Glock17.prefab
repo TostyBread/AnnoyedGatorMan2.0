@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b049628e1390bd349b56e58129fc0ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 20
+  maxAmmo: 30
   projectilePrefab: {fileID: 7024173470581301209, guid: 2484b13aeb71a284cbd270aef8cdf8d4, type: 3}
   muzzlePoint: {fileID: 2528075240512910021}
   projectileSpeed: 15
@@ -229,6 +229,8 @@ MonoBehaviour:
   firearmPrefix: Glock17
   firearmAudio: glock18
   animator: {fileID: 6949160811402672166}
+  isUsable: 1
+  owner: {fileID: 0}
 --- !u!50 &4248429712091498661
 Rigidbody2D:
   serializedVersion: 4

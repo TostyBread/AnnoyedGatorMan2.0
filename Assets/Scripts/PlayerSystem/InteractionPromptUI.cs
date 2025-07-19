@@ -1,32 +1,49 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class InteractionPromptUI : MonoBehaviour
 {
     [Header("References")]
     public PlayerPickupSystem playerPickupSystem;
+    public PlayerInputManager playerInputManager;
 
-    [Header("Prompt Images (World Space)")]
-    public GameObject pickupPromptImage;
-    public GameObject interactPromptImage;
+    [Header("Prompt UI")]
+    public GameObject promptRoot;
+    public Image radialFill;
+    public TMP_Text keyBindText;
 
     [Header("Prompt Offset")]
-    public Vector3 worldOffset = new Vector3(0f, 1f, 0f); // Offset above the object
+    public Vector3 worldOffset = new Vector3(0f, 1f, 0f);
+
+    private Transform targetTransform;
+    private bool isPickupTarget;
+
+    void Start()
+    {
+        if (playerInputManager != null && keyBindText != null)
+        {
+            keyBindText.text = playerInputManager.inputConfig.pickupKey.ToString();
+        }
+    }
 
     void Update()
     {
-        if (playerPickupSystem == null || ScreenToWorldPointMouse.Instance == null)
+        if (playerPickupSystem == null || ScreenToWorldPointMouse.Instance == null || playerInputManager == null)
             return;
 
         Collider2D target = playerPickupSystem.targetItem ?? playerPickupSystem.targetInteractable;
 
         if (target != null && IsMouseOver(target) && IsWithinRange(target))
         {
-            bool isPickup = playerPickupSystem.validTags.Contains(target.tag);
-            ShowPrompt(isPickup, target.transform.position + worldOffset);
+            isPickupTarget = playerPickupSystem.validTags.Contains(target.tag);
+            targetTransform = target.transform;
+            ShowPrompt(targetTransform.position + worldOffset);
+            UpdateRadialProgress();
         }
         else
         {
-            HidePrompts();
+            HidePrompt();
         }
     }
 
@@ -41,26 +58,35 @@ public class InteractionPromptUI : MonoBehaviour
         return Physics2D.OverlapCircle(playerPickupSystem.transform.position, playerPickupSystem.pickupRadius, 1 << collider.gameObject.layer) == collider;
     }
 
-    private void ShowPrompt(bool showPickup, Vector3 worldPosition)
+    private void ShowPrompt(Vector3 worldPosition)
     {
-        if (pickupPromptImage != null)
+        if (promptRoot != null)
         {
-            pickupPromptImage.SetActive(showPickup);
-            if (showPickup)
-                pickupPromptImage.transform.position = worldPosition;
-        }
-
-        if (interactPromptImage != null)
-        {
-            interactPromptImage.SetActive(!showPickup);
-            if (!showPickup)
-                interactPromptImage.transform.position = worldPosition;
+            promptRoot.SetActive(true);
+            promptRoot.transform.position = worldPosition;
         }
     }
 
-    private void HidePrompts()
+    private void HidePrompt()
     {
-        if (pickupPromptImage != null) pickupPromptImage.SetActive(false);
-        if (interactPromptImage != null) interactPromptImage.SetActive(false);
+        if (promptRoot != null)
+            promptRoot.SetActive(false);
+
+        if (radialFill != null)
+            radialFill.fillAmount = 0f;
+    }
+
+    private void UpdateRadialProgress()
+    {
+        if (radialFill == null || playerInputManager == null) return;
+
+        if (isPickupTarget && playerInputManager.IsPickupKeyHeld())
+        {
+            radialFill.fillAmount = playerInputManager.PickupHoldProgress();
+        }
+        else
+        {
+            radialFill.fillAmount = 0f;
+        }
     }
 }

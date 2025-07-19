@@ -146,7 +146,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2361609
+    m_Bits: 2361641
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

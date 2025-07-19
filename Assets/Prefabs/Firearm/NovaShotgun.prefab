@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b049628e1390bd349b56e58129fc0ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 10
+  maxAmmo: 15
   projectilePrefab: {fileID: 8867884701911523321, guid: 2c273de532be14b4abf5648a0058a73c, type: 3}
   muzzlePoint: {fileID: 3005906734813512820}
   projectileSpeed: 15
@@ -92,6 +92,8 @@ MonoBehaviour:
   firearmPrefix: NovaShotgun
   firearmAudio: m3
   animator: {fileID: 1617802588895170693}
+  isUsable: 1
+  owner: {fileID: 0}
 --- !u!50 &3491707561014933851
 Rigidbody2D:
   serializedVersion: 4
@@ -216,7 +218,7 @@ MonoBehaviour:
   - {x: -0.39794922, y: 0.25055313, z: 0}
   m_ShapePathHash: 36938929
   m_Mesh: {fileID: 0}
-  m_InstanceId: -158972
+  m_InstanceId: 50468
   m_LocalBounds:
     m_Center: {x: 1.4380834, y: -0.04985881, z: 0}
     m_Extent: {x: 2.0469997, y: 0.47969747, z: 0}

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class EnemyAnimation : MonoBehaviour
 {
@@ -28,10 +25,10 @@ public class EnemyAnimation : MonoBehaviour
         transform.position = Enemy.transform.position;
         HandleAnimationFlip();
 
-        if (healthManager.currentHealth <= 0)
-        {
-            HandleDieAni();
-        }
+        //if (healthManager.currentHealth <= 0)  // Too much warning log, pls implement enemy death animation before uncommenting
+        //{
+        //    HandleDieAni();
+        //}
 
         HandleMovingAni(enemyMovement.isMoving);
         HandleAttackAni(enemyMovement.isAttacking);

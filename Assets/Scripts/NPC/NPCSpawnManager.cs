@@ -75,8 +75,10 @@ public class NPCSpawnManager : MonoBehaviour
 
     private float CalculateSpawnInterval()
     {
-        int extraNPCs = Mathf.Max(0, activeNPCs.Count - slowDownThreshold);
-        float interval = baseInterval + extraNPCs * intervalGrowthPerNPC;
-        return Mathf.Min(interval, maxInterval);
+        if (activeNPCs.Count <= slowDownThreshold)
+            return baseInterval;
+
+        float fillRatio = (float)activeNPCs.Count / maxNPCs;
+        return Mathf.Lerp(baseInterval, maxInterval, fillRatio);
     }
 }

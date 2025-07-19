@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 8232638960815641774}
   - component: {fileID: 870540722154713486}
   - component: {fileID: 6418998697167385254}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: TeddyBear
   m_TagString: Interectable
   m_Icon: {fileID: 0}
@@ -781,7 +781,7 @@ MonoBehaviour:
   - {x: -4.1161175, y: -2.73939, z: 0}
   m_ShapePathHash: 1566888226
   m_Mesh: {fileID: 0}
-  m_InstanceId: -2254
+  m_InstanceId: -167702
   m_LocalBounds:
     m_Center: {x: 0.039346218, y: 0.06034279, z: 0}
     m_Extent: {x: 4.1748757, y: 5.1594234, z: 0}
