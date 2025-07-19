@@ -43,11 +43,6 @@ public class ClickerDetector : MonoBehaviour
                 screen.SetActive(false);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ClosePopUpScreens();
-        }
     }
 
     public void ClosePopUpScreens()
