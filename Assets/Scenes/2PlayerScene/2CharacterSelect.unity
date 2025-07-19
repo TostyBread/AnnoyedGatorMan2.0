@@ -2410,7 +2410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 964359623922970147, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 964359623922970147, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
       propertyPath: screens.Array.size

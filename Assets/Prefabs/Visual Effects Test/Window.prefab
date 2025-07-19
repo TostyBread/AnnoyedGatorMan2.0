@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d0c4dd702eff1439737f161a2ebc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteWithBorder: {fileID: -721857361, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  spriteWithBorder: {fileID: 908622817, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
   spriteWithBorderScale: 1
 --- !u!1 &2529040808014472557
 GameObject:
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d0c4dd702eff1439737f161a2ebc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteWithBorder: {fileID: 159454435, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  spriteWithBorder: {fileID: -1190873215, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
   spriteWithBorderScale: 1
 --- !u!1 &8161110251486840855
 GameObject:
