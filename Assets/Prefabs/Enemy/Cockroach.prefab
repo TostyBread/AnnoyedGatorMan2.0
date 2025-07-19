@@ -229,7 +229,7 @@ MonoBehaviour:
   - {x: -6.2044983, y: -2.5438144, z: 0}
   m_ShapePathHash: 365628945
   m_Mesh: {fileID: 0}
-  m_InstanceId: -73786
+  m_InstanceId: -35210
   m_LocalBounds:
     m_Center: {x: -0.048265457, y: 0.031505585, z: 0}
     m_Extent: {x: 8.45625, y: 8.453963, z: 0}
@@ -551,8 +551,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13270551, y: -0.34231803}
-  m_Size: {x: 1.6193671, y: 0.66732925}
+  m_Offset: {x: -0.12418716, y: -0.24705417}
+  m_Size: {x: 1.7516317, y: 0.72484595}
   m_Direction: 1
 --- !u!1 &9176418919688273743
 GameObject:
