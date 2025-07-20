@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,7 +95,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ProjectileWord_Blow1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 748
+        width: 227
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c0e4f19e93d7d04b85e488f763aa6b7
+      internalID: 11188530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ProjectileWord_2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 255
+        width: 458
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cf190288c9740f41a0f53972af9816f
+      internalID: -908839441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ProjectileWord_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 47
+        width: 466
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebf0ce559daaf6a48b0eef6f5c14a4b6
+      internalID: 1128333962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ProjectileWord_Blow2
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 740
+        width: 247
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00b57085c3af3a14ebd44a89e021ce41
+      internalID: 167917828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ProjectileWord_Blow3
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 734
+        width: 239
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10a0367074e4d5d48a1ac2b33a8f21b3
+      internalID: 1016359233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +211,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EnemyProjectileWORDS_AFM_10: 403695548
+      EnemyProjectileWORDS_AFM_11: 1568585445
+      EnemyProjectileWORDS_AFM_13: -530361834
+      EnemyProjectileWORDS_AFM_3: 158325811
+      EnemyProjectileWORDS_AFM_4: 614729006
+      EnemyProjectileWORDS_AFM_5: -380318207
+      EnemyProjectileWORDS_AFM_6: 772273955
+      EnemyProjectileWORDS_AFM_7: -2078128269
+      EnemyProjectileWORDS_AFM_8: 148109866
+      EnemyProjectileWORDS_AFM_9: -1701379522
+      ProjectileWord_1: 1128333962
+      ProjectileWord_2: -908839441
+      ProjectileWord_Blow1: 11188530
+      ProjectileWord_Blow2: 167917828
+      ProjectileWord_Blow3: 1016359233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

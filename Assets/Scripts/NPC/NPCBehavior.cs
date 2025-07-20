@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
@@ -24,7 +23,7 @@ public class NPCBehavior : MonoBehaviour
     private GameObject platePrefab;
     private GameObject attachedPlate;
     private GameObject attachedMenu;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb; // for NPCAngerBehavior to access
     private Vector3 arrivedPosition;
     private bool returningToArrivedPoint = false;
     private bool menuAlreadySpawned = false;
@@ -34,6 +33,7 @@ public class NPCBehavior : MonoBehaviour
     public int customerId { get; private set; }
     private NPCState state = NPCState.Approaching;
     private Collider2D npcCollider;
+    private NPCAngerBehavior angerBehavior;
 
     [Header("Score")]
     public int score;
@@ -43,6 +43,7 @@ public class NPCBehavior : MonoBehaviour
 
     void Awake()
     {
+        angerBehavior = GetComponent<NPCAngerBehavior>();
         rb = GetComponent<Rigidbody2D>();
         npcCollider = GetComponent<Collider2D>(); // Cache collider
         scoreManager = FindObjectOfType<ScoreManager>();
@@ -67,6 +68,9 @@ public class NPCBehavior : MonoBehaviour
 
             return; // Skip other states while returning
         }
+
+        if (angerBehavior != null && angerBehavior.IsAngry) // if its angry, skip other states
+            return;
 
         switch (state)
         {
@@ -199,7 +203,9 @@ public class NPCBehavior : MonoBehaviour
     {
         if (state == NPCState.Frustrated) return;
 
-        Debug.Log("NPC " + customerId + " is now frustrated and leaving.");
+        //Debug.Log("NPC " + customerId + " is now frustrated and leaving.");
+
+        angerBehavior?.TriggerAngerMode(null);
 
         state = NPCState.Frustrated;
         currentWaypointIndex = 0;
@@ -216,7 +222,11 @@ public class NPCBehavior : MonoBehaviour
         GetComponent<NPCPatience>()?.StopPatience(); // Stop and hide patience bar
 
         // Disable collider to avoid physical push during frustration exit
-        npcCollider.enabled = false;
+        if (angerBehavior == null || !angerBehavior.IsAngry)
+        {
+            npcCollider.enabled = false;
+        }
+
 
         //AudioManager.Instance.PlaySound("frustrated", 1f, transform.position);
     }
@@ -279,13 +289,22 @@ public class NPCBehavior : MonoBehaviour
     {
         if (collision.relativeVelocity.magnitude > forceEscapeThreshold)
         {
+            angerBehavior?.RegisterHit(collision.gameObject); // Register who hit them for NPCAngerBehavior
+
             if (attachedMenu != null)
             {
                 Destroy(attachedMenu);
                 attachedMenu = null;
             }
             ForceEscape();
-            npcCollider.enabled = false; // Disable their collider when escaping
+
+            // Only disable collider if not angry
+            if (angerBehavior == null || !angerBehavior.IsAngry)
+            {
+                npcCollider.enabled = false;
+            }
+
+
             AudioManager.Instance.PlaySound("scream", transform.position);
         }
 

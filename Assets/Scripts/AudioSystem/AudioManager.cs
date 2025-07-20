@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
     // you must name your audio file in "Example_1" as in name followed by underscore before a number
     // like "Example_1" "Example_2" will be recognize and stored as "Example"
     // and when you want to instantiate it, you need to put the following code:
-    // AudioManager.Instance.PlaySound("Example"); or AudioManager.Instance.PlaySound("Example", 1f, transform.position);
+    // AudioManager.Instance.PlaySound("Example"); or AudioManager.Instance.PlaySound("Example", transform.position);
     // not "Example_1", the system will not recognize it
     // IF THERE IS NO VARIATION, DO NOT USE UNDERSCORE
 
