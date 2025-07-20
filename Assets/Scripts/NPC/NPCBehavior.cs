@@ -225,10 +225,8 @@ public class NPCBehavior : MonoBehaviour
         if (angerBehavior == null || !angerBehavior.IsAngry)
         {
             npcCollider.enabled = false;
+            //AudioManager.Instance.PlaySound("frustrated", 1f, transform.position);
         }
-
-
-        //AudioManager.Instance.PlaySound("frustrated", 1f, transform.position);
     }
 
     private void MoveAlongPath(Vector3[] path)
@@ -302,10 +300,8 @@ public class NPCBehavior : MonoBehaviour
             if (angerBehavior == null || !angerBehavior.IsAngry)
             {
                 npcCollider.enabled = false;
+                AudioManager.Instance.PlaySound("scream", transform.position);
             }
-
-
-            AudioManager.Instance.PlaySound("scream", transform.position);
         }
 
         if (state == NPCState.Arrived)

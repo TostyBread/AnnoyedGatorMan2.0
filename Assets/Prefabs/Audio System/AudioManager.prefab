@@ -156,8 +156,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bbcabd9fe2f78be49b3a827f80c13fcc, type: 3}
   - {fileID: 8300000, guid: a899890729b0ad44a878af26fb1d3786, type: 3}
   - {fileID: 8300000, guid: 5a8ae54a4d389ca4cbd26811d40a3fde, type: 3}
-  - {fileID: 8300000, guid: 6dda1ed9de83ca241abe99d54efacb2e, type: 3}
+  - {fileID: 8300000, guid: 1401e3c81d9cee94c9b93d557e128683, type: 3}
   - {fileID: 8300000, guid: 6dc883a215ce0894d8e63c3b6d4ed2be, type: 3}
+  - {fileID: 8300000, guid: 1c87270c79fcbda4184a4787aa01e723, type: 3}
+  - {fileID: 8300000, guid: 27d18971bcf58dd41864d7a5126154b0, type: 3}
+  - {fileID: 8300000, guid: b029876c3d3c7ef4a8b4b0cc25cc21d7, type: 3}
+  - {fileID: 8300000, guid: adc006156f31ef544989c1a16fa05f7d, type: 3}
+  - {fileID: 8300000, guid: 8983bb65ba33fc4469d72506e3251dd3, type: 3}
+  - {fileID: 8300000, guid: 4e5d8ec66abe55841b638fed4d35ef78, type: 3}
+  - {fileID: 8300000, guid: 2dd6160b018a2c94d8bca7920f8b5c4d, type: 3}
+  - {fileID: 8300000, guid: 8b858172de6f390459bd7e9b1f798b06, type: 3}
+  - {fileID: 8300000, guid: 083f638c1d79afd4c95da4ed3e53ebde, type: 3}
+  - {fileID: 8300000, guid: 8bf7134b98199694a9b52d4977940069, type: 3}
+  - {fileID: 8300000, guid: 9f8b369d966d3434d8da0dc7cc0c2ee3, type: 3}
 --- !u!1 &7581074832765092307
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +213,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -24,11 +24,11 @@ public class ShoutProjectile : MonoBehaviour
                 var sanity = FindObjectOfType<Sanity>();
                 if (sanity != null)
                     sanity.decreaseSanity((int)damage);
+
+                EffectPool.Instance.SpawnEffect("WordExplode", transform.position, Quaternion.identity); // VFX effect spawned
+                AudioManager.Instance.PlaySound("OOF", transform.position); // Impact sound effect
             }
         }
-
-        // EffectPool.Instance.SpawnEffect("Explosion", transform.position, Quaternion.identity); // VFX effect spawned
-        // AudioManager.Instance.PlaySound("WordImpact", transform.position); // Impact sound effect
 
         Destroy(gameObject);
     }
