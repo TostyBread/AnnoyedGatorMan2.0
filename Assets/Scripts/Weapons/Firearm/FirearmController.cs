@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 public class FirearmController : MonoBehaviour, IUsable
 {
@@ -39,6 +38,8 @@ public class FirearmController : MonoBehaviour, IUsable
 
     private bool isOutOfAmmo => currentAmmo <= 0;
     private bool hasPlayedDryFire = false;
+
+    // Ammo refill references
 
     void Awake()
     {
@@ -188,6 +189,22 @@ public class FirearmController : MonoBehaviour, IUsable
 
     private void ResetToNeutral() => PlayAnimation("_Neutral");
     private void ResetToDry() => PlayAnimation("_Dry");
+
+    // Reference from AmmoBox for refilling ammo
+    public void RefillFull()
+    {
+        currentAmmo = maxAmmo;
+        hasPlayedDryFire = false;
+        ResetToNeutral();
+    }
+
+    public void RefillAmmo(int amount)
+    {
+        currentAmmo = Mathf.Min(maxAmmo, currentAmmo + amount);
+        hasPlayedDryFire = false;
+        ResetToNeutral();
+    }
+
     private void PlayAnimation(string suffix)
     {
         if (animator != null)
