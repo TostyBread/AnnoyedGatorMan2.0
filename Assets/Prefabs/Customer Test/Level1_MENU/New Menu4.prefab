@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9056207880004078648}
@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 1933438222891035443}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.203, y: -0.56, z: 0}
+  m_LocalPosition: {x: -0.142, y: -0.56, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 2292480104177734668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.175, y: 0.145, z: 0}
+  m_LocalPosition: {x: 0.567, y: 0.145, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -398,7 +398,7 @@ Transform:
   m_GameObject: {fileID: 8740608403147487803}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.374, y: -0.56, z: 0}
+  m_LocalPosition: {x: 0.605, y: -0.56, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -465,6 +465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5541281632059513868}
+  - component: {fileID: 1993523855361044245}
   m_Layer: 0
   m_Name: New Menu4
   m_TagString: Untagged
@@ -482,9 +483,30 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1474209335477887658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1993523855361044245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885360682402634210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e1f2211b7403a44a1072c175935e4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodIcons:
+  - itemID: 3
+    iconObject: {fileID: 7036445641566334221}
+  - itemID: 21
+    iconObject: {fileID: 8740608403147487803}
+  - itemID: 21
+    iconObject: {fileID: 1933438222891035443}
+  - itemID: 3
+    iconObject: {fileID: 2292480104177734668}

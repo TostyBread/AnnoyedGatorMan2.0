@@ -156,6 +156,8 @@ MonoBehaviour:
   spawnPosition: {fileID: 540607618788025328}
   originalSprite: {fileID: 7059595704139212732}
   emptySprite: {fileID: 0}
+  isThrowableShooter: 1
+  throwForce: 5
 --- !u!114 &1586691603774727284
 MonoBehaviour:
   m_ObjectHideFlags: 0

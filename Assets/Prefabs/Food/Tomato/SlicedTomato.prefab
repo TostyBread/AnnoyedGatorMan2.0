@@ -100,7 +100,7 @@ MonoBehaviour:
   durabilityCooked: 0
   cookThreshold: 0
   burnThreshold: 0
-  damageCooldown: 1
+  damageCooldown: 0.7
   uncookedState: {fileID: 823505552761851806}
   cookedState: {fileID: 0}
   brokenPartsUncookedBash: []

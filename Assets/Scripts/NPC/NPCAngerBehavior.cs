@@ -45,6 +45,7 @@ public class NPCAngerBehavior : MonoBehaviour
     public void TriggerAngerMode(GameObject source)
     {
         if (isAngry) return;
+        if (npc.hasAcceptedPlate) return; // Don't trigger anger if the NPC has accepted a plate
 
         isAngry = true;
         angerStartPosition = transform.position;
@@ -208,6 +209,12 @@ public class NPCAngerBehavior : MonoBehaviour
         if (projectileCollider != null && npcCollider != null)
         {
             Physics2D.IgnoreCollision(projectileCollider, npcCollider);
+        }
+
+        // Set bonus damage for big projectiles
+        if (projectile.TryGetComponent<ShoutProjectile>(out var shout))
+        {
+            shout.damage *= scale; // scale = 2 for big, so double the damage
         }
     }
 }

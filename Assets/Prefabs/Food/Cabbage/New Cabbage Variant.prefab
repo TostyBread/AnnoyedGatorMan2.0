@@ -150,6 +150,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 66953552927803021, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 295136627851492575, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -197,6 +201,10 @@ PrefabInstance:
     - target: {fileID: 1677491931163049114, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1942651639847805021, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2091113138358253002, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_Radius
@@ -330,6 +338,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 255988455, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 5353381232037076824, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930840608363330815, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5930840608363330815, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: brokenPartsUncookedCut.Array.size
       value: 2
@@ -384,7 +400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7375408521143853263, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_InstanceId
-      value: -66138
+      value: -249716
       objectReference: {fileID: 0}
     - target: {fileID: 7524932409998815957, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: brokenPartsUncookedBash.Array.data[0]
@@ -510,6 +526,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 4562070558908033071}
 --- !u!212 &1221292723970445833 stripped
@@ -547,6 +564,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 2690841103048380159}
 --- !u!1 &1722880367626741658 stripped
@@ -579,6 +597,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 475393603925725822}
 --- !u!212 &2690841103048380159 stripped
@@ -616,6 +635,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 1221292723970445833}
 --- !u!212 &4562070558908033071 stripped

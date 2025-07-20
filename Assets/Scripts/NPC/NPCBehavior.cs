@@ -10,6 +10,7 @@ public class NPCBehavior : MonoBehaviour
     public Transform menuSpawnPoint;
     public Transform plateSpawnPoint;
     public Transform plateReceiveAnchor;
+    public bool hasAcceptedPlate = false;
 
     [Header("NPC Detection")]
     public float detectionRange = 1.0f;
@@ -116,13 +117,19 @@ public class NPCBehavior : MonoBehaviour
         if (!menuAlreadySpawned)
         {
             if (menuPrefab && menuSpawnPoint)
-                attachedMenu = Instantiate(menuPrefab, menuSpawnPoint.position, Quaternion.identity, transform); menuAlreadySpawned = true;
+            {
+                attachedMenu = Instantiate(menuPrefab, menuSpawnPoint.position, Quaternion.identity, transform);
+                menuAlreadySpawned = true;
+            }
         }
 
         if (!plateAlreadySpawned)
         {
             if (platePrefab && plateSpawnPoint)
-                attachedPlate = Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform); plateAlreadySpawned = true;
+            {
+                attachedPlate = Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform);
+                plateAlreadySpawned = true;
+            }
         }
 
         if (attachedPlate != null)
@@ -131,6 +138,15 @@ public class NPCBehavior : MonoBehaviour
             if (label != null) label.SetLabelFromId(customerId);
         }
 
+        // Hook plate to menu here
+        PlateSystem plateSystem = attachedPlate?.GetComponent<PlateSystem>();
+        PlateMenuDisplay menuDisplay = attachedMenu?.GetComponent<PlateMenuDisplay>();
+        if (plateSystem != null && menuDisplay != null)
+        {
+            plateSystem.menuDisplay = menuDisplay;
+        }
+
+        // Start patience if needed
         if (state == NPCState.Arrived && !patienceAlreadyStarted)
         {
             GetComponent<NPCPatience>()?.StartPatience();
@@ -186,6 +202,7 @@ public class NPCBehavior : MonoBehaviour
 
             scoreManager?.AddScore(score);
             sanity.RemainSanity += sanity.MaxSanity; // Increase sanity when plate is accepted
+            hasAcceptedPlate = true;
 
             if (attachedMenu != null)
             {

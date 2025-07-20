@@ -48,18 +48,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2848919557055395640, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2903314867860806661, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_InstanceId
-      value: -372352
+      value: -260974
       objectReference: {fileID: 0}
     - target: {fileID: 3025878516127459448, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 88404324, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 3211392575537442089, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3677845280572430551, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2134833916, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 4212178888721084697, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 4567790286423014093, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
@@ -128,6 +140,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5916953113529302879, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6281795264108260233, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -164,6 +180,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1592762336, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 7192510367054992175, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7351218681507044036, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -219,6 +239,10 @@ PrefabInstance:
     - target: {fileID: 8607434769706291363, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672369553638450961, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8219742972464798432, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
@@ -280,6 +304,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 4550759677371412156}
 --- !u!212 &830052398319172335 stripped
@@ -367,6 +392,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 4352852929433346495}
 --- !u!1 &5259472303732836577 stripped
@@ -434,6 +460,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 8791268874701049402}
 --- !u!1 &5435917028616226450 stripped
@@ -466,6 +493,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 830052398319172335}
 --- !u!1 &6213969164082162063 stripped
@@ -498,6 +526,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 3661267823301152744}
 --- !u!1 &6557439628828106210 stripped
@@ -530,6 +559,7 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 6986381303853596309}
 --- !u!212 &6986381303853596309 stripped

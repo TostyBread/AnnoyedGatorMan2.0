@@ -24,6 +24,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1238050067132414060, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432261477331996183, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 1929376118137404532, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.25
@@ -35,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 1929376118137404532, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857900177450380202, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2879619324378526756, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -82,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2884286141917450829, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_InstanceId
-      value: -4134
+      value: -264020
       objectReference: {fileID: 0}
     - target: {fileID: 2993353709638337830, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_Sprite
@@ -116,6 +128,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 844998711, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 7995970110403053860, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: damageCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8219823752741090097, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
@@ -166,5 +182,6 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 0}
