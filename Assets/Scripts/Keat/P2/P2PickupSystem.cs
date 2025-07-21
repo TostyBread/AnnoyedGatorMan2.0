@@ -168,50 +168,11 @@ public class P2PickupSystem : MonoBehaviour
 
     }
 
-    //public void HoldPickup()
-    //{
-    //    isHoldingPickupKey = true;
-    //    if (targetItem != null && pickupCoroutine == null)
-    //    {
-    //        StartPickup();
-    //    }
-    //}
-
-    //public void CancelPickup()
-    //{
-    //    isHoldingPickupKey = false;
-    //    if (pickupCoroutine != null)
-    //    {
-    //        StopCoroutine(pickupCoroutine);
-    //        pickupCoroutine = null;
-    //    }
-    //}
-
-    private IEnumerator PickupItemCoroutine()
-    {
-        float holdTime = 0.3f;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < holdTime)
-        {
-            if (targetItem == null || !isHoldingPickupKey) yield break;
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        if (targetItem != null)
-        {
-            if (heldItem != null)
-            {
-                DropItem();
-            }
-            PickUpItem(targetItem.gameObject);
-        }
-        pickupCoroutine = null;
-    }
-
     private void PickUpItem(GameObject item)
     {
+        if (item.TryGetComponent(out PlateSystem plateSystem)) // Specifically letting PlateSystem to know if its being held
+            plateSystem.SetHolder(gameObject);
+
         if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
         if (item.TryGetComponent(out Rigidbody2D rb))
         {
@@ -260,6 +221,9 @@ public class P2PickupSystem : MonoBehaviour
     public void DropItem()
     {
         if (heldItem == null) return;
+
+        if (heldItem.TryGetComponent(out PlateSystem plateSystem)) // Specifically letting PlateSystem to know if its being dropped (PlateSystem)
+            plateSystem.ClearHolder();
 
         bool isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
         Vector3 dropPosition = handPosition.position + new Vector3(isFacingRight ? -0.2f : 0.5f, -0.5f, 0f);

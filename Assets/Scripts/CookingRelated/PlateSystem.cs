@@ -70,7 +70,6 @@ public class PlateSystem : MonoBehaviour
         menuDisplay?.MarkAsFilled(requirement.itemID);
     }
 
-
     private void UpdateSpriteSorting(GameObject item, int sortingOrder)
     {
         if (item.TryGetComponent(out SpriteRenderer spriteRenderer))
@@ -105,5 +104,32 @@ public class PlateSystem : MonoBehaviour
 
         AudioManager.Instance.PlaySound("TaskComplete", transform.position);
         isReadyToServe = true;
+    }
+
+    private bool isOwnerActive = true;
+    private GameObject currentHolder = null;
+    public bool IsHeld => currentHolder != null;
+
+    public void SetOwnerActive(bool isActive)
+    {
+        isOwnerActive = isActive;
+        if (!isActive && !IsHeld)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetHolder(GameObject holder)
+    {
+        currentHolder = holder;
+    }
+
+    public void ClearHolder()
+    {
+        currentHolder = null;
+        if (!isOwnerActive)
+        {
+            Destroy(gameObject);
+        }
     }
 }

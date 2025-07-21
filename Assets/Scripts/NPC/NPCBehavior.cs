@@ -178,6 +178,16 @@ public class NPCBehavior : MonoBehaviour
             Destroy(attachedMenu);
             attachedMenu = null;
         }
+
+        if (attachedPlate != null)
+        {
+            var plateSystem = attachedPlate.GetComponent<PlateSystem>();
+            if (plateSystem != null)
+            {
+                plateSystem.SetOwnerActive(false); // Let plate manage self-destruct itself
+            }
+            attachedPlate = null;
+        }
     }
 
     public bool TryAcceptPlate(PlateSystem plate)
@@ -234,6 +244,16 @@ public class NPCBehavior : MonoBehaviour
         {
             Destroy(attachedMenu);
             attachedMenu = null;
+        }
+
+        if (attachedPlate != null)
+        {
+            var plateSystem = attachedPlate.GetComponent<PlateSystem>();
+            if (plateSystem != null)
+            {
+                plateSystem.SetOwnerActive(false); // Let plate manage self-destruct itself
+            }
+            attachedPlate = null;
         }
 
         GetComponent<NPCPatience>()?.StopPatience(); // Stop and hide patience bar
