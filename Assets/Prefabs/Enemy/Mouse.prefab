@@ -318,8 +318,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0035014437, y: -0.23443237}
-  m_Size: {x: 1.8187699, y: 1.0349973}
+  m_Offset: {x: -0.00350144, y: -0.20313677}
+  m_Size: {x: 1.8187702, y: 1.0975893}
   m_Direction: 1
 --- !u!1 &4772615648063625120
 GameObject:
@@ -613,7 +613,7 @@ MonoBehaviour:
   - {x: 4.710003, y: -2.6202803, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -74014
+  m_InstanceId: -35540
   m_LocalBounds:
     m_Center: {x: 0.0000019073486, y: 0.00000023841858, z: 0}
     m_Extent: {x: 4.710001, y: 2.6202805, z: 0}

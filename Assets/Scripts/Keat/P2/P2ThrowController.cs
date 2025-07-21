@@ -75,7 +75,9 @@ public class P2ThrowController : MonoBehaviour
     {
         if (p2PickSystem.heldItem == null)
         {
+            if (Range != null)
             Range.SetActive(true);
+
             once = false;
         }
         else if (p2PickSystem.heldItem != null)
