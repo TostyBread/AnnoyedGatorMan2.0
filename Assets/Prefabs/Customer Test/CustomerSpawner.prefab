@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 2909403022851372019}
   - component: {fileID: 7818144610647882608}
   - component: {fileID: 5382404693624314179}
+  - component: {fileID: 5642275513169874287}
   m_Layer: 0
   m_Name: CustomerSpawner
   m_TagString: Untagged
@@ -79,13 +80,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcPrefabs:
   - {fileID: 9131540200826282109, guid: e9793c33e2a1d2e42b4978c29a672f5f, type: 3}
-  - {fileID: 9131540200826282109, guid: 83e6563c0550ccd48ab08a88bf05d5a7, type: 3}
-  - {fileID: 9131540200826282109, guid: 14fdb7b6bc0b42f439c996c79a881951, type: 3}
-  - {fileID: 9131540200826282109, guid: a479570d080d8734aa5a888f575a0a4e, type: 3}
-  - {fileID: 9131540200826282109, guid: d3088ced211c7cd41b5694a4637cadeb, type: 3}
-  - {fileID: 9131540200826282109, guid: 022e8d13c031edc4e95ec90f02213ca3, type: 3}
-  - {fileID: 9131540200826282109, guid: 776228574e9ccde4bbda3ad136e05e2e, type: 3}
-  - {fileID: 9131540200826282109, guid: 1464255b3a9525e4bbc047c8c62ecaab, type: 3}
   plateMenuSets:
   - platePrefab: {fileID: 3088414860971530543, guid: 7fb13c8228e00b94e9535290df4678df, type: 3}
     menuPrefab: {fileID: 8885360682402634210, guid: 281c8e638019c8b438975b54a76f430d, type: 3}
@@ -123,6 +117,41 @@ MonoBehaviour:
   maxNPCs: 5
   slowDownThreshold: 4
   intervalGrowthPerNPC: 1
+--- !u!58 &5642275513169874287
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455149626090869199}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.7
 --- !u!1 &2970475970309814468
 GameObject:
   m_ObjectHideFlags: 0
