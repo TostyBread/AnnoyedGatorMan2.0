@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4a8806182e46444914c48f6cc47e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addToBagDelay: 0.7
+  addToBagDelay: 0
   trashBagPrefab: {fileID: 5503319570090583126, guid: b77e094362ca639489c50afcb68a8a8a, type: 3}
   bagParent: {fileID: 2190879136824231767}
   bagCapacity: 7
@@ -250,7 +250,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 3939081
+    m_Bits: 16522025
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
