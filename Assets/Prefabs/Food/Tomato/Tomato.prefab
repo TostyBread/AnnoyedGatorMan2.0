@@ -165,12 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6e82a859d2cee479c1a9992294e9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeCooked: 0
+  canBeCooked: 1
   canBreak: 1
   durabilityUncooked: 60
   durabilityCooked: 1
-  cookThreshold: 50
-  burnThreshold: 50
+  cookThreshold: 100
+  burnThreshold: 100
   damageCooldown: 0.6
   uncookedState: {fileID: 3490939739648196183}
   cookedState: {fileID: 3490939739648196183}

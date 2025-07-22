@@ -169,8 +169,8 @@ MonoBehaviour:
   canBreak: 1
   durabilityUncooked: 60
   durabilityCooked: 1
-  cookThreshold: 50
-  burnThreshold: 50
+  cookThreshold: 100
+  burnThreshold: 100
   damageCooldown: 0.6
   uncookedState: {fileID: 295136627851492575}
   cookedState: {fileID: 295136627851492575}
