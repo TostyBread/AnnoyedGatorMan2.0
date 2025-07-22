@@ -28574,24 +28574,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 967811481798708584, guid: cd5477e6a51404642a181149a353d526, type: 3}
   m_PrefabInstance: {fileID: 80577317}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1932182794 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 832077918640120483, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
-  m_PrefabInstance: {fileID: 7538115606863083120}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1932182799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932182794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 379d2031f29208748bda652d0075cb5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weatherManager: {fileID: 0}
 --- !u!1 &1940846415
 GameObject:
   m_ObjectHideFlags: 0
@@ -31722,14 +31704,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2686724834107351968, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: a2394d6057e7c6f4fa3a0fc74fc61a9c, type: 2}
-    - target: {fileID: 3321167268982271489, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4474152043419544934, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
       propertyPath: m_Camera
       value: 
@@ -31814,33 +31788,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7445889990231604910, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: dc4d1144a16ca004293928aa6791933b, type: 3}
     - target: {fileID: 7522445930760017357, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
       propertyPath: m_Name
       value: WeatherAnimation
       objectReference: {fileID: 0}
-    - target: {fileID: 8671734664435362114, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 8671734664435362114, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8671734664435362114, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1133
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 832077918640120483, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1932182799}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb79903cd024c7041a3ca8755e6467c3, type: 3}
 --- !u!1001 &8514970061155362810
 PrefabInstance:

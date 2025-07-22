@@ -131,11 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2f8855e7a446042957078c01c77811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 4010438672400562704}
-  - {fileID: 4537122543789092085}
-  - {fileID: 5831476637464923479}
-  characters: []
+  sprites: []
+  characters:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7325157903564982222
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1900934800273603868
 Transform:
   m_ObjectHideFlags: 0
