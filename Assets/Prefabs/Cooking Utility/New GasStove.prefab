@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireCollider: {fileID: 9038909520146935392}
   isOn: 0
-  fireActivationDelay: 0.3
+  fireActivationDelay: 0
   requiredImpactForce: 5
   AudioName: ElectricStoveOn
   itemLayer:

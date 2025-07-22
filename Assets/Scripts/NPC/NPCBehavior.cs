@@ -41,12 +41,15 @@ public class NPCBehavior : MonoBehaviour
     private ScoreManager scoreManager;
 
     private Sanity sanity;
+    private ParticleManager particleManager;
 
     void Awake()
     {
         angerBehavior = GetComponent<NPCAngerBehavior>();
         rb = GetComponent<Rigidbody2D>();
         npcCollider = GetComponent<Collider2D>(); // Cache collider
+        particleManager = GetComponent<ParticleManager>();
+
         scoreManager = FindObjectOfType<ScoreManager>();
         sanity = FindObjectOfType<Sanity>();
     }
@@ -211,7 +214,8 @@ public class NPCBehavior : MonoBehaviour
             currentWaypointIndex = 0;
 
             scoreManager?.AddScore(score);
-            sanity.RemainSanity += sanity.MaxSanity; // Increase sanity when plate is accepted
+            if (sanity != null) sanity.RemainSanity += sanity.MaxSanity; // Increase sanity when plate is accepted
+            particleManager?.SpawnParticleOnce(); // Spawn particle effect when plate is accepted
             hasAcceptedPlate = true;
 
             if (attachedMenu != null)
