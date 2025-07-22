@@ -22,8 +22,11 @@ public class NPCSpawner : MonoBehaviour
     [Header("Line Targets")]
     public LineWaypointSet[] lines;
     private bool[] lineOccupied;
+
     [Header("Exit Paths")]
     public LineWaypointSet[] exitPaths;
+
+    private bool npcInSpawnArea = false;
 
     void Awake()
     {
@@ -40,6 +43,12 @@ public class NPCSpawner : MonoBehaviour
 
     public GameObject SpawnNPCOnLine(int lineIndex)
     {
+        if (npcInSpawnArea)
+        {
+            Debug.LogWarning("Cannot spawn NPC: spawn area is occupied.");
+            return null;
+        }
+
         int npcIndex = Random.Range(0, npcPrefabs.Length);
         int plateMenuIndex = Random.Range(0, plateMenuSets.Length);
 
@@ -56,5 +65,21 @@ public class NPCSpawner : MonoBehaviour
         npcBehavior.SetExitPath(exitPaths[lineIndex].waypoints);
 
         return npc;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("NPC"))
+        {
+            npcInSpawnArea = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("NPC"))
+        {
+            npcInSpawnArea = false;
+        }
     }
 }

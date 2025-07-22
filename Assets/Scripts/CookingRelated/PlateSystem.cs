@@ -17,6 +17,7 @@ public class PlateSystem : MonoBehaviour
     private Transform plateParent;
     public Transform rootPlateObject;
     public List<PlateRequirement> plateRequirements;
+    public PlateMenuDisplay menuDisplay; // drag from scene
     public bool isReadyToServe { get; private set; } = false;
     private Dictionary<PlateRequirement, GameObject> placedItems = new Dictionary<PlateRequirement, GameObject>();
 
@@ -66,8 +67,8 @@ public class PlateSystem : MonoBehaviour
 
         UpdateSpriteSorting(item, plateSortingOrder + requirement.sortingOrder);
         FreezeItem(item);
+        menuDisplay?.MarkAsFilled(requirement.itemID);
     }
-
 
     private void UpdateSpriteSorting(GameObject item, int sortingOrder)
     {
@@ -103,5 +104,32 @@ public class PlateSystem : MonoBehaviour
 
         AudioManager.Instance.PlaySound("TaskComplete", transform.position);
         isReadyToServe = true;
+    }
+
+    private bool isOwnerActive = true;
+    private GameObject currentHolder = null;
+    public bool IsHeld => currentHolder != null;
+
+    public void SetOwnerActive(bool isActive)
+    {
+        isOwnerActive = isActive;
+        if (!isActive && !IsHeld)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetHolder(GameObject holder)
+    {
+        currentHolder = holder;
+    }
+
+    public void ClearHolder()
+    {
+        currentHolder = null;
+        if (!isOwnerActive)
+        {
+            Destroy(gameObject);
+        }
     }
 }

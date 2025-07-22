@@ -12,9 +12,9 @@ public class PlayerPickupSystem : MonoBehaviour
     [Header("Interactable Settings")]
     public bool inWindowRange;
 
-    private Collider2D targetItem = null;
+    public Collider2D targetItem = null; // public it for pickup prompt UI to access
     private GameObject heldItem = null;
-    private Collider2D targetInteractable = null;
+    public Collider2D targetInteractable = null; // public it for pickup prompt UI to access it
 
     [Header("References")]
     public HandSpriteManager handSpriteManager;
@@ -169,6 +169,8 @@ public class PlayerPickupSystem : MonoBehaviour
 
     private void PickUpItem(GameObject item)
     {
+        if (item.TryGetComponent(out PlateSystem plateSystem)) // Specifically letting PlateSystem to know if its being held
+            plateSystem.SetHolder(gameObject);
 
         if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
         if (item.TryGetComponent(out Rigidbody2D rb))
@@ -219,6 +221,9 @@ public class PlayerPickupSystem : MonoBehaviour
     public void DropItem()
     {
         if (heldItem == null) return;
+
+        if (heldItem.TryGetComponent(out PlateSystem plateSystem)) // Specifically letting PlateSystem to know if its being dropped (PlateSystem)
+            plateSystem.ClearHolder();
 
         bool isFacingRight = characterFlip != null && characterFlip.IsFacingRight();
         Vector3 dropPosition = handPosition.position + new Vector3(isFacingRight ? -0.2f : 0.5f, -0.5f, 0f);

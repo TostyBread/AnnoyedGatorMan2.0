@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4372916364756499850}
-  - component: {fileID: 4261020623720922986}
   - component: {fileID: 3482263991521556171}
+  - component: {fileID: 4261020623720922986}
   - component: {fileID: 3329187766993668321}
   - component: {fileID: 659256506417920333}
   - component: {fileID: 815747766210962190}
@@ -38,22 +38,6 @@ Transform:
   - {fileID: 827552226028580685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4261020623720922986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931625107260084400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.1
-  normalBounceFactor: 1.5
-  playerBounceDamping: 0.5
-  bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &3482263991521556171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +50,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2855801ae277f8749952009d170c6bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4261020623720922986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931625107260084400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reducedBounceFactor: 0.3
+  normalBounceFactor: 0.5
+  playerBounceDamping: 0.1
+  bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!61 &3329187766993668321
 BoxCollider2D:
   m_ObjectHideFlags: 0

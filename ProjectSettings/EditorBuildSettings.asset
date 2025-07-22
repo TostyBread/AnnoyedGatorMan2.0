@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 72eff812668cf814c96bb88bc91dbe15
-  - enabled: 0
-    path: Assets/Scenes/CustomerTesting.unity
-    guid: 17b439684fa9a0c4e8169ddb8a341616
   - enabled: 1
     path: Assets/Scenes/1PlayerScene/ArtTestScene(1Player).unity
     guid: 3264ded806fbac1479228afe345b6a01
@@ -37,7 +34,7 @@ EditorBuildSettings:
     guid: d89569860361cf449a7703a2c3dc0c9e
   - enabled: 1
     path: Assets/Scenes/2PlayerScene/Tutorial(Player2).unity
-    guid: b7003d46a2d44b647a79220d5ee14836
+    guid: 9c5e0ec54acc66d43a938b0767084b1a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2ab3cc0e43b20c4408e96c477bff2ef7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0205221c2159bbc4a82638bdb0764aaa, type: 3}

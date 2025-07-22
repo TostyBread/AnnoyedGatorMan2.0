@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 2163933924692740534}
   - component: {fileID: 3213764604496166305}
   - component: {fileID: 5342204641038063066}
-  - component: {fileID: 1764582038252010623}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: FoodSmall
@@ -139,22 +138,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1764582038252010623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1497245946285979030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
-  normalBounceFactor: 1.5
-  playerBounceDamping: 0.5
-  bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!1 &8814386654490856872
 GameObject:
   m_ObjectHideFlags: 0

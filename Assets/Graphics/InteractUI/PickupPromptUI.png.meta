@@ -1,0 +1,188 @@
+fileFormatVersion: 2
+guid: da58a15745ba0b041a5fcca5239c8c75
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PickupPromptUI_Fill
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 223
+        width: 365
+        height: 332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35567540abd0b2b4fa086e9fceccecf9
+      internalID: -1425894622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PickupPromptUI_base
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 106
+        width: 316
+        height: 423
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa4623536d6e8254a86ac85ccef8c838
+      internalID: 133857683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PickupPromptUI_0: -1613353928
+      PickupPromptUI_10: 137998367
+      PickupPromptUI_11: 1371823384
+      PickupPromptUI_12: 1714609172
+      PickupPromptUI_13: -940832236
+      PickupPromptUI_14: -1602074109
+      PickupPromptUI_15: 2041790198
+      PickupPromptUI_16: 1670882088
+      PickupPromptUI_17: 834673354
+      PickupPromptUI_18: -1068829995
+      PickupPromptUI_19: 636725094
+      PickupPromptUI_20: -157168377
+      PickupPromptUI_21: 1618460251
+      PickupPromptUI_22: 1137664955
+      PickupPromptUI_23: 1728430260
+      PickupPromptUI_24: -505941595
+      PickupPromptUI_25: 1099623340
+      PickupPromptUI_26: -363332771
+      PickupPromptUI_27: 1722465367
+      PickupPromptUI_28: -183807336
+      PickupPromptUI_29: 144920542
+      PickupPromptUI_3: 1377488419
+      PickupPromptUI_30: -2059231223
+      PickupPromptUI_31: 1716972021
+      PickupPromptUI_4: -1844529469
+      PickupPromptUI_5: -1670785571
+      PickupPromptUI_6: -1456877949
+      PickupPromptUI_7: 1123819957
+      PickupPromptUI_8: -1695306560
+      PickupPromptUI_9: 298737898
+      PickupPromptUI_Fill: -1425894622
+      PickupPromptUI_base: 133857683
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

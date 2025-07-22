@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3403330055485765263}
   - component: {fileID: 8552230069523773440}
   - component: {fileID: 3808243173582522151}
-  - component: {fileID: 4750164394880510364}
   - component: {fileID: 9036991212646575957}
   - component: {fileID: 2458728698113996335}
   - component: {fileID: 7043701527958796220}
@@ -56,6 +55,9 @@ MonoBehaviour:
   stabOffset: {x: 0.2, y: 0, z: 0}
   knifeCollider: {fileID: 5969985387475216021}
   knifeTransform: {fileID: 3403330055485765263}
+  isUsable: 1
+  isStabbing: 0
+  isInUsableMode: 0
 --- !u!114 &3808243173582522151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,22 +71,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingOrder: 3
---- !u!114 &4750164394880510364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706992943235291945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
-  normalBounceFactor: 0.5
-  playerBounceDamping: 0.1
-  bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!70 &9036991212646575957
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,7 +122,7 @@ Rigidbody2D:
   m_LinearDrag: 2
   m_AngularDrag: 1.5
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -368,3 +354,5 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
+  owner: {fileID: 0}
+  isHeatAdjusted: 0

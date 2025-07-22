@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
@@ -29,13 +26,12 @@ public class HealthManager : MonoBehaviour
     private bool spawnOnce = true;
 
     [Header("Player State Flags")]
+    public bool isPlayer = true; // Used to determine if this is a player or not
     public bool canMove = true;
     public bool isDefeated = false;
 
     [Header("References")]
-    public CharacterAnimation characterAnimation;
-    private PlayerInputManager playerInputManager;
-    // Commented out due to unused. Please consider cleaning up your code and only reference stuff here. Don't overhaul the structure 
+    private PlayerInputManager playerInputManager; 
 
     private CharacterFlip characterFlip;
     private CharacterMovement characterMovement;
@@ -150,7 +146,8 @@ public class HealthManager : MonoBehaviour
         }
 
         canMove = false;
-        isDefeated = true;
+
+        if (isPlayer) isDefeated = true; // if its a player, then it can use defeated state TO AVOID WARNING LOG.
 
         DisablePlayerControls();
         HandleReviveInput();
@@ -181,7 +178,7 @@ public class HealthManager : MonoBehaviour
     private void HandleReviveInput()
     {
         reviveTime += Time.deltaTime * reviveSpeed;
-        if (Input.GetKeyDown(reviveBoostKey) || Input.GetKeyDown(KeyCode.Joystick1Button0))
+        if (Input.GetKeyDown(reviveBoostKey))
         {
             reviveTime += reviveSpeed / 2;
         }

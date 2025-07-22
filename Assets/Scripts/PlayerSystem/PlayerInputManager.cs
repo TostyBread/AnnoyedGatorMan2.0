@@ -31,12 +31,15 @@ public class PlayerInputManager : MonoBehaviour
     private Vector2 movementInput;
     private bool usableItemModeEnabled = true;
     public bool canThrow = true;
-    private bool isPreparingHeld = false;
 
     private float pickupPressTime = 0f;
     private bool isPickupKeyHeld = false;
     private bool pickupHandled = false;
     private const float holdThreshold = 0.15f;
+
+    // References for InteractionPromptUI
+    public bool IsPickupKeyHeld() => isPickupKeyHeld;
+    public float PickupHoldProgress() => Mathf.Clamp01((Time.time - pickupPressTime) / 0.15f);
 
     public bool HasHeldItem() => playerPickupSystem != null && playerPickupSystem.HasItemHeld;
 
@@ -59,8 +62,6 @@ public class PlayerInputManager : MonoBehaviour
         HandleThrowInput();
         HandleUsableItemInput();
     }
-
-    public bool IsPreparingHeld() => isPreparingHeld;
 
     public bool IsUsableModeEnabled() => usableItemModeEnabled;
 

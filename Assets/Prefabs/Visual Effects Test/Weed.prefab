@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1132686970349754535}
   - component: {fileID: 2346138177434139438}
-  - component: {fileID: 4350626636884413675}
   - component: {fileID: 3059232471279035865}
   - component: {fileID: 3962942707464195845}
   - component: {fileID: 6329630827337513962}
@@ -50,22 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingOrder: 3
---- !u!114 &4350626636884413675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2439710850193877672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.1
-  normalBounceFactor: 1.5
-  playerBounceDamping: 0.5
-  bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &3059232471279035865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +74,9 @@ MonoBehaviour:
   heatRequiredToCook: 20
   FreezeAudioName: 
   freezedColor: {r: 0, g: 0, b: 0, a: 0}
+  isFreezed: 0
   weatherManager: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!50 &3962942707464195845
 Rigidbody2D:
   serializedVersion: 4
@@ -311,7 +296,7 @@ MonoBehaviour:
   - {x: -5.8451195, y: -7.840394, z: 0}
   m_ShapePathHash: 386572175
   m_Mesh: {fileID: 0}
-  m_InstanceId: -26252
+  m_InstanceId: 142014
   m_LocalBounds:
     m_Center: {x: 0.1285677, y: 0.11383152, z: 0}
     m_Extent: {x: 9.696107, y: 9.055743, z: 0}

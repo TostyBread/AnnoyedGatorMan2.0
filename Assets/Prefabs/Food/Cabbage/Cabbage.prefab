@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4753040588209321030}
   - component: {fileID: 9039347211158407152}
-  - component: {fileID: 1336545936627991457}
   - component: {fileID: 6816702214222461672}
   - component: {fileID: 5930840608363330815}
   - component: {fileID: 5811987434288561472}
@@ -139,22 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingOrder: 3
---- !u!114 &1336545936627991457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 914475135471142955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
-  normalBounceFactor: 0.5
-  playerBounceDamping: 0.1
-  bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &6816702214222461672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +171,7 @@ MonoBehaviour:
   durabilityCooked: 1
   cookThreshold: 50
   burnThreshold: 50
-  damageCooldown: 1
+  damageCooldown: 0.6
   uncookedState: {fileID: 295136627851492575}
   cookedState: {fileID: 295136627851492575}
   brokenPartsUncookedBash:
@@ -221,7 +204,7 @@ Rigidbody2D:
   m_LinearDrag: 2.25
   m_AngularDrag: 1.5
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -305,7 +288,7 @@ MonoBehaviour:
   - {x: -0.59364533, y: -0.060118437, z: 0}
   m_ShapePathHash: -343783747
   m_Mesh: {fileID: 0}
-  m_InstanceId: -139402
+  m_InstanceId: 106482
   m_LocalBounds:
     m_Center: {x: 0.0012100339, y: -0.0035340786, z: 0}
     m_Extent: {x: 0.59485537, y: 0.56723666, z: 0}

@@ -12,6 +12,7 @@ public class LabelDisplay : MonoBehaviour
     public Color labelColor = Color.red;
     public int fontSize = 8;
     public Vector3 offset = Vector3.zero;
+    public TMP_FontAsset customFontAsset; // Load your custom font asset here
 
     private TextMeshPro label;
 
@@ -54,9 +55,15 @@ public class LabelDisplay : MonoBehaviour
         labelObj.transform.SetParent(anchorPoint, false);
         labelObj.transform.localPosition = offset;
         labelObj.transform.localRotation = Quaternion.identity;
-        labelObj.transform.localScale = Vector3.one * 1f;
+        labelObj.transform.localScale = Vector3.one;
 
         label = labelObj.AddComponent<TextMeshPro>();
+
+        if (customFontAsset != null)
+        {
+            label.font = customFontAsset; // customFontAsset will be use here
+        }
+
         label.text = labelText;
         label.fontSize = fontSize;
         label.color = labelColor;

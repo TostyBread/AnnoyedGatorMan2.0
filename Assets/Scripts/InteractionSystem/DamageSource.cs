@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
-using static FirearmController;
 
 public class DamageSource : MonoBehaviour
 {
@@ -55,45 +53,55 @@ public class DamageSource : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ( damageAmount == 0 || isFireSource || isColdSource || isStunSource || rb == null || sanity == null || rb.velocity.magnitude < minVelocityToDamage)
-        {
+        if (damageAmount == 0 || isFireSource || isColdSource || isStunSource || rb == null || sanity == null || rb.velocity.magnitude < minVelocityToDamage)
             return;
-        }
 
-        if (collision.collider.TryGetComponent(out ItemSystem item)) // For damaging Item
+        GameObject target = collision.gameObject;
+
+        // Handle ItemSystem but cancel velocity to prevent push
+        if (target.TryGetComponent(out ItemSystem item))
         {
-            if (damageAmount != 0) // if no damage given, dont execute any debris effect
+            // Prevent item from being pushed
+            if (target.TryGetComponent<Rigidbody2D>(out var itemRb))
+            {
+                itemRb.velocity = Vector2.zero;
+                itemRb.angularVelocity = 0f;
+            }
+
+            if (damageAmount != 0)
             {
                 item.ApplyCollisionEffect(gameObject);
                 if (playHitSound) PlayHitSound(damageType);
                 DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, damageType);
             }
         }
-        else
-        {
-            if (playHitSound) AudioManager.Instance.PlaySound(damageType == ItemSystem.DamageType.Shot ? "Ricochet" : "GunHit", transform.position);
-            DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, "SparkSpurt");
-        }
 
-        if (collision.gameObject.TryGetComponent(out HealthManager health)) // For damaging health
+        // Allow physical interaction for HealthManager
+        if (target.TryGetComponent(out HealthManager health) && target != owner)
         {
-            //Prevent self damage
-            if (collision.gameObject != owner)
+            health.TryDamage(damageAmount);
+            if (target.CompareTag("Player"))
             {
-                health.TryDamage(damageAmount);
-
-                if (collision.gameObject.CompareTag("Player"))
-                {
-                    sanity.decreaseSanity(damageAmount);
-                }
+                sanity.decreaseSanity(damageAmount);
             }
         }
 
-        if (collision.collider.TryGetComponent(out TrashBag trashBag)) // For damaging trash bag health
+        // Allow physical interaction for TrashBag
+        if (target.TryGetComponent(out TrashBag trashBag))
         {
             trashBag.TryDamaging(damageAmount);
         }
+
+        // Visual feedback for anything else
+        if (!target.TryGetComponent<ItemSystem>(out _)) // Skip duplicate debris if already handled above
+        {
+            if (playHitSound)
+                AudioManager.Instance.PlaySound(damageType == ItemSystem.DamageType.Shot ? "Ricochet" : "GunHit", transform.position);
+
+            DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, "SparkSpurt");
+        }
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {

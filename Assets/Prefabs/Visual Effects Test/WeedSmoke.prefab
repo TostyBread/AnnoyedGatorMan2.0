@@ -111,11 +111,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5115068701566696893}
+  - component: {fileID: 5662415481529903161}
   - component: {fileID: 3160086316041721368}
   - component: {fileID: 5988103404822429593}
   - component: {fileID: 9121859616744365729}
   - component: {fileID: 6934679240504116782}
-  - component: {fileID: 5662415481529903161}
   m_Layer: 12
   m_Name: WeedSmoke
   m_TagString: Smoke
@@ -139,6 +139,18 @@ Transform:
   - {fileID: 412441030866090624}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5662415481529903161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8608703003332102440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2855801ae277f8749952009d170c6bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3160086316041721368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,15 +293,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5662415481529903161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8608703003332102440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2855801ae277f8749952009d170c6bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

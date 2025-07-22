@@ -10,11 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 961636478971662972, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_InstanceId
-      value: -54480
+      value: -2228
       objectReference: {fileID: 0}
     - target: {fileID: 3207209287046898020, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_Name
       value: New Phone Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561835750169273650, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
+      propertyPath: normalBounceFactor
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561835750169273650, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
+      propertyPath: playerBounceDamping
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561835750169273650, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
+      propertyPath: reducedBounceFactor
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4148062078668300740, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_Sprite
@@ -22,15 +34,15 @@ PrefabInstance:
       objectReference: {fileID: 163569394, guid: 34142492c01692348adf9aa233eb540f, type: 3}
     - target: {fileID: 5511854091944636567, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5511854091944636567, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5511854091944636567, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5511854091944636567, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -54,11 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6474553624311144270, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.04442
+      value: -8.79442
       objectReference: {fileID: 0}
     - target: {fileID: 6474553624311144270, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.8881817
+      value: -5.668182
       objectReference: {fileID: 0}
     - target: {fileID: 6474553624311144270, guid: 3eb0906c41c5e244a927d23aef38220c, type: 3}
       propertyPath: m_LocalPosition.z

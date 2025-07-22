@@ -12,7 +12,6 @@ public class P3Input : MonoBehaviour
     private Vector2 movementInput;
     private bool usableItemModeEnabled = true;
     public bool canThrow = true;
-    private bool isPreparingHeld = false;
 
     P3Controls controls;
     public Vector2 P3move;
