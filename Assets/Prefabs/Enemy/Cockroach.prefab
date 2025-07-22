@@ -229,7 +229,7 @@ MonoBehaviour:
   - {x: -6.2044983, y: -2.5438144, z: 0}
   m_ShapePathHash: 365628945
   m_Mesh: {fileID: 0}
-  m_InstanceId: 37738
+  m_InstanceId: -278216
   m_LocalBounds:
     m_Center: {x: -0.048265457, y: 0.031505585, z: 0}
     m_Extent: {x: 8.45625, y: 8.453963, z: 0}
@@ -463,7 +463,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 313600
+    m_Bits: 32768
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -515,9 +515,9 @@ MonoBehaviour:
   enemy: 1
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 4088675956551014516, guid: 88d5fe94a08c5814d8ddc07d6ecf3aed, type: 3}
+  isPlayer: 1
   canMove: 1
   isDefeated: 0
-  characterAnimation: {fileID: 0}
   reviveBoostKey: 32
 --- !u!70 &835542554802604944
 CapsuleCollider2D:
