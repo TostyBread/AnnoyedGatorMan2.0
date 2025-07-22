@@ -75,15 +75,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1051108075, guid: 310a93b1d950ba24f8ba367a96c2c71a, type: 3}
+  m_Sprite: {fileID: 30858506, guid: 2cf4cf037ae3f7c4692b009e208317cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 19.167059, y: 22}
+  m_Size: {x: 19.167175, y: 21.999998}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &3340301745130068739
@@ -570,6 +570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 28608211284768982}
   - component: {fileID: -7959780710742504478}
+  - component: {fileID: 7474936420074697287}
   - component: {fileID: 880509381728504748}
   - component: {fileID: 3033642827638882810}
   - component: {fileID: 4874225279319358098}
@@ -628,6 +629,27 @@ MonoBehaviour:
     m_Bits: 1024
   rb: {fileID: 0}
   score: 1
+--- !u!114 &7474936420074697287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9131540200826282109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7780f6f5ec7cb40aee13aa2847d15f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitsToTriggerEscape: 5
+  shoutCooldown: 1.3
+  shoutProjectilePrefab: {fileID: 4734873200400014097, guid: d56f4859d0850bc49904b0192fd772f6, type: 3}
+  shoutSpawnPoint: {fileID: 3424607727966349365}
+  projectileSpeed: 7
+  blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  blinkDuration: 0.15
+  blinkCount: 3
+  angerChanceOnHit: 0.3
 --- !u!50 &880509381728504748
 Rigidbody2D:
   serializedVersion: 4
