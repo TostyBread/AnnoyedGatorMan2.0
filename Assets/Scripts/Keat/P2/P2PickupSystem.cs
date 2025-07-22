@@ -261,10 +261,7 @@ public class P2PickupSystem : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        if (Target != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, pickupRadius);
-        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, pickupRadius);
     }
 }

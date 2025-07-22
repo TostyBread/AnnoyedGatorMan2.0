@@ -15,6 +15,12 @@ public class DetectTarget : MonoBehaviour
             if (collision.CompareTag(tag))
             {
                 AllItemInRange.Add(collision.gameObject);
+
+                ShowBorder showBorder = collision.GetComponentInChildren<ShowBorder>();
+                if (showBorder != null)
+                {
+                    showBorder.ShowBorderSprite();
+                }
             }
         }
     }
@@ -27,6 +33,12 @@ public class DetectTarget : MonoBehaviour
             {
                 AllItemInRange.Remove(collision.gameObject);
             }
+
+            ShowBorder showBorder = collision.GetComponentInChildren<ShowBorder>();
+            if (showBorder != null)
+            {
+                showBorder.HideBorderSprite();
+            }
         }
     }
 
@@ -38,6 +50,12 @@ public class DetectTarget : MonoBehaviour
             {
                 AllItemInRange.Add(collision.gameObject);
             }
+
+            ShowBorder showBorder = collision.gameObject.GetComponentInChildren<ShowBorder>();
+            if (showBorder != null)
+            {
+                showBorder.ShowBorderSprite();
+            }
         }
     }
 
@@ -48,6 +66,12 @@ public class DetectTarget : MonoBehaviour
             if (collision.gameObject.CompareTag(tag))
             {
                 AllItemInRange.Remove(collision.gameObject);
+            }
+
+            ShowBorder showBorder = collision.gameObject.GetComponentInChildren<ShowBorder>();
+            if (showBorder != null)
+            {
+                showBorder.HideBorderSprite();
             }
         }
     }

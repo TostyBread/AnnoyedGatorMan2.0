@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6824483612465861434}
   - component: {fileID: 1262136911838428222}
-  - component: {fileID: 7328633543237685167}
   - component: {fileID: 5229498194381456774}
   - component: {fileID: 6059912000830586944}
   - component: {fileID: 8982527359824210028}
@@ -51,22 +50,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingOrder: 3
---- !u!114 &7328633543237685167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833563046808385787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
-  normalBounceFactor: 0.5
-  playerBounceDamping: 0.1
-  bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &5229498194381456774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +261,7 @@ MonoBehaviour:
   - {x: -1.672837, y: -0.05175638, z: 0}
   m_ShapePathHash: 1269554042
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46586
+  m_InstanceId: 142068
   m_LocalBounds:
     m_Center: {x: -0.009842157, y: -0.007990599, z: 0}
     m_Extent: {x: 2.5650597, y: 2.9870105, z: 0}

@@ -116,7 +116,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2061928506837295428}
   - component: {fileID: 3351663962107211835}
-  - component: {fileID: 7819075046217117766}
   - component: {fileID: 8922060289414578406}
   - component: {fileID: 2030933388074120868}
   - component: {fileID: 122005115197171745}
@@ -158,22 +157,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingOrder: 3
---- !u!114 &7819075046217117766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835966328485190469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
-  normalBounceFactor: 0.5
-  playerBounceDamping: 0.1
-  bounceMaterial: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
 --- !u!114 &8922060289414578406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +181,8 @@ MonoBehaviour:
   firearmPrefix: FireExtinguisher
   firearmAudio: FireExtinguisher
   animator: {fileID: 2529462442213206852}
+  isUsable: 1
+  owner: {fileID: 0}
 --- !u!50 &2030933388074120868
 Rigidbody2D:
   serializedVersion: 4
@@ -214,7 +199,7 @@ Rigidbody2D:
   m_LinearDrag: 2.25
   m_AngularDrag: 1.5
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -299,7 +284,7 @@ MonoBehaviour:
   - {x: 0.32943535, y: 0.14271113, z: 0}
   m_ShapePathHash: -808748469
   m_Mesh: {fileID: 0}
-  m_InstanceId: -158574
+  m_InstanceId: 111174
   m_LocalBounds:
     m_Center: {x: 0.0016460419, y: -0.54619986, z: 0}
     m_Extent: {x: 0.433012, y: 0.9344179, z: 0}

@@ -79,7 +79,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcPrefabs:
-  - {fileID: 9131540200826282109, guid: e9793c33e2a1d2e42b4978c29a672f5f, type: 3}
+  - {fileID: 9131540200826282109, guid: 776228574e9ccde4bbda3ad136e05e2e, type: 3}
+  - {fileID: 9131540200826282109, guid: 022e8d13c031edc4e95ec90f02213ca3, type: 3}
+  - {fileID: 9131540200826282109, guid: 1464255b3a9525e4bbc047c8c62ecaab, type: 3}
   plateMenuSets:
   - platePrefab: {fileID: 3088414860971530543, guid: 7fb13c8228e00b94e9535290df4678df, type: 3}
     menuPrefab: {fileID: 8885360682402634210, guid: 281c8e638019c8b438975b54a76f430d, type: 3}

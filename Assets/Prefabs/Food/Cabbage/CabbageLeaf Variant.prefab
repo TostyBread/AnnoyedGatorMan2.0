@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3398324057409261233, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
       propertyPath: damageCooldown
-      value: 0.7
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4991258900548617813, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
       propertyPath: m_LocalPosition.x

@@ -90,6 +90,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 0
   owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!1 &6918077294880524883
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,12 +164,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 6827b0b32668efa418f541a8caab23a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce633588297ff8a4298b1047e91a11c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 38.399998, y: 21.599998}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -312,3 +313,4 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 0}
+  isHeatAdjusted: 0

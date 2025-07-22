@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 405200941656729064}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c58d562e1d75e154aac9a1d1fac3eb36, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3681b2569f4a02d4abb147ffe47915f8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -621,6 +621,7 @@ MonoBehaviour:
   menuSpawnPoint: {fileID: 1132364132505828575}
   plateSpawnPoint: {fileID: 7711344081798851309}
   plateReceiveAnchor: {fileID: 7262767610283653091}
+  hasAcceptedPlate: 0
   detectionRange: 3.5
   npcLayer:
     serializedVersion: 2

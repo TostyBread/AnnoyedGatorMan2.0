@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 131710383803856758}
   - component: {fileID: 7563871146662979167}
   - component: {fileID: 652473883342814106}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,10 +155,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6098579532918019767}
   - component: {fileID: 2249463620363347200}
-  - component: {fileID: 6487412356067434675}
   - component: {fileID: 2336767402511691642}
   - component: {fileID: 58553693070379607}
   - component: {fileID: 5039677516606517252}
+  - component: {fileID: 5468825189548583055}
   m_Layer: 15
   m_Name: Enemy
   m_TagString: Enemy
@@ -229,51 +229,6 @@ MonoBehaviour:
   foodLayers:
     serializedVersion: 2
     m_Bits: 64
---- !u!61 &6487412356067434675
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558668271278603332}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 262144
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.29, y: 0.22}
-    newSize: {x: 0.29, y: 0.22}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &2336767402511691642
 Rigidbody2D:
   serializedVersion: 4
@@ -296,7 +251,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 163840
+    m_Bits: 444672
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -348,10 +303,45 @@ MonoBehaviour:
   enemy: 1
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 521707647301289601, guid: 25f39d37a50e40d4f88502ad76e0571d, type: 3}
-  isPlayer: 0
   canMove: 1
   isDefeated: 0
+  characterAnimation: {fileID: 0}
   reviveBoostKey: 32
+--- !u!70 &5468825189548583055
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558668271278603332}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.1338673, y: -0.11571467}
+  m_Size: {x: 1.5664041, y: 0.73597807}
+  m_Direction: 1
 --- !u!1 &1605733860555913360
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3754072012417083061}
   - component: {fileID: 3059057782138244606}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: EnemyMovePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +400,7 @@ GameObject:
   - component: {fileID: 851265237261152448}
   - component: {fileID: 8125402771757236077}
   - component: {fileID: 4764890473617400535}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: CanMoveCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +543,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5190543388772515395}
@@ -670,7 +660,7 @@ MonoBehaviour:
   - {x: 2.1552315, y: -2.4399996, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 47840
+  m_InstanceId: 38412
   m_LocalBounds:
     m_Center: {x: 0, y: 0.00000047683716, z: 0}
     m_Extent: {x: 2.1552315, y: 2.44, z: 0}

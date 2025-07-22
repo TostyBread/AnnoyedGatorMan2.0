@@ -134,7 +134,9 @@ public class HealthManager : MonoBehaviour
                 if (spawnOnce == true)
                 {
                     GameObject Deadbody = Instantiate(deadBody, this.transform.position, this.transform.rotation); //Spawn dead body of current enemy
+                    if (enemySpawner != null)
                     enemySpawner.currentSpawnedEnemy--;
+
                     spawnOnce = false;
                 }
             }

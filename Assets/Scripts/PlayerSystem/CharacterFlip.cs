@@ -11,6 +11,7 @@ public class CharacterFlip : MonoBehaviour, ICharacterFlip
     [Header("P2 / Alt Control Settings")]
     public bool useP2System = false;
     public GameObject p2System;
+    public bool WASDControl;
     private GameObject p2AimingObject;
     public P3Input p3Input;
 
@@ -55,6 +56,8 @@ public class CharacterFlip : MonoBehaviour, ICharacterFlip
 
             if (p3Input != null)
                 x = p3Input.P3move.x;
+            else if (WASDControl) //WASD is "Horizontal" || UpDownLeftRight is "Horizontal2"
+                x = Input.GetAxisRaw("Horizontal");
             else
                 x = Input.GetAxisRaw("Horizontal2");
 

@@ -60,7 +60,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1274844278774008693}
   - component: {fileID: 3769679834320652242}
-  - component: {fileID: 3011764913249181268}
   - component: {fileID: 8473614079153372265}
   - component: {fileID: 2912337896578746821}
   - component: {fileID: 2469571722624404651}
@@ -102,22 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingOrder: 2
---- !u!114 &3011764913249181268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3088414860971530543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d519c5357ec10498f6faf37e38dc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reducedBounceFactor: 0.3
-  normalBounceFactor: 0.5
-  playerBounceDamping: 0.1
-  bounceMaterial: {fileID: 0}
 --- !u!58 &8473614079153372265
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -169,7 +152,7 @@ Rigidbody2D:
   m_LinearDrag: 2.25
   m_AngularDrag: 1.5
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 5fa03e71fa917924c8030dad9c8c1a17, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

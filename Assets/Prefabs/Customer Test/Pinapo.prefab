@@ -80,10 +80,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.48, y: 2.93}
+  m_Size: {x: 19.167059, y: 22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &3340301745130068739
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 405200941656729064}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f060e808a52dccd45bb3f4540ef1f11e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 348d2634c13501f428bc5556f0b61fb0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -621,6 +621,7 @@ MonoBehaviour:
   menuSpawnPoint: {fileID: 1132364132505828575}
   plateSpawnPoint: {fileID: 7711344081798851309}
   plateReceiveAnchor: {fileID: 7262767610283653091}
+  hasAcceptedPlate: 0
   detectionRange: 3.5
   npcLayer:
     serializedVersion: 2

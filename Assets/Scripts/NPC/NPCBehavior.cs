@@ -326,12 +326,12 @@ public class NPCBehavior : MonoBehaviour
         {
             angerBehavior?.RegisterHit(collision.gameObject); // Register who hit them for NPCAngerBehavior
 
-            if (attachedMenu != null)
+            if (attachedMenu != null && !hasAcceptedPlate)
             {
                 Destroy(attachedMenu);
                 attachedMenu = null;
+                ForceEscape();
             }
-            ForceEscape();
 
             // Only disable collider if not angry
             if (angerBehavior == null || !angerBehavior.IsAngry)

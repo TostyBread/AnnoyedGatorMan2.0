@@ -18,7 +18,7 @@ public class SpriteLayerManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"SpriteRenderer is missing on {gameObject.name} or its children.");
+            Debug.LogWarning($"SpriteRenderer is missing on {gameObject.name} or its children.");
         }
     }
 

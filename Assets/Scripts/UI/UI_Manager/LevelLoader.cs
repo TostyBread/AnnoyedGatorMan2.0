@@ -15,6 +15,7 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private GameObject playerNumberScreen;
     [SerializeField] private GameObject settingScreen;
     [SerializeField] private GameObject ShaderScreen;
+    public bool isShowingSettingScreen = false;
 
     [Header("Slider")]
     [SerializeField] private Slider loadingSlider;
@@ -46,12 +47,13 @@ public class LevelLoader : MonoBehaviour
     {
         if (settingScreen != null)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !isLoading && !transitionManager.isTransitioning)
+            if (Input.GetKeyDown(KeyCode.Escape) && !isLoading && !transitionManager.isTransitioning && !isShowingSettingScreen)
             {
-                //SceneManager.LoadScene("MainMenu");
-
-                if (pauseManager != null) pauseManager.PauseGame();
                 ShowSettingScreen();
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && !isLoading && !transitionManager.isTransitioning && isShowingSettingScreen)
+            {
+                HideSettingtScreen();
             }
         }      
     }
@@ -72,14 +74,27 @@ public class LevelLoader : MonoBehaviour
 
     public void ShowPopUpScreen()
     {
-        playerNumberScreen.SetActive(true);
-        ShaderScreen.SetActive(true);
+        if (playerNumberScreen) playerNumberScreen.SetActive(true);
+        if (ShaderScreen) ShaderScreen.SetActive(true);
     }
+
 
     public void ShowSettingScreen()
     {
+        isShowingSettingScreen = true;
+        if (pauseManager != null) pauseManager.PauseGame();
+
         settingScreen.SetActive(true);
         ShaderScreen.SetActive(true);
+    }
+
+    public void HideSettingtScreen()
+    {
+        isShowingSettingScreen = false;
+        if (pauseManager != null) pauseManager.ResumeGame();
+
+        settingScreen.SetActive(false);
+        ShaderScreen.SetActive(false);
     }
 
     public void ChangeScene(string scene)

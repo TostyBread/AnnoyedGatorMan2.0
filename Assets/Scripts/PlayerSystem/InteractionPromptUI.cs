@@ -24,6 +24,11 @@ public class InteractionPromptUI : MonoBehaviour
         if (playerInputManager != null && keyBindText != null)
         {
             keyBindText.text = playerInputManager.inputConfig.pickupKey.ToString();
+
+            if (keyBindText.text == "RightControl") // change the long ass binding name into shorter version
+            {
+                keyBindText.text = "R CTRL";
+            }
         }
     }
 
