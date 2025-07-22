@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/1PlayerScene/AdjustedSceneDownSpace.unity
+    guid: e7a5678f9d9ed4e41af3891c375b731b
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 72eff812668cf814c96bb88bc91dbe15
   - enabled: 1

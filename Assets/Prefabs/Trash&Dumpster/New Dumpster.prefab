@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3db367162e481d40ab50f78cd4c3639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyDelay: 0.5
+  destroyDelay: 0
 --- !u!61 &233113918831657790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2361641
+    m_Bits: 14944553
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
