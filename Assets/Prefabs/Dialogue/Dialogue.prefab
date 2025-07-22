@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 71987936436884230}
   - component: {fileID: 1187744085259136832}
   - component: {fileID: 2554990915058525944}
+  - component: {fileID: 7932649304448289590}
   m_Layer: 5
   m_Name: DialogueBox
   m_TagString: Untagged
@@ -40,7 +41,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1300}
+  m_AnchoredPosition: {x: 0, y: -1283}
   m_SizeDelta: {x: 1500, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &71987936436884230
@@ -97,8 +98,29 @@ MonoBehaviour:
   characterName: {fileID: 6998981670556614721}
   dialogueArea: {fileID: 5681204890444109454}
   isDialogueActive: 0
-  typingSpeed: 0.2
-  animator: {fileID: 0}
+  typingSpeed: 0.05
+  animator: {fileID: 7932649304448289590}
+--- !u!95 &7932649304448289590
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223229105058128124}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 64086873f3eae884482d479e1cd858b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &425604631598967290
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +343,7 @@ GameObject:
   - component: {fileID: 8481870239374616886}
   - component: {fileID: 1225791390168129341}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,7 +390,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &8481870239374616886
 MonoBehaviour:
