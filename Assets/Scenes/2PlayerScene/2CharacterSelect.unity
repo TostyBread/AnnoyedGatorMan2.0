@@ -2541,15 +2541,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 967116482123130070, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.77
+      objectReference: {fileID: 0}
     - target: {fileID: 1371228802516070084, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
       propertyPath: m_Name
       value: P2_CharacterSkinManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727246480745733448, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+      propertyPath: sprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727246480745733448, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+      propertyPath: characters.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727246480745733448, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 1982573056}
+    - target: {fileID: 2727246480745733448, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+      propertyPath: sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 1982573055}
+    - target: {fileID: 2727246480745733448, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+      propertyPath: sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 1982573054}
+    - target: {fileID: 7409600414004744457, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7438085958160698768, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820352064891775336, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+--- !u!212 &1982573054 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5831476637464923479, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+  m_PrefabInstance: {fileID: 1982573053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1982573055 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4537122543789092085, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+  m_PrefabInstance: {fileID: 1982573053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1982573056 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4010438672400562704, guid: b1ea9b07e0b3e4f4bbfe76c7475c1f2a, type: 3}
+  m_PrefabInstance: {fileID: 1982573053}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2122960616
 GameObject:
   m_ObjectHideFlags: 0
