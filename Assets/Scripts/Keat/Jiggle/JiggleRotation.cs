@@ -5,10 +5,16 @@ using UnityEngine;
 public class JiggleRotation : MonoBehaviour
 {
     //This is jiggle for transform.rotation
+    //How to use: 
+    //1) Plug this code to the gameObject that want to jiggle
+    //2) Use the gameObject to set this jiggle(boolean) to true
+    //3) the gameObject will jiggle
+
+    [Header("Only change this with code")]
     public bool jiggle;
 
-    public float jiggleInterval;
-    public float BiggerTheGameobjectBy = 1f;
+    public float jiggleInterval = 0.3f;
+    public float BiggerTheGameobjectBy = 1.3f;
 
     private bool once = true;
 
