@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 4986028519980157643}
   - component: {fileID: 8900592482163450490}
   - component: {fileID: 5751925215967956641}
+  - component: {fileID: 2777191471056767753}
   m_Layer: 31
   m_Name: New Trashcan
   m_TagString: Interectable
@@ -250,7 +251,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 16522025
+    m_Bits: 3939117
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -307,3 +308,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2777191471056767753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6466743381147148775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jiggle: 0
+  jiggleInterval: 0.2
+  BiggerTheGameobjectBy: 1.2
+  enableLeftRightJiggle: 0
+  enableUpDownJiggle: 0
+  jiggleRange: 0.3
+  jiggleSpeed: 5
+  enableRotationJiggle: 1
+  rotationAngle: 30

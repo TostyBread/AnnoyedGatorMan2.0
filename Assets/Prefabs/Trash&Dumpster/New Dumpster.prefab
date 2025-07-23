@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 8690445199465590504}
   - component: {fileID: 6882079901659545483}
   - component: {fileID: 233113918831657790}
+  - component: {fileID: 3979582226960715086}
   m_Layer: 0
   m_Name: New Dumpster
   m_TagString: Untagged
@@ -146,7 +147,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 16522025
+    m_Bits: 2361645
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -176,3 +177,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.5, y: 2.7}
   m_EdgeRadius: 0
+--- !u!114 &3979582226960715086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207586183015830851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jiggle: 0
+  jiggleInterval: 0.1
+  BiggerTheGameobjectBy: 1.1
+  enableLeftRightJiggle: 0
+  enableUpDownJiggle: 1
+  jiggleRange: 1
+  jiggleSpeed: 10
+  enableRotationJiggle: 0
+  rotationAngle: 30
