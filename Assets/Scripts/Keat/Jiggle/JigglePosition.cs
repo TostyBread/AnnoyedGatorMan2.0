@@ -4,11 +4,16 @@ using UnityEngine;
 public class JigglePosition : MonoBehaviour
 {
     //This is jiggle for transform.position
+    //How to use: 
+    //1) Plug this code to the gameObject that want to jiggle
+    //2) Use the gameObject to set this jiggle(boolean) to true
+    //3) the gameObject will jiggle
+
     public bool jiggle;
 
-    public float jiggleInterval = 0.1f;
+    public float jiggleInterval = 0f;
     public float BiggerTheGameobjectBy = 1f;
-    public float jiggleRange = 0.1f;
+    public float jiggleRange = 0.5f;
     public float jiggleSpeed = 5f;
 
     private bool once = true;
