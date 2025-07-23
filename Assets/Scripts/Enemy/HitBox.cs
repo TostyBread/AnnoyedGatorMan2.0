@@ -8,13 +8,10 @@ public class HitBox : MonoBehaviour
     public float damage = 10;
     public bool aimForFood;
 
-    private Sanity sanity;
-
     private void Start()
     {
         gameObject.SetActive(false);
         aimForFood = GetComponentInParent<EnemyMovement>().aimForFood;
-        sanity = FindAnyObjectByType<Sanity>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,7 +38,6 @@ public class HitBox : MonoBehaviour
             //Debug.Log("attack " + collision.gameObject.name);
 
             collision.gameObject.GetComponentInChildren<HealthManager>().TryDamage(damage);
-            sanity?.decreaseSanity(damage);
         }
 
         if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))

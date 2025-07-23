@@ -51,6 +51,7 @@ public class HealthManager : MonoBehaviour
     private float reviveTime;
     private bool hasDroppedOnDeath = false;
     private bool? lastPlayerActiveState = null; // Use this to record the last state player is in. DO NOT UPDATE REGULARLY
+    private Sanity sanity;
 
     private EnemySpawner enemySpawner;
 
@@ -85,6 +86,7 @@ public class HealthManager : MonoBehaviour
 
         cookCharacterSystem = GetComponent<ItemSystem>();
         enemySpawner = FindAnyObjectByType<EnemySpawner>();
+        sanity = FindAnyObjectByType<Sanity>();
 
         currentHealth = Health;
         lastHealth = currentHealth;
@@ -147,8 +149,12 @@ public class HealthManager : MonoBehaviour
 
         canMove = false;
 
-        if (isPlayer) isDefeated = true; // if its a player, then it can use defeated state TO AVOID WARNING LOG.
-
+        if (isPlayer)
+        {
+            isDefeated = true;
+            sanity.RemainSanity = 0; // Reset sanity when player is defeated
+        }
+            
         DisablePlayerControls();
         HandleReviveInput();
     }
