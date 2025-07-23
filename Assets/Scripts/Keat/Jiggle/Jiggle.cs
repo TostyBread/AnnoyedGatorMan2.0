@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class Jiggle : MonoBehaviour
 {
-    // Combined Jiggle for position + rotation
-    public bool jiggle;
-
     [Header("Common Settings")]
     public float jiggleInterval = 0.3f;
     public float BiggerTheGameobjectBy = 1.3f;
@@ -20,36 +17,22 @@ public class Jiggle : MonoBehaviour
     public bool enableRotationJiggle = true;
     public float rotationAngle = 30f;
 
-    private bool once = true;
-
     private Vector3 defaultPosition;
     private Quaternion defaultRotation;
     private Vector3 defaultScale;
 
     private Coroutine jiggleRoutine;
 
-    void Update()
+    public void StartJiggle()
     {
-        if (jiggle && once)
-        {
-            // Save original transform
-            defaultPosition = transform.position;
-            defaultRotation = transform.rotation;
-            defaultScale = transform.localScale;
+        if (jiggleRoutine != null) return;
 
-            once = false;
-            jiggleRoutine = StartCoroutine(JiggleRoutine(jiggleInterval));
-            PopUp(BiggerTheGameobjectBy);
-        }
+        defaultPosition = transform.position;
+        defaultRotation = transform.rotation;
+        defaultScale = transform.localScale;
 
-        if (!jiggle && !once)
-        {
-            if (jiggleRoutine != null)
-                StopCoroutine(jiggleRoutine);
-
-            ResetTransform();
-            once = true;
-        }
+        PopUp(BiggerTheGameobjectBy);
+        jiggleRoutine = StartCoroutine(JiggleRoutine(jiggleInterval));
     }
 
     private IEnumerator JiggleRoutine(float interval)
@@ -58,13 +41,12 @@ public class Jiggle : MonoBehaviour
         Vector3 leftPos = defaultPosition + Vector3.left * jiggleRange;
         Vector3 rightPos = defaultPosition + Vector3.right * jiggleRange;
         Vector3 upPos = defaultPosition + Vector3.up * jiggleRange;
-        Vector3 downPos = defaultPosition + Vector3.down * jiggleRange;
 
         // Define rotations
         Quaternion leftRot = Quaternion.Euler(defaultRotation.eulerAngles + new Vector3(0, 0, rotationAngle));
         Quaternion rightRot = Quaternion.Euler(defaultRotation.eulerAngles + new Vector3(0, 0, -rotationAngle));
 
-        // Left or Up
+        // First movement: Left or Up
         if (enableLeftRightJiggle)
             yield return MoveToPosition(leftPos, jiggleSpeed);
         else if (enableUpDownJiggle)
@@ -75,14 +57,11 @@ public class Jiggle : MonoBehaviour
 
         yield return new WaitForSeconds(interval);
 
-        // Right or Down
+        // Second movement: Right or Back to center
         if (enableLeftRightJiggle)
             yield return MoveToPosition(rightPos, jiggleSpeed);
-        else if (enableUpDownJiggle)// back to default here for up-down jiggle
-        {
-            yield return MoveToPosition(defaultPosition, jiggleSpeed); 
-            ResetTransform();
-        }
+        else if (enableUpDownJiggle)
+            yield return MoveToPosition(defaultPosition, jiggleSpeed);
 
         if (enableRotationJiggle)
             transform.rotation = rightRot;
@@ -96,6 +75,8 @@ public class Jiggle : MonoBehaviour
         yield return new WaitForSeconds(interval);
 
         ResetTransform();
+
+        jiggleRoutine = null; // Allow future jiggle calls
     }
 
     private IEnumerator MoveToPosition(Vector3 target, float speed)
@@ -112,8 +93,6 @@ public class Jiggle : MonoBehaviour
         transform.position = defaultPosition;
         transform.rotation = defaultRotation;
         transform.localScale = defaultScale;
-
-        jiggle = false;
     }
 
     private void PopUp(float enlargeSize)

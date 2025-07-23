@@ -23,7 +23,7 @@ public class Dumpster : MonoBehaviour
             Coroutine timer = StartCoroutine(DestroyAfterDelay(other.gameObject));
             destroyTimers.Add(other.gameObject, timer);
 
-            jiggle.jiggle = true; //Here is where jiggle start
+            jiggle.StartJiggle(); //Here is where jiggle start
         }
     }
 

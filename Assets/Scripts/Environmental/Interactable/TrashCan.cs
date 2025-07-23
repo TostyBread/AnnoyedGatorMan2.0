@@ -71,7 +71,7 @@ public class TrashCan : MonoBehaviour
         currentCount++;
         alreadyFull = currentCount >= bagCapacity;
 
-        jiggle.jiggle = true; //Here is where jiggle start
+        jiggle.StartJiggle(); //Here is where jiggle start
 
         if (alreadyFull)
         {
