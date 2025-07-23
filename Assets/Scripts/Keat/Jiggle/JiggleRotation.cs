@@ -9,6 +9,8 @@ public class JiggleRotation : MonoBehaviour
     //1) Plug this code to the gameObject that want to jiggle
     //2) Use the gameObject to set this jiggle(boolean) to true
     //3) the gameObject will jiggle
+
+    [Header("Only change this with code")]
     public bool jiggle;
 
     public float jiggleInterval = 0.3f;

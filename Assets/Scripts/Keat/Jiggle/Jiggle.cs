@@ -1,21 +1,24 @@
 using System.Collections;
 using UnityEngine;
 
-public class JigglePosition : MonoBehaviour
+public class Jiggle : MonoBehaviour
 {
-    //This is jiggle for transform.position
-    //How to use: 
-    //1) Plug this code to the gameObject that want to jiggle
-    //2) Use the gameObject to set this jiggle(boolean) to true
-    //3) the gameObject will jiggle
-
-    [Header("Only change this with code")]
+    // Combined Jiggle for position + rotation
     public bool jiggle;
 
-    public float jiggleInterval = 0f;
-    public float BiggerTheGameobjectBy = 1f;
+    [Header("Common Settings")]
+    public float jiggleInterval = 0.3f;
+    public float BiggerTheGameobjectBy = 1.3f;
+
+    [Header("Position Jiggle")]
+    public bool enableLeftRightJiggle = true;
+    public bool enableUpDownJiggle = false;
     public float jiggleRange = 0.5f;
     public float jiggleSpeed = 5f;
+
+    [Header("Rotation Jiggle")]
+    public bool enableRotationJiggle = true;
+    public float rotationAngle = 30f;
 
     private bool once = true;
 
@@ -29,7 +32,7 @@ public class JigglePosition : MonoBehaviour
     {
         if (jiggle && once)
         {
-            //save the value of current gameObject before jiggle
+            // Save original transform
             defaultPosition = transform.position;
             defaultRotation = transform.rotation;
             defaultScale = transform.localScale;
@@ -51,22 +54,47 @@ public class JigglePosition : MonoBehaviour
 
     private IEnumerator JiggleRoutine(float interval)
     {
-        Vector3 leftTarget = defaultPosition + Vector3.left * jiggleRange;
-        Vector3 rightTarget = defaultPosition + Vector3.right * jiggleRange;
+        // Define positions
+        Vector3 leftPos = defaultPosition + Vector3.left * jiggleRange;
+        Vector3 rightPos = defaultPosition + Vector3.right * jiggleRange;
+        Vector3 upPos = defaultPosition + Vector3.up * jiggleRange;
+        Vector3 downPos = defaultPosition + Vector3.down * jiggleRange;
 
-        // Left Jiggle
-        yield return MoveToPosition(leftTarget, jiggleSpeed);
+        // Define rotations
+        Quaternion leftRot = Quaternion.Euler(defaultRotation.eulerAngles + new Vector3(0, 0, rotationAngle));
+        Quaternion rightRot = Quaternion.Euler(defaultRotation.eulerAngles + new Vector3(0, 0, -rotationAngle));
+
+        // Left or Up
+        if (enableLeftRightJiggle)
+            yield return MoveToPosition(leftPos, jiggleSpeed);
+        else if (enableUpDownJiggle)
+            yield return MoveToPosition(upPos, jiggleSpeed);
+
+        if (enableRotationJiggle)
+            transform.rotation = leftRot;
+
         yield return new WaitForSeconds(interval);
 
-        // Right Jiggle
-        yield return MoveToPosition(rightTarget, jiggleSpeed);
+        // Right or Down
+        if (enableLeftRightJiggle)
+            yield return MoveToPosition(rightPos, jiggleSpeed);
+        else if (enableUpDownJiggle)// back to default here for up-down jiggle
+        {
+            yield return MoveToPosition(defaultPosition, jiggleSpeed); 
+            ResetTransform();
+        }
+
+        if (enableRotationJiggle)
+            transform.rotation = rightRot;
+
         yield return new WaitForSeconds(interval);
 
         // Return to center
         yield return MoveToPosition(defaultPosition, jiggleSpeed);
+        transform.rotation = defaultRotation;
+
         yield return new WaitForSeconds(interval);
 
-        // Reset
         ResetTransform();
     }
 
@@ -79,7 +107,7 @@ public class JigglePosition : MonoBehaviour
         }
     }
 
-    private void ResetTransform() //here is where this code end jiggle
+    private void ResetTransform()
     {
         transform.position = defaultPosition;
         transform.rotation = defaultRotation;

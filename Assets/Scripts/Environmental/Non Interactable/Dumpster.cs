@@ -9,12 +9,21 @@ public class Dumpster : MonoBehaviour
 
     private Dictionary<GameObject, Coroutine> destroyTimers = new();
 
+    private Jiggle jiggle; //the new code that handle jiggle
+
+    private void Start()
+    {
+        jiggle = GetComponent<Jiggle>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!destroyTimers.ContainsKey(other.gameObject))
         {
             Coroutine timer = StartCoroutine(DestroyAfterDelay(other.gameObject));
             destroyTimers.Add(other.gameObject, timer);
+
+            jiggle.jiggle = true; //Here is where jiggle start
         }
     }
 
