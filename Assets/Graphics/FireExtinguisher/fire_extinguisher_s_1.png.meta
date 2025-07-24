@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 20a8a770832fc664fa6ea913f720363e
+guid: 89a6236360567bc46b172fa7eebdd507
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,22 +97,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fire_extinguisher_s_2_white_border_0
+      name: fire_extinguisher_s_1_0
       rect:
         serializedVersion: 2
-        x: 1430
-        y: 286
-        width: 832
-        height: 1588
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1253
+        y: 308
+        width: 1335
+        height: 1546
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dc53dc80fb903142a8add59969fb2eb
-      internalID: 1794486809
+      spriteID: e2a0cca6efb94d34bb55d557228feff5
+      internalID: -1439959499
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fire_extinguisher_s_2_white_border_0: 1794486809
+      fire_extinguisher_s_1_0: -1439959499
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 722759465722068786}
   - component: {fileID: 2931204990365857767}
   - component: {fileID: 2460957896020143347}
+  - component: {fileID: 5721625752616872813}
+  - component: {fileID: 7079292728187043497}
   m_Layer: 0
   m_Name: FireExtinguisher_Anim
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.03, y: -0.09, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8803898592446308111}
@@ -74,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 314706208, guid: 34142492c01692348adf9aa233eb540f, type: 3}
+  m_Sprite: {fileID: 1280074125, guid: 78614cfa731d8c9438b80c1f117f0552, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -106,6 +108,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5721625752616872813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222643077570234827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a308db5f488aee04b818b824689ad9d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firearmIdleSprite: {fileID: 1280074125, guid: 78614cfa731d8c9438b80c1f117f0552, type: 3}
+  firearmFireSprite: {fileID: -1439959499, guid: 89a6236360567bc46b172fa7eebdd507, type: 3}
+--- !u!114 &7079292728187043497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222643077570234827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d0c4dd702eff1439737f161a2ebc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteWithBorder: {fileID: 1794486809, guid: 20a8a770832fc664fa6ea913f720363e, type: 3}
+  spriteWithBorderScale: 0.2
 --- !u!1 &3083484218926781182
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 3083484218926781182}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41, y: 1, z: 0}
+  m_LocalPosition: {x: 1.99, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -212,6 +242,7 @@ MonoBehaviour:
   firearmPrefix: FireExtinguisher
   firearmAudio: FireExtinguisher
   animator: {fileID: 2460957896020143347}
+  isFiring: 0
   isUsable: 1
   owner: {fileID: 0}
 --- !u!50 &2498105762477864858
@@ -273,7 +304,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.7, y: -0.22}
+  m_Offset: {x: 0.05, y: -0.22}
   m_Size: {x: 0.96, y: 2.76}
   m_Direction: 0
 --- !u!114 &1630950577776860161
@@ -283,7 +314,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291786050282267257}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
   m_Name: 
@@ -292,7 +323,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_HasRenderer: 0
   m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
+  m_CastsShadows: 0
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
@@ -363,7 +394,7 @@ MonoBehaviour:
   - {x: -0.3117696, y: 0.7571058, z: 0}
   m_ShapePathHash: 670919419
   m_Mesh: {fileID: 0}
-  m_InstanceId: 111046
+  m_InstanceId: -1882
   m_LocalBounds:
     m_Center: {x: 0.039108396, y: -0.13644314, z: 0}
     m_Extent: {x: 1.3832479, y: 1.4565697, z: 0}
