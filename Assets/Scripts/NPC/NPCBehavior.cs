@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
@@ -7,8 +8,6 @@ public class NPCBehavior : MonoBehaviour
     public float moveSpeed = 2f;
     public float forceEscapeThreshold = 5f;
     public float escapeSpeedMultiplier = 2f;
-    public Transform menuSpawnPoint;
-    public Transform plateSpawnPoint;
     public Transform plateReceiveAnchor;
     public bool hasAcceptedPlate = false;
 
@@ -20,16 +19,14 @@ public class NPCBehavior : MonoBehaviour
     private Vector3[] exitWaypoints;
     private int currentWaypointIndex = 0;
 
-    private GameObject menuPrefab;
-    private GameObject platePrefab;
     private GameObject attachedPlate;
     private GameObject attachedMenu;
-    public Rigidbody2D rb; // for NPCAngerBehavior to access
+    public Rigidbody2D rb;
     private Vector3 arrivedPosition;
     private bool returningToArrivedPoint = false;
+    private bool patienceAlreadyStarted = false;
     private bool menuAlreadySpawned = false;
     private bool plateAlreadySpawned = false;
-    private bool patienceAlreadyStarted = false;
 
     public int customerId { get; private set; }
     private NPCState state = NPCState.Approaching;
@@ -43,11 +40,14 @@ public class NPCBehavior : MonoBehaviour
     private Sanity sanity;
     private ParticleManager particleManager;
 
+    private GameObject menuPrefab;
+    private GameObject platePrefab;
+
     void Awake()
     {
         angerBehavior = GetComponent<NPCAngerBehavior>();
         rb = GetComponent<Rigidbody2D>();
-        npcCollider = GetComponent<Collider2D>(); // Cache collider
+        npcCollider = GetComponent<Collider2D>();
         particleManager = GetComponent<ParticleManager>();
 
         scoreManager = FindObjectOfType<ScoreManager>();
@@ -60,8 +60,7 @@ public class NPCBehavior : MonoBehaviour
 
         if (returningToArrivedPoint)
         {
-            float currentSpeed = moveSpeed;
-            Vector2 newPosition = Vector2.MoveTowards(rb.position, arrivedPosition, currentSpeed * Time.fixedDeltaTime);
+            Vector2 newPosition = Vector2.MoveTowards(rb.position, arrivedPosition, moveSpeed * Time.fixedDeltaTime);
             rb.MovePosition(newPosition);
 
             if (Vector2.Distance(rb.position, arrivedPosition) < 0.05f)
@@ -69,12 +68,10 @@ public class NPCBehavior : MonoBehaviour
                 returningToArrivedPoint = false;
                 rb.velocity = Vector2.zero;
             }
-
-            return; // Skip other states while returning
+            return;
         }
 
-        if (angerBehavior != null && angerBehavior.IsAngry) // if its angry, skip other states
-            return;
+        if (angerBehavior != null && angerBehavior.IsAngry) return;
 
         switch (state)
         {
@@ -85,7 +82,6 @@ public class NPCBehavior : MonoBehaviour
                 MoveAlongPath(state == NPCState.Approaching ? waypoints : exitWaypoints);
                 break;
         }
-
     }
 
     public void SetWaypoints(Vector3[] path)
@@ -102,12 +98,6 @@ public class NPCBehavior : MonoBehaviour
             exitWaypoints[i] = exitPath[i].position;
     }
 
-    public void SetMenuAndPlatePrefabs(GameObject menu, GameObject plate)
-    {
-        menuPrefab = menu;
-        platePrefab = plate;
-    }
-
     public void SetCustomerId(int id)
     {
         customerId = id;
@@ -115,41 +105,24 @@ public class NPCBehavior : MonoBehaviour
         if (label != null) label.SetLabelFromId(customerId);
     }
 
-    public void SpawnMenuAndPlate()
+    public void SetMenuAndPlatePrefabs(GameObject menu, GameObject plate)
     {
-        if (!menuAlreadySpawned)
-        {
-            if (menuPrefab && menuSpawnPoint)
-            {
-                attachedMenu = Instantiate(menuPrefab, menuSpawnPoint.position, Quaternion.identity, transform);
-                menuAlreadySpawned = true;
-            }
-        }
+        menuPrefab = menu;
+        platePrefab = plate;
+    }
 
-        if (!plateAlreadySpawned)
-        {
-            if (platePrefab && plateSpawnPoint)
-            {
-                attachedPlate = Instantiate(platePrefab, plateSpawnPoint.position, Quaternion.identity, transform);
-                plateAlreadySpawned = true;
-            }
-        }
+    public void AttachMenu(GameObject menu)
+    {
+        attachedMenu = menu;
+    }
 
-        if (attachedPlate != null)
-        {
-            var label = attachedPlate.GetComponentInChildren<LabelDisplay>();
-            if (label != null) label.SetLabelFromId(customerId);
-        }
+    public void AttachPlate(GameObject plate)
+    {
+        attachedPlate = plate;
+    }
 
-        // Hook plate to menu here
-        PlateSystem plateSystem = attachedPlate?.GetComponent<PlateSystem>();
-        PlateMenuDisplay menuDisplay = attachedMenu?.GetComponent<PlateMenuDisplay>();
-        if (plateSystem != null && menuDisplay != null)
-        {
-            plateSystem.menuDisplay = menuDisplay;
-        }
-
-        // Start patience if needed
+    public void TriggerPatience()
+    {
         if (state == NPCState.Arrived && !patienceAlreadyStarted)
         {
             GetComponent<NPCPatience>()?.StartPatience();
@@ -157,12 +130,37 @@ public class NPCBehavior : MonoBehaviour
         }
     }
 
+    public void SpawnMenuAndPlate()
+    {
+        if (!menuAlreadySpawned && menuPrefab)
+        {
+            MenuManager.Instance?.SpawnMenuForNPC(this, menuPrefab);
+            menuAlreadySpawned = true;
+        }
+
+        if (!plateAlreadySpawned && platePrefab)
+        {
+            PlateManager.Instance?.SpawnPlateForNPC(this, platePrefab);
+            plateAlreadySpawned = true;
+        }
+
+        // Auto-link plate to menu after both are assigned
+        if (attachedMenu != null && attachedPlate != null)
+        {
+            PlateSystem plateSys = attachedPlate.GetComponent<PlateSystem>();
+            PlateMenuDisplay menuDisp = attachedMenu.GetComponent<PlateMenuDisplay>();
+            if (plateSys != null && menuDisp != null)
+            {
+                plateSys.menuDisplay = menuDisp;
+            }
+        }
+    }
+
     public void ForceEscape()
     {
         if (state == NPCState.Escaping) return;
 
-        Debug.Log("ForceEscape called on NPC " + customerId);
-        GetComponent<NPCPatience>()?.StopPatience(); // Stop and hide patience bar
+        GetComponent<NPCPatience>()?.StopPatience();
 
         if (waypoints != null && waypoints.Length > 0 && exitWaypoints != null && exitWaypoints.Length > 0)
         {
@@ -172,25 +170,22 @@ public class NPCBehavior : MonoBehaviour
 
         state = NPCState.Escaping;
         currentWaypointIndex = 0;
-
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
 
         if (attachedMenu != null)
         {
-            Destroy(attachedMenu);
             attachedMenu = null;
+            MenuManager.Instance?.ClearFrontMenuAnimated();
         }
 
         if (attachedPlate != null)
         {
-            var plateSystem = attachedPlate.GetComponent<PlateSystem>();
-            if (plateSystem != null)
-            {
-                plateSystem.SetOwnerActive(false); // Let plate manage self-destruct itself
-            }
+            attachedPlate.GetComponent<PlateSystem>()?.SetOwnerActive(false);
             attachedPlate = null;
         }
+
+        PlateManager.Instance?.FreeSpawnPoint(this); // clear plate spawn point occupancy
     }
 
     public bool TryAcceptPlate(PlateSystem plate)
@@ -204,27 +199,29 @@ public class NPCBehavior : MonoBehaviour
 
             Transform plateRoot = plate.rootPlateObject != null ? plate.rootPlateObject : plate.transform;
             plateRoot.SetParent(plateReceiveAnchor ?? transform);
-            plateRoot.localPosition = plateReceiveAnchor ? Vector3.zero : plateSpawnPoint.localPosition;
+            plateRoot.localPosition = plateReceiveAnchor ? Vector3.zero : Vector3.zero;
 
-            npcCollider.enabled = false; // Disable their collider when also taken food to avoid plate collider pushing the customer to run like hell
+            npcCollider.enabled = false;
             Rigidbody2D plateRb = plateRoot.GetComponent<Rigidbody2D>();
             if (plateRb) plateRb.bodyType = RigidbodyType2D.Kinematic;
             AudioManager.Instance.PlaySound("yes", transform.position);
+
             state = NPCState.Leaving;
             currentWaypointIndex = 0;
 
             scoreManager?.AddScore(score);
-            if (sanity != null) sanity.RemainSanity += sanity.MaxSanity; // Increase sanity when plate is accepted
-            particleManager?.SpawnParticleOnce(); // Spawn particle effect when plate is accepted
+            if (sanity != null) sanity.RemainSanity += sanity.MaxSanity;
+            particleManager?.SpawnParticleOnce();
             hasAcceptedPlate = true;
 
             if (attachedMenu != null)
             {
-                Destroy(attachedMenu);
                 attachedMenu = null;
+                MenuManager.Instance?.ClearFrontMenuAnimated();
             }
-            GetComponent<NPCPatience>()?.StopPatience(); // Stop and hide patience bar
+            GetComponent<NPCPatience>()?.StopPatience();
 
+            PlateManager.Instance?.FreeSpawnPoint(this); // clear plate spawn point occupancy
             return true;
         }
         return false;
@@ -233,8 +230,6 @@ public class NPCBehavior : MonoBehaviour
     public void FrustratedLeaving()
     {
         if (state == NPCState.Frustrated) return;
-
-        //Debug.Log("NPC " + customerId + " is now frustrated and leaving.");
 
         angerBehavior?.TriggerAngerMode(null);
 
@@ -246,28 +241,24 @@ public class NPCBehavior : MonoBehaviour
 
         if (attachedMenu != null)
         {
-            Destroy(attachedMenu);
             attachedMenu = null;
+            MenuManager.Instance?.ClearFrontMenuAnimated();
         }
 
         if (attachedPlate != null)
         {
-            var plateSystem = attachedPlate.GetComponent<PlateSystem>();
-            if (plateSystem != null)
-            {
-                plateSystem.SetOwnerActive(false); // Let plate manage self-destruct itself
-            }
+            attachedPlate.GetComponent<PlateSystem>()?.SetOwnerActive(false);
             attachedPlate = null;
         }
 
-        GetComponent<NPCPatience>()?.StopPatience(); // Stop and hide patience bar
+        GetComponent<NPCPatience>()?.StopPatience();
 
-        // Disable collider to avoid physical push during frustration exit
         if (angerBehavior == null || !angerBehavior.IsAngry)
         {
             npcCollider.enabled = false;
-            //AudioManager.Instance.PlaySound("frustrated", 1f, transform.position);
         }
+
+        PlateManager.Instance?.FreeSpawnPoint(this); // clear plate spawn point occupancy
     }
 
     private void MoveAlongPath(Vector3[] path)
@@ -276,7 +267,7 @@ public class NPCBehavior : MonoBehaviour
 
         if (currentWaypointIndex >= path.Length)
         {
-            if (state == NPCState.Leaving || state == NPCState.Escaping || state == NPCState.Frustrated) // This is where when the enemy will remove itself when arrive at this point
+            if (state == NPCState.Leaving || state == NPCState.Escaping || state == NPCState.Frustrated)
             {
                 Destroy(gameObject);
             }
@@ -302,7 +293,6 @@ public class NPCBehavior : MonoBehaviour
                     return;
                 }
             }
-            Debug.DrawRay(rb.position, direction * detectionRange, Color.red);
         }
 
         float currentSpeed = state == NPCState.Escaping ? moveSpeed * escapeSpeedMultiplier : moveSpeed;
@@ -328,16 +318,15 @@ public class NPCBehavior : MonoBehaviour
     {
         if (collision.relativeVelocity.magnitude > forceEscapeThreshold)
         {
-            angerBehavior?.RegisterHit(collision.gameObject); // Register who hit them for NPCAngerBehavior
+            angerBehavior?.RegisterHit(collision.gameObject);
 
             if (attachedMenu != null)
             {
-                Destroy(attachedMenu);
                 attachedMenu = null;
+                MenuManager.Instance?.ClearFrontMenuAnimated();
             }
             ForceEscape();
 
-            // Only disable collider if not angry
             if (angerBehavior == null || !angerBehavior.IsAngry)
             {
                 npcCollider.enabled = false;

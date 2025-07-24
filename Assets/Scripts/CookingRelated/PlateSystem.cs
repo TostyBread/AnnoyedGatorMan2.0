@@ -14,21 +14,11 @@ public class PlateRequirement
 
 public class PlateSystem : MonoBehaviour
 {
-    private Transform plateParent;
     public Transform rootPlateObject;
     public List<PlateRequirement> plateRequirements;
     public PlateMenuDisplay menuDisplay; // drag from scene
     public bool isReadyToServe { get; private set; } = false;
     private Dictionary<PlateRequirement, GameObject> placedItems = new Dictionary<PlateRequirement, GameObject>();
-
-    private void Awake()
-    {
-        plateParent = transform.parent;
-        if (plateParent == null)
-        {
-            Debug.LogError("PlateSystem: No parent object found! Assign a parent plate.");
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
