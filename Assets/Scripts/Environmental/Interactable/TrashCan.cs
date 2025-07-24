@@ -24,6 +24,8 @@ public class TrashCan : MonoBehaviour
     private bool alreadyFull = false;
     private HashSet<GameObject> overlappingItems = new();
 
+    private Jiggle jiggle; //the new code that handle jiggle
+
     private void Start()
     {
         if (alreadyFull)
@@ -32,6 +34,8 @@ public class TrashCan : MonoBehaviour
             fullTrashCan.SetActive(true);
         }
         SpawnNewBag();
+
+        jiggle = GetComponent<Jiggle>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -66,6 +70,8 @@ public class TrashCan : MonoBehaviour
         overlappingItems.Remove(obj);
         currentCount++;
         alreadyFull = currentCount >= bagCapacity;
+
+        jiggle.StartJiggle(); //Here is where jiggle start
 
         if (alreadyFull)
         {

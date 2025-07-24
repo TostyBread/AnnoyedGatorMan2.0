@@ -22,6 +22,7 @@ public class FirearmController : MonoBehaviour, IUsable
     public string firearmPrefix = "Glock17";
     public string firearmAudio = "glock18";
     public Animator animator;
+    public bool isFiring = false;
 
     private int currentAmmo;
     [Header("Do not touch")]
@@ -34,7 +35,7 @@ public class FirearmController : MonoBehaviour, IUsable
     private Vector3 initialMuzzleLocalPosition;
 
     [Header("Who is holding current weapon")]
-    [SerializeField]private GameObject owner; //Refrence from PickUp (PlayerPickupSystem or P2PickSystem)
+    [SerializeField]public GameObject owner; //Refrence from PickUp (PlayerPickupSystem or P2PickSystem)
 
     private bool isOutOfAmmo => currentAmmo <= 0;
     private bool hasPlayedDryFire = false;
@@ -166,7 +167,6 @@ public class FirearmController : MonoBehaviour, IUsable
         {
             projectileDamageSource.SetOwner(owner); // Set the owner to the player
         }
-
     }
 
     private void AdjustMuzzlePoint()
@@ -180,6 +180,7 @@ public class FirearmController : MonoBehaviour, IUsable
 
     private void PlayOnce(string suffix, bool shouldGoToDry = false)
     {
+        isFiring = true;
         if (animator == null) return;
         string animationName = firearmPrefix + suffix;
         animator.Play(animationName);
@@ -187,8 +188,17 @@ public class FirearmController : MonoBehaviour, IUsable
         Invoke(shouldGoToDry ? nameof(ResetToDry) : nameof(ResetToNeutral), animationDuration);
     }
 
-    private void ResetToNeutral() => PlayAnimation("_Neutral");
-    private void ResetToDry() => PlayAnimation("_Dry");
+    private void ResetToNeutral()
+    {
+        isFiring = false;
+        if (animator != null) PlayAnimation("_Neutral");
+    }
+
+    private void ResetToDry()
+    {
+        isFiring = false;
+        if (animator != null) PlayAnimation("_Dry");
+    }
 
     // Reference from AmmoBox for refilling ammo
     public void RefillFull()

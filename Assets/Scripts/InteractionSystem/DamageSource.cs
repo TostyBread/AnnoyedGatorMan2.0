@@ -25,12 +25,12 @@ public class DamageSource : MonoBehaviour
     private Coroutine heatCoroutine;
     private Rigidbody2D rb;
     private float originalHeatAmount;
-    private Sanity sanity;
+    //private Sanity sanity;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
+        //sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
         originalHeatAmount = heatAmount;
 
         if (owner != null) ownerCollider = owner.GetComponent<Collider2D>();
@@ -53,7 +53,7 @@ public class DamageSource : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (damageAmount == 0 || isFireSource || isColdSource || isStunSource || rb == null || sanity == null || rb.velocity.magnitude < minVelocityToDamage)
+        if (damageAmount == 0 || isFireSource || isColdSource || isStunSource || rb == null || rb.velocity.magnitude < minVelocityToDamage)
             return;
 
         GameObject target = collision.gameObject;
@@ -80,10 +80,10 @@ public class DamageSource : MonoBehaviour
         if (target.TryGetComponent(out HealthManager health) && target != owner)
         {
             health.TryDamage(damageAmount);
-            if (target.CompareTag("Player"))
-            {
-                sanity.decreaseSanity(damageAmount);
-            }
+            //if (target.CompareTag("Player"))
+            //{
+            //    sanity.decreaseSanity(damageAmount);
+            //}
         }
 
         // Allow physical interaction for TrashBag

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Tutorial: https://www.youtube.com/watch?v=DOP_G5bsySA&t=6s

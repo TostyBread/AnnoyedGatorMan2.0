@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 4874225279319358098}
   - component: {fileID: 4180316551167014751}
   - component: {fileID: 3131916694288282251}
+  - component: {fileID: 6767833704701986836}
   m_Layer: 10
   m_Name: OfficeEmployee5
   m_TagString: NPC
@@ -783,6 +784,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.5
+--- !u!114 &6767833704701986836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9131540200826282109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50085f59527e73b4db8536515f566aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 8306104426203620189, guid: 8452e20da9f9fb6438ea5e2a9aef612f, type: 3}
 --- !u!1 &9207026353361096624
 GameObject:
   m_ObjectHideFlags: 0

@@ -63,6 +63,12 @@ public class Sanity : MonoBehaviour
         RemainSanity = Mathf.Clamp(RemainSanity, 0, MaxSanity);
     }
 
+    public void increaseSanity(float increaseAmount)
+    {
+        RemainSanity += increaseAmount;
+        RemainSanity = Mathf.Clamp(RemainSanity, 0, MaxSanity);
+    }
+
     void FindFoodObjects()
     {
         GameObject[] foodSmall = GameObject.FindGameObjectsWithTag("FoodSmall");
@@ -71,17 +77,17 @@ public class Sanity : MonoBehaviour
         IEnumerable<GameObject> foodObjects = foodSmall.Concat(foodBig);
 
         //Check if food is overcooked, decrease sanity if yes
-        foreach (GameObject food in foodObjects)
-        {
-            ItemDescriber describer = food.GetComponent<ItemDescriber>();
-            if (describer != null && describer.currentCookingState == ItemDescriber.CookingState.Overcooked)
-            {
-                if (!sanityDecreased.ContainsKey(food))
-                {
-                    decreaseSanity(10);
-                    sanityDecreased[food] = true;
-                }
-            }
-        }
+        //foreach (GameObject food in foodObjects)
+        //{
+        //    ItemDescriber describer = food.GetComponent<ItemDescriber>();
+        //    if (describer != null && describer.currentCookingState == ItemDescriber.CookingState.Overcooked)
+        //    {
+        //        if (!sanityDecreased.ContainsKey(food))
+        //        {
+        //            decreaseSanity(10);
+        //            sanityDecreased[food] = true;
+        //        }
+        //    }
+        //}
     }
 }

@@ -78,7 +78,6 @@ public class LevelLoader : MonoBehaviour
         if (ShaderScreen) ShaderScreen.SetActive(true);
     }
 
-
     public void ShowSettingScreen()
     {
         isShowingSettingScreen = true;
@@ -92,6 +91,7 @@ public class LevelLoader : MonoBehaviour
     {
         isShowingSettingScreen = false;
         if (pauseManager != null) pauseManager.ResumeGame();
+        if (clickerDetector != null) clickerDetector.ClosePopUpScreens();
 
         settingScreen.SetActive(false);
         ShaderScreen.SetActive(false);
