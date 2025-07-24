@@ -182,6 +182,7 @@ MonoBehaviour:
   - {fileID: 1769503095729463504}
   brokenPartsCookedCut:
   - {fileID: 6281795264108260233}
+  - {fileID: 648092378575158176}
   brokenPartsOffsets:
   - {x: -0.06, y: 0, z: 0}
   - {x: 0.06, y: 0, z: 0}
@@ -289,7 +290,7 @@ MonoBehaviour:
   - {x: -0.110099554, y: -0.3064618, z: 0}
   m_ShapePathHash: -106419215
   m_Mesh: {fileID: 0}
-  m_InstanceId: 310860
+  m_InstanceId: 131952
   m_LocalBounds:
     m_Center: {x: -0.007415712, y: 0.0001014173, z: 0}
     m_Extent: {x: 0.24257189, y: 0.34227931, z: 0}
@@ -521,6 +522,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+--- !u!1 &648092378575158176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8394194902238992909, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+  m_PrefabInstance: {fileID: 8971266526170948013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1946591044808355491 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7459079608383016718, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
