@@ -22,7 +22,7 @@ public class EnemyAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Enemy.transform.position;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         HandleAnimationFlip();
 
         //if (healthManager.currentHealth <= 0)  // Too much warning log, pls implement enemy death animation before uncommenting

@@ -39,7 +39,7 @@ public class ScoreManager : MonoBehaviour
 
     private void CheckIfLevelCleared()
     {
-        if (isCleared && timer.RemainTime <= 0)
+        if (isCleared)
         {
             Debug.Log("Level Cleared! Final Score: " + currentScore);
             if (WinScreen != null) WinScreen.SetActive(true);
