@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Trash_room_floor_1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -1945359458, guid: 35098039d5ade0541b012584a7100464, type: 3}
+  m_Sprite: {fileID: 118411022, guid: 6246bbfef3ed05a4e8aa13ede1e5f4ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
