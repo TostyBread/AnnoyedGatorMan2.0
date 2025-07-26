@@ -302,8 +302,8 @@ MonoBehaviour:
   HandAim: {fileID: 8358967207088524224}
   P3: 0
   P3Cursor: {fileID: 0}
-  NextTarget: 113
-  PreviousTarget: 101
+  NextTarget: 260
+  PreviousTarget: 262
 --- !u!1 &551333787409068514
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,11 +418,11 @@ MonoBehaviour:
   ThrowPos: {fileID: 1884792541527898621}
   Range: {fileID: 2535556260932785224}
   Arrow: {fileID: 9200225853496638602}
-  up: 119
-  down: 115
-  left: 97
-  right: 100
-  ControlMode: 9
+  up: 273
+  down: 274
+  left: 276
+  right: 275
+  ControlMode: 0
   controlMode: 1
 --- !u!1 &989922474843367304
 GameObject:
@@ -2407,10 +2407,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputMode: 0
   inputConfig:
-    moveUp: 119
-    moveDown: 115
-    moveLeft: 97
-    moveRight: 100
+    moveUp: 273
+    moveDown: 274
+    moveLeft: 276
+    moveRight: 275
     attackKey: 0
     pickupKey: 0
     toggleSafetyKey: 0
@@ -2434,9 +2434,9 @@ MonoBehaviour:
   pickupPressTime: 0
   isPickupKeyHeld: 0
   pickupHandled: 0
-  Attack: 9
-  Throw: 304
-  InterectPick: 301
+  Attack: 257
+  Throw: 259
+  InterectPick: 258
   Interact: 0
   Toggle: 0
 --- !u!114 &7907473335032070475
@@ -2477,7 +2477,7 @@ MonoBehaviour:
   isFlippingEnabled: 1
   useP2System: 1
   p2System: {fileID: 313866783988405156}
-  WASDControl: 1
+  WASDControl: 0
   p3Input: {fileID: 0}
 --- !u!114 &4986977199350701571
 MonoBehaviour:
@@ -2929,11 +2929,11 @@ MonoBehaviour:
   ThrowPos: {fileID: 2309552781305350533}
   Range: {fileID: 1807373005848929328}
   Arrow: {fileID: 5010477216113609970}
-  up: 119
-  down: 115
-  left: 97
-  right: 100
-  ControlMode: 9
+  up: 273
+  down: 274
+  left: 276
+  right: 275
+  ControlMode: 0
   controlMode: 1
 --- !u!1 &3785841810123814166
 GameObject:
@@ -3994,10 +3994,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputMode: 0
   inputConfig:
-    moveUp: 119
-    moveDown: 115
-    moveLeft: 97
-    moveRight: 100
+    moveUp: 273
+    moveDown: 274
+    moveLeft: 276
+    moveRight: 275
     attackKey: 0
     pickupKey: 0
     toggleSafetyKey: 0
@@ -4021,9 +4021,9 @@ MonoBehaviour:
   pickupPressTime: 0
   isPickupKeyHeld: 0
   pickupHandled: 0
-  Attack: 9
-  Throw: 304
-  InterectPick: 301
+  Attack: 257
+  Throw: 259
+  InterectPick: 258
   Interact: 0
   Toggle: 0
 --- !u!114 &258351894047503222
@@ -4064,7 +4064,7 @@ MonoBehaviour:
   isFlippingEnabled: 1
   useP2System: 1
   p2System: {fileID: 7670246556919505305}
-  WASDControl: 1
+  WASDControl: 0
   p3Input: {fileID: 0}
 --- !u!114 &3106474256808062014
 MonoBehaviour:
@@ -4921,8 +4921,8 @@ MonoBehaviour:
   HandAim: {fileID: 2309552781305350533}
   P3: 0
   P3Cursor: {fileID: 0}
-  NextTarget: 113
-  PreviousTarget: 101
+  NextTarget: 260
+  PreviousTarget: 262
 --- !u!1 &6094225253138524685
 GameObject:
   m_ObjectHideFlags: 0
@@ -5527,11 +5527,11 @@ MonoBehaviour:
   ThrowPos: {fileID: 8358967207088524224}
   Range: {fileID: 5555540110442718837}
   Arrow: {fileID: 1262380209550511799}
-  up: 119
-  down: 115
-  left: 97
-  right: 100
-  ControlMode: 9
+  up: 273
+  down: 274
+  left: 276
+  right: 275
+  ControlMode: 0
   controlMode: 1
 --- !u!1 &7606473801261761503
 GameObject:
@@ -5623,8 +5623,8 @@ MonoBehaviour:
   HandAim: {fileID: 1884792541527898621}
   P3: 0
   P3Cursor: {fileID: 0}
-  NextTarget: 113
-  PreviousTarget: 101
+  NextTarget: 260
+  PreviousTarget: 262
 --- !u!1 &7927085980581939850
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,10 +6244,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputMode: 0
   inputConfig:
-    moveUp: 119
-    moveDown: 115
-    moveLeft: 97
-    moveRight: 100
+    moveUp: 273
+    moveDown: 274
+    moveLeft: 276
+    moveRight: 275
     attackKey: 0
     pickupKey: 0
     toggleSafetyKey: 0
@@ -6271,9 +6271,9 @@ MonoBehaviour:
   pickupPressTime: 0
   isPickupKeyHeld: 0
   pickupHandled: 0
-  Attack: 9
-  Throw: 304
-  InterectPick: 301
+  Attack: 257
+  Throw: 259
+  InterectPick: 258
   Interact: 0
   Toggle: 0
 --- !u!114 &4157059391178916622
@@ -6314,7 +6314,7 @@ MonoBehaviour:
   isFlippingEnabled: 1
   useP2System: 1
   p2System: {fileID: 5789164337087271393}
-  WASDControl: 1
+  WASDControl: 0
   p3Input: {fileID: 0}
 --- !u!114 &1241136631165705286
 MonoBehaviour:

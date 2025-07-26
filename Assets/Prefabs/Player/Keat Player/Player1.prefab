@@ -596,15 +596,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7005316510463046711, guid: 8a139d3639b4aa746a8118f2b026b6fa, type: 3}
       propertyPath: inputConfig.moveUp
-      value: 273
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 7005316510463046711, guid: 8a139d3639b4aa746a8118f2b026b6fa, type: 3}
       propertyPath: inputConfig.moveDown
-      value: 274
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 7005316510463046711, guid: 8a139d3639b4aa746a8118f2b026b6fa, type: 3}
       propertyPath: inputConfig.moveLeft
-      value: 276
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 7005316510463046711, guid: 8a139d3639b4aa746a8118f2b026b6fa, type: 3}
       propertyPath: inputConfig.throwKey
@@ -612,11 +612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7005316510463046711, guid: 8a139d3639b4aa746a8118f2b026b6fa, type: 3}
       propertyPath: inputConfig.moveRight
-      value: 275
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7005316510463046711, guid: 8a139d3639b4aa746a8118f2b026b6fa, type: 3}
       propertyPath: inputConfig.pickupKey
-      value: 305
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 7027408748703166136, guid: 8a139d3639b4aa746a8118f2b026b6fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -819,15 +819,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3395021155769574424, guid: 0244cb33230a5bc4cbab86ccdcd667ba, type: 3}
       propertyPath: inputConfig.moveUp
-      value: 273
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 3395021155769574424, guid: 0244cb33230a5bc4cbab86ccdcd667ba, type: 3}
       propertyPath: inputConfig.moveDown
-      value: 274
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 3395021155769574424, guid: 0244cb33230a5bc4cbab86ccdcd667ba, type: 3}
       propertyPath: inputConfig.moveLeft
-      value: 276
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 3395021155769574424, guid: 0244cb33230a5bc4cbab86ccdcd667ba, type: 3}
       propertyPath: inputConfig.throwKey
@@ -835,11 +835,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3395021155769574424, guid: 0244cb33230a5bc4cbab86ccdcd667ba, type: 3}
       propertyPath: inputConfig.moveRight
-      value: 275
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3395021155769574424, guid: 0244cb33230a5bc4cbab86ccdcd667ba, type: 3}
       propertyPath: inputConfig.pickupKey
-      value: 305
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 3494639522983806355, guid: 0244cb33230a5bc4cbab86ccdcd667ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1158,15 +1158,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3890743425518271701, guid: 8b1f06cffb0079c4ab2191ce39b8d56b, type: 3}
       propertyPath: inputConfig.moveUp
-      value: 273
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 3890743425518271701, guid: 8b1f06cffb0079c4ab2191ce39b8d56b, type: 3}
       propertyPath: inputConfig.moveDown
-      value: 274
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 3890743425518271701, guid: 8b1f06cffb0079c4ab2191ce39b8d56b, type: 3}
       propertyPath: inputConfig.moveLeft
-      value: 276
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 3890743425518271701, guid: 8b1f06cffb0079c4ab2191ce39b8d56b, type: 3}
       propertyPath: inputConfig.throwKey
@@ -1174,11 +1174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3890743425518271701, guid: 8b1f06cffb0079c4ab2191ce39b8d56b, type: 3}
       propertyPath: inputConfig.moveRight
-      value: 275
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3890743425518271701, guid: 8b1f06cffb0079c4ab2191ce39b8d56b, type: 3}
       propertyPath: inputConfig.pickupKey
-      value: 305
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 5025173767739388633, guid: 8b1f06cffb0079c4ab2191ce39b8d56b, type: 3}
       propertyPath: m_SortingOrder

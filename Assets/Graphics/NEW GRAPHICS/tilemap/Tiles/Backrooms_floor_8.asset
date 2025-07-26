@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Backrooms_floor_8
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1546172573, guid: 2b6b279ef49a7ec4f817dd7639d2447d, type: 3}
+  m_Sprite: {fileID: -318368695, guid: 0748d10c5b882144186ed062b07ed7fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

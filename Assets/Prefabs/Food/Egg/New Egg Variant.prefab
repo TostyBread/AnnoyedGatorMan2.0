@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2903314867860806661, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_InstanceId
-      value: -236350
+      value: -32936
       objectReference: {fileID: 0}
     - target: {fileID: 3025878516127459448, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_Sprite
@@ -200,6 +200,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 570111414, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 8040817188168714237, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040817188168714237, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040817188168714237, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8199879622723147654, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.18
@@ -297,6 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: -1232568359, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  burnedSpriteWithBorder: {fileID: 0}
   spriteWithBorderScale: 0.6
 --- !u!1 &347801428701810123 stripped
 GameObject:
@@ -354,6 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: -130251207, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  burnedSpriteWithBorder: {fileID: 0}
   spriteWithBorderScale: 0.4
 --- !u!1 &3362596054718312319 stripped
 GameObject:
@@ -373,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: 1205340765, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  burnedSpriteWithBorder: {fileID: 0}
   spriteWithBorderScale: 0.4
 --- !u!212 &3661267823301152744 stripped
 SpriteRenderer:
@@ -397,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: 495209807, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  burnedSpriteWithBorder: {fileID: 39581257, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
   spriteWithBorderScale: 0.4
 --- !u!1 &4237064220790624295 stripped
 GameObject:
@@ -416,6 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: -268117469, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  burnedSpriteWithBorder: {fileID: 0}
   spriteWithBorderScale: 0.4
 --- !u!212 &4352852929433346495 stripped
 SpriteRenderer:
@@ -680,6 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: -130251207, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  burnedSpriteWithBorder: {fileID: 0}
   spriteWithBorderScale: 0.4
 --- !u!212 &6986381303853596309 stripped
 SpriteRenderer:
@@ -704,6 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: 1205340765, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  burnedSpriteWithBorder: {fileID: 0}
   spriteWithBorderScale: 0.4
 --- !u!212 &8791268874701049402 stripped
 SpriteRenderer:
