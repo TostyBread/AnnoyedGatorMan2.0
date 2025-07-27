@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7c04b79b112ba047b533d94a09c525c
+guid: 01551a188e7c5e84ba3b5955c7bb1802
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,22 +97,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_0993_1
+      name: AngryWalk_2_0
       rect:
         serializedVersion: 2
-        x: 2359
-        y: 198
-        width: 1361
-        height: 2057
+        x: 2334
+        y: 213
+        width: 1916
+        height: 2039
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4ad578cc36cef0469e8bcff22b74f38
-      internalID: 922225775
+      spriteID: 7a5ed96210dd783489a3e988d9f1b31a
+      internalID: 1956439999
       vertices: []
       indices: 
       edges: []
@@ -128,10 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IMG_0993_0: -1687393309
-      IMG_0993_1: 922225775
-      IMG_0993_2: 1041275739
-      IMG_0993_3: -1803497067
+      AngryWalk_2_0: 1956439999
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
