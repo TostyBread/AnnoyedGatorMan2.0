@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 4483962361863701572}
   m_Layer: 23
   m_Name: Range
-  m_TagString: Untagged
+  m_TagString: P2 & P3 Range
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -874,6 +874,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  - NPC
   Layers: []
   AllItemInRange: []
 --- !u!1 &1829446166236169171
@@ -1700,7 +1701,7 @@ GameObject:
   - component: {fileID: 297011981505819708}
   m_Layer: 23
   m_Name: Range
-  m_TagString: Untagged
+  m_TagString: P2 & P3 Range
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1777,6 +1778,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  - NPC
   Layers: []
   AllItemInRange: []
 --- !u!1 &2541843595571164075
@@ -2148,12 +2150,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1579080899, guid: c81797abd22d53b449c89a21f4df11bb, type: 3}
+  m_Sprite: {fileID: 636202402, guid: a8f9426a1b2d39246ad516c5af01bc27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.05, y: 2.94}
+  m_Size: {x: 5.37, y: 11.862453}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2228,8 +2230,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.62, y: 0.5}
-    oldSize: {x: 5.3199997, y: 11.922465}
-    newSize: {x: 2.05, y: 2.94}
+    oldSize: {x: 5.37, y: 11.862453}
+    newSize: {x: 5.37, y: 11.862453}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -4336,7 +4338,7 @@ GameObject:
   - component: {fileID: 7653329241169561089}
   m_Layer: 23
   m_Name: Range
-  m_TagString: Untagged
+  m_TagString: P2 & P3 Range
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4413,6 +4415,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  - NPC
   Layers: []
   AllItemInRange: []
 --- !u!1 &5579773021036151190
