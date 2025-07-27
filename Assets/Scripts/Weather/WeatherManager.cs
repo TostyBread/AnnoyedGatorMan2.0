@@ -37,6 +37,7 @@ public class WeatherManager : MonoBehaviour
 
         audioManager = AudioManager.Instance;
         if (AudioManager.Instance != null) audioManager = AudioManager.Instance; // Get the AudioManager instance
+        else if (audioManager == null) audioManager = FindObjectOfType<AudioManager>(); // Fallback to find AudioManager in the scene
 
         audioSource = GetComponent<AudioSource>();
     }
