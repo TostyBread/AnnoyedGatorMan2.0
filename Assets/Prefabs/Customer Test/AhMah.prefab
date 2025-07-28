@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 28608211284768982}
@@ -202,7 +202,6 @@ GameObject:
   - component: {fileID: 4180316551167014751}
   - component: {fileID: 3131916694288282251}
   - component: {fileID: 1539117742428281774}
-  - component: {fileID: 4081547870907266787}
   m_Layer: 10
   m_Name: AhMah
   m_TagString: NPC
@@ -357,7 +356,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.45, y: 1.2}
+  m_Size: {x: 1.58, y: 1.88}
   m_EdgeRadius: 0
 --- !u!58 &3131916694288282251
 CircleCollider2D:
@@ -407,18 +406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 8306104426203620189, guid: 8452e20da9f9fb6438ea5e2a9aef612f, type: 3}
---- !u!114 &4081547870907266787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9131540200826282109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2855801ae277f8749952009d170c6bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9207026353361096624
 GameObject:
   m_ObjectHideFlags: 0
