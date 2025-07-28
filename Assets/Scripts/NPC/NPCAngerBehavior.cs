@@ -28,11 +28,16 @@ public class NPCAngerBehavior : MonoBehaviour
     private Collider2D npcCollider;
     private GameObject target;
     private Vector3 angerStartPosition;
+    [SerializeField] private NPCAnimationController npcAnimator; // Reference NPC's Animator
 
     public bool IsAngry => isAngry;
 
     void Awake()
     {
+        // grab npcAnimator reference and set accordingly
+        if (npcAnimator == null) npcAnimator = GetComponent<NPCAnimationController>();
+        npcAnimator.SetIsAngry(false);
+
         npc = GetComponent<NPCBehavior>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         npcCollider = GetComponent<Collider2D>();
@@ -48,6 +53,7 @@ public class NPCAngerBehavior : MonoBehaviour
         if (npc.hasAcceptedPlate) return; // Don't trigger anger if the NPC has accepted a plate
 
         isAngry = true;
+        npcAnimator.SetIsAngry(true); // When these condition are true, the NPC will use Angry from this point onward
         angerStartPosition = transform.position;
 
         npc.rb.velocity = Vector2.zero;
