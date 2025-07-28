@@ -23,8 +23,8 @@ public class NPCAnimationController : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         if (useRigidbody2D && targetRigidbody == null)
         {
@@ -63,6 +63,12 @@ public class NPCAnimationController : MonoBehaviour
 
         // Maintain current angry states
         animator.SetBool(AngryParameter, isAngry);
+    }
+
+    public bool IsAngry // Property to get/set anger state
+    {
+        get => isAngry;
+        set => SetIsAngry(value);
     }
 
     public void SetIsAngry(bool state)

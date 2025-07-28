@@ -12,14 +12,9 @@ public class NPCPatience : MonoBehaviour
     private bool patienceRunning = false;
 
     private NPCBehavior npcBehavior;
-    [SerializeField] private NPCAnimationController npcAnimator; // Reference NPC's Animator
 
     void Awake()
     {
-        // grab npcAnimator reference and set accordingly
-        if (npcAnimator == null) npcAnimator = GetComponent<NPCAnimationController>();
-        npcAnimator.SetIsAngry(false);
-
         npcBehavior = GetComponent<NPCBehavior>();
         ResetPatience();
         if (patienceBar != null)
@@ -72,9 +67,13 @@ public class NPCPatience : MonoBehaviour
 
     private void PatienceCheck() // Keep checking patience to update animator
     {
-        if (currentPatience < 20f && hasSetAngry)
+        if (currentPatience < 20f && !hasSetAngry)
         {
-            npcAnimator.SetIsAngry(true);
+            NPCAnimationController npcAnim = GetComponentInChildren<NPCAnimationController>(); // Calls the AnimController
+            if (npcAnim != null)
+            {
+                npcAnim.IsAngry = true;
+            }
             hasSetAngry = true;
         }
     }
