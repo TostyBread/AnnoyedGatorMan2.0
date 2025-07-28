@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 1280074125, guid: 78614cfa731d8c9438b80c1f117f0552, type: 3}
+  m_Sprite: {fileID: -510298585, guid: 1b29c280d8dc04248b74da732eb13994, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a308db5f488aee04b818b824689ad9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firearmIdleSprite: {fileID: 1280074125, guid: 78614cfa731d8c9438b80c1f117f0552, type: 3}
-  firearmFireSprite: {fileID: -1439959499, guid: 89a6236360567bc46b172fa7eebdd507, type: 3}
+  firearmIdleSprite: {fileID: -510298585, guid: 1b29c280d8dc04248b74da732eb13994, type: 3}
+  firearmFireSprite: {fileID: -1564215739, guid: f974e5cf3b8c6734c9106316b515e7a1, type: 3}
 --- !u!114 &7079292728187043497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d0c4dd702eff1439737f161a2ebc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteWithBorder: {fileID: 1794486809, guid: 20a8a770832fc664fa6ea913f720363e, type: 3}
+  spriteWithBorder: {fileID: 269394859, guid: 2d5529050f05b414e873cfb08468961b, type: 3}
   spriteWithBorderScale: 0.2
 --- !u!1 &3083484218926781182
 GameObject:
