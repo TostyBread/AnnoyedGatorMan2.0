@@ -41,13 +41,19 @@ public class ScoreManager : MonoBehaviour
     {
         if (isCleared)
         {
-            Debug.Log("Level Cleared! Final Score: " + currentScore);
-            if (WinScreen != null) WinScreen.SetActive(true);
+            //Debug.Log("Level Cleared! Final Score: " + currentScore);
+            StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay
         }
         else if (!isCleared && timer.RemainTime <= 0)
         {
-            Debug.Log("Level Failed! Final Score: " + currentScore);
+            //Debug.Log("Level Failed! Final Score: " + currentScore);
             if (LoseScreen != null) LoseScreen.SetActive(true);
         }
+    }
+
+    IEnumerator DelayBeforeScreenShow(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (WinScreen != null) WinScreen.SetActive(true);
     }
 }

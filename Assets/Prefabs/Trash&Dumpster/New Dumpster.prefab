@@ -190,10 +190,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jiggleInterval: 0.1
-  BiggerTheGameobjectBy: 1.1
+  BiggerTheGameobjectBy: 1.2
   enableLeftRightJiggle: 0
   enableUpDownJiggle: 1
   jiggleRange: 1
-  jiggleSpeed: 10
+  jiggleSpeed: 20
   enableRotationJiggle: 0
   rotationAngle: 30

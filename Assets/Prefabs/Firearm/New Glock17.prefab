@@ -72,7 +72,7 @@ MonoBehaviour:
   shotgunPelletCount: 5
   shotgunSpreadAngle: 15
   shotgunRandomness: 5
-  firearmPrefix: Glock17
+  firearmPrefix: NewGlock17
   firearmAudio: glock18
   animator: {fileID: 2353298669802426739}
   isFiring: 0
@@ -137,8 +137,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2, y: 1.5}
+  m_Offset: {x: -0.08, y: -0.00000004156732}
+  m_Size: {x: 2.86, y: 1.5000103}
   m_Direction: 1
 --- !u!114 &2250744765859934261
 MonoBehaviour:
@@ -192,7 +192,7 @@ MonoBehaviour:
   - {x: -0.7843218, y: -0.5099735, z: 0}
   m_ShapePathHash: -120566755
   m_Mesh: {fileID: 0}
-  m_InstanceId: -9022
+  m_InstanceId: -1664
   m_LocalBounds:
     m_Center: {x: 0.008975506, y: -0.015901089, z: 0}
     m_Extent: {x: 0.85458994, y: 0.565516, z: 0}
@@ -224,7 +224,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 897022499915961589}
@@ -270,9 +270,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -1804502545, guid: 68bdb231ada4c144084d4bf8047abfef, type: 3}
+  m_Sprite: {fileID: 663602173, guid: ae77edc12eec919469557b43d5ff8e5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.35, y: 1.61}
@@ -291,7 +291,7 @@ Animator:
   m_GameObject: {fileID: 2041615999421983851}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8025facbd5158484bbe8fa25112ebd3f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0e490ab783eb40e4d94062b568d5e668, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -327,7 +327,7 @@ Transform:
   m_GameObject: {fileID: 3779090499707573166}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0.332, z: 0}
+  m_LocalPosition: {x: 1.33, y: 0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

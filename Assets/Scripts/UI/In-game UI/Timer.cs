@@ -11,12 +11,14 @@ public class Timer : MonoBehaviour
     public Image TimerBar;
 
     private TMP_Text TimerText;
+    private CameraMovement cameraMovement;
 
     // Start is called before the first frame update
     void Start()
     {
         RemainTime = MaxTime;
         TimerText = GetComponentInChildren<TMP_Text>();
+        cameraMovement = FindObjectOfType<CameraMovement>();
     }
 
     // Update is called once per frame
@@ -29,9 +31,23 @@ public class Timer : MonoBehaviour
         int seconds = Mathf.FloorToInt(RemainTime % 60f);
         if (TimerText != null) TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        RemainTime -= Time.deltaTime;
+        if (cameraMovement != null && !cameraMovement.isMoving)
+        {
+            StartCoroutine(Wait(1f)); // Wait before reducing the time
+        }
+        else if (cameraMovement == null)
+        {
+            RemainTime -= Time.deltaTime;
+        }
+
         RemainTime = Mathf.Clamp(RemainTime, 0, MaxTime);
 
-        if (Input.GetKeyDown(KeyCode.Delete)) RemainTime = 0;
+        if (Input.GetKeyDown(KeyCode.Delete)) RemainTime = 0; // For testing purposes
+    }
+
+    IEnumerator Wait(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        RemainTime -= Time.deltaTime;
     }
 }

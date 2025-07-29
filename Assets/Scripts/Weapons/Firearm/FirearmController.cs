@@ -190,14 +190,14 @@ public class FirearmController : MonoBehaviour, IUsable
 
     private void ResetToNeutral()
     {
+        PlayAnimation("_Neutral");
         isFiring = false;
-        if (animator != null) PlayAnimation("_Neutral");
     }
 
     private void ResetToDry()
     {
+        PlayAnimation("_Dry");
         isFiring = false;
-        if (animator != null) PlayAnimation("_Dry");
     }
 
     // Reference from AmmoBox for refilling ammo

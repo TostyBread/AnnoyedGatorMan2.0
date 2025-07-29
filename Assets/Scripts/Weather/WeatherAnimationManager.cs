@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeatherAnimationManager : MonoBehaviour
 {
-    public WeatherManager weatherManager;
+    private WeatherManager weatherManager;
     private Animator animator;
 
     // Start is called before the first frame update

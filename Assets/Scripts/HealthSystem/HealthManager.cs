@@ -58,6 +58,8 @@ public class HealthManager : MonoBehaviour
     [Header("Revive Settings")]
     public KeyCode reviveBoostKey = KeyCode.Space;
 
+    private Jiggle jiggle;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -90,6 +92,8 @@ public class HealthManager : MonoBehaviour
 
         currentHealth = Health;
         lastHealth = currentHealth;
+
+        jiggle = GetComponent<Jiggle>();
     }
 
     void Update()
@@ -298,5 +302,8 @@ public class HealthManager : MonoBehaviour
 
         currentHealth -= damage;
         damageReceived = damage;
+
+        if (jiggle != null)
+            jiggle.StartJiggle();
     }
 }

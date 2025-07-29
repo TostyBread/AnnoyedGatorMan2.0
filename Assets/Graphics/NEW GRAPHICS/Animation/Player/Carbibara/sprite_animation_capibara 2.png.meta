@@ -1,0 +1,561 @@
+fileFormatVersion: 2
+guid: a8f9426a1b2d39246ad516c5af01bc27
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_0
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 6549
+        width: 537
+        height: 1186
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f04405969a8da344974ed99b2b57cae
+      internalID: 636202402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_1
+      rect:
+        serializedVersion: 2
+        x: 2254
+        y: 6530
+        width: 532
+        height: 1210
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1a65e4bff5c45341b33a7c94256b309
+      internalID: -85694020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_2
+      rect:
+        serializedVersion: 2
+        x: 3182
+        y: 6539
+        width: 537
+        height: 1192
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc70174bb5912c48a89017ff06db5d2
+      internalID: -962478794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_3
+      rect:
+        serializedVersion: 2
+        x: 4129
+        y: 6518
+        width: 532
+        height: 1213
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdfcf13fb5b173f4b818d36541ffae9a
+      internalID: 843085543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_79
+      rect:
+        serializedVersion: 2
+        x: 5251
+        y: 3845
+        width: 917
+        height: 1182
+      alignment: 9
+      pivot: {x: 0.78, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7a7389f3ff0a4e49b8995243335a41a
+      internalID: -1254111183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_80
+      rect:
+        serializedVersion: 2
+        x: 6187
+        y: 3817
+        width: 919
+        height: 1210
+      alignment: 9
+      pivot: {x: 0.78, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0fd516d83063964da455ca02d69c091
+      internalID: 1307956877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_81
+      rect:
+        serializedVersion: 2
+        x: 7092
+        y: 3841
+        width: 913
+        height: 1189
+      alignment: 9
+      pivot: {x: 0.78, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50fa515d7e387494d95efdd530eee2ab
+      internalID: 72022612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_82
+      rect:
+        serializedVersion: 2
+        x: 8029
+        y: 3818
+        width: 918
+        height: 1209
+      alignment: 9
+      pivot: {x: 0.78, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9800f33610fc8f41bee7302cc5521d2
+      internalID: -1134798997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_124
+      rect:
+        serializedVersion: 2
+        x: 5622
+        y: 2555
+        width: 565
+        height: 1181
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77e0eb580fe455c4384e49b39f7d809b
+      internalID: -593553163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_125
+      rect:
+        serializedVersion: 2
+        x: 6545
+        y: 2527
+        width: 561
+        height: 1209
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d29b5a8b067f764c934ff54347679c3
+      internalID: -580736551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_126
+      rect:
+        serializedVersion: 2
+        x: 7445
+        y: 2550
+        width: 560
+        height: 1186
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090a378666c86fc41a891f83f8925279
+      internalID: -547449956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_animation_capibara 2_127
+      rect:
+        serializedVersion: 2
+        x: 8383
+        y: 2531
+        width: 564
+        height: 1204
+      alignment: 9
+      pivot: {x: 0.62, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d09353c77073e4d8b0e3c48a400622
+      internalID: -1591082558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprite_animation_capibara 2_0: 636202402
+      sprite_animation_capibara 2_1: -85694020
+      sprite_animation_capibara 2_10: 333414365
+      sprite_animation_capibara 2_100: -864967350
+      sprite_animation_capibara 2_101: 666058880
+      sprite_animation_capibara 2_102: 1684717991
+      sprite_animation_capibara 2_103: -227887631
+      sprite_animation_capibara 2_104: 151337294
+      sprite_animation_capibara 2_105: -460328896
+      sprite_animation_capibara 2_106: 1630464742
+      sprite_animation_capibara 2_107: -819954308
+      sprite_animation_capibara 2_108: 833498849
+      sprite_animation_capibara 2_109: 1692907345
+      sprite_animation_capibara 2_11: 1391658373
+      sprite_animation_capibara 2_110: 1569985215
+      sprite_animation_capibara 2_111: 992649840
+      sprite_animation_capibara 2_112: 1743769790
+      sprite_animation_capibara 2_113: 8434571
+      sprite_animation_capibara 2_114: 859869960
+      sprite_animation_capibara 2_115: -467112494
+      sprite_animation_capibara 2_116: 611900994
+      sprite_animation_capibara 2_117: 1690899826
+      sprite_animation_capibara 2_118: 2011293510
+      sprite_animation_capibara 2_119: 1415918366
+      sprite_animation_capibara 2_12: 350434936
+      sprite_animation_capibara 2_120: -804083056
+      sprite_animation_capibara 2_121: -641357146
+      sprite_animation_capibara 2_122: -1624044327
+      sprite_animation_capibara 2_123: -1563868995
+      sprite_animation_capibara 2_124: -593553163
+      sprite_animation_capibara 2_125: -580736551
+      sprite_animation_capibara 2_126: -547449956
+      sprite_animation_capibara 2_127: -1591082558
+      sprite_animation_capibara 2_128: -76118336
+      sprite_animation_capibara 2_129: 1533610243
+      sprite_animation_capibara 2_13: -1206899901
+      sprite_animation_capibara 2_130: -474362228
+      sprite_animation_capibara 2_131: -1740263153
+      sprite_animation_capibara 2_132: -298343942
+      sprite_animation_capibara 2_133: -399277328
+      sprite_animation_capibara 2_134: -2112035508
+      sprite_animation_capibara 2_135: -2048189135
+      sprite_animation_capibara 2_136: -1993907122
+      sprite_animation_capibara 2_137: 381956448
+      sprite_animation_capibara 2_138: -1559575384
+      sprite_animation_capibara 2_139: -1089968029
+      sprite_animation_capibara 2_14: -1753455561
+      sprite_animation_capibara 2_140: -56597933
+      sprite_animation_capibara 2_141: -1293899602
+      sprite_animation_capibara 2_142: 1537631892
+      sprite_animation_capibara 2_143: 1302662563
+      sprite_animation_capibara 2_144: 477317311
+      sprite_animation_capibara 2_145: 1355531118
+      sprite_animation_capibara 2_146: 1768985678
+      sprite_animation_capibara 2_147: 395781471
+      sprite_animation_capibara 2_148: 1873528658
+      sprite_animation_capibara 2_149: 37865589
+      sprite_animation_capibara 2_15: 536570315
+      sprite_animation_capibara 2_150: -1456194645
+      sprite_animation_capibara 2_151: 1034189221
+      sprite_animation_capibara 2_152: -548050722
+      sprite_animation_capibara 2_153: -896667686
+      sprite_animation_capibara 2_154: 937286456
+      sprite_animation_capibara 2_155: -794231588
+      sprite_animation_capibara 2_156: 1297197054
+      sprite_animation_capibara 2_157: 375200577
+      sprite_animation_capibara 2_158: -1137047865
+      sprite_animation_capibara 2_159: -1528360220
+      sprite_animation_capibara 2_16: -165965933
+      sprite_animation_capibara 2_160: -1193224022
+      sprite_animation_capibara 2_161: -1231004847
+      sprite_animation_capibara 2_162: 1416129760
+      sprite_animation_capibara 2_163: 726842741
+      sprite_animation_capibara 2_164: -2060584691
+      sprite_animation_capibara 2_165: -26639722
+      sprite_animation_capibara 2_166: 1370357063
+      sprite_animation_capibara 2_167: -2072763724
+      sprite_animation_capibara 2_168: -758087005
+      sprite_animation_capibara 2_169: 1706726614
+      sprite_animation_capibara 2_17: 811530404
+      sprite_animation_capibara 2_170: 1719342364
+      sprite_animation_capibara 2_171: -1293042145
+      sprite_animation_capibara 2_172: -1269540976
+      sprite_animation_capibara 2_173: -1494230812
+      sprite_animation_capibara 2_174: 243185562
+      sprite_animation_capibara 2_175: -1038152318
+      sprite_animation_capibara 2_176: 1493660554
+      sprite_animation_capibara 2_177: 461892299
+      sprite_animation_capibara 2_178: 1052103212
+      sprite_animation_capibara 2_179: -1392485641
+      sprite_animation_capibara 2_18: 398404827
+      sprite_animation_capibara 2_180: -1013350853
+      sprite_animation_capibara 2_181: -923638533
+      sprite_animation_capibara 2_182: 158566435
+      sprite_animation_capibara 2_183: -607316512
+      sprite_animation_capibara 2_184: -667778564
+      sprite_animation_capibara 2_185: -248437634
+      sprite_animation_capibara 2_186: -475593910
+      sprite_animation_capibara 2_187: -649502363
+      sprite_animation_capibara 2_188: 423136442
+      sprite_animation_capibara 2_189: 890894632
+      sprite_animation_capibara 2_19: 305522743
+      sprite_animation_capibara 2_190: -88010954
+      sprite_animation_capibara 2_191: 1469614736
+      sprite_animation_capibara 2_192: -1858071857
+      sprite_animation_capibara 2_193: -1568134031
+      sprite_animation_capibara 2_194: 1795327634
+      sprite_animation_capibara 2_2: -962478794
+      sprite_animation_capibara 2_20: 270056
+      sprite_animation_capibara 2_21: -202358515
+      sprite_animation_capibara 2_22: 128248356
+      sprite_animation_capibara 2_23: 1663261815
+      sprite_animation_capibara 2_24: -746097244
+      sprite_animation_capibara 2_25: 792614723
+      sprite_animation_capibara 2_26: 1199367889
+      sprite_animation_capibara 2_27: -876708415
+      sprite_animation_capibara 2_28: -1217020146
+      sprite_animation_capibara 2_29: -564368265
+      sprite_animation_capibara 2_3: 843085543
+      sprite_animation_capibara 2_30: -826507869
+      sprite_animation_capibara 2_31: 646978886
+      sprite_animation_capibara 2_32: 615149126
+      sprite_animation_capibara 2_33: 840203060
+      sprite_animation_capibara 2_34: -1758533631
+      sprite_animation_capibara 2_35: 374951778
+      sprite_animation_capibara 2_36: -1783924985
+      sprite_animation_capibara 2_37: 1943559957
+      sprite_animation_capibara 2_38: 474513030
+      sprite_animation_capibara 2_39: -264282802
+      sprite_animation_capibara 2_4: 474056309
+      sprite_animation_capibara 2_40: 247327685
+      sprite_animation_capibara 2_41: 2015279698
+      sprite_animation_capibara 2_42: -1365474711
+      sprite_animation_capibara 2_43: 760117445
+      sprite_animation_capibara 2_44: 1103510933
+      sprite_animation_capibara 2_45: 1715840232
+      sprite_animation_capibara 2_46: -491298490
+      sprite_animation_capibara 2_47: 133186235
+      sprite_animation_capibara 2_48: -917809347
+      sprite_animation_capibara 2_49: 670486823
+      sprite_animation_capibara 2_5: 460695566
+      sprite_animation_capibara 2_50: 1648481326
+      sprite_animation_capibara 2_51: 1948710925
+      sprite_animation_capibara 2_52: -1874011808
+      sprite_animation_capibara 2_53: -93685547
+      sprite_animation_capibara 2_54: -605102664
+      sprite_animation_capibara 2_55: -696806336
+      sprite_animation_capibara 2_56: 344623522
+      sprite_animation_capibara 2_57: -427572678
+      sprite_animation_capibara 2_58: -1579073733
+      sprite_animation_capibara 2_59: -721864284
+      sprite_animation_capibara 2_6: 577806996
+      sprite_animation_capibara 2_60: 1434216625
+      sprite_animation_capibara 2_61: 1246446023
+      sprite_animation_capibara 2_62: -17579664
+      sprite_animation_capibara 2_63: -1849027679
+      sprite_animation_capibara 2_64: -2104848536
+      sprite_animation_capibara 2_65: 110806119
+      sprite_animation_capibara 2_66: -1786535690
+      sprite_animation_capibara 2_67: 174007473
+      sprite_animation_capibara 2_68: -1250700987
+      sprite_animation_capibara 2_69: 273353346
+      sprite_animation_capibara 2_7: -1722245551
+      sprite_animation_capibara 2_70: -1018334365
+      sprite_animation_capibara 2_71: -1575592751
+      sprite_animation_capibara 2_72: 499690322
+      sprite_animation_capibara 2_73: -1581865478
+      sprite_animation_capibara 2_74: 538770352
+      sprite_animation_capibara 2_75: -1814462782
+      sprite_animation_capibara 2_76: -1628157845
+      sprite_animation_capibara 2_77: -94512351
+      sprite_animation_capibara 2_78: -731699033
+      sprite_animation_capibara 2_79: -1254111183
+      sprite_animation_capibara 2_8: -1829450904
+      sprite_animation_capibara 2_80: 1307956877
+      sprite_animation_capibara 2_81: 72022612
+      sprite_animation_capibara 2_82: -1134798997
+      sprite_animation_capibara 2_83: -925341498
+      sprite_animation_capibara 2_84: -572693979
+      sprite_animation_capibara 2_85: -1666949026
+      sprite_animation_capibara 2_86: 722365879
+      sprite_animation_capibara 2_87: -1524828509
+      sprite_animation_capibara 2_88: 1687049987
+      sprite_animation_capibara 2_89: 71472716
+      sprite_animation_capibara 2_9: -842553531
+      sprite_animation_capibara 2_90: -201025419
+      sprite_animation_capibara 2_91: -1490294464
+      sprite_animation_capibara 2_92: -1342489756
+      sprite_animation_capibara 2_93: -1297851445
+      sprite_animation_capibara 2_94: 152627846
+      sprite_animation_capibara 2_95: -1291286384
+      sprite_animation_capibara 2_96: -667029287
+      sprite_animation_capibara 2_97: -720351036
+      sprite_animation_capibara 2_98: 1613133582
+      sprite_animation_capibara 2_99: -541793785
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

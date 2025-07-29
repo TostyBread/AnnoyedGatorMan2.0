@@ -29,7 +29,7 @@ public class Smoke : MonoBehaviour
     public LayerMask wallLayer;
 
     private GameObject smokingPlayer;
-    private Sanity sanity;
+    //private Sanity sanity;
     private Window window;
     private static int smokeCount = 0;
 
@@ -37,7 +37,7 @@ public class Smoke : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
+        //sanity = GameObject.FindGameObjectWithTag("Sanity").GetComponent<Sanity>();
         window = GameObject.FindGameObjectWithTag("Window").GetComponent<Window>();
 
         float scale = Random.Range(Min, Max);
@@ -59,7 +59,7 @@ public class Smoke : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, window.transform.position, smokeMoveSpeed * Time.deltaTime);
         }
 
-        if (sanity != null && canSmoke) StartSmoking();
+        if (smokingPlayer != null && canSmoke) StartSmoking();
     }
 
     private void StartSmoking()
@@ -79,7 +79,8 @@ public class Smoke : MonoBehaviour
             if (transform.localScale.x <= 0.3f)
             {
                 AudioManager.Instance.StopSound(SmokeAudioName);
-                sanity.RemainSanity += sanityRecover;
+                //sanity.RemainSanity += sanityRecover;
+                smokingPlayer.GetComponent<HealthManager>().currentHealth += sanityRecover;
                 AudioManager.Instance.PlaySound(SmokeAudioName, transform.position);
                 DestroySmoke();
             }
