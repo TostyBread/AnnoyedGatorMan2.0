@@ -49,8 +49,8 @@ public class NoThrowCursorDetector : MonoBehaviour
         float distance = Vector2.Distance(origin, cursorPos);
 
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, wallLayer);
-        bool canThrow = true;
-        //bool canThrow = hit.collider == null;
+        // bool canThrow = true; // Dont change this script you dumbass, this was made to prevent player from throwing through the wall
+        bool canThrow = hit.collider == null; // This is the code to keep, unless your controller code suck ass, please find a way to fix yours
 
         if (inputManager != null) inputManager.canThrow = canThrow;
         if (inputManagerP2 != null) inputManagerP2.canThrow = canThrow;

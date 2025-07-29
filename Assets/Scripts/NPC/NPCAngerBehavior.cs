@@ -47,6 +47,11 @@ public class NPCAngerBehavior : MonoBehaviour
         if (isAngry) return;
         if (npc.hasAcceptedPlate) return; // Don't trigger anger if the NPC has accepted a plate
 
+        NPCAnimationController npcAnim = GetComponentInChildren<NPCAnimationController>(); // Calls the AnimController
+        if (npcAnim != null)
+        {
+            npcAnim.IsAngry = true;
+        }
         isAngry = true;
         angerStartPosition = transform.position;
 

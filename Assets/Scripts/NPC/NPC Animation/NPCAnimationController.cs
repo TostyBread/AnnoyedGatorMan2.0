@@ -5,6 +5,7 @@ public class NPCAnimationController : MonoBehaviour
 {
     [Header("Animation Settings")]
     [SerializeField] private string moveParameter = "isMoving";
+    [SerializeField] private string AngryParameter = "isAngry";
 
     [Header("Movement Settings")]
     [SerializeField] private bool useRigidbody2D = true;
@@ -18,15 +19,22 @@ public class NPCAnimationController : MonoBehaviour
     private Vector2 lastPosition;
     private Vector2 smoothedVelocity;
 
+    private bool isAngry = false;
+
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         if (useRigidbody2D && targetRigidbody == null)
         {
             targetRigidbody = GetComponentInParent<Rigidbody2D>();
         }
+    }
+
+    private void OnEnable()
+    {
+        lastPosition = transform.position;
     }
 
     private void FixedUpdate()
@@ -43,7 +51,6 @@ public class NPCAnimationController : MonoBehaviour
         }
 
         lastPosition = transform.position;
-
         smoothedVelocity = Vector2.Lerp(smoothedVelocity, velocity, 0.5f);
 
         bool isMoving = smoothedVelocity.magnitude > movementThreshold;
@@ -53,10 +60,20 @@ public class NPCAnimationController : MonoBehaviour
         {
             spriteRenderer.flipX = smoothedVelocity.x < 0;
         }
+
+        // Maintain current angry states
+        animator.SetBool(AngryParameter, isAngry);
     }
 
-    private void OnEnable()
+    public bool IsAngry // Property to get/set anger state
     {
-        lastPosition = transform.position;
+        get => isAngry;
+        set => SetIsAngry(value);
+    }
+
+    public void SetIsAngry(bool state)
+    {
+        isAngry = state;
+        animator.SetBool(AngryParameter, state);
     }
 }

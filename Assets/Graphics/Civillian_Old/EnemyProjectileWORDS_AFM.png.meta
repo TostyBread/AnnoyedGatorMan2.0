@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ProjectileWord_Blow1
+      name: EnemyProjectileWORDS_AFM_0
       rect:
         serializedVersion: 2
         x: 70
-        y: 748
-        width: 227
-        height: 225
+        y: 743
+        width: 240
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c0e4f19e93d7d04b85e488f763aa6b7
-      internalID: 11188530
+      spriteID: 66a8a29f1ac94f443af9856d3a2ef230
+      internalID: 1330344003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProjectileWord_2
+      name: EnemyProjectileWORDS_AFM_3
       rect:
         serializedVersion: 2
-        x: 75
-        y: 255
-        width: 458
-        height: 158
+        x: 665
+        y: 719
+        width: 240
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cf190288c9740f41a0f53972af9816f
-      internalID: -908839441
+      spriteID: ceabf25adf8fe6144a49271565ee873d
+      internalID: 158325811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProjectileWord_1
+      name: EnemyProjectileWORDS_AFM_5
       rect:
         serializedVersion: 2
-        x: 67
-        y: 47
-        width: 466
-        height: 179
+        x: 364
+        y: 741
+        width: 240
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebf0ce559daaf6a48b0eef6f5c14a4b6
-      internalID: 1128333962
+      spriteID: 2142f298b219c31419deae28d45592f8
+      internalID: -380318207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProjectileWord_Blow2
+      name: EnemyProjectileWORDS_AFM_10
       rect:
         serializedVersion: 2
-        x: 341
-        y: 740
-        width: 247
-        height: 233
+        x: 82
+        y: 247
+        width: 467
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00b57085c3af3a14ebd44a89e021ce41
-      internalID: 167917828
+      spriteID: 7dfad41cc1ef59f40ac71fb70406e3da
+      internalID: 403695548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProjectileWord_Blow3
+      name: EnemyProjectileWORDS_AFM_11
       rect:
         serializedVersion: 2
-        x: 660
-        y: 734
-        width: 239
-        height: 237
+        x: 71
+        y: 38
+        width: 478
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10a0367074e4d5d48a1ac2b33a8f21b3
-      internalID: 1016359233
+      spriteID: 8378ad7c42978544c80659ccda7567a9
+      internalID: 1568585445
       vertices: []
       indices: 
       edges: []
@@ -212,9 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      EnemyProjectileWORDS_AFM_0: 1330344003
+      EnemyProjectileWORDS_AFM_1: -1165260502
       EnemyProjectileWORDS_AFM_10: 403695548
       EnemyProjectileWORDS_AFM_11: 1568585445
-      EnemyProjectileWORDS_AFM_13: -530361834
+      EnemyProjectileWORDS_AFM_2: 4141662
       EnemyProjectileWORDS_AFM_3: 158325811
       EnemyProjectileWORDS_AFM_4: 614729006
       EnemyProjectileWORDS_AFM_5: -380318207
@@ -222,11 +224,6 @@ TextureImporter:
       EnemyProjectileWORDS_AFM_7: -2078128269
       EnemyProjectileWORDS_AFM_8: 148109866
       EnemyProjectileWORDS_AFM_9: -1701379522
-      ProjectileWord_1: 1128333962
-      ProjectileWord_2: -908839441
-      ProjectileWord_Blow1: 11188530
-      ProjectileWord_Blow2: 167917828
-      ProjectileWord_Blow3: 1016359233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

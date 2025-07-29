@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 2.25
   m_AngularDrag: 1.5
   m_GravityScale: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   - {x: 0.6, y: -1.0999999, z: 0}
   m_ShapePathHash: -490885473
   m_Mesh: {fileID: 0}
-  m_InstanceId: -3116
+  m_InstanceId: 59140
   m_LocalBounds:
     m_Center: {x: 0, y: 0.004229784, z: 0}
     m_Extent: {x: 0.6, y: 1.1042297, z: 0}

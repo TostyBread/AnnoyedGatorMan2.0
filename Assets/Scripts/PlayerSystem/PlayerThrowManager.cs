@@ -97,7 +97,7 @@ public class PlayerThrowManager : MonoBehaviour
     {
         if (itemCollider == null) yield break;
 
-        float enableDelay = Mathf.Clamp(totalDistance * 0.05f, 0.1f, 0.3f);
+        float enableDelay = Mathf.Clamp(totalDistance * 0.05f, 0.1f, 0.4f);
         yield return new WaitForSeconds(enableDelay);
 
         if (itemCollider != null)
