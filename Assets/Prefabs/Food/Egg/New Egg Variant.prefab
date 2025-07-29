@@ -64,9 +64,21 @@ PrefabInstance:
       propertyPath: isFood
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2848919557055395640, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 3362596054718312319}
+    - target: {fileID: 2848919557055395640, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: brokenPartsUncookedCut.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848919557055395640, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: brokenPartsUncookedBash.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2903314867860806661, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_InstanceId
-      value: -8140
+      value: -180292
       objectReference: {fileID: 0}
     - target: {fileID: 3025878516127459448, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_Sprite
@@ -148,6 +160,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5916953113529302879, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 1840035557602351777}
+    - target: {fileID: 5916953113529302879, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: brokenPartsUncookedCut.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5916953113529302879, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: brokenPartsUncookedBash.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6281795264108260233, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -192,6 +216,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1592762336, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 7192510367054992175, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 4237064220790624295}
     - target: {fileID: 7351218681507044036, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -259,6 +287,18 @@ PrefabInstance:
     - target: {fileID: 8607434769706291363, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672369553638450961, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 8176637365685993302}
+    - target: {fileID: 8672369553638450961, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: brokenPartsUncookedCut.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672369553638450961, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+      propertyPath: brokenPartsUncookedBash.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8219742972464798432, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
@@ -420,6 +460,11 @@ MonoBehaviour:
 --- !u!212 &830052398319172335 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6375470130356559021, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
+  m_PrefabInstance: {fileID: 6052494903747962434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1840035557602351777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5365993442750741731, guid: c3ef8e1d5b01be7409585e13ed31a3f4, type: 3}
   m_PrefabInstance: {fileID: 6052494903747962434}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2363127532442029647 stripped
