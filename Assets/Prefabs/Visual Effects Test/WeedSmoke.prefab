@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 412441030866090624}
   - component: {fileID: 3751498714100883615}
   - component: {fileID: 783818625823232133}
+  - component: {fileID: 2904588202699244613}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: 793b4bdeda1775542bd51882984f05eb, type: 3}
-  m_Color: {r: 0.14764667, g: 1, b: 0, a: 0.78431374}
+  m_Sprite: {fileID: 21300000, guid: 4efc1d48ca1f2384ba428cd0427e7bfc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -92,7 +93,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3635862797688221311}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7618b8d07f7034b43ab61f4fb65941f9, type: 3}
   m_Name: 
@@ -102,6 +103,27 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ef4c4ed9925d79c43b3b860169b24924, type: 3}
   - {fileID: 21300000, guid: b6374e9d7055fc64f8508dc7a7e0e7a6, type: 3}
   - {fileID: 21300000, guid: d63c720fa8c39d144ba9a87e6d0927ea, type: 3}
+--- !u!95 &2904588202699244613
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635862797688221311}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ef8f740c1d472d4983abbd9ca9253c0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8608703003332102440
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +191,7 @@ MonoBehaviour:
   maxSmokeInstances: 0
   smokeMoveSpeed: 4
   canSmoke: 1
-  sanityRecover: 20
+  sanityRecover: 30
   isSmoking: 0
   SmokeAudioName: SmokeWeed
   Min: 0.5
@@ -248,7 +270,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8608703003332102440}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -282,8 +304,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: 793b4bdeda1775542bd51882984f05eb, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Sprite: {fileID: 21300000, guid: 4efc1d48ca1f2384ba428cd0427e7bfc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
