@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee584aa88fabcc4682d500baed3bbed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patienceDuration: 80
+  patienceDuration: 90
   patienceBar: {fileID: 0}
 --- !u!61 &4180316551167014751
 BoxCollider2D:
