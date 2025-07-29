@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2256507156132344450}
   - component: {fileID: 5055784808917180351}
   - component: {fileID: 2797671781485872339}
+  - component: {fileID: 2734129970381849695}
   m_Layer: 6
   m_Name: HardBoiledEgg
   m_TagString: FoodSmall
@@ -249,6 +250,36 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!114 &2734129970381849695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459079608383016718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1001 &1965639227962403035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -257,6 +288,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2254780494653026347}
     m_Modifications:
+    - target: {fileID: -4115180577106884043, guid: 14d663c58e860374aa755343958a6ef3, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -4115180577106884043, guid: 14d663c58e860374aa755343958a6ef3, type: 3}
+      propertyPath: isFood
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7063246398339892923, guid: 14d663c58e860374aa755343958a6ef3, type: 3}
       propertyPath: m_Name
       value: HardBoiledEggBashed
@@ -324,6 +363,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2254780494653026347}
     m_Modifications:
+    - target: {fileID: -2623668520752129940, guid: a060e166a7d08344d8b11bc63f0f7200, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -2623668520752129940, guid: a060e166a7d08344d8b11bc63f0f7200, type: 3}
+      propertyPath: isFood
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 898838548097301120, guid: a060e166a7d08344d8b11bc63f0f7200, type: 3}
       propertyPath: m_Name
       value: HardBoiledEggCut
@@ -391,6 +438,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2254780494653026347}
     m_Modifications:
+    - target: {fileID: -2623668520752129940, guid: a060e166a7d08344d8b11bc63f0f7200, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -2623668520752129940, guid: a060e166a7d08344d8b11bc63f0f7200, type: 3}
+      propertyPath: isFood
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 898838548097301120, guid: a060e166a7d08344d8b11bc63f0f7200, type: 3}
       propertyPath: m_Name
       value: HardBoiledEggCut (1)

@@ -79,7 +79,7 @@ public class DamageSource : MonoBehaviour
         // Allow physical interaction for HealthManager
         if (target.TryGetComponent(out HealthManager health) && target != owner)
         {
-            health.TryDamage(damageAmount);
+            health.TryDamage(damageAmount, this.gameObject);
             //if (target.CompareTag("Player"))
             //{
             //    sanity.decreaseSanity(damageAmount);

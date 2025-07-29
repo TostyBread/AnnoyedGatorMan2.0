@@ -39,7 +39,7 @@ public class DoorHitBox : MonoBehaviour
                 //stun the player from moving
                 colHealthManager.canMove = false;
 
-                colHealthManager.TryDamage(damage);
+                colHealthManager.TryDamage(damage, this.gameObject);
 
                 colThrowManager.doorCauseThrow = false;
             }
@@ -48,7 +48,7 @@ public class DoorHitBox : MonoBehaviour
         {
             if (col.gameObject.TryGetComponent(out HealthManager colHealthManager))
             {
-                colHealthManager.TryDamage(damage);
+                colHealthManager.TryDamage(damage, this.gameObject);
             }
         }
 

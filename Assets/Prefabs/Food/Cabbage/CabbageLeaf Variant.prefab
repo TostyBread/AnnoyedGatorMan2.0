@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3218058737494191365, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -3218058737494191365, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
+      propertyPath: isFood
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3218058737494191365, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
+      propertyPath: currentHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2318970250886255664, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -79,5 +91,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7912291141278576272, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4638619097520108313}
   m_SourcePrefab: {fileID: 100100000, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
+--- !u!1 &2010576312605956729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7912291141278576272, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
+  m_PrefabInstance: {fileID: 8514365569230730473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4638619097520108313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010576312605956729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 0
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32

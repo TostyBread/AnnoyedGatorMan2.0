@@ -17,7 +17,7 @@ public class ShoutProjectile : MonoBehaviour
         {
             if (collision.collider.TryGetComponent<HealthManager>(out var health))
             {
-                health.TryDamage((int)damage);
+                health.TryDamage((int)damage,this.gameObject);
             }
             if (collision.collider.CompareTag("Player"))
             {

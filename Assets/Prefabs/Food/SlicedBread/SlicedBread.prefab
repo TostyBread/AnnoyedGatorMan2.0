@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1251759017432472433}
   - component: {fileID: 2945873591766036078}
   - component: {fileID: 1620718888784923987}
+  - component: {fileID: 1822819011992060685}
   m_Layer: 6
   m_Name: SlicedBread
   m_TagString: FoodSmall
@@ -239,6 +240,36 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: -0.0040802658, y: -0.006550342, z: 0}
     m_Extent: {x: 0.3957397, y: 0.4508033, z: 0}
+--- !u!114 &1822819011992060685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569449229976335002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1 &2904283405089850727
 GameObject:
   m_ObjectHideFlags: 0
