@@ -24,6 +24,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1238050067132414060, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 7967359862688943251}
+    - target: {fileID: 1432261477331996183, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: canBeCooked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1432261477331996183, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: damageCooldown
       value: 0.6
@@ -40,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 2857900177450380202, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 21752577167075052}
     - target: {fileID: 2879619324378526756, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.506522
@@ -86,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2884286141917450829, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_InstanceId
-      value: -12470
+      value: -172402
       objectReference: {fileID: 0}
     - target: {fileID: 2993353709638337830, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_Sprite
@@ -132,6 +144,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 844998711, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 7995970110403053860, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 1245443331432119771}
     - target: {fileID: 8219823752741090097, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
@@ -226,8 +242,8 @@ MonoBehaviour:
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
-  isPlayer: 1
-  canMove: 1
+  isPlayer: 0
+  canMove: 0
   isDefeated: 0
   reviveBoostKey: 32
 --- !u!1 &1245443331432119771 stripped
@@ -280,8 +296,8 @@ MonoBehaviour:
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
-  isPlayer: 1
-  canMove: 1
+  isPlayer: 0
+  canMove: 0
   isDefeated: 0
   reviveBoostKey: 32
 --- !u!1 &1377448906406865947 stripped
@@ -362,8 +378,8 @@ MonoBehaviour:
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
-  isPlayer: 1
-  canMove: 1
+  isPlayer: 0
+  canMove: 0
   isDefeated: 0
   reviveBoostKey: 32
 --- !u!1 &7841177180396677307 stripped
@@ -397,8 +413,8 @@ MonoBehaviour:
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
-  isPlayer: 1
-  canMove: 1
+  isPlayer: 0
+  canMove: 0
   isDefeated: 0
   reviveBoostKey: 32
 --- !u!1 &7967359862688943251 stripped

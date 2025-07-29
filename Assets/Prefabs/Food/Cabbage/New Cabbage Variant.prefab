@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: enableLeftRightJiggle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6413231312573528664, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 3162481135983525319}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -214,6 +218,10 @@ PrefabInstance:
       propertyPath: enableLeftRightJiggle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6413231312573528664, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 2816430680383108853}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -292,6 +300,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 66953552927803021, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 4290350161535502262}
     - target: {fileID: 295136627851492575, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -340,6 +352,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 1942651639847805021, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 2419013563472290150}
     - target: {fileID: 2091113138358253002, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_Radius
       value: 1
@@ -492,6 +508,10 @@ PrefabInstance:
       propertyPath: isFood
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5353381232037076824, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 8155095913950043747}
     - target: {fileID: 5930840608363330815, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: brokenPartsUncookedCut.Array.size
       value: 2
@@ -546,8 +566,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7375408521143853263, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_InstanceId
-      value: -11982
+      value: -173822
       objectReference: {fileID: 0}
+    - target: {fileID: 7524932409998815957, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 1371786983114962078}
     - target: {fileID: 7524932409998815957, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: brokenPartsUncookedBash.Array.data[0]
       value: 
@@ -568,6 +592,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 8247670439603508229, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 653552217089987150}
     - target: {fileID: 8247670439603508229, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: brokenPartsUncookedBash.Array.data[0]
       value: 
@@ -1211,6 +1239,10 @@ PrefabInstance:
       propertyPath: enableLeftRightJiggle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6413231312573528664, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 8087224221505411119}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1349,6 +1381,10 @@ PrefabInstance:
       propertyPath: enableLeftRightJiggle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6413231312573528664, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 4799156836646217283}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
