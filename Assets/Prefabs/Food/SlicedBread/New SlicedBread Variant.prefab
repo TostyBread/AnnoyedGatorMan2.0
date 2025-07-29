@@ -22,7 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620718888784923987, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_InstanceId
-      value: -12342
+      value: -232622
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822819011992060685, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822819011992060685, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
+      propertyPath: isPlayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1885411682154131413, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       propertyPath: m_LocalScale.x
@@ -132,54 +140,13 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1569449229976335002, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4867268339786368504}
     - targetCorrespondingSourceObject: {fileID: 2904283405089850727, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 965421670054749098}
     - targetCorrespondingSourceObject: {fileID: 7066097252812777869, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 739568768312981442}
-    - targetCorrespondingSourceObject: {fileID: 7066097252812777869, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3698512455302447927}
   m_SourcePrefab: {fileID: 100100000, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
---- !u!1 &2188912493917441703 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1569449229976335002, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
-  m_PrefabInstance: {fileID: 839738342246644797}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4867268339786368504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2188912493917441703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 20
-  currentHealth: 0
-  reviveSpeed: 1
-  damageReceived: 0
-  HealthBar: {fileID: 0}
-  hand: {fileID: 0}
-  isPlayer2: 0
-  isNotPlayer: 0
-  isFood: 1
-  isHurt: 0
-  isHurtDur: 1
-  enemy: 0
-  sharedHealthSource: {fileID: 0}
-  deadBody: {fileID: 0}
-  isPlayer: 1
-  canMove: 1
-  isDefeated: 0
-  reviveBoostKey: 32
 --- !u!1 &2587687199408634202 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2904283405089850727, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}
@@ -218,36 +185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: 1880825731, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
   spriteWithBorderScale: 0.5
---- !u!114 &3698512455302447927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7613488628305892784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 20
-  currentHealth: 0
-  reviveSpeed: 1
-  damageReceived: 0
-  HealthBar: {fileID: 0}
-  hand: {fileID: 0}
-  isPlayer2: 0
-  isNotPlayer: 0
-  isFood: 1
-  isHurt: 0
-  isHurtDur: 1
-  enemy: 0
-  sharedHealthSource: {fileID: 0}
-  deadBody: {fileID: 0}
-  isPlayer: 1
-  canMove: 1
-  isDefeated: 0
-  reviveBoostKey: 32
 --- !u!212 &9157311760264319652 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8408808837274742425, guid: dbb8ff9252c442f419b45a704fa9e74b, type: 3}

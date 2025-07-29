@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2884286141917450829, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_InstanceId
-      value: -172402
+      value: -207464
       objectReference: {fileID: 0}
     - target: {fileID: 2993353709638337830, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_Sprite
@@ -112,6 +112,14 @@ PrefabInstance:
       propertyPath: isFood
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4020965569149248424, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020965569149248424, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: isPlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4630525856660482450, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_Radius
       value: 0.6
@@ -120,9 +128,25 @@ PrefabInstance:
       propertyPath: isFood
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4805939645588800067, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805939645588800067, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: isPlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5193878975341122272, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: isFood
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193878975341122272, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193878975341122272, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: isPlayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5289692273915326832, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.x
@@ -135,6 +159,14 @@ PrefabInstance:
     - target: {fileID: 5289692273915326832, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449409697085980050, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449409697085980050, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      propertyPath: isPlayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555864619682582109, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       propertyPath: m_Sprite
@@ -167,27 +199,24 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3751379003110135289, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4493386491516156762}
-    - targetCorrespondingSourceObject: {fileID: 3751379003110135289, guid: a4a19a31d009417409bb7927842531a9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5192960244014213419}
     - targetCorrespondingSourceObject: {fileID: 3490939739648196183, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8948592457037271927}
     - targetCorrespondingSourceObject: {fileID: 2979776922680493501, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7900279514437297318}
+      addedObject: {fileID: 5443764100425836808}
     - targetCorrespondingSourceObject: {fileID: 2531769092878759072, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4221322030791235055}
     - targetCorrespondingSourceObject: {fileID: 3487932192564366271, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2615410788171355090}
+      addedObject: {fileID: 5330265822453443158}
     - targetCorrespondingSourceObject: {fileID: 3613951051918749591, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8345021995784347800}
     - targetCorrespondingSourceObject: {fileID: 5746193246339906295, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5479415464960075750}
+      addedObject: {fileID: 642935412681425785}
     - targetCorrespondingSourceObject: {fileID: 5620033688250113759, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 448839485350812903}
@@ -216,7 +245,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2979776922680493501, guid: a4a19a31d009417409bb7927842531a9, type: 3}
   m_PrefabInstance: {fileID: 2553507221428752972}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7900279514437297318
+--- !u!114 &5443764100425836808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,27 +254,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 735681147805161457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c2abfb7e17e5ed4e9855ee4ab25bf22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 20
-  currentHealth: 0
-  reviveSpeed: 1
-  damageReceived: 0
-  HealthBar: {fileID: 0}
-  hand: {fileID: 0}
-  isPlayer2: 0
-  isNotPlayer: 0
-  isFood: 1
-  isHurt: 0
-  isHurtDur: 1
-  enemy: 0
-  sharedHealthSource: {fileID: 0}
-  deadBody: {fileID: 0}
-  isPlayer: 0
-  canMove: 0
-  isDefeated: 0
-  reviveBoostKey: 32
+  state: 0
+  playSound: 0
+  MaxHeat: 100
+  currentHeat: 0
+  heatCooldown: 0
+  BurnAudioName: 
+  spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
+  MaxCold: 100
+  currentCold: 0
+  coldCooldown: 0
+  heatRequiredToCook: 20
+  FreezeAudioName: 
+  freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
+  weatherManager: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!1 &1245443331432119771 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3613951051918749591, guid: a4a19a31d009417409bb7927842531a9, type: 3}
@@ -270,7 +297,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3487932192564366271, guid: a4a19a31d009417409bb7927842531a9, type: 3}
   m_PrefabInstance: {fileID: 2553507221428752972}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2615410788171355090
+--- !u!114 &5330265822453443158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,27 +306,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371485246072363507}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c2abfb7e17e5ed4e9855ee4ab25bf22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 20
-  currentHealth: 0
-  reviveSpeed: 1
-  damageReceived: 0
-  HealthBar: {fileID: 0}
-  hand: {fileID: 0}
-  isPlayer2: 0
-  isNotPlayer: 0
-  isFood: 1
-  isHurt: 0
-  isHurtDur: 1
-  enemy: 0
-  sharedHealthSource: {fileID: 0}
-  deadBody: {fileID: 0}
-  isPlayer: 0
-  canMove: 0
-  isDefeated: 0
-  reviveBoostKey: 32
+  state: 0
+  playSound: 0
+  MaxHeat: 100
+  currentHeat: 0
+  heatCooldown: 0
+  BurnAudioName: 
+  spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
+  MaxCold: 100
+  currentCold: 0
+  coldCooldown: 0
+  heatRequiredToCook: 20
+  FreezeAudioName: 
+  freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
+  weatherManager: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!1 &1377448906406865947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3490939739648196183, guid: a4a19a31d009417409bb7927842531a9, type: 3}
@@ -352,42 +377,12 @@ MonoBehaviour:
   isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 0}
---- !u!114 &5192960244014213419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684471716943415221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 20
-  currentHealth: 0
-  reviveSpeed: 1
-  damageReceived: 0
-  HealthBar: {fileID: 0}
-  hand: {fileID: 0}
-  isPlayer2: 0
-  isNotPlayer: 0
-  isFood: 1
-  isHurt: 0
-  isHurtDur: 1
-  enemy: 0
-  sharedHealthSource: {fileID: 0}
-  deadBody: {fileID: 0}
-  isPlayer: 0
-  canMove: 0
-  isDefeated: 0
-  reviveBoostKey: 32
 --- !u!1 &7841177180396677307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5746193246339906295, guid: a4a19a31d009417409bb7927842531a9, type: 3}
   m_PrefabInstance: {fileID: 2553507221428752972}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5479415464960075750
+--- !u!114 &642935412681425785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -396,27 +391,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7841177180396677307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c2abfb7e17e5ed4e9855ee4ab25bf22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 20
-  currentHealth: 0
-  reviveSpeed: 1
-  damageReceived: 0
-  HealthBar: {fileID: 0}
-  hand: {fileID: 0}
-  isPlayer2: 0
-  isNotPlayer: 0
-  isFood: 1
-  isHurt: 0
-  isHurtDur: 1
-  enemy: 0
-  sharedHealthSource: {fileID: 0}
-  deadBody: {fileID: 0}
-  isPlayer: 0
-  canMove: 0
-  isDefeated: 0
-  reviveBoostKey: 32
+  state: 0
+  playSound: 0
+  MaxHeat: 100
+  currentHeat: 0
+  heatCooldown: 0
+  BurnAudioName: 
+  spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
+  MaxCold: 100
+  currentCold: 0
+  coldCooldown: 0
+  heatRequiredToCook: 20
+  FreezeAudioName: 
+  freezedColor: {r: 0, g: 0.78431374, b: 1, a: 1}
+  isFreezed: 0
+  weatherManager: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!1 &7967359862688943251 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5620033688250113759, guid: a4a19a31d009417409bb7927842531a9, type: 3}

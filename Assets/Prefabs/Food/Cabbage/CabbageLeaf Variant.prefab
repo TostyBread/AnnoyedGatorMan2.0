@@ -33,6 +33,10 @@ PrefabInstance:
       value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3398324057409261233, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
+      propertyPath: cookedState
+      value: 
+      objectReference: {fileID: 4596472798317685141}
+    - target: {fileID: 3398324057409261233, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
       propertyPath: damageCooldown
       value: 0.6
       objectReference: {fileID: 0}
@@ -131,3 +135,8 @@ MonoBehaviour:
   canMove: 1
   isDefeated: 0
   reviveBoostKey: 32
+--- !u!1 &4596472798317685141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5323512010420837756, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
+  m_PrefabInstance: {fileID: 8514365569230730473}
+  m_PrefabAsset: {fileID: 0}
