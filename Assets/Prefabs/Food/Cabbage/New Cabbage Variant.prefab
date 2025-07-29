@@ -76,6 +76,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2010576312605956729, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5440158584431891054}
     - targetCorrespondingSourceObject: {fileID: 4596472798317685141, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2567237704723817810}
@@ -85,6 +88,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2010576312605956729, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
   m_PrefabInstance: {fileID: 1453132701766997074}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5440158584431891054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138725704593182251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!4 &2830241507862521582 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3705787228851892924, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
@@ -185,6 +218,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2010576312605956729, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5218935834742585450}
     - targetCorrespondingSourceObject: {fileID: 4596472798317685141, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2184703944931820660}
@@ -194,6 +230,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2010576312605956729, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
   m_PrefabInstance: {fileID: 1791319259633655648}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5218935834742585450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232792865920959769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1 &2816430680383108853 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4596472798317685141, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
@@ -298,6 +364,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2920743509760583806, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920743509760583806, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3278671184658068732, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -306,6 +380,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -848394684, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 3643660614788550318, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3643660614788550318, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3753169411684535460, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.22000001
@@ -356,11 +438,11 @@ PrefabInstance:
       objectReference: {fileID: -2061360826, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
     - target: {fileID: 4753040588209321030, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.01
+      value: -8.54599
       objectReference: {fileID: 0}
     - target: {fileID: 4753040588209321030, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.23
+      value: -3.925874
       objectReference: {fileID: 0}
     - target: {fileID: 4753040588209321030, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_LocalPosition.z
@@ -406,6 +488,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 255988455, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 5311387937059075924, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      propertyPath: isFood
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5930840608363330815, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: brokenPartsUncookedCut.Array.size
       value: 2
@@ -460,7 +546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7375408521143853263, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: m_InstanceId
-      value: -4780
+      value: -11982
       objectReference: {fileID: 0}
     - target: {fileID: 7524932409998815957, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       propertyPath: brokenPartsUncookedBash.Array.data[0]
@@ -543,34 +629,46 @@ PrefabInstance:
       addedObject: {fileID: 4441913227994039333}
     - targetCorrespondingSourceObject: {fileID: 914475135471142955, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -4165432322323207001}
+      addedObject: {fileID: 1062376906733423657}
     - targetCorrespondingSourceObject: {fileID: 295136627851492575, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3032943715212751482}
     - targetCorrespondingSourceObject: {fileID: 702300247687442851, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7575751815091945211}
+    - targetCorrespondingSourceObject: {fileID: 702300247687442851, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8528123387975992517}
     - targetCorrespondingSourceObject: {fileID: 1317824737427914239, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5381947372956580563}
+    - targetCorrespondingSourceObject: {fileID: 8250259529555792364, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3329729866047619800}
     - targetCorrespondingSourceObject: {fileID: 4236243335436799703, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8118605925944395664}
-    - targetCorrespondingSourceObject: {fileID: 4236243335436799703, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 841885296900508491}
     - targetCorrespondingSourceObject: {fileID: 1416207139476019059, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8165288079212145153}
+    - targetCorrespondingSourceObject: {fileID: 1416207139476019059, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6238305012167411781}
     - targetCorrespondingSourceObject: {fileID: 599445101065788207, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7566882451830225144}
+    - targetCorrespondingSourceObject: {fileID: 7522909057237612348, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 563191985766945944}
     - targetCorrespondingSourceObject: {fileID: 2365052153138030599, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7819580717731322214}
     - targetCorrespondingSourceObject: {fileID: 2504115565301411561, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6963259939936024140}
+    - targetCorrespondingSourceObject: {fileID: 2504115565301411561, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 656333573065355665}
     - targetCorrespondingSourceObject: {fileID: 7670897199008903634, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4311090122062487413}
@@ -613,6 +711,36 @@ MonoBehaviour:
   isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 4562070558908033071}
+--- !u!114 &6238305012167411781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648333874804996290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1 &653552217089987150 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1317824737427914239, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
@@ -670,6 +798,36 @@ MonoBehaviour:
   isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 2690841103048380159}
+--- !u!114 &8528123387975992517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362104142593105426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1 &1371786983114962078 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 599445101065788207, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
@@ -722,7 +880,7 @@ MonoBehaviour:
   isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 475393603925725822}
---- !u!114 &-4165432322323207001
+--- !u!114 &1062376906733423657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -789,21 +947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: -1248895269, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
-  spriteWithBorderScale: 0.4
---- !u!114 &841885296900508491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2419013563472290150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7d0c4dd702eff1439737f161a2ebc69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteWithBorder: {fileID: 0}
-  spriteWithBorderScale: 1
+  spriteWithBorderScale: 0.2
 --- !u!212 &2690841103048380159 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4472058364476891470, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
@@ -842,6 +986,36 @@ MonoBehaviour:
   isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 1221292723970445833}
+--- !u!114 &656333573065355665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150171563126980952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1 &4290350161535502262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2365052153138030599, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
@@ -860,7 +1034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: -1248895269, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
-  spriteWithBorderScale: 0.4
+  spriteWithBorderScale: 0.2
 --- !u!212 &4562070558908033071 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2600692282503366558, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
@@ -876,6 +1050,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5364438960876434854, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
   m_PrefabInstance: {fileID: 1970387348265742257}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7577015612769697373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8250259529555792364, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+  m_PrefabInstance: {fileID: 1970387348265742257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3329729866047619800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7577015612769697373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1 &8155095913950043747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7670897199008903634, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
@@ -894,7 +1103,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: -1248895269, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
-  spriteWithBorderScale: 0.5
+  spriteWithBorderScale: 0.1
+--- !u!1 &8304221236225562765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7522909057237612348, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+  m_PrefabInstance: {fileID: 1970387348265742257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &563191985766945944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304221236225562765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1001 &5760777086360580538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -971,6 +1215,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2010576312605956729, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7589052788408545162}
     - targetCorrespondingSourceObject: {fileID: 4596472798317685141, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4990045926492623954}
@@ -980,6 +1227,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2010576312605956729, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
   m_PrefabInstance: {fileID: 5760777086360580538}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7589052788408545162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058859632515492803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1 &8087224221505411119 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4596472798317685141, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
@@ -1076,6 +1353,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2010576312605956729, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6231438084669254726}
     - targetCorrespondingSourceObject: {fileID: 4596472798317685141, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5713348450541873356}
@@ -1109,3 +1389,33 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2010576312605956729, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
   m_PrefabInstance: {fileID: 9030830093648777174}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6231438084669254726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7400809053903295919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
