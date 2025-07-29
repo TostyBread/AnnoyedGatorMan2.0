@@ -1124,7 +1124,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1120102185894322885}
@@ -1170,7 +1170,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 682be815c1d2ff1499fef6ee1fabf9cf, type: 3}
+  m_Sprite: {fileID: -1579080899, guid: c81797abd22d53b449c89a21f4df11bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -1178,7 +1178,7 @@ SpriteRenderer:
   m_Size: {x: 2.05, y: 2.94}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &4744989291824591378
@@ -2012,7 +2012,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1048768
+    m_Bits: 1048704
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2160,14 +2160,15 @@ MonoBehaviour:
   hand: {fileID: 4657565808220804393}
   isPlayer2: 1
   isNotPlayer: 0
+  isFood: 0
   isHurt: 0
   isHurtDur: 1
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
+  isPlayer: 1
   canMove: 1
   isDefeated: 0
-  characterAnimation: {fileID: 1928529109040506023}
   reviveBoostKey: 32
 --- !u!114 &454652177134447574
 MonoBehaviour:
@@ -2564,6 +2565,7 @@ GameObject:
   - component: {fileID: 5993165339022205552}
   - component: {fileID: 5144282799484176078}
   - component: {fileID: 8222615105458810267}
+  - component: {fileID: 7583331475013508949}
   m_Layer: 23
   m_Name: Range
   m_TagString: Untagged
@@ -2716,6 +2718,41 @@ CircleCollider2D:
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!58 &8222615105458810267
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606227184721757382}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1082130431
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!58 &7583331475013508949
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4802,7 +4839,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1048768
+    m_Bits: 1048704
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -4946,18 +4983,19 @@ MonoBehaviour:
   currentHealth: 0
   reviveSpeed: 10
   damageReceived: 0
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 765976638433202580}
   hand: {fileID: 3620175315003291054}
   isPlayer2: 1
   isNotPlayer: 0
+  isFood: 0
   isHurt: 0
   isHurtDur: 1
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
+  isPlayer: 1
   canMove: 1
   isDefeated: 0
-  characterAnimation: {fileID: 7519901049293177888}
   reviveBoostKey: 32
 --- !u!114 &8417424066442283857
 MonoBehaviour:
@@ -7119,7 +7157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6900787753550451279
 Transform:
   m_ObjectHideFlags: 0
@@ -7182,7 +7220,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1048768
+    m_Bits: 1048704
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -7330,14 +7368,15 @@ MonoBehaviour:
   hand: {fileID: 1219663554708415907}
   isPlayer2: 1
   isNotPlayer: 0
+  isFood: 0
   isHurt: 0
   isHurtDur: 1
   enemy: 0
   sharedHealthSource: {fileID: 0}
   deadBody: {fileID: 0}
+  isPlayer: 1
   canMove: 1
   isDefeated: 0
-  characterAnimation: {fileID: 5371776101481649197}
   reviveBoostKey: 32
 --- !u!114 &6197196463942392668
 MonoBehaviour:
