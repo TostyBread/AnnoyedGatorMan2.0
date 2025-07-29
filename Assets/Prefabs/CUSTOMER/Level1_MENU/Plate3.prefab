@@ -195,12 +195,6 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
     sortingOrder: 7
     isFilled: 0
-  - itemID: 42
-    cookingState: 0
-    condition: 2
-    positionOffset: {x: 0, y: 0, z: 0}
-    sortingOrder: 8
-    isFilled: 0
   - itemID: 3
     cookingState: 0
     condition: 0
