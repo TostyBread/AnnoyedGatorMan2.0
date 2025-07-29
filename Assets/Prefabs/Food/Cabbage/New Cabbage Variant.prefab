@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CabbageLeaf Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2701652897745167890, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701652897745167890, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: currentHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3705787228851892924, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -54,6 +62,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4596472798317685141, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862106372713059670, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: enableRotationJiggle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862106372713059670, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: enableLeftRightJiggle
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -109,6 +125,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2701652897745167890, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701652897745167890, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: currentHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3705787228851892924, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -148,6 +172,14 @@ PrefabInstance:
     - target: {fileID: 3705787228851892924, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862106372713059670, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: enableRotationJiggle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862106372713059670, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: enableLeftRightJiggle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -509,6 +541,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 914475135471142955, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4441913227994039333}
+    - targetCorrespondingSourceObject: {fileID: 914475135471142955, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4165432322323207001}
     - targetCorrespondingSourceObject: {fileID: 295136627851492575, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3032943715212751482}
@@ -687,6 +722,36 @@ MonoBehaviour:
   isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 475393603925725822}
+--- !u!114 &-4165432322323207001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722880367626741658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1 &2251995430320001902 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 295136627851492575, guid: 304b7039d507cce45b3a6ab290b22963, type: 3}
@@ -846,6 +911,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2701652897745167890, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701652897745167890, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: currentHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3705787228851892924, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -885,6 +958,14 @@ PrefabInstance:
     - target: {fileID: 3705787228851892924, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862106372713059670, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: enableRotationJiggle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862106372713059670, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: enableLeftRightJiggle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -935,6 +1016,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CabbageLeaf Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2701652897745167890, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701652897745167890, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: currentHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3705787228851892924, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -974,6 +1063,14 @@ PrefabInstance:
     - target: {fileID: 3705787228851892924, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862106372713059670, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: enableRotationJiggle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862106372713059670, guid: 53ecc08f550619b42bda75a9e3b78734, type: 3}
+      propertyPath: enableLeftRightJiggle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 
 public class HealthManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class HealthManager : MonoBehaviour
     public GameObject hand;
     public bool isPlayer2 = false;
     public bool isNotPlayer = false; // Condition to check whether its a fire instead of player (Chee Seng tolong pls dont ignore ah)
+    public bool isFood = false;
 
     [Header("Hurt Animation Setting")]
     public bool isHurt = false; // Used for animation to check if player is hurt
@@ -292,18 +294,20 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    public void TryDamage(float damage)
+    public void TryDamage(float damage , GameObject source) //always set source as this.gameObject
     {
+        if (isFood && !source.CompareTag("Enemy"))
+            return;
+
         if (sharedHealthSource != null && sharedHealthSource != this)
         {
-            sharedHealthSource.TryDamage(damage);
+            sharedHealthSource.TryDamage(damage,source);
             return;
         }
 
         currentHealth -= damage;
         damageReceived = damage;
 
-        if (jiggle != null)
-            jiggle.StartJiggle();
+        GetComponent<Jiggle>()?.StartJiggle(); //if gameObject have jiggle code, it will jiggle
     }
 }

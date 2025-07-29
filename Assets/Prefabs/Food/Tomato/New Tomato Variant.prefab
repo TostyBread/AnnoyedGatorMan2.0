@@ -139,6 +139,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3751379003110135289, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4493386491516156762}
+    - targetCorrespondingSourceObject: {fileID: 3751379003110135289, guid: a4a19a31d009417409bb7927842531a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2710540392314173129}
     - targetCorrespondingSourceObject: {fileID: 3490939739648196183, guid: a4a19a31d009417409bb7927842531a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8948592457037271927}
@@ -242,6 +245,36 @@ MonoBehaviour:
   isFreezed: 0
   weatherManager: {fileID: 0}
   sprite: {fileID: 0}
+--- !u!114 &-2710540392314173129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684471716943415221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 0
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 0
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1 &7967359862688943251 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5620033688250113759, guid: a4a19a31d009417409bb7927842531a9, type: 3}

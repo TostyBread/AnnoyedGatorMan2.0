@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3106974751061609626}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbde294e1f7bfd4489a6a77dafabacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1
   aimForFood: 0
 --- !u!1 &4721039502216730904
 GameObject:
@@ -204,7 +204,7 @@ MonoBehaviour:
   CanShoot: 0
   ShootIntervel: 1
   Hitbox: {fileID: 4074955686724217481}
-  DurationBeforeAttack: 0.3
+  DurationBeforeAttack: 0.5
   RecoveryFrame: 0.5
   TargetedGrid: {fileID: 0}
   isMoving: 0
@@ -299,6 +299,7 @@ MonoBehaviour:
   hand: {fileID: 0}
   isPlayer2: 0
   isNotPlayer: 0
+  isFood: 0
   isHurt: 0
   isHurtDur: 1
   enemy: 1
@@ -581,7 +582,7 @@ MonoBehaviour:
   - {x: 1.1801262, y: -1.235, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 227464
+  m_InstanceId: 139614
   m_LocalBounds:
     m_Center: {x: -0.00000047683716, y: -0.00000011920929, z: 0}
     m_Extent: {x: 1.1801267, y: 1.2349999, z: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 652473883342814106}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   CanShoot: 0
   ShootIntervel: 1
   Hitbox: {fileID: 29194455152378949}
-  DurationBeforeAttack: 0.3
+  DurationBeforeAttack: 0.5
   RecoveryFrame: 0.5
   TargetedGrid: {fileID: 0}
   isMoving: 0
@@ -299,6 +299,7 @@ MonoBehaviour:
   hand: {fileID: 0}
   isPlayer2: 0
   isNotPlayer: 0
+  isFood: 0
   isHurt: 0
   isHurtDur: 1
   enemy: 1
@@ -660,7 +661,7 @@ MonoBehaviour:
   - {x: 2.1552315, y: -2.4399996, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 227550
+  m_InstanceId: 82524
   m_LocalBounds:
     m_Center: {x: 0, y: 0.00000047683716, z: 0}
     m_Extent: {x: 2.1552315, y: 2.44, z: 0}

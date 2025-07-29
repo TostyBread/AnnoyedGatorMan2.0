@@ -20,12 +20,12 @@ public class HitBox : MonoBehaviour
         {
             //Debug.Log("attack " + collision.name);
 
-            collision.GetComponentInChildren<HealthManager>().TryDamage(damage);
+            collision.GetComponentInChildren<HealthManager>().TryDamage(damage, this.gameObject);
         }
 
         if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
         {
-            collision.GetComponentInChildren<HealthManager>().TryDamage(damage);
+            collision.GetComponentInChildren<HealthManager>().TryDamage(damage, this.gameObject);
         }
 
         gameObject.SetActive(false);
@@ -37,13 +37,13 @@ public class HitBox : MonoBehaviour
         {
             //Debug.Log("attack " + collision.gameObject.name);
 
-            collision.gameObject.GetComponentInChildren<HealthManager>().TryDamage(damage);
+            collision.gameObject.GetComponentInChildren<HealthManager>().TryDamage(damage, this.gameObject);
         }
 
         if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
         {
             if (collision.gameObject.GetComponentInChildren<HealthManager>() != null)
-                collision.gameObject.GetComponentInChildren<HealthManager>().TryDamage(damage);
+                collision.gameObject.GetComponentInChildren<HealthManager>().TryDamage(damage, this.gameObject);
             else
                 Debug.LogWarning(collision + "children has no HealthManager");
         }

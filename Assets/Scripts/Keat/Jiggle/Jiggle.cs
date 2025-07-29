@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Jiggle : MonoBehaviour
@@ -8,13 +9,13 @@ public class Jiggle : MonoBehaviour
     public float BiggerTheGameobjectBy = 1.3f;
 
     [Header("Position Jiggle")]
-    public bool enableLeftRightJiggle = true;
-    public bool enableUpDownJiggle = false;
+    public bool enableLeftRightJiggle;
+    public bool enableUpDownJiggle;
     public float jiggleRange = 0.5f;
     public float jiggleSpeed = 5f;
 
     [Header("Rotation Jiggle")]
-    public bool enableRotationJiggle = true;
+    public bool enableRotationJiggle;
     public float rotationAngle = 30f;
 
     private Vector3 defaultPosition;

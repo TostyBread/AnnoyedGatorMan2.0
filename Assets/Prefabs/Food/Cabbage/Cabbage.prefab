@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 5811987434288561472}
   - component: {fileID: 2091113138358253002}
   - component: {fileID: 7375408521143853263}
+  - component: {fileID: -1955880895300490269}
   m_Layer: 6
   m_Name: Cabbage
   m_TagString: FoodSmall
@@ -292,6 +293,36 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0.0012100339, y: -0.0035340786, z: 0}
     m_Extent: {x: 0.59485537, y: 0.56723666, z: 0}
+--- !u!114 &-1955880895300490269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914475135471142955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  currentHealth: 20
+  reviveSpeed: 1
+  damageReceived: 0
+  HealthBar: {fileID: 0}
+  hand: {fileID: 0}
+  isPlayer2: 0
+  isNotPlayer: 0
+  isFood: 1
+  isHurt: 0
+  isHurtDur: 1
+  enemy: 0
+  sharedHealthSource: {fileID: 0}
+  deadBody: {fileID: 0}
+  isPlayer: 1
+  canMove: 1
+  isDefeated: 0
+  reviveBoostKey: 32
 --- !u!1001 &5616143497043549653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -300,6 +331,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4753040588209321030}
     m_Modifications:
+    - target: {fileID: -2301199017820412758, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -2301199017820412758, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: currentHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2133209411155103395, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -339,6 +378,14 @@ PrefabInstance:
     - target: {fileID: 2133209411155103395, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680040776413111131, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: enableRotationJiggle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680040776413111131, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: enableLeftRightJiggle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6798161795731262118, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
       propertyPath: m_Name
@@ -367,6 +414,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4753040588209321030}
     m_Modifications:
+    - target: {fileID: -2301199017820412758, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -2301199017820412758, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: currentHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2133209411155103395, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -406,6 +461,14 @@ PrefabInstance:
     - target: {fileID: 2133209411155103395, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680040776413111131, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: enableRotationJiggle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680040776413111131, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
+      propertyPath: enableLeftRightJiggle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6798161795731262118, guid: 21ff6d2a81ef7264f8a9c151eb293b3b, type: 3}
       propertyPath: m_Name
@@ -434,6 +497,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4753040588209321030}
     m_Modifications:
+    - target: {fileID: 1624199148918665938, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
+      propertyPath: Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624199148918665938, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
+      propertyPath: isFood
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624199148918665938, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
+      propertyPath: currentHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2812990034407412477, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -473,6 +548,14 @@ PrefabInstance:
     - target: {fileID: 2812990034407412477, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043611285025287781, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
+      propertyPath: enableRotationJiggle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043611285025287781, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
+      propertyPath: enableLeftRightJiggle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9079222091977042799, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
       propertyPath: m_Name
