@@ -4,6 +4,7 @@ public class NPCBehavior : MonoBehaviour
 {
     public enum NPCState { Approaching, Arrived, Leaving, Escaping, Frustrated }
 
+    public int customerType; // assign a number for MenuUISetup to use
     public float moveSpeed = 2f;
     public float forceEscapeThreshold = 5f;
     public float escapeSpeedMultiplier = 2f;
@@ -70,7 +71,7 @@ public class NPCBehavior : MonoBehaviour
             return;
         }
 
-        if (angerBehavior != null && angerBehavior.IsAngry) return;
+        if (angerBehavior != null && angerBehavior.IsAngry && state != NPCState.Arrived) return;
 
         switch (state)
         {
@@ -143,7 +144,6 @@ public class NPCBehavior : MonoBehaviour
             plateAlreadySpawned = true;
         }
 
-        // Auto-link plate to menu after both are assigned
         if (attachedMenu != null && attachedPlate != null)
         {
             PlateSystem plateSys = attachedPlate.GetComponent<PlateSystem>();
@@ -184,7 +184,7 @@ public class NPCBehavior : MonoBehaviour
             attachedPlate = null;
         }
 
-        PlateManager.Instance?.FreeSpawnPoint(this); // clear plate spawn point occupancy
+        PlateManager.Instance?.FreeSpawnPoint(this);
     }
 
     public bool TryAcceptPlate(PlateSystem plate)
@@ -213,6 +213,11 @@ public class NPCBehavior : MonoBehaviour
             particleManager?.SpawnParticleOnce();
             hasAcceptedPlate = true;
 
+            if (angerBehavior != null && angerBehavior.IsAngry)
+            {
+                GetComponentInChildren<NPCAnimationController>()?.SetIsAngry(false);
+            }
+
             if (attachedMenu != null)
             {
                 attachedMenu = null;
@@ -220,7 +225,7 @@ public class NPCBehavior : MonoBehaviour
             }
             GetComponent<NPCPatience>()?.StopPatience();
 
-            PlateManager.Instance?.FreeSpawnPoint(this); // clear plate spawn point occupancy
+            PlateManager.Instance?.FreeSpawnPoint(this);
             return true;
         }
         return false;
@@ -230,7 +235,13 @@ public class NPCBehavior : MonoBehaviour
     {
         if (state == NPCState.Frustrated) return;
 
-        angerBehavior?.TriggerAngerMode(null);
+        if (!hasAcceptedPlate && angerBehavior != null)
+        {
+            if (Random.value < angerBehavior.angerChanceOnHit)
+            {
+                angerBehavior.TriggerAngerMode(null);
+            }
+        }
 
         state = NPCState.Frustrated;
         currentWaypointIndex = 0;
@@ -257,7 +268,7 @@ public class NPCBehavior : MonoBehaviour
             npcCollider.enabled = false;
         }
 
-        PlateManager.Instance?.FreeSpawnPoint(this); // clear plate spawn point occupancy
+        PlateManager.Instance?.FreeSpawnPoint(this);
     }
 
     private void MoveAlongPath(Vector3[] path)

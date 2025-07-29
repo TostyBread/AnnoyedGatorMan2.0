@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4586a8ca6a0c5346b12ac1be5f734db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerType: 1
   moveSpeed: 3
   forceEscapeThreshold: 7
   escapeSpeedMultiplier: 2
@@ -453,7 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchorPoint: {fileID: 8449061880509143546}
   labelText: 0
-  labelColor: {r: 1, g: 0.58431375, b: 0, a: 1}
+  labelColor: {r: 1, g: 0.36956522, b: 0, a: 1}
   fontSize: 8
   offset: {x: 0, y: 0, z: 0}
   customFontAsset: {fileID: 11400000, guid: 2c0f1b204d2db3a4e8e6efcf4e936da2, type: 2}

@@ -1,9 +1,13 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MenuUISetup : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI idText;
+    [Header("NPC Visuals")]
+    [SerializeField] private Image npcImageTarget;
+    [SerializeField] private Sprite[] npcTypeImages;
 
     public void SetupFromNPC(NPCBehavior npc)
     {
@@ -16,7 +20,6 @@ public class MenuUISetup : MonoBehaviour
         }
         else
         {
-            // Try to find a Canvas child to use as the parent for the ID text
             Canvas canvas = GetComponentInChildren<Canvas>();
             Transform parentTransform = canvas != null ? canvas.transform : transform;
 
@@ -27,6 +30,12 @@ public class MenuUISetup : MonoBehaviour
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.text = npc.customerId.ToString();
             tmp.rectTransform.anchoredPosition = new Vector2(0, -30);
+        }
+
+        if (npcImageTarget != null && npcTypeImages != null && npcTypeImages.Length > 0)
+        {
+            int index = Mathf.Clamp(npc.customerType, 0, npcTypeImages.Length - 1);
+            npcImageTarget.sprite = npcTypeImages[index];
         }
 
         var patience = npc.GetComponent<NPCPatience>();

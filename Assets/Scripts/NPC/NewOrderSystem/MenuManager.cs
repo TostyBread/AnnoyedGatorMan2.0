@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private Transform[] menuStackPositions;
     [SerializeField] private float slideDuration = 0.3f;
-    [SerializeField] private float patienceExtensionPerSlot = 30f; // Extra patience per stack position
+    [SerializeField] private float patienceExtensionPerSlot = 40f; // Extra patience per stack position
 
     private readonly Queue<GameObject> activeMenus = new();
 

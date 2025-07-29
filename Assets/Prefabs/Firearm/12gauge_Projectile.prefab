@@ -89,7 +89,8 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 0
-  parent: {fileID: 0}
+  owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!1 &6918077294880524883
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +297,8 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
-  parent: {fileID: 0}
+  owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!50 &4968603192802626325
 Rigidbody2D:
   serializedVersion: 4
@@ -339,7 +341,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2363904
+    m_Bits: 2494976
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
