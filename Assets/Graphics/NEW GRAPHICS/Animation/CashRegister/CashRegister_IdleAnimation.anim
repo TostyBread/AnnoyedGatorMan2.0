@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CashRegister_StartAnimation
+  m_Name: CashRegister_IdleAnimation
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,15 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 3f34405db73a14b459bf811ab4dc217d, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: 297398965026a0448969137d3c9ff3ef, type: 3}
-    - time: 0.5
-      value: {fileID: 21300000, guid: 0561e4347d8168a49a2028c0d3c4f759, type: 3}
-    - time: 0.75
-      value: {fileID: 21300000, guid: ac6f1b7ab1515b547bb34ce3804d8c34, type: 3}
-    - time: 1
-      value: {fileID: 21300000, guid: ff49c5a4e123aed4a8db1458e9a11d88, type: 3}
+      value: {fileID: 745805813, guid: 259485453b779f347960a8fc99e8479a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -52,22 +44,18 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 3f34405db73a14b459bf811ab4dc217d, type: 3}
-    - {fileID: 21300000, guid: 297398965026a0448969137d3c9ff3ef, type: 3}
-    - {fileID: 21300000, guid: 0561e4347d8168a49a2028c0d3c4f759, type: 3}
-    - {fileID: 21300000, guid: ac6f1b7ab1515b547bb34ce3804d8c34, type: 3}
-    - {fileID: 21300000, guid: ff49c5a4e123aed4a8db1458e9a11d88, type: 3}
+    - {fileID: 745805813, guid: 259485453b779f347960a8fc99e8479a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0166667
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

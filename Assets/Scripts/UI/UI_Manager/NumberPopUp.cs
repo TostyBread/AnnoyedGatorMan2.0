@@ -12,6 +12,7 @@ public class NumberPopUp : MonoBehaviour
     [Header("References")]
     public GameObject numberGameObject;
     private TMP_Text servedCustomerText;
+    private Animator animaator;
 
     private float currentMoveTime;
     private Coroutine currentCoroutine;
@@ -23,6 +24,7 @@ public class NumberPopUp : MonoBehaviour
     {
         scoreManager = FindObjectOfType<ScoreManager>();
         if (numberGameObject != null) { servedCustomerText = numberGameObject.GetComponentInChildren<TMP_Text>(); }
+        animaator = GetComponentInChildren<Animator>();
 
         initialPosition = transform.position;
         numberGameObject.gameObject.SetActive(false);
@@ -53,6 +55,7 @@ public class NumberPopUp : MonoBehaviour
         numberGameObject.transform.position = initialPosition;
         servedCustomerText.text = scoreManager.currentScore.ToString();
         numberGameObject.gameObject.SetActive(true);
+        animaator.SetTrigger("ScoreUp");
 
         currentMoveTime = 0f;
 
