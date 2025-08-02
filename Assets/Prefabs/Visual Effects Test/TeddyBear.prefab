@@ -505,6 +505,7 @@ MonoBehaviour:
   hand: {fileID: 0}
   isPlayer2: 0
   isNotPlayer: 0
+  isFood: 0
   isHurt: 0
   isHurtDur: 1
   enemy: 0
@@ -601,6 +602,7 @@ GameObject:
   - component: {fileID: 3842071666930591751}
   - component: {fileID: 4658355301327081858}
   - component: {fileID: 1677794581473528308}
+  - component: {fileID: 493287899109783750}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -752,7 +754,7 @@ MonoBehaviour:
   - {x: -4.1161175, y: -2.73939, z: 0}
   m_ShapePathHash: 1566888226
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1590
+  m_InstanceId: -2162
   m_LocalBounds:
     m_Center: {x: 0.039346218, y: 0.06034279, z: 0}
     m_Extent: {x: 4.1748757, y: 5.1594234, z: 0}
@@ -763,13 +765,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7792502692736191650}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7d0c4dd702eff1439737f161a2ebc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: 1475522284, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
   spriteWithBorderScale: 1.1
+--- !u!114 &493287899109783750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792502692736191650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad602ebbec95604e861346f6ae45b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teddyBearDamagedSprite: {fileID: 21300000, guid: 344b10ee1b1b10f44b1589d1dcaee7b0, type: 3}
 --- !u!1 &8706830936148885631
 GameObject:
   m_ObjectHideFlags: 0
