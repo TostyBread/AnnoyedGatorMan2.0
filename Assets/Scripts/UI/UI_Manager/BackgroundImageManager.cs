@@ -5,29 +5,22 @@ using UnityEngine.UI;
 
 public class BackgroundImageManager : MonoBehaviour
 {
-    public Image background;
-
-    private Sprite originalImage;
-    public bool changeBackground = false;
+    public Animator FallingGator;
 
     // Start is called before the first frame update
     void Start()
     {
-        originalImage = background.sprite;
+        FallingGator.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowFallingGator()
     {
-        if (changeBackground == false)
-        {
-            background.sprite = originalImage;
-        }
+        FallingGator.gameObject.SetActive(true);
+        FallingGator.Play("FallingGatorAnimation");
     }
 
-    public void ChangeBackground(Sprite sprite)
+    public void HideFallingGator()
     {
-        background.sprite = sprite;
-        changeBackground = true;
+        FallingGator.gameObject.SetActive(false);
     }
 }

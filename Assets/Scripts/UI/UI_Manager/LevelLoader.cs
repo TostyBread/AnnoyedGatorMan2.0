@@ -24,7 +24,7 @@ public class LevelLoader : MonoBehaviour
     public LevelSelectManager levelSelectManager;
 
     private TransitionManager transitionManager;
-    private ClickerDetector clickerDetector;
+    //private ClickerDetector clickerDetector;
     private PauseManager pauseManager;
 
     private bool isLoading = false;
@@ -32,7 +32,7 @@ public class LevelLoader : MonoBehaviour
     private void Start()
     {
         transitionManager = FindObjectOfType<TransitionManager>();
-        clickerDetector = FindObjectOfType<ClickerDetector>();
+        //clickerDetector = FindObjectOfType<ClickerDetector>();
         pauseManager = FindObjectOfType<PauseManager>();
 
         if (mainMenu) mainMenu.SetActive(true);
@@ -91,7 +91,8 @@ public class LevelLoader : MonoBehaviour
     {
         isShowingSettingScreen = false;
         if (pauseManager != null) pauseManager.ResumeGame();
-        if (clickerDetector != null) clickerDetector.ClosePopUpScreens();
+        //if (clickerDetector != null) clickerDetector.ClosePopUpScreens();
+        if (playerNumberScreen != null) playerNumberScreen.SetActive(false);
 
         settingScreen.SetActive(false);
         ShaderScreen.SetActive(false);
