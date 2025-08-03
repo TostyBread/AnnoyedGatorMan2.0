@@ -1014,7 +1014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 964359623922970147, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 964359623922970147, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
       propertyPath: screens.Array.size
@@ -1143,6 +1143,14 @@ PrefabInstance:
     - target: {fileID: 5579551498792437653, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579551498792437653, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1249773585}
+    - target: {fileID: 5579551498792437653, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideSettingtScreen
       objectReference: {fileID: 0}
     - target: {fileID: 5723819415010254536, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
       propertyPath: m_TagString

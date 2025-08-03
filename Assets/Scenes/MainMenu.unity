@@ -3470,9 +3470,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2985397821011572751}
     - target: {fileID: 5579551498792437653, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 216110}
+      objectReference: {fileID: 255436287}
     - target: {fileID: 6961886101235548119, guid: 11eebb1b63df0b349a2799ee193a4b79, type: 3}
       propertyPath: m_Name
       value: SettingScreen
