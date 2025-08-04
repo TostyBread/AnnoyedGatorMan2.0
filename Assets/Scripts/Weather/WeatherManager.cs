@@ -40,10 +40,7 @@ public class WeatherManager : MonoBehaviour
         else if (audioManager == null) audioManager = FindObjectOfType<AudioManager>(); // Fallback to find AudioManager in the scene
 
         audioSource = GetComponent<AudioSource>();
-    }
 
-    void Start()
-    {
         currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);
 
         if (randomWeatherActivate)
@@ -70,6 +67,35 @@ public class WeatherManager : MonoBehaviour
             }
         }
     }
+
+    //void Start()
+    //{
+    //    currentBlackOutInterval = UnityEngine.Random.Range(MinBlackOutInterval, MaxBlackOutInterval);
+
+    //    if (randomWeatherActivate)
+    //    {
+    //        randomWeather = UnityEngine.Random.Range(1, 5);
+
+    //        switch (randomWeather)
+    //        {
+    //            case 1:
+    //                weather = Weather.Normal;
+    //                break;
+
+    //            case 2:
+    //                weather = Weather.Rainy;
+    //                break;
+
+    //            case 3:
+    //                weather = Weather.Hot;
+    //                break;
+
+    //            case 4:
+    //                weather = Weather.Cold;
+    //                break;
+    //        }
+    //    }
+    //}
 
     void Update()
     {
