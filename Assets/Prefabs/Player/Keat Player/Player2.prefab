@@ -2501,6 +2501,7 @@ MonoBehaviour:
   hand: {fileID: 2358437140388838786}
   isPlayer2: 1
   isNotPlayer: 0
+  isFood: 0
   isHurt: 0
   isHurtDur: 1
   enemy: 0
@@ -2517,7 +2518,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2818093456570068351}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfd2845461f4aa14ba743a57048c3fef, type: 3}
   m_Name: 
@@ -4088,6 +4089,7 @@ MonoBehaviour:
   hand: {fileID: 5662149132220043199}
   isPlayer2: 1
   isNotPlayer: 0
+  isFood: 0
   isHurt: 0
   isHurtDur: 1
   enemy: 0
@@ -4104,7 +4106,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5274495434050756418}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfd2845461f4aa14ba743a57048c3fef, type: 3}
   m_Name: 
@@ -5428,7 +5430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7587068617393184119
 Transform:
   m_ObjectHideFlags: 0
@@ -6339,6 +6341,7 @@ MonoBehaviour:
   hand: {fileID: 8410173730569387975}
   isPlayer2: 1
   isNotPlayer: 0
+  isFood: 0
   isHurt: 0
   isHurtDur: 1
   enemy: 0
@@ -6355,7 +6358,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8293320950161092410}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfd2845461f4aa14ba743a57048c3fef, type: 3}
   m_Name: 
