@@ -23,14 +23,25 @@ public class Jiggle : MonoBehaviour
     private Vector3 defaultScale;
 
     private Coroutine jiggleRoutine;
+    public Transform spriteGameobject;
 
     public void StartJiggle()
     {
         if (jiggleRoutine != null) return;
 
-        defaultPosition = transform.position;
-        defaultRotation = transform.rotation;
-        defaultScale = transform.localScale;
+        if (spriteGameobject != null)
+        {
+            Debug.Log("Using spriteGameobject for jiggle.");
+            defaultPosition = spriteGameobject.position;
+            defaultRotation = spriteGameobject.rotation;
+            defaultScale = spriteGameobject.localScale;
+        }
+        else
+        {
+            defaultPosition = transform.position;
+            defaultRotation = transform.rotation;
+            defaultScale = transform.localScale;
+        }
 
         PopUp(BiggerTheGameobjectBy);
         jiggleRoutine = StartCoroutine(JiggleRoutine(jiggleInterval));

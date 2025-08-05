@@ -8,11 +8,10 @@ public class TransitionManager : MonoBehaviour
 {
     public float transitionTime = 1f;
     public bool playTransitionOnStart = true;
+    public float transitionDelay = 0f;
 
     private Animator transition;
     public bool isTransitioning = false;
-
-    private float currentDelay = 0f;
 
     void Awake()
     {
@@ -57,6 +56,8 @@ public class TransitionManager : MonoBehaviour
 
     IEnumerator LoadLevel(string SceneName)
     {
+        yield return new WaitForSeconds(transitionDelay);
+
         transition.SetTrigger("StartTransition");
         isTransitioning = true;
 

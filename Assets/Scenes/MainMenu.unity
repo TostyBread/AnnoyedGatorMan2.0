@@ -1786,6 +1786,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 309312211394493059, guid: 06e7ef8effb225149a93006ddedc4340, type: 3}
+      propertyPath: transitionDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 309312211394493059, guid: 06e7ef8effb225149a93006ddedc4340, type: 3}
       propertyPath: playTransitionOnStart
       value: 1
       objectReference: {fileID: 0}
