@@ -12,6 +12,8 @@ public class TransitionManager : MonoBehaviour
     private Animator transition;
     public bool isTransitioning = false;
 
+    private float currentDelay = 0f;
+
     void Awake()
     {
         transition = GetComponentInChildren<Animator>();
@@ -46,8 +48,11 @@ public class TransitionManager : MonoBehaviour
 
     public void LoadSceneWithTransition(string SceneName)
     {
-        transition.gameObject.SetActive(true);
-        if (!isTransitioning) StartCoroutine(LoadLevel(SceneName));
+        if (!isTransitioning)
+        {
+            transition.gameObject.SetActive(true);
+            StartCoroutine(LoadLevel(SceneName));
+        }
     }
 
     IEnumerator LoadLevel(string SceneName)
