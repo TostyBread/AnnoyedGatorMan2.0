@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 9999
+  Health: 200
   currentHealth: 0
   reviveSpeed: 0
   damageReceived: 0
@@ -754,7 +754,7 @@ MonoBehaviour:
   - {x: -4.1161175, y: -2.73939, z: 0}
   m_ShapePathHash: 1566888226
   m_Mesh: {fileID: 0}
-  m_InstanceId: -2162
+  m_InstanceId: -48734
   m_LocalBounds:
     m_Center: {x: 0.039346218, y: 0.06034279, z: 0}
     m_Extent: {x: 4.1748757, y: 5.1594234, z: 0}

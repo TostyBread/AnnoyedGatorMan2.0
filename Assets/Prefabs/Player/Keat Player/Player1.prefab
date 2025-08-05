@@ -327,6 +327,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7241521325096448563}
     - target: {fileID: 464963915344668180, guid: 8a139d3639b4aa746a8118f2b026b6fa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 464963915344668180, guid: 8a139d3639b4aa746a8118f2b026b6fa, type: 3}
       propertyPath: burnedColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -669,6 +673,10 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 5783189896831489092}
+    - target: {fileID: 45975372673965807, guid: 0244cb33230a5bc4cbab86ccdcd667ba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 45975372673965807, guid: 0244cb33230a5bc4cbab86ccdcd667ba, type: 3}
       propertyPath: burnedColor.a
       value: 1
@@ -1248,6 +1256,10 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 7488752153089679394}
+    - target: {fileID: 5961273867213844214, guid: 8b1f06cffb0079c4ab2191ce39b8d56b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5961273867213844214, guid: 8b1f06cffb0079c4ab2191ce39b8d56b, type: 3}
       propertyPath: burnedColor.a
       value: 1
