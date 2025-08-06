@@ -3770,7 +3770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0721dcfceac09694b98a8215523771b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSelected: Tutorial(Player1)
+  levelSelected: Tutorial(Player2)
   levelText: {fileID: 74600117}
   levelImage: {fileID: 1144812142}
   clearConditionText: {fileID: 1681853823}
