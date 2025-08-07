@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 3bf77dadda6dac94c981f001411b51aa
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - weatherIcon: {instanceID: 0}
+  - normalIcon: {instanceID: 0}
+  - sunnyIcon: {instanceID: 0}
+  - rainyIcon: {instanceID: 0}
+  - snowyIcon: {instanceID: 0}
+  - enemyIcon: {instanceID: 0}
+  - flyIcon: {instanceID: 0}
+  - mosquitoeIcon: {instanceID: 0}
+  - cockroachIcon: {instanceID: 0}
+  - mouseIcon: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
