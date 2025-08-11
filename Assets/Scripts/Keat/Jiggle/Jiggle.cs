@@ -102,13 +102,29 @@ public class Jiggle : MonoBehaviour
 
     private void ResetTransform()
     {
-        transform.position = defaultPosition;
-        transform.rotation = defaultRotation;
-        transform.localScale = defaultScale;
+        if (spriteGameobject != null)
+        {
+            spriteGameobject.position = defaultPosition;
+            spriteGameobject.rotation = defaultRotation;
+            spriteGameobject.localScale = defaultScale;
+        }
+        else
+        {
+            transform.position = defaultPosition;
+            transform.rotation = defaultRotation;
+            transform.localScale = defaultScale;
+        }
     }
 
     private void PopUp(float enlargeSize)
     {
-        transform.localScale = defaultScale * enlargeSize;
+        if (spriteGameobject != null)
+        {
+            spriteGameobject.localScale = defaultScale * enlargeSize;
+        }
+        else
+        {
+            transform.localScale = defaultScale * enlargeSize;
+        }
     }
 }
