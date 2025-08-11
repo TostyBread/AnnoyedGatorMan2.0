@@ -19,17 +19,17 @@ public class ItemStateManager : MonoBehaviour
     private Dictionary<DamageSource, float> burncooldowns = new();
     private HashSet<DamageSource> burnSources = new();
 
-    [Header("Freeze State")]
-    public float MaxCold = 100;
-    public float currentCold;
-    public float coldCooldown;
-    public float heatRequiredToCook = 20;
-    public string FreezeAudioName;
-    public Color freezedColor;
-    public bool isFreezed = false;
+    //[Header("Freeze State")]
+    //public float MaxCold = 100;
+    //public float currentCold;
+    //public float coldCooldown;
+    //public float heatRequiredToCook = 20;
+    //public string FreezeAudioName;
+    //public Color freezedColor;
+    //public bool isFreezed = false;
 
-    private Dictionary<DamageSource, float> coldCooldowns = new();
-    private HashSet<DamageSource> coldSources = new();
+    //private Dictionary<DamageSource, float> coldCooldowns = new();
+    //private HashSet<DamageSource> coldSources = new();
 
     [Header("References")]
     [SerializeField]private WeatherManager weatherManager;
@@ -45,7 +45,7 @@ public class ItemStateManager : MonoBehaviour
         weatherManager = GameObject.FindGameObjectWithTag("Window").GetComponent<WeatherManager>();
 
         state = ItemState.Idle;
-        isFreezed = false;
+        //isFreezed = false;
     }
 
     void Update()
@@ -64,18 +64,18 @@ public class ItemStateManager : MonoBehaviour
             ItemBurn();
             if (playSound) AudioManager.Instance.PlaySound(BurnAudioName, transform.position);
             currentHeat = Mathf.Clamp(currentHeat, 0, MaxHeat);
-            currentCold = Mathf.Clamp(currentCold, 0, MaxCold);
+            //currentCold = Mathf.Clamp(currentCold, 0, MaxCold);
         }
 
-        if (currentCold >= MaxCold && weatherManager.weather == WeatherManager.Weather.Cold && !isFreezed)
-        {
-            ItemFreeze();
-            if (playSound) AudioManager.Instance.PlaySound(FreezeAudioName, transform.position);
-            currentHeat = Mathf.Clamp(currentHeat, 0, MaxHeat);
-            currentCold = Mathf.Clamp(currentCold, 0, MaxCold);
+        //if (currentCold >= MaxCold && weatherManager.weather == WeatherManager.Weather.Cold && !isFreezed)
+        //{
+        //    ItemFreeze();
+        //    if (playSound) AudioManager.Instance.PlaySound(FreezeAudioName, transform.position);
+        //    currentHeat = Mathf.Clamp(currentHeat, 0, MaxHeat);
+        //    currentCold = Mathf.Clamp(currentCold, 0, MaxCold);
 
-            isFreezed = true;
-        }
+        //    isFreezed = true;
+        //}
     }
 
     void FixedUpdate()
@@ -96,19 +96,19 @@ public class ItemStateManager : MonoBehaviour
             }
         }
 
-        foreach (var source in coldSources)
-        {
-            if (!coldCooldowns.ContainsKey(source))
-                coldCooldowns[source] = source.heatCooldown;
+        //foreach (var source in coldSources)
+        //{
+        //    if (!coldCooldowns.ContainsKey(source))
+        //        coldCooldowns[source] = source.heatCooldown;
 
-            coldCooldowns[source] -= Time.fixedDeltaTime;
+        //    coldCooldowns[source] -= Time.fixedDeltaTime;
 
-            if (coldCooldowns[source] <= 0f)
-            {
-                currentCold += source.heatAmount;
-                coldCooldowns[source] = source.heatCooldown;
-            }
-        }
+        //    if (coldCooldowns[source] <= 0f)
+        //    {
+        //        currentCold += source.heatAmount;
+        //        coldCooldowns[source] = source.heatCooldown;
+        //    }
+        //}
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -125,12 +125,12 @@ public class ItemStateManager : MonoBehaviour
                 }
             }
 
-            if (damageSource.isColdSource)
-            {
-                coldSources.Add(damageSource);
-                if (!coldCooldowns.ContainsKey(damageSource))
-                    coldCooldowns[damageSource] = damageSource.heatCooldown;
-            }
+            //if (damageSource.isColdSource)
+            //{
+            //    coldSources.Add(damageSource);
+            //    if (!coldCooldowns.ContainsKey(damageSource))
+            //        coldCooldowns[damageSource] = damageSource.heatCooldown;
+            //}
         }
     }
 
@@ -145,12 +145,12 @@ public class ItemStateManager : MonoBehaviour
                 currentHeat = 0;
             }
 
-            if (damageSource.isColdSource)
-            {
-                coldSources.Remove(damageSource);
-                coldCooldowns.Remove(damageSource);
-                currentCold = 0;
-            }
+            //if (damageSource.isColdSource)
+            //{
+            //    coldSources.Remove(damageSource);
+            //    coldCooldowns.Remove(damageSource);
+            //    currentCold = 0;
+            //}
         }
     }
 
@@ -179,16 +179,16 @@ public class ItemStateManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void ItemFreeze()
-    {
-        if (itemSystem)
-        {
-            state = ItemState.Freeze;
-            Debug.Log(gameObject.name + " is Freezed");
+    //private void ItemFreeze()
+    //{
+    //    if (itemSystem)
+    //    {
+    //        state = ItemState.Freeze;
+    //        Debug.Log(gameObject.name + " is Freezed");
 
-            if (sprite != null) sprite.color = freezedColor;
-            itemSystem.cookThreshold += heatRequiredToCook;
-            itemSystem.burnThreshold += heatRequiredToCook;
-        }
-    }
+    //        if (sprite != null) sprite.color = freezedColor;
+    //        itemSystem.cookThreshold += heatRequiredToCook;
+    //        itemSystem.burnThreshold += heatRequiredToCook;
+    //    }
+    //}
 }
