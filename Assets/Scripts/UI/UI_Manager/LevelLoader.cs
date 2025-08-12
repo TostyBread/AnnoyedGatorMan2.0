@@ -78,6 +78,12 @@ public class LevelLoader : MonoBehaviour
         if (ShaderScreen) ShaderScreen.SetActive(true);
     }
 
+    public void HidePopUpScreen()
+    {
+        if (playerNumberScreen) playerNumberScreen.SetActive(false);
+        if (ShaderScreen) ShaderScreen.SetActive(false);
+    }
+
     public void ShowSettingScreen()
     {
         isShowingSettingScreen = true;
