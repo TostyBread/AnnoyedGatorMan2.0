@@ -122,6 +122,59 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &25754587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 25754589}
+  - component: {fileID: 25754588}
+  m_Layer: 0
+  m_Name: LevelUnlockManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &25754588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25754587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b364501739354584284f26e8587d000b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelData:
+  - levelButton: {fileID: 860231964}
+    isUnlocked: 1
+  - levelButton: {fileID: 957189276}
+    isUnlocked: 0
+  - levelButton: {fileID: 607738655}
+    isUnlocked: 0
+  - levelButton: {fileID: 1690006475}
+    isUnlocked: 0
+--- !u!4 &25754589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25754587}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1643568, y: 1.6643384, z: 887.4463}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &74600115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,7 +1606,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 607738656}
   m_OnClick:
     m_PersistentCalls:
@@ -2232,7 +2285,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 957189277}
   m_OnClick:
     m_PersistentCalls:
@@ -3560,7 +3613,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1690006476}
   m_OnClick:
     m_PersistentCalls:
@@ -4227,3 +4280,4 @@ SceneRoots:
   - {fileID: 378220026}
   - {fileID: 310879665}
   - {fileID: 1328455146}
+  - {fileID: 25754589}
