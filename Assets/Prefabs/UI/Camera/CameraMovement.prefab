@@ -148,7 +148,7 @@ MonoBehaviour:
   cockroachSprite: {fileID: 21300000, guid: 3d087cf348d567a4ebbfe94a57b52625, type: 3}
   mouseSprite: {fileID: 21300000, guid: 7eac9fa0b45ce9e47a43c415190762c3, type: 3}
   DelayBeforeShowing: 0
-  ShowingTime: 4
+  ShowingTime: 3.5
   PregameScreen: {fileID: 7812055623390686416}
 --- !u!1001 &5647272520081540742
 PrefabInstance:
