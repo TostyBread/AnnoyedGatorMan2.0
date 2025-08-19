@@ -365,7 +365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4c6b846ba7c464eb367881f491837f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjustedPlaybackSpeed: 2
+  adjustedPlaybackSpeed: 3
+  sceneToLoad: MainMenu
 --- !u!1 &1294129061
 GameObject:
   m_ObjectHideFlags: 0
