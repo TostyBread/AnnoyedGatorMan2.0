@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/2PlayerScene/ArtTestScene(2Player).unity
     guid: cee31efb25722634f91a623172f99d1d
   - enabled: 1
-    path: Assets/Scenes/MixScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/1PlayerScene/1CharacterSelect.unity
     guid: 91ebec9d7d5834f4a83f575ad94f9447
   - enabled: 1
@@ -35,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2PlayerScene/Tutorial(Player2).unity
     guid: d8065c4a868561346ba985837c618b0c
+  - enabled: 1
+    path: Assets/Scenes/CreditScene.unity
+    guid: 5fafc0f71c525a941802d93b7116d346
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2ab3cc0e43b20c4408e96c477bff2ef7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0205221c2159bbc4a82638bdb0764aaa, type: 3}
