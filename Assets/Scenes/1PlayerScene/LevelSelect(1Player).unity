@@ -122,59 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &25754587
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 25754589}
-  - component: {fileID: 25754588}
-  m_Layer: 0
-  m_Name: LevelUnlockManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &25754588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25754587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b364501739354584284f26e8587d000b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelData:
-  - levelButton: {fileID: 860231964}
-    isUnlocked: 1
-  - levelButton: {fileID: 957189276}
-    isUnlocked: 0
-  - levelButton: {fileID: 607738655}
-    isUnlocked: 0
-  - levelButton: {fileID: 1690006475}
-    isUnlocked: 0
---- !u!4 &25754589
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25754587}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1643568, y: 1.6643384, z: 887.4463}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &74600115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,7 +1873,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4264,6 +4211,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2464954128ac184897e60d4e7c7c5af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1483161815410670007
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: levelData.Array.data[1].isUnlocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: levelData.Array.data[2].isUnlocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: levelData.Array.data[3].isUnlocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: levelData.Array.data[0].levelButton
+      value: 
+      objectReference: {fileID: 860231964}
+    - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: levelData.Array.data[1].levelButton
+      value: 
+      objectReference: {fileID: 957189276}
+    - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: levelData.Array.data[2].levelButton
+      value: 
+      objectReference: {fileID: 607738655}
+    - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: levelData.Array.data[3].levelButton
+      value: 
+      objectReference: {fileID: 1690006475}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1643568
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6643384
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 887.4463
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629299364670238416, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298331435506784499, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: m_Name
+      value: LevelUnlockManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4280,4 +4312,4 @@ SceneRoots:
   - {fileID: 378220026}
   - {fileID: 310879665}
   - {fileID: 1328455146}
-  - {fileID: 25754589}
+  - {fileID: 1483161815410670007}

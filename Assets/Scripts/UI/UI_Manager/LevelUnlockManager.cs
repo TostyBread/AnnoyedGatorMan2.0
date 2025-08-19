@@ -13,8 +13,22 @@ public class LevelData
 
 public class LevelUnlockManager : MonoBehaviour
 {
+    public static LevelUnlockManager Instance;
+
     public LevelData[] levelData;
-    private int ClearedLevel = 0;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,21 +38,17 @@ public class LevelUnlockManager : MonoBehaviour
             if (levelData[i].isUnlocked)
             {
                 levelData[i].levelButton.interactable = true;
+                levelData[i].levelButton.image.color = Color.white;
+
+                foreach (Transform child in levelData[i].levelButton.transform)
+                {
+                    child.gameObject.SetActive(false);
+                }
             }
             else
             {
                 levelData[i].levelButton.interactable = false;
             }
-        }
-    }
-
-    public void UnlockNextLevel()
-    {
-        if (ClearedLevel < levelData.Length - 1)
-        {
-            ClearedLevel++;
-            levelData[ClearedLevel].isUnlocked = true;
-            levelData[ClearedLevel].levelButton.interactable = true;
         }
     }
 }
