@@ -4,9 +4,9 @@ using System.Collections;
 public class PlayerThrowManager : MonoBehaviour
 {
     [Header("Throw Settings")]
-    public float throwForceMultiplier = 2f;
-    public float spinSpeed = 360f;
-    public float throwSpriteDuration = 0.5f;
+    public float throwSpeed = 18f;
+    public float spinSpeed = 900f;
+    public float throwSpriteDuration = 0.3f;
 
 
     [Header("If P1, make sure p2PickSystem is null \nIf P2, make sure p2PickupSystem is null")]
@@ -64,25 +64,12 @@ public class PlayerThrowManager : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, storedThrowPosition);
 
-        // Configurable speeds
-        float minDuration = 0.15f;
-        float maxDuration = 1.5f;
-        float maxThrowSpeed = 2f; // units per second cap
-
-        // Base travel time from throw force
-        float travelTime = distance / throwForceMultiplier;
-
-        // Apply speed cap
-        float cappedTime = distance / maxThrowSpeed;
-        travelTime = Mathf.Max(travelTime, cappedTime);
-
-        // Clamp into min/max bounds
-        travelTime = Mathf.Clamp(travelTime, minDuration, maxDuration);
-
+        // Constant speed: time = distance / speed
+        float travelTime = distance / throwSpeed;
 
         if (heldItem.TryGetComponent(out Rigidbody2D rb))
         {
-            rb.isKinematic = true; // Disable physics while animating
+            rb.isKinematic = true;
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
         }
@@ -107,7 +94,7 @@ public class PlayerThrowManager : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
 
-            // Ease out cubic (fast start, smooth slow end)
+            // Ease-out cubic
             float easedT = 1 - Mathf.Pow(1 - t, 3);
 
             item.transform.position = Vector2.Lerp(startPos, targetPos, easedT);
@@ -116,14 +103,13 @@ public class PlayerThrowManager : MonoBehaviour
             yield return null;
         }
 
-        // Snap to final target
         item.transform.position = targetPos;
 
         if (itemCollider != null) itemCollider.enabled = true;
 
         if (item.TryGetComponent(out Rigidbody2D rb))
         {
-            rb.isKinematic = false; // Re-enable physics
+            rb.isKinematic = false;
         }
     }
 }

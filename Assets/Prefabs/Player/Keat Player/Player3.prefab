@@ -2112,9 +2112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2003e146d5437a14c832105fd89e9c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForceMultiplier: 2.1
+  throwSpeed: 18
   spinSpeed: 900
-  quarterDistanceFactor: 0.75
   throwSpriteDuration: 0.3
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 1633062195450330644}
@@ -4975,9 +4974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2003e146d5437a14c832105fd89e9c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForceMultiplier: 2.1
+  throwSpeed: 18
   spinSpeed: 900
-  quarterDistanceFactor: 0.75
   throwSpriteDuration: 0.3
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 7221029706114965139}
@@ -7356,9 +7354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2003e146d5437a14c832105fd89e9c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForceMultiplier: 2.1
+  throwSpeed: 18
   spinSpeed: 900
-  quarterDistanceFactor: 0.75
   throwSpriteDuration: 0.3
   P1FalseP2True: 1
   P2ThrowDirection: {fileID: 5108823108073852574}
