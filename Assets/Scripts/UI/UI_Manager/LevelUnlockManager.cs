@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class LevelData
+public class LevelDatas
 {
     public Button levelButton;
     public bool isUnlocked;
@@ -12,41 +12,26 @@ public class LevelData
 
 public class LevelUnlockManager : MonoBehaviour
 {
-    public static LevelUnlockManager Instance;
-
-    public LevelData[] levelData;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    public LevelDatas[] levelDatas;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < levelData.Length; i++)
+        for (int i = 0; i < levelDatas.Length; i++)
         {
-            if (levelData[i].isUnlocked)
+            if (levelDatas[i].isUnlocked)
             {
-                levelData[i].levelButton.interactable = true;
-                levelData[i].levelButton.image.color = Color.white;
+                levelDatas[i].levelButton.interactable = true;
+                levelDatas[i].levelButton.image.color = Color.white;
 
-                foreach (Transform child in levelData[i].levelButton.transform)
+                foreach (Transform child in levelDatas[i].levelButton.transform)
                 {
                     child.gameObject.SetActive(false);
                 }
             }
             else
             {
-                levelData[i].levelButton.interactable = false;
+                levelDatas[i].levelButton.interactable = false;
             }
         }
     }
