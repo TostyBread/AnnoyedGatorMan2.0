@@ -5,18 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
+    [Header("Score setting")]
     public int scoreToClear = 0;
-
     public int currentScore = 0;
+
+    [Header("Level clear setting")]
+    public int currentLevelIndex;
     public bool isCleared;
 
     private Timer timer;
+    private LevelData levelData;
+
+    [Header("References")]
     public GameObject WinScreen;
     public GameObject LoseScreen;
 
     private void Start()
     {
         timer = FindObjectOfType<Timer>();
+        levelData = FindObjectOfType<LevelData>();
 
         if (WinScreen != null) WinScreen.SetActive(false);
         if (LoseScreen != null) LoseScreen.SetActive(false);
@@ -43,6 +50,9 @@ public class ScoreManager : MonoBehaviour
         {
             //Debug.Log("Level Cleared! Final Score: " + currentScore);
             StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay
+
+            if (levelData != null)
+                levelData.currentUnlockedLevel = Mathf.Max(levelData.currentUnlockedLevel, currentLevelIndex + 1);
         }
         else if (!isCleared && timer.RemainTime <= 0)
         {

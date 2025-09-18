@@ -553,7 +553,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1157787213}
         m_TargetAssemblyTypeName: TransitionManager, Assembly-CSharp
-        m_MethodName: LoadSceneWithTransition
+        m_MethodName: LoadSceneWithTransitionDelay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1079,6 +1079,7 @@ RectTransform:
   m_Children:
   - {fileID: 1794288853}
   - {fileID: 1025155251}
+  - {fileID: 808860261}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1115,7 +1116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &722281830
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1123,12 +1124,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722281829}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1794288853}
+  m_Father: {fileID: 808860261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1194,6 +1195,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722281829}
   m_CullTransparentMesh: 1
+--- !u!1 &808860260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 808860261}
+  m_Layer: 5
+  m_Name: FallingGatorAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &808860261
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808860260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1776807177}
+  - {fileID: 722281830}
+  m_Father: {fileID: 693858568}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &869329182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +1720,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1157787213}
         m_TargetAssemblyTypeName: TransitionManager, Assembly-CSharp
-        m_MethodName: LoadSceneWithTransition
+        m_MethodName: LoadSceneWithTransitionDelay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2640,7 +2678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1481458735
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2705,9 +2743,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 255436287}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 1157787213}
+        m_TargetAssemblyTypeName: TransitionManager, Assembly-CSharp
+        m_MethodName: LoadSceneWithTransition
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2906,7 +2944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1776807177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2919,7 +2957,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1794288853}
+  m_Father: {fileID: 808860261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3018,8 +3056,6 @@ RectTransform:
   - {fileID: 2007868194}
   - {fileID: 418761765}
   - {fileID: 656002181}
-  - {fileID: 1776807177}
-  - {fileID: 722281830}
   m_Father: {fileID: 693858568}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

@@ -9,7 +9,7 @@ public class VideoPlayerManager : MonoBehaviour
 
     [Header("Video Player Settings")]
     public float adjustedPlaybackSpeed = 2f;
-    private float originalPlaybackSpeed = 1f;
+    private float originalPlaybackSpeed;
 
     public string sceneToLoad = "MainMenu";
 
@@ -18,6 +18,7 @@ public class VideoPlayerManager : MonoBehaviour
     {
         videoPlayer = GetComponent<VideoPlayer>();
 
+        originalPlaybackSpeed = videoPlayer.playbackSpeed;
         videoPlayer.loopPointReached += OnVideoEnd;
     }
 
@@ -35,6 +36,11 @@ public class VideoPlayerManager : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.Space))
             {
                 videoPlayer.playbackSpeed = originalPlaybackSpeed;
+            }
+
+            if (videoPlayer.frame >= (long)videoPlayer.frameCount - 2)
+            {
+                LoadNextScene();
             }
         }
 
