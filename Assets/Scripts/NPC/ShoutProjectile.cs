@@ -4,7 +4,7 @@ public class ShoutProjectile : MonoBehaviour
 {
     public float damage = 1f;
     public float lifetime = 3f;
-    public string targetTag = "Player";
+    public string[] targetTags = new string[] { "Player", "Enemy" }; // Changed to array with default value
 
     void Start()
     {
@@ -13,11 +13,13 @@ public class ShoutProjectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag(targetTag))
+        bool isValidTarget = System.Array.Exists(targetTags, tag => collision.collider.CompareTag(tag));
+        
+        if (isValidTarget)
         {
             if (collision.collider.TryGetComponent<HealthManager>(out var health))
             {
-                health.TryDamage((int)damage,this.gameObject);
+                health.TryDamage((int)damage, this.gameObject);
             }
             if (collision.collider.CompareTag("Player"))
             {
@@ -25,8 +27,12 @@ public class ShoutProjectile : MonoBehaviour
                 if (sanity != null)
                     sanity.decreaseSanity((int)damage);
 
-                EffectPool.Instance.SpawnEffect("WordExplode", transform.position, Quaternion.identity); // VFX effect spawned
-                AudioManager.Instance.PlaySound("OOF", transform.position); // Impact sound effect
+                EffectPool.Instance.SpawnEffect("WordExplode", transform.position, Quaternion.identity);
+                AudioManager.Instance.PlaySound("OOF", transform.position);
+            }
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                EffectPool.Instance.SpawnEffect("WordExplode", transform.position, Quaternion.identity);
             }
         }
 

@@ -55,6 +55,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 0
   owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!70 &1019905867163515563
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -277,6 +278,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!70 &1521843530328012756
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -292,7 +294,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2101825
+    m_Bits: 2232897
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
