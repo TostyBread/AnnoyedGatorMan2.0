@@ -45,6 +45,15 @@ public class TransitionManager : MonoBehaviour
         transition.gameObject.SetActive(false);
     }
 
+    public void LoadSceneWithTransitionDelay(string SceneName)
+    {
+        if (!isTransitioning)
+        {
+            transition.gameObject.SetActive(true);
+            StartCoroutine(LoadLevelWithDelay(SceneName));
+        }
+    }
+
     public void LoadSceneWithTransition(string SceneName)
     {
         if (!isTransitioning)
@@ -54,10 +63,21 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
-    IEnumerator LoadLevel(string SceneName)
+    IEnumerator LoadLevelWithDelay(string SceneName)
     {
         yield return new WaitForSeconds(transitionDelay);
 
+        transition.SetTrigger("StartTransition");
+        isTransitioning = true;
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(SceneName);
+        isTransitioning = false;
+    }
+
+    IEnumerator LoadLevel(string SceneName)
+    {
         transition.SetTrigger("StartTransition");
         isTransitioning = true;
 

@@ -731,6 +731,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  - Fire
   Layers: []
   AllItemInRange: []
 --- !u!1 &1219663554708415907
@@ -2012,7 +2013,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1048704
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2645,6 +2646,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  - Fire
   Layers: []
   AllItemInRange: []
 --- !u!58 &5993165339022205552
@@ -4811,7 +4813,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9013086214482788930
 Transform:
   m_ObjectHideFlags: 0
@@ -4874,7 +4876,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1048704
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -5879,6 +5881,7 @@ MonoBehaviour:
   - Enemy
   - Smoke
   - Window
+  - Fire
   Layers: []
   AllItemInRange: []
 --- !u!1 &7204980602707749373
@@ -7254,7 +7257,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1048704
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -7581,7 +7584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4562775364599266421
 Transform:
   m_ObjectHideFlags: 0
