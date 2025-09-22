@@ -151,26 +151,84 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
     private void HandleActionInput()
     {
-        if (playerPickupSystemP2 != null && playerPickupSystemP2.HasItemHeld)
-        {
-            Transform current = playerPickupSystemP2.GetHeldItem()?.transform;
-            MeleeSwingP2 swing = null;
+        if (playerPickupSystemP2 == null) return;
 
-            while (current != null && swing == null)
+        bool used = false;
+
+        if (playerPickupSystemP2.HasItemHeld)
+        {
+            IUsable usableFunction = playerPickupSystemP2.GetUsableFunction();
+
+            switch (usableFunction)
             {
-                swing = current.GetComponent<MeleeSwingP2>();
-                current = current.parent;
+                case FirearmController gun when usableItemModeEnabled:
+                    bool isPressed = inputActions.Player2Controller.Attack.ReadValue<float>() > 0.5f;
+                    if (gun.currentFireMode == FirearmController.FireMode.Auto)
+                    {
+                        if (isPressed)
+                        {
+                            gun.Use();
+                            used = true;
+                        }
+                    }
+                    else
+                    {
+                        if (isPressed && !wasFiringLastFrame)
+                        {
+                            gun.Use();
+                            used = true;
+                        }
+                    }
+                    if (!isPressed && wasFiringLastFrame)
+                    {
+                        gun.OnFireKeyReleased();
+                    }
+                    wasFiringLastFrame = isPressed;
+                    break;
+
+                case KnifeController knife when usableItemModeEnabled:
+                    if (inputActions.Player2Controller.Attack.ReadValue<float>() > 0.5f)
+                    {
+                        knife.Use();
+                        used = true;
+                    }
+                    break;
+
+                case ItemPackage package when usableItemModeEnabled:
+                    if (inputActions.Player2Controller.Attack.WasPressedThisFrame())
+                    {
+                        package.Use();
+                        used = true;
+                    }
+                    break;
+
+                default:
+                    // Melee logic (MeleeSwingP2)
+                    Transform current = playerPickupSystemP2.GetHeldItem()?.transform;
+                    MeleeSwingP2 swing = null;
+                    while (current != null && swing == null)
+                    {
+                        swing = current.GetComponent<MeleeSwingP2>();
+                        current = current.parent;
+                    }
+                    if (swing != null && inputActions.Player2Controller.Attack.WasPressedThisFrame())
+                    {
+                        swing.Use();
+                        used = true;
+                    }
+                    break;
             }
 
-            if (swing != null)
+            // If not used, fallback to melee punch
+            if (!used && inputActions.Player2Controller.Attack.WasPressedThisFrame())
             {
-                swing.Use();
-                return;
+                fist?.TriggerPunch();
             }
         }
         else
         {
-            fist?.TriggerPunch();
+            if (inputActions.Player2Controller.Attack.WasPressedThisFrame())
+                fist?.TriggerPunch();
         }
     }
 
@@ -193,6 +251,7 @@ public class PlayerInputManagerP2 : MonoBehaviour
             case FirearmController firearm:
                 firearm.ToggleUsableMode(usableItemModeEnabled);
                 break;
+                // Note: ItemPackage does not have a toggleable mode
         }
     }
 

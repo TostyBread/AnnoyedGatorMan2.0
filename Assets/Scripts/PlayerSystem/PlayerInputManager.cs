@@ -122,6 +122,14 @@ public class PlayerInputManager : MonoBehaviour
                     }
                     break;
 
+                case ItemPackage package when usableItemModeEnabled: // ItemPackage throwing item from package
+                    if (Input.GetKeyDown(inputConfig.attackKey))
+                    {
+                        package.Use();
+                        used = true;
+                    }
+                    break;
+
                 default:
                     // Allow MeleeSwing even if usableItemMode is disabled
                     if (Input.GetKeyDown(inputConfig.attackKey))
@@ -249,6 +257,7 @@ public class PlayerInputManager : MonoBehaviour
                 case FirearmController firearm:
                     firearm.ToggleUsableMode(usableItemModeEnabled);
                     break;
+                    // Note: ItemPackage does not have a toggleable mode
             }
         }
     }

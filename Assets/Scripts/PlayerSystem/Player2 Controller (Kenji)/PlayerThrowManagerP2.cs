@@ -26,6 +26,7 @@ public class PlayerThrowManagerP2 : MonoBehaviour
 
         playerPickupSystemP2.DropItem();
         handSpriteManagerP2?.ShowThrowSprite(throwSpriteDuration);
+        storedThrowPosition = PlayerAimController.Instance.GetCursorPosition(); // Get the virtual mouse position for Player 2
 
         float distance = Vector2.Distance(transform.position, storedThrowPosition);
 

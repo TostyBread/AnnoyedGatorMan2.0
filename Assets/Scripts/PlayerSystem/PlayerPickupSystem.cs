@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using static ItemPackage;
 
 public class PlayerPickupSystem : MonoBehaviour
 {
@@ -193,6 +194,12 @@ public class PlayerPickupSystem : MonoBehaviour
         if (item.TryGetComponent(out FirearmController firearm)) // When one of the player picks up, it will assign character flip to one of the player
         {
             firearm.SetOwner(gameObject); // assign ownership
+        }
+
+        if (item.TryGetComponent(out ItemPackage package))  // Set the owner of the package to the player picking it up
+        {
+            var detector = GetComponent<NoThrowCursorDetector>(); // Pass the detector to the package for throw validation
+            package.SetOwner(PackageOwner.Player1, this, null, detector);
         }
 
         if (item.TryGetComponent(out SpriteLayerManager layerManager))

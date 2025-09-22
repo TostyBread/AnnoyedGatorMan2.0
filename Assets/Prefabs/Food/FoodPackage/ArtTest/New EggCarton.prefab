@@ -136,9 +136,12 @@ MonoBehaviour:
   itemPrefab: {fileID: 4993268266881548952, guid: b7a9474072ceff5448c0760dc2377dba, type: 3}
   itemCount: 4
   destroyWhenEmpty: 1
+  canThrowItems: 1
   spawnPosition: {fileID: 9222863915087695841}
   originalSprite: {fileID: 6122258215447213068}
   emptySprite: {fileID: 0}
+  throwSpeed: 18
+  spinSpeed: 900
 --- !u!114 &2311976561614136592
 MonoBehaviour:
   m_ObjectHideFlags: 0

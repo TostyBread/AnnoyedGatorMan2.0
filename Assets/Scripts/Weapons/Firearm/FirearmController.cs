@@ -32,15 +32,12 @@ public class FirearmController : MonoBehaviour, IUsable
     private Dictionary<string, float> animationClipCache = new();
 
     private ICharacterFlip ownerFlip;
-    private Vector3 initialMuzzleLocalPosition;
 
     [Header("Who is holding current weapon")]
     [SerializeField]public GameObject owner; //Refrence from PickUp (PlayerPickupSystem or P2PickSystem)
 
     private bool isOutOfAmmo => currentAmmo <= 0;
     private bool hasPlayedDryFire = false;
-
-    // Ammo refill references
 
     void Awake()
     {

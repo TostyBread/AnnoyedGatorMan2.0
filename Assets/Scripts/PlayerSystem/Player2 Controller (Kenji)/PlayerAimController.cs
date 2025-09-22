@@ -1,7 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
-
 public class PlayerAimController : MonoBehaviour
 {
     public static PlayerAimController Instance { get; private set; }

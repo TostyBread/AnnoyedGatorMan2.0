@@ -56,19 +56,23 @@ public class NoThrowCursorDetector : MonoBehaviour
         if (inputManagerP2 != null) inputManagerP2.canThrow = canThrow;
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Vector2 origin = transform.position;
-        Vector2 target = Application.isPlaying
-            ? (inputType == InputType.Mouse
-                ? ScreenToWorldPointMouse.Instance?.GetMouseWorldPosition() ?? origin
-                : PlayerAimController.Instance?.GetCursorPosition() ?? origin)
-            : origin + Vector2.right;
+    // Set properties for ItemPackage
+    public PlayerInputManager InputManager => inputManager;
+    public PlayerInputManagerP2 InputManagerP2 => inputManagerP2;
 
-        Vector2 direction = (target - origin).normalized;
-        float distance = Vector2.Distance(origin, target);
+    //void OnDrawGizmosSelected()
+    //{
+    //    Vector2 origin = transform.position;
+    //    Vector2 target = Application.isPlaying
+    //        ? (inputType == InputType.Mouse
+    //            ? ScreenToWorldPointMouse.Instance?.GetMouseWorldPosition() ?? origin
+    //            : PlayerAimController.Instance?.GetCursorPosition() ?? origin)
+    //        : origin + Vector2.right;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(origin, direction * Mathf.Min(distance, 20f));
-    }
+    //    Vector2 direction = (target - origin).normalized;
+    //    float distance = Vector2.Distance(origin, target);
+
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawRay(origin, direction * Mathf.Min(distance, 20f));
+    //}
 }
