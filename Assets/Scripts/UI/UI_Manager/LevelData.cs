@@ -32,6 +32,22 @@ public class LevelData : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            ResetAllData();
+            Debug.Log("All progress reset!");
+        }
+    }
+
+    public void ResetAllData()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        currentUnlockedLevel = 0;
+    }
+
     private void OnDestroy()
     {
         // Always unsubscribe to avoid memory leaks
