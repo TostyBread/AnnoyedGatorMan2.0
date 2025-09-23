@@ -37,6 +37,10 @@ public class ScoreManager : MonoBehaviour
         }
 
         CheckIfLevelCleared();
+
+        if (Input.GetKeyDown(KeyCode.Insert)) currentScore = scoreToClear; // For testing purposes
+
+        Debug.Log("Level " + currentLevelIndex + " Highest Score: " + levelData.GetHighScore(currentLevelIndex));
     }
 
     public void AddScore(int scoreToAdd)
@@ -50,9 +54,6 @@ public class ScoreManager : MonoBehaviour
         {
             //Debug.Log("Level Cleared! Final Score: " + currentScore);
             StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay
-
-            if (levelData != null)
-                levelData.currentUnlockedLevel = Mathf.Max(levelData.currentUnlockedLevel, currentLevelIndex + 1);
         }
         else if (!isCleared && timer.RemainTime <= 0)
         {
@@ -65,5 +66,11 @@ public class ScoreManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         if (WinScreen != null) WinScreen.SetActive(true);
+
+        if (levelData != null)
+        {
+            levelData.UnlockNextLevel(currentLevelIndex);
+            levelData.SaveHighScore(currentLevelIndex, currentScore);
+        }
     }
 }
