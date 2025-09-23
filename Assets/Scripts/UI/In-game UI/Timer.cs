@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour
 
     private TMP_Text TimerText;
     private CameraMovement cameraMovement;
+    private bool isWaiting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class Timer : MonoBehaviour
         int seconds = Mathf.FloorToInt(RemainTime % 60f);
         if (TimerText != null) TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        if (cameraMovement != null && !cameraMovement.isMoving)
+        if (cameraMovement != null && !cameraMovement.isMoving && !isWaiting)
         {
             StartCoroutine(Wait(1f)); // Wait before reducing the time
         }
@@ -47,7 +48,9 @@ public class Timer : MonoBehaviour
 
     IEnumerator Wait(float waitTime)
     {
+        isWaiting = true;
         yield return new WaitForSeconds(waitTime);
-        RemainTime -= Time.deltaTime;
+        RemainTime -= 1f;
+        isWaiting = false;
     }
 }
