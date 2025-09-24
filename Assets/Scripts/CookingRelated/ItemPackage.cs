@@ -47,7 +47,21 @@ public class ItemPackage : MonoBehaviour, IUsable
             {
                 Instantiate(itemPrefab, spawnPosition.position, spawnPosition.rotation);
                 ++itemAvailability;
-                PackageEmpty();
+
+                // Check if this was the last item
+                if (itemAvailability == itemCount)
+                {
+                    if (destroyWhenEmpty)
+                    {
+                        Destroy(gameObject);
+                        return;
+                    }
+                    else
+                    {
+                        if (originalSprite != null) originalSprite.SetActive(false);
+                        if (emptySprite != null) emptySprite.SetActive(true);
+                    }
+                }
                 return;
             }
         }
@@ -176,28 +190,4 @@ public class ItemPackage : MonoBehaviour, IUsable
             Destroy(gameObject);
         }
     }
-
-    // Remove or simplify PackageEmpty since we handle everything in ThrowItem/SimulateThrow
-    private void PackageEmpty(bool isLastItem = false)
-    {
-        if (itemAvailability == itemCount && !canThrowItems)
-        {
-            if (destroyWhenEmpty)
-            {
-                if (owner == PackageOwner.Player1 && p1PickupSystem != null)
-                    p1PickupSystem.TryManualDrop();
-                else if (owner == PackageOwner.Player2 && p2PickupSystem != null)
-                    p2PickupSystem.TryManualDrop();
-
-                Destroy(gameObject);
-            }
-            else
-            {
-                originalSprite.SetActive(false);
-                emptySprite.SetActive(true);
-            }
-        }
-    }
-
-    
 }

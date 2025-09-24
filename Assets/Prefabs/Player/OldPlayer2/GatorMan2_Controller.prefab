@@ -229,6 +229,8 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
+  owner: {fileID: 0}
+  isHeatAdjusted: 0
 --- !u!50 &1527612533159564325
 Rigidbody2D:
   serializedVersion: 4
@@ -537,6 +539,7 @@ GameObject:
   - component: {fileID: 4324472726372610997}
   - component: {fileID: 1862175856854452489}
   - component: {fileID: 1038566192339957926}
+  - component: {fileID: 5690176750165676476}
   m_Layer: 11
   m_Name: GatorMan2_Controller
   m_TagString: Player
@@ -709,9 +712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a237f57c5ad3c4491414cc2174f8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForceMultiplier: 2.1
+  throwSpeed: 18
   spinSpeed: 900
-  quarterDistanceFactor: 0.75
   throwSpriteDuration: 0.3
   playerPickupSystemP2: {fileID: 769371959283670967}
   handSpriteManagerP2: {fileID: 1681880873992983583}
@@ -735,11 +737,15 @@ MonoBehaviour:
   hand: {fileID: 5383459859380473750}
   isPlayer2: 1
   isNotPlayer: 0
+  isFood: 0
+  isHurt: 0
+  isHurtDur: 1
   enemy: 0
   sharedHealthSource: {fileID: 5400976351538029550}
+  deadBody: {fileID: 0}
+  isPlayer: 1
   canMove: 1
   isDefeated: 0
-  characterAnimation: {fileID: 7076201207664159605}
   reviveBoostKey: 32
 --- !u!114 &6559327783794153403
 MonoBehaviour:
@@ -758,14 +764,18 @@ MonoBehaviour:
   currentHeat: 0
   BurnDur: 3
   BurnAudioName: Burning
+  burnedColor: {r: 1, g: 1, b: 1, a: 0}
   MaxCold: 100
   currentCold: 0
   FreezeDur: 3
   FreezeAudioName: Freezing
+  freezedColor: {r: 1, g: 1, b: 1, a: 0}
   MaxStun: 100
   currentStun: 0
   StunDur: 2
   StunAudioName: Stunning
+  stunnedColor: {r: 1, g: 1, b: 1, a: 0}
+  sprite: {fileID: 0}
 --- !u!114 &4324472726372610997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,6 +816,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1e0b5175d015854982ae137bea84a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5690176750165676476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372032603978279671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982628d0cdf51684685dd7c4cecc1f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4754584776472674703

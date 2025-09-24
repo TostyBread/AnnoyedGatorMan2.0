@@ -135,11 +135,13 @@ public class PlayerPickupSystemP2 : MonoBehaviour
         }
     }
 
-    // Remove isHoldingPickupKey tracking entirely (not needed)
-
     private void PickUpItem(GameObject item)
     {
         PlayerAimController.Instance.ClearLockOn(); // Remove lock on for controller
+
+        if (item.TryGetComponent(out PlateSystem plateSystem)) // Specifically letting PlateSystem to know if its being held
+            plateSystem.SetHolder(gameObject);
+
         if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
         if (item.TryGetComponent(out Rigidbody2D rb))
         {
@@ -151,7 +153,7 @@ public class PlayerPickupSystemP2 : MonoBehaviour
         item.transform.SetParent(handPosition);
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
-        item.transform.localScale = new Vector3(1, item.transform.localScale.y, item.transform.localScale.z);
+        item.transform.localScale = new Vector3(Mathf.Abs(item.transform.localScale.x), item.transform.localScale.y, item.transform.localScale.z);
 
         heldItem = item;
         usableItemController = item.GetComponent<IUsable>();
@@ -173,6 +175,12 @@ public class PlayerPickupSystemP2 : MonoBehaviour
             layerManager.ChangeToHoldingOrder();
         }
 
+        DamageSource damageSource = item.GetComponentInChildren<DamageSource>(); // Check if the item has a DamageSource component
+        if (damageSource != null)
+        {
+            damageSource.SetOwner(gameObject); // Set the player as owner to ignore self damage and collision
+        }
+
         handSpriteManagerP2?.UpdateHandSprite();
 
         AudioManager.Instance.PlaySound("gunpickup2", transform.position);
@@ -188,6 +196,9 @@ public class PlayerPickupSystemP2 : MonoBehaviour
     public void DropItem()
     {
         if (heldItem == null) return;
+
+        if (heldItem.TryGetComponent(out PlateSystem plateSystem)) // Specifically letting PlateSystem to know if its being dropped (PlateSystem)
+            plateSystem.ClearHolder();
 
         bool isFacingRight = characterFlipP2 != null && characterFlipP2.IsFacingRight();
         Vector3 dropPosition = handPosition.position + new Vector3(isFacingRight ? -0.2f : 0.5f, -0.5f, 0f);

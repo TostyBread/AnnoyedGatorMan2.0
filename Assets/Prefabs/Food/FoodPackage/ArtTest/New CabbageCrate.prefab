@@ -178,7 +178,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: -0.45}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -189,7 +189,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8, y: 1.5}
+  m_Size: {x: 2.8, y: 1.6}
   m_EdgeRadius: 0
 --- !u!114 &6022523600451498710
 MonoBehaviour:
@@ -206,6 +206,9 @@ MonoBehaviour:
   itemPrefab: {fileID: 1722880367626741658, guid: c5fb8d6009f9c6b4da9ace5dc93513d0, type: 3}
   itemCount: 99
   destroyWhenEmpty: 1
+  canThrowItems: 0
   spawnPosition: {fileID: 2175969433488367225}
   originalSprite: {fileID: 6391042777206838831}
   emptySprite: {fileID: 0}
+  throwSpeed: 18
+  spinSpeed: 900

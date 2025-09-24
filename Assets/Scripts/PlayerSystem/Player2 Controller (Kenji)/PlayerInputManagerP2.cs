@@ -22,6 +22,11 @@ public class PlayerInputManagerP2 : MonoBehaviour
 
     public bool HasHeldItem() => playerPickupSystemP2 != null && playerPickupSystemP2.HasItemHeld;
 
+    // Add delegate and events for target switching
+    public delegate void TargetSwitchHandler();
+    public event TargetSwitchHandler OnNextTarget;
+    public event TargetSwitchHandler OnPreviousTarget;
+
     void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -59,8 +64,11 @@ public class PlayerInputManagerP2 : MonoBehaviour
             }
         };
 
-
         inputActions.Player2Controller.ToggleSafety.performed += ctx => HandleUsableItemInput();
+
+        // Input bindings for target switching
+        inputActions.Player2Controller.NextTarget.performed += ctx => OnNextTarget?.Invoke();
+        inputActions.Player2Controller.PreviousTarget.performed += ctx => OnPreviousTarget?.Invoke();
     }
 
     void OnEnable() => inputActions.Enable();

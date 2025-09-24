@@ -9,7 +9,6 @@ public class PlayerAimController : MonoBehaviour
     public float aimDeadzone = 0.2f;
     public LayerMask softLockLayers;
     public float lockOnRadius = 0.5f;
-    public Transform playerTransform;
 
     private Vector2 cursorScreenPosition;
     private Camera mainCamera;
@@ -106,5 +105,15 @@ public class PlayerAimController : MonoBehaviour
     public void ClearLockOn()
     {
         lockedTarget = null;
+    }
+
+    public void LockOnToTarget(Transform target)
+    {
+        lockedTarget = target;
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+        Vector2 screenPos = mainCamera.WorldToScreenPoint(target.position);
+        cursorScreenPosition = screenPos;
+        UpdateUICursor();
     }
 }
