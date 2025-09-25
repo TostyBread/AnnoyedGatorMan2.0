@@ -50,7 +50,7 @@ public class ScoreManager : MonoBehaviour
 
     private void CheckIfLevelCleared()
     {
-        if (isCleared)
+        if (isCleared && timer.RemainTime <= 0)
         {
             //Debug.Log("Level Cleared! Final Score: " + currentScore);
             StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay

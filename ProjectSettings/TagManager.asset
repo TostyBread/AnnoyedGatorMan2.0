@@ -22,6 +22,7 @@ TagManager:
   - P2 & P3 Arrow
   - AudioManager
   - P2 & P3 Range
+  - HighScoreText
   layers:
   - Default
   - TransparentFX

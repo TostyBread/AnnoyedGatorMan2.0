@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class LevelSelectManager : MonoBehaviour
 {
     public string levelSelected = "Tutorial";
+    public int levelIndex = 0;
 
     [Header("References")]
     public TMP_Text levelText;
@@ -17,6 +18,11 @@ public class LevelSelectManager : MonoBehaviour
     public void ChangeLevelName(string name)
     {
         if (name != null) levelText.text = name;
+    }
+
+    public void ChangeLevelIndex(int index)
+    {
+        if (index >= 0) levelIndex = index;
     }
 
     public void ChangeLevelImage(Sprite image)

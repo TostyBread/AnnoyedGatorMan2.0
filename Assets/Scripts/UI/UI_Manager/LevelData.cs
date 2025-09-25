@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelData : MonoBehaviour
 {
     public int currentUnlockedLevel = 0;
+    public bool willUnlockNextLevel = false;
+
+    [Header("References")]
+    public LevelSelectManager levelSelectManager;
     public LevelUnlockManager levelUnlockManager;
+    public TMP_Text highestScore;
 
     public static LevelData Instance;
 
@@ -39,6 +45,11 @@ public class LevelData : MonoBehaviour
             ResetAllData();
             Debug.Log("All progress reset!");
         }
+
+        if (highestScore != null && levelSelectManager != null)
+        {
+            highestScore.text = "Highest score: " + GetHighScore(levelSelectManager.levelIndex).ToString();
+        }
     }
 
     public void ResetAllData()
@@ -66,7 +77,7 @@ public class LevelData : MonoBehaviour
 
     public void UnlockNextLevel(int levelIndex)
     {
-        if (levelIndex >= currentUnlockedLevel)
+        if (levelIndex >= currentUnlockedLevel && willUnlockNextLevel)
         {
             currentUnlockedLevel = levelIndex + 1;
             PlayerPrefs.SetInt(SaveKey, currentUnlockedLevel);
@@ -83,7 +94,9 @@ public class LevelData : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Find LevelUnlockManager in the new scene
+        levelSelectManager = FindObjectOfType<LevelSelectManager>();
         levelUnlockManager = FindObjectOfType<LevelUnlockManager>();
+        highestScore = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<TMP_Text>();
 
         if (levelUnlockManager != null)
         {
