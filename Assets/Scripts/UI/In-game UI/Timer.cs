@@ -32,11 +32,11 @@ public class Timer : MonoBehaviour
         int seconds = Mathf.FloorToInt(RemainTime % 60f);
         if (TimerText != null) TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        if (cameraMovement != null && !cameraMovement.isMoving && !isWaiting)
+        if (cameraMovement != null && !cameraMovement.isMoving && !isWaiting && RemainTime > 0)
         {
             StartCoroutine(Wait(1f)); // Wait before reducing the time
         }
-        else if (cameraMovement == null)
+        else if (cameraMovement == null && RemainTime > 0)
         {
             RemainTime -= Time.deltaTime;
         }

@@ -40,7 +40,7 @@ public class ScoreManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Insert)) currentScore = scoreToClear; // For testing purposes
 
-        Debug.Log("Level " + currentLevelIndex + " Highest Score: " + levelData.GetHighScore(currentLevelIndex));
+        if (levelData != null) Debug.Log("Level " + currentLevelIndex + " Highest Score: " + levelData.GetHighScore(currentLevelIndex));
     }
 
     public void AddScore(int scoreToAdd)
