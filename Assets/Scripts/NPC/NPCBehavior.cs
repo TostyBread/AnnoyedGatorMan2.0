@@ -174,7 +174,7 @@ public class NPCBehavior : MonoBehaviour
         if (attachedMenu != null)
         {
             attachedMenu = null;
-            MenuManager.Instance?.ClearFrontMenuAnimated();
+            MenuManager.Instance?.RemoveMenuForNPC(this);
         }
 
         if (attachedPlate != null)
@@ -220,7 +220,7 @@ public class NPCBehavior : MonoBehaviour
             if (attachedMenu != null)
             {
                 attachedMenu = null;
-                MenuManager.Instance?.ClearFrontMenuAnimated();
+                MenuManager.Instance?.RemoveMenuForNPC(this);
             }
             GetComponent<NPCPatience>()?.StopPatience();
 
@@ -251,7 +251,7 @@ public class NPCBehavior : MonoBehaviour
         if (attachedMenu != null)
         {
             attachedMenu = null;
-            MenuManager.Instance?.ClearFrontMenuAnimated();
+            MenuManager.Instance?.RemoveMenuForNPC(this);
         }
 
         if (attachedPlate != null)
@@ -332,7 +332,7 @@ public class NPCBehavior : MonoBehaviour
             if (attachedMenu != null)
             {
                 attachedMenu = null;
-                MenuManager.Instance?.ClearFrontMenuAnimated();
+                MenuManager.Instance?.RemoveMenuForNPC(this);
             }
             ForceEscape();
 
