@@ -7,7 +7,8 @@ public class FirearmCrazy : MonoBehaviour
     public float heatThreshold = 100f;
     public float coolRate = 10f;
     public float heatFadeDelay = 2f;
-    public float spinForce = 500f;
+    public float spinForceMin = 300f;
+    public float spinForceMax = 800f;
     public GameObject destroyEffectPrefab;
     public float shootIntervalMin = 0.05f;
     public float shootIntervalMax = 0.2f;
@@ -78,17 +79,18 @@ public class FirearmCrazy : MonoBehaviour
 
         for (int i = 0; i < shots; i++)
         {
-            // Random shoot direction
-            float angle = Random.Range(0f, 360f);
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-
-            // Fire
+            // Fire in current direction
             firearmController?.Use();
 
-            // Spin
-            if (rb != null)
-                rb.AddTorque(spinForce * Random.Range(-1f, 1f), ForceMode2D.Impulse);
+            // Apply random spin force after shooting (except on last shot)
+            if (rb != null && i < shots - 1)
+            {
+                float randomSpinForce = Random.Range(spinForceMin, spinForceMax);
+                float spinDirection = Random.Range(-1f, 1f);
+                rb.AddTorque(randomSpinForce * spinDirection, ForceMode2D.Impulse);
+            }
 
+            // Wait for random interval before next shot
             yield return new WaitForSeconds(Random.Range(shootIntervalMin, shootIntervalMax));
         }
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 897022499915961589}
   - component: {fileID: 5829838334587611884}
   - component: {fileID: 1686991518738474514}
+  - component: {fileID: 2156802896443214949}
   - component: {fileID: 186946674847287117}
   - component: {fileID: 9128085607665348814}
   - component: {fileID: 2250744765859934261}
@@ -79,6 +80,29 @@ MonoBehaviour:
   currentAmmo: 0
   isUsable: 1
   owner: {fileID: 0}
+--- !u!114 &2156802896443214949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367682854306767616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6da211e34b0d8843b77836fcfe5b4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heatThreshold: 100
+  coolRate: 10
+  heatFadeDelay: 2
+  spinForceMin: 60
+  spinForceMax: 90
+  destroyEffectPrefab: {fileID: 3246005599828155968, guid: 6ab35996c39802844816e55c1566679e, type: 3}
+  shootIntervalMin: 0.05
+  shootIntervalMax: 0.2
+  firearmCollider: {fileID: 9128085607665348814}
+  spriteRenderer: {fileID: 5350311600177439578}
+  firearmController: {fileID: 1686991518738474514}
 --- !u!50 &186946674847287117
 Rigidbody2D:
   serializedVersion: 4
@@ -193,7 +217,7 @@ MonoBehaviour:
   - {x: -0.7843218, y: -0.5099735, z: 0}
   m_ShapePathHash: -120566755
   m_Mesh: {fileID: 0}
-  m_InstanceId: 245494
+  m_InstanceId: -104612
   m_LocalBounds:
     m_Center: {x: 0.008975506, y: -0.015901089, z: 0}
     m_Extent: {x: 0.85458994, y: 0.565516, z: 0}

@@ -48,7 +48,14 @@ public class DamageSource : MonoBehaviour
     public void SetOwner(GameObject newOwner)
     {
         owner = newOwner;
-        ownerCollider = owner.GetComponent<Collider2D>();
+        if (owner != null)
+        {
+            ownerCollider = owner.GetComponent<Collider2D>();
+        }
+        else
+        {
+            ownerCollider = null;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

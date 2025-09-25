@@ -230,9 +230,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heatThreshold: 100
-  coolRate: 2
+  coolRate: 10
   heatFadeDelay: 2
-  spinForce: 500
+  spinForceMin: 60
+  spinForceMax: 90
   destroyEffectPrefab: {fileID: 3246005599828155968, guid: 6ab35996c39802844816e55c1566679e, type: 3}
   shootIntervalMin: 0.05
   shootIntervalMax: 0.2
