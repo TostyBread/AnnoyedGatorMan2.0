@@ -34,7 +34,6 @@ public class NPCBehavior : MonoBehaviour
     private NPCAngerBehavior angerBehavior;
 
     [Header("Score")]
-    public int score;
     private ScoreManager scoreManager;
 
     private Sanity sanity;
@@ -208,7 +207,7 @@ public class NPCBehavior : MonoBehaviour
             state = NPCState.Leaving;
             currentWaypointIndex = 0;
 
-            scoreManager?.AddScore(score);
+            scoreManager?.AddScore(plate.plateScore);
             if (sanity != null) sanity.RemainSanity += sanity.MaxSanity;
             particleManager?.SpawnParticleOnce();
             hasAcceptedPlate = true;

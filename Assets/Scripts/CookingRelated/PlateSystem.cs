@@ -20,6 +20,8 @@ public class PlateSystem : MonoBehaviour
     public bool isReadyToServe { get; private set; } = false;
     private Dictionary<PlateRequirement, GameObject> placedItems = new Dictionary<PlateRequirement, GameObject>();
 
+    public int plateScore = 1;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.TryGetComponent(out ItemDescriber itemDescriber)) return;

@@ -208,6 +208,7 @@ MonoBehaviour:
     sortingOrder: 9
     isFilled: 0
   menuDisplay: {fileID: 6382982205964890766, guid: 2fbc1fa516678cf4a9b3d2c0e66d912f, type: 3}
+  plateScore: 6
 --- !u!1 &7959137826293649880
 GameObject:
   m_ObjectHideFlags: 0
