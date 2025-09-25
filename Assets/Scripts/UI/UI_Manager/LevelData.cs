@@ -96,7 +96,16 @@ public class LevelData : MonoBehaviour
         // Find LevelUnlockManager in the new scene
         levelSelectManager = FindObjectOfType<LevelSelectManager>();
         levelUnlockManager = FindObjectOfType<LevelUnlockManager>();
-        highestScore = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<TMP_Text>();
+
+        GameObject highScoreObj = GameObject.FindGameObjectWithTag("HighScoreText");
+        if (highScoreObj != null)
+        {
+            highestScore = highScoreObj.GetComponent<TMP_Text>();
+        }
+        else
+        {
+            highestScore = null;
+        }
 
         if (levelUnlockManager != null)
         {
