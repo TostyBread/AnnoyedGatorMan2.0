@@ -167,7 +167,7 @@ public class PlayerPickupSystemP2 : MonoBehaviour
         if (item.TryGetComponent(out ItemPackage package)) // Set the owner of the package to the player picking it up
         {
             var detector = GetComponent<NoThrowCursorDetector>(); // Pass the detector to the package for throw validation
-            package.SetOwner(PackageOwner.Player2, null, this, detector);
+            package.SetOwner(PackageOwner.Player2, null, this, null, detector);
         }
 
         if (item.TryGetComponent(out SpriteLayerManager layerManager))

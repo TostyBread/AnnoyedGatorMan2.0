@@ -141,6 +141,10 @@ public class P3Input : MonoBehaviour
             {
                 knife.Use();
             }
+            else if (usableFunction is ItemPackage package && usableItemModeEnabled) // added by Kenji, ItemPackage throwing item from package
+            {
+                    package.Use();
+            }
             else
             {
                 HandleMeleeLogic(); // Melee swing
@@ -362,6 +366,10 @@ public class P3Input : MonoBehaviour
         if (usableFunction is KnifeController knifeController)
         {
             knifeController.ToggleUsableMode(usableItemModeEnabled);
+        }
+        if (usableFunction is FirearmController firearmController) // added by Kenji, for firearm toggle safety
+        {
+            firearmController.ToggleUsableMode(usableItemModeEnabled);
         }
     }
 }

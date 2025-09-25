@@ -43,11 +43,11 @@ public class PlateMenuDisplay : MonoBehaviour
 
                 if (icon.TryGetComponent(out SpriteRenderer sr))
                 {
-                    sr.color = new Color(0.2f, 0.2f, 0.2f);
+                    sr.color = new Color(0f, 1f, 0f, 0.3f);
                 }
                 else if (icon.TryGetComponent(out Image img))
                 {
-                    img.color = new Color(0.2f, 0.2f, 0.2f);
+                    img.color = new Color(0f, 1f, 0f, 0.3f);
                 }
                 else
                 {

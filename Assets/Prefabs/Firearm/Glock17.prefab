@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 7561932823294958821}
   - component: {fileID: 7714532597486585509}
   - component: {fileID: 4085436680559010718}
+  - component: {fileID: 5625197334412923876}
   - component: {fileID: 4248429712091498661}
   - component: {fileID: 5290627373308498416}
   - component: {fileID: 4090508110360258601}
@@ -212,8 +213,32 @@ MonoBehaviour:
   firearmPrefix: Glock17
   firearmAudio: glock18
   animator: {fileID: 6949160811402672166}
+  isFiring: 0
+  currentAmmo: 0
   isUsable: 1
   owner: {fileID: 0}
+--- !u!114 &5625197334412923876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581290250098146382}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6da211e34b0d8843b77836fcfe5b4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heatThreshold: 100
+  coolRate: 2
+  heatFadeDelay: 2
+  spinForce: 500
+  destroyEffectPrefab: {fileID: 3246005599828155968, guid: 6ab35996c39802844816e55c1566679e, type: 3}
+  shootIntervalMin: 0.05
+  shootIntervalMax: 0.2
+  firearmCollider: {fileID: 5290627373308498416}
+  spriteRenderer: {fileID: 6505837188610806185}
+  firearmController: {fileID: 4085436680559010718}
 --- !u!50 &4248429712091498661
 Rigidbody2D:
   serializedVersion: 4
@@ -328,7 +353,7 @@ MonoBehaviour:
   - {x: -0.6261854, y: -0.39243984, z: 0}
   m_ShapePathHash: -79394483
   m_Mesh: {fileID: 0}
-  m_InstanceId: -158260
+  m_InstanceId: 162888
   m_LocalBounds:
     m_Center: {x: 0.004005432, y: -0.012600422, z: 0}
     m_Extent: {x: 0.6959944, y: 0.46260023, z: 0}

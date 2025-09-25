@@ -9,8 +9,14 @@ public class MenuUISetup : MonoBehaviour
     [SerializeField] private Image npcImageTarget;
     [SerializeField] private Sprite[] npcTypeImages;
 
+    private NPCBehavior associatedNPC; // Add this line
+
+    public NPCBehavior AssociatedNPC => associatedNPC; // Add this line
+
     public void SetupFromNPC(NPCBehavior npc)
     {
+        associatedNPC = npc; // Add this line
+
         var label = GetComponentInChildren<LabelDisplay>();
         if (label) label.SetLabelFromId(npc.customerId);
 

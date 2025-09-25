@@ -92,6 +92,14 @@ public class DamageSource : MonoBehaviour
             trashBag.TryDamaging(damageAmount);
         }
 
+        // Allow physical interaction for gun
+        if (target.TryGetComponent(out FirearmCrazy gun))
+        {
+            gun.AddHeat(heatAmount);
+            if (playHitSound) PlayHitSound(damageType);
+            DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, damageType);
+        }
+
         // Visual feedback for anything else
         if (!target.TryGetComponent<ItemSystem>(out _)) // Skip duplicate debris if already handled above
         {
@@ -108,10 +116,24 @@ public class DamageSource : MonoBehaviour
         if (!isFireSource || isColdSource || isStunSource) return;
 
         GameObject target = other.gameObject;
+        if (target == null) return;
 
-        if (target == null) return; // Protect against destroyed refs
-
+        // For ItemSystem (existing logic)
         if (other.TryGetComponent(out ItemSystem item))
+        {
+            if (!objectsInFire.Contains(target))
+            {
+                objectsInFire.Add(target);
+
+                if (heatCoroutine == null)
+                {
+                    heatCoroutine = StartCoroutine(ApplyHeatOverTime());
+                }
+            }
+        }
+
+        // For FirearmCrazy (new logic)
+        if (other.TryGetComponent(out FirearmCrazy gun))
         {
             if (!objectsInFire.Contains(target))
             {
@@ -143,17 +165,25 @@ public class DamageSource : MonoBehaviour
     {
         while (objectsInFire.Count > 0)
         {
-            // Remove any destroyed objects first
             objectsInFire.RemoveWhere(obj => obj == null);
 
-            // Take snapshot
             var snapshot = new List<GameObject>(objectsInFire);
 
             foreach (var obj in snapshot)
             {
                 if (obj == null) continue;
 
-                if (obj.TryGetComponent<ItemSystem>(out var item) && item != null && item.gameObject != null)
+                // Skip if FirearmCrazy exists but collider is disabled
+                var gun = obj.GetComponent<FirearmCrazy>();
+                if (gun != null)
+                {
+                    if (gun.firearmCollider == null || !gun.firearmCollider.enabled) continue;
+                    gun.AddHeat(heatAmount);
+                }
+
+                // ItemSystem logic
+                var item = obj.GetComponent<ItemSystem>();
+                if (item != null)
                 {
                     item.ApplyCollisionEffect(gameObject);
                 }
@@ -181,5 +211,11 @@ public class DamageSource : MonoBehaviour
     public void ResetHeat()
     {
         heatAmount = originalHeatAmount;
+    }
+
+    public void RemoveFromFireObjects(GameObject obj)
+    {
+        if (obj == null) return;
+        objectsInFire.Remove(obj);
     }
 }

@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ItemPackage : MonoBehaviour, IUsable
 {
-    public enum PackageOwner { None, Player1, Player2 }
-    private PackageOwner owner = PackageOwner.None;
+    public enum PackageOwner { None, Player1, Player2, Player3 } // None = not held by anyone, Player1 = K&B, Player2 = Kenji Controller, Player3 = Keat Controller
+    public PackageOwner owner = PackageOwner.None;
 
     [Header("Spawn Settings")]
     public GameObject itemPrefab;
@@ -24,8 +24,10 @@ public class ItemPackage : MonoBehaviour, IUsable
     private bool isBeingDestroyed = false;
 
     private ScreenToWorldPointMouse p1Cursor; // K&B
+    private P3Cursor p3Cursor; // Keat's controller
     private PlayerAimController p2Cursor; // Kenji's old controller
     private PlayerPickupSystem p1PickupSystem; // K&B
+    private P2PickupSystem p3PickupSystem; // Keat's controller
     private PlayerPickupSystemP2 p2PickupSystem; // Kenji's old controller 
     private NoThrowCursorDetector throwBlockDetector; // Detect whether the player can throw or not
 
@@ -67,17 +69,20 @@ public class ItemPackage : MonoBehaviour, IUsable
         }
     }
 
-    public void SetOwner(PackageOwner newOwner, PlayerPickupSystem p1System = null, PlayerPickupSystemP2 p2System = null, NoThrowCursorDetector detector = null)
+    public void SetOwner(PackageOwner newOwner, PlayerPickupSystem p1System = null, PlayerPickupSystemP2 p2System = null, P2PickupSystem p3System = null, NoThrowCursorDetector detector = null)
     {
         owner = newOwner;
         p1PickupSystem = p1System;
         p2PickupSystem = p2System;
+        p3PickupSystem = p3System;
         throwBlockDetector = detector;
 
         if (owner == PackageOwner.Player1)
             p1Cursor = ScreenToWorldPointMouse.Instance;
         else if (owner == PackageOwner.Player2)
             p2Cursor = PlayerAimController.Instance;
+        else if (owner == PackageOwner.Player3)
+            p3Cursor = P3Cursor.Instance;
     }
 
     // IUsable implementation
@@ -127,6 +132,7 @@ public class ItemPackage : MonoBehaviour, IUsable
             {
                 PackageOwner.Player1 when p1Cursor != null => p1Cursor.GetMouseWorldPosition(),
                 PackageOwner.Player2 when p2Cursor != null => p2Cursor.GetCursorPosition(),
+                PackageOwner.Player3 when p3Cursor != null => p3Cursor.GetCursorPosition(),
                 _ => transform.position
             };
 
@@ -186,6 +192,8 @@ public class ItemPackage : MonoBehaviour, IUsable
                 p1PickupSystem.TryManualDrop();
             else if (owner == PackageOwner.Player2 && p2PickupSystem != null)
                 p2PickupSystem.TryManualDrop();
+            else if (owner == PackageOwner.Player3 && p3PickupSystem != null)
+                p3PickupSystem.TryManualDrop();
 
             Destroy(gameObject);
         }

@@ -8,9 +8,10 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private Transform[] menuStackPositions;
     [SerializeField] private float slideDuration = 0.3f;
-    [SerializeField] private float patienceExtensionPerSlot = 40f; // Extra patience per stack position
+    [SerializeField] private float patienceExtensionPerSlot = 40f;
 
-    private readonly Queue<GameObject> activeMenus = new();
+    private Queue<GameObject> activeMenus = new();
+    private readonly Dictionary<NPCBehavior, GameObject> npcMenuMap = new(); // Add this line
 
     void Awake()
     {
@@ -21,6 +22,13 @@ public class MenuManager : MonoBehaviour
     public void SpawnMenuForNPC(NPCBehavior npc, GameObject menuPrefab)
     {
         if (menuPrefab == null || npc == null || menuStackPositions.Length == 0) return;
+        
+        // Check if NPC already has a menu
+        if (npcMenuMap.ContainsKey(npc))
+        {
+            Debug.LogWarning("NPC already has a menu!");
+            return;
+        }
 
         int slot = activeMenus.Count;
         if (slot >= menuStackPositions.Length)
@@ -40,7 +48,10 @@ public class MenuManager : MonoBehaviour
 
         var uiSetup = menu.GetComponent<MenuUISetup>();
         if (uiSetup != null)
+        {
             uiSetup.SetupFromNPC(npc);
+            npcMenuMap[npc] = menu; // Add this line
+        }
 
         var patience = npc.GetComponent<NPCPatience>();
         if (patience != null)
@@ -53,6 +64,31 @@ public class MenuManager : MonoBehaviour
         activeMenus.Enqueue(menu);
     }
 
+    public void RemoveMenuForNPC(NPCBehavior npc)
+    {
+        if (npc == null || !npcMenuMap.ContainsKey(npc)) return;
+
+        GameObject menuToRemove = npcMenuMap[npc];
+        npcMenuMap.Remove(npc);
+        
+        Queue<GameObject> newQueue = new();
+        while (activeMenus.Count > 0)
+        {
+            GameObject current = activeMenus.Dequeue();
+            if (current != menuToRemove)
+            {
+                newQueue.Enqueue(current);
+            }
+            else
+            {
+                StartCoroutine(SlideAndDestroy(current));
+            }
+        }
+
+        activeMenus = newQueue;
+        RearrangeMenus();
+    }
+
     public void ClearFrontMenuAnimated()
     {
         if (activeMenus.Count == 0) return;
@@ -60,33 +96,12 @@ public class MenuManager : MonoBehaviour
         GameObject front = activeMenus.Dequeue();
         if (front != null)
         {
+            var uiSetup = front.GetComponent<MenuUISetup>();
+            if (uiSetup != null && uiSetup.AssociatedNPC != null)
+            {
+                npcMenuMap.Remove(uiSetup.AssociatedNPC);
+            }
             StartCoroutine(SlideAndDestroy(front));
-        }
-
-        RearrangeMenus();
-    }
-
-    public void RemoveMenuForNPC(GameObject menuToRemove)
-    {
-        if (menuToRemove == null || !activeMenus.Contains(menuToRemove)) return;
-
-        Queue<GameObject> newQueue = new();
-        while (activeMenus.Count > 0)
-        {
-            GameObject current = activeMenus.Dequeue();
-            if (current == menuToRemove)
-            {
-                StartCoroutine(SlideAndDestroy(current));
-            }
-            else
-            {
-                newQueue.Enqueue(current);
-            }
-        }
-
-        while (newQueue.Count > 0)
-        {
-            activeMenus.Enqueue(newQueue.Dequeue());
         }
 
         RearrangeMenus();
@@ -143,6 +158,7 @@ public class MenuManager : MonoBehaviour
 
     public void ClearAllMenus()
     {
+        npcMenuMap.Clear(); // Add this line
         while (activeMenus.Count > 0)
         {
             GameObject menu = activeMenus.Dequeue();

@@ -1,20 +1,32 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class P3Cursor : MonoBehaviour
 {
+    public static P3Cursor Instance { get; private set; }
+
     P3Controls controls;
     public Vector2 P3AimMove;
     public Transform DefaultThrowPos;
     public float speed;
-    public SpriteRenderer walkableArea; // Drag your Walkable sprite here in the inspector
+    public SpriteRenderer walkableArea;
     public float OffsetBetweenWall;
     private Vector2 clampOffsetMin = Vector2.zero;
     private Vector2 clampOffsetMax = Vector2.zero;
 
     private void Awake()
     {
+        // Singleton pattern implementation
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         controls = new P3Controls();
         controls.Gameplay.AimMove.performed += context => P3AimMove = context.ReadValue<Vector2>();
         controls.Gameplay.AimMove.canceled += context => P3AimMove = Vector2.zero;
@@ -71,5 +83,11 @@ public class P3Cursor : MonoBehaviour
 
             transform.position = clampedPosition;
         }
+    }
+
+    // Add helper method to get cursor position
+    public Vector2 GetCursorPosition()
+    {
+        return transform.position;
     }
 }

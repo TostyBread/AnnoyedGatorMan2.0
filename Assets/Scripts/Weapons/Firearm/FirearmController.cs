@@ -24,7 +24,7 @@ public class FirearmController : MonoBehaviour, IUsable
     public Animator animator;
     public bool isFiring = false;
 
-    private int currentAmmo;
+    public int currentAmmo;
     [Header("Do not touch")]
     [SerializeField] private bool isUsable = true;
     private bool isFacingRight;

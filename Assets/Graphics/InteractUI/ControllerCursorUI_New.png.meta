@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6e509f86960d95748908fced40c7aa71
+guid: c7d47f17ea0319b438d78b05f6ceafbb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,22 +97,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MouseCursor
+      name: NormalAimCrosshair
       rect:
         serializedVersion: 2
-        x: 1476
-        y: 881
-        width: 219
-        height: 203
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 196
+        y: 1603
+        width: 258
+        height: 272
+      alignment: 9
+      pivot: {x: 0.48261398, y: 0.50989485}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25a2e992d494cc64abaaca4761422a97
-      internalID: -1208037733
+      spriteID: 540837989dc59864faea321d890269d2
+      internalID: 1042313587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InteractableCrosshair
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1110
+        width: 158
+        height: 330
+      alignment: 9
+      pivot: {x: 0.4973413, y: 0.17666681}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03c9c486cba51d1498a1b8ddb653d4da
+      internalID: 471970106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InRange_InteractableCrosshair
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 602
+        width: 154
+        height: 328
+      alignment: 9
+      pivot: {x: 0.48839855, y: 0.16501115}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bf2687cd9b5fc341bf6481bee6199e2
+      internalID: 237182195
       vertices: []
       indices: 
       edges: []
@@ -128,7 +170,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MouseCursor: -1208037733
+      ControllerCursorUI_New_0: -525775633
+      ControllerCursorUI_New_1: 2078005674
+      ControllerCursorUI_New_3: 1161320481
+      ControllerCursorUI_New_5: -2136052582
+      ControllerCursorUI_New_7: 331101299
+      ControllerCursorUI_New_8: -1531375894
+      InRange_InteractableCrosshair: 237182195
+      InteractableCrosshair: 471970106
+      NormalAimCrosshair: 1042313587
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
