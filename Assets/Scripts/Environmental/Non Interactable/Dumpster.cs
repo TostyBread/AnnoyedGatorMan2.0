@@ -18,6 +18,9 @@ public class Dumpster : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Exclude plate being thrown into the dumpster
+        if (other.GetComponent<PlateSystem>() != null) return;
+
         if (other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Range") ||
            other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Arrow")) return; // Ignore P2 & P3 range and arrow objects (they serve as UI)
 

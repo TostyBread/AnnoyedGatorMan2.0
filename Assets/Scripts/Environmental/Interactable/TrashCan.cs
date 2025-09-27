@@ -40,7 +40,8 @@ public class TrashCan : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (alreadyFull || other.GetComponent<TrashBag>() != null) return;
+        // Ignore if already full or if the object is another trash bag, knife, firearm, or plate
+        if (alreadyFull || other.GetComponent<TrashBag>() != null || other.GetComponent<KnifeController>() != null || other.GetComponent<FirearmController>() != null || other.GetComponent<PlateSystem>() != null) return;
 
         if (other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Range") || 
             other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Arrow")) return; // Ignore P2 & P3 range and arrow objects (they serve as UI)
