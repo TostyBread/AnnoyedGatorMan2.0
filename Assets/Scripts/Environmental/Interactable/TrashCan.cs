@@ -26,6 +26,26 @@ public class TrashCan : MonoBehaviour
 
     private Jiggle jiggle; //the new code that handle jiggle
 
+    // Cache layer masks for performance
+    private static int p2p3RangeLayer = -1;
+    private static int p2p3ArrowLayer = -1;
+
+    // Cache WaitForSeconds to avoid allocation
+    private WaitForSeconds bagDelayWait;
+
+    private void Awake()
+    {
+        // Initialize cached layer masks only once
+        if (p2p3RangeLayer == -1)
+        {
+            p2p3RangeLayer = LayerMask.NameToLayer("P2 & P3 Range");
+            p2p3ArrowLayer = LayerMask.NameToLayer("P2 & P3 Arrow");
+        }
+
+        // Cache WaitForSeconds to avoid allocation in coroutine
+        bagDelayWait = new WaitForSeconds(addToBagDelay);
+    }
+
     private void Start()
     {
         if (alreadyFull)
@@ -40,11 +60,18 @@ public class TrashCan : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Ignore if already full or if the object is another trash bag, knife, firearm, or plate
-        if (alreadyFull || other.GetComponent<TrashBag>() != null || other.GetComponent<KnifeController>() != null || other.GetComponent<FirearmController>() != null || other.GetComponent<PlateSystem>() != null) return;
+        // Early exit if already full
+        if (alreadyFull) return;
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Range") || 
-            other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Arrow")) return; // Ignore P2 & P3 range and arrow objects (they serve as UI)
+        // Check layer first (fastest check)
+        int layer = other.gameObject.layer;
+        if (layer == p2p3RangeLayer || layer == p2p3ArrowLayer) return;
+
+        // Use TryGetComponent for better performance and null safety
+        if (other.TryGetComponent<TrashBag>(out _) || 
+            other.TryGetComponent<KnifeController>(out _) || 
+            other.TryGetComponent<FirearmController>(out _) || 
+            other.TryGetComponent<PlateSystem>(out _)) return;
 
         GameObject obj = other.gameObject;
 
@@ -61,7 +88,7 @@ public class TrashCan : MonoBehaviour
 
     private IEnumerator AddToBagWithDelay(GameObject obj)
     {
-        yield return new WaitForSeconds(addToBagDelay);
+        yield return bagDelayWait; // Use cached WaitForSeconds
 
         if (currentBag == null || obj == null || !overlappingItems.Contains(obj)) yield break;
 

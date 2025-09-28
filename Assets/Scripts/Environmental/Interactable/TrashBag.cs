@@ -6,6 +6,9 @@ public class TrashBag : MonoBehaviour
     public int trashBagDuration = 40;
     private int currentDuration = 0;
 
+    // Instance-based pre-allocated list
+    private readonly List<Transform> childList = new List<Transform>();
+
     private void Awake()
     {
         currentDuration = trashBagDuration;
@@ -13,15 +16,21 @@ public class TrashBag : MonoBehaviour
 
     public void SpillAndDestroy()
     {
-        List<Transform> children = new();
+        childList.Clear();
 
+        // Collect children
         foreach (Transform child in transform)
-            children.Add(child);
+            childList.Add(child);
 
-        foreach (Transform child in children)
+        // Process children
+        for (int i = 0; i < childList.Count; i++)
         {
-            child.gameObject.SetActive(true);
-            child.SetParent(null);
+            Transform child = childList[i];
+            if (child != null)
+            {
+                child.gameObject.SetActive(true);
+                child.SetParent(null);
+            }
         }
 
         Destroy(gameObject);

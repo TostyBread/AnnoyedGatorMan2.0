@@ -11,6 +11,26 @@ public class Dumpster : MonoBehaviour
 
     private Jiggle jiggle; //the new code that handle jiggle
 
+    // Cache layer masks for performance
+    private static int p2p3RangeLayer = -1;
+    private static int p2p3ArrowLayer = -1;
+
+    // Cache WaitForSeconds to avoid allocation
+    private WaitForSeconds destroyDelayWait;
+
+    private void Awake()
+    {
+        // Initialize cached layer masks only once
+        if (p2p3RangeLayer == -1)
+        {
+            p2p3RangeLayer = LayerMask.NameToLayer("P2 & P3 Range");
+            p2p3ArrowLayer = LayerMask.NameToLayer("P2 & P3 Arrow");
+        }
+
+        // Cache WaitForSeconds to avoid allocation in coroutine
+        destroyDelayWait = new WaitForSeconds(destroyDelay);
+    }
+
     private void Start()
     {
         jiggle = GetComponent<Jiggle>();
@@ -18,16 +38,19 @@ public class Dumpster : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Exclude plate being thrown into the dumpster
-        if (other.GetComponent<PlateSystem>() != null) return;
+        // Check layer first (fastest check)
+        int layer = other.gameObject.layer;
+        if (layer == p2p3RangeLayer || layer == p2p3ArrowLayer) return;
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Range") ||
-           other.gameObject.layer == LayerMask.NameToLayer("P2 & P3 Arrow")) return; // Ignore P2 & P3 range and arrow objects (they serve as UI)
+        // Use TryGetComponent for better performance
+        if (other.TryGetComponent<PlateSystem>(out _)) return;
 
-        if (!destroyTimers.ContainsKey(other.gameObject))
+        GameObject obj = other.gameObject;
+
+        if (!destroyTimers.ContainsKey(obj))
         {
-            Coroutine timer = StartCoroutine(DestroyAfterDelay(other.gameObject));
-            destroyTimers.Add(other.gameObject, timer);
+            Coroutine timer = StartCoroutine(DestroyAfterDelay(obj));
+            destroyTimers.Add(obj, timer);
 
             jiggle.StartJiggle(); //Here is where jiggle start
         }
@@ -44,9 +67,9 @@ public class Dumpster : MonoBehaviour
 
     private IEnumerator DestroyAfterDelay(GameObject obj)
     {
-        yield return new WaitForSeconds(destroyDelay);
+        yield return destroyDelayWait; // Use cached WaitForSeconds
 
-        if (obj != null)
+        if (obj != null && destroyTimers.ContainsKey(obj))
         {
             destroyTimers.Remove(obj);
             Destroy(obj);
