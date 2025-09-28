@@ -8,6 +8,10 @@ public class ItemDescriber : MonoBehaviour
     public int itemID; // itemID Must be manually assigned
     public CookingState currentCookingState = CookingState.Uncooked;
     public Condition currentCondition = Condition.Normal;
+    
+    // Add plate attachment tracking
+    public bool isAttachedToPlate { get; private set; } = false;
+    public PlateSystem attachedPlate { get; private set; } = null;
 
     private ItemSystem itemSystem;
 
@@ -27,5 +31,20 @@ public class ItemDescriber : MonoBehaviour
             else
                 currentCookingState = CookingState.Uncooked;
         }
+    }
+    
+    public bool TryAttachToPlate(PlateSystem plate)
+    {
+        if (isAttachedToPlate) return false;
+        
+        isAttachedToPlate = true;
+        attachedPlate = plate;
+        return true;
+    }
+    
+    public void DetachFromPlate()
+    {
+        isAttachedToPlate = false;
+        attachedPlate = null;
     }
 }

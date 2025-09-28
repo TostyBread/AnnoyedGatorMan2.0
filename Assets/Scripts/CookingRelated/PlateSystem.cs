@@ -22,28 +22,82 @@ public class PlateSystem : MonoBehaviour
 
     public int plateScore = 1;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.TryGetComponent(out ItemDescriber itemDescriber)) return;
+    // Optimization: Cache components and requirements lookup
+    private SpriteRenderer cachedPlateRenderer;
+    private int cachedPlateSortingOrder;
+    private Dictionary<(int itemID, ItemDescriber.CookingState cookingState, ItemDescriber.Condition condition), List<PlateRequirement>> requirementLookup;
+    private int unfilledRequirementCount;
 
-        PlateRequirement matchedRequirement = GetMatchingRequirement(itemDescriber);
-        if (matchedRequirement != null && !matchedRequirement.isFilled)
+    private void Awake()
+    {
+        // Cache the plate's SpriteRenderer once
+        cachedPlateRenderer = GetComponent<SpriteRenderer>();
+        cachedPlateSortingOrder = cachedPlateRenderer != null ? cachedPlateRenderer.sortingOrder : 0;
+
+        // Build lookup dictionary for O(1) requirement matching
+        BuildRequirementLookup();
+    }
+
+    private void BuildRequirementLookup()
+    {
+        requirementLookup = new Dictionary<(int, ItemDescriber.CookingState, ItemDescriber.Condition), List<PlateRequirement>>();
+        unfilledRequirementCount = plateRequirements.Count;
+
+        foreach (var req in plateRequirements)
         {
-            AttachToPlate(other.gameObject, matchedRequirement);
-            CheckIfAllRequirementsMet();
+            var key = (req.itemID, req.cookingState, req.condition);
+
+            // Support multiple requirements of the same type
+            if (!requirementLookup.ContainsKey(key))
+            {
+                requirementLookup[key] = new List<PlateRequirement>();
+            }
+            requirementLookup[key].Add(req);
         }
     }
 
-    private PlateRequirement GetMatchingRequirement(ItemDescriber item)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        foreach (var req in plateRequirements)
+        // Early exit if plate is already complete
+        if (isReadyToServe) return;
+
+        if (!other.TryGetComponent(out ItemDescriber itemDescriber)) return;
+
+        // O(1) lookup to get list of matching requirements
+        var key = (itemDescriber.itemID, itemDescriber.currentCookingState, itemDescriber.currentCondition);
+        if (requirementLookup.TryGetValue(key, out List<PlateRequirement> matchingRequirements))
         {
-            if (!req.isFilled && req.itemID == item.itemID && req.cookingState == item.currentCookingState && req.condition == item.currentCondition)
+            // Find the first unfilled requirement of this type
+            PlateRequirement availableRequirement = null;
+            foreach (var req in matchingRequirements)
             {
-                return req;
+                if (!req.isFilled)
+                {
+                    availableRequirement = req;
+                    break;
+                }
+            }
+
+            if (availableRequirement != null)
+            {
+                // Try to claim the item atomically
+                if (itemDescriber.TryAttachToPlate(this))
+                {
+                    AttachToPlate(other.gameObject, availableRequirement);
+
+                    // Decrement counter and check completion
+                    unfilledRequirementCount--;
+                    if (unfilledRequirementCount == 0)
+                    {
+                        CompleteAllRequirements();
+                    }
+                    else
+                    {
+                        AudioManager.Instance.PlaySound("bell1", transform.position);
+                    }
+                }
             }
         }
-        return null;
     }
 
     private void AttachToPlate(GameObject item, PlateRequirement requirement)
@@ -53,11 +107,8 @@ public class PlateSystem : MonoBehaviour
         placedItems[requirement] = item;
         requirement.isFilled = true;
 
-        int plateSortingOrder = 0;
-        if (TryGetComponent(out SpriteRenderer plateRenderer))
-            plateSortingOrder = plateRenderer.sortingOrder;
-
-        UpdateSpriteSorting(item, plateSortingOrder + requirement.sortingOrder);
+        // Use cached sorting order instead of repeated component lookup
+        UpdateSpriteSorting(item, cachedPlateSortingOrder + requirement.sortingOrder);
         FreezeItem(item);
         menuDisplay?.MarkAsFilled(requirement.itemID);
     }
@@ -72,9 +123,12 @@ public class PlateSystem : MonoBehaviour
 
     private void FreezeItem(GameObject item)
     {
-        if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
+        // Cache component lookups
+        var itemCollider = item.GetComponent<Collider2D>();
+        if (itemCollider) itemCollider.enabled = false;
 
-        if (item.TryGetComponent(out Rigidbody2D rb))
+        var rb = item.GetComponent<Rigidbody2D>();
+        if (rb)
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
@@ -83,19 +137,24 @@ public class PlateSystem : MonoBehaviour
         }
     }
 
-    private void CheckIfAllRequirementsMet()
+    // Optimized completion check - no more foreach loop
+    private void CompleteAllRequirements()
     {
-        foreach (var req in plateRequirements)
-        {
-            if (!req.isFilled)
-            {
-                AudioManager.Instance.PlaySound("bell1", transform.position);
-                return;
-            }
-        }
-
         AudioManager.Instance.PlaySound("TaskComplete", transform.position);
         isReadyToServe = true;
+    }
+
+    // Cleanup method for detaching items (optimized version)
+    private void DetachAllItems()
+    {
+        foreach (var placedItem in placedItems.Values)
+        {
+            if (placedItem != null && placedItem.TryGetComponent(out ItemDescriber itemDescriber))
+            {
+                itemDescriber.DetachFromPlate();
+            }
+        }
+        placedItems.Clear();
     }
 
     private bool isOwnerActive = true;
@@ -107,6 +166,7 @@ public class PlateSystem : MonoBehaviour
         isOwnerActive = isActive;
         if (!isActive && !IsHeld)
         {
+            DetachAllItems();
             Destroy(gameObject);
         }
     }
@@ -121,6 +181,7 @@ public class PlateSystem : MonoBehaviour
         currentHolder = null;
         if (!isOwnerActive)
         {
+            DetachAllItems();
             Destroy(gameObject);
         }
     }
