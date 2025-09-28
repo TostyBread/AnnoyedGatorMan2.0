@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7ac22ab2476a848a3b1a6f6dece35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 3
   lifetime: 7
-  targetTag: Player
+  targetTags:
+  - Player
+  - Enemy
 --- !u!50 &4348531188204270173
 Rigidbody2D:
   serializedVersion: 4

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSourcePrefab: {fileID: 4742835750530601534, guid: 8868380bdea7e6c4b8099a2b85c55548, type: 3}
-  poolSize: 18
+  poolSize: 25
   AdjustedVolume: 1
 --- !u!1 &7128315412531526967
 GameObject:
@@ -176,6 +176,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6433778eaac059a49a5e6e80e2a2204f, type: 3}
   - {fileID: 8300000, guid: 8890272156e78c54aa0fc25a6804249e, type: 3}
   - {fileID: 8300000, guid: 13cebc57c3fcc95418da4ff733c3d79f, type: 3}
+  - {fileID: 8300000, guid: 0969f44e9b8a7f244bbfee57cbe47263, type: 3}
+  - {fileID: 8300000, guid: 436cc64e5002a2a489a34cb8458f960c, type: 3}
+  - {fileID: 8300000, guid: 4f6af54df85358d499b7f9dc7f36c57e, type: 3}
+  - {fileID: 8300000, guid: 18f7db5b3f838fd4c9c7b1f9f0ec2116, type: 3}
 --- !u!1 &7581074832765092307
 GameObject:
   m_ObjectHideFlags: 0

@@ -247,12 +247,13 @@ MonoBehaviour:
   escapeSpeedMultiplier: 2
   plateReceiveAnchor: {fileID: 7262767610283653091}
   hasAcceptedPlate: 0
-  detectionRange: 3.1
+  detectionRange: 2.8
   npcLayer:
     serializedVersion: 2
     m_Bits: 1024
+  waypointThreshold: 0.05
+  returnThreshold: 0.05
   rb: {fileID: 0}
-  score: 1
 --- !u!114 &6551998542866432438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +275,8 @@ MonoBehaviour:
   blinkDuration: 0.15
   blinkCount: 3
   angerChanceOnHit: 0.5
+  playerListRefreshRate: 2
+  targetUpdateFrequency: 3
 --- !u!50 &880509381728504748
 Rigidbody2D:
   serializedVersion: 4

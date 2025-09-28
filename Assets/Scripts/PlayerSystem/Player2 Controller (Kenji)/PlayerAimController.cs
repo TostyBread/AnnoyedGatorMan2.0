@@ -38,6 +38,12 @@ public class PlayerAimController : MonoBehaviour
 
     void Update()
     {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+            if (mainCamera == null) return; // Exit early if no camera found
+        }
+
         Vector2 input = inputActions.Player2Controller.Aim.ReadValue<Vector2>();
 
         if (input.magnitude > aimDeadzone)
@@ -56,6 +62,8 @@ public class PlayerAimController : MonoBehaviour
 
     private void UpdateUICursor()
     {
+        if (mainCamera == null) return;
+
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 canvas.transform as RectTransform,
                 cursorScreenPosition,
@@ -68,7 +76,7 @@ public class PlayerAimController : MonoBehaviour
 
     private void TrySoftLock()
     {
-        if (!LockOnEnabled) return;
+        if (!LockOnEnabled || mainCamera == null) return;
 
         if (lockedTarget != null)
         {
@@ -97,6 +105,16 @@ public class PlayerAimController : MonoBehaviour
 
     public Vector3 GetCursorPosition()
     {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+            if (mainCamera == null) 
+            {
+                Debug.LogWarning("No camera found! Returning Vector3.zero");
+                return Vector3.zero;
+            }
+        }
+
         Vector3 world = mainCamera.ScreenToWorldPoint(cursorScreenPosition);
         world.z = 0;
         return world;
@@ -109,9 +127,12 @@ public class PlayerAimController : MonoBehaviour
 
     public void LockOnToTarget(Transform target)
     {
-        lockedTarget = target;
         if (mainCamera == null)
             mainCamera = Camera.main;
+        
+        if (mainCamera == null) return;
+
+        lockedTarget = target;
         Vector2 screenPos = mainCamera.WorldToScreenPoint(target.position);
         cursorScreenPosition = screenPos;
         UpdateUICursor();

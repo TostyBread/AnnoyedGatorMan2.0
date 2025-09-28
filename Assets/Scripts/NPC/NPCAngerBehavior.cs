@@ -15,6 +15,12 @@ public class NPCAngerBehavior : MonoBehaviour
     public float blinkDuration = 0.15f;
     public int blinkCount = 3;
     [Range(0f, 1f)] public float angerChanceOnHit = 0.5f;
+    
+    [Header("Performance Settings")]
+    [Tooltip("How often to refresh the player list (in seconds)")]
+    public float playerListRefreshRate = 2f;
+    [Tooltip("How often to recalculate closest player during rapid fire (every N shots)")]
+    public int targetUpdateFrequency = 3;
 
     private int hitCount = 0;
     private bool isAngry = false;
@@ -26,8 +32,20 @@ public class NPCAngerBehavior : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     private Collider2D npcCollider;
-    private GameObject target;
+    private GameObject[] allPlayers;
     private Vector3 angerStartPosition;
+    private NPCAnimationController npcAnim; // Cache the component
+
+    // Performance optimization: Cache frequently used values
+    private GameObject currentTarget;
+    private float lastPlayerRefreshTime;
+    private Vector3 lastNPCPosition;
+    
+    // Cache WaitForSeconds to avoid allocation
+    private WaitForSeconds blinkWait;
+    private WaitForSeconds shoutCooldownWait;
+    private WaitForSeconds burstWait;
+    private WaitForSeconds rapidFireWait;
 
     public bool IsAngry => isAngry;
 
@@ -36,10 +54,62 @@ public class NPCAngerBehavior : MonoBehaviour
         npc = GetComponent<NPCBehavior>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         npcCollider = GetComponent<Collider2D>();
-        target = GameObject.FindGameObjectWithTag("Player");
+        npcAnim = GetComponentInChildren<NPCAnimationController>(); // Cache the component
+        
+        // Find all players at start
+        RefreshPlayerList();
 
         if (spriteRenderer != null)
             originalColor = spriteRenderer.color;
+
+        // Cache WaitForSeconds objects to avoid allocation during coroutines
+        blinkWait = new WaitForSeconds(blinkDuration);
+        shoutCooldownWait = new WaitForSeconds(shoutCooldown);
+        burstWait = new WaitForSeconds(0.3f);
+        rapidFireWait = new WaitForSeconds(0.2f);
+    }
+
+    private void RefreshPlayerList()
+    {
+        // Get all players with "Player" tag
+        allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        lastPlayerRefreshTime = Time.time;
+    }
+
+    private GameObject GetClosestPlayer()
+    {
+        // Refresh player list periodically instead of every call
+        if (Time.time - lastPlayerRefreshTime > playerListRefreshRate)
+        {
+            RefreshPlayerList();
+        }
+
+        if (allPlayers == null || allPlayers.Length == 0)
+        {
+            RefreshPlayerList(); // Try to refresh if list is empty
+            if (allPlayers.Length == 0) return null;
+        }
+
+        GameObject closestPlayer = null;
+        float closestDistanceSqr = float.MaxValue; // Use squared distance for better performance
+
+        // Cache position to avoid multiple transform.position calls
+        lastNPCPosition = transform.position;
+
+        foreach (GameObject player in allPlayers)
+        {
+            if (player == null) continue; // Skip null references
+
+            // Use sqrMagnitude for better performance (avoids square root calculation)
+            float distanceSqr = (player.transform.position - lastNPCPosition).sqrMagnitude;
+            if (distanceSqr < closestDistanceSqr)
+            {
+                closestDistanceSqr = distanceSqr;
+                closestPlayer = player;
+            }
+        }
+
+        return closestPlayer;
     }
 
     public void TriggerAngerMode(GameObject source)
@@ -47,7 +117,7 @@ public class NPCAngerBehavior : MonoBehaviour
         if (isAngry) return;
         if (npc.hasAcceptedPlate) return; // Don't trigger anger if the NPC has accepted a plate
 
-        NPCAnimationController npcAnim = GetComponentInChildren<NPCAnimationController>(); // Calls the AnimController
+        // Use cached component reference
         if (npcAnim != null)
         {
             npcAnim.IsAngry = true;
@@ -117,53 +187,91 @@ public class NPCAngerBehavior : MonoBehaviour
 
     private IEnumerator ShoutingLoop()
     {
-        while (isAngry && target != null)
+        while (isAngry)
         {
+            // Get the closest player each cycle
+            currentTarget = GetClosestPlayer();
+            
+            // If no players are found, stop shooting
+            if (currentTarget == null)
+            {
+                yield return shoutCooldownWait;
+                continue;
+            }
+
             if (spriteRenderer != null)
             {
                 for (int i = 0; i < blinkCount; i++)
                 {
                     spriteRenderer.color = blinkColor;
-                    yield return new WaitForSeconds(blinkDuration);
+                    yield return blinkWait;
                     spriteRenderer.color = originalColor;
-                    yield return new WaitForSeconds(blinkDuration);
+                    yield return blinkWait;
                 }
 
-                // Flip direction to face player
-                if (target.transform.position.x < transform.position.x)
+                // Flip direction to face the closest player
+                if (currentTarget.transform.position.x < transform.position.x)
                     spriteRenderer.flipX = true;
                 else
                     spriteRenderer.flipX = false;
             }
             AudioManager.Instance.PlaySound("Swear", transform.position); // NPC swearing
 
-            Vector2 dir = (target.transform.position - transform.position).normalized;
+            Vector2 dir = (currentTarget.transform.position - transform.position).normalized;
             switch (shoutMode)
             {
                 case ShoutMode.Single:
                     FireProjectile(dir);
                     break;
                 case ShoutMode.Burst:
-                    for (int i = 0; i < 3; i++)
-                    {
-                        dir = (target.transform.position - transform.position).normalized;
-                        FireProjectile(dir);
-                        yield return new WaitForSeconds(0.3f);
-                    }
+                    yield return StartCoroutine(ExecuteBurstAttack());
                     break;
                 case ShoutMode.RapidFire:
-                    for (int i = 0; i < 9; i++)
-                    {
-                        dir = (target.transform.position - transform.position).normalized;
-                        FireProjectile(dir);
-                        yield return new WaitForSeconds(0.2f);
-                    }
+                    yield return StartCoroutine(ExecuteRapidFireAttack());
                     break;
                 case ShoutMode.BigProjectile:
                     FireProjectile(dir, 1.5f);
                     break;
             }
-            yield return new WaitForSeconds(shoutCooldown);
+            yield return shoutCooldownWait;
+        }
+    }
+
+    private IEnumerator ExecuteBurstAttack()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            // Only recalculate target every few shots for performance
+            if (i % targetUpdateFrequency == 0 || currentTarget == null)
+            {
+                currentTarget = GetClosestPlayer();
+            }
+            
+            if (currentTarget != null)
+            {
+                Vector2 dir = (currentTarget.transform.position - transform.position).normalized;
+                FireProjectile(dir);
+            }
+            yield return burstWait;
+        }
+    }
+
+    private IEnumerator ExecuteRapidFireAttack()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            // Only recalculate target every few shots for performance
+            if (i % targetUpdateFrequency == 0 || currentTarget == null)
+            {
+                currentTarget = GetClosestPlayer();
+            }
+            
+            if (currentTarget != null)
+            {
+                Vector2 dir = (currentTarget.transform.position - transform.position).normalized;
+                FireProjectile(dir);
+            }
+            yield return rapidFireWait;
         }
     }
 
@@ -171,10 +279,11 @@ public class NPCAngerBehavior : MonoBehaviour
     {
         float checkInterval = 3f;
         float moveThreshold = 0.5f;
+        WaitForSeconds checkWait = new WaitForSeconds(checkInterval);
 
         while (isAngry)
         {
-            yield return new WaitForSeconds(checkInterval);
+            yield return checkWait;
             if (Vector3.Distance(transform.position, angerStartPosition) > moveThreshold)
             {
                 StartCoroutine(ReturnToAngerPosition());
