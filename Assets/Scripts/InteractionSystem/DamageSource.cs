@@ -188,10 +188,12 @@ public class DamageSource : MonoBehaviour
                     gun.AddHeat(heatAmount);
                 }
 
-                // ItemSystem logic
+                // ItemSystem logic - check if collider is disabled (item picked up by plate)
                 var item = obj.GetComponent<ItemSystem>();
                 if (item != null)
                 {
+                    var itemCollider = obj.GetComponent<Collider2D>();
+                    if (itemCollider != null && !itemCollider.enabled) continue; // Skip if collider disabled
                     item.ApplyCollisionEffect(gameObject);
                 }
             }
