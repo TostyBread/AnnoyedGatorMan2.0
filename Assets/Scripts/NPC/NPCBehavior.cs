@@ -238,6 +238,9 @@ public class NPCBehavior : MonoBehaviour
     {
         if (plate == null || !plate.isReadyToServe) return false;
 
+        // Check if the plate is currently being held by a player
+        if (plate.IsHeld) return false;
+
         LabelDisplay label = plate.GetComponentInChildren<LabelDisplay>();
         if (label != null && label.labelText == customerId.ToString())
         {

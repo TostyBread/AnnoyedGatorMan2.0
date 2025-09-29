@@ -29,6 +29,14 @@ public class PlayerThrowManager : MonoBehaviour
 
         if (heldItem == null) return;
 
+        // Check if the item is a plate with inactive owner (customer ran away)
+        bool isPlateWithInactiveOwner = false;
+        if (heldItem.TryGetComponent(out PlateSystem plateSystem))
+        {
+            // Check if the plate's owner is inactive (customer ran away)
+            isPlateWithInactiveOwner = !plateSystem.IsOwnerActive();
+        }
+
         // Detach firearm ownership if applicable
         if (heldItem.TryGetComponent(out FirearmController firearm))
         {
@@ -37,6 +45,13 @@ public class PlayerThrowManager : MonoBehaviour
 
         if (P1FalseP2True) p2PickSystem.DropItem();
         else playerPickupSystem.DropItem();
+
+        // If the plate was destroyed during DropItem() due to inactive owner, exit early
+        if (isPlateWithInactiveOwner && heldItem == null)
+        {
+            Debug.LogWarning("Plate was destroyed during throw because customer ran away");
+            return;
+        }
 
         handSpriteManager?.ShowThrowSprite(throwSpriteDuration);
 
@@ -91,6 +106,9 @@ public class PlayerThrowManager : MonoBehaviour
 
         while (elapsed < duration)
         {
+            // Check if item was destroyed during animation
+            if (item == null) yield break;
+            
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
 
@@ -102,6 +120,9 @@ public class PlayerThrowManager : MonoBehaviour
 
             yield return null;
         }
+
+        // Final null check before completing the throw
+        if (item == null) yield break;
 
         item.transform.position = targetPos;
 

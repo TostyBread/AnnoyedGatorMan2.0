@@ -39,7 +39,7 @@ public class InteractionPromptUI : MonoBehaviour
 
         Collider2D target = playerPickupSystem.targetItem ?? playerPickupSystem.targetInteractable;
 
-        if (target != null && IsMouseOver(target) && IsWithinRange(target))
+        if (target != null && IsMouseOver(target) && IsWithinRangeImproved(target))
         {
             isPickupTarget = playerPickupSystem.validTags.Contains(target.tag);
             targetTransform = target.transform;
@@ -58,9 +58,21 @@ public class InteractionPromptUI : MonoBehaviour
         return collider.OverlapPoint(mouseWorldPos);
     }
 
-    private bool IsWithinRange(Collider2D collider)
+    private bool IsWithinRangeImproved(Collider2D targetCollider)
     {
-        return Physics2D.OverlapCircle(playerPickupSystem.transform.position, playerPickupSystem.pickupRadius, 1 << collider.gameObject.layer) == collider;
+        // Get all colliders within pickup radius, similar to how PlayerPickupSystem works
+        Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(playerPickupSystem.transform.position, playerPickupSystem.pickupRadius);
+        
+        // Check if our target collider is among the colliders in range and on the correct layer
+        foreach (Collider2D collider in collidersInRange)
+        {
+            if (collider == targetCollider && collider.gameObject.layer == targetCollider.gameObject.layer)
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     private void ShowPrompt(Vector3 worldPosition)

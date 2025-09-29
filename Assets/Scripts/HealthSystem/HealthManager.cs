@@ -124,7 +124,7 @@ public class HealthManager : MonoBehaviour
             if (isPlayer2)
             {
                 playerPickupSystemP2?.TryManualDrop();
-                p2PickupSystem.TryManualDrop();
+                p2PickupSystem?.TryManualDrop();
             }
             else
                 playerPickupSystem?.TryManualDrop();

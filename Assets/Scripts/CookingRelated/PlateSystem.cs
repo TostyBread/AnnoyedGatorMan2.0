@@ -188,4 +188,10 @@ public class PlateSystem : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    // For player throw managers to check if the owner is still active
+    public bool IsOwnerActive()
+    {
+        return isOwnerActive;
+    }
 }
