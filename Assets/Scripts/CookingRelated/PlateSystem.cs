@@ -63,6 +63,9 @@ public class PlateSystem : MonoBehaviour
 
         if (!other.TryGetComponent(out ItemDescriber itemDescriber)) return;
 
+        // Additional safety check: ensure item is not already attached to any plate
+        if (itemDescriber.isAttachedToPlate) return;
+
         // O(1) lookup to get list of matching requirements
         var key = (itemDescriber.itemID, itemDescriber.currentCookingState, itemDescriber.currentCondition);
         if (requirementLookup.TryGetValue(key, out List<PlateRequirement> matchingRequirements))
@@ -80,7 +83,7 @@ public class PlateSystem : MonoBehaviour
 
             if (availableRequirement != null)
             {
-                // Try to claim the item atomically
+                // Try to claim the item atomically - this prevents race conditions
                 if (itemDescriber.TryAttachToPlate(this))
                 {
                     AttachToPlate(other.gameObject, availableRequirement);
