@@ -1,19 +1,32 @@
 using UnityEngine;
+
 public class PlayerAimController : MonoBehaviour
 {
     public static PlayerAimController Instance { get; private set; }
 
+    [Header("UI Cursor")]
     public RectTransform uiCursorRect;
     public Canvas canvas;
     public float cursorSpeed = 1000f;
     public float aimDeadzone = 0.2f;
+
+    [Header("Soft Lock Settings")]
     public LayerMask softLockLayers;
     public float lockOnRadius = 0.5f;
+
+    [Header("Animation Settings")]
+    public Animator cursorAnimator;
+    public LayerMask interactableLayers;
 
     private Vector2 cursorScreenPosition;
     private Camera mainCamera;
     private PlayerInputActions inputActions;
     private Transform lockedTarget;
+    private PlayerPickupSystemP2 pickupSystem;
+
+    // Animation state tracking
+    public enum CursorAnimationState { Normal, Interactable, InRange }
+    private CursorAnimationState currentAnimationState = CursorAnimationState.Normal;
 
     public bool LockOnActive => lockedTarget != null;
     public bool LockOnEnabled { get; set; } = true;
@@ -34,6 +47,16 @@ public class PlayerAimController : MonoBehaviour
         mainCamera = Camera.main;
         cursorScreenPosition = new Vector2(Screen.width / 2f, Screen.height / 2f);
         UpdateUICursor();
+        
+        // Get reference to PlayerPickupSystemP2
+        pickupSystem = FindObjectOfType<PlayerPickupSystemP2>();
+        if (pickupSystem == null)
+        {
+            Debug.LogWarning("PlayerPickupSystemP2 not found! In range detection will not work.");
+        }
+
+        // Initialize cursor animation
+        SetCursorAnimationState(CursorAnimationState.Normal);
     }
 
     void Update()
@@ -58,20 +81,9 @@ public class PlayerAimController : MonoBehaviour
         {
             TrySoftLock();
         }
-    }
 
-    private void UpdateUICursor()
-    {
-        if (mainCamera == null) return;
-
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                canvas.transform as RectTransform,
-                cursorScreenPosition,
-                canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : mainCamera,
-                out Vector2 localPoint))
-        {
-            uiCursorRect.anchoredPosition = localPoint;
-        }
+        // Update cursor animation based on what we're aiming at
+        UpdateCursorAnimation();
     }
 
     private void TrySoftLock()
@@ -95,6 +107,96 @@ public class PlayerAimController : MonoBehaviour
         Vector3 worldToScreenFinal = mainCamera.WorldToScreenPoint(lockedTarget.position);
         cursorScreenPosition = worldToScreenFinal;
         UpdateUICursor();
+    }
+
+    private void UpdateCursorAnimation()
+    {
+        if (cursorAnimator == null) return;
+
+        // Get cursor world position
+        Vector3 cursorWorldPos = GetCursorPosition();
+        
+        // Check what we're aiming at
+        Collider2D hitCollider = Physics2D.OverlapPoint(cursorWorldPos, interactableLayers);
+        
+        CursorAnimationState newState = CursorAnimationState.Normal;
+
+        if (hitCollider != null)
+        {
+            // We're aiming at something interactable
+            newState = CursorAnimationState.Interactable;
+
+            // Check if we're also in range using PlayerPickupSystemP2
+            if (pickupSystem != null && IsInRange(hitCollider))
+            {
+                newState = CursorAnimationState.InRange;
+            }
+        }
+
+        // Only update animation if state changed
+        if (newState != currentAnimationState)
+        {
+            SetCursorAnimationState(newState);
+        }
+    }
+
+    private bool IsInRange(Collider2D target)
+    {
+        if (pickupSystem == null) return false;
+
+        // Use the same detection method as PlayerPickupSystemP2
+        Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(pickupSystem.transform.position, pickupSystem.pickupRadius);
+        
+        // Check if the target is in the list of colliders within pickup radius
+        foreach (Collider2D collider in collidersInRange)
+        {
+            if (collider == target)
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private void SetCursorAnimationState(CursorAnimationState newState)
+    {
+        if (cursorAnimator == null) return;
+
+        currentAnimationState = newState;
+
+        // Reset all animation triggers/bools
+        cursorAnimator.SetBool("IsInteractable", false);
+        cursorAnimator.SetBool("IsInRange", false);
+
+        // Set appropriate animation state
+        switch (newState)
+        {
+            case CursorAnimationState.Normal:
+                // Normal state is the default, no additional parameters needed
+                break;
+            case CursorAnimationState.Interactable:
+                cursorAnimator.SetBool("IsInteractable", true);
+                break;
+            case CursorAnimationState.InRange:
+                cursorAnimator.SetBool("IsInteractable", true);
+                cursorAnimator.SetBool("IsInRange", true);
+                break;
+        }
+    }
+
+    private void UpdateUICursor()
+    {
+        if (mainCamera == null) return;
+
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                canvas.transform as RectTransform,
+                cursorScreenPosition,
+                canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : mainCamera,
+                out Vector2 localPoint))
+        {
+            uiCursorRect.anchoredPosition = localPoint;
+        }
     }
 
     private void ClampCursorPosition()
@@ -137,4 +239,11 @@ public class PlayerAimController : MonoBehaviour
         cursorScreenPosition = screenPos;
         UpdateUICursor();
     }
+
+    // Public methods for getting current animation state (useful for debugging or other systems)
+    public CursorAnimationState GetCurrentAnimationState() => currentAnimationState;
+    
+    public bool IsAimingAtInteractable() => currentAnimationState != CursorAnimationState.Normal;
+    
+    public bool IsInInteractionRange() => currentAnimationState == CursorAnimationState.InRange;
 }

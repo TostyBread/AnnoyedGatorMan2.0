@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -50,7 +50,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -97,15 +97,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NormalAimCrosshair
+      name: NormalAimCrosshair1
       rect:
         serializedVersion: 2
-        x: 196
-        y: 1603
-        width: 258
-        height: 272
-      alignment: 9
-      pivot: {x: 0.48261398, y: 0.50989485}
+        x: 159
+        y: 1399
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -118,15 +118,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: InteractableCrosshair
+      name: InteractableCrosshair1
       rect:
         serializedVersion: 2
-        x: 248
-        y: 1110
-        width: 158
-        height: 330
-      alignment: 9
-      pivot: {x: 0.4973413, y: 0.17666681}
+        x: 166
+        y: 678
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,15 +139,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: InRange_InteractableCrosshair
+      name: InRange_InteractableCrosshair1
       rect:
         serializedVersion: 2
-        x: 250
-        y: 602
-        width: 154
-        height: 328
-      alignment: 9
-      pivot: {x: 0.48839855, y: 0.16501115}
+        x: 165
+        y: 78
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,6 +155,69 @@ TextureImporter:
       bones: []
       spriteID: 1bf2687cd9b5fc341bf6481bee6199e2
       internalID: 237182195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NormalAimCrosshair2
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 1398
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d3d792e11c49cc4396fd39c5aac9420
+      internalID: 396460412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InteractableCrosshair2
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 677
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e0f271e2888a3e46bfa5f4aae32e846
+      internalID: -619695021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: InRange_InteractableCrosshair2
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 76
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40978a3fa469222498f052ed5b83a031
+      internalID: -790818538
       vertices: []
       indices: 
       edges: []
@@ -170,15 +233,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ControllerCursorUI_New_0: -525775633
       ControllerCursorUI_New_1: 2078005674
       ControllerCursorUI_New_3: 1161320481
       ControllerCursorUI_New_5: -2136052582
       ControllerCursorUI_New_7: 331101299
       ControllerCursorUI_New_8: -1531375894
-      InRange_InteractableCrosshair: 237182195
-      InteractableCrosshair: 471970106
-      NormalAimCrosshair: 1042313587
+      InRange_InteractableCrosshair1: 237182195
+      InRange_InteractableCrosshair2: -790818538
+      InteractableCrosshair1: 471970106
+      InteractableCrosshair2: -619695021
+      NormalAimCrosshair1: 1042313587
+      NormalAimCrosshair2: -525775633
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
