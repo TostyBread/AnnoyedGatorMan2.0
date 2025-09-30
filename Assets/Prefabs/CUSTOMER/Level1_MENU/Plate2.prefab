@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 8473614079153372265}
   - component: {fileID: 2912337896578746821}
   - component: {fileID: 2469571722624404651}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Plate2
   m_TagString: FoodBig
   m_Icon: {fileID: 0}

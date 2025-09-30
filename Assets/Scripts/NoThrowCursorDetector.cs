@@ -6,6 +6,9 @@ public class NoThrowCursorDetector : MonoBehaviour
     public InputType inputType;
 
     [SerializeField] private LayerMask wallLayer;
+    [Header("Debug Settings")]
+    [SerializeField] private bool enableDebugLog = false;
+    [SerializeField] private bool enableDebugGizmos = false;
 
     private PlayerInputManager inputManager;
     private PlayerInputManagerP2 inputManagerP2;
@@ -42,16 +45,45 @@ public class NoThrowCursorDetector : MonoBehaviour
             _ => Vector2.zero
         };
 
-        if (cursorPos == Vector2.zero) return;
+        // Enhanced validation for cursor position
+        if (cursorPos == Vector2.zero || !IsValidCursorPosition(cursorPos))
+        {
+            if (enableDebugLog)
+                Debug.LogWarning($"[NoThrowCursorDetector] Invalid cursor position: {cursorPos}");
+            
+            // Allow throwing when cursor position is invalid (common on first play)
+            SetCanThrow(true);
+            return;
+        }
 
         Vector2 origin = transform.position;
         Vector2 direction = (cursorPos - origin).normalized;
         float distance = Vector2.Distance(origin, cursorPos);
 
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, wallLayer);
-        // bool canThrow = true; // Dont change this script you dumbass, this was made to prevent player from throwing through the wall
-        bool canThrow = hit.collider == null; // This is the code to keep, unless your controller code suck ass, please find a way to fix yours
+        // Limit raycast distance to prevent hitting distant objects
+        float maxRaycastDistance = Mathf.Min(distance, 50f);
 
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, maxRaycastDistance, wallLayer);
+        
+        bool canThrow = hit.collider == null;
+
+        if (enableDebugLog && hit.collider != null)
+        {
+            Debug.Log($"[NoThrowCursorDetector] Raycast hit: {hit.collider.name} on layer {hit.collider.gameObject.layer}");
+        }
+
+        SetCanThrow(canThrow);
+    }
+
+    private bool IsValidCursorPosition(Vector2 cursorPos)
+    {
+        // Check if cursor position is reasonable (not at origin or extremely far)
+        float distanceFromPlayer = Vector2.Distance(transform.position, cursorPos);
+        return distanceFromPlayer > 0.1f && distanceFromPlayer < 50f;
+    }
+
+    private void SetCanThrow(bool canThrow)
+    {
         if (inputManager != null) inputManager.canThrow = canThrow;
         if (inputManagerP2 != null) inputManagerP2.canThrow = canThrow;
     }
@@ -60,19 +92,35 @@ public class NoThrowCursorDetector : MonoBehaviour
     public PlayerInputManager InputManager => inputManager;
     public PlayerInputManagerP2 InputManagerP2 => inputManagerP2;
 
-    //void OnDrawGizmosSelected()
-    //{
-    //    Vector2 origin = transform.position;
-    //    Vector2 target = Application.isPlaying
-    //        ? (inputType == InputType.Mouse
-    //            ? ScreenToWorldPointMouse.Instance?.GetMouseWorldPosition() ?? origin
-    //            : PlayerAimController.Instance?.GetCursorPosition() ?? origin)
-    //        : origin + Vector2.right;
+    void OnDrawGizmosSelected()
+    {
+        if (!enableDebugGizmos) return;
 
-    //    Vector2 direction = (target - origin).normalized;
-    //    float distance = Vector2.Distance(origin, target);
+        Vector2 origin = transform.position;
+        Vector2 target = Application.isPlaying
+            ? (inputType == InputType.Mouse
+                ? ScreenToWorldPointMouse.Instance?.GetMouseWorldPosition() ?? origin
+                : PlayerAimController.Instance?.GetCursorPosition() ?? origin)
+            : origin + Vector2.right;
 
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawRay(origin, direction * Mathf.Min(distance, 20f));
-    //}
+        Vector2 direction = (target - origin).normalized;
+        float distance = Vector2.Distance(origin, target);
+        float maxRaycastDistance = Mathf.Min(distance, 50f);
+
+        // Draw the raycast line
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(origin, direction * maxRaycastDistance);
+
+        // Draw cursor position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(target, 0.2f);
+
+        // Draw raycast hit point if there is one
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, maxRaycastDistance, wallLayer);
+        if (hit.collider != null)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(hit.point, 0.3f);
+        }
+    }
 }
