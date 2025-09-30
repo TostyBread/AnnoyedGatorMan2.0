@@ -743,7 +743,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8604979888639368352}
-  - component: {fileID: 8144330748423032305}
   - component: {fileID: 8518152165494807452}
   m_Layer: 0
   m_Name: HandControls
@@ -774,21 +773,6 @@ Transform:
   - {fileID: 3243932045959107642}
   m_Father: {fileID: 6900787753550451279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8144330748423032305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1219663554708415907}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3055253642d05f4185e1893808ba77e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivotPoint: {fileID: 8604979888639368352}
-  hand: {fileID: 8604979888639368352}
-  characterFlip: {fileID: 0}
 --- !u!114 &8518152165494807452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1954,7 +1938,7 @@ MonoBehaviour:
   isInputEnabled: 1
   canThrow: 1
   P3move: {x: 0, y: 0}
-  autoFireModeShoot: 0
+  wasFiringLastFrame: 0
   pickupPressTime: 0
   isPickupKeyHeld: 0
   pickupHandled: 0
@@ -2690,7 +2674,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6177646010319293613}
-  - component: {fileID: 6041040571223629308}
   - component: {fileID: 6117825142480489361}
   m_Layer: 0
   m_Name: HandControls
@@ -2721,21 +2704,6 @@ Transform:
   - {fileID: 1140726602006266935}
   m_Father: {fileID: 9013086214482788930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6041040571223629308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3620175315003291054}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3055253642d05f4185e1893808ba77e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivotPoint: {fileID: 6177646010319293613}
-  hand: {fileID: 6177646010319293613}
-  characterFlip: {fileID: 0}
 --- !u!114 &6117825142480489361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3495,7 +3463,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2820631572873079850}
-  - component: {fileID: 2398619030759472507}
   - component: {fileID: 2772366505473075990}
   m_Layer: 0
   m_Name: HandControls
@@ -3526,21 +3493,6 @@ Transform:
   - {fileID: 9028347144285004976}
   m_Father: {fileID: 1120102185894322885}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2398619030759472507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4657565808220804393}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3055253642d05f4185e1893808ba77e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivotPoint: {fileID: 2820631572873079850}
-  hand: {fileID: 2820631572873079850}
-  characterFlip: {fileID: 0}
 --- !u!114 &2772366505473075990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5004,7 +4956,7 @@ MonoBehaviour:
   isInputEnabled: 1
   canThrow: 1
   P3move: {x: 0, y: 0}
-  autoFireModeShoot: 0
+  wasFiringLastFrame: 0
   pickupPressTime: 0
   isPickupKeyHeld: 0
   pickupHandled: 0
@@ -7407,7 +7359,7 @@ MonoBehaviour:
   isInputEnabled: 1
   canThrow: 1
   P3move: {x: 0, y: 0}
-  autoFireModeShoot: 0
+  wasFiringLastFrame: 0
   pickupPressTime: 0
   isPickupKeyHeld: 0
   pickupHandled: 0

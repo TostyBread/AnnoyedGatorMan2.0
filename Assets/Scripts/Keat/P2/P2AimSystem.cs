@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class P2AimSystem : MonoBehaviour
 {
-
     [Header("Pivot Settings")]
     public Transform pivotPoint; // The custom pivot point for hand rotation
 
@@ -13,7 +12,6 @@ public class P2AimSystem : MonoBehaviour
 
     [Header("Character Flip Reference")]
     public CharacterFlip characterFlip; // Reference to the CharacterFlip script
-
 
     private DetectTarget detectTarget;
     public int currentTargetIndex; // Index of the current target in the list, use by P3Input's long interaction
@@ -30,9 +28,13 @@ public class P2AimSystem : MonoBehaviour
 
     public bool P3;
     public GameObject P3Cursor;
+    
     [Header("Input")]
     public KeyCode NextTarget;
     public KeyCode PreviousTarget;
+
+    // Add this property to expose the current aiming direction
+    public Vector3 CurrentAimDirection { get; private set; }
 
     P3Controls controls;
 
@@ -106,12 +108,27 @@ public class P2AimSystem : MonoBehaviour
             return null;
         }
 
-
         //Ensure index is within bounds
         currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, detectTarget.AllItemInRange.Count - 1);
-        
 
         return detectTarget.AllItemInRange[currentTargetIndex];
+    }
+
+    // Add this method to get the effective aiming target position
+    public Vector3 GetCurrentAimTarget()
+    {
+        if (NearestTarget() != null)
+        {
+            return NearestTarget().transform.position;
+        }
+        else if (P3 && GetComponentInParent<P2PickupSystem>()?.heldItem != null && P3Cursor != null)
+        {
+            return P3Cursor.transform.position;
+        }
+        else
+        {
+            return HandAim.transform.position;
+        }
     }
 
     private void ChangeTarget()
@@ -153,6 +170,8 @@ public class P2AimSystem : MonoBehaviour
     private void HandRotation(Vector3 Target)
     {
         Vector2 direction = Target - P2Player.transform.position;
+        CurrentAimDirection = direction; // Store the current aim direction
+        
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         hand.transform.rotation = Quaternion.Euler(0, 0, angle);
 

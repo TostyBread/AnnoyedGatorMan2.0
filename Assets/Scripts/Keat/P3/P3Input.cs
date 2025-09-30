@@ -19,7 +19,7 @@ public class P3Input : MonoBehaviour
     private HealthManager healthManager;
     IUsable usableFunction;
 
-    [SerializeField]private bool autoFireModeShoot;
+    [SerializeField] private bool wasFiringLastFrame = false;
 
     [SerializeField] private float pickupPressTime = 0f;
     [SerializeField] private bool isPickupKeyHeld = false;
@@ -35,24 +35,17 @@ public class P3Input : MonoBehaviour
 
         controls = new P3Controls();
 
-        if (!isInputEnabled) return; // can it be if(!isInputEnabled) input is disable, if(isInputEnable) input is enable
+        if (!isInputEnabled) return;
 
-
-        controls.Gameplay.Use.started += context => UseButtonPressed();
-        //controls.Gameplay.Use.performed += context => UseButtonHold();
-        controls.Gameplay.Use.canceled += context => UseButtonRelease();
-
+        // Use performed instead of started for single-press actions
+        controls.Gameplay.Use.performed += context => HandleUseInput();
+        controls.Gameplay.Use.canceled += context => HandleUseRelease();
 
         controls.Gameplay.Toggle.performed += context => HandleUsableItemInput();
         controls.Gameplay.Throw.performed += context => HandleThrowInput();
 
-
-        if (p2PickupSystem == null) return;
-        else
+        if (p2PickupSystem != null)
         {
-            //controls.Gameplay.Pickup.started += context => StartPickup();
-            //controls.Gameplay.Interect.performed += context => p2PickupSystem.StartInteraction();
-
             controls.Gameplay.Pickup.started += context => OnPickupStarted();
             controls.Gameplay.Pickup.canceled += context => OnPickupCanceled();
         }
@@ -60,136 +53,132 @@ public class P3Input : MonoBehaviour
         controls.Gameplay.Move.performed += context => P3move = context.ReadValue<Vector2>();
         controls.Gameplay.Move.canceled += context => P3move = Vector2.zero;
 
-        
         healthManager = GetComponent<HealthManager>();
     }
 
-    //void Use()
-    //{
-    //    {
-    //        if (p2PickupSystem == null) return;
-
-    //        bool used = false;
-
-    //        if (p2PickupSystem.HasItemHeld)
-    //        {
-    //            IUsable usableFunction = p2PickupSystem.GetUsableFunction();
-
-    //            switch (usableFunction)
-    //            {
-    //                case FirearmController gun when usableItemModeEnabled:
-    //                    if (gun.currentFireMode == FirearmController.FireMode.Auto)
-    //                    {
-    //                        //if (Input.GetKey(inputConfig.attackKey)) get key: use
-    //                        {
-    //                            gun.Use();
-    //                            used = true;
-    //                        }
-    //                    }
-    //                    else if //(Input.GetKeyDown(inputConfig.attackKey)) get key down: use
-    //                    {
-    //                        gun.Use();
-    //                        used = true;
-    //                    }
-
-    //                    if //(Input.GetKeyUp(inputConfig.attackKey)) get key up: use
-    //                        gun.OnFireKeyReleased();
-    //                    break;
-
-    //                case KnifeController knife when usableItemModeEnabled:
-    //                    if //(Input.GetKey(inputConfig.attackKey)) get key: use
-    //                    {
-    //                        knife.Use();
-    //                        used = true;
-    //                    }
-    //                    break;
-
-    //                default:
-    //                    // Allow MeleeSwing even if usableItemMode is disabled
-    //                    if //(Input.GetKeyDown(inputConfig.attackKey)) get key down: use
-    //                        HandleMeleeLogic();
-    //                    break;
-    //            }
-
-    //            if (!used && //Input.GetKeyDown(inputConfig.attackKey)) get key down: use
-    //            {
-    //                HandleMeleeLogic();
-    //            }
-    //        }
-    //        else
-    //        {
-    //            if //(Input.GetKeyDown(inputConfig.attackKey)) get key down: use
-    //                fist?.TriggerPunch();
-    //        }
-    //    }
-
-    //}
-
-    private void UseButtonPressed()
+    private void HandleUseInput()
     {
         if (p2PickupSystem == null) return;
+
+        bool used = false;
 
         if (p2PickupSystem.HasItemHeld)
         {
             usableFunction = p2PickupSystem.GetUsableFunction();
 
-            if (usableFunction is FirearmController gun && usableItemModeEnabled && gun.currentFireMode != FirearmController.FireMode.Auto)
+            switch (usableFunction)
             {
-                gun.Use();
+                case FirearmController gun when usableItemModeEnabled:
+                    bool isPressed = controls.Gameplay.Use.ReadValue<float>() > 0.5f;
+                    if (gun.currentFireMode == FirearmController.FireMode.Auto)
+                    {
+                        if (isPressed)
+                        {
+                            gun.Use();
+                            used = true;
+                        }
+                    }
+                    else
+                    {
+                        if (isPressed && !wasFiringLastFrame)
+                        {
+                            gun.Use();
+                            used = true;
+                        }
+                    }
+                    if (!isPressed && wasFiringLastFrame)
+                    {
+                        gun.OnFireKeyReleased();
+                    }
+                    wasFiringLastFrame = isPressed;
+                    break;
+
+                case KnifeController knife when usableItemModeEnabled:
+                    if (controls.Gameplay.Use.ReadValue<float>() > 0.5f)
+                    {
+                        knife.Use();
+                        used = true;
+                    }
+                    break;
+
+                case ItemPackage package when usableItemModeEnabled:
+                    if (controls.Gameplay.Use.WasPressedThisFrame())
+                    {
+                        package.Use();
+                        used = true;
+                    }
+                    break;
+
+                default:
+                    // Melee logic
+                    if (controls.Gameplay.Use.WasPressedThisFrame())
+                    {
+                        HandleMeleeLogic();
+                        used = true;
+                    }
+                    break;
             }
-            else if (usableFunction is KnifeController knife && usableItemModeEnabled)
+
+            // If not used, fallback to melee punch
+            if (!used && controls.Gameplay.Use.WasPressedThisFrame())
             {
-                knife.Use();
-            }
-            else if (usableFunction is ItemPackage package && usableItemModeEnabled) // added by Kenji, ItemPackage throwing item from package
-            {
-                    package.Use();
-            }
-            else
-            {
-                HandleMeleeLogic(); // Melee swing
+                HandleMeleeLogic();
             }
         }
         else
         {
-            fist?.TriggerPunch(); // Barehanded punch
-        }
-
-        autoFireModeShoot = true;
-    }
-
-    private void UseButtonHold()
-    {
-        if (p2PickupSystem == null) return;
-
-        if (p2PickupSystem.HasItemHeld && usableItemModeEnabled)
-        {
-            usableFunction = p2PickupSystem.GetUsableFunction();
-
-            if (usableFunction is FirearmController gun && gun.currentFireMode == FirearmController.FireMode.Auto)
-            {
-                gun.Use(); // Automatic fire while holding
-            }
-            else if (usableFunction is KnifeController knife)
-            {
-                knife.Use(); // Continuous knife use (optional)
-            }
+            if (controls.Gameplay.Use.WasPressedThisFrame())
+                fist?.TriggerPunch();
         }
     }
 
-    private void UseButtonRelease()
+    private void HandleFireModes()
     {
-        if (p2PickupSystem == null) return;
+        if (!usableItemModeEnabled) return;
+        if (p2PickupSystem == null || !p2PickupSystem.HasItemHeld) return;
 
-        usableFunction = p2PickupSystem.GetUsableFunction();
+        IUsable usable = p2PickupSystem.GetUsableFunction();
+        if (usable == null) return;
 
-        if (usableFunction is FirearmController gun)
+        bool isPressed = controls.Gameplay.Use.ReadValue<float>() > 0.5f;
+
+        if (usable is FirearmController firearm)
         {
-            gun.OnFireKeyReleased(); // Stop automatic fire
+            if (firearm.currentFireMode == FirearmController.FireMode.Auto)
+            {
+                if (isPressed) firearm.Use();
+            }
+            else
+            {
+                if (isPressed && !wasFiringLastFrame) firearm.Use();
+            }
         }
 
-        autoFireModeShoot = false;
+        wasFiringLastFrame = isPressed;
+    }
 
+    private void HandleKnife()
+    {
+        if (!usableItemModeEnabled) return;
+        if (p2PickupSystem == null || !p2PickupSystem.HasItemHeld) return;
+
+        IUsable usable = p2PickupSystem.GetUsableFunction();
+        if (usable == null) return;
+
+        if (usable is KnifeController knife)
+        {
+            if (controls.Gameplay.Use.ReadValue<float>() > 0.5f)
+                knife.Use();
+        }
+    }
+
+    private void HandleUseRelease()
+    {
+        IUsable usableFunction = p2PickupSystem?.GetUsableFunction();
+        if (usableFunction is FirearmController firearm)
+        {
+            firearm.OnFireKeyReleased();
+        }
     }
 
     private void HandleMeleeLogic()
@@ -294,6 +283,7 @@ public class P3Input : MonoBehaviour
     {
         controls.Gameplay.Disable();
     }
+
     void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
@@ -313,11 +303,8 @@ public class P3Input : MonoBehaviour
         if (!isInputEnabled) return;
 
         HandleMovementInput();
-
-        if (autoFireModeShoot)
-        {
-            UseButtonHold();
-        }
+        HandleFireModes();
+        HandleKnife();
         HandlePickupHold();
     }
 
@@ -349,7 +336,6 @@ public class P3Input : MonoBehaviour
 
             usableItemModeEnabled = true; // reset safety if needed
         }
-
     }
 
     private void HandleUsableItemInput()
@@ -367,7 +353,7 @@ public class P3Input : MonoBehaviour
         {
             knifeController.ToggleUsableMode(usableItemModeEnabled);
         }
-        if (usableFunction is FirearmController firearmController) // added by Kenji, for firearm toggle safety
+        if (usableFunction is FirearmController firearmController)
         {
             firearmController.ToggleUsableMode(usableItemModeEnabled);
         }
