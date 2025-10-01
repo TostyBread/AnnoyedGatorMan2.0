@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using static ItemPackage;
 
 public class PlayerThrowManager : MonoBehaviour
 {
@@ -41,6 +42,11 @@ public class PlayerThrowManager : MonoBehaviour
         if (heldItem.TryGetComponent(out FirearmController firearm))
         {
             firearm.ClearOwner();
+        }
+
+        if (heldItem.TryGetComponent(out ItemPackage package))  // Set the owner of the package when thrown away
+        {
+            package.SetOwner(PackageOwner.None);
         }
 
         if (P1FalseP2True) p2PickSystem.DropItem();

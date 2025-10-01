@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using static ItemPackage;
 
 public class PlayerThrowManagerP2 : MonoBehaviour
 {
@@ -32,6 +33,10 @@ public class PlayerThrowManagerP2 : MonoBehaviour
             firearm.ClearOwner();
         }
 
+        if (heldItem.TryGetComponent(out ItemPackage package)) // Set the owner of the package when thrown away
+        {
+            package.SetOwner(PackageOwner.None);
+        }
         playerPickupSystemP2.DropItem();
         handSpriteManagerP2?.ShowThrowSprite(throwSpriteDuration);
         storedThrowPosition = PlayerAimController.Instance.GetCursorPosition(); // Get the virtual mouse position for Player 2
