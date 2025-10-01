@@ -275,6 +275,8 @@ MonoBehaviour:
   blinkDuration: 0.15
   blinkCount: 3
   angerChanceOnHit: 0.6
+  angerDuration: 50
+  escapeOnTimeout: 0
   playerListRefreshRate: 2
   targetUpdateFrequency: 3
 --- !u!50 &880509381728504748

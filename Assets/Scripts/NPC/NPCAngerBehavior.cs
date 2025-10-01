@@ -16,6 +16,12 @@ public class NPCAngerBehavior : MonoBehaviour
     public int blinkCount = 3;
     [Range(0f, 1f)] public float angerChanceOnHit = 0.5f;
     
+    [Header("Anger Timer")]
+    [Tooltip("Maximum duration (in seconds) for anger mode before auto-exit")]
+    public float angerDuration = 40f;
+    [Tooltip("Should the NPC escape when anger timer expires?")]
+    public bool escapeOnTimeout = false;
+    
     [Header("Performance Settings")]
     [Tooltip("How often to refresh the player list (in seconds)")]
     public float playerListRefreshRate = 2f;
@@ -25,7 +31,7 @@ public class NPCAngerBehavior : MonoBehaviour
     private int hitCount = 0;
     private bool isAngry = false;
     private Coroutine shoutRoutine;
-    private Coroutine returnRoutine;
+    private Coroutine angerTimerRoutine;
     private ShoutMode shoutMode;
     private NPCBehavior npc;
     private bool hasShoutModeSet = false;
@@ -33,7 +39,6 @@ public class NPCAngerBehavior : MonoBehaviour
     private Color originalColor;
     private Collider2D npcCollider;
     private GameObject[] allPlayers;
-    private Vector3 angerStartPosition;
     private NPCAnimationController npcAnim; // Cache the component
 
     // Performance optimization: Cache frequently used values
@@ -48,6 +53,7 @@ public class NPCAngerBehavior : MonoBehaviour
     private WaitForSeconds rapidFireWait;
 
     public bool IsAngry => isAngry;
+    public float RemainingAngerTime { get; private set; }
 
     void Awake()
     {
@@ -123,10 +129,8 @@ public class NPCAngerBehavior : MonoBehaviour
             npcAnim.IsAngry = true;
         }
         isAngry = true;
-        angerStartPosition = transform.position;
+        RemainingAngerTime = angerDuration;
 
-        npc.rb.velocity = Vector2.zero;
-        npc.rb.bodyType = RigidbodyType2D.Dynamic;
         if (npcCollider != null)
             npcCollider.enabled = true;
 
@@ -140,9 +144,10 @@ public class NPCAngerBehavior : MonoBehaviour
             StopCoroutine(shoutRoutine);
         shoutRoutine = StartCoroutine(ShoutingLoop());
 
-        if (returnRoutine != null)
-            StopCoroutine(returnRoutine);
-        returnRoutine = StartCoroutine(CheckForPushRoutine());
+        // Start the anger timer
+        if (angerTimerRoutine != null)
+            StopCoroutine(angerTimerRoutine);
+        angerTimerRoutine = StartCoroutine(AngerTimerRoutine());
     }
 
     public void RegisterHit(GameObject source)
@@ -155,6 +160,7 @@ public class NPCAngerBehavior : MonoBehaviour
         else
         {
             hitCount++;
+            Debug.Log($"NPC {npc.customerId} hit count: {hitCount}/{hitsToTriggerEscape}");
             if (hitCount >= hitsToTriggerEscape)
             {
                 ExitAngerMode();
@@ -165,24 +171,60 @@ public class NPCAngerBehavior : MonoBehaviour
 
     private void ExitAngerMode()
     {
+        if (!isAngry) return; // Already exited
+
+        // Stop all anger-related coroutines first
         if (shoutRoutine != null)
         {
             StopCoroutine(shoutRoutine);
             shoutRoutine = null;
         }
 
-        if (returnRoutine != null)
+        if (angerTimerRoutine != null)
         {
-            StopCoroutine(returnRoutine);
-            returnRoutine = null;
+            StopCoroutine(angerTimerRoutine);
+            angerTimerRoutine = null;
         }
 
-        npc.rb.bodyType = RigidbodyType2D.Dynamic;
+        // Reset all anger-related state
         isAngry = false;
         hasShoutModeSet = false;
+        hitCount = 0; // Reset hit count for future anger episodes
+        RemainingAngerTime = 0f;
 
+        // Reset animation state
+        if (npcAnim != null)
+        {
+            npcAnim.IsAngry = false;
+        }
+
+        // Reset visual state
         if (spriteRenderer != null)
             spriteRenderer.color = originalColor;
+
+        // Keep the NPC's rigidbody dynamic for normal movement
+        if (npc != null && npc.rb != null)
+            npc.rb.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    private IEnumerator AngerTimerRoutine()
+    {
+        float timer = angerDuration;
+        
+        while (timer > 0f && isAngry)
+        {
+            RemainingAngerTime = timer;
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // Timer expired - ALWAYS force escape when anger duration ends
+        if (isAngry)
+        {
+            Debug.Log($"NPC {npc.customerId} anger timer expired - forcing escape");
+            ExitAngerMode();
+            npc.ForceEscape();
+        }
     }
 
     private IEnumerator ShoutingLoop()
@@ -203,8 +245,13 @@ public class NPCAngerBehavior : MonoBehaviour
             {
                 for (int i = 0; i < blinkCount; i++)
                 {
+                    if (!isAngry) yield break; // Exit if anger ended during blinking
+                    
                     spriteRenderer.color = blinkColor;
                     yield return blinkWait;
+                    
+                    if (!isAngry) yield break; // Exit if anger ended during blinking
+                    
                     spriteRenderer.color = originalColor;
                     yield return blinkWait;
                 }
@@ -215,6 +262,9 @@ public class NPCAngerBehavior : MonoBehaviour
                 else
                     spriteRenderer.flipX = false;
             }
+
+            if (!isAngry) yield break; // Exit if anger ended
+
             AudioManager.Instance.PlaySound("Swear", transform.position); // NPC swearing
 
             Vector2 dir = (currentTarget.transform.position - transform.position).normalized;
@@ -230,17 +280,24 @@ public class NPCAngerBehavior : MonoBehaviour
                     yield return StartCoroutine(ExecuteRapidFireAttack());
                     break;
                 case ShoutMode.BigProjectile:
-                    FireProjectile(dir, 1.5f);
+                    FireProjectile(dir, 2f);
                     break;
             }
+
+            if (!isAngry) yield break; // Exit if anger ended during attack
+
             yield return shoutCooldownWait;
         }
+
+        Debug.Log($"NPC {npc.customerId} shouting loop ended");
     }
 
     private IEnumerator ExecuteBurstAttack()
     {
         for (int i = 0; i < 3; i++)
         {
+            if (!isAngry) yield break; // Exit if anger ended
+
             // Only recalculate target every few shots for performance
             if (i % targetUpdateFrequency == 0 || currentTarget == null)
             {
@@ -260,6 +317,8 @@ public class NPCAngerBehavior : MonoBehaviour
     {
         for (int i = 0; i < 9; i++)
         {
+            if (!isAngry) yield break; // Exit if anger ended
+
             // Only recalculate target every few shots for performance
             if (i % targetUpdateFrequency == 0 || currentTarget == null)
             {
@@ -275,41 +334,10 @@ public class NPCAngerBehavior : MonoBehaviour
         }
     }
 
-    private IEnumerator CheckForPushRoutine()
-    {
-        float checkInterval = 3f;
-        float moveThreshold = 0.5f;
-        WaitForSeconds checkWait = new WaitForSeconds(checkInterval);
-
-        while (isAngry)
-        {
-            yield return checkWait;
-            if (Vector3.Distance(transform.position, angerStartPosition) > moveThreshold)
-            {
-                StartCoroutine(ReturnToAngerPosition());
-            }
-        }
-    }
-
-    private IEnumerator ReturnToAngerPosition()
-    {
-        float elapsed = 0f;
-        float duration = 0.5f;
-        Vector3 startPos = transform.position;
-
-        while (elapsed < duration)
-        {
-            transform.position = Vector3.Lerp(startPos, angerStartPosition, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = angerStartPosition;
-    }
-
     private void FireProjectile(Vector2 direction, float scale = 1f)
     {
         if (!shoutProjectilePrefab || !shoutSpawnPoint) return;
+        if (!isAngry) return; // Don't fire if not angry
 
         GameObject projectile = Instantiate(shoutProjectilePrefab, shoutSpawnPoint.position, Quaternion.identity);
         projectile.transform.localScale *= scale;

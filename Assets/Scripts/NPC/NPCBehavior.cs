@@ -101,7 +101,8 @@ public class NPCBehavior : MonoBehaviour
             return;
         }
 
-        if (angerBehavior != null && angerBehavior.IsAngry && state != NPCState.Arrived) return;
+        // Allow movement during anger mode - removed the anger check that was preventing movement
+        // if (angerBehavior != null && angerBehavior.IsAngry && state != NPCState.Arrived) return;
 
         switch (state)
         {
@@ -390,17 +391,20 @@ public class NPCBehavior : MonoBehaviour
     {
         if (collision.relativeVelocity.magnitude > forceEscapeThreshold)
         {
+            // Let the anger behavior handle the hit and decide whether to escape
             angerBehavior?.RegisterHit(collision.gameObject);
 
+            // Only clean up menu here, let anger behavior decide if escape is needed
             if (attachedMenu != null)
             {
                 attachedMenu = null;
                 menuManagerInstance?.RemoveMenuForNPC(this);
             }
-            ForceEscape();
 
+            // Only force escape immediately if there's no anger behavior or NPC is not angry
             if (angerBehavior == null || !angerBehavior.IsAngry)
             {
+                ForceEscape();
                 npcCollider.enabled = false;
                 audioManagerInstance.PlaySound("scream", transform.position);
             }
