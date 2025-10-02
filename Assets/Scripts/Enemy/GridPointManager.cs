@@ -21,7 +21,7 @@ public class GridPointManager : MonoBehaviour
         if (hasDeactivated) return;
 
         #region Tutorial for ToLower()
-        //lets assume collision.name is Walltable
+        //lets assume collision.name is Wallable
         //If collision.name.ToLower().Cointains("wall"), means that it can get "Wall" & "wall"
         //so it can get name Walltable.
         //While collision.name.Cointains("wall") only can get "wall"
@@ -31,8 +31,15 @@ public class GridPointManager : MonoBehaviour
 
         // Determine if this grid should be disabled
         bool isObstacle = collision.gameObject.layer == LayerMask.NameToLayer("Obstacle")
-                       || collision.name.ToLower().Contains("wall")
                        || collision.name.ToLower().Contains("table"); // <- customize
+
+        // grid should be disabled when touched wall
+        bool iswall = collision.name.ToLower().Contains("wall");
+
+        if (iswall)
+        {
+            enemyMovement.EnemyGrid.Remove(gameObject);
+        }
 
         if (isObstacle)
         {

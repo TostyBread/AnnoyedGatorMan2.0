@@ -74,6 +74,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private LayerMask foodLayers;
     int combinedMask;
 
+    public GameObject enemyMovePoint;
+
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -123,6 +126,8 @@ public class EnemyMovement : MonoBehaviour
     
 
         StartCoroutine(ChangeTargetedGrid(Random.Range(1f, 3f)));
+
+        enemyMovePoint = gameObject.GetComponentInChildren<DestroyWhenMasterDie>().gameObject;
     }
 
     private void FixedUpdate()
@@ -285,14 +290,14 @@ public class EnemyMovement : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion Rotation = Quaternion.Euler(0, 0, angle);
         
-        transform.rotation = Rotation;
+        enemyMovePoint.transform.rotation = Rotation;
         //transform.rotation = Quaternion.Lerp(transform.rotation, Rotation, Time.deltaTime * 5f);
     }
 
     private void EnemyWonderAround()
     {
         // If we’ve reached the destination, choose a new one after a delay
-        if (TargetedGrid == null || Vector3.Distance(transform.position, TargetedGrid.position) < 0.01f)
+        if (TargetedGrid == null || Vector3.Distance(transform.position, TargetedGrid.position) < 1f)
         {
             if (MoveNext)
             {
