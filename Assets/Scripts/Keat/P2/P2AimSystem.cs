@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,10 +16,11 @@ public class P2AimSystem : MonoBehaviour
 
     private DetectTarget detectTarget;
     public int currentTargetIndex; // Index of the current target in the list, use by P3Input's long interaction
+    public GameObject CurrentTarget;
     public GameObject Range;
+    public List<GameObject> ItemInRange = new List<GameObject>();
 
     public GameObject P2Player;
-    public GameObject CurrentTarget;
     public GameObject HandControl;
 
     public GameObject Arrow;
@@ -81,7 +83,11 @@ public class P2AimSystem : MonoBehaviour
     {
 
         ChangeTarget();
+
+        //These are for debuging purpose
         CurrentTarget = NearestTarget();
+        ItemInRange = detectTarget.AllItemInRange;
+        //These are for debuging purpose
 
         if (NearestTarget() != null)
         {

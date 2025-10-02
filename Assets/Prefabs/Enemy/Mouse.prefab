@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 509880989163737013}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
   - {x: 4.710003, y: -2.6202803, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 128124
+  m_InstanceId: 165812
   m_LocalBounds:
     m_Center: {x: 0.0000019073486, y: 0.00000023841858, z: 0}
     m_Extent: {x: 4.710001, y: 2.6202805, z: 0}

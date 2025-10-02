@@ -172,7 +172,7 @@ public class P2PickupSystem : MonoBehaviour
         if (item.TryGetComponent(out PlateSystem plateSystem)) // Specifically letting PlateSystem to know if its being held
             plateSystem.SetHolder(gameObject);
 
-        //if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false; //We have other defendsive code at damage source
+        if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
 
         if (item.TryGetComponent(out Rigidbody2D rb))
         {
