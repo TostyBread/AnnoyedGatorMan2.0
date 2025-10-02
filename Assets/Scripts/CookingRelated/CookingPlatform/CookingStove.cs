@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CookingStove : MonoBehaviour
@@ -18,7 +17,6 @@ public class CookingStove : MonoBehaviour
     private GameObject currentSnappedObject;
 
     private Coroutine fireActivationCoroutine;
-    private HashSet<GameObject> snappedObjects = new HashSet<GameObject>();
 
     private void Start()
     {

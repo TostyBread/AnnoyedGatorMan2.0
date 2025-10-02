@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using static Unity.VisualScripting.Member;
 
 public class HealthManager : MonoBehaviour
 {

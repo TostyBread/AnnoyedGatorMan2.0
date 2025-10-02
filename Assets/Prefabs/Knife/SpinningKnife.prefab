@@ -220,4 +220,4 @@ MonoBehaviour:
   spinSpeed: -3000
   minSpinSecond: 5
   maxSpinSecond: 10
-  Knife: {fileID: 1706992943235291945, guid: 3d381c41096699445af4eadc50112fe3, type: 3}
+  Knife: {fileID: 8707501083131559356, guid: f71be47bacb4a0040882d5f9fc9f24da, type: 3}

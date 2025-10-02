@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NoThrowCursorDetector : MonoBehaviour
 {
-    public enum InputType { Mouse, Joystick }
+    public enum InputType { Mouse, Joystick, P3Joystick } // Added Chee Keat's controller support
     public InputType inputType;
 
     [SerializeField] private LayerMask wallLayer;
@@ -12,18 +12,21 @@ public class NoThrowCursorDetector : MonoBehaviour
 
     private PlayerInputManager inputManager;
     private PlayerInputManagerP2 inputManagerP2;
+    private P3Input inputManagerP3; // Added Chee Keat's controller support
 
     void Start()
     {
         inputManager = GetComponent<PlayerInputManager>();
         inputManagerP2 = GetComponent<PlayerInputManagerP2>();
+        inputManagerP3 = GetComponent<P3Input>(); // Added Chee Keat's controller support
     }
 
     void LateUpdate()
     {
         bool hasHeldItem =
             (inputManager != null && inputManager.HasHeldItem()) ||
-            (inputManagerP2 != null && inputManagerP2.HasHeldItem());
+            (inputManagerP2 != null && inputManagerP2.HasHeldItem()) ||
+            (inputManagerP3 != null && inputManagerP3.HasItemHeld);// Added Chee Keat's controller support
 
         if (hasHeldItem)
         {
@@ -33,6 +36,7 @@ public class NoThrowCursorDetector : MonoBehaviour
         {
             if (inputManager != null) inputManager.canThrow = false;
             if (inputManagerP2 != null) inputManagerP2.canThrow = false;
+            if (inputManagerP3 != null) inputManagerP3.canThrow = false; // Added Chee Keat's controller support
         }
     }
 
@@ -42,6 +46,7 @@ public class NoThrowCursorDetector : MonoBehaviour
         {
             InputType.Mouse => ScreenToWorldPointMouse.Instance?.GetMouseWorldPosition() ?? Vector2.zero,
             InputType.Joystick => PlayerAimController.Instance?.GetCursorPosition() ?? Vector2.zero,
+            InputType.P3Joystick => P3Cursor.Instance?.transform.position ?? Vector2.zero, // Added Chee Keat's controller support
             _ => Vector2.zero
         };
 
@@ -86,11 +91,13 @@ public class NoThrowCursorDetector : MonoBehaviour
     {
         if (inputManager != null) inputManager.canThrow = canThrow;
         if (inputManagerP2 != null) inputManagerP2.canThrow = canThrow;
+        if (inputManagerP3 != null) inputManagerP3.canThrow = canThrow; // Added Chee Keat's controller support
     }
 
     // Set properties for ItemPackage
     public PlayerInputManager InputManager => inputManager;
     public PlayerInputManagerP2 InputManagerP2 => inputManagerP2;
+    public P3Input InputManagerP3 => inputManagerP3; // Added Chee Keat's controller support
 
     void OnDrawGizmosSelected()
     {

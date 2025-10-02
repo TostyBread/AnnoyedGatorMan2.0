@@ -15,6 +15,20 @@ public class NPCBehavior : MonoBehaviour
     public float detectionRange = 1.0f;
     public LayerMask npcLayer;
 
+    [Header("Plate Detection")]
+    [Tooltip("How often to scan for plates in range (in seconds)")]
+    public float plateDetectionInterval = 0.2f;
+    [Tooltip("Range to detect plates")]
+    public float plateDetectionRange = 1.5f;
+    [Tooltip("Layer mask for plate detection")]
+    public LayerMask plateLayer = -1;
+
+    [Header("Collider References")]
+    [Tooltip("Assign the trigger collider for plate detection")]
+    public Collider2D triggerCollider;
+    [Tooltip("Assign the regular collider for physics collisions")]
+    public Collider2D physicsCollider;
+
     [Header("Performance Settings")]
     [Tooltip("Distance threshold for waypoint completion (smaller = more precise, larger = more performance)")]
     public float waypointThreshold = 0.05f;
@@ -36,7 +50,6 @@ public class NPCBehavior : MonoBehaviour
 
     public int customerId { get; private set; }
     private NPCState state = NPCState.Approaching;
-    private Collider2D npcCollider;
     private NPCAngerBehavior angerBehavior;
 
     // Cached components for performance
@@ -62,12 +75,18 @@ public class NPCBehavior : MonoBehaviour
     private static PlateManager plateManagerInstance;
     private static AudioManager audioManagerInstance;
 
+    // Plate detection variables
+    private float lastPlateDetectionTime;
+
     void Awake()
     {
         // Cache all components at startup
         angerBehavior = GetComponent<NPCAngerBehavior>();
         rb = GetComponent<Rigidbody2D>();
-        npcCollider = GetComponent<Collider2D>();
+        
+        // Auto-assign colliders if not manually set
+        AutoAssignColliders();
+        
         particleManager = GetComponent<ParticleManager>();
         npcPatience = GetComponent<NPCPatience>();
         npcAnimController = GetComponentInChildren<NPCAnimationController>();
@@ -86,6 +105,37 @@ public class NPCBehavior : MonoBehaviour
             plateManagerInstance = PlateManager.Instance;
         if (audioManagerInstance == null)
             audioManagerInstance = AudioManager.Instance;
+    }
+
+    private void AutoAssignColliders()
+    {
+        Collider2D[] colliders = GetComponents<Collider2D>();
+        
+        foreach (Collider2D col in colliders)
+        {
+            if (col.isTrigger && triggerCollider == null)
+            {
+                triggerCollider = col;
+            }
+            else if (!col.isTrigger && physicsCollider == null)
+            {
+                physicsCollider = col;
+            }
+        }
+
+        // Fallback: if only one collider exists, use it for both (but log a warning)
+        if (colliders.Length == 1)
+        {
+            if (triggerCollider == null) triggerCollider = colliders[0];
+            if (physicsCollider == null) physicsCollider = colliders[0];
+            Debug.LogWarning($"NPC {gameObject.name} only has one collider. Consider adding separate trigger and physics colliders for better functionality.");
+        }
+
+        // Ensure we have valid references
+        if (triggerCollider == null || physicsCollider == null)
+        {
+            Debug.LogError($"NPC {gameObject.name} is missing required colliders. Please assign trigger and physics colliders manually.");
+        }
     }
 
     void FixedUpdate()
@@ -112,6 +162,37 @@ public class NPCBehavior : MonoBehaviour
             case NPCState.Escaping:
                 MoveAlongPath(state == NPCState.Approaching ? waypoints : exitWaypoints);
                 break;
+            case NPCState.Arrived:
+                // Actively scan for plates when arrived
+                CheckForPlatesInRange();
+                break;
+        }
+    }
+
+    private void CheckForPlatesInRange()
+    {
+        if (hasAcceptedPlate) return;
+        if (Time.time - lastPlateDetectionTime < plateDetectionInterval) return;
+
+        lastPlateDetectionTime = Time.time;
+
+        // Use the trigger collider's bounds for more accurate detection
+        Vector2 detectionCenter = triggerCollider != null ? triggerCollider.bounds.center : transform.position;
+        
+        // Use OverlapCircleAll to find all colliders in range
+        Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(detectionCenter, plateDetectionRange, plateLayer);
+
+        foreach (Collider2D collider in collidersInRange)
+        {
+            // Check for PlateSystem component in the collider or its children
+            PlateSystem plate = collider.GetComponent<PlateSystem>();
+            if (plate == null)
+                plate = collider.GetComponentInChildren<PlateSystem>();
+
+            if (plate != null && TryAcceptPlate(plate))
+            {
+                break; // Stop checking once we've accepted a plate
+            }
         }
     }
 
@@ -251,7 +332,9 @@ public class NPCBehavior : MonoBehaviour
             plateRoot.SetParent(plateReceiveAnchor ?? transform);
             plateRoot.localPosition = Vector3.zero;
 
-            npcCollider.enabled = false;
+            // Disable the physics collider, not the trigger (so we can still detect other triggers)
+            if (physicsCollider != null)
+                physicsCollider.enabled = false;
             
             // Use TryGetComponent for better performance
             if (plateRoot.TryGetComponent<Rigidbody2D>(out var plateRb))
@@ -353,7 +436,9 @@ public class NPCBehavior : MonoBehaviour
 
         if (angerBehavior == null || !angerBehavior.IsAngry)
         {
-            npcCollider.enabled = false;
+            // Disable physics collider, keep trigger for consistency
+            if (physicsCollider != null)
+                physicsCollider.enabled = false;
         }
 
         plateManagerInstance?.FreeSpawnPoint(this);
@@ -435,7 +520,8 @@ public class NPCBehavior : MonoBehaviour
             if (angerBehavior == null || !angerBehavior.IsAngry)
             {
                 ForceEscape();
-                npcCollider.enabled = false;
+                if (physicsCollider != null)
+                    physicsCollider.enabled = false;
                 audioManagerInstance.PlaySound("scream", transform.position);
             }
         }
@@ -444,6 +530,30 @@ public class NPCBehavior : MonoBehaviour
         {
             returningToArrivedPoint = true;
             return;
+        }
+    }
+
+    // Debug visualization for plate detection range
+    private void OnDrawGizmosSelected()
+    {
+        if (state == NPCState.Arrived)
+        {
+            Vector3 center = triggerCollider != null ? triggerCollider.bounds.center : transform.position;
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(center, plateDetectionRange);
+        }
+
+        // Show collider references
+        if (triggerCollider != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(triggerCollider.bounds.center, triggerCollider.bounds.size);
+        }
+
+        if (physicsCollider != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(physicsCollider.bounds.center, physicsCollider.bounds.size);
         }
     }
 }

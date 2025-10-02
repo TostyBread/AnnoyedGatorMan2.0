@@ -85,6 +85,18 @@ public class ItemPackage : MonoBehaviour, IUsable
             p3Cursor = P3Cursor.Instance;
     }
 
+    public void ClearOwner()
+    {
+        owner = PackageOwner.None;
+        p1PickupSystem = null;
+        p2PickupSystem = null;
+        p3PickupSystem = null;
+        throwBlockDetector = null;
+        p1Cursor = null;
+        p2Cursor = null;
+        p3Cursor = null;
+    }
+
     // IUsable implementation
     public void EnableUsableFunction()
     {
@@ -122,6 +134,7 @@ public class ItemPackage : MonoBehaviour, IUsable
                 {
                     PackageOwner.Player1 => throwBlockDetector.InputManager != null && throwBlockDetector.InputManager.canThrow,
                     PackageOwner.Player2 => throwBlockDetector.InputManagerP2 != null && throwBlockDetector.InputManagerP2.canThrow,
+                    PackageOwner.Player3 => throwBlockDetector.InputManagerP3 != null && throwBlockDetector.InputManagerP3.canThrow, // Added Chee Keat's controller support
                     _ => true
                 };
                 if (!canThrow) return; // Block throw if not allowed
@@ -188,12 +201,16 @@ public class ItemPackage : MonoBehaviour, IUsable
         // Only destroy after the last item's throw animation is complete
         if (isLastItem && destroyWhenEmpty)
         {
-            if (owner == PackageOwner.Player1 && p1PickupSystem != null)
-                p1PickupSystem.TryManualDrop();
-            else if (owner == PackageOwner.Player2 && p2PickupSystem != null)
-                p2PickupSystem.TryManualDrop();
-            else if (owner == PackageOwner.Player3 && p3PickupSystem != null)
-                p3PickupSystem.TryManualDrop();
+            // Only call TryManualDrop if the package is still held by a player
+            if (owner != PackageOwner.None)
+            {
+                if (owner == PackageOwner.Player1 && p1PickupSystem != null)
+                    p1PickupSystem.TryManualDrop();
+                else if (owner == PackageOwner.Player2 && p2PickupSystem != null)
+                    p2PickupSystem.TryManualDrop();
+                else if (owner == PackageOwner.Player3 && p3PickupSystem != null)
+                    p3PickupSystem.TryManualDrop();
+            }
 
             Destroy(gameObject);
         }

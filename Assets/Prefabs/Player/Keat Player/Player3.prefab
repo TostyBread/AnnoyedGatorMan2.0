@@ -1785,6 +1785,7 @@ GameObject:
   - component: {fileID: 454652177134447574}
   - component: {fileID: 4097314866109383994}
   - component: {fileID: 1275436583344678529}
+  - component: {fileID: 3619115335145955248}
   m_Layer: 18
   m_Name: P3 Carbibara
   m_TagString: Player
@@ -2082,6 +2083,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: WallBump
   WallBumpSound: 0
+--- !u!114 &3619115335145955248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135101431889565427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12afdfb6290801e42b6a19ded59b4db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 2
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  enableDebugLog: 0
+  enableDebugGizmos: 0
 --- !u!1 &3324805289703524311
 GameObject:
   m_ObjectHideFlags: 0
@@ -4803,6 +4822,7 @@ GameObject:
   - component: {fileID: 8417424066442283857}
   - component: {fileID: 5351150476593833405}
   - component: {fileID: 7146315376641771014}
+  - component: {fileID: 7668680888624775215}
   m_Layer: 18
   m_Name: P3 GatorMan
   m_TagString: Player
@@ -5100,6 +5120,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: WallBump
   WallBumpSound: 0
+--- !u!114 &7668680888624775215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421450323599144564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12afdfb6290801e42b6a19ded59b4db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 2
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  enableDebugLog: 0
+  enableDebugGizmos: 0
 --- !u!1 &6548530637104651511
 GameObject:
   m_ObjectHideFlags: 0
@@ -7206,6 +7244,7 @@ GameObject:
   - component: {fileID: 6197196463942392668}
   - component: {fileID: 7535495033953433008}
   - component: {fileID: 4754851461008922123}
+  - component: {fileID: 9182224713853724800}
   m_Layer: 18
   m_Name: P3 Tortise
   m_TagString: Player
@@ -7503,6 +7542,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: WallBump
   WallBumpSound: 0
+--- !u!114 &9182224713853724800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921064350408222329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12afdfb6290801e42b6a19ded59b4db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 2
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  enableDebugLog: 0
+  enableDebugGizmos: 0
 --- !u!1 &8943011471215582428
 GameObject:
   m_ObjectHideFlags: 0
@@ -7602,7 +7659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4562775364599266421
 Transform:
   m_ObjectHideFlags: 0

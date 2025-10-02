@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewKnife Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2458728698113996335, guid: 3d381c41096699445af4eadc50112fe3, type: 3}
+      propertyPath: m_LinearDrag
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3403330055485765263, guid: 3d381c41096699445af4eadc50112fe3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.53

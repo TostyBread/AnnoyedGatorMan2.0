@@ -200,6 +200,11 @@ public class PlayerPickupSystemP2 : MonoBehaviour
         if (heldItem.TryGetComponent(out PlateSystem plateSystem)) // Specifically letting PlateSystem to know if its being dropped (PlateSystem)
             plateSystem.ClearHolder();
 
+        if (heldItem.TryGetComponent(out ItemPackage package)) // Clear ItemPackage ownership when dropped
+        {
+            package.ClearOwner();
+        }
+
         bool isFacingRight = characterFlipP2 != null && characterFlipP2.IsFacingRight();
         Vector3 dropPosition = handPosition.position + new Vector3(isFacingRight ? -0.2f : 0.5f, -0.5f, 0f);
         heldItem.transform.position = dropPosition;

@@ -251,9 +251,16 @@ MonoBehaviour:
   npcLayer:
     serializedVersion: 2
     m_Bits: 1024
+  plateDetectionInterval: 0.5
+  plateDetectionRange: 4
+  plateLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  triggerCollider: {fileID: 3131916694288282251}
+  physicsCollider: {fileID: 4180316551167014751}
   waypointThreshold: 0.05
   returnThreshold: 0.05
-  rb: {fileID: 0}
+  rb: {fileID: 880509381728504748}
 --- !u!114 &1315290407669038469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +282,8 @@ MonoBehaviour:
   blinkDuration: 0.15
   blinkCount: 3
   angerChanceOnHit: 0.5
+  angerDuration: 40
+  escapeOnTimeout: 0
   playerListRefreshRate: 2
   targetUpdateFrequency: 3
 --- !u!50 &880509381728504748

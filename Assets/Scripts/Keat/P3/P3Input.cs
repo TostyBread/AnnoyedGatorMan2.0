@@ -26,6 +26,9 @@ public class P3Input : MonoBehaviour
     [SerializeField] private bool pickupHandled = false;
     [SerializeField] private const float holdThreshold = 0.15f;
 
+    // Property to check if player has an item held, consistent with PlayerInputManager
+    public bool HasItemHeld => p2PickupSystem != null && p2PickupSystem.HasItemHeld;
+
     void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
