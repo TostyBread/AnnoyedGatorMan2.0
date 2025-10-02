@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -58,14 +59,32 @@ public class ScoreManager : MonoBehaviour
         else if (!isCleared && timer.RemainTime <= 0)
         {
             //Debug.Log("Level Failed! Final Score: " + currentScore);
-            if (LoseScreen != null) LoseScreen.SetActive(true);
+            if (LoseScreen != null)
+            {
+                LoseScreen.SetActive(true);
+
+                TMP_Text finalScoreText = LoseScreen.GetComponentInChildren<TMPro.TMP_Text>();
+                if (finalScoreText != null)
+                {
+                    finalScoreText.text = "Score: " + currentScore.ToString();
+                }
+            }
         }
     }
 
     IEnumerator DelayBeforeScreenShow(float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (WinScreen != null) WinScreen.SetActive(true);
+        if (WinScreen != null)
+        {
+            WinScreen.SetActive(true);
+
+            TMP_Text finalScoreText = WinScreen.GetComponentInChildren<TMPro.TMP_Text>();
+            if (finalScoreText != null)
+            {
+                finalScoreText.text = "Score: " + currentScore.ToString();
+            }
+        }
 
         if (levelData != null)
         {
