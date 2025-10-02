@@ -291,14 +291,44 @@ public class NPCBehavior : MonoBehaviour
     {
         if (state == NPCState.Frustrated) return;
 
+        bool angerTriggered = false;
+        
         if (!hasAcceptedPlate && angerBehavior != null)
         {
             if (Random.value < angerBehavior.angerChanceOnHit)
             {
                 angerBehavior.TriggerAngerMode(null);
+                angerTriggered = true;
             }
         }
 
+        // If anger was triggered, don't immediately leave - let the anger play out first
+        if (angerTriggered && angerBehavior != null && angerBehavior.IsAngry)
+        {
+            // Clean up the menu but don't change state to Frustrated yet
+            if (attachedMenu != null)
+            {
+                attachedMenu = null;
+                menuManagerInstance?.RemoveMenuForNPC(this);
+            }
+
+            if (attachedPlate != null)
+            {
+                if (attachedPlate.TryGetComponent<PlateSystem>(out var plateSystem))
+                    plateSystem.SetOwnerActive(false);
+                attachedPlate = null;
+            }
+
+            // Stop patience and free spawn point
+            npcPatience?.StopPatience();
+            plateManagerInstance?.FreeSpawnPoint(this);
+            
+            // Keep collider enabled for angry NPC interactions
+            // The anger system will handle when to escape via AngerTimerRoutine or hit count
+            return; // Don't proceed to frustrated leaving - let anger handle the exit
+        }
+
+        // Normal frustrated leaving behavior (when anger wasn't triggered or failed to trigger)
         state = NPCState.Frustrated;
         currentWaypointIndex = 0;
 
