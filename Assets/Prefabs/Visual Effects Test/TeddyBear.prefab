@@ -510,7 +510,7 @@ MonoBehaviour:
   isHurtDur: 1
   enemy: 0
   sharedHealthSource: {fileID: 0}
-  deadBody: {fileID: 0}
+  deadBody: {fileID: 8908075228506145984, guid: c5d7134abd3024e41849d950f2954820, type: 3}
   isPlayer: 1
   canMove: 1
   isDefeated: 0
@@ -754,7 +754,7 @@ MonoBehaviour:
   - {x: -4.1161175, y: -2.73939, z: 0}
   m_ShapePathHash: 1566888226
   m_Mesh: {fileID: 0}
-  m_InstanceId: -48734
+  m_InstanceId: -122576
   m_LocalBounds:
     m_Center: {x: 0.039346218, y: 0.06034279, z: 0}
     m_Extent: {x: 4.1748757, y: 5.1594234, z: 0}

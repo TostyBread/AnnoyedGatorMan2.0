@@ -261,7 +261,7 @@ public class NPCBehavior : MonoBehaviour
             state = NPCState.Leaving;
             currentWaypointIndex = 0;
 
-            scoreManager?.AddScore(plate.plateScore);
+            scoreManager?.AddScore(plate.plateScore,plate.lastHolder.transform.parent.gameObject);
             if (sanity != null) sanity.RemainSanity += sanity.MaxSanity;
             particleManager?.SpawnParticleOnce();
             hasAcceptedPlate = true;
