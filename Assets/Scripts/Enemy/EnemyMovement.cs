@@ -127,7 +127,8 @@ public class EnemyMovement : MonoBehaviour
 
         StartCoroutine(ChangeTargetedGrid(Random.Range(1f, 3f)));
 
-        enemyMovePoint = gameObject.GetComponentInChildren<DestroyWhenMasterDie>().gameObject;
+        if (enemyMovePoint == null)
+        enemyMovePoint = gameObject.GetComponentInChildren<GetMeFormOtherCode>().gameObject;
     }
 
     private void FixedUpdate()

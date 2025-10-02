@@ -36,7 +36,7 @@ public class EnemyAnimation : MonoBehaviour
 
     private void HandleAnimationFlip()
     {
-        float zAngle = Enemy.transform.eulerAngles.z;
+        float zAngle = Enemy.GetComponentInChildren<GetMeFormOtherCode>().gameObject.transform.eulerAngles.z;
 
         if (zAngle > 90 && zAngle < 270)
             spriteRenderer.flipX = false;

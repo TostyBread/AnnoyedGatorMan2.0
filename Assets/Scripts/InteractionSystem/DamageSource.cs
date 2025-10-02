@@ -58,6 +58,11 @@ public class DamageSource : MonoBehaviour
         }
     }
 
+    public void ClearOwner()
+    {
+        owner = null;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (damageAmount == 0 || isFireSource || isColdSource || isStunSource || rb == null || rb.velocity.magnitude < minVelocityToDamage)

@@ -230,6 +230,7 @@ MonoBehaviour:
   foodLayers:
     serializedVersion: 2
     m_Bits: 64
+  enemyMovePoint: {fileID: 0}
 --- !u!50 &2336767402511691642
 Rigidbody2D:
   serializedVersion: 4
@@ -353,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3754072012417083061}
-  - component: {fileID: 3059057782138244606}
+  - component: {fileID: 2607794199389580918}
   m_Layer: 0
   m_Name: EnemyMovePoint
   m_TagString: Untagged
@@ -378,7 +379,7 @@ Transform:
   - {fileID: 644571841490877567}
   m_Father: {fileID: 6098579532918019767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3059057782138244606
+--- !u!114 &2607794199389580918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -387,10 +388,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1605733860555913360}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd774f1435633c541ab8f16acf4574aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 30274d46cc93f3744acc448ac11cc7b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Master: {fileID: 1558668271278603332}
 --- !u!1 &2233302623248755459
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5190543388772515395}
+  - component: {fileID: 6056135072492334324}
   m_Layer: 15
   m_Name: Mosquitoe
   m_TagString: Enemy
@@ -514,6 +515,19 @@ Transform:
   - {fileID: 6098579532918019767}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6056135072492334324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6312840743406530945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd774f1435633c541ab8f16acf4574aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Master: {fileID: 1558668271278603332}
 --- !u!1 &9167212895860456397
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +675,7 @@ MonoBehaviour:
   - {x: 2.1552315, y: -2.4399996, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 82524
+  m_InstanceId: 127982
   m_LocalBounds:
     m_Center: {x: 0, y: 0.00000047683716, z: 0}
     m_Extent: {x: 2.1552315, y: 2.44, z: 0}

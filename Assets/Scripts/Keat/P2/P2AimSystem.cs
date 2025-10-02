@@ -18,7 +18,7 @@ public class P2AimSystem : MonoBehaviour
     public GameObject Range;
 
     public GameObject P2Player;
-    private GameObject CurrentTarget;
+    public GameObject CurrentTarget;
     public GameObject HandControl;
 
     public GameObject Arrow;
@@ -79,6 +79,7 @@ public class P2AimSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         ChangeTarget();
         CurrentTarget = NearestTarget();
 
