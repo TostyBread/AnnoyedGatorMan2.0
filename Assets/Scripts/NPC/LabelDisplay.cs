@@ -68,7 +68,7 @@ public class LabelDisplay : MonoBehaviour
         label.fontSize = fontSize;
         label.color = labelColor;
         label.alignment = TextAlignmentOptions.Center;
-        label.sortingOrder = 100;
+        label.sortingOrder = 10;
     }
 
     void LateUpdate()
