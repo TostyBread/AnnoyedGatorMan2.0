@@ -52,7 +52,9 @@ MonoBehaviour:
   hand: {fileID: 2820631572873079850}
   characterFlip: {fileID: 3455622770561305545}
   currentTargetIndex: 0
+  CurrentTarget: {fileID: 0}
   Range: {fileID: 7080791532417168460}
+  ItemInRange: []
   P2Player: {fileID: 3135101431889565427}
   HandControl: {fileID: 4657565808220804393}
   Arrow: {fileID: 4296039324017526456}
@@ -377,6 +379,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 3135101431889565427}
+  ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
 --- !u!50 &4744209738878026416
 Rigidbody2D:
@@ -1792,7 +1795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1120102185894322885
 Transform:
   m_ObjectHideFlags: 0
@@ -1910,7 +1913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570ee8888899caf4e814abf047e456db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupRadius: 5
+  pickupRadius: 5.1
   handPosition: {fileID: 9085419782311384898}
   dropForce: 3
   validTags:
@@ -4708,7 +4711,9 @@ MonoBehaviour:
   hand: {fileID: 8604979888639368352}
   characterFlip: {fileID: 9204007985203772227}
   currentTargetIndex: 0
+  CurrentTarget: {fileID: 0}
   Range: {fileID: 3606227184721757382}
+  ItemInRange: []
   P2Player: {fileID: 8921064350408222329}
   HandControl: {fileID: 1219663554708415907}
   Arrow: {fileID: 7769127062107829810}
@@ -4829,7 +4834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9013086214482788930
 Transform:
   m_ObjectHideFlags: 0
@@ -4947,7 +4952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570ee8888899caf4e814abf047e456db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupRadius: 5
+  pickupRadius: 5.1
   handPosition: {fileID: 903649091048912837}
   dropForce: 3
   validTags:
@@ -5284,6 +5289,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 8921064350408222329}
+  ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
 --- !u!50 &1268101367669797434
 Rigidbody2D:
@@ -5853,7 +5859,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9204392779161731895}
@@ -6920,7 +6926,9 @@ MonoBehaviour:
   hand: {fileID: 6177646010319293613}
   characterFlip: {fileID: 6731574886544173902}
   currentTargetIndex: 0
+  CurrentTarget: {fileID: 0}
   Range: {fileID: 1214717675863315659}
+  ItemInRange: []
   P2Player: {fileID: 6421450323599144564}
   HandControl: {fileID: 3620175315003291054}
   Arrow: {fileID: 5260508004985710143}
@@ -7076,6 +7084,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 6421450323599144564}
+  ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
 --- !u!50 &3695586912022503991
 Rigidbody2D:
@@ -7369,7 +7378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570ee8888899caf4e814abf047e456db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupRadius: 5
+  pickupRadius: 5.1
   handPosition: {fileID: 3339990600250894280}
   dropForce: 3
   validTags:
@@ -7659,7 +7668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4562775364599266421
 Transform:
   m_ObjectHideFlags: 0

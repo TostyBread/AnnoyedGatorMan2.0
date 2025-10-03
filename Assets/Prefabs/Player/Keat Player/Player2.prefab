@@ -294,7 +294,9 @@ MonoBehaviour:
   hand: {fileID: 6912609932458225830}
   characterFlip: {fileID: 3973685239878278951}
   currentTargetIndex: 0
+  CurrentTarget: {fileID: 0}
   Range: {fileID: 5555540110442718837}
+  ItemInRange: []
   P2Player: {fileID: 2818093456570068351}
   HandControl: {fileID: 2358437140388838786}
   Arrow: {fileID: 1262380209550511799}
@@ -1023,6 +1025,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 8293320950161092410}
+  ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
 --- !u!50 &3697908153548041438
 Rigidbody2D:
@@ -1927,6 +1930,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 5274495434050756418}
+  ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
 --- !u!50 &681333337828859046
 Rigidbody2D:
@@ -2381,7 +2385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570ee8888899caf4e814abf047e456db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupRadius: 5
+  pickupRadius: 5.1
   handPosition: {fileID: 7861414456826931372}
   dropForce: 3
   validTags:
@@ -3968,7 +3972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570ee8888899caf4e814abf047e456db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupRadius: 5
+  pickupRadius: 5.1
   handPosition: {fileID: 229822649923000977}
   dropForce: 3
   validTags:
@@ -4564,6 +4568,7 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 2818093456570068351}
+  ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
 --- !u!50 &7448304762914500251
 Rigidbody2D:
@@ -4916,7 +4921,9 @@ MonoBehaviour:
   hand: {fileID: 856436529392546531}
   characterFlip: {fileID: 7145373999981550946}
   currentTargetIndex: 0
+  CurrentTarget: {fileID: 0}
   Range: {fileID: 1807373005848929328}
+  ItemInRange: []
   P2Player: {fileID: 8293320950161092410}
   HandControl: {fileID: 8410173730569387975}
   Arrow: {fileID: 5010477216113609970}
@@ -5618,7 +5625,9 @@ MonoBehaviour:
   hand: {fileID: 3587014489548489371}
   characterFlip: {fileID: 6416636728494107930}
   currentTargetIndex: 0
+  CurrentTarget: {fileID: 0}
   Range: {fileID: 2535556260932785224}
+  ItemInRange: []
   P2Player: {fileID: 5274495434050756418}
   HandControl: {fileID: 5662149132220043199}
   Arrow: {fileID: 9200225853496638602}
@@ -6219,7 +6228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570ee8888899caf4e814abf047e456db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupRadius: 5
+  pickupRadius: 5.1
   handPosition: {fileID: 4113317716684974825}
   dropForce: 3
   validTags:

@@ -104,7 +104,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.1, y: 0.4}
-  m_Size: {x: 0.24, y: 1.66}
+  m_Size: {x: 0.48, y: 2.5}
   m_Direction: 0
 --- !u!50 &2458728698113996335
 Rigidbody2D:
@@ -119,7 +119,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 3
-  m_LinearDrag: 2
+  m_LinearDrag: 10
   m_AngularDrag: 1.5
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706992943235291945}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc8dcbe5c244c074684860ba57e6f59e, type: 3}
   m_Name: 
@@ -168,22 +168,22 @@ MonoBehaviour:
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.21078968, y: -0.4760518, z: 0}
-  - {x: -0.20271969, y: 0.98039407, z: 0}
-  - {x: -0.1482563, y: 1.2823269, z: 0}
-  - {x: -0.06310654, y: 1.1313112, z: 0}
-  - {x: -0.0184021, y: 0.9628868, z: 0}
-  - {x: 0.012763023, y: 0.7862858, z: 0}
-  - {x: 0.035331726, y: 0.22362347, z: 0}
-  - {x: -0.07058811, y: 0.19138716, z: 0}
-  - {x: -0.08440304, y: 0.09007304, z: 0}
-  - {x: -0.03526306, y: -0.4668414, z: 0}
-  m_ShapePathHash: 1677007953
+  - {x: -0.3154359, y: -0.774601, z: 0}
+  - {x: -0.3412218, y: 0.7957244, z: 0}
+  - {x: -0.11440039, y: 1.5777984, z: 0}
+  - {x: 0.04153967, y: 1.2144122, z: 0}
+  - {x: 0.10778856, y: 0.8951745, z: 0}
+  - {x: 0.16357613, y: 0.47542548, z: 0}
+  - {x: 0.14613342, y: 0.19900084, z: 0}
+  - {x: -0.17215633, y: 0.15445328, z: 0}
+  - {x: -0.13364792, y: -0.036117792, z: 0}
+  - {x: -0.05373001, y: -0.7161453, z: 0}
+  m_ShapePathHash: 2079343981
   m_Mesh: {fileID: 0}
-  m_InstanceId: -157696
+  m_InstanceId: -23744
   m_LocalBounds:
-    m_Center: {x: -0.08772898, y: 0.40313756, z: 0}
-    m_Extent: {x: 0.1230607, y: 0.8791894, z: 0}
+    m_Center: {x: -0.08882284, y: 0.4015987, z: 0}
+    m_Extent: {x: 0.25239897, y: 1.1761997, z: 0}
 --- !u!1 &7621144025468530422
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 5969985387475216021}
   - component: {fileID: 2110993505141760519}
   - component: {fileID: 7474308108935373552}
+  - component: {fileID: 6123956633089320468}
   m_Layer: 0
   m_Name: Sprite&Hitbox
   m_TagString: Untagged
@@ -260,7 +261,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 1f2bd71c86f3e234fadd64d230e0fa26, type: 3}
+  m_Sprite: {fileID: 82171953, guid: 6ba3beaedcd2a5944b0678543d331892, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -286,7 +287,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2359296
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -303,8 +304,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.3, y: 0}
-  m_Size: {x: 4.5, y: 1.2}
+  m_Offset: {x: 1.8, y: 0}
+  m_Size: {x: 7, y: 3}
   m_Direction: 1
 --- !u!50 &2110993505141760519
 Rigidbody2D:
@@ -355,4 +356,19 @@ MonoBehaviour:
   minVelocityToDamage: 0
   playHitSound: 1
   owner: {fileID: 0}
+  ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
+--- !u!114 &6123956633089320468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621144025468530422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d0c4dd702eff1439737f161a2ebc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteWithBorder: {fileID: 582466334, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  spriteWithBorderScale: 0.25
