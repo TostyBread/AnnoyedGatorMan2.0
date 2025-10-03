@@ -23,6 +23,7 @@ TagManager:
   - AudioManager
   - P2 & P3 Range
   - HighScoreText
+  - DialogueTrigger
   layers:
   - Default
   - TransparentFX

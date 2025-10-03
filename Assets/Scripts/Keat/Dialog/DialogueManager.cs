@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -70,7 +71,7 @@ public class DialogueManager : MonoBehaviour
         DialogueLine currentLine = lines.Dequeue();
 
         characterIcon.sprite = currentLine.character.icon;
-        characterName.text = currentLine.character.name; 
+        characterName.text = currentLine.character.name;
 
         StopAllCoroutines();
 
@@ -82,13 +83,13 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueArea.text = "";
         foreach (char letter in dialogueLine.line.ToCharArray())
-        { 
+        {
             dialogueArea.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
     }
 
-    private void EndDialogue() 
+    private void EndDialogue()
     {
         isDialogueActive = false;
 
@@ -101,4 +102,5 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         DisplayNextDialogueLine();
     }
+
 }

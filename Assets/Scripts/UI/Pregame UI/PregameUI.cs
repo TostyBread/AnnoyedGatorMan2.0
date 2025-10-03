@@ -24,16 +24,20 @@ public class PregameUI : MonoBehaviour
     public float DelayBeforeShowing = 0f;
     public float ShowingTime = 3f;
 
-    [Header("References")]
+    [Header("Pregame Setting")]
     public GameObject PregameScreen;
+    public bool showPregameUI = true;
+
+    [Header("References")]
     private WeatherManager weatherManager;
 
     void Awake()
     {
         weatherManager = FindObjectOfType<WeatherManager>();
+
         PregameScreen.SetActive(false);
 
-        if (weatherManager != null)
+        if (weatherManager != null && showPregameUI == true)
         {
              StartCoroutine(ShowPregameUI());
         }
