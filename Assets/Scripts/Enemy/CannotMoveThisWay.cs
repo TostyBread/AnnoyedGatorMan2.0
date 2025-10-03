@@ -2,91 +2,90 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Tracks whether this grid point is blocked by relevant targets (player or food).
+/// Uses a reference-count approach so multiple overlapping colliders don't incorrectly flip the state.
+/// Keeps aimForFood in sync with parent EnemyMovement.
+/// </summary>
 public class CannotMoveThisWay : MonoBehaviour
 {
-    [SerializeField] public bool canMoveThisWay;
+    [SerializeField] public bool canMoveThisWay = true;
     private bool aimForFood;
+    private int blockingCount = 0;
+
+    private EnemyMovement parentEM;
+
+    private void Awake()
+    {
+        parentEM = GetComponentInParent<EnemyMovement>();
+    }
 
     private void Start()
     {
+        if (parentEM == null)
+            Debug.LogWarning($"{name}: Cannot find EnemyMovement in parents.");
+        aimForFood = parentEM != null && parentEM.aimForFood;
         canMoveThisWay = true;
-        aimForFood = GetComponentInParent<EnemyMovement>().aimForFood;
     }
 
-    //use OnTrigger and OnCollision to ensure the checking is always correct
-    //if not OnTrigger might not get the correct respond(canMoveThisWay)
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.CompareTag("Player") && !aimForFood)
-        { 
-            canMoveThisWay = false;
+        // Keep aimForFood in sync in case the enemy switches targets at runtime
+        if (parentEM != null)
+            aimForFood = parentEM.aimForFood;
+    }
 
-            //Debug.Log("can move this way = " + canMoveThisWay);
-            //Debug.Log("collision with = " + collision);
-        }
+    private bool IsRelevantCollider(GameObject go)
+    {
+        if (go == null) return false;
 
-        if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
+        if (!aimForFood)
+            return go.CompareTag("Player");
+
+        // aimForFood true -> check food tags
+        return go.CompareTag("FoodBig") || go.CompareTag("FoodSmall");
+    }
+
+    private void HandleEnter(GameObject go)
+    {
+        if (!IsRelevantCollider(go)) return;
+
+        // Optionally require HealthManager presence for food/player
+        if (aimForFood || (!aimForFood))
         {
-            if (collision.gameObject.GetComponent<HealthManager>() != null)
+            // increment count and set false if first blocker
+            blockingCount++;
+            if (blockingCount == 1)
                 canMoveThisWay = false;
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void HandleExit(GameObject go)
     {
-        if (collision.gameObject.CompareTag("Player") && !aimForFood)
-        {
-            canMoveThisWay = false;
+        if (!IsRelevantCollider(go)) return;
 
-            //Debug.Log("can move this way = " + canMoveThisWay);
-            //Debug.Log("collision with = " + collision);
-        }
+        blockingCount = Mathf.Max(0, blockingCount - 1);
+        if (blockingCount == 0)
+            canMoveThisWay = true;
+    }
 
-        if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
-        {
-            if (collision.gameObject.GetComponent<HealthManager>() != null)
-                canMoveThisWay = false;
-        }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        HandleEnter(collision.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !aimForFood)
-        {
-            canMoveThisWay = true;
+        HandleExit(collision.gameObject);
+    }
 
-            //Debug.Log("can move this way = " + canMoveThisWay);
-            //Debug.Log("collision with = " + collision);
-        }
-
-        if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
-        {
-            if (collision.gameObject.GetComponent<HealthManager>() != null)
-                canMoveThisWay = true;
-        }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        HandleEnter(collision.gameObject);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !aimForFood)
-        {
-            canMoveThisWay = true;
-
-            //Debug.Log("can move this way = " + canMoveThisWay);
-            //Debug.Log("collision with = " + collision);
-        }
-
-        if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
-        {
-            if (collision.gameObject.GetComponent<HealthManager>() != null)
-                canMoveThisWay = true;
-        }
+        HandleExit(collision.gameObject);
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    canMoveThisWay = false;
-    //}
 }
-
