@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8215442991627920367}
-  - component: {fileID: 3686735509807011296}
+  - component: {fileID: 3961313600553438545}
   m_Layer: 0
   m_Name: EnemyMovePoint
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 2748714370390039971}
   m_Father: {fileID: 5857124541485626640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3686735509807011296
+--- !u!114 &3961313600553438545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,10 +43,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1346769112673174760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd774f1435633c541ab8f16acf4574aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 30274d46cc93f3744acc448ac11cc7b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Master: {fileID: 7721013824335942139}
 --- !u!1 &3808879903531677094
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +228,7 @@ MonoBehaviour:
   - {x: -6.2044983, y: -2.5438144, z: 0}
   m_ShapePathHash: 365628945
   m_Mesh: {fileID: 0}
-  m_InstanceId: 82206
+  m_InstanceId: 165452
   m_LocalBounds:
     m_Center: {x: -0.048265457, y: 0.031505585, z: 0}
     m_Extent: {x: 8.45625, y: 8.453963, z: 0}
@@ -333,6 +332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2784006101391383569}
+  - component: {fileID: 6626364900207324539}
   m_Layer: 15
   m_Name: Cockroach
   m_TagString: Enemy
@@ -356,6 +356,19 @@ Transform:
   - {fileID: 5857124541485626640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6626364900207324539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7012665065028149620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd774f1435633c541ab8f16acf4574aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Master: {fileID: 7721013824335942139}
 --- !u!1 &7721013824335942139
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +454,7 @@ MonoBehaviour:
   foodLayers:
     serializedVersion: 2
     m_Bits: 64
+  enemyMovePoint: {fileID: 0}
 --- !u!50 &9133700390721142931
 Rigidbody2D:
   serializedVersion: 4
@@ -569,7 +583,7 @@ GameObject:
   - component: {fileID: 8852092218117928120}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

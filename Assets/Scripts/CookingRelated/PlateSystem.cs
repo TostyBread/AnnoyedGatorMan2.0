@@ -162,7 +162,11 @@ public class PlateSystem : MonoBehaviour
 
     private bool isOwnerActive = true;
     private GameObject currentHolder = null;
+    public GameObject lastHolder = null;
     public bool IsHeld => currentHolder != null;
+
+    // Always returns the remembered last holder
+    public GameObject LastHolder => lastHolder;
 
     public void SetOwnerActive(bool isActive)
     {
@@ -177,6 +181,7 @@ public class PlateSystem : MonoBehaviour
     public void SetHolder(GameObject holder)
     {
         currentHolder = holder;
+        lastHolder = holder;
     }
 
     public void ClearHolder()

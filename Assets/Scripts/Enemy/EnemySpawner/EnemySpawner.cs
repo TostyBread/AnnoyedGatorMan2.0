@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,8 +11,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject UI;
 
     public float MaxSpawnedEnemy = 5;
-    public int MinSpawn = 25;
-    public int MaxSpawn = 30;
+    public int MinSpawnTime = 25;
+    public int MaxSpawnTime = 30;
 
     private Timer timer;
     private Sanity sanity;
@@ -41,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
 
         timer = UI.GetComponentInChildren<Timer>();
         sanity = UI.GetComponentInChildren<Sanity>();
-        ChargeReadyTime = Random.Range(MinSpawn, MaxSpawn);
+        ChargeReadyTime = Random.Range(MinSpawnTime, MaxSpawnTime);
         weatherManager = FindAnyObjectByType<WeatherManager>();
 
         if (Spawners.Count == 0)
@@ -92,9 +94,17 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("Let's spawn enemy");
             currentSpawnedEnemy++;
 
-            spawner = Spawners[Random.Range(0, Spawners.Count)]; // Randomly select a spawner from the list
+            try
+            {
+                spawner = Spawners[Random.Range(0, Spawners.Count)]; // Randomly select a spawner from the list
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Debug.LogWarning("There is no index in Spawners arrary");
+            }
+
             GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation);
-            ChargeReadyTime = Random.Range(MinSpawn, MaxSpawn);
+            ChargeReadyTime = Random.Range(MinSpawnTime, MaxSpawnTime);
 
             if (sanity.RemainSanity <= 0) //If sanity is empty...
             {

@@ -41,6 +41,8 @@ public class EnemyMovement : MonoBehaviour
     private Coroutine attackCoroutine;
     private Coroutine wanderCoroutine;
     private Coroutine waitCoroutine;
+    private Coroutine cannotMoveCoroutine;
+
 
     public enum EnemyState
     {
@@ -73,6 +75,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private LayerMask obstacleLayers;
     [SerializeField] private LayerMask foodLayers;
     int combinedMask;
+
+    public GameObject enemyMovePoint;
+
 
     private void Start()
     {
@@ -123,6 +128,9 @@ public class EnemyMovement : MonoBehaviour
     
 
         StartCoroutine(ChangeTargetedGrid(Random.Range(1f, 3f)));
+
+        if (enemyMovePoint == null)
+        enemyMovePoint = gameObject.GetComponentInChildren<GetMeFormOtherCode>().gameObject;
     }
 
     private void FixedUpdate()
@@ -247,14 +255,29 @@ public class EnemyMovement : MonoBehaviour
                 agent.velocity = Vector3.zero;
             }
 
+            // Start a timeout coroutine if not already running
+            if (cannotMoveCoroutine == null)
+            {
+                cannotMoveCoroutine = StartCoroutine(CannotMoveTimeout());
+            }
+
             // Handle attack logic
             if (!isAttacking)
             {
                 attackCoroutine = StartCoroutine(Attack(DurationBeforeAttack, RecoveryFrame));
             }
 
-            isMoving = false; // Not moving due to blocked path
+            isMoving = false;
             return;
+        }
+        else
+        {
+            // If movement is possible again, cancel the timeout
+            if (cannotMoveCoroutine != null)
+            {
+                StopCoroutine(cannotMoveCoroutine);
+                cannotMoveCoroutine = null;
+            }
         }
 
         if (!FlyingEnemy && agent.isStopped)
@@ -279,20 +302,35 @@ public class EnemyMovement : MonoBehaviour
         rb2d.velocity = Vector2.zero; // Remove any physics force drag
     }
 
+    private IEnumerator CannotMoveTimeout()
+    {
+        float delay = Random.Range(1f, 3f);
+        yield return new WaitForSeconds(delay);
+
+        if (cmty.canMoveThisWay == false)
+        {
+            Debug.Log("Stuck too long, switching to new wander point...");
+            currentState = EnemyState.Wandering;
+            StartCoroutine(ChangeTargetedGrid(0)); // instantly pick a new wander point
+        }
+
+        cannotMoveCoroutine = null;
+    }
+
     private void enemyRotation(Transform Target)
     {
         Vector2 direction = Target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion Rotation = Quaternion.Euler(0, 0, angle);
         
-        transform.rotation = Rotation;
+        enemyMovePoint.transform.rotation = Rotation;
         //transform.rotation = Quaternion.Lerp(transform.rotation, Rotation, Time.deltaTime * 5f);
     }
 
     private void EnemyWonderAround()
     {
-        // If we’ve reached the destination, choose a new one after a delay
-        if (TargetedGrid == null || Vector3.Distance(transform.position, TargetedGrid.position) < 0.01f)
+        // If no target or reached the current one...
+        if (TargetedGrid == null || Vector3.Distance(transform.position, TargetedGrid.position) < 1f)
         {
             if (MoveNext)
             {

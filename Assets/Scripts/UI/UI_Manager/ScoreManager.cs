@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,11 @@ public class ScoreManager : MonoBehaviour
     [Header("Score setting")]
     public int scoreToClear = 0;
     public int currentScore = 0;
+
+    //Saparate variable to track who last added the score
+    public GameObject lastHolder;
+    private int player1Score = 0;
+    private int player2Score = 0;
 
     [Header("Level clear setting")]
     public int currentLevelIndex;
@@ -43,9 +49,22 @@ public class ScoreManager : MonoBehaviour
         if (levelData != null) Debug.Log("Level " + currentLevelIndex + " Highest Score: " + levelData.GetHighScore(currentLevelIndex));
     }
 
-    public void AddScore(int scoreToAdd)
+    public void AddScore(int scoreToAdd, GameObject lastHolder)
     {
         currentScore += scoreToAdd;
+        this.lastHolder = lastHolder;
+
+        if (lastHolder.name == "Player1")
+        {
+            player1Score += scoreToAdd;
+        }
+        else if (lastHolder.name == "Player3")
+        {
+            player2Score += scoreToAdd;
+        }
+
+        Debug.Log("Current Player1 Score: " + player1Score);
+        Debug.Log("Current Player2 Score: " + player2Score);
     }
 
     private void CheckIfLevelCleared()
@@ -58,14 +77,38 @@ public class ScoreManager : MonoBehaviour
         else if (!isCleared && timer.RemainTime <= 0)
         {
             //Debug.Log("Level Failed! Final Score: " + currentScore);
-            if (LoseScreen != null) LoseScreen.SetActive(true);
+            if (LoseScreen != null)
+            {
+                LoseScreen.SetActive(true);
+
+                TMP_Text finalScoreText = LoseScreen.GetComponentInChildren<TMPro.TMP_Text>();
+                if (finalScoreText != null)
+                {
+                    finalScoreText.text =
+                        "Total Score: " + currentScore.ToString() + "\n" +
+                        "Player1: " + player1Score.ToString() + "\n" +
+                        "Player2: " + player2Score.ToString();
+                }
+            }
         }
     }
 
     IEnumerator DelayBeforeScreenShow(float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (WinScreen != null) WinScreen.SetActive(true);
+        if (WinScreen != null)
+        {
+            WinScreen.SetActive(true);
+
+            TMP_Text finalScoreText = WinScreen.GetComponentInChildren<TMPro.TMP_Text>();
+            if (finalScoreText != null)
+            {
+                finalScoreText.text =
+                    "Total Score: " + currentScore.ToString() + "\n" +
+                    "Player1: " + player1Score.ToString() + "\n" +
+                    "Player2: " + player2Score.ToString();
+            }
+        }
 
         if (levelData != null)
         {

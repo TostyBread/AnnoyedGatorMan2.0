@@ -35,22 +35,23 @@ public class DamageSource : MonoBehaviour
 
         if (owner != null) ownerCollider = owner.GetComponent<Collider2D>();
     }
-
-    private void FixedUpdate()
-    {
-        //Prevent self collision (Need to ignore before collide or trigger enter)
-        if (ownerCollider != null)
-        {
-            Physics2D.IgnoreCollision(ownerCollider, GetComponent<Collider2D>());
-        }
-    }
-
     public void SetOwner(GameObject newOwner)
     {
+        // Re-enable collisions with old owner first
+        if (ownerCollider != null)
+        {
+            Physics2D.IgnoreCollision(ownerCollider, GetComponent<Collider2D>(), false);
+        }
+
         owner = newOwner;
+
         if (owner != null)
         {
             ownerCollider = owner.GetComponent<Collider2D>();
+            if (ownerCollider != null)
+            {
+                Physics2D.IgnoreCollision(ownerCollider, GetComponent<Collider2D>(), true);
+            }
         }
         else
         {
@@ -58,6 +59,15 @@ public class DamageSource : MonoBehaviour
         }
     }
 
+    public void ClearOwner()
+    {
+        if (ownerCollider != null)
+        {
+            Physics2D.IgnoreCollision(ownerCollider, GetComponent<Collider2D>(), false);
+            ownerCollider = null;
+        }
+        owner = null;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (damageAmount == 0 || isFireSource || isColdSource || isStunSource || rb == null || rb.velocity.magnitude < minVelocityToDamage)

@@ -44,6 +44,12 @@ public class PlayerThrowManager : MonoBehaviour
             firearm.ClearOwner();
         }
 
+        // Detach kinfe ownership if applicable
+        if (heldItem.TryGetComponent(out KnifeController knife))
+        {
+            knife.GetComponentInChildren<DamageSource>().ClearOwner();
+        }
+
         if (heldItem.TryGetComponent(out ItemPackage package))  // Set the owner of the package when thrown away
         {
             package.SetOwner(PackageOwner.None);
@@ -61,27 +67,20 @@ public class PlayerThrowManager : MonoBehaviour
 
         handSpriteManager?.ShowThrowSprite(throwSpriteDuration);
 
-        // Determine throw direction
-        if (doorCauseThrow) // REMOVE doorCauseThrow, the door mechanic will not be implemented
+        if (P1FalseP2True)
         {
-            storedThrowPosition = transform.position;
+            if (P2ThrowDirection == null)
+            {
+                Debug.LogError("P2ThrowDirection is not assigned.");
+                return;
+            }
+            storedThrowPosition = P2ThrowDirection.position;
         }
         else
         {
-            if (P1FalseP2True)
-            {
-                if (P2ThrowDirection == null)
-                {
-                    Debug.LogError("P2ThrowDirection is not assigned.");
-                    return;
-                }
-                storedThrowPosition = P2ThrowDirection.position;
-            }
-            else
-            {
-                storedThrowPosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
-            }
+            storedThrowPosition = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
         }
+
 
         float distance = Vector2.Distance(transform.position, storedThrowPosition);
 

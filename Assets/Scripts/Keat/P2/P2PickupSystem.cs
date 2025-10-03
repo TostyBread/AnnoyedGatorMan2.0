@@ -165,7 +165,6 @@ public class P2PickupSystem : MonoBehaviour
         }
 
         PickUpItem(targetItem.gameObject);
-
     }
 
     private void PickUpItem(GameObject item)
@@ -174,6 +173,7 @@ public class P2PickupSystem : MonoBehaviour
             plateSystem.SetHolder(gameObject);
 
         if (item.TryGetComponent(out Collider2D collider)) collider.enabled = false;
+
         if (item.TryGetComponent(out Rigidbody2D rb))
         {
             rb.isKinematic = true;
