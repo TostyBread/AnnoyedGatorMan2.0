@@ -180,7 +180,7 @@ MonoBehaviour:
   - {x: -0.05373001, y: -0.7161453, z: 0}
   m_ShapePathHash: 2079343981
   m_Mesh: {fileID: 0}
-  m_InstanceId: -23744
+  m_InstanceId: 76314
   m_LocalBounds:
     m_Center: {x: -0.08882284, y: 0.4015987, z: 0}
     m_Extent: {x: 0.25239897, y: 1.1761997, z: 0}
@@ -287,7 +287,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2359296
+    m_Bits: 2097152
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
