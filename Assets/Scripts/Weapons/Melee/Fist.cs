@@ -4,6 +4,7 @@ public class Fist : MonoBehaviour
 {
     private Animator animator;
     private Collider2D hitbox;
+    private DamageSource damageSource;
 
     [Header("Do not touch")]
     public bool isPunching = false;
@@ -13,6 +14,8 @@ public class Fist : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         hitbox = GetComponent<Collider2D>();
+
+        damageSource = GetComponent<DamageSource>();
         hitbox.enabled = false;
     }
 
@@ -41,6 +44,8 @@ public class Fist : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
+            Physics2D.IgnoreCollision(damageSource.ownerCollider, hitbox, true); //disable the collision between player and player's punch
+
             hitbox.enabled = true;
             Invoke("DisableHitbox", 0.2f);
         }

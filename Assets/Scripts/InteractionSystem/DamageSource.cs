@@ -17,7 +17,7 @@ public class DamageSource : MonoBehaviour
     [Header("References")]
     //Get parent to ignore self damage & self collision (must assign for fist) 
     public GameObject owner;
-    private Collider2D ownerCollider;
+    [HideInInspector]public Collider2D ownerCollider; //public this for Fist.cs to get it
 
     public bool isHeatAdjusted = false; // Used for adjusting heat amount by weather manager
 
@@ -35,6 +35,7 @@ public class DamageSource : MonoBehaviour
 
         if (owner != null) ownerCollider = owner.GetComponent<Collider2D>();
     }
+
     public void SetOwner(GameObject newOwner)
     {
         // Re-enable collisions with old owner first
@@ -44,6 +45,8 @@ public class DamageSource : MonoBehaviour
         }
 
         owner = newOwner;
+        ownerCollider = owner != null ? owner.GetComponent<Collider2D>() : null;
+
 
         if (owner != null)
         {
