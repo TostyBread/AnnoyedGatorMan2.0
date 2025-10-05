@@ -31,6 +31,9 @@ public class HealthManager : MonoBehaviour
     public bool canMove = true;
     public bool isDefeated = false;
 
+    [Header("Dialogue Reference")]
+    private DialogueManager dialogueManager;
+
     [Header("References")]
     private PlayerInputManager playerInputManager; 
 
@@ -95,6 +98,8 @@ public class HealthManager : MonoBehaviour
         lastHealth = currentHealth;
 
         jiggle = GetComponent<Jiggle>();
+
+        dialogueManager = FindAnyObjectByType<DialogueManager>();
     }
 
     void Update()
@@ -168,9 +173,19 @@ public class HealthManager : MonoBehaviour
     {
         hasDroppedOnDeath = false;
 
-        if (CompareTag("Player"))
+        if (dialogueManager != null)
         {
-            EnablePlayerControls();
+            if (CompareTag("Player") && !dialogueManager.isDialogueActive)
+            {
+                EnablePlayerControls();
+            }
+        }
+        else
+        {
+            if (CompareTag("Player"))
+            {
+                EnablePlayerControls();
+            }
         }
 
         if (lastHealth > currentHealth)

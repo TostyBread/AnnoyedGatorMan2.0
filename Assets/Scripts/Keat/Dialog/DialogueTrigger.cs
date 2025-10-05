@@ -28,6 +28,7 @@ public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
 
+    [Header("Next Dialogue Reference")]
     public DialogueManager dialogueManager;
     public GameObject nextDialogue;
 

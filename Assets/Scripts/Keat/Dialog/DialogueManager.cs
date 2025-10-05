@@ -23,6 +23,11 @@ public class DialogueManager : MonoBehaviour
 
     private GameObject GameObjectDialogue;
 
+    [Header("Player Reference")]
+    public GameObject player;
+    private PlayerInputManager playerInputManager;
+    private CharacterMovement characterMovement;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +37,21 @@ public class DialogueManager : MonoBehaviour
             Instance = this;
 
         lines = new Queue<DialogueLine>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerInputManager = player.GetComponent<PlayerInputManager>();
+            characterMovement = player.GetComponent<CharacterMovement>();
+        }
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
+        //Stop player movement and input
+        playerInputManager.isInputEnabled = false;
+        characterMovement.SetMovement(Vector2.zero);
+
         if (dialogue == null || dialogue.dialogueLines.Count == 0)
         {
             Debug.LogWarning("Dialogue is empty or null!");
@@ -95,6 +111,9 @@ public class DialogueManager : MonoBehaviour
 
         if (animator != null)
             animator.Play("DialogueHide");
+
+        //Re-enable player movement and input
+        playerInputManager.isInputEnabled = true;
     }
 
     private IEnumerator WaitThenDisplayNext(float delay)
