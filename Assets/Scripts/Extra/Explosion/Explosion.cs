@@ -1,27 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-
     private float currentTime;
     private Vector3 initialScale;
-    private Vector2 initialColliderSize;
     private float animationLength;
-
-    private AudioSource explodeSound;
-    private bool isPlayingSound = false;
 
     [Header("Reference")]
     public Animator animator;
     public CapsuleCollider2D heatCollider;
     private CapsuleCollider2D capsuleCollider2D;
+    private bool soundPlayed;
 
     void Start()
     {
         initialScale = transform.localScale;
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        soundPlayed = false;
 
         if (animator != null)
         {
@@ -29,7 +24,8 @@ public class Explosion : MonoBehaviour
             animationLength = stateInfo.length > 0 ? stateInfo.length : 0.5f; // Default fallback
         }
 
-        explodeSound = GetComponent<AudioSource>();
+        // Play explosion sound immediately when the explosion starts
+        PlayExplosionSound();
     }
 
     void Update()
@@ -41,20 +37,25 @@ public class Explosion : MonoBehaviour
         float scaleFactor = 1.2f * Time.deltaTime; // Adjust this as needed
         capsuleCollider2D.size += new Vector2(scaleFactor, scaleFactor);
 
-        PlayExplodeSoundOnce();
-
         if (currentTime >= animationLength)
         {
-           Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
-    private void PlayExplodeSoundOnce()
+    void PlayExplosionSound()
     {
-        if (!isPlayingSound)
+        if (soundPlayed) return;
+
+        // Add null check for AudioManager.Instance
+        if (AudioManager.Instance != null)
         {
-            explodeSound.Play();
-            isPlayingSound = true;
+            AudioManager.Instance.PlaySound("Explosion", transform.position);
+            soundPlayed = true;
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager instance not found! Cannot play explosion sound.");
         }
     }
 }

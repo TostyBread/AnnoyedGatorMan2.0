@@ -402,7 +402,7 @@ public class NPCBehavior : MonoBehaviour
                 attachedPlate = null;
             }
 
-            // Stop patience and free spawn point
+            // CRITICAL FIX: Stop patience when anger is triggered
             npcPatience?.StopPatience();
             plateManagerInstance?.FreeSpawnPoint(this);
             
