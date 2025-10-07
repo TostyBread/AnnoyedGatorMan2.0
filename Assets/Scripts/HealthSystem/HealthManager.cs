@@ -11,6 +11,7 @@ public class HealthManager : MonoBehaviour
     public GameObject hand;
     public bool isPlayer2 = false;
     public bool isNotPlayer = false; // Condition to check whether its a fire instead of player (Chee Seng tolong pls dont ignore ah)
+    public bool isFood = false; // Condition to check whether its a food instead of player
 
     [Header("Hurt Animation Setting")]
     public bool isHurt = false; // Used for animation to check if player is hurt
@@ -309,6 +310,8 @@ public class HealthManager : MonoBehaviour
 
     public void TryDamage(float damage , GameObject source) //always set source as this.gameObject
     {
+        if (isFood && !source.CompareTag("Enemy"))
+            return;
 
         if (sharedHealthSource != null && sharedHealthSource != this)
         {
