@@ -183,13 +183,13 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
     sortingOrder: 3
     isFilled: 0
-  - itemID: 12
+  - itemID: 11
     cookingState: 0
     condition: 1
     positionOffset: {x: 0, y: 0, z: 0}
     sortingOrder: 4
     isFilled: 0
-  - itemID: 12
+  - itemID: 11
     cookingState: 0
     condition: 1
     positionOffset: {x: 0, y: 0, z: 0}

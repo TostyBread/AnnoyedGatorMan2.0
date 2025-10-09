@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2318970250886255664}
   - component: {fileID: 7973603960181263643}
+  - component: {fileID: 5951755823976105853}
   m_Layer: 0
   m_Name: Sprite_Normal
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.22000001, y: 0.22000001, z: 0.22000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4991258900548617813}
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -1326823461, guid: b2a7c5a3431ce0e4d803809102079a3c, type: 3}
+  m_Sprite: {fileID: 255988455, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,6 +85,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5951755823976105853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5323512010420837756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d0c4dd702eff1439737f161a2ebc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteWithBorder: {fileID: -1125509991, guid: 93aa1be69c312474b84a33f90c7e3b13, type: 3}
+  spriteWithBorderScale: 0.5
 --- !u!1 &7912291141278576272
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +114,7 @@ GameObject:
   - component: {fileID: 651439059651299065}
   - component: {fileID: 7689085094135491398}
   - component: {fileID: -3218058737494191365}
+  - component: {fileID: 8528091146162335167}
   m_Layer: 6
   m_Name: CabbageLeaf
   m_TagString: FoodSmall
@@ -147,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 12
+  itemID: 11
   currentCookingState: 0
   currentCondition: 1
 --- !u!114 &3398324057409261233
@@ -165,7 +181,7 @@ MonoBehaviour:
   canBeCooked: 1
   canBreak: 0
   durabilityUncooked: 0
-  durabilityCooked: 0
+  durabilityCooked: 60
   cookThreshold: 100
   burnThreshold: 100
   damageCooldown: 0.6
@@ -274,3 +290,24 @@ MonoBehaviour:
   canMove: 1
   isDefeated: 0
   reviveBoostKey: 32
+--- !u!114 &8528091146162335167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912291141278576272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2abfb7e17e5ed4e9855ee4ab25bf22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  playSound: 0
+  MaxHeat: 100
+  currentHeat: 0
+  heatCooldown: 0
+  BurnAudioName: 
+  spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
+  weatherManager: {fileID: 0}
+  sprite: {fileID: 0}

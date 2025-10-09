@@ -112,8 +112,8 @@ MonoBehaviour:
   spawnPosition: {fileID: 4080659376708024740}
   originalSprite: {fileID: 579530674687462118}
   emptySprite: {fileID: 0}
-  throwSpeed: 18
-  spinSpeed: 900
+  throwSpeed: 0
+  spinSpeed: 0
 --- !u!1 &579530674687462118
 GameObject:
   m_ObjectHideFlags: 0

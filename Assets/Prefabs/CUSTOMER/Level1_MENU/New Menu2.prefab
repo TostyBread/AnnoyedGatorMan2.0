@@ -940,9 +940,9 @@ MonoBehaviour:
   foodIcons:
   - itemID: 3
     iconObject: {fileID: 7036445641566334221}
-  - itemID: 12
+  - itemID: 11
     iconObject: {fileID: 632407094128304952}
-  - itemID: 12
+  - itemID: 11
     iconObject: {fileID: 8407995508249861536}
   - itemID: 21
     iconObject: {fileID: 3113907443730127180}

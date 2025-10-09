@@ -855,7 +855,7 @@ MonoBehaviour:
   foodIcons:
   - itemID: 3
     iconObject: {fileID: 7036445641566334221}
-  - itemID: 12
+  - itemID: 11
     iconObject: {fileID: 632407094128304952}
   - itemID: 42
     iconObject: {fileID: 4251880050286260966}

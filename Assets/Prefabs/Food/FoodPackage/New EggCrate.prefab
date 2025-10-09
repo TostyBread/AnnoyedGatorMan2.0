@@ -105,12 +105,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af28f74b78e2f194f98c7420ff34f5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: 0
   itemPrefab: {fileID: 5876133643790573970, guid: e37f010b244ecd844bb2fa62c970037d, type: 3}
   itemCount: 99
   destroyWhenEmpty: 1
+  canThrowItems: 0
   spawnPosition: {fileID: 8914270112926744320}
   originalSprite: {fileID: 7472544604260044249}
   emptySprite: {fileID: 0}
+  throwSpeed: 0
+  spinSpeed: 0
 --- !u!1 &7226843855328488325
 GameObject:
   m_ObjectHideFlags: 0
