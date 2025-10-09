@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
     public GameObject Nulled;
     private CannotMoveThisWay cmty;
     public float speed = 3;
-    private bool MoveNext = true;
+    public bool MoveNext = true;
     public float gapBetweenGrid;
 
     public GameObject TargetPos;
@@ -87,6 +87,32 @@ public class EnemyMovement : MonoBehaviour
 
     // store the last detected GameObject (player/food) for chase logic
     private GameObject lastDetectedTarget;
+
+    private void OnEnable()
+    {
+        MoveNext = false;
+
+        // Reset any lost state
+        currentState = EnemyState.Wandering;
+        StartCoroutine(ResumeDetectionAfterEnable());
+    }
+
+    private IEnumerator ResumeDetectionAfterEnable()
+    {
+        // Give a short delay so NavMeshAgent fully initializes
+        yield return new WaitForSeconds(0.1f);
+
+        MoveNext = true;
+
+        if (aimForFood)
+        {
+            DetectTargets(); // Try find food immediately
+        }
+        else
+        {
+            EnemyWonderAround(); // Resume normal wandering
+        }
+    }
 
     private void Start()
     {
@@ -158,7 +184,6 @@ public class EnemyMovement : MonoBehaviour
             rb2d.velocity = Vector2.zero; 
             rb2d.angularVelocity = 0f; 
         }
-
     }
 
     private void FixedUpdate()
