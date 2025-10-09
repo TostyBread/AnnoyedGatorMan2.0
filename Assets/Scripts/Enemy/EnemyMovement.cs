@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -119,6 +120,12 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         rb2d = GetComponent<Rigidbody2D>();
 
+        if (!agent.isOnNavMesh)
+        {
+            Debug.LogWarning("GameObject PathFinder is missing");
+            return;
+        }
+
         if (FlyingEnemy)
         {
             if (agent != null) agent.enabled = false;
@@ -189,7 +196,7 @@ public class EnemyMovement : MonoBehaviour
     private void FixedUpdate()
     {
         DetectTargets();
-        EnemyFoundTarget(player);
+        EnemyFoundTarget(player);   
     }
 
     private IEnumerator CreateEnemyField()
