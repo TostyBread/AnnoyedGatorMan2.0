@@ -35,9 +35,9 @@ public class DialogueTrigger : MonoBehaviour
 
     [Header("Trigger Condition")]
     public DialogueConditionType triggerCondition = DialogueConditionType.None;
-    public GameObject playerGetToTriggerNext;
+    public GameObject itemToTriggerNext;
 
-    public enum DialogueConditionType { None, OnStove, OnItemPickup }
+    public enum DialogueConditionType { None, OnStove, OnItemPickup, CheckItem, CheckItemCooked }
 
     private CookingStove stove;
     private GameObject player;
@@ -74,9 +74,6 @@ public class DialogueTrigger : MonoBehaviour
                 CheckItemPickupCondition();
                 break;
         }
-
-        Debug.Log("Player: " + player);
-        Debug.Log("Wielding : " + wieldingHand);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -88,6 +85,36 @@ public class DialogueTrigger : MonoBehaviour
 
             if (triggerCondition == DialogueConditionType.None)
                 TriggerNextDialogue();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        switch (triggerCondition)
+        {
+            case DialogueConditionType.CheckItem:
+                if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
+                {
+                    nextTriggered = true;
+                    TriggerNextDialogue();
+                    itemToTriggerNext = null;
+                }
+                break;
+
+            case DialogueConditionType.CheckItemCooked:
+                if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
+                {
+                    GameObject item = collision.gameObject;
+                    ItemSystem itemSystem = item.GetComponent<ItemSystem>();
+
+                    if (itemSystem != null && itemSystem.isCooked && !itemSystem.isBurned)
+                    {
+                        nextTriggered = true;
+                        TriggerNextDialogue();
+                        itemToTriggerNext = null;
+                    }
+                }
+                break;
         }
     }
 
@@ -103,17 +130,17 @@ public class DialogueTrigger : MonoBehaviour
 
     private void CheckItemPickupCondition()
     {
-        if (nextTriggered || player == null || playerGetToTriggerNext == null) return;
+        if (nextTriggered || player == null) return;
 
         if (wieldingHand == null) return;
 
         foreach (Transform child in wieldingHand.transform)
         {
-            if (child.name.Contains(playerGetToTriggerNext.name))
+            if (child.name.Contains(itemToTriggerNext.name))
             {
                 nextTriggered = true;
                 TriggerNextDialogue();
-                playerGetToTriggerNext = null;
+                itemToTriggerNext = null;
                 break;
             }
         }

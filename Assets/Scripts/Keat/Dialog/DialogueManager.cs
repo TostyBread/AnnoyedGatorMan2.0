@@ -21,8 +21,6 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
-    private GameObject GameObjectDialogue;
-
     [Header("Player Reference")]
     public GameObject player;
     private PlayerInputManager playerInputManager;
@@ -31,8 +29,6 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObjectDialogue = this.gameObject;
-
         if (Instance == null)
             Instance = this;
 
