@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     public float MaxTime = 10;
     public float RemainTime;
     public Image TimerBar;
+    public bool UnlimitedTime = false;
 
     // Added audio queue for timer
     [Header("Audio Settings")]
@@ -53,11 +54,14 @@ public class Timer : MonoBehaviour
         // Handle audio based on time intervals
         HandleAudioCues(minutes, seconds);
 
+        // Only decrease time if not unlimited
+        if (UnlimitedTime) return;
+
         if (cameraMovement != null && !cameraMovement.isMoving && !isWaiting && RemainTime > 0)
         {
             StartCoroutine(Wait(1f)); // Wait before reducing the time
         }
-        else if (cameraMovement == null && RemainTime > 0)
+        else if (cameraMovement == null && RemainTime > 0 )
         {
             RemainTime -= Time.deltaTime;
         }

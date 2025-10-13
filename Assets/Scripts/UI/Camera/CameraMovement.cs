@@ -1,17 +1,26 @@
 using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [Header("Camera Setting")]
     public Vector2 cameraStrtPosition;
     public Vector2 cameraEndPosition;
 
     public float cameraMoveTime = 1f;
     public bool isMoving = false; // Used by timer
 
+    [Header("Dialogue Setting")]
+    public float delayBeforeDialogue = 0.5f;
+    public GameObject dialogueTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
+        //dialogueTrigger = GameObject.FindGameObjectWithTag("DialogueTrigger");
+        if (dialogueTrigger != null) dialogueTrigger.SetActive(false);
+
         transform.position = new Vector2(cameraStrtPosition.x, cameraStrtPosition.y);
 
         MoveTowards(cameraEndPosition);
@@ -35,5 +44,12 @@ public class CameraMovement : MonoBehaviour
         }
         transform.position = new Vector2(targetPosition.x, targetPosition.y);
         isMoving = false;
+
+        if (dialogueTrigger != null)
+        {
+            yield return new WaitForSeconds(delayBeforeDialogue);
+
+            dialogueTrigger.SetActive(true);
+        }
     }
 }

@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using Random = UnityEngine.Random;
 using UnityEngine.AI;
 
+/// <summary>
+/// Enemy movement / AI. Fixed:
+/// - operator precedence in OnCollisionEnter2D
+/// - combinedMask uses .value
+/// - null checks for agent/rb2d/TargetPos/cmty
+/// - store lastDetectedTarget so we can chase actual GameObject if desired
+/// - removed reassigning hits inside DetectTargets loop
+/// - better coroutine nulling
+/// </summary>
 public class EnemyMovement : MonoBehaviour
 {
     public bool FlyingEnemy;
@@ -11,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
     public GameObject Nulled;
     private CannotMoveThisWay cmty;
     public float speed = 3;
-    private bool MoveNext = true;
+    public bool MoveNext = true;
     public float gapBetweenGrid;
 
     public GameObject TargetPos;
@@ -43,7 +52,6 @@ public class EnemyMovement : MonoBehaviour
     private Coroutine waitCoroutine;
     private Coroutine cannotMoveCoroutine;
 
-
     public enum EnemyState
     {
         Wandering,
@@ -74,73 +82,131 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private LayerMask playerLayers;
     [SerializeField] private LayerMask obstacleLayers;
     [SerializeField] private LayerMask foodLayers;
-    int combinedMask;
+    private int combinedMask;
 
     public GameObject enemyMovePoint;
 
+    // store the last detected GameObject (player/food) for chase logic
+    private GameObject lastDetectedTarget;
+
+    private void OnEnable()
+    {
+        MoveNext = false;
+
+        // Reset any lost state
+        currentState = EnemyState.Wandering;
+        StartCoroutine(ResumeDetectionAfterEnable());
+    }
+
+    private IEnumerator ResumeDetectionAfterEnable()
+    {
+        // Give a short delay so NavMeshAgent fully initializes
+        yield return new WaitForSeconds(0.1f);
+
+        MoveNext = true;
+
+        if (aimForFood)
+        {
+            DetectTargets(); // Try find food immediately
+        }
+        else
+        {
+            EnemyWonderAround(); // Resume normal wandering
+        }
+    }
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         rb2d = GetComponent<Rigidbody2D>();
 
+        if (!agent.isOnNavMesh)
+        {
+            Debug.LogWarning("GameObject PathFinder is missing");
+            return;
+        }
+
         if (FlyingEnemy)
         {
-            agent.enabled = false; // Disable NavMeshAgent for flying enemies
-
-            //rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            if (agent != null) agent.enabled = false;
         }
         else
         {
-            agent.updateRotation = false; // Only necessary for grounded enemies using NavMesh
-            agent.updateUpAxis = false;   // Ensures 2D rotation on Z axis
+            if (agent != null)
+            {
+                agent.updateRotation = false;
+                agent.updateUpAxis = false;
+            }
         }
 
+        // instantiate TargetPos safely
+        if (TargetPos == null)
+        {
+            Debug.LogError($"{name}: TargetPos prefab is not assigned.");
+        }
+        else
+        {
+            TargetPos = Instantiate(TargetPos);
+            TargetPos.name = name + " TargetPos";
+            TargetPos.transform.position = transform.position;
+            TargetPos.transform.parent = this.gameObject.transform.parent;
+        }
 
-        //instantiate empty gameobject to record TargetPos
-        TargetPos = Instantiate(TargetPos);
-        TargetPos.name = name + " TargetPos";
-        TargetPos.transform.position = transform.position;
-        TargetPos.transform.parent = this.gameObject.transform.parent;
-
-
-        //instantiate empty gameobject to store current enemy shooted projectile
-        ProjectileStorage = Instantiate(Nulled);
-        ProjectileStorage.name = name + " Projectile";
-        ProjectileStorage.transform.parent = this.gameObject.transform.parent;
+        if (Nulled != null)
+        {
+            ProjectileStorage = Instantiate(Nulled);
+            ProjectileStorage.name = name + " Projectile";
+            ProjectileStorage.transform.parent = this.gameObject.transform.parent;
+        }
 
         player = GameObject.FindGameObjectsWithTag("Player");
 
         StartCoroutine(CreateEnemyField());
-        //StartCoroutine(CreateEnemySight());
-
-        //CreateEnemyField();
-        //CreateEnemySight();
 
         cmty = GetComponentInChildren<CannotMoveThisWay>();
+        if (cmty == null) Debug.LogWarning($"{name}: CannotMoveThisWay child not found.");
 
         EnemyGrid.RemoveAll(item => item == null);
         if (EnemyGrid.Count != 0)
             TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
 
-        combinedMask = playerLayers | foodLayers | obstacleLayers;
+        // combine masks explicitly
+        combinedMask = playerLayers.value | foodLayers.value | obstacleLayers.value;
         Debug.Log("Combined mask: " + combinedMask);
-    
 
         StartCoroutine(ChangeTargetedGrid(Random.Range(1f, 3f)));
 
         if (enemyMovePoint == null)
-        enemyMovePoint = gameObject.GetComponentInChildren<GetMeFormOtherCode>().gameObject;
+        {
+            var comp = GetComponentInChildren<GetMeFormOtherCode>();
+            if (comp != null) enemyMovePoint = comp.gameObject;
+            else Debug.LogWarning($"{name}: GetMeFormOtherCode child not found.");
+        }
+    }
+
+    private void Update()
+    {
+        if (!FlyingEnemy && rb2d != null) 
+        { 
+            rb2d.velocity = Vector2.zero; 
+            rb2d.angularVelocity = 0f; 
+        }
     }
 
     private void FixedUpdate()
     {
         DetectTargets();
-        EnemyFoundTarget(player);
+        EnemyFoundTarget(player);   
     }
 
     private IEnumerator CreateEnemyField()
     {
+        if (Nulled == null)
+        {
+            Debug.LogWarning($"{name}: Nulled prefab required for grid center creation.");
+            yield break;
+        }
+
         MidOfSpawnedGrid = Instantiate(Nulled);
         MidOfSpawnedGrid.name = name + " move grid";
         MidOfSpawnedGrid.layer = LayerMask.NameToLayer("Ignore Me");
@@ -155,10 +221,11 @@ public class EnemyMovement : MonoBehaviour
                 GameObject SpawnedGrid = Instantiate(SeeGrid, pos, transform.rotation);
                 GridPointManager GPM = SpawnedGrid.GetComponent<GridPointManager>();
 
-                GPM.enemyMovement = gameObject.GetComponent<EnemyMovement>();
-                GPM.flying = FlyingEnemy;
-
-                //SpawnedGrid.transform.parent = MidOfSpawnedGrid.transform;
+                if (GPM != null)
+                {
+                    GPM.enemyMovement = this;
+                    GPM.flying = FlyingEnemy;
+                }
 
                 if (x >= MoveGridSize / 2 && y >= MoveGridSize / 2 && !onceMoveGrid)
                 {
@@ -175,95 +242,34 @@ public class EnemyMovement : MonoBehaviour
             SpawnedGrid.transform.parent = MidOfSpawnedGrid.transform;
         }
 
-        //set the points into MidOfSpawnedGrid gameObject & adjust the scale of MOSP
         MidOfSpawnedGrid.transform.position = this.gameObject.transform.position;
         MidOfSpawnedGrid.transform.localScale = Vector3.one * gapBetweenGrid;
-        //result is the gap between points will be wider or narrower
-        
         MidOfSpawnedGrid.transform.parent = this.gameObject.transform.parent;
-    }
-
-    private IEnumerator CreateEnemySight()
-    {
-        MOSP = Instantiate(Nulled);
-        MOSP.name = name + " sight grid";
-        MOSP.layer = LayerMask.NameToLayer("Ignore Me");
-
-        yield return new WaitForSeconds(0.5f);
-
-        for (int x = 0; x < sightSize; x++)
-        {
-            for (int y = 0; y < sightSize; y++)
-            {
-                Vector3 pos = new Vector3(x, y, 0);
-                GameObject SpawnedGrid = Instantiate(SightGrid, pos, transform.rotation);
-                GridPointManager GPM = SpawnedGrid.GetComponent<GridPointManager>();
-
-                GPM.enemyMovement = gameObject.GetComponent<EnemyMovement>();
-                GPM.flying = FlyingEnemy;
-
-                //SpawnedGrid.transform.parent = MidOfSpawnedGrid.transform;
-
-                if (x >= sightSize / 2 && y >= sightSize / 2 && !onceSightGrid)
-                {
-                    MOSP.transform.position = SpawnedGrid.transform.position;
-                    onceSightGrid = true;
-                }
-
-                EnemySight.Add(SpawnedGrid);
-            }
-        }
-
-        foreach (var SpawnedGrid in EnemySight)
-        {
-            SpawnedGrid.transform.parent = MOSP.transform;
-        }
-
-        //set the points into MOSP gameObject & adjust the scale of MOSP
-        MOSP.transform.position = this.gameObject.transform.position;
-        MOSP.transform.localScale = Vector3.one * gapBetweenGrid;
-        //result is the gap between points will be wider or narrower
-
-        MOSP.transform.parent = this.gameObject.transform.parent;
     }
 
     private float GetSightRange()
     {
         return sightSize;
-
-        //float maxDistance = 0f;
-
-        //foreach (GameObject sightPoint in EnemySight)
-        //{
-        //    float distance = Vector2.Distance(transform.position, sightPoint.transform.position);
-        //    if (distance > maxDistance)
-        //    {
-        //        maxDistance = distance;
-        //    }
-        //}
-
-        //return maxDistance;
     }
 
     private void enemyMovement(Transform Target)
     {
-        if (cmty.canMoveThisWay == false)
+        if (cmty != null && cmty.canMoveThisWay == false)
         {
-            if (!FlyingEnemy)
+            if (!FlyingEnemy && agent != null)
             {
                 agent.isStopped = true;
                 agent.velocity = Vector3.zero;
             }
 
-            // Start a timeout coroutine if not already running
             if (cannotMoveCoroutine == null)
             {
                 cannotMoveCoroutine = StartCoroutine(CannotMoveTimeout());
             }
 
-            // Handle attack logic
             if (!isAttacking)
             {
+                if (attackCoroutine != null) { StopCoroutine(attackCoroutine); attackCoroutine = null; }
                 attackCoroutine = StartCoroutine(Attack(DurationBeforeAttack, RecoveryFrame));
             }
 
@@ -272,7 +278,6 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            // If movement is possible again, cancel the timeout
             if (cannotMoveCoroutine != null)
             {
                 StopCoroutine(cannotMoveCoroutine);
@@ -280,38 +285,38 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
-        if (!FlyingEnemy && agent.isStopped)
+        if (!FlyingEnemy && agent != null && agent.isStopped)
             agent.isStopped = false;
+
+        if (Target == null) return;
 
         if (transform.position != Target.transform.position)
             enemyRotation(Target);
 
-        // Movement logic + isMoving logic
-        if (!FlyingEnemy)
+        if (!FlyingEnemy && agent != null)
         {
             agent.SetDestination(Target.position);
-            isMoving = agent.velocity.magnitude > 0.05f; // small threshold to prevent false positives
+            isMoving = agent.velocity.magnitude > 0.05f;
         }
-        else
+        else if (rb2d != null)
         {
             Vector2 newPos = Vector2.MoveTowards(rb2d.position, Target.position, speed * Time.deltaTime);
             isMoving = Vector2.Distance(rb2d.position, newPos) > 0.01f;
             rb2d.MovePosition(newPos);
+            rb2d.velocity = Vector2.zero;
         }
-
-        rb2d.velocity = Vector2.zero; // Remove any physics force drag
     }
 
     private IEnumerator CannotMoveTimeout()
     {
-        float delay = Random.Range(1f, 3f);
+        float delay = 3f;
         yield return new WaitForSeconds(delay);
 
-        if (cmty.canMoveThisWay == false)
+        if (cmty != null && cmty.canMoveThisWay == false)
         {
             Debug.Log("Stuck too long, switching to new wander point...");
             currentState = EnemyState.Wandering;
-            StartCoroutine(ChangeTargetedGrid(0)); // instantly pick a new wander point
+            StartCoroutine(ChangeTargetedGrid(0));
         }
 
         cannotMoveCoroutine = null;
@@ -319,17 +324,16 @@ public class EnemyMovement : MonoBehaviour
 
     private void enemyRotation(Transform Target)
     {
+        if (enemyMovePoint == null || Target == null) return;
+
         Vector2 direction = Target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion Rotation = Quaternion.Euler(0, 0, angle);
-        
         enemyMovePoint.transform.rotation = Rotation;
-        //transform.rotation = Quaternion.Lerp(transform.rotation, Rotation, Time.deltaTime * 5f);
     }
 
     private void EnemyWonderAround()
     {
-        // If no target or reached the current one...
         if (TargetedGrid == null || Vector3.Distance(transform.position, TargetedGrid.position) < 1f)
         {
             if (MoveNext)
@@ -338,22 +342,21 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
-        // Keep moving toward the current target if it exists
-        if (TargetedGrid != null)
-        {
-            enemyMovement(TargetedGrid);
-        }
+        if (TargetedGrid != null) enemyMovement(TargetedGrid);
     }
 
     private void EnemyFoundTarget(GameObject[] Targets)
     {
         if (TargetFound && currentState != EnemyState.Chasing && currentState != EnemyState.WaitingToReturn && !justReturnedFromWait)
         {
-            SwitchToChaseMode(TargetPos);
+            if (lastDetectedTarget != null)
+                SwitchToChaseMode(lastDetectedTarget);
+            else if (TargetPos != null)
+                SwitchToChaseMode(TargetPos);
+
             return;
         }
 
-        // If not detected, go with normal behavior per state
         switch (currentState)
         {
             case EnemyState.Wandering:
@@ -369,71 +372,49 @@ public class EnemyMovement : MonoBehaviour
 
                     if (!FlyingEnemy)
                     {
-                        // Use NavMeshAgent's pathfinding state
-                        if (!agent.pathPending && agent.remainingDistance <= 0.1f)
-                        {
+                        if (agent != null && !agent.pathPending && agent.remainingDistance <= 0.1f)
                             reachedDestination = true;
-                        }
                     }
                     else
                     {
-                        // Use transform distance for flying enemies
-                        if (Vector3.Distance(transform.position, TargetedGrid.position) <= 0.1f)
-                        {
+                        if (TargetedGrid != null && Vector3.Distance(transform.position, TargetedGrid.position) <= 0.1f)
                             reachedDestination = true;
-                        }
                     }
 
                     if (reachedDestination)
                     {
-                        //Debug.Log("Reached last known player position. Begin wait...");
                         currentState = EnemyState.WaitingToReturn;
+                        if (waitCoroutine != null) StopCoroutine(waitCoroutine);
                         waitCoroutine = StartCoroutine(WaitAfterLosingPlayer(Random.Range(1f, 3f)));
                         isMovingToLastSeenPos = false;
                     }
                 }
                 break;
 
-
             case EnemyState.WaitingToReturn:
-                // Do nothing while waiting, unless interrupted by detection above
+                // idle
                 break;
         }
     }
 
     private void SwitchToChaseMode(GameObject playerTarget)
     {
-        // Cancel wandering/waiting
-        if (wanderCoroutine != null) StopCoroutine(wanderCoroutine);
-        if (waitCoroutine != null) StopCoroutine(waitCoroutine);
+        if (playerTarget == null) return;
+
+        if (wanderCoroutine != null) { StopCoroutine(wanderCoroutine); wanderCoroutine = null; }
+        if (waitCoroutine != null) { StopCoroutine(waitCoroutine); waitCoroutine = null; }
 
         currentState = EnemyState.Chasing;
 
-        TargetPos.transform.position = playerTarget.transform.position;
-        TargetedGrid = TargetPos.transform;
+        if (TargetPos != null)
+            TargetPos.transform.position = playerTarget.transform.position;
+
+        TargetedGrid = TargetPos != null ? TargetPos.transform : playerTarget.transform;
 
         isMovingToLastSeenPos = true;
 
         enemyRotation(playerTarget.transform);
         enemyMovement(TargetedGrid);
-    }
-
-    private GameObject GetClosestTarget(GameObject[] targets)
-    {
-        float minDistance = Mathf.Infinity;
-        GameObject closest = null;
-
-        foreach (var t in targets)
-        {
-            float dist = Vector3.Distance(transform.position, t.transform.position);
-            if (dist < minDistance)
-            {
-                minDistance = dist;
-                closest = t;
-            }
-        }
-
-        return closest;
     }
 
     private IEnumerator WaitAfterLosingPlayer(float delay)
@@ -443,12 +424,12 @@ public class EnemyMovement : MonoBehaviour
         if (currentState == EnemyState.WaitingToReturn)
         {
             currentState = EnemyState.Wandering;
-
             justReturnedFromWait = true;
             StartCoroutine(GracePeriodAfterReturn(2f));
-
             StartCoroutine(ChangeTargetedGrid(0));
         }
+
+        waitCoroutine = null;
     }
 
     private IEnumerator GracePeriodAfterReturn(float duration)
@@ -465,28 +446,27 @@ public class EnemyMovement : MonoBehaviour
         if (EnemyGrid.Count > 0)
         {
             TargetedGrid = EnemyGrid[Random.Range(0, EnemyGrid.Count)].transform;
-            TargetPos.transform.position = TargetedGrid.transform.position;
-            //Debug.Log("Target Grid Changed to " + TargetedGrid.name);
+            if (TargetPos != null) TargetPos.transform.position = TargetedGrid.transform.position;
         }
 
         MoveNext = true;
+        wanderCoroutine = null;
     }
 
-    private IEnumerator Attack(float dba,float recoverFrame)
+    private IEnumerator Attack(float dba, float recoverFrame)
     {
         isAttacking = true;
-
-        //Debug.Log("ready to attack " + dba);
         yield return new WaitForSeconds(dba);
 
-        //Debug.Log("attack");
-        Hitbox.SetActive(true);
+        if (Hitbox != null) Hitbox.SetActive(true);
 
         yield return new WaitForSeconds(recoverFrame);
+
+        if (Hitbox != null) Hitbox.SetActive(false);
         isAttacking = false;
+        attackCoroutine = null;
     }
 
-    // draw the target area
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
@@ -495,71 +475,76 @@ public class EnemyMovement : MonoBehaviour
 
     private bool CanReachTarget(Vector3 targetPosition)
     {
-        if (FlyingEnemy) return true; // Flying enemies can always "fly" to targets
+        if (FlyingEnemy) return true;
+        if (agent == null) return false;
 
         NavMeshPath path = new NavMeshPath();
         agent.CalculatePath(targetPosition, path);
-
-        // Path is complete only if it is valid and not partial or invalid
         return path.status == NavMeshPathStatus.PathComplete;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") 
+        // FIXED: ensure grouping so (Wall || Obstacle) && state == Chasing
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Wall") ||
+             collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
             && currentState == EnemyState.Chasing)
         {
             Debug.Log("Hit wall, pausing chase.");
 
-            // Stop chasing and wait before returning
             currentState = EnemyState.WaitingToReturn;
+            if (waitCoroutine != null) StopCoroutine(waitCoroutine);
             waitCoroutine = StartCoroutine(WaitAfterLosingPlayer(Random.Range(1f, 3f)));
             isMovingToLastSeenPos = false;
         }
     }
+
     private void DetectTargets()
     {
         TargetFound = false;
+        lastDetectedTarget = null;
 
+        // Pick correct mask
         LayerMask mask = aimForFood ? foodLayers : playerLayers;
+
+        // Find all colliders in range
         hits = Physics2D.OverlapCircleAll(transform.position, sightSize, mask);
 
         foreach (var hit in hits)
         {
             if (hit == null) continue;
-            if (hit.GetComponent<HealthManager>() == null) continue;
 
-            Vector2 dirToTarget = hit.transform.position - transform.position;
-            float sightRange = GetSightRange();
-            RaycastHit2D ray = Physics2D.Raycast(
-                transform.position,
-                dirToTarget.normalized,
-                sightRange,
-                combinedMask
-            );
-            Debug.DrawRay(transform.position, dirToTarget.normalized * sightRange, Color.red, 0.1f);
-
-            //if (ray.collider != null)
-            //{
-            //    Debug.Log("Ray hit: " + ray.collider.name);
-            //}
-            //else
-            //{
-            //    Debug.Log("Ray missed");
-            //}
-
-            if (ray.collider != null && ray.collider.transform.root == hit.transform.root)
+            // For aimForFood enemies: skip anything without HealthManager
+            if (aimForFood)
             {
-                //if (!CanReachTarget(hit.transform.position)) continue;
-                //Debug.Log("Comparing ray hit: " + ray.collider.name + " with target: " + hit.name);
-
-                TargetFound = true;
-                TargetPos.transform.position = hit.transform.position;
-                break;
+                if (hit.GetComponent<HealthManager>() == null && hit.GetComponentInChildren<HealthManager>() == null)
+                    continue;
             }
 
-            hits = Physics2D.OverlapCircleAll(transform.position, sightSize, mask);
-            //Debug.Log("Targets in range: " + hits.Length);
+            // For non-aimForFood enemies: skip if not Player
+            else
+            {
+                if (!hit.CompareTag("Player"))
+                    continue;
+            }
+
+            // Visibility check (raycast)
+            Vector2 dirToTarget = hit.transform.position - transform.position;
+            float sightRange = GetSightRange();
+            RaycastHit2D ray = Physics2D.Raycast(transform.position, dirToTarget.normalized, sightRange, combinedMask);
+            Debug.DrawRay(transform.position, dirToTarget.normalized * sightRange, Color.red, 0.1f);
+
+            // Only confirm if the thing hit by ray IS the thing we're targeting
+            if (ray.collider != null && ray.collider.gameObject == hit.gameObject)
+            {
+                TargetFound = true;
+                lastDetectedTarget = hit.gameObject;
+
+                if (TargetPos != null)
+                    TargetPos.transform.position = hit.transform.position;
+
+                break;
+            }
         }
     }
 }

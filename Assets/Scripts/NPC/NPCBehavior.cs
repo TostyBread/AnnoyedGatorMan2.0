@@ -57,7 +57,7 @@ public class NPCBehavior : MonoBehaviour
     private NPCAnimationController npcAnimController;
     private LabelDisplay labelDisplay;
 
-    [Header("Score")]
+    // Score reference
     private ScoreManager scoreManager;
     private Sanity sanity;
     private ParticleManager particleManager;
@@ -253,6 +253,7 @@ public class NPCBehavior : MonoBehaviour
         {
             // Use cached component reference
             npcPatience?.StartPatience();
+
             patienceAlreadyStarted = true;
         }
     }

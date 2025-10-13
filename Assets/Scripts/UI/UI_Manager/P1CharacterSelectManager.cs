@@ -49,13 +49,17 @@ public class P1CharacterSelectManager : MonoBehaviour
 
     public void P1NextCharacter()
     {
-        if (sprites != null && P1characterIndex < sprites.Length - 1)
-            P1characterIndex++;
+        if (sprites == null || sprites.Length == 0) return;
+
+        P1characterIndex++;
+        if (P1characterIndex >= sprites.Length) P1characterIndex = 0;
     }
 
     public void P1PreviousCharacter()
     {
-        if (P1characterIndex > 0)
-            P1characterIndex--;
+        if (sprites == null || sprites.Length == 0) return;
+
+        P1characterIndex--;
+        if (P1characterIndex < 0) P1characterIndex = sprites.Length - 1;
     }
 }

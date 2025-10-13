@@ -1,7 +1,9 @@
+using NavMeshPlus.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 
@@ -104,6 +106,7 @@ public class EnemySpawner : MonoBehaviour
             }
 
             GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation);
+
             ChargeReadyTime = Random.Range(MinSpawnTime, MaxSpawnTime);
 
             if (sanity.RemainSanity <= 0) //If sanity is empty...

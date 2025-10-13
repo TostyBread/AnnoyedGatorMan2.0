@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,21 +21,33 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
-    private GameObject GameObjectDialogue;
+    [Header("Player Reference")]
+    public GameObject player;
+    private PlayerInputManager playerInputManager;
+    private CharacterMovement characterMovement;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObjectDialogue = this.gameObject;
-
         if (Instance == null)
             Instance = this;
 
         lines = new Queue<DialogueLine>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerInputManager = player.GetComponent<PlayerInputManager>();
+            characterMovement = player.GetComponent<CharacterMovement>();
+        }
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
+        //Stop player movement and input
+        playerInputManager.isInputEnabled = false;
+        characterMovement.SetMovement(Vector2.zero);
+
         if (dialogue == null || dialogue.dialogueLines.Count == 0)
         {
             Debug.LogWarning("Dialogue is empty or null!");
@@ -70,7 +83,7 @@ public class DialogueManager : MonoBehaviour
         DialogueLine currentLine = lines.Dequeue();
 
         characterIcon.sprite = currentLine.character.icon;
-        characterName.text = currentLine.character.name; 
+        characterName.text = currentLine.character.name;
 
         StopAllCoroutines();
 
@@ -82,18 +95,21 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueArea.text = "";
         foreach (char letter in dialogueLine.line.ToCharArray())
-        { 
+        {
             dialogueArea.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
     }
 
-    private void EndDialogue() 
+    private void EndDialogue()
     {
         isDialogueActive = false;
 
         if (animator != null)
             animator.Play("DialogueHide");
+
+        //Re-enable player movement and input
+        playerInputManager.isInputEnabled = true;
     }
 
     private IEnumerator WaitThenDisplayNext(float delay)
@@ -101,4 +117,5 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         DisplayNextDialogueLine();
     }
+
 }

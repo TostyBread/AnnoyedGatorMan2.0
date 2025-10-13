@@ -1,53 +1,92 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
+/// <summary>
+/// Simple hitbox that damages relevant targets and deactivates after the frame.
+/// Reads aimForFood from parent each frame to stay in sync.
+/// </summary>
 public class HitBox : MonoBehaviour
 {
     public float damage = 10;
     public bool aimForFood;
 
+    private EnemyMovement parentEM;
+
+    private void Awake()
+    {
+        parentEM = GetComponentInParent<EnemyMovement>();
+    }
+
     private void Start()
     {
         gameObject.SetActive(false);
-        aimForFood = GetComponentInParent<EnemyMovement>().aimForFood;
+        if (parentEM != null) aimForFood = parentEM.aimForFood;
+    }
+
+    private void Update()
+    {
+        if (parentEM != null) aimForFood = parentEM.aimForFood;
+    }
+
+    private void TryDamageCollider(GameObject target)
+    {
+        if (target == null) return;
+
+        // Try get from children first
+        var hm = target.GetComponentInChildren<HealthManager>();
+
+        // If not found, try get from the target itself
+        if (hm == null)
+            hm = target.GetComponent<HealthManager>();
+
+        // If we found a HealthManager anywhere, deal damage
+        if (hm != null)
+        {
+            hm.TryDamage(damage, this.gameObject);
+        }
+        else
+        {
+            Debug.LogWarning($"{target.name} has no HealthManager component.");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !aimForFood)
-        {
-            //Debug.Log("attack " + collision.name);
+        if (!gameObject.activeInHierarchy) return;
 
-            collision.GetComponentInChildren<HealthManager>().TryDamage(damage, this.gameObject);
+        if (!aimForFood && collision.CompareTag("Player"))
+        {
+            TryDamageCollider(collision.gameObject);
+        }
+        else if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
+        {
+            TryDamageCollider(collision.gameObject);
         }
 
-        if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
-        {
-            collision.GetComponentInChildren<HealthManager>().TryDamage(damage, this.gameObject);
-        }
-
-        gameObject.SetActive(false);
+        // Deactivate at end of frame so other overlapping colliders can also register this frame.
+        StartCoroutine(DisableAtEndOfFrame());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //Debug.Log("attack " + collision.gameObject.name);
+        if (!gameObject.activeInHierarchy) return;
 
-            collision.gameObject.GetComponentInChildren<HealthManager>().TryDamage(damage, this.gameObject);
+        if (!aimForFood && collision.gameObject.CompareTag("Player"))
+        {
+            TryDamageCollider(collision.gameObject);
+        }
+        else if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
+        {
+            TryDamageCollider(collision.gameObject);
         }
 
-        if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
-        {
-            if (collision.gameObject.GetComponentInChildren<HealthManager>() != null)
-                collision.gameObject.GetComponentInChildren<HealthManager>().TryDamage(damage, this.gameObject);
-            else
-                Debug.LogWarning(collision + "children has no HealthManager");
-        }
+        StartCoroutine(DisableAtEndOfFrame());
+    }
 
+    private IEnumerator DisableAtEndOfFrame()
+    {
+        // Wait one frame so multiple overlaps in the same frame can cause damage.
+        yield return null;
         gameObject.SetActive(false);
     }
 }

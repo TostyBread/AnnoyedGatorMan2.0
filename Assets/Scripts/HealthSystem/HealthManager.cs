@@ -11,7 +11,7 @@ public class HealthManager : MonoBehaviour
     public GameObject hand;
     public bool isPlayer2 = false;
     public bool isNotPlayer = false; // Condition to check whether its a fire instead of player (Chee Seng tolong pls dont ignore ah)
-    public bool isFood = false;
+    public bool isFood = false; // Condition to check whether its a food instead of player
 
     [Header("Hurt Animation Setting")]
     public bool isHurt = false; // Used for animation to check if player is hurt
@@ -30,6 +30,9 @@ public class HealthManager : MonoBehaviour
     public bool isPlayer = true; // Used to determine if this is a player or not
     public bool canMove = true;
     public bool isDefeated = false;
+
+    [Header("Dialogue Reference")]
+    private DialogueManager dialogueManager;
 
     [Header("References")]
     private PlayerInputManager playerInputManager; 
@@ -95,6 +98,8 @@ public class HealthManager : MonoBehaviour
         lastHealth = currentHealth;
 
         jiggle = GetComponent<Jiggle>();
+
+        dialogueManager = FindAnyObjectByType<DialogueManager>();
     }
 
     void Update()
@@ -168,9 +173,19 @@ public class HealthManager : MonoBehaviour
     {
         hasDroppedOnDeath = false;
 
-        if (CompareTag("Player"))
+        if (dialogueManager != null)
         {
-            EnablePlayerControls();
+            if (CompareTag("Player") && !dialogueManager.isDialogueActive)
+            {
+                EnablePlayerControls();
+            }
+        }
+        else
+        {
+            if (CompareTag("Player"))
+            {
+                EnablePlayerControls();
+            }
         }
 
         if (lastHealth > currentHealth)
