@@ -190,6 +190,7 @@ MonoBehaviour:
   FlyingEnemy: 0
   Nulled: {fileID: 3186628466530934036, guid: 3075ee87cca016b4e9e12ff8a37da223, type: 3}
   speed: 2
+  MoveNext: 1
   gapBetweenGrid: 1
   TargetPos: {fileID: 7877987346030483789, guid: ef78639d7bdcb7c40a3e8452ae584092, type: 3}
   Projectile: {fileID: 5338028073116212618, guid: 7e62e51f5d6b89d4ca810abaa8c13486, type: 3}
@@ -349,9 +350,9 @@ GameObject:
   - component: {fileID: 4472722804999863620}
   - component: {fileID: 1348765129197537554}
   - component: {fileID: 509880989163737013}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -629,7 +630,7 @@ MonoBehaviour:
   - {x: 4.710003, y: -2.6202803, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 165812
+  m_InstanceId: 142474
   m_LocalBounds:
     m_Center: {x: 0.0000019073486, y: 0.00000023841858, z: 0}
     m_Extent: {x: 4.710001, y: 2.6202805, z: 0}
