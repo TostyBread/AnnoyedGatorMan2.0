@@ -29,11 +29,11 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogue;
 
     [Header("Next Dialogue Trigger")]
-    public DialogueManager dialogueManager;
     public GameObject nextDialogue;
     public GameObject showNextGameObject;
+    private DialogueManager dialogueManager;
 
-    [Header("Trigger Condition")]
+    [Header("Trigger Next Condition")]
     public DialogueConditionType triggerCondition = DialogueConditionType.None;
     public GameObject itemToTriggerNext;
 
@@ -45,6 +45,8 @@ public class DialogueTrigger : MonoBehaviour
     private bool hasTriggered = false;
     private bool nextTriggered = false;
 
+    public bool autoOffStove = false;
+
     private void OnEnable()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
@@ -52,7 +54,7 @@ public class DialogueTrigger : MonoBehaviour
         if (nextDialogue != null)
             nextDialogue.SetActive(false);
 
-        if (triggerCondition == DialogueConditionType.OnStove)
+        if (triggerCondition == DialogueConditionType.OnStove || triggerCondition == DialogueConditionType.CheckItemCooked)
             stove = FindAnyObjectByType<CookingStove>();
 
         if (triggerCondition == DialogueConditionType.OnItemPickup)
@@ -73,6 +75,10 @@ public class DialogueTrigger : MonoBehaviour
             case DialogueConditionType.OnItemPickup:
                 CheckItemPickupCondition();
                 break;
+            case DialogueConditionType.CheckItemCooked:
+                CheckItemCookedCondition();
+                break;
+
         }
     }
 
@@ -98,21 +104,6 @@ public class DialogueTrigger : MonoBehaviour
                     nextTriggered = true;
                     TriggerNextDialogue();
                     itemToTriggerNext = null;
-                }
-                break;
-
-            case DialogueConditionType.CheckItemCooked:
-                if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
-                {
-                    GameObject item = collision.gameObject;
-                    ItemSystem itemSystem = item.GetComponent<ItemSystem>();
-
-                    if (itemSystem != null && itemSystem.isCooked && !itemSystem.isBurned)
-                    {
-                        nextTriggered = true;
-                        TriggerNextDialogue();
-                        itemToTriggerNext = null;
-                    }
                 }
                 break;
         }
@@ -142,6 +133,31 @@ public class DialogueTrigger : MonoBehaviour
                 TriggerNextDialogue();
                 itemToTriggerNext = null;
                 break;
+            }
+        }
+    }
+
+    private void CheckItemCookedCondition()
+    {
+        foreach (var item in GameObject.FindGameObjectsWithTag("FoodSmall"))
+        {
+            if (itemToTriggerNext != null && item.name.Contains(itemToTriggerNext.name))
+            {
+                ItemSystem itemSystem = item.GetComponent<ItemSystem>();
+                if (itemSystem != null && itemSystem.isCooked && !itemSystem.isBurned)
+                {
+                    Debug.Log("An item has been cooked: " + item.name);
+
+                    nextTriggered = true;
+                    TriggerNextDialogue();
+
+                    if (autoOffStove && stove != null && stove.isOn)
+                    {
+                        stove.ToggleStove();
+                    }
+
+                    itemToTriggerNext = null;
+                }
             }
         }
     }
