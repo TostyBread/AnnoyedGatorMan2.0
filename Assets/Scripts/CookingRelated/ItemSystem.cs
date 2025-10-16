@@ -5,6 +5,8 @@ public class ItemSystem : MonoBehaviour
 {
     public bool canBeCooked;
     public bool canBreak;
+    public bool canBash = true; // Whether the item can be damaged by bash attacks
+    public bool canCut = true;  // Whether the item can be damaged by cut attacks
     public int durabilityUncooked;
     public int durabilityCooked;
     public float cookThreshold;
@@ -116,6 +118,10 @@ public class ItemSystem : MonoBehaviour
             if (!isCooked && currentCookPoints >= cookThreshold) CookItem();
             else if (!isBurned && currentCookPoints >= burnThreshold) BurnItem();
         }
+
+        // Check if the item can be damaged by this type
+        if (sourceDamage.damageType == DamageType.Bash && !canBash) return;
+        if (sourceDamage.damageType == DamageType.Cut && !canCut) return;
 
         if (currentDurability <= 0 && canBreak) BreakItem(damageType);
     }
