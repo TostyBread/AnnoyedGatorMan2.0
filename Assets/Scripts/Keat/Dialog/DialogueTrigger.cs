@@ -32,6 +32,7 @@ public class DialogueTrigger : MonoBehaviour
     public GameObject nextDialogue;
     public GameObject showGameObject;
     private DialogueManager dialogueManager;
+    public bool StayAtLastDialogue;
 
     [Header("Trigger Next Condition")]
     public DialogueConditionType triggerCondition = DialogueConditionType.OnPlayerCollision;
@@ -68,6 +69,8 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
+        dialogueManager.stayAtLastDialogue = StayAtLastDialogue;
+
         switch (triggerCondition)
         {
             case DialogueConditionType.OnStove:

@@ -21,6 +21,8 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
+    public bool stayAtLastDialogue; //DialogueTrigger.cs will change the boolean
+
     [Header("Player Reference")]
     public GameObject player;
     private PlayerInputManager playerInputManager;
@@ -74,9 +76,13 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextDialogueLine()
     {
-        if (lines.Count == 0)
+        if (lines.Count == 0 && stayAtLastDialogue == false)
         {
             EndDialogue();
+            return;
+        }
+        else if (lines.Count == 0 && stayAtLastDialogue == true)
+        {
             return;
         }
 
