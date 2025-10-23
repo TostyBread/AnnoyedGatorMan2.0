@@ -13,7 +13,15 @@ public class DetectTarget : MonoBehaviour
     {
         for (int i = AllItemInRange.Count - 1; i >= 0; i--)
         {
-            if (AllItemInRange[i] == null)
+            if (AllItemInRange[i].CompareTag("Enemy"))
+            {
+                if (!AllItemInRange[i].GetComponent<HealthManager>())
+                { 
+                    AllItemInRange.RemoveAt(i);
+                }
+            }
+
+            else if (AllItemInRange[i] == null)
             {
                 AllItemInRange.RemoveAt(i);
             }

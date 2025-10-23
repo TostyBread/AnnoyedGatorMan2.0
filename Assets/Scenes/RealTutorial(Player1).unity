@@ -2668,6 +2668,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 362306023}
     - target: {fileID: 213932995574529320, guid: 2b688a56cfcb8984a96a853f3e135439, type: 3}
+      propertyPath: StayAtLastDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 213932995574529320, guid: 2b688a56cfcb8984a96a853f3e135439, type: 3}
       propertyPath: showNextGameObject
       value: 
       objectReference: {fileID: 0}
@@ -21288,6 +21292,10 @@ PrefabInstance:
       propertyPath: m_enableVertexGradient
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2554990915058525944, guid: eb4b5f4f2f865d24e934b230c5c1ae30, type: 3}
+      propertyPath: stayAtLastDialogue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2987029308180750405, guid: eb4b5f4f2f865d24e934b230c5c1ae30, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
@@ -26268,6 +26276,10 @@ PrefabInstance:
       objectReference: {fileID: 261010169}
     - target: {fileID: 213932995574529320, guid: 2b688a56cfcb8984a96a853f3e135439, type: 3}
       propertyPath: triggerCondition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 213932995574529320, guid: 2b688a56cfcb8984a96a853f3e135439, type: 3}
+      propertyPath: StayAtLastDialogue
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 213932995574529320, guid: 2b688a56cfcb8984a96a853f3e135439, type: 3}
