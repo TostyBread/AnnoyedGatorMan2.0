@@ -37,7 +37,6 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Trigger Next Condition")]
     public DialogueConditionType triggerCondition = DialogueConditionType.OnPlayerCollision;
     public GameObject itemToTriggerNext;
-    public string itemNameToTriggerNext;
 
     public enum DialogueConditionType { OnPlayerCollision, OnStove, OnItemPickup, CheckItem, CheckItemCooked, CheckItemGone }
 
@@ -105,43 +104,24 @@ public class DialogueTrigger : MonoBehaviour
         switch (triggerCondition)
         {
             case DialogueConditionType.CheckItem:
-                if (itemNameToTriggerNext != null)
+                if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
                 {
-                    if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
-                    {
-                        nextTriggered = true;
-                        TriggerNextDialogue();
-                        itemToTriggerNext = null;
-                    }
-                }
-                else if (!string.IsNullOrEmpty(itemNameToTriggerNext))
-                {
-                    if (collision.gameObject.name.Contains(itemNameToTriggerNext))
-                    {
-                        nextTriggered = true;
-                        TriggerNextDialogue();
-                        itemNameToTriggerNext = null;
-                    }
+                    nextTriggered = true;
+                    TriggerNextDialogue();
+                    itemToTriggerNext = null;
                 }
                 break;
 
             case DialogueConditionType.CheckItemGone:
-                if (itemNameToTriggerNext != null)
+                if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
                 {
-                    if (itemToTriggerNext == null && collision.gameObject.name.Contains(itemToTriggerNext.name))
+                    GameObject originalItem = GameObject.Find(itemToTriggerNext.name);
+
+                    if (originalItem == null)
                     {
                         nextTriggered = true;
                         TriggerNextDialogue();
                         itemToTriggerNext = null;
-                    }
-                }
-                else if (!string.IsNullOrEmpty(itemNameToTriggerNext))
-                {
-                    if (collision.gameObject.name.Contains(itemNameToTriggerNext))
-                    {
-                        nextTriggered = true;
-                        TriggerNextDialogue();
-                        itemNameToTriggerNext = null;
                     }
                 }
                 break;
@@ -191,20 +171,9 @@ public class DialogueTrigger : MonoBehaviour
                     break;
                 }
             }
-            else if (!string.IsNullOrEmpty(itemNameToTriggerNext))
-            {
-                if (child.name.Contains(itemNameToTriggerNext))
-                {
-                    nextTriggered = true;
-                    TriggerNextDialogue();
-                    itemNameToTriggerNext = null;
-                    break;
-                }
-            }
 
             Debug.Log("Holding item: " + child);
         }
-
     }
 
     private void CheckItemCookedCondition()
