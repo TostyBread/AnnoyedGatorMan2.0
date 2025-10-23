@@ -49,6 +49,7 @@ public class DialogueTrigger : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public bool autoOffStove = false;
+    public bool cleanAllFood = false;
 
     private void OnEnable()
     {
@@ -193,6 +194,14 @@ public class DialogueTrigger : MonoBehaviour
                     if (autoOffStove && stove != null && stove.isOn)
                     {
                         stove.ToggleStove();
+                    }
+
+                    if (cleanAllFood)
+                    {
+                        foreach (var foodItem in GameObject.FindGameObjectsWithTag("FoodSmall"))
+                        {
+                            Destroy(foodItem);
+                        }
                     }
 
                     itemToTriggerNext = null;

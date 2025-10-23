@@ -44,6 +44,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
+        {
+            DisplayNextDialogueLine();
+        }
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
         PlayerCanMove(false);
