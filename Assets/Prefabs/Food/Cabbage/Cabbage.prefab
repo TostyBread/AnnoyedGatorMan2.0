@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 7375408521143853263}
   - component: {fileID: -1955880895300490269}
   - component: {fileID: 4472790084273707479}
+  - component: {fileID: 8661872861187579686}
   m_Layer: 6
   m_Name: Cabbage
   m_TagString: FoodSmall
@@ -187,9 +188,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCooked: 1
   canBreak: 1
+  canBash: 1
+  canCut: 1
   durabilityUncooked: 60
   durabilityCooked: 60
-  cookThreshold: 100
+  cookThreshold: 99
   burnThreshold: 100
   damageCooldown: 0.6
   uncookedState: {fileID: 295136627851492575}
@@ -311,7 +314,7 @@ MonoBehaviour:
   - {x: -0.59364533, y: -0.060118437, z: 0}
   m_ShapePathHash: -343783747
   m_Mesh: {fileID: 0}
-  m_InstanceId: 104708
+  m_InstanceId: 359102
   m_LocalBounds:
     m_Center: {x: 0.0012100339, y: -0.0035340786, z: 0}
     m_Extent: {x: 0.59485537, y: 0.56723666, z: 0}
@@ -366,6 +369,27 @@ MonoBehaviour:
   spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
   weatherManager: {fileID: 0}
   sprite: {fileID: 2143950007700684239}
+--- !u!114 &8661872861187579686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914475135471142955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jiggleInterval: 0.1
+  BiggerTheGameobjectBy: 1
+  enableLeftRightJiggle: 0
+  enableUpDownJiggle: 1
+  jiggleRange: 0.1
+  jiggleSpeed: 10
+  enableRotationJiggle: 0
+  rotationAngle: 30
+  spriteGameobject: {fileID: 3753169411684535460}
 --- !u!1001 &408775025996469011
 PrefabInstance:
   m_ObjectHideFlags: 0

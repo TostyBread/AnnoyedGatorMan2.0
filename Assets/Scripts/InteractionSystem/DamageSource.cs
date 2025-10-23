@@ -92,7 +92,11 @@ public class DamageSource : MonoBehaviour
             {
                 item.ApplyCollisionEffect(gameObject);
                 if (playHitSound) PlayHitSound(damageType);
-                DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, damageType);
+
+                // Check if item can be damaged by this type
+                if (item.canBreak)
+                    if (item.canBash || item.canCut)
+                        DebrisManager.Instance.PlayDebrisEffect("DebrisPrefab", collision.contacts[0].point, damageType);
             }
         }
 

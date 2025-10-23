@@ -81,6 +81,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCooked: 1
   canBreak: 0
+  canBash: 1
+  canCut: 1
   durabilityUncooked: 30
   durabilityCooked: 0
   cookThreshold: 50

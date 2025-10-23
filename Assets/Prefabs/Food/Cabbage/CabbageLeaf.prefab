@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 7689085094135491398}
   - component: {fileID: -3218058737494191365}
   - component: {fileID: 8528091146162335167}
+  - component: {fileID: 3450537818738909343}
   m_Layer: 6
   m_Name: CabbageLeaf
   m_TagString: FoodSmall
@@ -180,13 +181,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCooked: 1
   canBreak: 0
+  canBash: 1
+  canCut: 1
   durabilityUncooked: 0
   durabilityCooked: 60
-  cookThreshold: 100
+  cookThreshold: 99
   burnThreshold: 100
   damageCooldown: 0.6
   uncookedState: {fileID: 5323512010420837756}
-  cookedState: {fileID: 0}
+  cookedState: {fileID: 5323512010420837756}
   brokenPartsUncookedBash: []
   brokenPartsCookedBash: []
   brokenPartsUncookedCut: []
@@ -311,3 +314,24 @@ MonoBehaviour:
   spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
   weatherManager: {fileID: 0}
   sprite: {fileID: 0}
+--- !u!114 &3450537818738909343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912291141278576272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jiggleInterval: 0.1
+  BiggerTheGameobjectBy: 1
+  enableLeftRightJiggle: 0
+  enableUpDownJiggle: 1
+  jiggleRange: 0.1
+  jiggleSpeed: 10
+  enableRotationJiggle: 0
+  rotationAngle: 30
+  spriteGameobject: {fileID: 2318970250886255664}

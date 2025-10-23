@@ -28,6 +28,7 @@ public class ItemSystem : MonoBehaviour
     public bool isBurned = false;
     private SpriteRenderer cookedSpriteRenderer;
     private Color originalCookedColor;
+    private Jiggle jiggle;
 
     private Dictionary<GameObject, float> lastDamageTimestamps = new();
     private float cleanupInterval = 5f;
@@ -37,6 +38,7 @@ public class ItemSystem : MonoBehaviour
 
     void Start()
     {
+        jiggle = GetComponent<Jiggle>();
         currentDurability = durabilityUncooked;
         currentCookPoints = 0f;
         isCooked = false;
@@ -176,6 +178,7 @@ public class ItemSystem : MonoBehaviour
         cookedState.SetActive(true);
         currentDurability = durabilityCooked;
         AudioManager.Instance.PlaySound("Fizzle", transform.position);
+        jiggle?.StartJiggle();
     }
 
     public void BurnItem()
@@ -183,5 +186,6 @@ public class ItemSystem : MonoBehaviour
         isBurned = true;
         cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
         AudioManager.Instance.PlaySound("DryFart", transform.position);
+        jiggle?.StartJiggle();
     }
 }

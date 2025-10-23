@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5444978858733551690}
   - component: {fileID: 7886693706525591475}
   - component: {fileID: 3857122474756937630}
+  - component: {fileID: 1109319742915469840}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: FoodSmall
@@ -190,6 +191,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1109319742915469840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4238283158708592617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.31265295, y: -0.17695384, z: 0}
+  - {x: -0.36640254, y: -0.11439962, z: 0}
+  - {x: -0.38575646, y: -0.037444584, z: 0}
+  - {x: -0.36464813, y: 0.038901325, z: 0}
+  - {x: -0.29508752, y: 0.097630106, z: 0}
+  - {x: -0.18439211, y: 0.12829827, z: 0}
+  - {x: 0.015616812, y: 0.089066006, z: 0}
+  - {x: 0.16781229, y: 0.0009851223, z: 0}
+  - {x: 0.24614722, y: -0.10971564, z: 0}
+  - {x: 0.24460599, y: -0.22752883, z: 0}
+  - {x: 0.18311496, y: -0.2963935, z: 0}
+  - {x: 0.07924139, y: -0.3208175, z: 0}
+  - {x: -0.17448798, y: -0.2530323, z: 0}
+  m_ShapePathHash: -1105864371
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -440568
+  m_LocalBounds:
+    m_Center: {x: -0.06980464, y: -0.096259624, z: 0}
+    m_Extent: {x: 0.31595182, y: 0.22455788, z: 0}
 --- !u!1 &8250244718548365111
 GameObject:
   m_ObjectHideFlags: 0

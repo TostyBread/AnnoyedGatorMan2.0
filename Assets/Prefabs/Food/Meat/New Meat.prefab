@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1866198705136757386}
   - component: {fileID: 8588686429827029976}
   - component: {fileID: 3481029167952402732}
+  - component: {fileID: 1986909091136357520}
   m_Layer: 6
   m_Name: New Meat
   m_TagString: FoodSmall
@@ -240,7 +241,7 @@ MonoBehaviour:
   - {x: -0.5916207, y: -0.8372182, z: 0}
   m_ShapePathHash: -2016482701
   m_Mesh: {fileID: 0}
-  m_InstanceId: -35030
+  m_InstanceId: 342440
   m_LocalBounds:
     m_Center: {x: -0.0040233135, y: -0.0063319206, z: 0}
     m_Extent: {x: 0.82487845, y: 1.3462212, z: 0}
@@ -295,6 +296,27 @@ MonoBehaviour:
   spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
   weatherManager: {fileID: 0}
   sprite: {fileID: 0}
+--- !u!114 &1986909091136357520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603824264097059469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jiggleInterval: 0.1
+  BiggerTheGameobjectBy: 1
+  enableLeftRightJiggle: 0
+  enableUpDownJiggle: 1
+  jiggleRange: 0.1
+  jiggleSpeed: 10
+  enableRotationJiggle: 0
+  rotationAngle: 30
+  spriteGameobject: {fileID: 1851775279982332585}
 --- !u!1 &4502151294894806707
 GameObject:
   m_ObjectHideFlags: 0

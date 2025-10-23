@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 58553693070379607}
   - component: {fileID: 5039677516606517252}
   - component: {fileID: 5468825189548583055}
+  - component: {fileID: 5631952090950057616}
   m_Layer: 15
   m_Name: Enemy
   m_TagString: Enemy
@@ -346,6 +347,43 @@ CapsuleCollider2D:
   m_Offset: {x: -0.1338673, y: -0.11571467}
   m_Size: {x: 1.5664041, y: 0.73597807}
   m_Direction: 1
+--- !u!114 &5631952090950057616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558668271278603332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 0
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.3684311, y: -0.2093854, z: 0}
+  - {x: -0.4168415, y: -0.095553875, z: 0}
+  - {x: -0.35695457, y: 0.058485985, z: 0}
+  - {x: -0.28344536, y: 0.115859985, z: 0}
+  - {x: -0.103393555, y: 0.09928131, z: 0}
+  - {x: 0.09644508, y: 0.02769661, z: 0}
+  - {x: 0.22728348, y: -0.060906887, z: 0}
+  - {x: 0.20978928, y: -0.16170359, z: 0}
+  - {x: 0.14417076, y: -0.21390057, z: 0}
+  - {x: -0.01838684, y: -0.2437272, z: 0}
+  - {x: -0.18581581, y: -0.24359751, z: 0}
+  m_ShapePathHash: 1355788887
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 316218
+  m_LocalBounds:
+    m_Center: {x: -0.094779015, y: -0.06393361, z: 0}
+    m_Extent: {x: 0.3220625, y: 0.1797936, z: 0}
 --- !u!1 &1605733860555913360
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +714,7 @@ MonoBehaviour:
   - {x: 2.1552315, y: -2.4399996, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 147052
+  m_InstanceId: 316194
   m_LocalBounds:
     m_Center: {x: 0, y: 0.00000047683716, z: 0}
     m_Extent: {x: 2.1552315, y: 2.44, z: 0}

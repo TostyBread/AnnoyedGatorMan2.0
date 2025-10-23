@@ -1789,6 +1789,7 @@ GameObject:
   - component: {fileID: 4097314866109383994}
   - component: {fileID: 1275436583344678529}
   - component: {fileID: 3619115335145955248}
+  - component: {fileID: 3122043649147278559}
   m_Layer: 18
   m_Name: P3 Carbibara
   m_TagString: Player
@@ -2029,6 +2030,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCooked: 0
   canBreak: 0
+  canBash: 1
+  canCut: 1
   durabilityUncooked: 0
   durabilityCooked: 0
   cookThreshold: 60
@@ -2104,6 +2107,42 @@ MonoBehaviour:
     m_Bits: 128
   enableDebugLog: 0
   enableDebugGizmos: 0
+--- !u!114 &3122043649147278559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135101431889565427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.18970585, y: -1.1838346, z: 0}
+  - {x: -0.32084465, y: -0.6108061, z: 0}
+  - {x: -0.48775387, y: -0.16697973, z: 0}
+  - {x: -0.47639275, y: 0.0075176954, z: 0}
+  - {x: -0.29051685, y: 0.15925324, z: 0}
+  - {x: -0.0515337, y: 0.1630466, z: 0}
+  - {x: 0.4701891, y: 0.102240205, z: 0}
+  - {x: 0.76449394, y: -0.07950026, z: 0}
+  - {x: 0.55971813, y: -0.67969036, z: 0}
+  - {x: 0.39584064, y: -1.1895097, z: 0}
+  m_ShapePathHash: 1481524089
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -302044
+  m_LocalBounds:
+    m_Center: {x: 0.13837004, y: -0.5132316, z: 0}
+    m_Extent: {x: 0.6261239, y: 0.6762782, z: 0}
 --- !u!1 &3324805289703524311
 GameObject:
   m_ObjectHideFlags: 0
@@ -4828,13 +4867,14 @@ GameObject:
   - component: {fileID: 5351150476593833405}
   - component: {fileID: 7146315376641771014}
   - component: {fileID: 7668680888624775215}
+  - component: {fileID: 7441760239559662278}
   m_Layer: 18
   m_Name: P3 GatorMan
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9013086214482788930
 Transform:
   m_ObjectHideFlags: 0
@@ -5068,6 +5108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCooked: 0
   canBreak: 0
+  canBash: 1
+  canCut: 1
   durabilityUncooked: 0
   durabilityCooked: 0
   cookThreshold: 60
@@ -5143,6 +5185,36 @@ MonoBehaviour:
     m_Bits: 128
   enableDebugLog: 0
   enableDebugGizmos: 0
+--- !u!114 &7441760239559662278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421450323599144564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.90382385, y: -1.4568962, z: 0}
+  - {x: -0.4089012, y: -0.092045486, z: 0}
+  - {x: 0.40162086, y: -0.13528073, z: 0}
+  - {x: 0.7216635, y: -1.432608, z: 0}
+  m_ShapePathHash: 1937035757
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -334282
+  m_LocalBounds:
+    m_Center: {x: -0.09108019, y: -0.7744708, z: 0}
+    m_Extent: {x: 0.81274366, y: 0.6824254, z: 0}
 --- !u!1 &6548530637104651511
 GameObject:
   m_ObjectHideFlags: 0
@@ -7254,6 +7326,7 @@ GameObject:
   - component: {fileID: 7535495033953433008}
   - component: {fileID: 4754851461008922123}
   - component: {fileID: 9182224713853724800}
+  - component: {fileID: 877837073366686979}
   m_Layer: 18
   m_Name: P3 Tortise
   m_TagString: Player
@@ -7494,6 +7567,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCooked: 0
   canBreak: 0
+  canBash: 1
+  canCut: 1
   durabilityUncooked: 0
   durabilityCooked: 0
   cookThreshold: 60
@@ -7569,6 +7644,47 @@ MonoBehaviour:
     m_Bits: 128
   enableDebugLog: 0
   enableDebugGizmos: 0
+--- !u!114 &877837073366686979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921064350408222329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.8274212, y: -1.582666, z: 0}
+  - {x: -0.82577896, y: -1.2357013, z: 0}
+  - {x: -0.57339096, y: -0.8115493, z: 0}
+  - {x: -0.39111042, y: -0.6362798, z: 0}
+  - {x: -0.20042801, y: -0.57699454, z: 0}
+  - {x: 0.050210953, y: -0.56372607, z: 0}
+  - {x: 0.15221024, y: -0.5766952, z: 0}
+  - {x: 0.27840424, y: -0.7274269, z: 0}
+  - {x: 0.8322563, y: -1.1726114, z: 0}
+  - {x: 0.8673096, y: -1.3338592, z: 0}
+  - {x: 0.78668594, y: -1.5231503, z: 0}
+  - {x: 0.5868788, y: -1.6984197, z: 0}
+  - {x: 0.31858253, y: -1.7649459, z: 0}
+  - {x: -0.34906006, y: -1.782549, z: 0}
+  - {x: -0.69258785, y: -1.7510005, z: 0}
+  m_ShapePathHash: -1165053405
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -332124
+  m_LocalBounds:
+    m_Center: {x: 0.019944191, y: -1.1731375, z: 0}
+    m_Extent: {x: 0.8473654, y: 0.6094115, z: 0}
 --- !u!1 &8943011471215582428
 GameObject:
   m_ObjectHideFlags: 0
@@ -7668,7 +7784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4562775364599266421
 Transform:
   m_ObjectHideFlags: 0

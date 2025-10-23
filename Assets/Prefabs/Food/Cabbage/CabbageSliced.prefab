@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 1551780093334874459}
   - component: {fileID: -2301199017820412758}
   - component: {fileID: 1547541392783223807}
+  - component: {fileID: 3644632436064531436}
   m_Layer: 6
   m_Name: CabbageSliced
   m_TagString: FoodSmall
@@ -183,13 +184,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCooked: 1
   canBreak: 1
+  canBash: 1
+  canCut: 1
   durabilityUncooked: 50
   durabilityCooked: 60
-  cookThreshold: 100
+  cookThreshold: 99
   burnThreshold: 100
   damageCooldown: 0.6
   uncookedState: {fileID: 5017332029922559738}
-  cookedState: {fileID: 0}
+  cookedState: {fileID: 5017332029922559738}
   brokenPartsUncookedBash:
   - {fileID: 959233225120300351}
   - {fileID: 0}
@@ -317,6 +320,27 @@ MonoBehaviour:
   spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
   weatherManager: {fileID: 0}
   sprite: {fileID: 0}
+--- !u!114 &3644632436064531436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6798161795731262118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jiggleInterval: 0.1
+  BiggerTheGameobjectBy: 1
+  enableLeftRightJiggle: 0
+  enableUpDownJiggle: 1
+  jiggleRange: 0.1
+  jiggleSpeed: 10
+  enableRotationJiggle: 0
+  rotationAngle: 30
+  spriteGameobject: {fileID: 3374252095068537175}
 --- !u!1001 &2930006493177039772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,14 +349,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2133209411155103395}
     m_Modifications:
-    - target: {fileID: -3218058737494191365, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
-      propertyPath: Health
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: -3218058737494191365, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
-      propertyPath: currentHealth
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4991258900548617813, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -395,14 +411,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2133209411155103395}
     m_Modifications:
-    - target: {fileID: 1624199148918665938, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
-      propertyPath: Health
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1624199148918665938, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
-      propertyPath: currentHealth
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2812990034407412477, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -443,14 +451,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4043611285025287781, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
-      propertyPath: enableRotationJiggle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4043611285025287781, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
-      propertyPath: enableLeftRightJiggle
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9079222091977042799, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
       propertyPath: m_Name
       value: CabbageDiced
@@ -478,14 +478,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2133209411155103395}
     m_Modifications:
-    - target: {fileID: -3218058737494191365, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
-      propertyPath: Health
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: -3218058737494191365, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
-      propertyPath: currentHealth
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4991258900548617813, guid: 98d4fa242e27cfa4f926a25c9eedcd87, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

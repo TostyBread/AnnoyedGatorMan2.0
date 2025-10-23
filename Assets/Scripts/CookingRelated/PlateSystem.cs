@@ -27,9 +27,11 @@ public class PlateSystem : MonoBehaviour
     private int cachedPlateSortingOrder;
     private Dictionary<(int itemID, ItemDescriber.CookingState cookingState, ItemDescriber.Condition condition), List<PlateRequirement>> requirementLookup;
     private int unfilledRequirementCount;
+    private Jiggle jiggle;
 
     private void Awake()
     {
+        jiggle = GetComponent<Jiggle>();
         // Cache the plate's SpriteRenderer once
         cachedPlateRenderer = GetComponent<SpriteRenderer>();
         cachedPlateSortingOrder = cachedPlateRenderer != null ? cachedPlateRenderer.sortingOrder : 0;
@@ -145,6 +147,7 @@ public class PlateSystem : MonoBehaviour
     {
         AudioManager.Instance.PlaySound("TaskComplete", transform.position);
         isReadyToServe = true;
+        jiggle?.StartJiggle();
     }
 
     // Cleanup method for detaching items (optimized version)
