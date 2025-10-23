@@ -37,14 +37,16 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Trigger Next Condition")]
     public DialogueConditionType triggerCondition = DialogueConditionType.OnPlayerCollision;
     public GameObject itemToTriggerNext;
+    public string itemNameToTriggerNext;
 
-    public enum DialogueConditionType { OnPlayerCollision, OnStove, OnItemPickup, CheckItem, CheckItemCooked }
+    public enum DialogueConditionType { OnPlayerCollision, OnStove, OnItemPickup, CheckItem, CheckItemCooked, CheckItemGone }
 
     private CookingStove stove;
     private GameObject player;
     private GameObject wieldingHand;
     private bool hasTriggered = false;
     private bool nextTriggered = false;
+
     private SpriteRenderer spriteRenderer;
 
     public bool autoOffStove = false;
@@ -65,6 +67,8 @@ public class DialogueTrigger : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
             wieldingHand = player.transform.Find("HandControls/Wielding_Hand")?.gameObject;
         }
+
+        dialogueManager.stayAtLastDialogue = StayAtLastDialogue;
     }
 
     private void Update()
@@ -97,22 +101,67 @@ public class DialogueTrigger : MonoBehaviour
             if (triggerCondition == DialogueConditionType.OnPlayerCollision)
                 TriggerNextDialogue();
         }
-    }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
         switch (triggerCondition)
         {
             case DialogueConditionType.CheckItem:
-                if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
+                if (itemNameToTriggerNext != null)
                 {
-                    nextTriggered = true;
-                    TriggerNextDialogue();
-                    itemToTriggerNext = null;
+                    if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
+                    {
+                        nextTriggered = true;
+                        TriggerNextDialogue();
+                        itemToTriggerNext = null;
+                    }
+                }
+                else if (!string.IsNullOrEmpty(itemNameToTriggerNext))
+                {
+                    if (collision.gameObject.name.Contains(itemNameToTriggerNext))
+                    {
+                        nextTriggered = true;
+                        TriggerNextDialogue();
+                        itemNameToTriggerNext = null;
+                    }
+                }
+                break;
+
+            case DialogueConditionType.CheckItemGone:
+                if (itemNameToTriggerNext != null)
+                {
+                    if (itemToTriggerNext == null && collision.gameObject.name.Contains(itemToTriggerNext.name))
+                    {
+                        nextTriggered = true;
+                        TriggerNextDialogue();
+                        itemToTriggerNext = null;
+                    }
+                }
+                else if (!string.IsNullOrEmpty(itemNameToTriggerNext))
+                {
+                    if (collision.gameObject.name.Contains(itemNameToTriggerNext))
+                    {
+                        nextTriggered = true;
+                        TriggerNextDialogue();
+                        itemNameToTriggerNext = null;
+                    }
                 }
                 break;
         }
     }
+
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    switch (triggerCondition)
+    //    {
+    //        case DialogueConditionType.CheckItem:
+    //            if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
+    //            {
+    //                nextTriggered = true;
+    //                TriggerNextDialogue();
+    //                itemToTriggerNext = null;
+    //            }
+    //            break;
+    //    }
+    //}
 
     private void CheckStoveCondition()
     {
@@ -132,14 +181,30 @@ public class DialogueTrigger : MonoBehaviour
 
         foreach (Transform child in wieldingHand.transform)
         {
-            if (child.name.Contains(itemToTriggerNext.name))
+            if (itemToTriggerNext != null)
             {
-                nextTriggered = true;
-                TriggerNextDialogue();
-                itemToTriggerNext = null;
-                break;
+                if (child.name.Contains(itemToTriggerNext.name))
+                {
+                    nextTriggered = true;
+                    TriggerNextDialogue();
+                    itemToTriggerNext = null;
+                    break;
+                }
             }
+            else if (!string.IsNullOrEmpty(itemNameToTriggerNext))
+            {
+                if (child.name.Contains(itemNameToTriggerNext))
+                {
+                    nextTriggered = true;
+                    TriggerNextDialogue();
+                    itemNameToTriggerNext = null;
+                    break;
+                }
+            }
+
+            Debug.Log("Holding item: " + child);
         }
+
     }
 
     private void CheckItemCookedCondition()

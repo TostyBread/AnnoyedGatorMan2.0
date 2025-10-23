@@ -46,9 +46,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        //Stop player movement and input
-        playerInputManager.isInputEnabled = false;
-        characterMovement.SetMovement(Vector2.zero);
+        PlayerCanMove(false);
 
         if (dialogue == null || dialogue.dialogueLines.Count == 0)
         {
@@ -74,16 +72,35 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(WaitThenDisplayNext(0.5f));
     }
 
+    private void PlayerCanMove(bool canMove)
+    {
+        if (canMove)
+        {
+            //Re-enable player movement and input
+            playerInputManager.isInputEnabled = true;
+        }
+        else if (!canMove)
+        {
+            //Stop player movement and input
+            playerInputManager.isInputEnabled = false;
+            characterMovement.SetMovement(Vector2.zero);
+        }
+    }
+
     public void DisplayNextDialogueLine()
     {
-        if (lines.Count == 0 && stayAtLastDialogue == false)
+        if (lines.Count == 0)
         {
-            EndDialogue();
-            return;
-        }
-        else if (lines.Count == 0 && stayAtLastDialogue == true)
-        {
-            return;
+            if (stayAtLastDialogue == false)
+            {
+                EndDialogue();
+                return;
+            }
+            else if (stayAtLastDialogue == true) //this code is to stay at the last dialogue line
+            {
+                PlayerCanMove(true);
+                return;
+            }
         }
 
         DialogueLine currentLine = lines.Dequeue();
