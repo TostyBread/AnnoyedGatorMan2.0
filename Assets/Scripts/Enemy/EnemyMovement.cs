@@ -89,6 +89,8 @@ public class EnemyMovement : MonoBehaviour
     // store the last detected GameObject (player/food) for chase logic
     private GameObject lastDetectedTarget;
 
+    private EnemySpawner enemySpawner;
+
     private void OnEnable()
     {
         MoveNext = false;
@@ -96,6 +98,12 @@ public class EnemyMovement : MonoBehaviour
         // Reset any lost state
         currentState = EnemyState.Wandering;
         StartCoroutine(ResumeDetectionAfterEnable());
+    }
+
+    private void OnDisable()
+    {
+        if (enemySpawner.currentSpawnedEnemy > 0)
+        enemySpawner.currentSpawnedEnemy--;
     }
 
     private IEnumerator ResumeDetectionAfterEnable()
@@ -182,6 +190,8 @@ public class EnemyMovement : MonoBehaviour
             if (comp != null) enemyMovePoint = comp.gameObject;
             else Debug.LogWarning($"{name}: GetMeFormOtherCode child not found.");
         }
+
+        enemySpawner = FindAnyObjectByType<EnemySpawner>().GetComponent<EnemySpawner>();
     }
 
     private void Update()
@@ -190,6 +200,11 @@ public class EnemyMovement : MonoBehaviour
         { 
             rb2d.velocity = Vector2.zero; 
             rb2d.angularVelocity = 0f; 
+        }
+
+        if (transform.localScale.x < 0) //make sure the gameObject Scale.x won't get minus
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
     }
 

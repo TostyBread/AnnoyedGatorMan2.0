@@ -1,7 +1,9 @@
-using NavMeshPlus.Extensions;
+﻿using NavMeshPlus.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -32,6 +34,10 @@ public class EnemySpawner : MonoBehaviour
     [Header("do not touch, just for Refrence")]
     public GameObject EnemyForCurrentWeather;
 
+    public int deadBodiesCount = 0;
+    [SerializeField]private float speedUpEnemySpawnPerSecond; 
+    private float spawnSpeedTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
 
         timer = UI.GetComponentInChildren<Timer>();
         sanity = UI.GetComponentInChildren<Sanity>();
-        ChargeReadyTime = Random.Range(MinSpawnTime, MaxSpawnTime);
+        ChargeReadyTime = Random.Range(5, 7);
         weatherManager = FindAnyObjectByType<WeatherManager>();
 
         if (Spawners.Count == 0)
@@ -67,20 +73,47 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (SanityIsEmptyOnce == false && sanity.RemainSanity == 0)
-        {
-            foreach (Transform spawner in Spawners)
-            {
-                GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation);
+    void Update() 
+    { 
+        if (SanityIsEmptyOnce == false && sanity.RemainSanity == 0) 
+        { foreach (Transform spawner in Spawners) 
+            { 
+                GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation); 
             }
-            ChargeReadyTime = Random.Range(5, 10);
-            ChargeTimer = 0;
-            SanityIsEmptyOnce = true;
+            ChargeReadyTime = Random.Range(MinSpawnTime/2, MaxSpawnTime/2);
+            ChargeTimer = 0; SanityIsEmptyOnce = true;
         }
 
-        SpawnEnemy();
+        SpawnEnemy(); 
+        CountDeadBodiesInGame();
+        SpeedUpEnemySpawn();
+    }
+
+    private void CountDeadBodiesInGame()
+    {
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        List<GameObject> AllDeadBodies = new List<GameObject>();
+
+        foreach (var deadBody in allObjects) 
+        {
+            if (deadBody.name.Contains("(Dead)"))
+            {
+                AllDeadBodies.Add(deadBody);
+            }
+        }
+
+        deadBodiesCount = AllDeadBodies.Count;
+    }
+
+    void SpeedUpEnemySpawn()
+    {
+        spawnSpeedTimer += Time.deltaTime;
+        if (spawnSpeedTimer >= 2f)
+        {
+            ChargeReadyTime = ChargeReadyTime - deadBodiesCount;
+
+            spawnSpeedTimer = 0f;
+        }
     }
 
     void SpawnEnemy()
