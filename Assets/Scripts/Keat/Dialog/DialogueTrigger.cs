@@ -30,26 +30,29 @@ public class DialogueTrigger : MonoBehaviour
 
     [Header("Next Dialogue Trigger")]
     public GameObject nextDialogue;
-    public GameObject showNextGameObject;
+    public GameObject showGameObject;
     private DialogueManager dialogueManager;
+    public bool StayAtLastDialogue;
 
     [Header("Trigger Next Condition")]
-    public DialogueConditionType triggerCondition = DialogueConditionType.None;
+    public DialogueConditionType triggerCondition = DialogueConditionType.OnPlayerCollision;
     public GameObject itemToTriggerNext;
 
-    public enum DialogueConditionType { None, OnStove, OnItemPickup, CheckItem, CheckItemCooked }
+    public enum DialogueConditionType { OnPlayerCollision, OnStove, OnItemPickup, CheckItem, CheckItemCooked }
 
     private CookingStove stove;
     private GameObject player;
     private GameObject wieldingHand;
     private bool hasTriggered = false;
     private bool nextTriggered = false;
+    private SpriteRenderer spriteRenderer;
 
     public bool autoOffStove = false;
 
     private void OnEnable()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (nextDialogue != null)
             nextDialogue.SetActive(false);
@@ -66,6 +69,8 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
+        dialogueManager.stayAtLastDialogue = StayAtLastDialogue;
+
         switch (triggerCondition)
         {
             case DialogueConditionType.OnStove:
@@ -89,7 +94,7 @@ public class DialogueTrigger : MonoBehaviour
             hasTriggered = true;
             TriggerDialogue();
 
-            if (triggerCondition == DialogueConditionType.None)
+            if (triggerCondition == DialogueConditionType.OnPlayerCollision)
                 TriggerNextDialogue();
         }
     }
@@ -164,19 +169,22 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = false;
+
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.StartDialogue(dialogue);
         else
             Debug.LogWarning("DialogueManager.Instance is null. Did you forget to place it in the scene?");
+
+        if (showGameObject != null)
+            showGameObject.SetActive(true);
     }
 
     private void TriggerNextDialogue()
     {
         if (nextDialogue != null)
             nextDialogue.SetActive(true);
-
-        if (showNextGameObject != null)
-            showNextGameObject.SetActive(true);
 
         gameObject.SetActive(false);
     }
