@@ -6,6 +6,7 @@ public class DestroyWhenMasterDie : MonoBehaviour
 {
     public GameObject Master;
     // Update is called once per frame
+
     void Update()
     {
         if (Master == null)
