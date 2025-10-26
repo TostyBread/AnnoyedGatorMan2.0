@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CookingStove : MonoBehaviour
@@ -17,6 +18,10 @@ public class CookingStove : MonoBehaviour
     private GameObject currentSnappedObject;
 
     private Coroutine fireActivationCoroutine;
+
+    [Header("Items Currently on Stove")]
+    public GameObject[] itemsOnStove; // to be read by DialogueTrigger (CheckItemOnStove)
+    private List<GameObject> stoveItems = new List<GameObject>(); // internal tracker
 
     private void Start()
     {
@@ -103,13 +108,31 @@ public class CookingStove : MonoBehaviour
 
             currentSnappedObject = other.gameObject;
         }
+
+        // Add to stove items list
+        if (!stoveItems.Contains(other.gameObject))
+        {
+            stoveItems.Add(other.gameObject);
+            UpdateItemsArray();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (stoveItems.Contains(other.gameObject))
+        {
+            stoveItems.Remove(other.gameObject);
+            UpdateItemsArray();
+        }
+
         if (other.gameObject == currentSnappedObject)
         {
             currentSnappedObject = null;
         }
+    }
+
+    private void UpdateItemsArray()
+    {
+        itemsOnStove = stoveItems.ToArray();
     }
 }

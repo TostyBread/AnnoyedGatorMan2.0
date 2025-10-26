@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 #region Serializable Data Classes
@@ -38,7 +39,16 @@ public class DialogueTrigger : MonoBehaviour
     public DialogueConditionType triggerCondition = DialogueConditionType.OnPlayerCollision;
     public GameObject itemToTriggerNext;
 
-    public enum DialogueConditionType { OnPlayerCollision, OnStove, OnItemPickup, CheckItem, CheckItemCooked, CheckItemGone }
+    public enum DialogueConditionType 
+    { 
+        OnPlayerCollision, 
+        OnStove, 
+        OnItemPickup, 
+        CheckItem, 
+        CheckItemCooked, 
+        CheckItemGone,
+        CheckItemOnStove
+    }
 
     private CookingStove stove;
     private GameObject player;
@@ -59,8 +69,10 @@ public class DialogueTrigger : MonoBehaviour
         if (nextDialogue != null)
             nextDialogue.SetActive(false);
 
-        if (triggerCondition == DialogueConditionType.OnStove || triggerCondition == DialogueConditionType.CheckItemCooked)
+        if (triggerCondition == DialogueConditionType.OnStove || triggerCondition == DialogueConditionType.CheckItemCooked || triggerCondition == DialogueConditionType.CheckItemOnStove)
+        { 
             stove = FindAnyObjectByType<CookingStove>();
+        }
 
         if (triggerCondition == DialogueConditionType.OnItemPickup)
         {
@@ -87,7 +99,9 @@ public class DialogueTrigger : MonoBehaviour
             case DialogueConditionType.CheckItemCooked:
                 CheckItemCookedCondition();
                 break;
-
+            case DialogueConditionType.CheckItemOnStove:
+                CheckItemOnStove();
+                break;
         }
     }
 
@@ -128,21 +142,6 @@ public class DialogueTrigger : MonoBehaviour
                 break;
         }
     }
-
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    switch (triggerCondition)
-    //    {
-    //        case DialogueConditionType.CheckItem:
-    //            if (itemToTriggerNext != null && collision.gameObject.name.Contains(itemToTriggerNext.name))
-    //            {
-    //                nextTriggered = true;
-    //                TriggerNextDialogue();
-    //                itemToTriggerNext = null;
-    //            }
-    //            break;
-    //    }
-    //}
 
     private void CheckStoveCondition()
     {
@@ -205,6 +204,27 @@ public class DialogueTrigger : MonoBehaviour
                     }
 
                     itemToTriggerNext = null;
+                }
+            }
+        }
+    }
+
+    private void CheckItemOnStove()
+    {
+        if (stove == null) 
+            stove = FindAnyObjectByType<CookingStove>();
+
+        if (itemToTriggerNext != null && stove != null)
+        {
+            foreach (var item in stove.itemsOnStove)
+            {
+                if (item.name.Contains(itemToTriggerNext.name))
+                {
+                    Debug.Log("An item is on the stove: " + item.name);
+                    nextTriggered = true;
+                    TriggerNextDialogue();
+                    itemToTriggerNext = null;
+                    break;
                 }
             }
         }
