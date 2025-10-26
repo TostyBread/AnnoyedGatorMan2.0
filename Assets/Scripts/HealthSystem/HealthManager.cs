@@ -24,7 +24,7 @@ public class HealthManager : MonoBehaviour
     public bool enemy;
     public HealthManager sharedHealthSource;
     public GameObject deadBody;
-    private bool spawnOnce = true;
+    private bool spawnOnceDeadBody = true;
 
     [Header("Player State Flags")]
     public bool isPlayer = true; // Used to determine if this is a player or not
@@ -143,13 +143,11 @@ public class HealthManager : MonoBehaviour
 
             if (deadBody != null)
             {
-                if (spawnOnce == true)
+                if (spawnOnceDeadBody == true)
                 {
                     GameObject Deadbody = Instantiate(deadBody, this.transform.position, this.transform.rotation); //Spawn dead body of current enemy
-                    if (enemySpawner != null)
-                    enemySpawner.currentSpawnedEnemy--;
 
-                    spawnOnce = false;
+                    spawnOnceDeadBody = false;
                 }
             }
 
