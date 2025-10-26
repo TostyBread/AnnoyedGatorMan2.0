@@ -31,7 +31,7 @@ public class DialogueTrigger : MonoBehaviour
 
     [Header("Next Dialogue Trigger")]
     public GameObject nextDialogue;
-    public GameObject showGameObject;
+    public GameObject[] showGameObjects;
     private DialogueManager dialogueManager;
     public bool StayAtLastDialogue;
 
@@ -240,8 +240,11 @@ public class DialogueTrigger : MonoBehaviour
         else
             Debug.LogWarning("DialogueManager.Instance is null. Did you forget to place it in the scene?");
 
-        if (showGameObject != null)
-            showGameObject.SetActive(true);
+        if (showGameObjects != null)
+        {
+            foreach (var showGameObject in showGameObjects)
+                showGameObject.SetActive(true);
+        }
     }
 
     private void TriggerNextDialogue()
