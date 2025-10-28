@@ -3,6 +3,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class SpecialMusicSettings
+{
+    public AudioClip clip;
+    [Range(0f, 1f)]
+    public float volume = 1f;
+    [Range(0f, 5f)]
+    public float fadeTime = 0.5f;
+    public bool loop = false;
+    public bool returnToPrevious = true;
+}
+
 public class Timer : MonoBehaviour
 {
     [Header("Timer Settings")]
@@ -17,6 +29,10 @@ public class Timer : MonoBehaviour
     [SerializeField] private string tenSecondTickSound = "TimerTenSecond";
     [SerializeField] private string secondTickSound = "TimerSecond";
     [SerializeField] private string gameOverSound = "GameOver";
+
+    [Header("Special Music Settings")]
+    [SerializeField] private SpecialMusicSettings finalSecondsMusic;
+    [SerializeField] private SpecialMusicSettings gameOverMusic;
 
     private TMP_Text TimerText;
     private CameraMovement cameraMovement;
@@ -34,7 +50,7 @@ public class Timer : MonoBehaviour
         RemainTime = MaxTime;
         TimerText = GetComponentInChildren<TMP_Text>();
         cameraMovement = FindObjectOfType<CameraMovement>();
-        
+
         // Initialize audio tracking
         lastMinute = Mathf.FloorToInt(RemainTime / 60f);
         lastTenSecondInterval = GetTenSecondInterval(RemainTime);
@@ -68,9 +84,35 @@ public class Timer : MonoBehaviour
 
         RemainTime = Mathf.Clamp(RemainTime, 0, MaxTime);
 
-        // Play game over sound when timer reaches 0
-        if (RemainTime <= 0 && !gameOverSoundPlayed)
+        // Final seconds music trigger - using a threshold check instead of exact equality
+        if (RemainTime <= 53f && RemainTime > 52.9f && finalSecondsMusic.clip != null)
         {
+            if (MusicManager.Instance != null)
+            {
+                MusicManager.Instance.PlaySpecialMusic(
+                    finalSecondsMusic.clip,
+                    perClipVolume: finalSecondsMusic.volume,
+                    fadeTime: finalSecondsMusic.fadeTime,
+                    loop: finalSecondsMusic.loop,
+                    returnToPrevious: finalSecondsMusic.returnToPrevious
+                );
+            }
+        }
+
+        // Game over music trigger
+        if (RemainTime <= 0 && !gameOverSoundPlayed && gameOverMusic.clip != null)
+        {
+            if (MusicManager.Instance != null)
+            {
+                MusicManager.Instance.PlaySpecialMusic(
+                    gameOverMusic.clip,
+                    perClipVolume: gameOverMusic.volume,
+                    fadeTime: gameOverMusic.fadeTime,
+                    loop: gameOverMusic.loop,
+                    returnToPrevious: gameOverMusic.returnToPrevious
+                );
+            }
+
             PlayGameOverSound();
             gameOverSoundPlayed = true;
         }

@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: 0
-  itemPrefab: {fileID: 8859514281874207021, guid: 85c0c0167ddbfed47bf77c9f127d6fc9, type: 3}
+  itemPrefab: {fileID: 1706992943235291945, guid: 3d381c41096699445af4eadc50112fe3, type: 3}
   itemCount: 4
   destroyWhenEmpty: 1
   canThrowItems: 1

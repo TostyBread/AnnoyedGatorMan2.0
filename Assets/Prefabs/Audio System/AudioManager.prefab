@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1761109173612110425}
   - component: {fileID: 6112874367228190351}
+  - component: {fileID: 5041127905726033666}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -49,6 +50,36 @@ MonoBehaviour:
   audioSourcePrefab: {fileID: 4742835750530601534, guid: 8868380bdea7e6c4b8099a2b85c55548, type: 3}
   poolSize: 25
   AdjustedVolume: 1
+--- !u!114 &5041127905726033666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622905437505858134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091b39d59d23182439269150ccd7fe23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 2015278406608990012}
+  sceneMusicMap:
+  - sceneName: Tutorial(Player1)
+    musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
+    volume: 1
+    fadeTime: 0.3
+  - sceneName: Tutorial(Player2)
+    musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
+    volume: 1
+    fadeTime: 0.3
+  - sceneName: MainMenu
+    musicClip: {fileID: 8300000, guid: 769d9c0d02dac7e43a77e5e1301ccc85, type: 3}
+    volume: 1
+    fadeTime: 1
+  defaultMusicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
+  defaultVolume: 1
+  defaultFadeTime: 1
+  allowSceneToInterruptSpecial: 1
 --- !u!1 &7128315412531526967
 GameObject:
   m_ObjectHideFlags: 0
