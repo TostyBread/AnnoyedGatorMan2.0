@@ -1,11 +1,6 @@
-﻿using NavMeshPlus.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 
@@ -22,21 +17,24 @@ public class EnemySpawner : MonoBehaviour
     private Sanity sanity;
     public List<Transform> Spawners = new List<Transform>();
 
+    public int deadBodiesCount = 0;
+    [SerializeField]private float speedUpEnemySpawnPerSecond; 
+    private float spawnSpeedTimer;
+
     [Header("do not touch, just for Refrence")]
     [SerializeField] private float ChargeReadyTime;
     [SerializeField] private float ChargeTimer;
-    public float currentSpawnedEnemy = 0;
+    public int currentSpawnedEnemy = 0;
+    public int TrashbagCount = 0;
 
     bool SanityIsEmptyOnce;
 
     private Transform spawner;
-    public WeatherManager weatherManager;
     [Header("do not touch, just for Refrence")]
+    public WeatherManager weatherManager;
     public GameObject EnemyForCurrentWeather;
 
-    public int deadBodiesCount = 0;
-    [SerializeField]private float speedUpEnemySpawnPerSecond; 
-    private float spawnSpeedTimer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -75,11 +73,13 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update() 
     { 
-        if (SanityIsEmptyOnce == false && sanity.RemainSanity == 0) 
-        { foreach (Transform spawner in Spawners) 
+        if (SanityIsEmptyOnce == false && sanity.RemainSanity == 0) //all spawner spawn enemy at once once player die
+        { 
+            foreach (Transform spawner in Spawners) 
             { 
                 GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation); 
             }
+
             ChargeReadyTime = Random.Range(MinSpawnTime/2, MaxSpawnTime/2);
             ChargeTimer = 0; SanityIsEmptyOnce = true;
         }
@@ -93,24 +93,33 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
         List<GameObject> AllDeadBodies = new List<GameObject>();
+        List<GameObject> Trashbags = new List<GameObject>();
 
-        foreach (var deadBody in allObjects) 
+        foreach (var item in allObjects) 
         {
-            if (deadBody.name.Contains("(Dead)"))
+            if (item.name.Contains("(Dead)"))
             {
-                AllDeadBodies.Add(deadBody);
+                AllDeadBodies.Add(item);
+            }
+
+            if (item.name.Contains("Trashbag"))
+            { 
+                Trashbags.Add(item);
             }
         }
 
         deadBodiesCount = AllDeadBodies.Count;
+        TrashbagCount = Trashbags.Count;
     }
 
-    void SpeedUpEnemySpawn()
+    void SpeedUpEnemySpawn() //ChargeReadyTime will decrease every 2 second;
     {
         spawnSpeedTimer += Time.deltaTime;
         if (spawnSpeedTimer >= 2f)
         {
             ChargeReadyTime = ChargeReadyTime - deadBodiesCount;
+
+            ChargeReadyTime = ChargeReadyTime - (TrashbagCount * 5);
 
             spawnSpeedTimer = 0f;
         }
