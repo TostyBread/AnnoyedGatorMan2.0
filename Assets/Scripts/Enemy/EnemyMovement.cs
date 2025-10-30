@@ -102,7 +102,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        if (enemySpawner.currentSpawnedEnemy > 0)
+        if (enemySpawner != null && enemySpawner.currentSpawnedEnemy > 0)
         enemySpawner.currentSpawnedEnemy--;
     }
 
@@ -191,7 +191,12 @@ public class EnemyMovement : MonoBehaviour
             else Debug.LogWarning($"{name}: GetMeFormOtherCode child not found.");
         }
 
-        enemySpawner = FindAnyObjectByType<EnemySpawner>().GetComponent<EnemySpawner>();
+        //enemySpawner = FindAnyObjectByType<EnemySpawner>().GetComponent<EnemySpawner>();
+        enemySpawner = FindAnyObjectByType<EnemySpawner>();
+        if (enemySpawner != null)
+        {
+            enemySpawner = enemySpawner.GetComponent<EnemySpawner>();
+        }
     }
 
     private void Update()
