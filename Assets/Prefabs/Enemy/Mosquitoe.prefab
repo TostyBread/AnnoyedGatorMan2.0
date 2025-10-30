@@ -380,7 +380,7 @@ MonoBehaviour:
   - {x: -0.18581581, y: -0.24359751, z: 0}
   m_ShapePathHash: 1355788887
   m_Mesh: {fileID: 0}
-  m_InstanceId: 316218
+  m_InstanceId: 218748
   m_LocalBounds:
     m_Center: {x: -0.094779015, y: -0.06393361, z: 0}
     m_Extent: {x: 0.3220625, y: 0.1797936, z: 0}
@@ -478,7 +478,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -714,7 +714,7 @@ MonoBehaviour:
   - {x: 2.1552315, y: -2.4399996, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 316194
+  m_InstanceId: 218724
   m_LocalBounds:
     m_Center: {x: 0, y: 0.00000047683716, z: 0}
     m_Extent: {x: 2.1552315, y: 2.44, z: 0}

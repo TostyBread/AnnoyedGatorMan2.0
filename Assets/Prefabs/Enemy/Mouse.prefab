@@ -94,7 +94,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -380,7 +380,7 @@ MonoBehaviour:
   - {x: -0.43972015, y: -0.46643138, z: 0}
   m_ShapePathHash: 29534519
   m_Mesh: {fileID: 0}
-  m_InstanceId: -431086
+  m_InstanceId: 218848
   m_LocalBounds:
     m_Center: {x: -0.11301756, y: -0.119362354, z: 0}
     m_Extent: {x: 0.7499299, y: 0.36123514, z: 0}
@@ -676,7 +676,7 @@ MonoBehaviour:
   - {x: 4.710003, y: -2.6202803, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 262544
+  m_InstanceId: 218874
   m_LocalBounds:
     m_Center: {x: 0.0000019073486, y: 0.00000023841858, z: 0}
     m_Extent: {x: 4.710001, y: 2.6202805, z: 0}
