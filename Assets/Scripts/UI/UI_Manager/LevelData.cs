@@ -27,7 +27,7 @@ public class LevelData : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             // Load saved data
-            currentUnlockedLevel = PlayerPrefs.GetInt(SaveKey, 0);
+            currentUnlockedLevel = PlayerPrefs.GetInt(SaveKey, currentUnlockedLevel);
 
             // Subscribe to sceneLoaded
             SceneManager.sceneLoaded += OnSceneLoaded;

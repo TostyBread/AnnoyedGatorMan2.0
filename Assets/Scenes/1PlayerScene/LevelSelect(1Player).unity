@@ -1944,7 +1944,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Get 10 score
+          m_StringArgument: Learn the control
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1753167867}
@@ -1956,7 +1956,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Tutorial(Player1)
+          m_StringArgument: MoveTutorial(Player1)
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1753167867}
@@ -2295,7 +2295,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 10 customers served
+          m_StringArgument: Get 10 score
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1753167867}
@@ -2307,7 +2307,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: Level1
+          m_StringArgument: Tutorial(Player1)
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1753167867}
@@ -3442,7 +3442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get 10 score
+  m_text: Learn the control
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2c0f1b204d2db3a4e8e6efcf4e936da2, type: 2}
   m_sharedMaterial: {fileID: 8526177129410689664, guid: 2c0f1b204d2db3a4e8e6efcf4e936da2, type: 2}
@@ -4381,6 +4381,10 @@ PrefabInstance:
       propertyPath: willUnlockNextLevel
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1015049401902085330, guid: 142734ff5315a92429b835b7583860d5, type: 3}
+      propertyPath: currentUnlockedLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4632653762164996822, guid: 142734ff5315a92429b835b7583860d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4434,6 +4438,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: levelDatas.Array.data[1].isUnlocked
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
       propertyPath: levelDatas.Array.data[0].levelButton
       value: 
@@ -4563,6 +4571,10 @@ PrefabInstance:
       propertyPath: levelImage
       value: 
       objectReference: {fileID: 1144812142}
+    - target: {fileID: 8513025423339890191, guid: 29602e3398eb78e4ebe5196158372428, type: 3}
+      propertyPath: levelSelected
+      value: MoveTutorial(Player1)
+      objectReference: {fileID: 0}
     - target: {fileID: 8513025423339890191, guid: 29602e3398eb78e4ebe5196158372428, type: 3}
       propertyPath: clearConditionText
       value: 

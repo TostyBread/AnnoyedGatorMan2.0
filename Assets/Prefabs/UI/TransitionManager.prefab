@@ -61,7 +61,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 101
   m_TargetDisplay: 0
 --- !u!114 &5868318606557226772
 MonoBehaviour:
@@ -117,6 +117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTime: 1
   playTransitionOnStart: 1
+  transitionDelay: 0
+  isTransitioning: 0
 --- !u!1 &6325917843021101999
 GameObject:
   m_ObjectHideFlags: 0
