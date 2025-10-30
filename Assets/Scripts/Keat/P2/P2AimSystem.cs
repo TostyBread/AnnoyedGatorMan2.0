@@ -38,6 +38,9 @@ public class P2AimSystem : MonoBehaviour
     // Add this property to expose the current aiming direction
     public Vector3 CurrentAimDirection { get; private set; }
 
+    [Header("Cursor Animation")]
+    private Animator arrowAnimator;
+
     P3Controls controls;
 
     private void OnEnable()
@@ -75,7 +78,12 @@ public class P2AimSystem : MonoBehaviour
     {
         detectTarget = Range.GetComponent<DetectTarget>();
 
-        Arrow.transform.parent = null;
+        if (Arrow != null)
+            Arrow.transform.parent = null;
+
+        // Cache Arrow's Animator if present
+        if (Arrow != null)
+            arrowAnimator = Arrow.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -95,6 +103,12 @@ public class P2AimSystem : MonoBehaviour
             Arrow.transform.position = NearestTarget().transform.position + ArrowOffset;
             HandRotation(NearestTarget().transform.position);
             Arrow.SetActive(true);
+
+            // Ensure animator cached and set parameters when arrow is active
+            if (arrowAnimator == null && Arrow != null)
+                arrowAnimator = Arrow.GetComponent<Animator>();
+
+            SetArrowAnimatorFlags(true, true);
         }
         else if (NearestTarget() == null) 
         {
@@ -105,7 +119,51 @@ public class P2AimSystem : MonoBehaviour
                 HandRotation(HandAim.transform.position);
 
             Arrow.SetActive(false);
+
+            if (arrowAnimator == null && Arrow != null)
+                arrowAnimator = Arrow.GetComponent<Animator>();
+
+            SetArrowAnimatorFlags(false, false);
         }
+
+        // Note: P3Cursor is still used for aiming when P3 is enabled; animator for Arrow is handled above.
+    }
+
+    // Safely set animator flags only when animator exists, the Arrow is active in hierarchy
+    // and the animator actually has the parameter (prevents Unity warnings about missing parameters)
+    private void SetArrowAnimatorFlags(bool isInteractable, bool isInRange)
+    {
+        if (arrowAnimator == null || Arrow == null)
+            return;
+
+        // Only set animator params if Arrow is active in hierarchy to avoid some animator warnings in editor/runtime
+        if (!Arrow.activeInHierarchy)
+            return;
+
+        try
+        {
+            if (HasAnimatorParameter(arrowAnimator, "IsInteractable"))
+                arrowAnimator.SetBool("IsInteractable", isInteractable);
+            if (HasAnimatorParameter(arrowAnimator, "IsInRange"))
+                arrowAnimator.SetBool("IsInRange", isInRange);
+        }
+        catch (Exception)
+        {
+            // Swallow any unexpected animator exceptions to avoid spamming the log
+        }
+    }
+
+    // Check whether the animator contains a parameter with the given name
+    private bool HasAnimatorParameter(Animator animator, string paramName)
+    {
+        if (animator == null) return false;
+        var parameters = animator.parameters;
+        for (int i = 0; i < parameters.Length; i++)
+        {
+            if (parameters[i].name == paramName)
+                return true;
+        }
+        return false;
     }
 
     public GameObject NearestTarget()

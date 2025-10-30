@@ -222,6 +222,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: SmallCrosshair
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 284
+        width: 118
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52d613d3cf739ed4d86e09c8361071d6
+      internalID: -1527311097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -244,6 +265,7 @@ TextureImporter:
       InteractableCrosshair2: -619695021
       NormalAimCrosshair1: 1042313587
       NormalAimCrosshair2: -525775633
+      SmallCrosshair: -1527311097
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
