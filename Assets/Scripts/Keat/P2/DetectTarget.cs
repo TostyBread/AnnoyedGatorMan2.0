@@ -11,17 +11,23 @@ public class DetectTarget : MonoBehaviour
     {
         for (int i = AllItemInRange.Count - 1; i >= 0; i--)
         {
-            if (AllItemInRange[i].CompareTag("Enemy"))
-            {
-                if (!AllItemInRange[i].GetComponent<HealthManager>())
-                { 
-                    AllItemInRange.RemoveAt(i);
-                }
-            }
+            GameObject obj = AllItemInRange[i];
 
-            else if (AllItemInRange[i] == null)
+            // First, handle destroyed/null Unity objects safely
+            if (obj == null)
             {
                 AllItemInRange.RemoveAt(i);
+                continue;
+            }
+
+            // Now it's safe to access members on the GameObject
+            if (obj.CompareTag("Enemy"))
+            {
+                // Use TryGetComponent to avoid exceptions and slightly better performance
+                if (!obj.TryGetComponent<HealthManager>(out _))
+                {
+                    AllItemInRange.RemoveAt(i);
+                }
             }
         }
     }

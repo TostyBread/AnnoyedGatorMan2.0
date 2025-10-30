@@ -19,9 +19,11 @@ public class NumberPopUp : MonoBehaviour
     private ScoreManager scoreManager;
     private int lastScore = 0;
     private Vector3 initialPosition;
+    private Jiggle jiggle;
 
     void Start()
     {
+        jiggle = GetComponent<Jiggle>();
         scoreManager = FindObjectOfType<ScoreManager>();
         if (numberGameObject != null) { servedCustomerText = numberGameObject.GetComponentInChildren<TMP_Text>(); }
         animaator = GetComponentInChildren<Animator>();
@@ -50,6 +52,8 @@ public class NumberPopUp : MonoBehaviour
 
     void TriggerPopUp()
     {
+        jiggle.StartJiggle();
+
         // Reset position and state
         initialPosition = transform.position;
         numberGameObject.transform.position = initialPosition;

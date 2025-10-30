@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class NPCBehavior : MonoBehaviour
 {
@@ -35,6 +36,10 @@ public class NPCBehavior : MonoBehaviour
     [Tooltip("Distance threshold for return to position (smaller = more precise, larger = more performance)")]
     public float returnThreshold = 0.05f;
 
+    [Header("Plate Acceptance")]
+    [Tooltip("Duration to pause after accepting a plate (in seconds)")]
+    public float plateAcceptPauseDuration = 0.5f;
+
     private Vector3[] waypoints;
     private Vector3[] exitWaypoints;
     private int currentWaypointIndex = 0;
@@ -51,6 +56,7 @@ public class NPCBehavior : MonoBehaviour
     public int customerId { get; private set; }
     private NPCState state = NPCState.Approaching;
     private NPCAngerBehavior angerBehavior;
+    private Jiggle jiggle;
 
     // Cached components for performance
     private NPCPatience npcPatience;
@@ -80,6 +86,8 @@ public class NPCBehavior : MonoBehaviour
 
     void Awake()
     {
+        jiggle = GetComponent<Jiggle>(); // get Jiggle component
+
         // Cache all components at startup
         angerBehavior = GetComponent<NPCAngerBehavior>();
         rb = GetComponent<Rigidbody2D>();
@@ -342,9 +350,9 @@ public class NPCBehavior : MonoBehaviour
                 plateRb.bodyType = RigidbodyType2D.Kinematic;
                 
             audioManagerInstance.PlaySound("yes", transform.position);
-
-            state = NPCState.Leaving;
-            currentWaypointIndex = 0;
+            jiggle?.StartJiggle(); // Start jiggle effect on acceptance
+            // Start the pause coroutine instead of using Invoke
+            StartCoroutine(PauseAfterPlateAcceptance());
 
             scoreManager?.AddScore(plate.plateScore,plate.lastHolder.transform.parent.gameObject);
             if (sanity != null) sanity.RemainSanity += sanity.MaxSanity;
@@ -366,9 +374,17 @@ public class NPCBehavior : MonoBehaviour
             // Use cached component reference
             npcPatience?.StopPatience();
             plateManagerInstance?.FreeSpawnPoint(this);
+            
             return true;
         }
         return false;
+    }
+
+    private IEnumerator PauseAfterPlateAcceptance()
+    {
+        yield return new WaitForSeconds(plateAcceptPauseDuration);
+        state = NPCState.Leaving;
+        currentWaypointIndex = 0;
     }
 
     public void FrustratedLeaving()

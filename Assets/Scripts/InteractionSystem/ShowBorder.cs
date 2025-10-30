@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class ShowBorder : MonoBehaviour
 {
-    // This script needs to work with DetectTarget script
     public Sprite spriteWithBorder;
-    public float spriteWithBorderScale = 1; // Scale factor for the sprite with border
+    public float spriteWithBorderScale = 1;
 
-    private ItemSystem itemSystem; // Reference to ItemSystem if needed
-
+    private ItemSystem itemSystem;
     private SpriteRenderer spriteRenderer;
     private Sprite originalSprite;
     private Vector3 originalTransform;
     private Vector3 spriteScale;
+    private Jiggle jiggleComponent;
 
-    // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalSprite = spriteRenderer.sprite;
         originalTransform = transform.localScale;
-        spriteScale = new Vector3(spriteWithBorderScale, spriteWithBorderScale, spriteWithBorderScale); // Set the scale to match the spriteWithBorderScale
-        itemSystem = transform.parent.GetComponent<ItemSystem>(); // Get the ItemSystem component if it exists
+        spriteScale = new Vector3(spriteWithBorderScale, spriteWithBorderScale, spriteWithBorderScale);
+        itemSystem = transform.parent.GetComponent<ItemSystem>();
+        jiggleComponent = GetComponent<Jiggle>();
     }
 
     public void ShowBorderSprite()
@@ -30,7 +29,18 @@ public class ShowBorder : MonoBehaviour
         if (spriteRenderer != null && spriteWithBorder != null)
         {
             spriteRenderer.sprite = spriteWithBorder;
-            transform.localScale = spriteScale; // Set the scale to match the spriteScale transform
+
+            // If currently jiggling, apply border scale relative to current scale
+            if (jiggleComponent != null && jiggleComponent.isJiggling)
+            {
+                Vector3 currentScale = transform.localScale;
+                float currentJiggleRatio = currentScale.x / originalTransform.x;
+                transform.localScale = spriteScale * currentJiggleRatio;
+            }
+            else
+            {
+                transform.localScale = spriteScale;
+            }
         }
     }
 
@@ -39,7 +49,18 @@ public class ShowBorder : MonoBehaviour
         if (spriteRenderer != null && originalSprite != null)
         {
             spriteRenderer.sprite = originalSprite;
-            transform.localScale = originalTransform; // Reset the scale to the original transform's scale
+
+            // If currently jiggling, restore scale relative to jiggle
+            if (jiggleComponent != null && jiggleComponent.isJiggling)
+            {
+                Vector3 currentScale = transform.localScale;
+                float currentJiggleRatio = currentScale.x / spriteScale.x;
+                transform.localScale = originalTransform * currentJiggleRatio;
+            }
+            else
+            {
+                transform.localScale = originalTransform;
+            }
         }
     }
 }
