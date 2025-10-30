@@ -135,12 +135,10 @@ public class PlayerPickupSystem : MonoBehaviour
     private void CheckLongInteractionRange()
     {
         //Check if the player is within range of a window to interact with
-        inWindowRange = false;
-
         if (targetInteractable != null && targetInteractable.TryGetComponent(out Window window))
         {
-            float distance = Vector2.Distance(transform.position, window.transform.position);
-            inWindowRange = distance <= pickupRadius;
+            bool distance = Physics2D.OverlapCircle(transform.position, pickupRadius);
+            inWindowRange = distance;
         }
 
         if (!inWindowRange && lastWindow != null)
