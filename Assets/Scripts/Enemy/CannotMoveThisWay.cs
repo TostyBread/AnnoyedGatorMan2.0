@@ -41,6 +41,7 @@ public class CannotMoveThisWay : MonoBehaviour
 
         if (!aimForFood)
             return go.CompareTag("Player");
+        
 
         // aimForFood true -> check food tags
         return go.CompareTag("FoodBig") || go.CompareTag("FoodSmall");
@@ -50,14 +51,13 @@ public class CannotMoveThisWay : MonoBehaviour
     {
         if (!IsRelevantCollider(go)) return;
 
-        // Optionally require HealthManager presence for food/player
-        if (aimForFood || (!aimForFood))
-        {
-            // increment count and set false if first blocker
-            blockingCount++;
-            if (blockingCount == 1)
-                canMoveThisWay = false;
-        }
+        //If enemy is aiming for food, do NOT block movement immediately
+        if (aimForFood && (go.CompareTag("FoodBig") || go.CompareTag("FoodSmall")))
+            return;
+
+        blockingCount++;
+        if (blockingCount == 1)
+            canMoveThisWay = false;
     }
 
     private void HandleExit(GameObject go)
