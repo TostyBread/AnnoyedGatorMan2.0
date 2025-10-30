@@ -13,7 +13,7 @@ public class DetectTarget : MonoBehaviour
     {
         for (int i = AllItemInRange.Count - 1; i >= 0; i--)
         {
-            if (AllItemInRange[i].CompareTag("Enemy"))
+            if (AllItemInRange[i].CompareTag("Enemy") || AllItemInRange[i].CompareTag("Player"))
             {
                 if (!AllItemInRange[i].GetComponent<HealthManager>())
                 { 
