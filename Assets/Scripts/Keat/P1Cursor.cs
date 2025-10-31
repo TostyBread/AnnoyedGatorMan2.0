@@ -5,7 +5,6 @@ using UnityEngine;
 public class P1Cursor : MonoBehaviour
 {
     public SpriteRenderer cursor;
-    public GameObject settingScreen;
     private LevelLoader levelLoader;
     private bool shouldShowSystemCursor;
 
