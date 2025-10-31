@@ -236,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 4091576642132445690}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: -0.24, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -302,7 +302,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4091576642132445690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3e4f30ed455b6e743b16cdf75de2abc6, type: 2}
   m_CullingMode: 0
@@ -526,3 +526,4 @@ MonoBehaviour:
   enableRotationJiggle: 0
   rotationAngle: 30
   spriteGameobject: {fileID: 6937211161477430554}
+  isJiggling: 0

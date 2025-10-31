@@ -21,7 +21,7 @@ public class DetectTarget : MonoBehaviour
             }
 
             // Now it's safe to access members on the GameObject
-            if (obj.CompareTag("Enemy"))
+            if (obj.CompareTag("Enemy") || obj.CompareTag("Player"))
             {
                 // Use TryGetComponent to avoid exceptions and slightly better performance
                 if (!obj.TryGetComponent<HealthManager>(out _))
