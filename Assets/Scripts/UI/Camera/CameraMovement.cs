@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour
     [Header("Camera Setting")]
     public Vector2 cameraStrtPosition;
     public Vector2 cameraEndPosition;
+    public bool moveOnStart = true;
 
     public float cameraMoveTime = 1f;
     public bool isMoving = false; // Used by timer
@@ -20,9 +21,15 @@ public class CameraMovement : MonoBehaviour
         //dialogueTrigger = GameObject.FindGameObjectWithTag("DialogueTrigger");
         if (dialogueTrigger != null) dialogueTrigger.SetActive(false);
 
-        transform.position = new Vector2(cameraStrtPosition.x, cameraStrtPosition.y);
-
-        MoveTowards(cameraEndPosition);
+        if (moveOnStart)
+        {
+            transform.position = new Vector2(cameraStrtPosition.x, cameraStrtPosition.y);
+            MoveTowards(cameraEndPosition);
+        }
+        else if (!moveOnStart && dialogueTrigger != null)
+        {
+            dialogueTrigger.SetActive(true);
+        }
     }
 
     public void MoveTowards(Vector2 targetPosition)

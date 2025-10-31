@@ -54,13 +54,16 @@ public class HitBox : MonoBehaviour
     {
         if (!gameObject.activeInHierarchy) return;
 
-        if (!aimForFood && collision.CompareTag("Player"))
+        if (collision.GetComponent<HealthManager>())
         {
-            TryDamageCollider(collision.gameObject);
-        }
-        else if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
-        {
-            TryDamageCollider(collision.gameObject);
+            if (!aimForFood && collision.CompareTag("Player"))
+            {
+                TryDamageCollider(collision.gameObject);
+            }
+            else if (aimForFood && (collision.CompareTag("FoodBig") || collision.CompareTag("FoodSmall")))
+            {
+                TryDamageCollider(collision.gameObject);
+            }
         }
 
         // Deactivate at end of frame so other overlapping colliders can also register this frame.
@@ -71,13 +74,16 @@ public class HitBox : MonoBehaviour
     {
         if (!gameObject.activeInHierarchy) return;
 
-        if (!aimForFood && collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.GetComponent<HealthManager>())
         {
-            TryDamageCollider(collision.gameObject);
-        }
-        else if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
-        {
-            TryDamageCollider(collision.gameObject);
+            if (!aimForFood && collision.gameObject.CompareTag("Player"))
+            {
+                TryDamageCollider(collision.gameObject);
+            }
+            else if (aimForFood && (collision.gameObject.CompareTag("FoodBig") || collision.gameObject.CompareTag("FoodSmall")))
+            {
+                TryDamageCollider(collision.gameObject);
+            }
         }
 
         StartCoroutine(DisableAtEndOfFrame());

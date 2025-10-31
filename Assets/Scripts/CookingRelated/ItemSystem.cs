@@ -67,7 +67,17 @@ public class ItemSystem : MonoBehaviour
             BurnItem();
         }
 
-        if (canBeCooked && isCooked && !isBurned && cookedSpriteRenderer != null)
+
+        if (Time.time >= nextCleanupTime)
+        {
+            CleanupStaleTimestamps();
+            nextCleanupTime = Time.time + cleanupInterval;
+        }
+    }
+
+    private void ChangeColorWhenBurning()
+    {
+        if (canBeCooked && isCooked && !isBurned && cookedSpriteRenderer != null) //here is where will change the food color after burnt
         {
             float range = Mathf.Max(0.01f, burnThreshold - cookThreshold);
             float t = Mathf.Clamp01((currentCookPoints - cookThreshold) / range);
@@ -77,12 +87,6 @@ public class ItemSystem : MonoBehaviour
             float b = Mathf.Lerp(originalCookedColor.b, 0f, t);
 
             cookedSpriteRenderer.color = new Color(r, g, b, originalCookedColor.a);
-        }
-
-        if (Time.time >= nextCleanupTime)
-        {
-            CleanupStaleTimestamps();
-            nextCleanupTime = Time.time + cleanupInterval;
         }
     }
 
