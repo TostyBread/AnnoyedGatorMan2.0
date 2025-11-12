@@ -5,6 +5,12 @@ using UnityEngine;
 public class UnlockNextLevel : MonoBehaviour
 {
     public int level;
+    private ScoreManager scoreManager;
+
+    private void Start()
+    {
+        scoreManager = FindObjectOfType<ScoreManager>();
+    }
 
     public void UnlockNextLevelFromButton()
     {
@@ -13,5 +19,6 @@ public class UnlockNextLevel : MonoBehaviour
         {
             levelData.UnlockNextLevel(level);
         }
+        scoreManager.gameOver = true;
     }
 }
