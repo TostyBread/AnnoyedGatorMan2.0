@@ -116,7 +116,6 @@ GameObject:
   - component: {fileID: 2884286141917450829}
   - component: {fileID: 5449409697085980050}
   - component: {fileID: 3876790490142713696}
-  - component: {fileID: 2567020199443865684}
   m_Layer: 6
   m_Name: Tomato
   m_TagString: FoodSmall
@@ -138,6 +137,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1929376118137404532}
+  - {fileID: 6036513298280693511}
   - {fileID: 3158602179180934250}
   - {fileID: 1481416145948647005}
   - {fileID: 7734377844153282325}
@@ -224,7 +224,7 @@ Rigidbody2D:
   m_LinearDrag: 10
   m_AngularDrag: 1.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6642a63dd25b4c94e9085728c92eae84, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   - {x: -0.43847656, y: -0.47130942, z: 0}
   m_ShapePathHash: 2054117887
   m_Mesh: {fileID: 0}
-  m_InstanceId: -615562
+  m_InstanceId: -252522
   m_LocalBounds:
     m_Center: {x: -0.0031924248, y: -0.11154866, z: 0}
     m_Extent: {x: 0.583879, y: 0.43378592, z: 0}
@@ -364,27 +364,6 @@ MonoBehaviour:
   spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
   weatherManager: {fileID: 0}
   sprite: {fileID: 0}
---- !u!114 &2567020199443865684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3751379003110135289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jiggleInterval: 0.1
-  BiggerTheGameobjectBy: 1
-  enableLeftRightJiggle: 0
-  enableUpDownJiggle: 1
-  jiggleRange: 0.1
-  jiggleSpeed: 10
-  enableRotationJiggle: 0
-  rotationAngle: 30
-  spriteGameobject: {fileID: 1929376118137404532}
 --- !u!1001 &3062696809216781018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -461,6 +440,10 @@ PrefabInstance:
       propertyPath: cookThreshold
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: 1329225348199437605, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 6642a63dd25b4c94e9085728c92eae84, type: 2}
     - target: {fileID: 3374950878208462047, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -487,9 +470,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 277721070911467367, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4590449212516567356}
-    - targetCorrespondingSourceObject: {fileID: 277721070911467367, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 507459665266903651}
     - targetCorrespondingSourceObject: {fileID: 694192154155638394, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6124219916050987213}
@@ -588,35 +568,9 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0.0010838509, y: -0.00034999847, z: 0}
     m_Extent: {x: 0.57138586, y: 0.44162202, z: 0}
---- !u!114 &507459665266903651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2979776922680493501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jiggleInterval: 0.1
-  BiggerTheGameobjectBy: 1
-  enableLeftRightJiggle: 0
-  enableUpDownJiggle: 1
-  jiggleRange: 0.1
-  jiggleSpeed: 10
-  enableRotationJiggle: 0
-  rotationAngle: 30
-  spriteGameobject: {fileID: 5289692273915326832}
 --- !u!4 &3158602179180934250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 96116519146888880, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
-  m_PrefabInstance: {fileID: 3062696809216781018}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5289692273915326832 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7199040965595585450, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
   m_PrefabInstance: {fileID: 3062696809216781018}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4128385487992430601
@@ -707,6 +661,10 @@ PrefabInstance:
       propertyPath: cookThreshold
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: 7853173087955895633, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 6642a63dd25b4c94e9085728c92eae84, type: 2}
     - target: {fileID: 8005557794014598247, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -721,18 +679,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 661298395223714742, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2193410193009236076}
-    - targetCorrespondingSourceObject: {fileID: 661298395223714742, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2471292224219498290}
     - targetCorrespondingSourceObject: {fileID: 823505552761851806, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5400765869522880370}
   m_SourcePrefab: {fileID: 100100000, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
---- !u!4 &994070311166476921 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3783407502607884912, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
-  m_PrefabInstance: {fileID: 4128385487992430601}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1481416145948647005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3298311238683377236, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
@@ -808,27 +758,6 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: -0.0013709068, y: -0.0033948421, z: 0}
     m_Extent: {x: 0.5203328, y: 0.4169991, z: 0}
---- !u!114 &2471292224219498290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3487932192564366271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jiggleInterval: 0.1
-  BiggerTheGameobjectBy: 1
-  enableLeftRightJiggle: 0
-  enableUpDownJiggle: 1
-  jiggleRange: 0.1
-  jiggleSpeed: 10
-  enableRotationJiggle: 0
-  rotationAngle: 30
-  spriteGameobject: {fileID: 994070311166476921}
 --- !u!1 &3613951051918749591 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 823505552761851806, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
@@ -936,6 +865,10 @@ PrefabInstance:
       propertyPath: cookThreshold
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: 7853173087955895633, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 6642a63dd25b4c94e9085728c92eae84, type: 2}
     - target: {fileID: 8005557794014598247, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -950,9 +883,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 661298395223714742, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1319529524213341696}
-    - targetCorrespondingSourceObject: {fileID: 661298395223714742, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7587947517516845256}
     - targetCorrespondingSourceObject: {fileID: 823505552761851806, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8059060943763328805}
@@ -1046,34 +976,70 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: -0.0013709068, y: -0.0033948421, z: 0}
     m_Extent: {x: 0.5203328, y: 0.4169991, z: 0}
---- !u!114 &7587947517516845256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5746193246339906295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jiggleInterval: 0.1
-  BiggerTheGameobjectBy: 1
-  enableLeftRightJiggle: 0
-  enableUpDownJiggle: 1
-  jiggleRange: 0.1
-  jiggleSpeed: 10
-  enableRotationJiggle: 0
-  rotationAngle: 30
-  spriteGameobject: {fileID: 8219823752741090097}
 --- !u!4 &7734377844153282325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3298311238683377236, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
   m_PrefabInstance: {fileID: 5085675805054259521}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8219823752741090097 stripped
+--- !u!1001 &7667419127084702450
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2879619324378526756}
+    m_Modifications:
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8912329942055454132, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+      propertyPath: m_Name
+      value: ItemTrail
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+--- !u!4 &6036513298280693511 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3783407502607884912, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
-  m_PrefabInstance: {fileID: 5085675805054259521}
+  m_CorrespondingSourceObject: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
+  m_PrefabInstance: {fileID: 7667419127084702450}
   m_PrefabAsset: {fileID: 0}

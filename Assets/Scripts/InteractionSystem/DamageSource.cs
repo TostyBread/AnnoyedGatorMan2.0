@@ -13,6 +13,7 @@ public class DamageSource : MonoBehaviour
     public bool isStunSource = false;
     public float minVelocityToDamage = 0f;
     public bool playHitSound = true;
+    public bool hasKnockback = false; // Knockback effect
 
     [Header("References")]
     //Get parent to ignore self damage & self collision (must assign for fist) 
@@ -84,10 +85,19 @@ public class DamageSource : MonoBehaviour
             // Prevent item from being pushed
             if (target.TryGetComponent<Rigidbody2D>(out var itemRb))
             {
-                itemRb.velocity = Vector2.zero;
-                itemRb.angularVelocity = 0f;
+                if (hasKnockback)
+                {
+                    // Apply knockback effect
+                    Vector2 knockbackDirection = (item.transform.position - transform.position).normalized;
+                    float knockbackForce = rb.velocity.magnitude * 2f; // Adjust force multiplier as needed
+                    itemRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+                }
+                else
+                {
+                    itemRb.velocity = Vector2.zero;
+                    itemRb.angularVelocity = 0f;
+                }
             }
-
             if (damageAmount != 0)
             {
                 item.ApplyCollisionEffect(gameObject);

@@ -75,20 +75,20 @@ public class ItemSystem : MonoBehaviour
         }
     }
 
-    private void ChangeColorWhenBurning()
-    {
-        if (canBeCooked && isCooked && !isBurned && cookedSpriteRenderer != null) //here is where will change the food color after burnt
-        {
-            float range = Mathf.Max(0.01f, burnThreshold - cookThreshold);
-            float t = Mathf.Clamp01((currentCookPoints - cookThreshold) / range);
+    //private void ChangeColorWhenBurning()
+    //{
+    //    if (canBeCooked && isCooked && !isBurned && cookedSpriteRenderer != null) //here is where will change the food color after burnt
+    //    {
+    //        float range = Mathf.Max(0.01f, burnThreshold - cookThreshold);
+    //        float t = Mathf.Clamp01((currentCookPoints - cookThreshold) / range);
 
-            float r = Mathf.Lerp(originalCookedColor.r, 0f, t);
-            float g = Mathf.Lerp(originalCookedColor.g, 0f, t);
-            float b = Mathf.Lerp(originalCookedColor.b, 0f, t);
+    //        float r = Mathf.Lerp(originalCookedColor.r, 0f, t);
+    //        float g = Mathf.Lerp(originalCookedColor.g, 0f, t);
+    //        float b = Mathf.Lerp(originalCookedColor.b, 0f, t);
 
-            cookedSpriteRenderer.color = new Color(r, g, b, originalCookedColor.a);
-        }
-    }
+    //        cookedSpriteRenderer.color = new Color(r, g, b, originalCookedColor.a);
+    //    }
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

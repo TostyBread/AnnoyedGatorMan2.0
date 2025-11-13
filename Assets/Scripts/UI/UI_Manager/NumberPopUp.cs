@@ -54,6 +54,7 @@ public class NumberPopUp : MonoBehaviour
     {
         jiggle.StartJiggle();
 
+        AudioManager.Instance.PlaySound("KaChing", transform.position); // Play SFX
         // Reset position and state
         initialPosition = transform.position;
         numberGameObject.transform.position = initialPosition;

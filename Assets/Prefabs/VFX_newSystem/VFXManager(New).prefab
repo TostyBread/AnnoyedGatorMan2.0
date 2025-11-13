@@ -47,7 +47,7 @@ MonoBehaviour:
   effectsToPool:
   - effectName: FoodSteam
     prefab: {fileID: 1233156869147573910, guid: 8108220082fee1d4bbde3fd4d970c0a5, type: 3}
-    initialSize: 15
+    initialSize: 20
   - effectName: WordExplode
     prefab: {fileID: 1233156869147573910, guid: d74e5619ac21f7547a9fb0651399ce53, type: 3}
     initialSize: 12

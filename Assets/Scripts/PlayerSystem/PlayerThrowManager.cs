@@ -100,6 +100,12 @@ public class PlayerThrowManager : MonoBehaviour
         StartCoroutine(SimulatedThrow(heldItem, storedThrowPosition, travelTime, distance, itemCollider));
 
         AudioManager.Instance.PlaySound("slash1", transform.position);
+
+        TrailRenderer trail = heldItem.GetComponentInChildren<TrailRenderer>();
+        if (trail != null)
+        {
+            trail.emitting = true;
+        }
     }
 
     private IEnumerator SimulatedThrow(GameObject item, Vector2 targetPos, float duration, float distance, Collider2D itemCollider)
