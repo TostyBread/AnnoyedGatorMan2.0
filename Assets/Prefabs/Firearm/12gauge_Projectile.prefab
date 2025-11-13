@@ -89,6 +89,7 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 0
+  hasKnockback: 0
   owner: {fileID: 0}
   ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
@@ -298,6 +299,7 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
+  hasKnockback: 1
   owner: {fileID: 0}
   ownerCollider: {fileID: 0}
   isHeatAdjusted: 0

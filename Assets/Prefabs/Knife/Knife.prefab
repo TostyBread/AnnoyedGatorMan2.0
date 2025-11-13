@@ -123,7 +123,7 @@ Rigidbody2D:
   m_LinearDrag: 10
   m_AngularDrag: 1.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5083bd76c8882104894e810bb4418ff4, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   - {x: -0.05373001, y: -0.7161453, z: 0}
   m_ShapePathHash: 2079343981
   m_Mesh: {fileID: 0}
-  m_InstanceId: 71054
+  m_InstanceId: 99820
   m_LocalBounds:
     m_Center: {x: -0.08882284, y: 0.4015987, z: 0}
     m_Extent: {x: 0.25239897, y: 1.1761997, z: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 2110993505141760519}
   - component: {fileID: 7474308108935373552}
   - component: {fileID: 6123956633089320468}
-  m_Layer: 0
+  m_Layer: 26
   m_Name: Sprite&Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,6 +356,7 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
+  hasKnockback: 0
   owner: {fileID: 0}
   ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
