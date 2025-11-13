@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,15 +18,17 @@ public class EnemySpawner : MonoBehaviour
     private Sanity sanity;
     public List<Transform> Spawners = new List<Transform>();
 
-    public int deadBodiesCount = 0;
-    [SerializeField]private float speedUpEnemySpawnPerSecond; 
+    public int CountDeadBody = 0;
     private float spawnSpeedTimer;
+
+    public int CountBurntFood = 0;
+    public int CountTrashbag = 0;
+    public int CountTotalObstacleObject = 0;
 
     [Header("do not touch, just for Refrence")]
     [SerializeField] private float ChargeReadyTime;
     [SerializeField] private float ChargeTimer;
     public int currentSpawnedEnemy = 0;
-    public int TrashbagCount = 0;
 
     bool SanityIsEmptyOnce;
 
@@ -33,8 +36,6 @@ public class EnemySpawner : MonoBehaviour
     [Header("do not touch, just for Refrence")]
     public WeatherManager weatherManager;
     public GameObject EnemyForCurrentWeather;
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -84,16 +85,17 @@ public class EnemySpawner : MonoBehaviour
             ChargeTimer = 0; SanityIsEmptyOnce = true;
         }
 
-        SpawnEnemy(); 
-        CountDeadBodiesInGame();
+        CountObstacleObjectInGame();
         SpeedUpEnemySpawn();
+        SpawnEnemy(); 
     }
 
-    private void CountDeadBodiesInGame()
+    private void CountObstacleObjectInGame()
     {
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
         List<GameObject> AllDeadBodies = new List<GameObject>();
-        List<GameObject> Trashbags = new List<GameObject>();
+        List<GameObject> AllTrashbags = new List<GameObject>();
+        List<GameObject> AllBunrtFoods = new List<GameObject>();
 
         foreach (var item in allObjects) 
         {
@@ -104,22 +106,39 @@ public class EnemySpawner : MonoBehaviour
 
             if (item.name.Contains("Trashbag"))
             { 
-                Trashbags.Add(item);
+                AllTrashbags.Add(item);
+            }
+
+            if (item.GetComponent<ItemSystem>() != null)
+            {
+                if (item.GetComponent<ItemSystem>().isBurned)
+                { 
+                    AllBunrtFoods.Add(item); 
+                }
             }
         }
 
-        deadBodiesCount = AllDeadBodies.Count;
-        TrashbagCount = Trashbags.Count;
+        CountDeadBody = AllDeadBodies.Count;
+        CountTrashbag = AllTrashbags.Count;
+        CountBurntFood = AllBunrtFoods.Count;
+
+        CountTotalObstacleObject = CountBurntFood + CountDeadBody + CountTrashbag;
     }
 
-    void SpeedUpEnemySpawn() //ChargeReadyTime will decrease every 2 second;
+    void SpeedUpEnemySpawn() //ChargeReadyTime will decrease every 3 second;
     {
-        spawnSpeedTimer += Time.deltaTime;
-        if (spawnSpeedTimer >= 2f)
-        {
-            ChargeReadyTime = ChargeReadyTime - deadBodiesCount;
+        if (currentSpawnedEnemy == MaxSpawnedEnemy)
+        return;
 
-            ChargeReadyTime = ChargeReadyTime - (TrashbagCount * 5);
+
+        spawnSpeedTimer += Time.deltaTime;
+        if (spawnSpeedTimer >= 3f)
+        {
+            ChargeReadyTime = ChargeReadyTime - CountDeadBody;
+
+            ChargeReadyTime = ChargeReadyTime - (CountTrashbag * 5);
+
+            ChargeReadyTime = ChargeReadyTime - (CountBurntFood * 2);
 
             spawnSpeedTimer = 0f;
         }

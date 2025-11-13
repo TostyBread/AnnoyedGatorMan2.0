@@ -390,6 +390,7 @@ MonoBehaviour:
   enableRotationJiggle: 0
   rotationAngle: 30
   spriteGameobject: {fileID: 3753169411684535460}
+  isJiggling: 0
 --- !u!1001 &408775025996469011
 PrefabInstance:
   m_ObjectHideFlags: 0
