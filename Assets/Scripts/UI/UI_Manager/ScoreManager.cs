@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
     [Header("References")]
     public GameObject WinScreen;
     public GameObject LoseScreen;
+    public bool gameOver; // for P1 cursor management
 
     private void Start()
     {
@@ -33,6 +34,8 @@ public class ScoreManager : MonoBehaviour
 
         if (WinScreen != null) WinScreen.SetActive(false);
         if (LoseScreen != null) LoseScreen.SetActive(false);
+
+        gameOver = false;
     }
 
     private void Update()
@@ -73,6 +76,8 @@ public class ScoreManager : MonoBehaviour
         {
             //Debug.Log("Level Cleared! Final Score: " + currentScore);
             StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay
+
+            gameOver = true; 
         }
         else if (!isCleared && timer.RemainTime <= 0)
         {
@@ -90,6 +95,8 @@ public class ScoreManager : MonoBehaviour
                         "Player2: " + player2Score.ToString();
                 }
             }
+
+            gameOver = true;
         }
     }
 

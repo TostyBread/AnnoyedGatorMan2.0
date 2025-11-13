@@ -5,18 +5,26 @@ using UnityEngine;
 public class P1Cursor : MonoBehaviour
 {
     public SpriteRenderer cursor;
-    public GameObject settingScreen;
     private LevelLoader levelLoader;
+    private ScoreManager scoreManager;
     private bool shouldShowSystemCursor;
 
     private void Start()
     {
         levelLoader = FindObjectOfType<LevelLoader>();
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     void Update()
     {
-        shouldShowSystemCursor = levelLoader.isShowingSettingScreen;
+        if (scoreManager != null && scoreManager.gameOver)
+        {
+            shouldShowSystemCursor = true;
+        }
+        else
+        {
+            shouldShowSystemCursor = levelLoader.isShowingSettingScreen;
+        }
 
         Cursor.visible = shouldShowSystemCursor;
         cursor.enabled = !shouldShowSystemCursor;

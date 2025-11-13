@@ -39,7 +39,7 @@ public class LevelLoader : MonoBehaviour
         if (loadingScreen) loadingScreen.SetActive(false);
 
         if (playerNumberScreen) playerNumberScreen.SetActive(false);
-        if (settingScreen) settingScreen.SetActive(false);
+        if (settingScreen) settingScreen.SetActive(false); 
         if (ShaderScreen) ShaderScreen.SetActive(false);
     }
 

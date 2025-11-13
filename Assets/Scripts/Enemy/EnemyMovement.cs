@@ -180,7 +180,7 @@ public class EnemyMovement : MonoBehaviour
 
         // combine masks explicitly
         combinedMask = playerLayers.value | foodLayers.value | obstacleLayers.value;
-        Debug.Log("Combined mask: " + combinedMask);
+        //Debug.Log("Combined mask: " + combinedMask);
 
         StartCoroutine(ChangeTargetedGrid(Random.Range(1f, 3f)));
 
