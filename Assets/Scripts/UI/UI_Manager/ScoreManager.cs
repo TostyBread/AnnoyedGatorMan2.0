@@ -48,8 +48,6 @@ public class ScoreManager : MonoBehaviour
         CheckIfLevelCleared();
 
         if (Input.GetKeyDown(KeyCode.Insert)) currentScore = scoreToClear; // For testing purposes
-
-        if (levelData != null) Debug.Log("Level " + currentLevelIndex + " Highest Score: " + levelData.GetHighScore(currentLevelIndex));
     }
 
     public void AddScore(int scoreToAdd, GameObject lastHolder)
