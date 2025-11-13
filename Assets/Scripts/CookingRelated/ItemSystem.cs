@@ -23,9 +23,10 @@ public class ItemSystem : MonoBehaviour
     public List<Vector3> brokenPartsOffsets;
 
     private int currentDurability;
-    private float currentCookPoints = 0f;
+    public float currentCookPoints = 0f; // for HeatBar
     public bool isCooked = false;
     public bool isBurned = false;
+    public bool isOnPlate = false;
     private SpriteRenderer cookedSpriteRenderer;
     private Color originalCookedColor;
     private Jiggle jiggle;
@@ -66,7 +67,13 @@ public class ItemSystem : MonoBehaviour
         {
             BurnItem();
         }
-
+        else if (transform.parent != null)
+        {
+            if (transform.parent.TryGetComponent<PlateSystem>(out PlateSystem plateSystem))
+            {
+                isOnPlate = true;
+            }
+        }
 
         if (Time.time >= nextCleanupTime)
         {

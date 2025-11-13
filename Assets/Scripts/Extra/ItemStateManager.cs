@@ -10,7 +10,7 @@ public class ItemStateManager : MonoBehaviour
     public bool playSound;
 
     [Header("Burn State")]
-    public float MaxHeat = 100;
+    public float maxHeat = 100;
     public float currentHeat;
     public float heatCooldown;
     public string BurnAudioName;
@@ -59,11 +59,11 @@ public class ItemStateManager : MonoBehaviour
 
         wasBurnableLastFrame = isCurrentlyBurnable;
 
-        if (currentHeat >= MaxHeat)
+        if (currentHeat >= maxHeat)
         {
             ItemBurn();
             if (playSound) AudioManager.Instance.PlaySound(BurnAudioName, transform.position);
-            currentHeat = Mathf.Clamp(currentHeat, 0, MaxHeat);
+            currentHeat = Mathf.Clamp(currentHeat, 0, maxHeat);
             //currentCold = Mathf.Clamp(currentCold, 0, MaxCold);
         }
 

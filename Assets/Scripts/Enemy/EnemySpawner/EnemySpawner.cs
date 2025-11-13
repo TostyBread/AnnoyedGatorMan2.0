@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
         if (UI == null)
         {
             UI = GameObject.Find("UI");
-            Debug.LogWarning("UI is missing, So " + gameObject + " will find gameObject name: UI");
+            //Debug.LogWarning("UI is missing, So " + gameObject + " will find gameObject name: UI");
         }
 
         timer = UI.GetComponentInChildren<Timer>();
