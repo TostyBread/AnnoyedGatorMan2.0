@@ -36,15 +36,28 @@ public class HeatBar : MonoBehaviour
         // Convert world position to screen position
         transform.position = target.position + offset;
 
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(true);
-        }
-
         float cookThreshold = itemSystem.cookThreshold;
         float burnThreshold = itemSystem.burnThreshold;
         float currentCookPoints = itemSystem.currentCookPoints;
 
+
+        //Show or hide the bar based on fill amount
+        if (bar.fillAmount > 0 && bar.fillAmount < 1)
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+
+        // Update fill amount based on cooking state
         if (currentCookPoints <= cookThreshold)
         {
             bar.fillAmount = Mathf.Clamp01(currentCookPoints / cookThreshold);
