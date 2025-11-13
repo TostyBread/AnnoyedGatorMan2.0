@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSourcePrefab: {fileID: 4742835750530601534, guid: 8868380bdea7e6c4b8099a2b85c55548, type: 3}
-  poolSize: 25
+  poolSize: 30
   AdjustedVolume: 1
 --- !u!114 &5041127905726033666
 MonoBehaviour:
@@ -133,7 +133,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bffcda986bb3f144aa8a5b1f40d01a4d, type: 3}
   - {fileID: 8300000, guid: ee5eef22c195d0a499931de2316d1d65, type: 3}
   - {fileID: 8300000, guid: d022283266fcf054686e91f2ab852720, type: 3}
-  - {fileID: 8300000, guid: 5308584f585caa9428ec50f3f7fb49da, type: 3}
+  - {fileID: 8300000, guid: 4c258f7f113ad9843bc2d2248ebc97c2, type: 3}
   - {fileID: 8300000, guid: 124ee4e8729c36e4db814332a2a1af0b, type: 3}
   - {fileID: 8300000, guid: dcd56b8e19ff58c41b1973e22939d943, type: 3}
   - {fileID: 8300000, guid: 9e2de0340d2c3c8479ee7454bd845c0e, type: 3}
@@ -213,6 +213,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 18f7db5b3f838fd4c9c7b1f9f0ec2116, type: 3}
   - {fileID: 8300000, guid: f353536626f626441bacce51c3b2b3a3, type: 3}
   - {fileID: 8300000, guid: e5285ab44de69d642b70d54c9ce149e7, type: 3}
+  - {fileID: 8300000, guid: 04d618bc7292b6c42b488a13cf4fda4b, type: 3}
 --- !u!1 &7581074832765092307
 GameObject:
   m_ObjectHideFlags: 0
