@@ -133,9 +133,9 @@ public class EnemySpawner : MonoBehaviour
 
         if (ChargeTimer >= ChargeReadyTime)
         {
-            Debug.Log("Charge Completed");
+            //Debug.Log("Charge Completed");
 
-            Debug.Log("Let's spawn enemy");
+            //Debug.Log("Let's spawn enemy");
             currentSpawnedEnemy++;
 
             try
@@ -148,6 +148,7 @@ public class EnemySpawner : MonoBehaviour
             }
 
             GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation);
+            Debug.Log("Let's spawn " + enemy);
 
             ChargeReadyTime = Random.Range(MinSpawnTime, MaxSpawnTime);
 
