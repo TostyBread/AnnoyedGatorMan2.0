@@ -51,9 +51,9 @@ public class CannotMoveThisWay : MonoBehaviour
     {
         if (!IsRelevantCollider(go)) return;
 
-        //If enemy is aiming for food, do NOT block movement immediately
-        if (aimForFood && (go.CompareTag("FoodBig") || go.CompareTag("FoodSmall")))
-            return;
+        ItemSystem item = go.GetComponent<ItemSystem>();
+        if (item != null && item.isBurned)
+            return; // ignore burned food
 
         blockingCount++;
         if (blockingCount == 1)
