@@ -54,7 +54,9 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 0
+  hasKnockback: 0
   owner: {fileID: 0}
+  ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
 --- !u!70 &1019905867163515563
 CapsuleCollider2D:
@@ -188,7 +190,7 @@ GameObject:
   - component: {fileID: 6782098037414561930}
   - component: {fileID: 4980051864307512525}
   - component: {fileID: 1521843530328012756}
-  m_Layer: 9
+  m_Layer: 25
   m_Name: New FireExtinguisher_Projectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -277,7 +279,9 @@ MonoBehaviour:
   isStunSource: 0
   minVelocityToDamage: 0
   playHitSound: 1
+  hasKnockback: 0
   owner: {fileID: 0}
+  ownerCollider: {fileID: 0}
   isHeatAdjusted: 0
 --- !u!70 &1521843530328012756
 CapsuleCollider2D:

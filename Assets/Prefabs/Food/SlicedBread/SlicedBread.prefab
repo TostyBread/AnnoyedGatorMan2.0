@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 2945873591766036078}
   - component: {fileID: 1620718888784923987}
   - component: {fileID: 1822819011992060685}
-  - component: {fileID: 6372940999530559259}
   m_Layer: 6
   m_Name: SlicedBread
   m_TagString: FoodSmall
@@ -141,7 +140,7 @@ Rigidbody2D:
   m_LinearDrag: 10
   m_AngularDrag: 1.5
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6642a63dd25b4c94e9085728c92eae84, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -235,7 +234,7 @@ MonoBehaviour:
   - {x: 0.5463438, y: -0.69066143, z: 0}
   m_ShapePathHash: -1715248091
   m_Mesh: {fileID: 0}
-  m_InstanceId: -572944
+  m_InstanceId: -64626
   m_LocalBounds:
     m_Center: {x: -0.00013113022, y: 0.0073348284, z: 0}
     m_Extent: {x: 0.75140524, y: 0.7250749, z: 0}
@@ -269,27 +268,6 @@ MonoBehaviour:
   canMove: 0
   isDefeated: 0
   reviveBoostKey: 32
---- !u!114 &6372940999530559259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569449229976335002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jiggleInterval: 0.1
-  BiggerTheGameobjectBy: 1
-  enableLeftRightJiggle: 0
-  enableUpDownJiggle: 1
-  jiggleRange: 0.1
-  jiggleSpeed: 10
-  enableRotationJiggle: 0
-  rotationAngle: 30
-  spriteGameobject: {fileID: 0}
 --- !u!1 &2904283405089850727
 GameObject:
   m_ObjectHideFlags: 0
