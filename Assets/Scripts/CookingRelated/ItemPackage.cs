@@ -187,6 +187,12 @@ public class ItemPackage : MonoBehaviour, IUsable
             item.transform.position = Vector2.Lerp(startPos, targetPos, easedT);
             item.transform.Rotate(Vector3.forward, spinSpeed * Time.deltaTime * (targetPos.x > startPos.x ? -1 : 1));
 
+            TrailRenderer trail = item.GetComponentInChildren<TrailRenderer>();
+            if (trail != null)
+            {
+                trail.emitting = true;
+            }
+
             yield return null;
         }
 

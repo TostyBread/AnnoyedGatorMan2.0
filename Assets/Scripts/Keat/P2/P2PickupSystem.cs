@@ -216,6 +216,12 @@ public class P2PickupSystem : MonoBehaviour
         handSpriteManager?.UpdateHandSprite();
 
         AudioManager.Instance.PlaySound("gunpickup2", transform.position);
+
+        TrailRenderer trail = heldItem.GetComponentInChildren<TrailRenderer>();
+        if (trail != null)
+        {
+            trail.emitting = false;
+        }
     }
     public bool TryManualDrop() // This will be useful incase if other script needed to access and execute drop item
     {
