@@ -53,7 +53,6 @@ public class CookingStove : MonoBehaviour
         if (isOn) // Ensure stove wasn't turned off during the delay
         {
             fireCollider.SetActive(true);
-            Debug.Log("Fire Activated");
         }
         fireActivationCoroutine = null; // Reset coroutine reference
     }
@@ -66,7 +65,6 @@ public class CookingStove : MonoBehaviour
             fireActivationCoroutine = null;
         }
         fireCollider.SetActive(false);
-        //Debug.Log("Fire Deactivated");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

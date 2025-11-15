@@ -30,10 +30,11 @@ Transform:
   m_GameObject: {fileID: 931625107260084400}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.78, y: -9.73, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7369909816583571068}
   - {fileID: 827552226028580685}
   - {fileID: 1796067711938505547}
   m_Father: {fileID: 0}
@@ -188,7 +189,7 @@ MonoBehaviour:
   - {x: -0.4540124, y: -1.3941717, z: 0}
   m_ShapePathHash: -1768481163
   m_Mesh: {fileID: 0}
-  m_InstanceId: 164034
+  m_InstanceId: 202988
   m_LocalBounds:
     m_Center: {x: -0.0032835007, y: 0.016215801, z: 0}
     m_Extent: {x: 0.75331354, y: 1.4103875, z: 0}
@@ -291,6 +292,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteWithBorder: {fileID: -1461530704, guid: 02985ab3380c57b4995e23c6d82f62e8, type: 3}
   spriteWithBorderScale: 0.25
+--- !u!1 &6612833010885193025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7369909816583571068}
+  - component: {fileID: 3717228216209276808}
+  m_Layer: 6
+  m_Name: DeformController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7369909816583571068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6612833010885193025}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4372916364756499850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3717228216209276808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6612833010885193025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 5510581771820190849}
 --- !u!1001 &2396706509586091710
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -260,6 +260,7 @@ MonoBehaviour:
   physicsCollider: {fileID: 4180316551167014751}
   waypointThreshold: 0.05
   returnThreshold: 0.05
+  plateAcceptPauseDuration: 0.8
   rb: {fileID: 880509381728504748}
 --- !u!114 &1315290407669038469
 MonoBehaviour:

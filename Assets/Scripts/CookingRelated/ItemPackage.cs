@@ -30,8 +30,9 @@ public class ItemPackage : MonoBehaviour, IUsable
     private P2PickupSystem p3PickupSystem; // Keat's controller
     private PlayerPickupSystemP2 p2PickupSystem; // Kenji's old controller 
     private NoThrowCursorDetector throwBlockDetector; // Detect whether the player can throw or not
+    private SpriteDeformationController deformer; // deformer reference
 
-    private void Awake()
+    private void Start()
     {
         if (emptySprite != null)
         {
@@ -39,10 +40,27 @@ public class ItemPackage : MonoBehaviour, IUsable
             emptySprite.SetActive(false);
         }
         itemAvailability = 0;
+
+        // Search for deformer
+        deformer = GetComponent<SpriteDeformationController>();
+
+        if (deformer == null)
+        {
+            deformer = GetComponentInChildren<SpriteDeformationController>();
+        }
+        if (deformer == null)
+        {
+            deformer = GetComponentInParent<SpriteDeformationController>();
+        }
     }
 
     public void TakingOutItem()
     {
+        if (deformer != null)
+        {
+            deformer.TriggerStretch(0.6f, 5f, 0.2f);
+        }
+
         if (itemPrefab != null && spawnPosition != null)
         {
             if (itemAvailability != itemCount)
@@ -125,6 +143,11 @@ public class ItemPackage : MonoBehaviour, IUsable
 
     private void ThrowItem()
     {
+        if (deformer != null)
+        {
+            deformer.TriggerStretch(0.6f, 5f, 0.2f);
+        }
+
         if (itemPrefab != null && itemAvailability != itemCount && !isBeingDestroyed)
         {
             // Check throw blocking

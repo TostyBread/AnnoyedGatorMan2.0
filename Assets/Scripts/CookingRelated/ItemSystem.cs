@@ -5,8 +5,8 @@ public class ItemSystem : MonoBehaviour
 {
     public bool canBeCooked;
     public bool canBreak;
-    public bool canBash = true; // Whether the item can be damaged by bash attacks
-    public bool canCut = true;  // Whether the item can be damaged by cut attacks
+    public bool canBash = true;
+    public bool canCut = true;
     public int durabilityUncooked;
     public int durabilityCooked;
     public float cookThreshold;
@@ -28,7 +28,7 @@ public class ItemSystem : MonoBehaviour
     public bool isBurned = false;
     private SpriteRenderer cookedSpriteRenderer;
     private Color originalCookedColor;
-    private Jiggle jiggle;
+    private SpriteDeformationController deformer; // deformer reference
 
     private Dictionary<GameObject, float> lastDamageTimestamps = new();
     private float cleanupInterval = 5f;
@@ -38,7 +38,14 @@ public class ItemSystem : MonoBehaviour
 
     void Start()
     {
-        jiggle = GetComponent<Jiggle>();
+        // Search for deformer
+        deformer = GetComponent<SpriteDeformationController>();
+        
+        if (deformer == null)
+        {
+            deformer = GetComponentInChildren<SpriteDeformationController>();
+        }
+        
         currentDurability = durabilityUncooked;
         currentCookPoints = 0f;
         isCooked = false;
@@ -66,7 +73,6 @@ public class ItemSystem : MonoBehaviour
         {
             BurnItem();
         }
-
 
         if (Time.time >= nextCleanupTime)
         {
@@ -117,6 +123,11 @@ public class ItemSystem : MonoBehaviour
             if (sourceDamage.isFireSource || sourceDamage.isStunSource)
             {
                 currentCookPoints += sourceDamage.heatAmount;
+                if (deformer != null)
+                {
+                    // Stretch: Makes food look pulled
+                    deformer.TriggerStretch(1f, 6f, 0.2f);
+                }
             }
 
             EffectPool.Instance.SpawnEffect("FoodSteam", transform.position, Quaternion.identity); // Deploy steam anim
@@ -128,6 +139,12 @@ public class ItemSystem : MonoBehaviour
         // Check if the item can be damaged by this type
         if (sourceDamage.damageType == DamageType.Bash && !canBash) return;
         if (sourceDamage.damageType == DamageType.Cut && !canCut) return;
+
+        if (deformer != null && sourceDamage.damageAmount > 0)
+        {
+            // Squash: Makes food look compressed
+            deformer.TriggerSquash(0.25f, 6f, 0.2f);
+        }
 
         if (currentDurability <= 0 && canBreak) BreakItem(damageType);
     }
@@ -182,7 +199,12 @@ public class ItemSystem : MonoBehaviour
         cookedState.SetActive(true);
         currentDurability = durabilityCooked;
         AudioManager.Instance.PlaySound("Fizzle", transform.position);
-        jiggle?.StartJiggle();
+        
+        if (deformer != null)
+        {
+            // Combined: All together for dramatic effect
+            deformer.TriggerDeformation(0.2f, 0.2f, 0.2f, 7f, 0.3f);
+        }
     }
 
     public void BurnItem()
@@ -190,6 +212,11 @@ public class ItemSystem : MonoBehaviour
         isBurned = true;
         cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
         AudioManager.Instance.PlaySound("DryFart", transform.position);
-        jiggle?.StartJiggle();
+        
+        if (deformer != null)
+        {
+            // Combined: All together for dramatic effect
+            deformer.TriggerDeformation(0.2f, 0.2f, 0.2f, 7f, 0.3f);
+        }
     }
 }
