@@ -9,6 +9,8 @@ public class SpriteDeformationController : MonoBehaviour
     private float jiggleIntensity = 0f;
     private float squashAmount = 0f;
     private float stretchAmount = 0f;
+    private float jumpAmount = 0f;
+    private float shakeAmount = 0f;
     private bool isAnimating = false;
 
     // Coroutine management
@@ -24,6 +26,8 @@ public class SpriteDeformationController : MonoBehaviour
         public float jiggle;
         public float squash;
         public float stretch;
+        public float jump;
+        public float shake;
         public float speed;
         public float duration;
         public bool shouldOverride;
@@ -40,7 +44,7 @@ public class SpriteDeformationController : MonoBehaviour
 
     private void Update()
     {
-        if (isAnimating && (jiggleIntensity > 0 || squashAmount > 0 || stretchAmount > 0))
+        if (isAnimating && (jiggleIntensity > 0 || squashAmount > 0 || stretchAmount > 0 || jumpAmount > 0 || shakeAmount > 0))
         {
             deformationTimer += Time.deltaTime;
             if (materialInstance != null)
@@ -95,35 +99,49 @@ public class SpriteDeformationController : MonoBehaviour
     /// Trigger a jiggle effect
     public void TriggerJiggle(float intensity, float speed = 5f, float duration = 0.5f, bool shouldOverride = false)
     {
-        QueueDeformation(intensity, 0f, 0f, speed, duration, shouldOverride);
+        QueueDeformation(intensity, 0f, 0f, 0f, 0f, speed, duration, shouldOverride);
     }
 
     /// Trigger a squash effect
     public void TriggerSquash(float amount, float speed = 5f, float duration = 0.3f, bool shouldOverride = false)
     {
-        QueueDeformation(0f, amount, 0f, speed, duration, shouldOverride);
+        QueueDeformation(0f, amount, 0f, 0f, 0f, speed, duration, shouldOverride);
     }
 
     /// Trigger a stretch effect
     public void TriggerStretch(float amount, float speed = 5f, float duration = 0.3f, bool shouldOverride = false)
     {
-        QueueDeformation(0f, 0f, amount, speed, duration, shouldOverride);
+        QueueDeformation(0f, 0f, amount, 0f, 0f, speed, duration, shouldOverride);
+    }
+
+    /// Trigger a jump effect (sprite moves up and down)
+    public void TriggerJump(float height, float speed = 5f, float duration = 0.5f, bool shouldOverride = false)
+    {
+        QueueDeformation(0f, 0f, 0f, height, 0f, speed, duration, shouldOverride);
+    }
+
+    /// Trigger a shake effect (sprite moves left and right)
+    public void TriggerShake(float amount, float speed = 5f, float duration = 0.5f, bool shouldOverride = false)
+    {
+        QueueDeformation(0f, 0f, 0f, 0f, amount, speed, duration, shouldOverride);
     }
 
     /// Trigger combined deformation effects
-    public void TriggerDeformation(float jiggle, float squash, float stretch, float speed = 5f, float duration = 0.5f, bool shouldOverride = false)
+    public void TriggerDeformation(float jiggle, float squash, float stretch, float jump = 0f, float shake = 0f, float speed = 5f, float duration = 0.5f, bool shouldOverride = false)
     {
-        QueueDeformation(jiggle, squash, stretch, speed, duration, shouldOverride);
+        QueueDeformation(jiggle, squash, stretch, jump, shake, speed, duration, shouldOverride);
     }
 
     /// Queue a deformation request. If shouldOverride is true, interrupts current animation immediately.
-    private void QueueDeformation(float jiggle, float squash, float stretch, float speed, float duration, bool shouldOverride = false)
+    private void QueueDeformation(float jiggle, float squash, float stretch, float jump, float shake, float speed, float duration, bool shouldOverride = false)
     {
         var request = new DeformationRequest
         {
             jiggle = jiggle,
             squash = squash,
             stretch = stretch,
+            jump = jump,
+            shake = shake,
             speed = speed,
             duration = duration,
             shouldOverride = shouldOverride
@@ -187,10 +205,10 @@ public class SpriteDeformationController : MonoBehaviour
         var request = deformationQueue.Dequeue();
         
         // Start the new coroutine immediately
-        currentDeformationCoroutine = StartCoroutine(PlayDeformation(request.jiggle, request.squash, request.stretch, request.speed, request.duration));
+        currentDeformationCoroutine = StartCoroutine(PlayDeformation(request.jiggle, request.squash, request.stretch, request.jump, request.shake, request.speed, request.duration));
     }
 
-    private System.Collections.IEnumerator PlayDeformation(float jiggle, float squash, float stretch, float speed, float duration)
+    private System.Collections.IEnumerator PlayDeformation(float jiggle, float squash, float stretch, float jump, float shake, float speed, float duration)
     {
         isAnimating = true;
         float elapsedTime = 0f;
@@ -210,6 +228,8 @@ public class SpriteDeformationController : MonoBehaviour
             jiggleIntensity = jiggle * fadeMultiplier;
             squashAmount = squash * fadeMultiplier;
             stretchAmount = stretch * fadeMultiplier;
+            jumpAmount = jump * fadeMultiplier;
+            shakeAmount = shake * fadeMultiplier;
 
             if (materialInstance != null)
             {
@@ -217,6 +237,8 @@ public class SpriteDeformationController : MonoBehaviour
                 materialInstance.SetFloat("_JiggleSpeed", speed);
                 materialInstance.SetFloat("_SquashAmount", squashAmount);
                 materialInstance.SetFloat("_StretchAmount", stretchAmount);
+                materialInstance.SetFloat("_JumpAmount", jumpAmount);
+                materialInstance.SetFloat("_ShakeAmount", shakeAmount);
             }
 
             deformationTimer += Time.deltaTime;
@@ -256,11 +278,15 @@ public class SpriteDeformationController : MonoBehaviour
             materialInstance.SetFloat("_JiggleIntensity", 0f);
             materialInstance.SetFloat("_SquashAmount", 0f);
             materialInstance.SetFloat("_StretchAmount", 0f);
+            materialInstance.SetFloat("_JumpAmount", 0f);
+            materialInstance.SetFloat("_ShakeAmount", 0f);
         }
 
         jiggleIntensity = 0f;
         squashAmount = 0f;
         stretchAmount = 0f;
+        jumpAmount = 0f;
+        shakeAmount = 0f;
         deformationTimer = 0f;
     }
 }
