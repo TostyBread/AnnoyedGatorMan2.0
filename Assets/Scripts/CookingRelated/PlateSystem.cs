@@ -27,11 +27,17 @@ public class PlateSystem : MonoBehaviour
     private int cachedPlateSortingOrder;
     private Dictionary<(int itemID, ItemDescriber.CookingState cookingState, ItemDescriber.Condition condition), List<PlateRequirement>> requirementLookup;
     private int unfilledRequirementCount;
-    private Jiggle jiggle;
+    private SpriteDeformationController deformer; // deformer reference
 
     private void Awake()
     {
-        jiggle = GetComponent<Jiggle>();
+        // Search for deformer
+        deformer = GetComponent<SpriteDeformationController>();
+
+        if (deformer == null)
+        {
+            deformer = GetComponentInChildren<SpriteDeformationController>();
+        }
         // Cache the plate's SpriteRenderer once
         cachedPlateRenderer = GetComponent<SpriteRenderer>();
         cachedPlateSortingOrder = cachedPlateRenderer != null ? cachedPlateRenderer.sortingOrder : 0;
@@ -99,6 +105,11 @@ public class PlateSystem : MonoBehaviour
                     else
                     {
                         AudioManager.Instance.PlaySound("bell1", transform.position);
+
+                        if (deformer != null) // Jiggle
+                        {
+                            deformer.TriggerSquash(0.4f, 10f, 0.5f);
+                        }
                     }
                 }
             }
@@ -147,7 +158,11 @@ public class PlateSystem : MonoBehaviour
     {
         AudioManager.Instance.PlaySound("TaskComplete", transform.position);
         isReadyToServe = true;
-        jiggle?.StartJiggle();
+
+        if (deformer != null) // Jiggle
+        {
+            deformer.TriggerJump(0.4f, 9f, 0.8f);
+        }
     }
 
     // Cleanup method for detaching items (optimized version)

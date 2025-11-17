@@ -125,6 +125,52 @@ MonoBehaviour:
   movementThreshold: 0.1
   flipSpriteOnX: 1
   targetRigidbody: {fileID: 0}
+--- !u!1 &407890175900731552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2602160157236008920}
+  - component: {fileID: 86101685231949768}
+  m_Layer: 6
+  m_Name: DeformController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2602160157236008920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407890175900731552}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 28608211284768982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &86101685231949768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407890175900731552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 7573811395841726648}
 --- !u!1 &1482225471196721313
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +249,6 @@ GameObject:
   - component: {fileID: 4180316551167014751}
   - component: {fileID: 3131916694288282251}
   - component: {fileID: 8706770915603471547}
-  - component: {fileID: 1144158951632489867}
   m_Layer: 10
   m_Name: Pinapo
   m_TagString: NPC
@@ -220,10 +265,11 @@ Transform:
   m_GameObject: {fileID: 9131540200826282109}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.99, y: -2.04, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2602160157236008920}
   - {fileID: 3424607727966349365}
   - {fileID: 7711344081798851309}
   - {fileID: 7262767610283653091}
@@ -422,28 +468,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 8306104426203620189, guid: 8452e20da9f9fb6438ea5e2a9aef612f, type: 3}
---- !u!114 &1144158951632489867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9131540200826282109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937658cb9c6b052409f7f216fc5d821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jiggleInterval: 0.3
-  BiggerTheGameobjectBy: 1
-  enableLeftRightJiggle: 0
-  enableUpDownJiggle: 1
-  jiggleRange: 0.3
-  jiggleSpeed: 7
-  enableRotationJiggle: 0
-  rotationAngle: 30
-  spriteGameobject: {fileID: 3424607727966349365}
-  isJiggling: 0
 --- !u!1 &9207026353361096624
 GameObject:
   m_ObjectHideFlags: 0

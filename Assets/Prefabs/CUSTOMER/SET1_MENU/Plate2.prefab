@@ -50,6 +50,52 @@ MonoBehaviour:
   fontSize: 8
   offset: {x: 0, y: 0, z: 0}
   customFontAsset: {fileID: 11400000, guid: 2c0f1b204d2db3a4e8e6efcf4e936da2, type: 2}
+--- !u!1 &2105115810687196408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5077900662364745797}
+  - component: {fileID: 835655503165617047}
+  m_Layer: 6
+  m_Name: DeformController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5077900662364745797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105115810687196408}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1274844278774008693}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &835655503165617047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105115810687196408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 3372385872971451973}
 --- !u!1 &3088414860971530543
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +110,7 @@ GameObject:
   - component: {fileID: 2912337896578746821}
   - component: {fileID: 2469571722624404651}
   m_Layer: 6
-  m_Name: Plate4
+  m_Name: Plate2
   m_TagString: FoodBig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,6 +129,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5077900662364745797}
   - {fileID: 8868651213545987020}
   - {fileID: 185538094331422778}
   - {fileID: 2576792758483389478}
@@ -178,31 +225,37 @@ MonoBehaviour:
   rootPlateObject: {fileID: 1274844278774008693}
   plateRequirements:
   - itemID: 3
-    cookingState: 1
+    cookingState: 0
     condition: 0
     positionOffset: {x: 0, y: 0, z: 0}
     sortingOrder: 3
     isFilled: 0
-  - itemID: 21
-    cookingState: 1
-    condition: 0
+  - itemID: 11
+    cookingState: 0
+    condition: 1
     positionOffset: {x: 0, y: 0, z: 0}
     sortingOrder: 4
+    isFilled: 0
+  - itemID: 11
+    cookingState: 0
+    condition: 1
+    positionOffset: {x: 0, y: 0, z: 0}
+    sortingOrder: 5
     isFilled: 0
   - itemID: 21
     cookingState: 1
     condition: 0
     positionOffset: {x: 0, y: 0, z: 0}
-    sortingOrder: 4
+    sortingOrder: 6
     isFilled: 0
   - itemID: 3
-    cookingState: 1
+    cookingState: 0
     condition: 0
     positionOffset: {x: 0, y: 0, z: 0}
     sortingOrder: 9
     isFilled: 0
-  menuDisplay: {fileID: 1993523855361044245, guid: b7cb9a907bacd8a4383664b1e2cf5a77, type: 3}
-  plateScore: 8
+  menuDisplay: {fileID: 6382982205964890766, guid: 2fbc1fa516678cf4a9b3d2c0e66d912f, type: 3}
+  plateScore: 6
   lastHolder: {fileID: 0}
 --- !u!1 &7959137826293649880
 GameObject:

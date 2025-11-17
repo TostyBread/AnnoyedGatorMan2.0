@@ -537,10 +537,16 @@ public class EnemyMovement : MonoBehaviour
             // For aimForFood enemies: skip anything without HealthManager
             if (aimForFood)
             {
-                if (hit.GetComponent<HealthManager>() == null && 
-                    hit.GetComponentInChildren<HealthManager>() == null ||
-                    hit.GetComponent<ItemSystem>().isBurned
-                    )
+                // Safely get components and null-check before accessing properties
+                var health = hit.GetComponent<HealthManager>() ?? hit.GetComponentInChildren<HealthManager>();
+                var item = hit.GetComponent<ItemSystem>();
+
+                // if there's no HealthManager, this isn't food we care about
+                if (health == null)
+                    continue;
+
+                // if ItemSystem exists and is burned, skip it
+                if (item != null && item.isBurned)
                     continue;
             }
 

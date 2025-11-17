@@ -48,10 +48,6 @@ public class ItemPackage : MonoBehaviour, IUsable
         {
             deformer = GetComponentInChildren<SpriteDeformationController>();
         }
-        if (deformer == null)
-        {
-            deformer = GetComponentInParent<SpriteDeformationController>();
-        }
     }
 
     public void TakingOutItem()

@@ -56,12 +56,12 @@ public class NPCBehavior : MonoBehaviour
     public int customerId { get; private set; }
     private NPCState state = NPCState.Approaching;
     private NPCAngerBehavior angerBehavior;
-    private Jiggle jiggle;
 
     // Cached components for performance
     private NPCPatience npcPatience;
     private NPCAnimationController npcAnimController;
     private LabelDisplay labelDisplay;
+    private SpriteDeformationController deformer; // deformer reference
 
     // Score reference
     private ScoreManager scoreManager;
@@ -86,7 +86,13 @@ public class NPCBehavior : MonoBehaviour
 
     void Awake()
     {
-        jiggle = GetComponent<Jiggle>(); // get Jiggle component
+        // Search for deformer
+        deformer = GetComponent<SpriteDeformationController>();
+
+        if (deformer == null)
+        {
+            deformer = GetComponentInChildren<SpriteDeformationController>();
+        }
 
         // Cache all components at startup
         angerBehavior = GetComponent<NPCAngerBehavior>();
@@ -136,13 +142,13 @@ public class NPCBehavior : MonoBehaviour
         {
             if (triggerCollider == null) triggerCollider = colliders[0];
             if (physicsCollider == null) physicsCollider = colliders[0];
-            Debug.LogWarning($"NPC {gameObject.name} only has one collider. Consider adding separate trigger and physics colliders for better functionality.");
+            //Debug.LogWarning($"NPC {gameObject.name} only has one collider. Consider adding separate trigger and physics colliders for better functionality.");
         }
 
         // Ensure we have valid references
         if (triggerCollider == null || physicsCollider == null)
         {
-            Debug.LogError($"NPC {gameObject.name} is missing required colliders. Please assign trigger and physics colliders manually.");
+            //Debug.LogError($"NPC {gameObject.name} is missing required colliders. Please assign trigger and physics colliders manually.");
         }
     }
 
@@ -350,7 +356,7 @@ public class NPCBehavior : MonoBehaviour
                 plateRb.bodyType = RigidbodyType2D.Kinematic;
                 
             audioManagerInstance.PlaySound("yes", transform.position);
-            jiggle?.StartJiggle(); // Start jiggle effect on acceptance
+
             // Start the pause coroutine instead of using Invoke
             StartCoroutine(PauseAfterPlateAcceptance());
 
@@ -371,6 +377,10 @@ public class NPCBehavior : MonoBehaviour
                 menuManagerInstance?.RemoveMenuForNPC(this);
             }
             
+            if (deformer != null) // Jiggle
+            {
+                deformer.TriggerJump(2f, 5f, 0.8f);
+            }
             // Use cached component reference
             npcPatience?.StopPatience();
             plateManagerInstance?.FreeSpawnPoint(this);
@@ -551,26 +561,26 @@ public class NPCBehavior : MonoBehaviour
     }
 
     // Debug visualization for plate detection range
-    private void OnDrawGizmosSelected()
-    {
-        if (state == NPCState.Arrived)
-        {
-            Vector3 center = triggerCollider != null ? triggerCollider.bounds.center : transform.position;
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(center, plateDetectionRange);
-        }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if (state == NPCState.Arrived)
+    //    {
+    //        Vector3 center = triggerCollider != null ? triggerCollider.bounds.center : transform.position;
+    //        Gizmos.color = Color.cyan;
+    //        Gizmos.DrawWireSphere(center, plateDetectionRange);
+    //    }
 
-        // Show collider references
-        if (triggerCollider != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(triggerCollider.bounds.center, triggerCollider.bounds.size);
-        }
+    //    // Show collider references
+    //    if (triggerCollider != null)
+    //    {
+    //        Gizmos.color = Color.green;
+    //        Gizmos.DrawWireCube(triggerCollider.bounds.center, triggerCollider.bounds.size);
+    //    }
 
-        if (physicsCollider != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(physicsCollider.bounds.center, physicsCollider.bounds.size);
-        }
-    }
+    //    if (physicsCollider != null)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawWireCube(physicsCollider.bounds.center, physicsCollider.bounds.size);
+    //    }
+    //}
 }

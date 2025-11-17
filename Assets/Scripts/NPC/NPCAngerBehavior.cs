@@ -40,6 +40,7 @@ public class NPCAngerBehavior : MonoBehaviour
     private Collider2D npcCollider;
     private GameObject[] allPlayers;
     private NPCAnimationController npcAnim; // Cache the component
+    private SpriteDeformationController deformer; // deformer reference
 
     // Performance optimization: Cache frequently used values
     private GameObject currentTarget;
@@ -57,6 +58,14 @@ public class NPCAngerBehavior : MonoBehaviour
 
     void Awake()
     {
+        // Search for deformer
+        deformer = GetComponent<SpriteDeformationController>();
+
+        if (deformer == null)
+        {
+            deformer = GetComponentInChildren<SpriteDeformationController>();
+        }
+
         npc = GetComponent<NPCBehavior>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         npcCollider = GetComponent<Collider2D>();
@@ -160,7 +169,7 @@ public class NPCAngerBehavior : MonoBehaviour
         else
         {
             hitCount++;
-            Debug.Log($"NPC {npc.customerId} hit count: {hitCount}/{hitsToTriggerEscape}");
+            //Debug.Log($"NPC {npc.customerId} hit count: {hitCount}/{hitsToTriggerEscape}");
             if (hitCount >= hitsToTriggerEscape)
             {
                 ExitAngerMode();
@@ -221,7 +230,7 @@ public class NPCAngerBehavior : MonoBehaviour
         // Timer expired - ALWAYS force escape when anger duration ends
         if (isAngry)
         {
-            Debug.Log($"NPC {npc.customerId} anger timer expired - forcing escape");
+            //Debug.Log($"NPC {npc.customerId} anger timer expired - forcing escape");
             ExitAngerMode();
             npc.ForceEscape();
         }
@@ -267,6 +276,11 @@ public class NPCAngerBehavior : MonoBehaviour
 
             AudioManager.Instance.PlaySound("Swear", transform.position); // NPC swearing
 
+            if (deformer != null)
+            {
+                deformer.TriggerDeformation(0f, 0f, 0f, 2f, 0.8f, 6f, 1.2f);
+            }
+
             Vector2 dir = (currentTarget.transform.position - transform.position).normalized;
             switch (shoutMode)
             {
@@ -289,7 +303,7 @@ public class NPCAngerBehavior : MonoBehaviour
             yield return shoutCooldownWait;
         }
 
-        Debug.Log($"NPC {npc.customerId} shouting loop ended");
+        //Debug.Log($"NPC {npc.customerId} shouting loop ended");
     }
 
     private IEnumerator ExecuteBurstAttack()

@@ -203,7 +203,7 @@ public class ItemSystem : MonoBehaviour
         if (deformer != null)
         {
             // Combined: All together for dramatic effect
-            deformer.TriggerDeformation(0.2f, 0.2f, 0.2f, 7f, 0.3f);
+            deformer.TriggerDeformation(0.2f, 0.2f, 0.2f, 0f, 0f, 7f, 0.3f);
         }
     }
 
@@ -216,7 +216,7 @@ public class ItemSystem : MonoBehaviour
         if (deformer != null)
         {
             // Combined: All together for dramatic effect
-            deformer.TriggerDeformation(0.2f, 0.2f, 0.2f, 7f, 0.3f);
+            deformer.TriggerDeformation(0.2f, 0.2f, 0.2f, 0f, 0f, 7f, 0.3f);
         }
     }
 }

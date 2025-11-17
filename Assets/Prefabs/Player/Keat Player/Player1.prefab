@@ -335,7 +335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 2270128870579024548}
-  settingScreen: {fileID: 0}
 --- !u!1 &5777943322895505190
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,7 +841,7 @@ MonoBehaviour:
   - {x: 0.7216635, y: -1.432608, z: 0}
   m_ShapePathHash: 1937035757
   m_Mesh: {fileID: 0}
-  m_InstanceId: 50284
+  m_InstanceId: -14394
   m_LocalBounds:
     m_Center: {x: -0.09108019, y: -0.7744708, z: 0}
     m_Extent: {x: 0.81274366, y: 0.6824254, z: 0}
