@@ -18,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     [Header("Level clear setting")]
     public int currentLevelIndex;
     public bool isCleared;
+    public bool willUnlockNextLevel = false;
 
     private Timer timer;
     private LevelData levelData;
@@ -34,6 +35,8 @@ public class ScoreManager : MonoBehaviour
 
         if (WinScreen != null) WinScreen.SetActive(false);
         if (LoseScreen != null) LoseScreen.SetActive(false);
+
+        if (levelData != null) levelData.willUnlockNextLevel = willUnlockNextLevel;
 
         gameOver = false;
     }

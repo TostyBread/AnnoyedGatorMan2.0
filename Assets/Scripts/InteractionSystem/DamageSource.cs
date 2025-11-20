@@ -114,6 +114,7 @@ public class DamageSource : MonoBehaviour
         if (target.TryGetComponent(out HealthManager health) && target != owner)
         {
             health.TryDamage(damageAmount, this.gameObject);
+
             //if (target.CompareTag("Player"))
             //{
             //    sanity.decreaseSanity(damageAmount);
