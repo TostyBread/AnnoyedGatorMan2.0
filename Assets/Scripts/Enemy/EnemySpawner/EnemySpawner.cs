@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
@@ -9,6 +11,14 @@ public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> Enemies = new List<GameObject>();
     public GameObject UI;
+
+    [SerializeField] private Dumpster dumpster;
+    private Transform dumpsterPos;
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private Image EnemyProgressbar;
+    [SerializeField] private Vector2 offset;
+    [SerializeField] private GameObject EnemySpawnEffect;
+    [SerializeField] private Transform EnemySpawnEffectPos;
 
     public float MaxSpawnedEnemy = 5;
     public int MinSpawnTime = 25;
@@ -24,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
     public int CountBurntFood = 0;
     public int CountTrashbag = 0;
     public int CountTotalObstacleObject = 0;
-
+    
     [Header("do not touch, just for Refrence")]
     [SerializeField] private float ChargeReadyTime;
     [SerializeField] private float ChargeTimer;
@@ -32,11 +42,12 @@ public class EnemySpawner : MonoBehaviour
 
     bool SanityIsEmptyOnce;
 
-    private Transform spawner;
+    public Transform spawner;
     [Header("do not touch, just for Refrence")]
     public WeatherManager weatherManager;
     public GameObject EnemyForCurrentWeather;
 
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +64,11 @@ public class EnemySpawner : MonoBehaviour
         ChargeReadyTime = Random.Range(5, 7);
         weatherManager = FindAnyObjectByType<WeatherManager>();
 
+        dumpster = FindAnyObjectByType<Dumpster>();
+        dumpsterPos = dumpster.gameObject.transform;
+
+        canvas.transform.position = new Vector2(dumpsterPos.position.x + offset.x, dumpsterPos.position.y + offset.y);
+
         if (Spawners.Count == 0)
         {
             Transform[] getSpawners = GetComponentsInChildren<Transform>();
@@ -60,7 +76,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 foreach (Transform spawner in getSpawners)
                 {
-                    if (spawner.gameObject == gameObject) //Prevent spawners from getting this gameObject
+                    if (spawner.gameObject == gameObject || !spawner.name.Contains("Spawner")) //Prevent spawners from getting this gameObject && other non-spawner
                         continue;
 
                     Spawners.Add(spawner);
@@ -73,12 +89,21 @@ public class EnemySpawner : MonoBehaviour
 
     // Update is called once per frame
     void Update() 
-    { 
+    {
+        if (EnemyProgressbar != null)
+        {
+            EnemyProgressbar.fillAmount = ChargeTimer / ChargeReadyTime;
+            if (EnemyProgressbar.fillAmount == 1)
+            {
+                EnemyProgressbar.fillAmount = 0;
+            }
+        }
+
         if (SanityIsEmptyOnce == false && sanity.RemainSanity == 0) //all spawner spawn enemy at once once player die
         { 
             foreach (Transform spawner in Spawners) 
-            { 
-                GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation); 
+            {
+                SpawnEnemy(spawner);
             }
 
             ChargeReadyTime = Random.Range(MinSpawnTime/2, MaxSpawnTime/2);
@@ -87,7 +112,7 @@ public class EnemySpawner : MonoBehaviour
 
         CountObstacleObjectInGame();
         SpeedUpEnemySpawn();
-        SpawnEnemy(); 
+        SpawnEnemyWithTimer(); 
     }
 
     private void CountObstacleObjectInGame()
@@ -144,7 +169,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemyWithTimer()
     {
         if (currentSpawnedEnemy >= MaxSpawnedEnemy) return;
 
@@ -166,8 +191,7 @@ public class EnemySpawner : MonoBehaviour
                 Debug.LogWarning("There is no index in Spawners arrary");
             }
 
-            GameObject enemy = Instantiate(EnemyForCurrentWeather, spawner.position, spawner.rotation);
-            Debug.Log("Let's spawn " + enemy);
+            SpawnEnemy(spawner);
 
             ChargeReadyTime = Random.Range(MinSpawnTime, MaxSpawnTime);
 
@@ -186,6 +210,28 @@ public class EnemySpawner : MonoBehaviour
             }
 
             ChargeTimer = 0;
+        }
+    }
+
+    private void SpawnEnemy(Transform targetSpawner)
+    {
+        if (EnemySpawnEffect != null)
+        {
+            dumpster.gameObject.GetComponents<Jiggle>()[1].StartJiggle(); //jiggle the dumpster with jiggle[1] when enemy spawn
+
+            GameObject enemyeffect;
+
+            if (EnemySpawnEffectPos != null)
+            { enemyeffect = Instantiate(EnemySpawnEffect, EnemySpawnEffectPos.position, EnemySpawnEffectPos.rotation); }
+            else
+            { enemyeffect = Instantiate(EnemySpawnEffect, dumpsterPos.position, dumpsterPos.rotation); }
+
+            EnemyEffect enemyEffectMoveTowards = enemyeffect.GetComponent<EnemyEffect>();
+            enemyEffectMoveTowards.Target = targetSpawner;
+        }
+        else if (EnemySpawnEffect == null)
+        {
+            GameObject enemy = Instantiate(EnemyForCurrentWeather, targetSpawner.position, targetSpawner.rotation);//Spawn enemy here
         }
     }
 
