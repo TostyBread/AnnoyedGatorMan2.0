@@ -81,10 +81,6 @@ public class HealthManager : MonoBehaviour
             p2PickupSystem = GetComponent<P2PickupSystem>();
             if (hand != null) handSpriteManagerP2 = hand.GetComponent<HandSpriteManagerP2>();
         }
-        else if (isNotPlayer)
-        {
-            return;
-        }
         else
         {
             playerInputManager = GetComponent<PlayerInputManager>();
