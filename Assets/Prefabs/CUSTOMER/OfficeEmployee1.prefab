@@ -293,6 +293,7 @@ MonoBehaviour:
   forceEscapeThreshold: 7
   escapeSpeedMultiplier: 2
   plateReceiveAnchor: {fileID: 7262767610283653091}
+  customerIdAnchor: {fileID: 8449061880509143546}
   hasAcceptedPlate: 0
   detectionRange: 2.8
   npcLayer:

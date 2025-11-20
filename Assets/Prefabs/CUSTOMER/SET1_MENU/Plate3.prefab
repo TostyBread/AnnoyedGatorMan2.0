@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b197f5bcead8bbb4398afbbb8f60b79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchorPoint: {fileID: 2576792758483389478}
   labelText: 2
   labelColor: {r: 1, g: 0.37254903, b: 0, a: 1}
   fontSize: 8
   offset: {x: 0, y: 0, z: 0}
   customFontAsset: {fileID: 11400000, guid: 2c0f1b204d2db3a4e8e6efcf4e936da2, type: 2}
+  idGameObjectPrefab: {fileID: 6860703093271182990, guid: 5b4861936b32230429fbf7214b235390, type: 3}
 --- !u!1 &3088414860971530543
 GameObject:
   m_ObjectHideFlags: 0
