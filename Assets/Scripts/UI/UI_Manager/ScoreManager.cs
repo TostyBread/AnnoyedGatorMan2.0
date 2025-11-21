@@ -136,6 +136,8 @@ public class ScoreManager : MonoBehaviour
 
     private void EnableConfettiEffects()
     {
+        if (ConfettiEffect == null) return;
+
         foreach (GameObject confetti in ConfettiEffect)
         {
             confetti.SetActive(true);
