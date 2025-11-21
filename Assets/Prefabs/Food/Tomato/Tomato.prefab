@@ -402,7 +402,7 @@ MonoBehaviour:
   - {x: -0.43847656, y: -0.47130942, z: 0}
   m_ShapePathHash: 2054117887
   m_Mesh: {fileID: 0}
-  m_InstanceId: -339528
+  m_InstanceId: -261482
   m_LocalBounds:
     m_Center: {x: -0.0031924248, y: -0.11154866, z: 0}
     m_Extent: {x: 0.583879, y: 0.43378592, z: 0}
@@ -450,7 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 
@@ -618,6 +618,14 @@ PrefabInstance:
       value: SmashedTomato
       objectReference: {fileID: 0}
     - target: {fileID: 948482249821651312, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
+      propertyPath: canCut
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 948482249821651312, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
+      propertyPath: canBash
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 948482249821651312, guid: a431853cb53eb434e99571044beb5a6d, type: 3}
       propertyPath: cookedState
       value: 
       objectReference: {fileID: 2531769092878759072}
@@ -705,7 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 
@@ -847,6 +855,14 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6322381839446944045, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
+      propertyPath: canCut
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322381839446944045, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
+      propertyPath: canBash
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322381839446944045, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
       propertyPath: cookedState
       value: 
       objectReference: {fileID: 3613951051918749591}
@@ -903,7 +919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 
@@ -1059,6 +1075,14 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6322381839446944045, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
+      propertyPath: canCut
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322381839446944045, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
+      propertyPath: canBash
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322381839446944045, guid: 27d63c2e71ec76f4cb43158e1c30c31a, type: 3}
       propertyPath: cookedState
       value: 
       objectReference: {fileID: 5620033688250113759}
@@ -1134,7 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 

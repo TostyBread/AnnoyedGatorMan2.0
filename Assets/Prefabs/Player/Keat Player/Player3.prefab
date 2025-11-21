@@ -1702,11 +1702,11 @@ GameObject:
   - component: {fileID: 488919215559048345}
   - component: {fileID: 3455622770561305545}
   - component: {fileID: 5580755971419463573}
-  - component: {fileID: 454652177134447574}
   - component: {fileID: 4097314866109383994}
   - component: {fileID: 1275436583344678529}
   - component: {fileID: 3619115335145955248}
   - component: {fileID: 3122043649147278559}
+  - component: {fileID: 5240291383345785876}
   m_Layer: 18
   m_Name: P3 Carbibara
   m_TagString: Player
@@ -1921,6 +1921,7 @@ MonoBehaviour:
   damageReceived: 0
   HealthBar: {fileID: 3201080435102853424}
   hand: {fileID: 4657565808220804393}
+  playerCollider: {fileID: 1145312796537006720}
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
@@ -1933,36 +1934,6 @@ MonoBehaviour:
   canMove: 1
   isDefeated: 0
   reviveBoostKey: 32
---- !u!114 &454652177134447574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3135101431889565427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc6e82a859d2cee479c1a9992294e9b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canBeCooked: 0
-  canBreak: 0
-  canBash: 1
-  canCut: 1
-  durabilityUncooked: 0
-  durabilityCooked: 0
-  cookThreshold: 60
-  burnThreshold: 120
-  damageCooldown: 1
-  uncookedState: {fileID: 3135101431889565427}
-  cookedState: {fileID: 3135101431889565427}
-  brokenPartsUncookedBash: []
-  brokenPartsCookedBash: []
-  brokenPartsUncookedCut: []
-  brokenPartsCookedCut: []
-  brokenPartsOffsets: []
-  isCooked: 0
-  isBurned: 0
 --- !u!114 &4097314866109383994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2022,6 +1993,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
+  raycastOffsetDistance: 0.5
   enableDebugLog: 0
   enableDebugGizmos: 0
 --- !u!114 &3122043649147278559
@@ -2060,6 +2032,20 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0.13837004, y: -0.5132316, z: 0}
     m_Extent: {x: 0.6261239, y: 0.6762782, z: 0}
+--- !u!114 &5240291383345785876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135101431889565427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 2146865457293562872}
 --- !u!1 &3324805289703524311
 GameObject:
   m_ObjectHideFlags: 0
@@ -4738,11 +4724,11 @@ GameObject:
   - component: {fileID: 8383292685396171806}
   - component: {fileID: 6731574886544173902}
   - component: {fileID: 4606442261196177170}
-  - component: {fileID: 8417424066442283857}
   - component: {fileID: 5351150476593833405}
   - component: {fileID: 7146315376641771014}
   - component: {fileID: 7668680888624775215}
   - component: {fileID: 7441760239559662278}
+  - component: {fileID: 7892066107703624388}
   m_Layer: 18
   m_Name: P3 GatorMan
   m_TagString: Player
@@ -4957,6 +4943,7 @@ MonoBehaviour:
   damageReceived: 0
   HealthBar: {fileID: 765976638433202580}
   hand: {fileID: 3620175315003291054}
+  playerCollider: {fileID: 9041955658507028999}
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
@@ -4969,36 +4956,6 @@ MonoBehaviour:
   canMove: 1
   isDefeated: 0
   reviveBoostKey: 32
---- !u!114 &8417424066442283857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6421450323599144564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc6e82a859d2cee479c1a9992294e9b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canBeCooked: 0
-  canBreak: 0
-  canBash: 1
-  canCut: 1
-  durabilityUncooked: 0
-  durabilityCooked: 0
-  cookThreshold: 60
-  burnThreshold: 120
-  damageCooldown: 1
-  uncookedState: {fileID: 6421450323599144564}
-  cookedState: {fileID: 6421450323599144564}
-  brokenPartsUncookedBash: []
-  brokenPartsCookedBash: []
-  brokenPartsUncookedCut: []
-  brokenPartsCookedCut: []
-  brokenPartsOffsets: []
-  isCooked: 0
-  isBurned: 0
 --- !u!114 &5351150476593833405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5058,6 +5015,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
+  raycastOffsetDistance: 0.5
   enableDebugLog: 0
   enableDebugGizmos: 0
 --- !u!114 &7441760239559662278
@@ -5086,10 +5044,24 @@ MonoBehaviour:
   - {x: 0.7216635, y: -1.432608, z: 0}
   m_ShapePathHash: 1937035757
   m_Mesh: {fileID: 0}
-  m_InstanceId: -12372
+  m_InstanceId: -1928
   m_LocalBounds:
     m_Center: {x: -0.09108019, y: -0.7744708, z: 0}
     m_Extent: {x: 0.81274366, y: 0.6824254, z: 0}
+--- !u!114 &7892066107703624388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421450323599144564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 2438092744709112449}
 --- !u!1 &6548530637104651511
 GameObject:
   m_ObjectHideFlags: 0
@@ -5998,7 +5970,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 280832
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -7136,11 +7108,11 @@ GameObject:
   - component: {fileID: 6234986882952940563}
   - component: {fileID: 9204007985203772227}
   - component: {fileID: 2106894190036905759}
-  - component: {fileID: 6197196463942392668}
   - component: {fileID: 7535495033953433008}
   - component: {fileID: 4754851461008922123}
   - component: {fileID: 9182224713853724800}
   - component: {fileID: 877837073366686979}
+  - component: {fileID: 6993426699071523851}
   m_Layer: 18
   m_Name: P3 Tortise
   m_TagString: Player
@@ -7355,6 +7327,7 @@ MonoBehaviour:
   damageReceived: 0
   HealthBar: {fileID: 2914150561773584793}
   hand: {fileID: 1219663554708415907}
+  playerCollider: {fileID: 6893626800680671754}
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
@@ -7367,36 +7340,6 @@ MonoBehaviour:
   canMove: 1
   isDefeated: 0
   reviveBoostKey: 32
---- !u!114 &6197196463942392668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8921064350408222329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc6e82a859d2cee479c1a9992294e9b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canBeCooked: 0
-  canBreak: 0
-  canBash: 1
-  canCut: 1
-  durabilityUncooked: 0
-  durabilityCooked: 0
-  cookThreshold: 60
-  burnThreshold: 120
-  damageCooldown: 1
-  uncookedState: {fileID: 8921064350408222329}
-  cookedState: {fileID: 8921064350408222329}
-  brokenPartsUncookedBash: []
-  brokenPartsCookedBash: []
-  brokenPartsUncookedCut: []
-  brokenPartsCookedCut: []
-  brokenPartsOffsets: []
-  isCooked: 0
-  isBurned: 0
 --- !u!114 &7535495033953433008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7456,6 +7399,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
+  raycastOffsetDistance: 0.5
   enableDebugLog: 0
   enableDebugGizmos: 0
 --- !u!114 &877837073366686979
@@ -7499,6 +7443,20 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0.019944191, y: -1.1731375, z: 0}
     m_Extent: {x: 0.8473654, y: 0.6094115, z: 0}
+--- !u!114 &6993426699071523851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921064350408222329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 217782062492553868}
 --- !u!1 &8943011471215582428
 GameObject:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ public class ItemPackage : MonoBehaviour, IUsable
     {
         if (deformer != null)
         {
-            deformer.TriggerStretch(0.6f, 5f, 0.2f);
+            deformer.TriggerStretch(0.9f, 5f, 0.25f, true);
         }
 
         if (itemPrefab != null && spawnPosition != null)
@@ -141,7 +141,7 @@ public class ItemPackage : MonoBehaviour, IUsable
     {
         if (deformer != null)
         {
-            deformer.TriggerStretch(0.6f, 5f, 0.2f);
+            deformer.TriggerStretch(0.9f, 5f, 0.2f);
         }
 
         if (itemPrefab != null && itemAvailability != itemCount && !isBeingDestroyed)

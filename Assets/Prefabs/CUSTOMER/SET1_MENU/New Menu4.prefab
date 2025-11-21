@@ -109,7 +109,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -1592762336, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -193,7 +193,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 992396472, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -323,13 +323,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillImage: {fileID: 4652228324508013965}
+  targetTransform: {fileID: 6384116475008025877}
   midThreshold: 0.5
-  lowThreshold: 0.2
+  lowThreshold: 0.25
   normalColor: {r: 0, g: 1, b: 0, a: 1}
   midColor: {r: 1, g: 0.7647059, b: 0.015686275, a: 1}
   lowColor: {r: 1, g: 0, b: 0, a: 1}
   flashColor: {r: 1, g: 1, b: 1, a: 1}
-  flashDuration: 0.5
+  flashInterval: 0.1
+  moveIntervalMin: 1
+  moveIntervalMax: 3
+  moveDistance: 0.6
+  moveSpeed: 5
 --- !u!1 &6062688908080701586
 GameObject:
   m_ObjectHideFlags: 0

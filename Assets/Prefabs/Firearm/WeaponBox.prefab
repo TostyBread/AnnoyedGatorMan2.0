@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3758961550661751344}
   - component: {fileID: 5667649613002077754}
   - component: {fileID: 470669074586746868}
+  - component: {fileID: 6626767655456104871}
   m_Layer: 6
   m_Name: WeaponBox
   m_TagString: FoodBig
@@ -173,6 +174,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6626767655456104871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6842635390653950220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 5667649613002077754}
 --- !u!1001 &3018959510657542978
 PrefabInstance:
   m_ObjectHideFlags: 0

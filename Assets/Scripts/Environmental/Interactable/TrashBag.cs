@@ -5,6 +5,7 @@ public class TrashBag : MonoBehaviour
 {
     public int trashBagDuration = 40;
     private int currentDuration = 0;
+    private SpriteDeformationController deformer; // deformer reference
 
     // Instance-based pre-allocated list
     private readonly List<Transform> childList = new List<Transform>();
@@ -12,6 +13,14 @@ public class TrashBag : MonoBehaviour
     private void Awake()
     {
         currentDuration = trashBagDuration;
+
+        // Search for deformer
+        deformer = GetComponent<SpriteDeformationController>();
+
+        if (deformer == null)
+        {
+            deformer = GetComponent<SpriteDeformationController>();
+        }
     }
 
     public void SpillAndDestroy()
@@ -39,6 +48,12 @@ public class TrashBag : MonoBehaviour
     public void TryDamaging(int damage)
     {
         currentDuration -= damage;
+
+        if (deformer != null)
+        {
+            // Squash: Makes food look compressed
+            deformer.TriggerSquash(0.4f, 7f, 0.18f);
+        }
 
         if (currentDuration <= 0)
         {

@@ -32,6 +32,7 @@ public class TrashCan : MonoBehaviour
 
     // Cache WaitForSeconds to avoid allocation
     private WaitForSeconds bagDelayWait;
+    private SpriteDeformationController deformer; // deformer reference
 
     private void Awake()
     {
@@ -40,6 +41,14 @@ public class TrashCan : MonoBehaviour
         {
             p2p3RangeLayer = LayerMask.NameToLayer("P2 & P3 Range");
             p2p3ArrowLayer = LayerMask.NameToLayer("P2 & P3 Arrow");
+        }
+
+        // Search for deformer
+        deformer = GetComponent<SpriteDeformationController>();
+
+        if (deformer == null)
+        {
+            deformer = GetComponentInChildren<SpriteDeformationController>();
         }
 
         // Cache WaitForSeconds to avoid allocation in coroutine
@@ -125,6 +134,10 @@ public class TrashCan : MonoBehaviour
     {
         if (currentBag != null && currentCount > 0)
         {
+            if (deformer != null)
+            {
+                deformer.TriggerStretch(0.9f, 5f, 0.2f);
+            }
             currentBag.transform.SetParent(null);
             currentBag.gameObject.SetActive(true);
 

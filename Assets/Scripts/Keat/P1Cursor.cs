@@ -17,7 +17,7 @@ public class P1Cursor : MonoBehaviour
         scoreManager = FindObjectOfType<ScoreManager>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (scoreManager != null && scoreManager.gameOver)
         {
@@ -33,7 +33,7 @@ public class P1Cursor : MonoBehaviour
 
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10f; // adjust based on camera distance
-        defaultCursor.transform.position = Camera.main.ScreenToWorldPoint(mousePos);
+        defaultCursor.transform.position = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition(); // Reference existing script to reduce redundancy.
 
     }
 }

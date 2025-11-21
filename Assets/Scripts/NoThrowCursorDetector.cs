@@ -2,23 +2,27 @@ using UnityEngine;
 
 public class NoThrowCursorDetector : MonoBehaviour
 {
-    public enum InputType { Mouse, Joystick, P3Joystick } // Added Chee Keat's controller support
+    public enum InputType { Mouse, Joystick, P3Joystick }
     public InputType inputType;
 
     [SerializeField] private LayerMask wallLayer;
-    [Header("Debug Settings")]
+
+    [Header("Raycast Settings")]
+    [SerializeField] private float raycastOffsetDistance = 0.5f; // Why: avoid self-collision
+
+    [Header("Debug")]
     [SerializeField] private bool enableDebugLog = false;
     [SerializeField] private bool enableDebugGizmos = false;
 
     private PlayerInputManager inputManager;
     private PlayerInputManagerP2 inputManagerP2;
-    private P3Input inputManagerP3; // Added Chee Keat's controller support
+    private P3Input inputManagerP3;
 
     void Start()
     {
         inputManager = GetComponent<PlayerInputManager>();
         inputManagerP2 = GetComponent<PlayerInputManagerP2>();
-        inputManagerP3 = GetComponent<P3Input>(); // Added Chee Keat's controller support
+        inputManagerP3 = GetComponent<P3Input>();
     }
 
     void LateUpdate()
@@ -26,7 +30,7 @@ public class NoThrowCursorDetector : MonoBehaviour
         bool hasHeldItem =
             (inputManager != null && inputManager.HasHeldItem()) ||
             (inputManagerP2 != null && inputManagerP2.HasHeldItem()) ||
-            (inputManagerP3 != null && inputManagerP3.HasItemHeld);// Added Chee Keat's controller support
+            (inputManagerP3 != null && inputManagerP3.HasItemHeld);
 
         if (hasHeldItem)
         {
@@ -34,9 +38,7 @@ public class NoThrowCursorDetector : MonoBehaviour
         }
         else
         {
-            if (inputManager != null) inputManager.canThrow = false;
-            if (inputManagerP2 != null) inputManagerP2.canThrow = false;
-            if (inputManagerP3 != null) inputManagerP3.canThrow = false; // Added Chee Keat's controller support
+            SetCanThrow(false);
         }
     }
 
@@ -46,35 +48,35 @@ public class NoThrowCursorDetector : MonoBehaviour
         {
             InputType.Mouse => ScreenToWorldPointMouse.Instance?.GetMouseWorldPosition() ?? Vector2.zero,
             InputType.Joystick => PlayerAimController.Instance?.GetCursorPosition() ?? Vector2.zero,
-            InputType.P3Joystick => P3Cursor.Instance?.transform.position ?? Vector2.zero, // Added Chee Keat's controller support
+            InputType.P3Joystick => P3Cursor.Instance?.transform.position ?? Vector2.zero,
             _ => Vector2.zero
         };
 
-        // Enhanced validation for cursor position
-        if (cursorPos == Vector2.zero || !IsValidCursorPosition(cursorPos))
+        if (!IsValidCursorPosition(cursorPos))
         {
             if (enableDebugLog)
                 Debug.LogWarning($"[NoThrowCursorDetector] Invalid cursor position: {cursorPos}");
-            
-            // Allow throwing when cursor position is invalid (common on first play)
+
             SetCanThrow(true);
             return;
         }
 
-        Vector2 origin = transform.position;
-        Vector2 direction = (cursorPos - origin).normalized;
-        float distance = Vector2.Distance(origin, cursorPos);
+        Vector2 playerPos = transform.position;
+        Vector2 direction = (cursorPos - playerPos).normalized;
 
-        // Limit raycast distance to prevent hitting distant objects
+        // offset the raycast origin slightly in front of player
+        float offset = Mathf.Min(raycastOffsetDistance, Vector2.Distance(playerPos, cursorPos) - 0.05f);
+        Vector2 origin = playerPos + (direction * Mathf.Max(1.8f, offset));
+
+        float distance = Vector2.Distance(origin, cursorPos);
         float maxRaycastDistance = Mathf.Min(distance, 50f);
 
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, maxRaycastDistance, wallLayer);
-        
         bool canThrow = hit.collider == null;
 
         if (enableDebugLog && hit.collider != null)
         {
-            Debug.Log($"[NoThrowCursorDetector] Raycast hit: {hit.collider.name} on layer {hit.collider.gameObject.layer}");
+            Debug.Log($"[NoThrowCursorDetector] Raycast hit: {hit.collider.name}");
         }
 
         SetCanThrow(canThrow);
@@ -82,16 +84,8 @@ public class NoThrowCursorDetector : MonoBehaviour
 
     private bool IsValidCursorPosition(Vector2 cursorPos)
     {
-        // Check if cursor position is reasonable (not at origin or extremely far)
-        float distanceFromPlayer = Vector2.Distance(transform.position, cursorPos);
-        return distanceFromPlayer > 0.1f && distanceFromPlayer < 50f;
-    }
-
-    private void SetCanThrow(bool canThrow)
-    {
-        if (inputManager != null) inputManager.canThrow = canThrow;
-        if (inputManagerP2 != null) inputManagerP2.canThrow = canThrow;
-        if (inputManagerP3 != null) inputManagerP3.canThrow = canThrow; // Added Chee Keat's controller support
+        float d = Vector2.Distance(transform.position, cursorPos);
+        return d > 0.1f && d < 50f;
     }
 
     // Set properties for ItemPackage
@@ -99,35 +93,33 @@ public class NoThrowCursorDetector : MonoBehaviour
     public PlayerInputManagerP2 InputManagerP2 => inputManagerP2;
     public P3Input InputManagerP3 => inputManagerP3; // Added Chee Keat's controller support
 
+    private void SetCanThrow(bool state)
+    {
+        if (inputManager != null) inputManager.canThrow = state;
+        if (inputManagerP2 != null) inputManagerP2.canThrow = state;
+        if (inputManagerP3 != null) inputManagerP3.canThrow = state;
+    }
+
     void OnDrawGizmosSelected()
     {
         if (!enableDebugGizmos) return;
 
-        Vector2 origin = transform.position;
-        Vector2 target = Application.isPlaying
-            ? (inputType == InputType.Mouse
-                ? ScreenToWorldPointMouse.Instance?.GetMouseWorldPosition() ?? origin
-                : PlayerAimController.Instance?.GetCursorPosition() ?? origin)
-            : origin + Vector2.right;
+        if (!Application.isPlaying) return;
 
-        Vector2 direction = (target - origin).normalized;
-        float distance = Vector2.Distance(origin, target);
-        float maxRaycastDistance = Mathf.Min(distance, 50f);
+        Vector2 playerPos = transform.position;
+        Vector2 cursorPos = PlayerAimController.Instance?.GetCursorPosition() ?? playerPos;
+        Vector2 direction = (cursorPos - playerPos).normalized;
 
-        // Draw the raycast line
+        float offset = Mathf.Min(raycastOffsetDistance, Vector2.Distance(playerPos, cursorPos) - 0.05f);
+        Vector2 origin = playerPos + (direction * Mathf.Max(0f, offset));
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(origin, 0.15f);
+
+        float distance = Vector2.Distance(origin, cursorPos);
+        float rayDist = Mathf.Min(distance, 50f);
+
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(origin, direction * maxRaycastDistance);
-
-        // Draw cursor position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(target, 0.2f);
-
-        // Draw raycast hit point if there is one
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, maxRaycastDistance, wallLayer);
-        if (hit.collider != null)
-        {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(hit.point, 0.3f);
-        }
+        Gizmos.DrawRay(origin, direction * rayDist);
     }
 }

@@ -126,7 +126,7 @@ public class ItemSystem : MonoBehaviour
                 if (deformer != null)
                 {
                     // Stretch: Makes food look pulled
-                    deformer.TriggerStretch(1f, 6f, 0.2f);
+                    deformer.TriggerStretch(1.3f, 7f, 0.18f);
                 }
             }
 
@@ -143,7 +143,7 @@ public class ItemSystem : MonoBehaviour
         if (deformer != null && sourceDamage.damageAmount > 0)
         {
             // Squash: Makes food look compressed
-            deformer.TriggerSquash(0.25f, 6f, 0.2f);
+            deformer.TriggerSquash(0.4f, 7f, 0.18f, true);
         }
 
         if (currentDurability <= 0 && canBreak) BreakItem(damageType);

@@ -9,6 +9,7 @@ public class HealthManager : MonoBehaviour
     public float damageReceived; // From external damage source like explosion
     public Image HealthBar;
     public GameObject hand;
+    public Collider2D playerCollider; // Player's large ass collider
     public bool isPlayer2 = false;
     public bool isNotPlayer = false; // Condition to check whether its a fire instead of player (Chee Seng tolong pls dont ignore ah)
     public bool isFood = false; // Condition to check whether its a food instead of player
@@ -52,22 +53,22 @@ public class HealthManager : MonoBehaviour
     private P2PickupSystem p2PickupSystem;
 
     private Rigidbody2D rb2d;
+
     private float reviveTime;
     private bool hasDroppedOnDeath = false;
     private bool? lastPlayerActiveState = null; // Use this to record the last state player is in. DO NOT UPDATE REGULARLY
     private Sanity sanity;
 
     private EnemySpawner enemySpawner;
+    private SpriteDeformationController deformer; // deformer reference
 
     [Header("Revive Settings")]
     public KeyCode reviveBoostKey = KeyCode.Space;
 
-    private Jiggle jiggle;
-
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
+        playerCollider = GetComponent<Collider2D>();
         playerInputManager = GetComponent<PlayerInputManager>();
 
         if (isPlayer2)
@@ -90,14 +91,20 @@ public class HealthManager : MonoBehaviour
             if (hand != null) handSpriteManager = hand.GetComponent<HandSpriteManager>();
         }
 
+        // Search for deformer
+        deformer = GetComponent<SpriteDeformationController>();
+
+        if (deformer == null)
+        {
+            deformer = GetComponentInChildren<SpriteDeformationController>();
+        }
+
         cookCharacterSystem = GetComponent<ItemSystem>();
         enemySpawner = FindAnyObjectByType<EnemySpawner>();
         sanity = FindAnyObjectByType<Sanity>();
 
         currentHealth = Health;
         lastHealth = currentHealth;
-
-        jiggle = GetComponent<Jiggle>();
 
         dialogueManager = FindAnyObjectByType<DialogueManager>();
     }
@@ -298,11 +305,22 @@ public class HealthManager : MonoBehaviour
         {
             rb2d.velocity = Vector2.zero;
             if (defeated)
+            {
                 rb2d.bodyType = RigidbodyType2D.Static;
+                if (playerCollider != null)
+                {
+                    playerCollider.enabled = false;
+                }
+            }
+                
         }
         else
         {
             rb2d.bodyType = RigidbodyType2D.Dynamic;
+            if (playerCollider != null)
+            {
+                playerCollider.enabled =true;
+            }
         }
     }
 
@@ -317,9 +335,11 @@ public class HealthManager : MonoBehaviour
             return;
         }
 
+        if (deformer != null)
+        {
+            deformer.TriggerShake(0.9f, 10f, 0.2f);
+        }
         currentHealth -= damage;
         damageReceived = damage;
-
-        GetComponent<Jiggle>()?.StartJiggle(); //if gameObject have jiggle code, it will jiggle
     }
 }

@@ -85,8 +85,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCooked: 1
   canBreak: 0
-  canBash: 1
-  canCut: 1
+  canBash: 0
+  canCut: 0
   durabilityUncooked: 70
   durabilityCooked: 0
   cookThreshold: 60
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 
@@ -236,7 +236,7 @@ MonoBehaviour:
   - {x: 0.5463438, y: -0.69066143, z: 0}
   m_ShapePathHash: -1715248091
   m_Mesh: {fileID: 0}
-  m_InstanceId: -337362
+  m_InstanceId: -265490
   m_LocalBounds:
     m_Center: {x: -0.00013113022, y: 0.0073348284, z: 0}
     m_Extent: {x: 0.75140524, y: 0.7250749, z: 0}
