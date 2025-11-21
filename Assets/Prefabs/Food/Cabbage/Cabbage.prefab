@@ -322,7 +322,11 @@ MonoBehaviour:
   m_ShapePathHash: -343783747
   m_Mesh: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_InstanceId: 381992
+=======
+  m_InstanceId: 175336
+>>>>>>> Stashed changes
 =======
   m_InstanceId: 175336
 >>>>>>> Stashed changes
@@ -872,7 +876,11 @@ Transform:
   m_PrefabInstance: {fileID: 7764721233841708311}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1001 &7948567268852870430
+=======
+--- !u!1001 &8721696457964695786
+>>>>>>> Stashed changes
 =======
 --- !u!1001 &8721696457964695786
 >>>>>>> Stashed changes
@@ -883,6 +891,7 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4753040588209321030}
     m_Modifications:
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     - target: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -928,6 +937,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemTrail
 =======
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 2812990034407412477, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -971,6 +982,9 @@ PrefabInstance:
     - target: {fileID: 9079222091977042799, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
       propertyPath: m_Name
       value: CabbageDiced (3)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -978,12 +992,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_SourcePrefab: {fileID: 100100000, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
 --- !u!4 &6332305302844590315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
   m_PrefabInstance: {fileID: 7948567268852870430}
 =======
+=======
+>>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
 --- !u!1 &357562124147301253 stripped
 GameObject:
@@ -994,5 +1011,8 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2812990034407412477, guid: 5b4493428e74aa44687ef8a5173e36ca, type: 3}
   m_PrefabInstance: {fileID: 8721696457964695786}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_PrefabAsset: {fileID: 0}
