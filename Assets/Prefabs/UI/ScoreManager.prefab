@@ -46,7 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreToClear: 10
   currentScore: 0
-  currentLevelIndex: 0
+  lastHolder: {fileID: 0}
+  currentLevelIndex: 1
   isCleared: 0
+  willUnlockNextLevel: 0
   WinScreen: {fileID: 0}
   LoseScreen: {fileID: 0}
+  ConfettiEffect:
+  - {fileID: 0}
+  - {fileID: 0}
+  gameOver: 0

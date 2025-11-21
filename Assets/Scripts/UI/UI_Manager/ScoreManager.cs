@@ -23,9 +23,11 @@ public class ScoreManager : MonoBehaviour
     private Timer timer;
     private LevelData levelData;
 
-    [Header("References")]
+    [Header("Endgame Screen References")]
     public GameObject WinScreen;
     public GameObject LoseScreen;
+    public GameObject[] ConfettiEffect;
+
     public bool gameOver; // for P1 cursor management
 
     private void Start()
@@ -37,6 +39,11 @@ public class ScoreManager : MonoBehaviour
         if (LoseScreen != null) LoseScreen.SetActive(false);
 
         if (levelData != null) levelData.willUnlockNextLevel = willUnlockNextLevel;
+
+        foreach (GameObject confetti in ConfettiEffect)
+        {
+            confetti.SetActive(false);
+        }
 
         gameOver = false;
     }
@@ -87,14 +94,8 @@ public class ScoreManager : MonoBehaviour
             {
                 LoseScreen.SetActive(true);
 
-                TMP_Text finalScoreText = LoseScreen.GetComponentInChildren<TMPro.TMP_Text>();
-                if (finalScoreText != null)
-                {
-                    finalScoreText.text =
-                        "Total Score: " + currentScore.ToString() + "\n" +
-                        "Player1: " + player1Score.ToString() + "\n" +
-                        "Player2: " + player2Score.ToString();
-                }
+                UpdateEndScreenScoreText();
+                EnableConfettiEffects();
             }
 
             gameOver = true;
@@ -108,20 +109,34 @@ public class ScoreManager : MonoBehaviour
         {
             WinScreen.SetActive(true);
 
-            TMP_Text finalScoreText = WinScreen.GetComponentInChildren<TMPro.TMP_Text>();
-            if (finalScoreText != null)
-            {
-                finalScoreText.text =
-                    "Total Score: " + currentScore.ToString() + "\n" +
-                    "Player1: " + player1Score.ToString() + "\n" +
-                    "Player2: " + player2Score.ToString();
-            }
+            UpdateEndScreenScoreText();
+            EnableConfettiEffects();
         }
 
         if (levelData != null)
         {
             levelData.UnlockNextLevel(currentLevelIndex);
             levelData.SaveHighScore(currentLevelIndex, currentScore);
+        }
+    }
+
+    private void UpdateEndScreenScoreText()
+    {
+        TMP_Text finalScoreText = WinScreen.GetComponentInChildren<TMPro.TMP_Text>();
+        if (finalScoreText != null)
+        {
+            finalScoreText.text =
+                "Total Score: " + currentScore.ToString() + "\n" +
+                "Player1: " + player1Score.ToString() + "\n" +
+                "Player2: " + player2Score.ToString();
+        }
+    }
+
+    private void EnableConfettiEffects()
+    {
+        foreach (GameObject confetti in ConfettiEffect)
+        {
+            confetti.SetActive(true);
         }
     }
 }
