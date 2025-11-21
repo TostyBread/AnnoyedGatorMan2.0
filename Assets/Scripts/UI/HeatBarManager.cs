@@ -28,7 +28,7 @@ public class HeatBarManager : MonoBehaviour
             // Configure HeatBar script
             HeatBar heatBar = heatBarInstance.GetComponent<HeatBar>();
             heatBar.target = item.transform;             // The item it follows
-            heatBar.offset = new Vector3(0, 1f, 0);     // Height above item
+            //heatBar.offset = new Vector3(0, 0f, 0);     // Height above item
 
             // Start empty
             if (heatBar.bar != null)

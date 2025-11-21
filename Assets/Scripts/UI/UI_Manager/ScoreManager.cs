@@ -40,9 +40,12 @@ public class ScoreManager : MonoBehaviour
 
         if (levelData != null) levelData.willUnlockNextLevel = willUnlockNextLevel;
 
-        foreach (GameObject confetti in ConfettiEffect)
+        if (ConfettiEffect != null)
         {
-            confetti.SetActive(false);
+            foreach (GameObject confetti in ConfettiEffect)
+            {
+                confetti.SetActive(false);
+            }
         }
 
         gameOver = false;
@@ -134,6 +137,8 @@ public class ScoreManager : MonoBehaviour
 
     private void EnableConfettiEffects()
     {
+        if (ConfettiEffect == null) return;
+
         foreach (GameObject confetti in ConfettiEffect)
         {
             confetti.SetActive(true);
