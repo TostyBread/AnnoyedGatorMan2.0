@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,55 +23,57 @@ public class HeatBar : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (itemSystem == null || bar == null || target == null || itemSystem.isOnPlate)
-        {
-            Destroy(gameObject);
-            return;
-        }
+    // COMMENT OUT DUE TO UNUSED FOR NOW
 
-        // Convert world position to screen position
-        transform.position = target.position + offset;
+    //private void Update()
+    //{
+    //    if (itemSystem == null || bar == null || target == null || itemSystem.isOnPlate)
+    //    {
+    //        Destroy(gameObject);
+    //        return;
+    //    }
 
-        float cookThreshold = itemSystem.cookThreshold;
-        float burnThreshold = itemSystem.burnThreshold;
-        float currentCookPoints = itemSystem.currentCookPoints;
+    //    // Convert world position to screen position
+    //    transform.position = target.position + offset;
+
+    //    float cookThreshold = itemSystem.cookThreshold;
+    //    float burnThreshold = itemSystem.burnThreshold;
+    //    float currentCookPoints = itemSystem.currentCookPoints;
 
 
-        //Show or hide the bar based on fill amount
-        if (bar.fillAmount > 0 && bar.fillAmount < 1)
-        {
-            foreach (Transform child in transform)
-            {
-                child.gameObject.SetActive(true);
-            }
-        }
-        else
-        {
-            foreach (Transform child in transform)
-            {
-                child.gameObject.SetActive(false);
-            }
-        }
+    //    //Show or hide the bar based on fill amount
+    //    if (bar.fillAmount > 0 && bar.fillAmount < 1)
+    //    {
+    //        foreach (Transform child in transform)
+    //        {
+    //            child.gameObject.SetActive(true);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        foreach (Transform child in transform)
+    //        {
+    //            child.gameObject.SetActive(false);
+    //        }
+    //    }
 
-        // Update fill amount based on cooking state
-        if (currentCookPoints <= cookThreshold)
-        {
-            bar.fillAmount = Mathf.Clamp01(currentCookPoints / cookThreshold);
-        }
-        else if (currentCookPoints <= burnThreshold)
-        {
-            bar.fillAmount = Mathf.Clamp01((currentCookPoints - cookThreshold) / (burnThreshold - cookThreshold));
-        }
-        else if (itemSystem.isBurned)
-        {
-            bar.fillAmount = Mathf.Clamp01(itemStateManager.currentHeat / itemStateManager.maxHeat);
-        }
-        else
-        {
-            bar.fillAmount = 1f;
-        }
-    }
+    //    // Update fill amount based on cooking state
+    //    if (currentCookPoints <= cookThreshold)
+    //    {
+    //        bar.fillAmount = Mathf.Clamp01(currentCookPoints / cookThreshold);
+    //    }
+    //    else if (currentCookPoints <= burnThreshold)
+    //    {
+    //        bar.fillAmount = Mathf.Clamp01((currentCookPoints - cookThreshold) / (burnThreshold - cookThreshold));
+    //    }
+    //    else if (itemSystem.isBurned)
+    //    {
+    //        bar.fillAmount = Mathf.Clamp01(itemStateManager.currentHeat / itemStateManager.maxHeat);
+    //    }
+    //    else
+    //    {
+    //        bar.fillAmount = 1f;
+    //    }
+    //}
 }
 

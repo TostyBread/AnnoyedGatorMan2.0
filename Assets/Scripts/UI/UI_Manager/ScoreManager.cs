@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -40,10 +38,14 @@ public class ScoreManager : MonoBehaviour
 
         if (levelData != null) levelData.willUnlockNextLevel = willUnlockNextLevel;
 
-        foreach (GameObject confetti in ConfettiEffect)
+        if (ConfettiEffect != null)
         {
-            confetti.SetActive(false);
+            foreach (GameObject confetti in ConfettiEffect)
+            {
+                confetti.SetActive(false);
+            }
         }
+        
 
         gameOver = false;
     }
