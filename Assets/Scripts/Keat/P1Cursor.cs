@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class P1Cursor : MonoBehaviour
 {
-    public SpriteRenderer cursor;
+    public SpriteRenderer defaultCursor;
+    public SpriteRenderer interactCursor;
+
     private LevelLoader levelLoader;
     private ScoreManager scoreManager;
     private bool shouldShowSystemCursor;
@@ -27,11 +29,11 @@ public class P1Cursor : MonoBehaviour
         }
 
         Cursor.visible = shouldShowSystemCursor;
-        cursor.enabled = !shouldShowSystemCursor;
+        defaultCursor.enabled = !shouldShowSystemCursor;
 
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10f; // adjust based on camera distance
-        cursor.transform.position = Camera.main.ScreenToWorldPoint(mousePos);
+        defaultCursor.transform.position = Camera.main.ScreenToWorldPoint(mousePos);
 
     }
 }

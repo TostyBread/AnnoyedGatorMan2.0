@@ -122,7 +122,7 @@ public class HealthManager : MonoBehaviour
     private void HandleDeathState()
     {
         currentHealth = 0;
-
+        
         if (!hasDroppedOnDeath) // Handle player dropping item when 0 health
         {
             if (isPlayer2)
@@ -136,7 +136,7 @@ public class HealthManager : MonoBehaviour
             hasDroppedOnDeath = true;
         }
 
-        
+
         if (!CompareTag("Player"))
         {
             GameObject toDestroy = enemy && transform.parent != null ? transform.parent.gameObject : gameObject; // For kitchen enemy
@@ -151,7 +151,7 @@ public class HealthManager : MonoBehaviour
                 }
             }
 
-            Destroy(toDestroy,0.01f);
+            Destroy(toDestroy, 0.01f);
             return;
         }
 

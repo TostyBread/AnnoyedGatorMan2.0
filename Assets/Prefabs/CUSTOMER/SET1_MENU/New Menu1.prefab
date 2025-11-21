@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 8511373329125909025}
   - component: {fileID: 5964625361732913625}
   - component: {fileID: 2719185507706309619}
+  - component: {fileID: 8033492103456916348}
   m_Layer: 5
   m_Name: Bar
   m_TagString: Untagged
@@ -281,6 +282,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8033492103456916348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728124198099166263}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab60189a64cac2f48b16ed2066e3817f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.5
 --- !u!1 &2292480104177734668
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +821,8 @@ MonoBehaviour:
   normalColor: {r: 0, g: 1, b: 0, a: 1}
   midColor: {r: 1, g: 0.7639563, b: 0.015686274, a: 1}
   lowColor: {r: 1, g: 0, b: 0, a: 1}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.5
 --- !u!1 &7036445641566334221
 GameObject:
   m_ObjectHideFlags: 0

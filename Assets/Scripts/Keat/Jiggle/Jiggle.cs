@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Jiggle : MonoBehaviour
 {
@@ -28,6 +29,18 @@ public class Jiggle : MonoBehaviour
     private void OnDisable()
     {
         StopJiggle();
+    }
+
+    private void Update()
+    {
+        //everything that has jiggle script will jiggle when keycode pressed
+        if (Input.GetKeyDown(KeyCode.Backspace)) 
+        {
+            if (gameObject.CompareTag("NPC"))
+                return;
+
+            StartJiggle();
+        }
     }
 
     public void StartJiggle()

@@ -28,7 +28,9 @@ public class NPCPatience : MonoBehaviour
         currentPatience -= Time.deltaTime;
 
         if (patienceBar != null)
+        {
             patienceBar.SetPatience(currentPatience, patienceDuration);
+        }
 
         PatienceCheck();
 
@@ -61,6 +63,7 @@ public class NPCPatience : MonoBehaviour
     public void ResetPatience()
     {
         currentPatience = patienceDuration;
+
         if (patienceBar != null)
             patienceBar.SetPatience(currentPatience, patienceDuration);
     }

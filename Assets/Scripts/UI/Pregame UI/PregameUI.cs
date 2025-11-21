@@ -27,6 +27,7 @@ public class PregameUI : MonoBehaviour
     [Header("Pregame Setting")]
     public GameObject PregameScreen;
     public bool showPregameUI = true;
+    public bool isShowing = false; // for level loader setting screen 
 
     [Header("References")]
     private WeatherManager weatherManager;
@@ -48,6 +49,8 @@ public class PregameUI : MonoBehaviour
         yield return new WaitForSeconds(DelayBeforeShowing);
 
         if (weatherManager == null) yield break;
+
+        isShowing = true;
 
         PregameScreen.SetActive(true);
 
@@ -72,6 +75,8 @@ public class PregameUI : MonoBehaviour
         }
 
         yield return new WaitForSeconds(ShowingTime);
+
+        isShowing = false;
         PregameScreen.SetActive(false);
     }
 }

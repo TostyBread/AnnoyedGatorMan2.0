@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 /// <summary>
-/// Enemy movement / AI. Fixed:
+/// Enemy movement Fixed:
 /// - operator precedence in OnCollisionEnter2D
 /// - combinedMask uses .value
 /// - null checks for agent/rb2d/TargetPos/cmty
