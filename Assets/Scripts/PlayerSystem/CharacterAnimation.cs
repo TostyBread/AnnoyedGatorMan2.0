@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
@@ -6,6 +7,7 @@ public class CharacterAnimation : MonoBehaviour
     private Animator animator;
     private CharacterMovement movementScript;
     private HealthManager healthManager;
+    private Collider2D playerCollider; // collider
 
     private PlayerPickupSystem playerPickupSystem;
     private P2PickupSystem p2PickSystem;
@@ -14,6 +16,7 @@ public class CharacterAnimation : MonoBehaviour
 
     void Start()
     {
+        playerCollider = GetComponentInParent<HealthManager>().GetComponent<BoxCollider2D>(); // Specifically reference parent object and skipping child
         animator = GetComponent<Animator>();
         movementScript = GetComponentInParent<CharacterMovement>();
         healthManager = GetComponentInParent<HealthManager>();
@@ -25,7 +28,7 @@ public class CharacterAnimation : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (healthManager.currentHealth <= 0)
         {
@@ -45,6 +48,7 @@ public class CharacterAnimation : MonoBehaviour
             animator.SetBool("IsHurt", false);
             dyingTriggered = true;
             animator.SetBool("IsDying", true);
+            StartCoroutine(DisableColliderNextFrame());
         }
     }
 
@@ -60,6 +64,7 @@ public class CharacterAnimation : MonoBehaviour
         animator.SetBool("IsDying", false);
         animator.SetBool("IsDead", false);
         dyingTriggered = false;
+        playerCollider.enabled = true;
     }
 
     private void UpdateAnimationState()
@@ -73,9 +78,16 @@ public class CharacterAnimation : MonoBehaviour
         }
         catch (NullReferenceException)
         {
-            Debug.LogWarning(gameObject.name + " has no IsSmoking animation");
+            //Debug.LogWarning(gameObject.name + " has no IsSmoking animation");
         }
     
         animator.SetBool("IsHurt", healthManager.isHurt);
     }
+
+    private IEnumerator DisableColliderNextFrame()
+    {
+        yield return null; // wait 1 frame until Rigidbody2D rebuild finishes
+        playerCollider.enabled = false;
+    }
+
 }

@@ -9,7 +9,6 @@ public class HealthManager : MonoBehaviour
     public float damageReceived; // From external damage source like explosion
     public Image HealthBar;
     public GameObject hand;
-    public Collider2D playerCollider; // Player's large ass collider
     public bool isPlayer2 = false;
     public bool isNotPlayer = false; // Condition to check whether its a fire instead of player (Chee Seng tolong pls dont ignore ah)
     public bool isFood = false; // Condition to check whether its a food instead of player
@@ -68,7 +67,7 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<Collider2D>();
+
         playerInputManager = GetComponent<PlayerInputManager>();
 
         if (isPlayer2)
@@ -307,20 +306,12 @@ public class HealthManager : MonoBehaviour
             if (defeated)
             {
                 rb2d.bodyType = RigidbodyType2D.Static;
-                if (playerCollider != null)
-                {
-                    playerCollider.enabled = false;
-                }
             }
-                
+
         }
         else
         {
             rb2d.bodyType = RigidbodyType2D.Dynamic;
-            if (playerCollider != null)
-            {
-                playerCollider.enabled =true;
-            }
         }
     }
 
