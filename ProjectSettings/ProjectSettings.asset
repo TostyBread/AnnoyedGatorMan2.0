@@ -709,11 +709,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: f075ccef-e2c5-48a2-b585-f5d8f55ad9ed
+  cloudProjectId: e493b8b9-b010-4c64-9d70-58959a7a22ba
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Annoyed Gator Man 2.0
-  organizationId: elitespecopsalan
+  organizationId: dside1
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

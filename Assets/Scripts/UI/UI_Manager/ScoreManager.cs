@@ -30,10 +30,13 @@ public class ScoreManager : MonoBehaviour
 
     public bool gameOver; // for P1 cursor management
 
+    private AnalyticManager analyticManager;
+
     private void Start()
     {
         timer = FindObjectOfType<Timer>();
         levelData = FindObjectOfType<LevelData>();
+        analyticManager = FindObjectOfType<AnalyticManager>();
 
         if (WinScreen != null) WinScreen.SetActive(false);
         if (LoseScreen != null) LoseScreen.SetActive(false);
@@ -83,14 +86,21 @@ public class ScoreManager : MonoBehaviour
 
     private void CheckIfLevelCleared()
     {
-        if (isCleared && timer.RemainTime <= 0)
+        if (gameOver) return;
+
+        if (!gameOver && isCleared && timer.RemainTime <= 0)
         {
             //Debug.Log("Level Cleared! Final Score: " + currentScore);
             StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay
 
+            if (analyticManager != null)
+            {
+                analyticManager.RecordGameoverData("Level1", true, currentScore);
+            }
+
             gameOver = true; 
         }
-        else if (!isCleared && timer.RemainTime <= 0)
+        else if (!gameOver && !isCleared && timer.RemainTime <= 0)
         {
             //Debug.Log("Level Failed! Final Score: " + currentScore);
             if (LoseScreen != null)
@@ -99,6 +109,11 @@ public class ScoreManager : MonoBehaviour
 
                 UpdateEndScreenScoreText();
                 EnableConfettiEffects();
+
+                if (analyticManager != null)
+                {
+                    analyticManager.RecordGameoverData("Level1", false, currentScore);
+                }
             }
 
             gameOver = true;
