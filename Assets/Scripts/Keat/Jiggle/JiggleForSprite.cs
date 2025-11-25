@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Jiggle : MonoBehaviour
+public class JiggleForSprite : MonoBehaviour
 {
     [Header("Common Settings")]
     public float jiggleInterval = 0.3f;
@@ -18,7 +18,7 @@ public class Jiggle : MonoBehaviour
     public bool enableRotationJiggle;
     public float rotationAngle = 30f;
 
-    private Vector2 defaultPosition;
+    private Vector2 defaultLocalPosition;
     private Quaternion defaultRotation;
     private Vector2 defaultScale;
 
@@ -34,7 +34,7 @@ public class Jiggle : MonoBehaviour
     private void Update()
     {
         //everything that has jiggle script will jiggle when keycode pressed
-        if (Input.GetKeyDown(KeyCode.Backspace)) 
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             if (gameObject.CompareTag("NPC"))
                 return;
@@ -50,7 +50,7 @@ public class Jiggle : MonoBehaviour
         Transform targetTransform = spriteGameobject != null ? spriteGameobject : transform;
 
         // Store initial transform state
-        defaultPosition = targetTransform.position;
+        defaultLocalPosition = targetTransform.position;
         defaultRotation = targetTransform.rotation;
         defaultScale = targetTransform.localScale;
 
@@ -81,9 +81,9 @@ public class Jiggle : MonoBehaviour
         try
         {
             // Define positions
-            Vector3 leftPos = defaultPosition + Vector2.left * jiggleRange;
-            Vector3 rightPos = defaultPosition + Vector2.right * jiggleRange;
-            Vector3 upPos = defaultPosition + Vector2.up * jiggleRange;
+            Vector3 leftPos = defaultLocalPosition + Vector2.left * jiggleRange;
+            Vector3 rightPos = defaultLocalPosition + Vector2.right * jiggleRange;
+            Vector3 upPos = defaultLocalPosition + Vector2.up * jiggleRange;
 
             // Define rotations
             Quaternion leftRot = Quaternion.Euler(defaultRotation.eulerAngles + new Vector3(0, 0, rotationAngle));
@@ -104,7 +104,7 @@ public class Jiggle : MonoBehaviour
             if (enableLeftRightJiggle)
                 yield return MoveToPosition(rightPos, jiggleSpeed);
             else if (enableUpDownJiggle)
-                yield return MoveToPosition(defaultPosition, jiggleSpeed);
+                yield return MoveToPosition(defaultLocalPosition, jiggleSpeed);
 
             if (enableRotationJiggle)
                 targetTransform.rotation = rightRot;
@@ -112,7 +112,7 @@ public class Jiggle : MonoBehaviour
             yield return new WaitForSeconds(interval);
 
             // Return to center
-            yield return MoveToPosition(defaultPosition, jiggleSpeed);
+            yield return MoveToPosition(defaultLocalPosition, jiggleSpeed);
             targetTransform.rotation = defaultRotation;
 
             yield return new WaitForSeconds(interval);
@@ -147,7 +147,7 @@ public class Jiggle : MonoBehaviour
     {
         Transform targetTransform = spriteGameobject != null ? spriteGameobject : transform;
 
-        targetTransform.position = defaultPosition;
+        targetTransform.position = defaultLocalPosition;
         targetTransform.rotation = defaultRotation;
         targetTransform.localScale = defaultScale;
     }

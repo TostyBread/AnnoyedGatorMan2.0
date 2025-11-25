@@ -360,9 +360,11 @@ public class NPCBehavior : MonoBehaviour
             // Start the pause coroutine instead of using Invoke
             StartCoroutine(PauseAfterPlateAcceptance());
 
+            //UI when accept plate 
             scoreManager?.AddScore(plate.plateScore,plate.lastHolder.transform.parent.gameObject);
             if (sanity != null) sanity.RemainSanity += sanity.MaxSanity;
             particleManager?.SpawnParticleOnce();
+            AnalyticManager.Instance.RecordServeOrderData(attachedMenu.name, (npcPatience.patienceDuration - npcPatience.currentPatience));
             hasAcceptedPlate = true;
 
             if (angerBehavior != null && angerBehavior.IsAngry)

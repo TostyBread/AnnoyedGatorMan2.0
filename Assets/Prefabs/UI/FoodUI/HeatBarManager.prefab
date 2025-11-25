@@ -26,8 +26,8 @@ RectTransform:
   m_GameObject: {fileID: 4791203694770310802}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5199997, y: 1.5199997, z: 1.5199997}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6060943542170941456}
   m_Father: {fileID: 0}
@@ -50,7 +50,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heatBarPrefab: {fileID: 184691931469235461, guid: 32d4f13ba3c57414dbad0b922670cc4e, type: 3}
-  barsParent: {fileID: 0}
 --- !u!1001 &5679680887872308891
 PrefabInstance:
   m_ObjectHideFlags: 0

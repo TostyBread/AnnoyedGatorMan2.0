@@ -22,6 +22,7 @@ public class ScoreManager : MonoBehaviour
     private LevelData levelData;
 
     [Header("Endgame Screen References")]
+    public bool Multiplayer;
     public GameObject WinScreen;
     public GameObject LoseScreen;
     public GameObject[] ConfettiEffect;
@@ -82,14 +83,18 @@ public class ScoreManager : MonoBehaviour
 
     private void CheckIfLevelCleared()
     {
-        if (isCleared && timer.RemainTime <= 0)
+        if (gameOver) return;
+
+        if (!gameOver && isCleared && timer.RemainTime <= 0)
         {
             //Debug.Log("Level Cleared! Final Score: " + currentScore);
             StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay
 
+            AnalyticManager.Instance.RecordGameoverData("Level" + currentLevelIndex, true, currentScore);
+
             gameOver = true; 
         }
-        else if (!isCleared && timer.RemainTime <= 0)
+        else if (!gameOver && !isCleared && timer.RemainTime <= 0)
         {
             //Debug.Log("Level Failed! Final Score: " + currentScore);
             if (LoseScreen != null)
@@ -98,6 +103,8 @@ public class ScoreManager : MonoBehaviour
 
                 UpdateEndScreenScoreText();
                 EnableConfettiEffects();
+
+                AnalyticManager.Instance.RecordGameoverData("Level" + currentLevelIndex, true, currentScore);
             }
 
             gameOver = true;
@@ -124,13 +131,31 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateEndScreenScoreText()
     {
-        TMP_Text finalScoreText = WinScreen.GetComponentInChildren<TMPro.TMP_Text>();
+        TMP_Text finalScoreText;
+
+        if (isCleared)
+        {
+            finalScoreText = WinScreen.GetComponentInChildren<TMPro.TMP_Text>();
+        }
+        else
+        {
+            finalScoreText = LoseScreen.GetComponentInChildren<TMPro.TMP_Text>();
+        }
+
         if (finalScoreText != null)
         {
-            finalScoreText.text =
-                "Total Score: " + currentScore.ToString() + "\n" +
-                "Player1: " + player1Score.ToString() + "\n" +
-                "Player2: " + player2Score.ToString();
+            if (!Multiplayer)
+            {
+                finalScoreText.text = "Total Score: " + currentScore.ToString();
+                return;
+            }
+            else
+            {
+                finalScoreText.text =
+                    "Total Score: " + currentScore.ToString() + "\n" +
+                    "Player1: " + player1Score.ToString() + "\n" +
+                    "Player2: " + player2Score.ToString();
+            }
         }
     }
 
