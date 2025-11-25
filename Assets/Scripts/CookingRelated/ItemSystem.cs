@@ -5,8 +5,8 @@ public class ItemSystem : MonoBehaviour
 {
     public bool canBeCooked;
     public bool canBreak;
-    public bool canBash = true;
-    public bool canCut = true;
+    public bool canBash = true; // Whether the item can be damaged by bash attacks
+    public bool canCut = true;  // Whether the item can be damaged by cut attacks
     public int durabilityUncooked;
     public int durabilityCooked;
     public float cookThreshold;
@@ -23,12 +23,13 @@ public class ItemSystem : MonoBehaviour
     public List<Vector3> brokenPartsOffsets;
 
     private int currentDurability;
-    private float currentCookPoints = 0f;
+    public float currentCookPoints = 0f; // for HeatBar
     public bool isCooked = false;
     public bool isBurned = false;
+    public bool isOnPlate = false;
     private SpriteRenderer cookedSpriteRenderer;
     private Color originalCookedColor;
-    private SpriteDeformationController deformer; // deformer reference
+    private Jiggle jiggle;
 
     private Dictionary<GameObject, float> lastDamageTimestamps = new();
     private float cleanupInterval = 5f;
@@ -38,14 +39,7 @@ public class ItemSystem : MonoBehaviour
 
     void Start()
     {
-        // Search for deformer
-        deformer = GetComponent<SpriteDeformationController>();
-        
-        if (deformer == null)
-        {
-            deformer = GetComponentInChildren<SpriteDeformationController>();
-        }
-        
+        jiggle = GetComponent<Jiggle>();
         currentDurability = durabilityUncooked;
         currentCookPoints = 0f;
         isCooked = false;
@@ -72,6 +66,13 @@ public class ItemSystem : MonoBehaviour
         else if (!isBurned && currentCookPoints >= burnThreshold)
         {
             BurnItem();
+        }
+        else if (transform.parent != null)
+        {
+            if (transform.parent.TryGetComponent<PlateSystem>(out PlateSystem plateSystem))
+            {
+                isOnPlate = true;
+            }
         }
 
         if (Time.time >= nextCleanupTime)
@@ -123,11 +124,6 @@ public class ItemSystem : MonoBehaviour
             if (sourceDamage.isFireSource || sourceDamage.isStunSource)
             {
                 currentCookPoints += sourceDamage.heatAmount;
-                if (deformer != null)
-                {
-                    // Stretch: Makes food look pulled
-                    deformer.TriggerStretch(1.3f, 7f, 0.18f);
-                }
             }
 
             EffectPool.Instance.SpawnEffect("FoodSteam", transform.position, Quaternion.identity); // Deploy steam anim
@@ -139,12 +135,6 @@ public class ItemSystem : MonoBehaviour
         // Check if the item can be damaged by this type
         if (sourceDamage.damageType == DamageType.Bash && !canBash) return;
         if (sourceDamage.damageType == DamageType.Cut && !canCut) return;
-
-        if (deformer != null && sourceDamage.damageAmount > 0)
-        {
-            // Squash: Makes food look compressed
-            deformer.TriggerSquash(0.4f, 7f, 0.18f, true);
-        }
 
         if (currentDurability <= 0 && canBreak) BreakItem(damageType);
     }
@@ -199,12 +189,7 @@ public class ItemSystem : MonoBehaviour
         cookedState.SetActive(true);
         currentDurability = durabilityCooked;
         AudioManager.Instance.PlaySound("Fizzle", transform.position);
-        
-        if (deformer != null)
-        {
-            // Combined: All together for dramatic effect
-            deformer.TriggerDeformation(0.2f, 0.2f, 0.2f, 0f, 0f, 7f, 0.3f);
-        }
+        jiggle?.StartJiggle();
     }
 
     public void BurnItem()
@@ -212,11 +197,6 @@ public class ItemSystem : MonoBehaviour
         isBurned = true;
         cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
         AudioManager.Instance.PlaySound("DryFart", transform.position);
-        
-        if (deformer != null)
-        {
-            // Combined: All together for dramatic effect
-            deformer.TriggerDeformation(0.2f, 0.2f, 0.2f, 0f, 0f, 7f, 0.3f);
-        }
+        jiggle?.StartJiggle();
     }
 }
