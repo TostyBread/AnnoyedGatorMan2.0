@@ -29,7 +29,7 @@ public class ItemSystem : MonoBehaviour
     public bool isOnPlate = false;
     private SpriteRenderer cookedSpriteRenderer;
     private Color originalCookedColor;
-    private Jiggle jiggle;
+    private SpriteDeformationController deformer;
 
     private Dictionary<GameObject, float> lastDamageTimestamps = new();
     private float cleanupInterval = 5f;
@@ -39,7 +39,7 @@ public class ItemSystem : MonoBehaviour
 
     void Start()
     {
-        jiggle = GetComponent<Jiggle>();
+        deformer = GetComponentInChildren<SpriteDeformationController>();
         currentDurability = durabilityUncooked;
         currentCookPoints = 0f;
         isCooked = false;
@@ -126,6 +126,12 @@ public class ItemSystem : MonoBehaviour
                 currentCookPoints += sourceDamage.heatAmount;
             }
 
+            if (deformer != null)
+            {
+                // Stretch: Makes food look pulled
+                deformer.TriggerStretch(1.3f, 7f, 0.18f);
+            }
+
             EffectPool.Instance.SpawnEffect("FoodSteam", transform.position, Quaternion.identity); // Deploy steam anim
 
             if (!isCooked && currentCookPoints >= cookThreshold) CookItem();
@@ -136,9 +142,13 @@ public class ItemSystem : MonoBehaviour
         if (sourceDamage.damageType == DamageType.Bash && !canBash) return;
         if (sourceDamage.damageType == DamageType.Cut && !canCut) return;
 
-        if (currentDurability <= 0 && canBreak) BreakItem(damageType);
+        if (deformer != null && sourceDamage.damageAmount > 0)
+        {
+            // Squash: Makes food look compressed
+            deformer.TriggerSquash(0.4f, 7f, 0.18f, true);
+            if (currentDurability <= 0 && canBreak) BreakItem(damageType);
+        }
     }
-
     private void CleanupStaleTimestamps()
     {
         float currentTime = Time.time;
@@ -189,7 +199,6 @@ public class ItemSystem : MonoBehaviour
         cookedState.SetActive(true);
         currentDurability = durabilityCooked;
         AudioManager.Instance.PlaySound("Fizzle", transform.position);
-        jiggle?.StartJiggle();
     }
 
     public void BurnItem()
@@ -197,6 +206,5 @@ public class ItemSystem : MonoBehaviour
         isBurned = true;
         cookedSpriteRenderer.color = new Color(0f, 0f, 0f, originalCookedColor.a);
         AudioManager.Instance.PlaySound("DryFart", transform.position);
-        jiggle?.StartJiggle();
     }
 }
