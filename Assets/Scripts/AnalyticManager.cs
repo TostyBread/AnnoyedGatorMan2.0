@@ -47,7 +47,6 @@ public class AnalyticManager : MonoBehaviour
 
         // Send event
         AnalyticsService.Instance.RecordEvent(myEvent);
-        AnalyticsService.Instance.Flush();
 
         Debug.Log($"[Analytics] GameOver event sent: Level = {currentLevel}, Win = {win}, Score = {currentScore}");
     }
@@ -69,7 +68,6 @@ public class AnalyticManager : MonoBehaviour
 
         // Send event
         AnalyticsService.Instance.RecordEvent(myEvent);
-        AnalyticsService.Instance.Flush();
 
         Debug.Log($"[Analytics] ServeOrder event sent: Order = {orderId}, ServedTime = {serveTime}");
     }
