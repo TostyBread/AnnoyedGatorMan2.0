@@ -539,6 +539,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 if (hit.GetComponent<HealthManager>() == null && 
                     hit.GetComponentInChildren<HealthManager>() == null ||
+                    hit.GetComponent<ItemSystem>() == null ||
                     hit.GetComponent<ItemSystem>().isBurned
                     )
                     continue;
