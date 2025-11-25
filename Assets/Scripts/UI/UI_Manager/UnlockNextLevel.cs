@@ -19,6 +19,8 @@ public class UnlockNextLevel : MonoBehaviour
         {
             levelData.UnlockNextLevel(level);
         }
+
+        scoreManager.willUnlockNextLevel = true;
         scoreManager.gameOver = true;
     }
 }
