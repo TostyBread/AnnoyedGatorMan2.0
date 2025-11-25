@@ -7,7 +7,7 @@ public class NPCPatience : MonoBehaviour
     public float patienceDuration = 10f;
     public PatienceBarController patienceBar;
 
-    private float currentPatience;
+    public float currentPatience; // Used by NpcBehavior to record data
     private bool hasSetAngry = false;
     private bool patienceRunning = false;
 

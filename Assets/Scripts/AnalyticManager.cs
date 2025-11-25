@@ -29,7 +29,7 @@ public class AnalyticManager : MonoBehaviour
         isInitialized = true;
     }
 
-    public void RecordGameoverData(string currentlevel, bool win, int currentscore)
+    public void RecordGameoverData(string currentLevel, bool win, int currentScore)
     {
         if (!isInitialized)
         {
@@ -40,15 +40,37 @@ public class AnalyticManager : MonoBehaviour
         // Create event data payload
         CustomEvent myEvent = new CustomEvent("GameOver")
         {
-            { "Level", currentlevel},
+            { "Level", currentLevel},
             { "Win", win},
-            { "Score", currentscore}
+            { "Score", currentScore}
         };
 
         // Send event
         AnalyticsService.Instance.RecordEvent(myEvent);
         AnalyticsService.Instance.Flush();
 
-        Debug.Log($"[Analytics] GameOver event sent: Level = {currentlevel}, Win = {win}, Score = {currentscore}");
+        Debug.Log($"[Analytics] GameOver event sent: Level = {currentLevel}, Win = {win}, Score = {currentScore}");
+    }
+
+    public void RecordServeOrderData(string orderId, float serveTime)
+    {
+        if (!isInitialized)
+        {
+            Debug.LogWarning("Analytics Service is not initialized yet.");
+            return;
+        }
+
+        // Create event data payload
+        CustomEvent myEvent = new CustomEvent("ServeOrder")
+        {
+            { "OrderId", orderId},
+            { "ServeTime", serveTime}
+        };
+
+        // Send event
+        AnalyticsService.Instance.RecordEvent(myEvent);
+        AnalyticsService.Instance.Flush();
+
+        Debug.Log($"[Analytics] ServeOrder event sent: Order = {orderId}, ServedTime = {serveTime}");
     }
 }
