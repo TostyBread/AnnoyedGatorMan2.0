@@ -24,19 +24,17 @@ public class ScoreManager : MonoBehaviour
     private LevelData levelData;
 
     [Header("Endgame Screen References")]
+    public bool Multiplayer;
     public GameObject WinScreen;
     public GameObject LoseScreen;
     public GameObject[] ConfettiEffect;
 
     public bool gameOver; // for P1 cursor management
 
-    private AnalyticManager analyticManager;
-
     private void Start()
     {
         timer = FindObjectOfType<Timer>();
         levelData = FindObjectOfType<LevelData>();
-        analyticManager = FindObjectOfType<AnalyticManager>();
 
         if (WinScreen != null) WinScreen.SetActive(false);
         if (LoseScreen != null) LoseScreen.SetActive(false);
@@ -93,10 +91,7 @@ public class ScoreManager : MonoBehaviour
             //Debug.Log("Level Cleared! Final Score: " + currentScore);
             StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay
 
-            if (analyticManager != null)
-            {
-                analyticManager.RecordGameoverData("Level1", true, currentScore);
-            }
+            AnalyticManager.Instance.RecordGameoverData("Level1", true, currentScore);
 
             gameOver = true; 
         }
@@ -110,10 +105,7 @@ public class ScoreManager : MonoBehaviour
                 UpdateEndScreenScoreText();
                 EnableConfettiEffects();
 
-                if (analyticManager != null)
-                {
-                    analyticManager.RecordGameoverData("Level1", false, currentScore);
-                }
+                AnalyticManager.Instance.RecordGameoverData("Level1", true, currentScore);
             }
 
             gameOver = true;
@@ -140,13 +132,31 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateEndScreenScoreText()
     {
-        TMP_Text finalScoreText = WinScreen.GetComponentInChildren<TMPro.TMP_Text>();
+        TMP_Text finalScoreText;
+
+        if (isCleared)
+        {
+            finalScoreText = WinScreen.GetComponentInChildren<TMPro.TMP_Text>();
+        }
+        else
+        {
+            finalScoreText = LoseScreen.GetComponentInChildren<TMPro.TMP_Text>();
+        }
+
         if (finalScoreText != null)
         {
-            finalScoreText.text =
-                "Total Score: " + currentScore.ToString() + "\n" +
-                "Player1: " + player1Score.ToString() + "\n" +
-                "Player2: " + player2Score.ToString();
+            if (!Multiplayer)
+            {
+                finalScoreText.text = "Total Score: " + currentScore.ToString();
+                return;
+            }
+            else
+            {
+                finalScoreText.text =
+                    "Total Score: " + currentScore.ToString() + "\n" +
+                    "Player1: " + player1Score.ToString() + "\n" +
+                    "Player2: " + player2Score.ToString();
+            }
         }
     }
 

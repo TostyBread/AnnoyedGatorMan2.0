@@ -38,7 +38,7 @@ public class AnalyticManager : MonoBehaviour
         }
 
         // Create event data payload
-        CustomEvent GameOver = new CustomEvent("GameOver")
+        CustomEvent myEvent = new CustomEvent("GameOver")
         {
             { "Level", currentlevel},
             { "Win", win},
@@ -46,9 +46,9 @@ public class AnalyticManager : MonoBehaviour
         };
 
         // Send event
-        AnalyticsService.Instance.RecordEvent(GameOver);
+        AnalyticsService.Instance.RecordEvent(myEvent);
         AnalyticsService.Instance.Flush();
 
-        Debug.Log($"[Analytics] GameOver event sent: Level={currentlevel}, Win={win}, Score={currentscore}");
+        Debug.Log($"[Analytics] GameOver event sent: Level = {currentlevel}, Win = {win}, Score = {currentscore}");
     }
 }
