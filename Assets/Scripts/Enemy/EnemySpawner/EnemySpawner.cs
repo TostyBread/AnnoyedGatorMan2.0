@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
@@ -46,6 +47,8 @@ public class EnemySpawner : MonoBehaviour
     [Header("do not touch, just for Refrence")]
     public WeatherManager weatherManager;
     public GameObject EnemyForCurrentWeather;
+
+    [SerializeField] private bool stopAndHideUiBar;
 
  
     // Start is called before the first frame update
@@ -171,7 +174,10 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemyWithTimer()
     {
-        if (currentSpawnedEnemy >= MaxSpawnedEnemy) return;
+        if (currentSpawnedEnemy >= MaxSpawnedEnemy) { EnemyProgressbar.gameObject.SetActive(false); return; }
+        
+        EnemyProgressbar.gameObject.SetActive(!stopAndHideUiBar);
+        if (stopAndHideUiBar) return; //stop the timer when dumpster's jiggle is happening
 
         ChargeTimer += Time.deltaTime;
 
@@ -217,7 +223,14 @@ public class EnemySpawner : MonoBehaviour
     {
         if (EnemySpawnEffect != null)
         {
-            dumpster.gameObject.GetComponents<Jiggle>()[1].StartJiggle(); //jiggle the dumpster with jiggle[1] when enemy spawn
+            stopAndHideUiBar = true;
+            Jiggle dumpsterJiggle = dumpster.gameObject.GetComponents<Jiggle>()[1]; //jiggle the dumpster with jiggle[1] when enemy spawn
+
+            if (stopAndHideUiBar == true)
+            {
+                StartCoroutine(WaitFor(dumpsterJiggle.jiggleInterval));    
+                dumpsterJiggle.StartJiggle();
+            }
 
             GameObject enemyeffect;
 
@@ -249,6 +262,11 @@ public class EnemySpawner : MonoBehaviour
         return null;
     }
 
+    private IEnumerator WaitFor(float dumpsterTime)
+    {
+        yield return new WaitForSeconds(dumpsterTime + 0.5f);
+        stopAndHideUiBar = false;
+    }
 }
 
 

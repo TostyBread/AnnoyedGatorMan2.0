@@ -9,6 +9,7 @@ public class EnemyEffect : MonoBehaviour
     [SerializeField] private float waitfor;
     private NavMeshAgent agent;
     private bool arriveTarget;
+    private bool hasSpawned;
     [SerializeField]private EnemySpawner enemySpawner;
 
     // Start is called before the first frame update
@@ -41,11 +42,13 @@ public class EnemyEffect : MonoBehaviour
 
         if (Vector2.Distance(transform.position, Target.position) < 0.1f) arriveTarget = true;
 
-        if (arriveTarget == true)
+        // Only run coroutine ONE TIME
+        if (arriveTarget && !hasSpawned)
         {
+            hasSpawned = true;       // Don't trigger the WaitBeforeDestroy mutiple time because of update might call it many time in a tick
             StartCoroutine(WaitBeforeDestroy(waitfor));
         }
-        
+
     }
 
     private void Rotation(Transform target)
