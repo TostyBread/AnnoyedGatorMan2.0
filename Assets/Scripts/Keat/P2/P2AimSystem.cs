@@ -48,7 +48,7 @@ public class P2AimSystem : MonoBehaviour
         //if no console detected...
         if (Gamepad.current == null)
         {
-            Debug.LogWarning("no console detected");
+            //Debug.LogWarning("no console detected");
             //gameObject.SetActive(false);
         }
         else

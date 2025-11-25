@@ -1702,6 +1702,7 @@ GameObject:
   - component: {fileID: 488919215559048345}
   - component: {fileID: 3455622770561305545}
   - component: {fileID: 5580755971419463573}
+  - component: {fileID: 6084740519906120885}
   - component: {fileID: 4097314866109383994}
   - component: {fileID: 1275436583344678529}
   - component: {fileID: 3619115335145955248}
@@ -1921,7 +1922,6 @@ MonoBehaviour:
   damageReceived: 0
   HealthBar: {fileID: 3201080435102853424}
   hand: {fileID: 4657565808220804393}
-  playerCollider: {fileID: 1145312796537006720}
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
@@ -1934,6 +1934,18 @@ MonoBehaviour:
   canMove: 1
   isDefeated: 0
   reviveBoostKey: 32
+--- !u!114 &6084740519906120885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135101431889565427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f9506fef06bc714e96e008b07c13739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4097314866109383994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4724,6 +4736,7 @@ GameObject:
   - component: {fileID: 8383292685396171806}
   - component: {fileID: 6731574886544173902}
   - component: {fileID: 4606442261196177170}
+  - component: {fileID: 2884434080121103972}
   - component: {fileID: 5351150476593833405}
   - component: {fileID: 7146315376641771014}
   - component: {fileID: 7668680888624775215}
@@ -4943,7 +4956,6 @@ MonoBehaviour:
   damageReceived: 0
   HealthBar: {fileID: 765976638433202580}
   hand: {fileID: 3620175315003291054}
-  playerCollider: {fileID: 9041955658507028999}
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
@@ -4956,6 +4968,18 @@ MonoBehaviour:
   canMove: 1
   isDefeated: 0
   reviveBoostKey: 32
+--- !u!114 &2884434080121103972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421450323599144564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f9506fef06bc714e96e008b07c13739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5351150476593833405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,7 +5068,7 @@ MonoBehaviour:
   - {x: 0.7216635, y: -1.432608, z: 0}
   m_ShapePathHash: 1937035757
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1928
+  m_InstanceId: -10700
   m_LocalBounds:
     m_Center: {x: -0.09108019, y: -0.7744708, z: 0}
     m_Extent: {x: 0.81274366, y: 0.6824254, z: 0}
@@ -5970,7 +5994,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 280832
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -7108,6 +7132,7 @@ GameObject:
   - component: {fileID: 6234986882952940563}
   - component: {fileID: 9204007985203772227}
   - component: {fileID: 2106894190036905759}
+  - component: {fileID: 2553822817521407838}
   - component: {fileID: 7535495033953433008}
   - component: {fileID: 4754851461008922123}
   - component: {fileID: 9182224713853724800}
@@ -7327,7 +7352,6 @@ MonoBehaviour:
   damageReceived: 0
   HealthBar: {fileID: 2914150561773584793}
   hand: {fileID: 1219663554708415907}
-  playerCollider: {fileID: 6893626800680671754}
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
@@ -7340,6 +7364,18 @@ MonoBehaviour:
   canMove: 1
   isDefeated: 0
   reviveBoostKey: 32
+--- !u!114 &2553822817521407838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921064350408222329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f9506fef06bc714e96e008b07c13739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7535495033953433008
 MonoBehaviour:
   m_ObjectHideFlags: 0
