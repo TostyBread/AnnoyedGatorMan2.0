@@ -91,7 +91,7 @@ public class ScoreManager : MonoBehaviour
             //Debug.Log("Level Cleared! Final Score: " + currentScore);
             StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay
 
-            AnalyticManager.Instance.RecordGameoverData("Level1", true, currentScore);
+            AnalyticManager.Instance.RecordGameoverData("Level" + currentLevelIndex, true, currentScore);
 
             gameOver = true; 
         }
@@ -105,7 +105,7 @@ public class ScoreManager : MonoBehaviour
                 UpdateEndScreenScoreText();
                 EnableConfettiEffects();
 
-                AnalyticManager.Instance.RecordGameoverData("Level1", true, currentScore);
+                AnalyticManager.Instance.RecordGameoverData("Level" + currentLevelIndex, true, currentScore);
             }
 
             gameOver = true;

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -87,7 +88,7 @@ public class Warning : MonoBehaviour
             if (image.enabled)
                 AudioManager.Instance.PlaySound("beep1", transform.position);
 
-            yield return new WaitForSeconds(flashDelay);
+            yield return new WaitForSeconds(flashDelay);         
         }
     }
 
