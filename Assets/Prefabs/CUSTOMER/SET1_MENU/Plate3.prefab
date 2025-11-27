@@ -46,10 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   labelText: 2
   labelColor: {r: 1, g: 0.37254903, b: 0, a: 1}
-  fontSize: 8
   offset: {x: 0, y: 0, z: 0}
   customFontAsset: {fileID: 11400000, guid: 2c0f1b204d2db3a4e8e6efcf4e936da2, type: 2}
   idGameObjectPrefab: {fileID: 6860703093271182990, guid: 5b4861936b32230429fbf7214b235390, type: 3}
+  idGameObjectScale: 1.1
 --- !u!1 &3088414860971530543
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,13 +195,13 @@ MonoBehaviour:
     cookingState: 0
     condition: 2
     positionOffset: {x: 0, y: 0, z: 0}
-    sortingOrder: 7
+    sortingOrder: 5
     isFilled: 0
   - itemID: 3
     cookingState: 0
     condition: 0
     positionOffset: {x: 0, y: 0, z: 0}
-    sortingOrder: 9
+    sortingOrder: 6
     isFilled: 0
   menuDisplay: {fileID: 8735954798891381949, guid: 9c66eaf843af23e4d8edc4cea6da3c52, type: 3}
   plateScore: 4

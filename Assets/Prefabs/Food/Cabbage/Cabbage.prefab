@@ -219,9 +219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a1c82aba7e76f49aa5e006528e511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 12
+  itemID: 1
   currentCookingState: 0
-  currentCondition: 2
+  currentCondition: 0
 --- !u!114 &1546001759173515998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,8 +262,10 @@ MonoBehaviour:
   - {x: 0.06, y: 0, z: 0}
   - {x: 0, y: -0.06, z: 0}
   - {x: 0, y: 0.06, z: 0}
+  currentCookPoints: 0
   isCooked: 0
   isBurned: 0
+  isOnPlate: 0
 --- !u!50 &217809037157316475
 Rigidbody2D:
   serializedVersion: 4
@@ -344,7 +346,6 @@ MonoBehaviour:
   damageReceived: 0
   HealthBar: {fileID: 0}
   hand: {fileID: 0}
-  playerCollider: {fileID: 0}
   isPlayer2: 0
   isNotPlayer: 0
   isFood: 1

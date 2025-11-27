@@ -94,6 +94,14 @@ MonoBehaviour:
     menuPrefab: {fileID: 8885360682402634210, guid: 9c66eaf843af23e4d8edc4cea6da3c52, type: 3}
   - platePrefab: {fileID: 3088414860971530543, guid: 9757da9b8ba16de4885fae80f8e4ff78, type: 3}
     menuPrefab: {fileID: 8885360682402634210, guid: b7cb9a907bacd8a4383664b1e2cf5a77, type: 3}
+  - platePrefab: {fileID: 3088414860971530543, guid: be5f0e58041319f4c83d2fddd058ba38, type: 3}
+    menuPrefab: {fileID: 8885360682402634210, guid: 26ec1c1ccd9aa1c4ea9def019c25b888, type: 3}
+  - platePrefab: {fileID: 3088414860971530543, guid: d0a3c6e95fbab10459dd3c65f6c275a4, type: 3}
+    menuPrefab: {fileID: 8885360682402634210, guid: e963fc5f8accc72479ee1881d99755ca, type: 3}
+  - platePrefab: {fileID: 3088414860971530543, guid: 6d6d268639796894b86e33107d22fc2b, type: 3}
+    menuPrefab: {fileID: 8885360682402634210, guid: 70610f9883c7187499f226f0d55e745e, type: 3}
+  - platePrefab: {fileID: 3088414860971530543, guid: e2042ff8c3fbb514f8cb81b94f666034, type: 3}
+    menuPrefab: {fileID: 8885360682402634210, guid: b1f5029fed8d08544be8ecc37bdd6d12, type: 3}
   lines:
   - name: Line1
     waypoints:
