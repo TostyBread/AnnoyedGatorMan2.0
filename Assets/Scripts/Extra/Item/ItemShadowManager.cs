@@ -31,6 +31,12 @@ public class ItemShadowManager : MonoBehaviour
             shadowPos.y -= offset;
             shadow.transform.position = Vector3.Lerp(shadow.transform.position, shadowPos, 10f * Time.deltaTime);
         }
+        else
+        { 
+            Vector3 shadowPos = transform.position;
+            shadowPos.y = transform.position.y - 0.1f;
+            shadow.transform.position = Vector3.Lerp(shadow.transform.position, shadowPos, 10f * Time.deltaTime);
+        }
 
         lastPosition = transform.position;
     }
