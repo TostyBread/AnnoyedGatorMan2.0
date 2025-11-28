@@ -14,12 +14,14 @@ public class EnemySpawner : MonoBehaviour
     public GameObject UI;
 
     [SerializeField] private Dumpster dumpster;
+    private Jiggle dumpsterJiggle;
     private Transform dumpsterPos;
     [SerializeField] private GameObject canvas;
     [SerializeField] private Image EnemyRadiusbar;
     [SerializeField] private Vector2 offset;
     [SerializeField] private GameObject EnemySpawnEffect;
     [SerializeField] private Transform EnemySpawnEffectPos;
+    [SerializeField] private List<GameObject> itemToHide = new List<GameObject>();
 
     public float MaxSpawnedEnemy = 5;
     public int MinSpawnTime = 25;
@@ -69,6 +71,7 @@ public class EnemySpawner : MonoBehaviour
 
         dumpster = FindAnyObjectByType<Dumpster>();
         dumpsterPos = dumpster.gameObject.transform;
+        dumpsterJiggle = dumpster.gameObject.GetComponents<Jiggle>()[1];
 
         canvas.transform.position = new Vector2(dumpsterPos.position.x + offset.x, dumpsterPos.position.y + offset.y);
 
@@ -95,10 +98,10 @@ public class EnemySpawner : MonoBehaviour
     {
         if (EnemyRadiusbar != null)
         {
-            EnemyRadiusbar.fillAmount = ChargeTimer / ChargeReadyTime;
-            if (EnemyRadiusbar.fillAmount == 1)
+            EnemyRadiusbar.fillAmount = 1f - (ChargeTimer / ChargeReadyTime);
+            if (EnemyRadiusbar.fillAmount == 0)
             {
-                EnemyRadiusbar.fillAmount = 0;
+                EnemyRadiusbar.fillAmount = 1;
             }
         }
 
@@ -167,7 +170,6 @@ public class EnemySpawner : MonoBehaviour
         if (currentSpawnedEnemy == MaxSpawnedEnemy)
         return;
 
-
         spawnSpeedTimer += Time.deltaTime;
         if (spawnSpeedTimer >= 3f)
         {
@@ -183,9 +185,17 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemyWithTimer()
     {
-        if (currentSpawnedEnemy >= MaxSpawnedEnemy) { EnemyRadiusbar.gameObject.SetActive(false); return; }
-        
-        EnemyRadiusbar.gameObject.SetActive(!stopAndHideUiBar);
+        if (currentSpawnedEnemy == MaxSpawnedEnemy && canvas != null) 
+        { 
+            canvas.gameObject.SetActive(false);
+            return; //hide the EnemySpawner UI and stop charging for enemy 
+        }
+
+        if (canvas != null)
+        {
+            canvas.gameObject.SetActive(!stopAndHideUiBar);
+        }
+
         if (stopAndHideUiBar) return; //stop the timer when dumpster's jiggle is happening
 
         ChargeTimer += Time.deltaTime;
@@ -233,9 +243,8 @@ public class EnemySpawner : MonoBehaviour
         if (EnemySpawnEffect != null)
         {
             stopAndHideUiBar = true;
-            Jiggle dumpsterJiggle = dumpster.gameObject.GetComponents<Jiggle>()[1]; //jiggle the dumpster with jiggle[1] when enemy spawn
 
-            if (stopAndHideUiBar == true)
+            if (stopAndHideUiBar == true) //jiggle the dumpster with jiggle[1] when enemy spawn
             {
                 StartCoroutine(WaitFor(dumpsterJiggle.jiggleInterval));
                 dumpsterJiggle.StartJiggle();

@@ -302,6 +302,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8510366900720491808, guid: 1ff658a072813e94f84dfa9c963f692c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9060919725917258340, guid: 1ff658a072813e94f84dfa9c963f692c, type: 3}
       propertyPath: m_Name
       value: Move Particle
