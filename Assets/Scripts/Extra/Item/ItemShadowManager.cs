@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class ItemShadowManager : MonoBehaviour
 {
-    public GameObject shadow;           
-    static public float maxOffset = 0.5f;      
-    static public float speedMultiplier = 0.1f;
+    public GameObject shadow;
+    [SerializeField] public float maxOffset = 0.5f;
+    [SerializeField] public float speedMultiplier = 0.1f;
 
     private Vector3 lastPosition;
+    private Collider2D itemCollider;
 
     void Start()
     {
+        itemCollider = GetComponent<Collider2D>();
+
         lastPosition = transform.position;
     }
 
@@ -17,7 +20,7 @@ public class ItemShadowManager : MonoBehaviour
     {
         if (shadow == null) return;
 
-        if (transform.parent == null)
+        if (transform.parent == null && itemCollider.enabled == false)
         {
             Vector3 velocity = (transform.position - lastPosition) / Time.deltaTime;
             float speed = velocity.magnitude;
