@@ -104,7 +104,9 @@ public class EnemyMovement : MonoBehaviour
     private void OnDisable()
     {
         if (enemySpawner != null && enemySpawner.currentSpawnedEnemy > 0)
-        enemySpawner.currentSpawnedEnemy--;
+        {
+            enemySpawner.currentSpawnedEnemy--;
+        }
     }
 
     private IEnumerator ResumeDetectionAfterEnable()

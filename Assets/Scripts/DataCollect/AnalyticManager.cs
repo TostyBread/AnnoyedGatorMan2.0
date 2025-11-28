@@ -7,7 +7,12 @@ using UnityEngine;
 public class AnalyticManager : MonoBehaviour
 {
     public static AnalyticManager Instance;
+
     private bool isInitialized = false;
+
+    // Data tracking fields
+    private int fireCount = 0;
+    private int pestCount = 0;
 
     void Awake()
     {
@@ -51,7 +56,7 @@ public class AnalyticManager : MonoBehaviour
         Debug.Log($"[Analytics] GameOver event sent: Level = {currentLevel}, Win = {win}, Score = {currentScore}");
     }
 
-    public void RecordServeOrderData(string orderId, float serveTime)
+    public void RecordServeOrderData(string orderId, int serveTime)
     {
         if (!isInitialized)
         {
@@ -63,12 +68,25 @@ public class AnalyticManager : MonoBehaviour
         CustomEvent myEvent = new CustomEvent("ServeOrder")
         {
             { "OrderId", orderId},
-            { "ServeTime", serveTime}
+            { "ServeTime", serveTime},
+            { "Total_Intteruption", fireCount + pestCount}
         };
 
         // Send event
         AnalyticsService.Instance.RecordEvent(myEvent);
 
         Debug.Log($"[Analytics] ServeOrder event sent: Order = {orderId}, ServedTime = {serveTime}");
+    }
+
+    public void TrackFireInterruption(int fire)
+    {
+        fireCount = fire;
+        Debug.Log($"[Analytics] Fire tracked: {fireCount}");
+    }
+
+    public void TrackPestInterruption(int pest)
+    {
+        pestCount = pest;
+        Debug.Log($"[Analytics] Pest tracked: {pestCount}");
     }
 }

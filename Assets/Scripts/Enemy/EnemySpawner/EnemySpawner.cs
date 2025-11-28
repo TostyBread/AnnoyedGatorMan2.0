@@ -127,7 +127,9 @@ public class EnemySpawner : MonoBehaviour
 
         CountObstacleObjectInGame();
         SpeedUpEnemySpawn();
-        SpawnEnemyWithTimer(); 
+        SpawnEnemyWithTimer();
+
+        AnalyticManager.Instance.TrackPestInterruption(currentSpawnedEnemy);
     }
 
     private void CountObstacleObjectInGame()
