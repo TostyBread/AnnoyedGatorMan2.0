@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class PregameUI : MonoBehaviour
 {
@@ -36,6 +37,26 @@ public class PregameUI : MonoBehaviour
     void Awake()
     {
         weatherManager = FindObjectOfType<WeatherManager>();
+
+        EnemySpawner spawner = FindAnyObjectByType<EnemySpawner>();
+        if (spawner != null)
+        {
+            Canvas canvas = spawner.GetComponentInChildren<Canvas>(true);
+            if (canvas != null)
+            {
+                Image[] images = canvas.GetComponentsInChildren<Image>(true);
+
+                foreach (Image img in images)
+                {
+                    if (img.name == "Enemy Dumpster Icon")
+                    {
+                        enemyDumpsterIcon = img;
+                        break;
+                    }
+                }
+            }
+        }
+
 
         PregameScreen.SetActive(false);
 
