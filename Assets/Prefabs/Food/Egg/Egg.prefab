@@ -209,8 +209,10 @@ MonoBehaviour:
   - {x: 0.06, y: 0, z: 0}
   - {x: 0, y: -0.06, z: 0}
   - {x: 0, y: 0.06, z: 0}
+  currentCookPoints: 0
   isCooked: 0
   isBurned: 0
+  isOnPlate: 0
 --- !u!50 &5594296143327708066
 Rigidbody2D:
   serializedVersion: 4
@@ -276,7 +278,7 @@ MonoBehaviour:
   - {x: -0.15638447, y: -0.43791115, z: 0}
   m_ShapePathHash: -1559587803
   m_Mesh: {fileID: 0}
-  m_InstanceId: -310876
+  m_InstanceId: -34298
   m_LocalBounds:
     m_Center: {x: 0.0011148453, y: 0.0028646886, z: 0}
     m_Extent: {x: 0.339571, y: 0.47466823, z: 0}
@@ -359,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 
@@ -867,7 +869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 
@@ -1378,6 +1380,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2134833916, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+    - target: {fileID: 1639311411563684266, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+      propertyPath: currentCondition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1639311411563684266, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+      propertyPath: currentCookingState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2254780494653026347, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1490,6 +1500,14 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 6642a63dd25b4c94e9085728c92eae84, type: 2}
+    - target: {fileID: 5265576699244065155, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+      propertyPath: currentCondition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5265576699244065155, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
+      propertyPath: currentCookingState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5731397411089709434, guid: 2a11a344b9b3a2149a3d840d405af06f, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1639,7 +1657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 
@@ -1747,7 +1765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 
@@ -1849,7 +1867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 

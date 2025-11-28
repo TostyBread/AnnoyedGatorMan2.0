@@ -31,7 +31,7 @@ public class PatienceBarController : MonoBehaviour
     private bool isFlashing = false;
     private float flashDuration;
     private float currentMoveTime = 0f;
-    private Vector3 jumpStartPosition;
+    private Vector3 jumpStartLocalPosition; // Store local position instead
     private bool isJumping = false;
     private float jumpTimer = 0f;
     private PatienceLevel currentPatience = PatienceLevel.Normal;
@@ -48,7 +48,7 @@ public class PatienceBarController : MonoBehaviour
         currentFlashInterval = flashInterval;
         if (targetTransform != null)
         {
-            jumpStartPosition = targetTransform.position;
+            jumpStartLocalPosition = targetTransform.localPosition;
         }
     }
 
@@ -79,7 +79,7 @@ public class PatienceBarController : MonoBehaviour
         if (currentMoveTime <= 0 && !isJumping)
         {
             isJumping = true;
-            jumpStartPosition = targetTransform.position;
+            jumpStartLocalPosition = targetTransform.localPosition;
             jumpTimer = 0f;
             currentMoveTime = interval;
         }
@@ -95,11 +95,11 @@ public class PatienceBarController : MonoBehaviour
             float t = jumpTimer / jumpDuration;
             // Parabolic jump: up then down
             float height = Mathf.Sin(t * Mathf.PI) * moveDistance;
-            targetTransform.position = jumpStartPosition + Vector3.up * height;
+            targetTransform.localPosition = jumpStartLocalPosition + Vector3.up * height;
         }
         else
         {
-            targetTransform.position = jumpStartPosition;
+            targetTransform.localPosition = jumpStartLocalPosition;
             isJumping = false;
         }
     }
