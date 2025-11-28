@@ -15,6 +15,7 @@ public class PregameUI : MonoBehaviour
 
     [Header("Enemy Icon")]
     public Image enemyIcon;
+    public Image enemyDumpsterIcon;
     public Sprite flySprite;
     public Sprite mosquitoeSprite;
     public Sprite cockroachSprite;
@@ -59,18 +60,22 @@ public class PregameUI : MonoBehaviour
             case WeatherManager.Weather.Normal:
                 weatherIcon.sprite = normalSprite;
                 enemyIcon.sprite = flySprite;
+                enemyDumpsterIcon.sprite = flySprite;
                 break;
             case WeatherManager.Weather.Hot:
                 weatherIcon.sprite = sunnySprite;
                 enemyIcon.sprite = mosquitoeSprite;
+                enemyDumpsterIcon.sprite = mosquitoeSprite;
                 break;
             case WeatherManager.Weather.Rainy:
                 weatherIcon.sprite = rainySprite;
                 enemyIcon.sprite = cockroachSprite;
+                enemyDumpsterIcon.sprite= cockroachSprite;
                 break;
             case WeatherManager.Weather.Cold:
                 weatherIcon.sprite = snowySprite;
                 enemyIcon.sprite = mouseSprite;
+                enemyDumpsterIcon.sprite = mouseSprite;
                 break;
         }
 

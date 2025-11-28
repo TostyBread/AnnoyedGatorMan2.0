@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 7468745865294067289}
   - component: {fileID: 4847517088900589319}
   - component: {fileID: 3681279990122354590}
+  - component: {fileID: 7454575123028606999}
   m_Layer: 0
   m_Name: Image
   m_TagString: Enemy
@@ -313,10 +314,32 @@ MonoBehaviour:
   - {x: -6.2044983, y: -2.5438144, z: 0}
   m_ShapePathHash: 365628945
   m_Mesh: {fileID: 0}
-  m_InstanceId: 125922
+  m_InstanceId: 98130
   m_LocalBounds:
     m_Center: {x: -0.048265457, y: 0.031505585, z: 0}
     m_Extent: {x: 8.45625, y: 8.453963, z: 0}
+--- !u!114 &7454575123028606999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808879903531677094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0358db4c61fa974a8af11be360f6d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jiggleInterval: 1
+  BiggerTheGameobjectBy: 1.3
+  enableLeftRightJiggle: 0
+  enableUpDownJiggle: 0
+  jiggleRange: 0.5
+  jiggleSpeed: 5
+  enableRotationJiggle: 0
+  rotationAngle: 30
+  spriteGameobject: {fileID: 0}
+  isJiggling: 0
 --- !u!1 &5826121356084179054
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +539,7 @@ MonoBehaviour:
   ShootIntervel: 1
   Hitbox: {fileID: 9176418919688273743}
   DurationBeforeAttack: 0.5
-  RecoveryFrame: 0.5
+  RecoveryFrame: 1
   TargetedGrid: {fileID: 0}
   isMoving: 0
   isAttacking: 0
@@ -690,7 +713,7 @@ MonoBehaviour:
   - {x: 0.2035799, y: -0.4984796, z: 0}
   m_ShapePathHash: -855611483
   m_Mesh: {fileID: 0}
-  m_InstanceId: 125928
+  m_InstanceId: 98136
   m_LocalBounds:
     m_Center: {x: -0.117797375, y: -0.25698888, z: 0}
     m_Extent: {x: 0.784987, y: 0.25754726, z: 0}

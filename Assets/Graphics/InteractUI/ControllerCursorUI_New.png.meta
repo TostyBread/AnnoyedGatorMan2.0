@@ -227,11 +227,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1072
-        y: 284
+        y: 282
         width: 118
         height: 118
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,6 +239,153 @@ TextureImporter:
       bones: []
       spriteID: 52d613d3cf739ed4d86e09c8361071d6
       internalID: -1527311097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerCursorUI_New_0
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 1398
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5051f5c33818b746aee79d4e0989135
+      internalID: -698927643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerCursorUI_New_1
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 1398
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a99b44dcbf24344eb196e6539f35203
+      internalID: 2078005674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerCursorUI_New_2
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 791
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe33f72e0f3ae884bb089f0d5eabaf7b
+      internalID: -1148094855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerCursorUI_New_3
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 791
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bab12a7e6449ca24c8a9350656851cbf
+      internalID: 1161320481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerCursorUI_New_4
+      rect:
+        serializedVersion: 2
+        x: 1271
+        y: 76
+        width: 322
+        height: 544
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfab25ec652cd804098774f987835111
+      internalID: 1116840569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerCursorUI_New_5
+      rect:
+        serializedVersion: 2
+        x: 1448
+        y: 1326
+        width: 63
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 244b1453937274146a74f8ac8fa6af76
+      internalID: -2136052582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerCursorUI_New_6
+      rect:
+        serializedVersion: 2
+        x: 1606
+        y: 1326
+        width: 63
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d9ec66306ec9647a1bbc3805d14e8f
+      internalID: 581731748
       vertices: []
       indices: 
       edges: []
@@ -254,9 +401,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      ControllerCursorUI_New_0: -698927643
       ControllerCursorUI_New_1: 2078005674
+      ControllerCursorUI_New_2: -1148094855
       ControllerCursorUI_New_3: 1161320481
+      ControllerCursorUI_New_4: 1116840569
       ControllerCursorUI_New_5: -2136052582
+      ControllerCursorUI_New_6: 581731748
       ControllerCursorUI_New_7: 331101299
       ControllerCursorUI_New_8: -1531375894
       InRange_InteractableCrosshair1: 237182195

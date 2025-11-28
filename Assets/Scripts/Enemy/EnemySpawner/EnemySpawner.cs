@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Dumpster dumpster;
     private Transform dumpsterPos;
     [SerializeField] private GameObject canvas;
-    [SerializeField] private Image EnemyProgressbar;
+    [SerializeField] private Image EnemyRadiusbar;
     [SerializeField] private Vector2 offset;
     [SerializeField] private GameObject EnemySpawnEffect;
     [SerializeField] private Transform EnemySpawnEffectPos;
@@ -93,23 +93,32 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
-        if (EnemyProgressbar != null)
+        if (EnemyRadiusbar != null)
         {
-            EnemyProgressbar.fillAmount = ChargeTimer / ChargeReadyTime;
-            if (EnemyProgressbar.fillAmount == 1)
+            EnemyRadiusbar.fillAmount = ChargeTimer / ChargeReadyTime;
+            if (EnemyRadiusbar.fillAmount == 1)
             {
-                EnemyProgressbar.fillAmount = 0;
+                EnemyRadiusbar.fillAmount = 0;
             }
         }
 
+        if (stopAndHideUiBar)
+        {
+            canvas.SetActive(false);
+        }
+        else
+        {
+            canvas.SetActive(true);
+        }
+
         if (SanityIsEmptyOnce == false && sanity.RemainSanity == 0) //all spawner spawn enemy at once once player die
-        { 
-            foreach (Transform spawner in Spawners) 
+        {
+            foreach (Transform spawner in Spawners)
             {
                 SpawnEnemy(spawner);
             }
 
-            ChargeReadyTime = Random.Range(MinSpawnTime/2, MaxSpawnTime/2);
+            ChargeReadyTime = Random.Range(MinSpawnTime / 2, MaxSpawnTime / 2);
             ChargeTimer = 0; SanityIsEmptyOnce = true;
         }
 
@@ -174,9 +183,9 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemyWithTimer()
     {
-        if (currentSpawnedEnemy >= MaxSpawnedEnemy) { EnemyProgressbar.gameObject.SetActive(false); return; }
+        if (currentSpawnedEnemy >= MaxSpawnedEnemy) { EnemyRadiusbar.gameObject.SetActive(false); return; }
         
-        EnemyProgressbar.gameObject.SetActive(!stopAndHideUiBar);
+        EnemyRadiusbar.gameObject.SetActive(!stopAndHideUiBar);
         if (stopAndHideUiBar) return; //stop the timer when dumpster's jiggle is happening
 
         ChargeTimer += Time.deltaTime;
@@ -228,7 +237,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (stopAndHideUiBar == true)
             {
-                StartCoroutine(WaitFor(dumpsterJiggle.jiggleInterval));    
+                StartCoroutine(WaitFor(dumpsterJiggle.jiggleInterval));
                 dumpsterJiggle.StartJiggle();
             }
 

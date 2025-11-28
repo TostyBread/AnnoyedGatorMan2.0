@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -90,6 +90,7 @@ public class EnemyMovement : MonoBehaviour
     private GameObject lastDetectedTarget;
 
     private EnemySpawner enemySpawner;
+    private JiggleForSprite jiggleForSprite;
 
     private void OnEnable()
     {
@@ -197,6 +198,8 @@ public class EnemyMovement : MonoBehaviour
         {
             enemySpawner = enemySpawner.GetComponent<EnemySpawner>();
         }
+
+        jiggleForSprite = GetComponentInChildren<JiggleForSprite>();
     }
 
     private void Update()
@@ -476,15 +479,22 @@ public class EnemyMovement : MonoBehaviour
     private IEnumerator Attack(float dba, float recoverFrame)
     {
         isAttacking = true;
+
+        if (jiggleForSprite != null) jiggleForSprite.StartJiggle();
+
         yield return new WaitForSeconds(dba);
 
         if (Hitbox != null) Hitbox.SetActive(true);
 
-        yield return new WaitForSeconds(recoverFrame);
+        yield return new WaitForSeconds(0.2f);
 
         if (Hitbox != null) Hitbox.SetActive(false);
-        isAttacking = false;
+        if (jiggleForSprite != null) jiggleForSprite.StopJiggle();
+
         attackCoroutine = null;
+        yield return new WaitForSeconds(recoverFrame);  
+
+        isAttacking = false;
     }
 
     private void OnDrawGizmosSelected()
