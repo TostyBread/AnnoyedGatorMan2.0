@@ -360,35 +360,11 @@ public class NPCBehavior : MonoBehaviour
             // Start the pause coroutine instead of using Invoke
             StartCoroutine(PauseAfterPlateAcceptance());
 
-            //UI when accept plate (Also added null exception for safety)
-            if (plate.lastHolder != null)
-            {
-                Transform holderTransform = plate.lastHolder.transform;
-
-                if (holderTransform != null && holderTransform.parent != null)
-                {
-                    scoreManager?.AddScore(plate.plateScore, holderTransform.parent.gameObject);
-                }
-                else
-                {
-                    // fallback if no parent exists
-                    scoreManager?.AddScore(plate.plateScore, plate.lastHolder);
-                }
-            }
-            else
-            {
-                // No lastHolder found — fallback logic
-                scoreManager?.AddScore(plate.plateScore, gameObject);
-            }
-
+            //UI when accept plate 
+            scoreManager?.AddScore(plate.plateScore,plate.lastHolder.transform.parent.gameObject);
             if (sanity != null) sanity.RemainSanity += sanity.MaxSanity;
             particleManager?.SpawnParticleOnce();
-
-            if (attachedMenu != null) // Added safety null check (probably won't able to record data until its fixed)
-            {
-                AnalyticManager.Instance?.RecordServeOrderData(attachedMenu.name, npcPatience.patienceDuration - npcPatience.currentPatience);
-            }
-
+            AnalyticManager.Instance.RecordServeOrderData(attachedMenu.name, Mathf.RoundToInt(npcPatience.patienceDuration - npcPatience.currentPatience));
             hasAcceptedPlate = true;
 
             if (angerBehavior != null && angerBehavior.IsAngry)

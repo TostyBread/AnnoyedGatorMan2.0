@@ -40,6 +40,8 @@ public class Fire : MonoBehaviour
         {
             fireSound.volume = audioManager.AdjustedVolume; // Ensure volume is set from AudioManager
         }
+
+        AnalyticManager.Instance.TrackFireInterruption(fireCount);
     }
 
     private IEnumerator SpreadFire()

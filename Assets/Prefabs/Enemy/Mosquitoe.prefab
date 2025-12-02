@@ -380,7 +380,7 @@ MonoBehaviour:
   - {x: -0.18581581, y: -0.24359751, z: 0}
   m_ShapePathHash: 1355788887
   m_Mesh: {fileID: 0}
-  m_InstanceId: 126282
+  m_InstanceId: 98548
   m_LocalBounds:
     m_Center: {x: -0.094779015, y: -0.06393361, z: 0}
     m_Extent: {x: 0.3220625, y: 0.1797936, z: 0}
@@ -663,6 +663,7 @@ GameObject:
   - component: {fileID: 6413938268694708257}
   - component: {fileID: 7868477602834588599}
   - component: {fileID: 6612339255179904903}
+  - component: {fileID: 5816615050450613230}
   m_Layer: 0
   m_Name: Image
   m_TagString: Enemy
@@ -772,3 +773,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1558668271278603332}
+--- !u!114 &5816615050450613230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167212895860456397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0358db4c61fa974a8af11be360f6d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jiggleInterval: 1
+  BiggerTheGameobjectBy: 1.3
+  enableLeftRightJiggle: 0
+  enableUpDownJiggle: 0
+  jiggleRange: 0.5
+  jiggleSpeed: 5
+  enableRotationJiggle: 0
+  rotationAngle: 30
+  spriteGameobject: {fileID: 0}
+  isJiggling: 0

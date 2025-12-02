@@ -34,7 +34,7 @@ public class Warning : MonoBehaviour
             image.enabled = false;
         }
 
-        if (itemSystem == null || itemStateManager == null || target == null)
+        if (itemSystem == null || itemStateManager == null || target == null || itemSystem.isOnPlate)
         {
             Destroy(gameObject);
             return;
@@ -61,12 +61,14 @@ public class Warning : MonoBehaviour
         {
             float t;
 
-            if (!itemSystem.isCooked && !itemSystem.isBurned)
-                t = Mathf.Clamp01(itemSystem.currentCookPoints / itemSystem.cookThreshold);
-            else if (itemSystem.isCooked && !itemSystem.isBurned)
-                t = Mathf.Clamp01(itemSystem.currentCookPoints / itemSystem.burnThreshold);
-            else
-                t = 1f;
+            //if (!itemSystem.isCooked && !itemSystem.isBurned)
+            //    t = Mathf.Clamp01(itemSystem.currentCookPoints / itemSystem.cookThreshold);
+            //else if (itemSystem.isCooked && !itemSystem.isBurned)
+            //    t = Mathf.Clamp01(itemSystem.currentCookPoints / itemSystem.burnThreshold);
+            //else
+            //    t = 1f;
+
+            t = Mathf.Clamp01(itemStateManager.currentHeat / itemStateManager.maxHeat);
 
             // If below threshold → wait and skip flashing
             if (t < flashStartPercent)

@@ -18,7 +18,7 @@ public class JiggleForSprite : MonoBehaviour
     public bool enableRotationJiggle;
     public float rotationAngle = 30f;
 
-    private Vector2 defaultLocalPosition;
+    private Vector2 defaultPosition;
     private Quaternion defaultRotation;
     private Vector2 defaultScale;
 
@@ -33,6 +33,9 @@ public class JiggleForSprite : MonoBehaviour
 
     private void Update()
     {
+        // Store initial transform state
+        defaultPosition = transform.parent.position;
+
         //everything that has jiggle script will jiggle when keycode pressed
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
@@ -47,12 +50,8 @@ public class JiggleForSprite : MonoBehaviour
     {
         StopJiggle(); // Ensure any existing jiggle is properly stopped
 
-        Transform targetTransform = spriteGameobject != null ? spriteGameobject : transform;
-
-        // Store initial transform state
-        defaultLocalPosition = targetTransform.position;
-        defaultRotation = targetTransform.rotation;
-        defaultScale = targetTransform.localScale;
+        defaultRotation = transform.rotation;
+        defaultScale = transform.localScale;
 
         PopUp(BiggerTheGameobjectBy);
         isJiggling = true;
@@ -81,9 +80,9 @@ public class JiggleForSprite : MonoBehaviour
         try
         {
             // Define positions
-            Vector3 leftPos = defaultLocalPosition + Vector2.left * jiggleRange;
-            Vector3 rightPos = defaultLocalPosition + Vector2.right * jiggleRange;
-            Vector3 upPos = defaultLocalPosition + Vector2.up * jiggleRange;
+            Vector3 leftPos = defaultPosition + Vector2.left * jiggleRange;
+            Vector3 rightPos = defaultPosition + Vector2.right * jiggleRange;
+            Vector3 upPos = defaultPosition + Vector2.up * jiggleRange;
 
             // Define rotations
             Quaternion leftRot = Quaternion.Euler(defaultRotation.eulerAngles + new Vector3(0, 0, rotationAngle));
@@ -104,7 +103,7 @@ public class JiggleForSprite : MonoBehaviour
             if (enableLeftRightJiggle)
                 yield return MoveToPosition(rightPos, jiggleSpeed);
             else if (enableUpDownJiggle)
-                yield return MoveToPosition(defaultLocalPosition, jiggleSpeed);
+                yield return MoveToPosition(defaultPosition, jiggleSpeed);
 
             if (enableRotationJiggle)
                 targetTransform.rotation = rightRot;
@@ -112,7 +111,7 @@ public class JiggleForSprite : MonoBehaviour
             yield return new WaitForSeconds(interval);
 
             // Return to center
-            yield return MoveToPosition(defaultLocalPosition, jiggleSpeed);
+            yield return MoveToPosition(defaultPosition, jiggleSpeed);
             targetTransform.rotation = defaultRotation;
 
             yield return new WaitForSeconds(interval);
@@ -147,7 +146,7 @@ public class JiggleForSprite : MonoBehaviour
     {
         Transform targetTransform = spriteGameobject != null ? spriteGameobject : transform;
 
-        targetTransform.position = defaultLocalPosition;
+        targetTransform.position = defaultPosition;
         targetTransform.rotation = defaultRotation;
         targetTransform.localScale = defaultScale;
     }

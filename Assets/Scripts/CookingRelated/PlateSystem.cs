@@ -121,6 +121,13 @@ public class PlateSystem : MonoBehaviour
         item.transform.SetParent(transform); // Attach to plate directly
         item.transform.localPosition = requirement.positionOffset;
         placedItems[requirement] = item;
+
+        TrailRenderer trail = item.GetComponentInChildren<TrailRenderer>();
+        if (trail != null)
+        {
+            trail.emitting = false;
+        }
+
         requirement.isFilled = true;
 
         // Use cached sorting order instead of repeated component lookup

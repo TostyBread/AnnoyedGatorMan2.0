@@ -12,6 +12,18 @@ public class TrailManager : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.emitting = false; // Disable trail emission at the start
                                         // Enable in PlayerThrowManager & ItemPackage
-                                        // Disable in P2PickupSystem & PlayerPickupSystem
+                                        // Disable in P2PickupSystem & PlayerPickupSysetem & PlateSystem
     }
+
+    //private void Update()
+    //{
+    //    if (this.gameObject.transform.parent.parent == true)
+    //    {
+    //        trailRenderer.emitting = false;
+    //    }
+    //    else
+    //    {
+    //        trailRenderer.emitting = true;
+    //    }
+    //}
 }
