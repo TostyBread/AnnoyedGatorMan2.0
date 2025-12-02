@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b049628e1390bd349b56e58129fc0ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 2147483647
+  maxAmmo: 100
   projectilePrefab: {fileID: 9095839057142801652, guid: a8a1df9d1e4ccaa4abba6eca0f29d436, type: 3}
   muzzlePoint: {fileID: 8735748406875732356}
   projectileSpeed: 15
@@ -352,7 +352,7 @@ MonoBehaviour:
   - {x: 0.4395964, y: -1.2088814, z: 0}
   m_ShapePathHash: -161811993
   m_Mesh: {fileID: 0}
-  m_InstanceId: 99906
+  m_InstanceId: 61724
   m_LocalBounds:
     m_Center: {x: 0.029322863, y: -0.36085224, z: 0}
     m_Extent: {x: 0.5044856, y: 1.2734194, z: 0}

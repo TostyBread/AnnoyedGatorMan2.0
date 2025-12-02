@@ -69,6 +69,9 @@ public class PlateSystem : MonoBehaviour
         // Early exit if plate is already complete
         if (isReadyToServe) return;
 
+        // Additional safety check: ensure item is not already attached to any plate
+        if (!isOwnerActive) return;
+
         if (!other.TryGetComponent(out ItemDescriber itemDescriber)) return;
 
         // Additional safety check: ensure item is not already attached to any plate
