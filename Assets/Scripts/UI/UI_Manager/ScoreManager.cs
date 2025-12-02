@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class ScoreManager : MonoBehaviour
     public GameObject[] ConfettiEffect;
 
     public bool gameOver; // for P1 cursor management
+    private float currentLevelPlayedTime; //for data collect
 
     private void Start()
     {
@@ -47,8 +49,8 @@ public class ScoreManager : MonoBehaviour
             }
         }
         
-
         gameOver = false;
+        currentLevelPlayedTime = 0;
     }
 
     private void Update()
@@ -85,12 +87,15 @@ public class ScoreManager : MonoBehaviour
     {
         if (gameOver) return;
 
+        currentLevelPlayedTime += Time.deltaTime;
+
         if (!gameOver && isCleared && timer.RemainTime <= 0)
         {
             //Debug.Log("Level Cleared! Final Score: " + currentScore);
             StartCoroutine(DelayBeforeScreenShow(1f)); // Show win screen after a delay
 
-            AnalyticManager.Instance.RecordGameoverData("Level" + currentLevelIndex, true, currentScore);
+            int playedTime = Mathf.RoundToInt(currentLevelPlayedTime);
+            AnalyticManager.Instance.RecordGameoverData("Level" + currentLevelIndex, true, currentScore, playedTime);
 
             gameOver = true; 
         }
@@ -103,9 +108,10 @@ public class ScoreManager : MonoBehaviour
 
                 UpdateEndScreenScoreText();
                 EnableConfettiEffects();
-
-                AnalyticManager.Instance.RecordGameoverData("Level" + currentLevelIndex, true, currentScore);
             }
+
+            int playedTime = Mathf.RoundToInt(currentLevelPlayedTime);
+            AnalyticManager.Instance.RecordGameoverData("Level" + currentLevelIndex, false, currentScore, playedTime);
 
             gameOver = true;
         }
