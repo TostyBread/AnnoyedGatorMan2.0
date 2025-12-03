@@ -32,7 +32,6 @@ public class EnemySpawner : MonoBehaviour
     public List<Transform> Spawners = new List<Transform>();
 
     public int CountDeadBody = 0;
-    private float spawnSpeedTimer;
 
     public int CountBurntFood = 0;
     public int CountTrashbag = 0;
@@ -42,6 +41,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float ChargeReadyTime;
     [SerializeField] private float ChargeTimer;
     public int currentSpawnedEnemy = 0;
+    public float spawnSpeedTimer;
+    public float timeDecreaseEverySec = 3f;
 
     bool SanityIsEmptyOnce;
 
@@ -173,7 +174,7 @@ public class EnemySpawner : MonoBehaviour
         return;
 
         spawnSpeedTimer += Time.deltaTime;
-        if (spawnSpeedTimer >= 3f)
+        if (spawnSpeedTimer >= timeDecreaseEverySec)
         {
             ChargeReadyTime = ChargeReadyTime - CountDeadBody;
 
