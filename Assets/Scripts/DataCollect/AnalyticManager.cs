@@ -3,6 +3,7 @@ using System.Diagnostics.Tracing;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AnalyticManager : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class AnalyticManager : MonoBehaviour
         isInitialized = true;
     }
 
-    public void RecordGameoverData(string currentLevel, bool win, int currentScore)
+    public void RecordGameoverData(string currentLevel, bool win, int currentScore, int playedTime)
     {
         if (!isInitialized)
         {
@@ -47,13 +48,14 @@ public class AnalyticManager : MonoBehaviour
         {
             { "Level", currentLevel},
             { "Win", win},
-            { "Score", currentScore}
+            { "Score", currentScore},
+            { "Playtime", playedTime}
         };
 
         // Send event
         AnalyticsService.Instance.RecordEvent(myEvent);
 
-        Debug.Log($"[Analytics] GameOver event sent: Level = {currentLevel}, Win = {win}, Score = {currentScore}");
+        Debug.Log($"[Analytics] GameOver event sent: Level = {currentLevel}, Win = {win}, Score = {currentScore}, PlayedTime = {playedTime}");
     }
 
     public void RecordServeOrderData(string orderId, int serveTime)
@@ -81,12 +83,32 @@ public class AnalyticManager : MonoBehaviour
     public void TrackFireInterruption(int fire)
     {
         fireCount = fire;
-        Debug.Log($"[Analytics] Fire tracked: {fireCount}");
+        //Debug.Log($"[Analytics] Fire tracked: {fireCount}");
     }
 
     public void TrackPestInterruption(int pest)
     {
         pestCount = pest;
-        Debug.Log($"[Analytics] Pest tracked: {pestCount}");
+        //Debug.Log($"[Analytics] Pest tracked: {pestCount}");
+    }
+
+    public void TrackTimeSpendOnScreen()
+    {
+        string screenName = SceneManager.GetActiveScene().name;
+
+        int timeOnScreen = 0;
+        timeOnScreen += Mathf.RoundToInt(Time.deltaTime);
+
+        // Create event data payload
+        CustomEvent myEvent = new CustomEvent("TimeSpendOnScreen")
+        {
+            { "ScreenName", screenName},
+            { "TimeOnScreen", timeOnScreen}
+        };
+
+        // Send event
+        AnalyticsService.Instance.RecordEvent(myEvent);
+
+        Debug.Log($"[Analytics] TimeSpendOnScreen event sent: ScreenName = {screenName}, TimeOnScreen = {timeOnScreen}");
     }
 }

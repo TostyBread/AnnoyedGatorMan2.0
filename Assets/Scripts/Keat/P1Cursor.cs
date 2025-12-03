@@ -17,7 +17,7 @@ public class P1Cursor : MonoBehaviour
         scoreManager = FindObjectOfType<ScoreManager>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (scoreManager != null && scoreManager.gameOver)
         {
