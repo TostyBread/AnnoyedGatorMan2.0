@@ -27,8 +27,8 @@ public class EnemyAnimation : MonoBehaviour
     void Update()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        //HandleAnimationFlip();
-        AimForTargetXPos();
+        HandleAnimationFlip();
+        //AimForTargetXPos();
 
         //if (healthManager.currentHealth <= 0)  // Too much warning log, pls implement enemy death animation before uncommenting
         //{
@@ -103,6 +103,7 @@ public class EnemyAnimation : MonoBehaviour
 
     void HandleAttackAni(bool Attacking)
     {
-        animator.SetBool("isAttacking",Attacking);
+        animator.SetBool("isAttacking", Attacking && spriteRenderer.flipX == false);
+        animator.SetBool("isAttackingLeft", Attacking && spriteRenderer.flipX == true);
     }
 }

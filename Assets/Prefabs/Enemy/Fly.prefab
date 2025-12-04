@@ -211,6 +211,7 @@ MonoBehaviour:
   TargetedGrid: {fileID: 0}
   isMoving: 0
   isAttacking: 0
+  pauseAttackAni: 0
   TargetFound: 0
   agent: {fileID: 0}
   currentState: 0
@@ -303,6 +304,8 @@ MonoBehaviour:
   isPlayer2: 0
   isNotPlayer: 0
   isFood: 0
+  healthBarImages: []
+  reviveUI: {fileID: 0}
   isHurt: 0
   isHurtDur: 1
   enemy: 1
@@ -380,7 +383,7 @@ MonoBehaviour:
   - {x: -0.14271069, y: -0.24206352, z: 0}
   m_ShapePathHash: 855299703
   m_Mesh: {fileID: 0}
-  m_InstanceId: 80050
+  m_InstanceId: -635372
   m_LocalBounds:
     m_Center: {x: -0.03698778, y: -0.057355404, z: 0}
     m_Extent: {x: 0.3389039, y: 0.20019245, z: 0}
@@ -624,7 +627,7 @@ MonoBehaviour:
   - {x: 1.1801262, y: -1.235, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 80084
+  m_InstanceId: -635408
   m_LocalBounds:
     m_Center: {x: -0.00000047683716, y: -0.00000011920929, z: 0}
     m_Extent: {x: 1.1801267, y: 1.2349999, z: 0}

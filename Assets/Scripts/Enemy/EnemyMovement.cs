@@ -316,7 +316,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (Target == null) return;
 
-        if (transform.position != Target.transform.position)
+        if (Vector3.Distance(transform.position, Target.transform.position) > 0.1f)
             enemyRotation(Target);
 
         if (!FlyingEnemy && agent != null)
