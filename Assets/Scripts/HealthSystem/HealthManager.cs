@@ -1,8 +1,10 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
+    [Header("Health Setting")]
     public float Health = 20;
     public float currentHealth;
     public float reviveSpeed = 1;
@@ -12,6 +14,11 @@ public class HealthManager : MonoBehaviour
     public bool isPlayer2 = false;
     public bool isNotPlayer = false; // Condition to check whether its a fire instead of player (Chee Seng tolong pls dont ignore ah)
     public bool isFood = false; // Condition to check whether its a food instead of player
+
+    [Header("Show / Hide Healthbar")]
+    public Image[] healthBarImages;
+    private Color healthBarColor;
+    private bool isShowingHealthBar = false;
 
     [Header("Hurt Animation Setting")]
     public bool isHurt = false; // Used for animation to check if player is hurt
@@ -106,11 +113,23 @@ public class HealthManager : MonoBehaviour
         lastHealth = currentHealth;
 
         dialogueManager = FindAnyObjectByType<DialogueManager>();
+
+        //Set health bar visibility into 0
+        if (healthBarImages != null)
+        {
+            foreach (var image in healthBarImages)
+            {
+                healthBarColor = image.color;
+                healthBarColor.a = 0;
+                image.color = healthBarColor;
+            }
+        }
     }
 
     void Update()
     {
         UpdateHealthUI();
+        UpdateHealthVisibility();
 
         if (currentHealth <= 0)
             HandleDeathState();
@@ -121,8 +140,39 @@ public class HealthManager : MonoBehaviour
     private void UpdateHealthUI()
     {
         if (HealthBar == null) return;
+
         float value = currentHealth <= 0 ? reviveTime : currentHealth;
-        HealthBar.fillAmount = value / Health;
+        HealthBar.fillAmount = value / Health;        
+    }
+
+    private void UpdateHealthVisibility()
+    {
+        if (healthBarImages == null) return;
+
+        if (isHurt && !isShowingHealthBar || currentHealth == 0)
+        {
+            //Show healthbar
+            foreach (var image in healthBarImages)
+            {
+                healthBarColor = image.color;
+                healthBarColor.a = 1;
+                image.color = healthBarColor;
+            }
+
+            isShowingHealthBar = true;
+        }
+        else if (!isHurt && isShowingHealthBar)
+        {
+            //Hide healthbar
+            foreach (var image in healthBarImages)
+            {
+                healthBarColor = image.color;
+                healthBarColor.a = 0;
+                image.color = healthBarColor;
+            }
+
+            isShowingHealthBar = false;
+        }
     }
 
     private void HandleDeathState()

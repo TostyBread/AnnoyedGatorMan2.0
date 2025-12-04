@@ -2508,6 +2508,10 @@ MonoBehaviour:
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
+  healthBarImages:
+  - {fileID: 6216953991118658108}
+  - {fileID: 5579932969640971683}
+  - {fileID: 8480611321030595504}
   isHurt: 0
   isHurtDur: 1
   enemy: 0
@@ -4096,6 +4100,10 @@ MonoBehaviour:
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
+  healthBarImages:
+  - {fileID: 4066233696593045505}
+  - {fileID: 2541934335121244062}
+  - {fileID: 1988352051508846989}
   isHurt: 0
   isHurtDur: 1
   enemy: 0
@@ -6354,6 +6362,10 @@ MonoBehaviour:
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
+  healthBarImages:
+  - {fileID: 8717768753190528833}
+  - {fileID: 8828547804662578623}
+  - {fileID: 2874081719088340426}
   isHurt: 0
   isHurtDur: 1
   enemy: 0

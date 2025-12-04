@@ -1926,6 +1926,10 @@ MonoBehaviour:
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
+  healthBarImages:
+  - {fileID: 6778895589608347886}
+  - {fileID: 39903767997615584}
+  - {fileID: 3201080435102853424}
   isHurt: 0
   isHurtDur: 1
   enemy: 0
@@ -5131,6 +5135,10 @@ MonoBehaviour:
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
+  healthBarImages:
+  - {fileID: 4663316333232686542}
+  - {fileID: 7218068746287249636}
+  - {fileID: 765976638433202580}
   isHurt: 0
   isHurtDur: 1
   enemy: 0
@@ -7613,6 +7621,10 @@ MonoBehaviour:
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
+  healthBarImages:
+  - {fileID: 7090639100454540739}
+  - {fileID: 5114915477596334313}
+  - {fileID: 2914150561773584793}
   isHurt: 0
   isHurtDur: 1
   enemy: 0
@@ -7733,7 +7745,7 @@ MonoBehaviour:
   - {x: -0.69258785, y: -1.7510005, z: 0}
   m_ShapePathHash: -1165053405
   m_Mesh: {fileID: 0}
-  m_InstanceId: 60200
+  m_InstanceId: 158334
   m_LocalBounds:
     m_Center: {x: 0.019944191, y: -1.1731375, z: 0}
     m_Extent: {x: 0.8473654, y: 0.6094115, z: 0}
