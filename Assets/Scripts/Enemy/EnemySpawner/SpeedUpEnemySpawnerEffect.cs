@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDieEffect : MonoBehaviour
+public class SpeedUpEnemySpawnerEffect : MonoBehaviour
 {
     public GameObject particle;
     private EnemySpawner enemySpawner;
@@ -10,12 +10,16 @@ public class EnemyDieEffect : MonoBehaviour
 
     private float spawnSpeedTimer;
     private float timeDecreaseEverySec;
+
+    private ItemDescriber itemDescriber;
     // Start is called before the first frame update
     void Start()
     {
         enemySpawner = FindObjectOfType<EnemySpawner>();
 
         timeDecreaseEverySec = enemySpawner.timeDecreaseEverySec;
+
+        itemDescriber = GetComponent<ItemDescriber>();
     }
 
     // Update is called once per frame
@@ -23,18 +27,28 @@ public class EnemyDieEffect : MonoBehaviour
     {
         spawnSpeedTimer = enemySpawner.spawnSpeedTimer;
 
-        if (spawnSpeedTimer >= timeDecreaseEverySec && once == false)
+        if (itemDescriber != null)
         {
-            StartCoroutine(spawnEnemyDieEffect());
+            if (itemDescriber.currentCookingState == ItemDescriber.CookingState.Overcooked && once == false)
+            {
+                StartCoroutine(spawnSpeedUpEnemySpawnerEffect());
+            }
+        }
+        else 
+        {
+            if (spawnSpeedTimer >= timeDecreaseEverySec && once == false)
+            {
+                StartCoroutine(spawnSpeedUpEnemySpawnerEffect());
+            }
         }
     }
 
-    IEnumerator spawnEnemyDieEffect()
+    IEnumerator spawnSpeedUpEnemySpawnerEffect()
     {
         once = true;
         GameObject enemyDieEffect = Instantiate(particle, transform.position, transform.rotation);
+        enemyDieEffect.SetActive(true);
         yield return new WaitForSeconds(enemySpawner.timeDecreaseEverySec);
-
         once = false;
     }
 }

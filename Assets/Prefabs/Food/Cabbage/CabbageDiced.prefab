@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 7054619193670504527}
   - component: {fileID: 1624199148918665938}
   - component: {fileID: 5776566296868764013}
+  - component: {fileID: 2290478166451840512}
   m_Layer: 6
   m_Name: CabbageDiced
   m_TagString: FoodSmall
@@ -184,6 +185,7 @@ Transform:
   - {fileID: 1460065202237946632}
   - {fileID: 3595273970763199675}
   - {fileID: 95348699647951014}
+  - {fileID: 1451998141458192230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5723899018230101381
@@ -246,8 +248,10 @@ MonoBehaviour:
   - {x: 0.06, y: 0, z: 0}
   - {x: 0, y: -0.06, z: 0}
   - {x: 0, y: 0.06, z: 0}
+  currentCookPoints: 0
   isCooked: 0
   isBurned: 0
+  isOnPlate: 0
 --- !u!50 &217809037157316475
 Rigidbody2D:
   serializedVersion: 4
@@ -354,13 +358,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   playSound: 0
-  MaxHeat: 100
+  maxHeat: 100
   currentHeat: 0
   heatCooldown: 0
   BurnAudioName: 
   spawnObject: {fileID: 3065752453048015179, guid: 0455da0f0b8eae24cbcd06630691803f, type: 3}
   weatherManager: {fileID: 0}
   sprite: {fileID: 0}
+--- !u!114 &2290478166451840512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9079222091977042799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1a857425c5df543b0b9e724d602305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 407202624118409377}
 --- !u!1001 &4106327303763895635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -422,4 +439,79 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4156301073542964725, guid: e7ecde363f140484dbcaac832e303cf2, type: 3}
   m_PrefabInstance: {fileID: 4106327303763895635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6427619353170555832
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2812990034407412477}
+    m_Modifications:
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671468350788827929, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_Name
+      value: Move Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671468350788827929, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897742703737906238, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+      propertyPath: currentGameObject
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+--- !u!1 &407202624118409377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6671468350788827929, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+  m_PrefabInstance: {fileID: 6427619353170555832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1451998141458192230 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5554615245920314590, guid: 96668d64654de39429ea2bde6c885319, type: 3}
+  m_PrefabInstance: {fileID: 6427619353170555832}
   m_PrefabAsset: {fileID: 0}

@@ -50,9 +50,8 @@ MonoBehaviour:
   currentLevelIndex: 1
   isCleared: 0
   willUnlockNextLevel: 0
+  Multiplayer: 0
   WinScreen: {fileID: 0}
   LoseScreen: {fileID: 0}
-  ConfettiEffect:
-  - {fileID: 0}
-  - {fileID: 0}
+  ConfettiEffect: []
   gameOver: 0
