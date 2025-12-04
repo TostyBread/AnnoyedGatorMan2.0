@@ -17,6 +17,7 @@ public class HealthManager : MonoBehaviour
 
     [Header("Show / Hide Healthbar")]
     public Image[] healthBarImages;
+    public GameObject reviveUI;
     private Color healthBarColor;
     private bool isShowingHealthBar = false;
 
@@ -124,6 +125,8 @@ public class HealthManager : MonoBehaviour
                 image.color = healthBarColor;
             }
         }
+
+        if (reviveUI != null) reviveUI.SetActive(false);
     }
 
     void Update()
@@ -218,7 +221,9 @@ public class HealthManager : MonoBehaviour
             isDefeated = true;
             sanity.RemainSanity = 0; // Reset sanity when player is defeated
         }
-            
+
+        if (reviveUI != null) reviveUI.SetActive(true);
+
         DisablePlayerControls();
         HandleReviveInput();
     }
@@ -253,6 +258,8 @@ public class HealthManager : MonoBehaviour
             currentHurtDur -= Time.deltaTime; // Decrease hurt duration
             if (currentHurtDur <= 0) isHurt = false; // Reset hurt state when duration ends
         }
+
+        if (reviveUI != null) reviveUI.SetActive(false);
     }
 
     private void HandleReviveInput()
