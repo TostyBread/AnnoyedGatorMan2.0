@@ -6,13 +6,14 @@ public class P1Cursor : MonoBehaviour
 {
     public SpriteRenderer defaultCursor;
 
-    [Header("Hover Settings")]
-    public string[] hoverTags; // Tags to detect on hover
+    //Detact target reference
+    private GameObject player;
+    private DetectTarget detectTarget;
 
     private LevelLoader levelLoader;
     private ScoreManager scoreManager;
-    private Animator animator;
     private bool shouldShowSystemCursor;
+    private Animator animator;
 
     private void Start()
     {
@@ -21,13 +22,18 @@ public class P1Cursor : MonoBehaviour
 
         if (defaultCursor != null)
             animator = defaultCursor.gameObject.GetComponent<Animator>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+            detectTarget = player.GetComponentInChildren<DetectTarget>();
     }
 
     void Update()
     {
         UpdateCursorVisibility();
         UpdateCursorPosition();
-        DetectHover();
+
+        CursorDetactItem();
     }
 
     private void UpdateCursorVisibility()
@@ -53,27 +59,27 @@ public class P1Cursor : MonoBehaviour
         Vector3 worldPos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
         defaultCursor.transform.position = worldPos;
     }
-
-    private void DetectHover()
+    private bool CursorDetactItem()
     {
-        if (hoverTags == null || hoverTags.Length == 0) return;
+        if (detectTarget == null) return true;
 
-        // For 2D objects
-        Vector3 mouseWorldPos = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition();
-        Vector2 mousePos2D = new Vector2(mouseWorldPos.x, mouseWorldPos.y);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D[] hits = Physics2D.OverlapPointAll(mousePos);
 
-        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-        if (hit.collider != null)
+        foreach (var hit in hits)
         {
-            foreach (var tag in hoverTags)
+            foreach (var obj in detectTarget.AllItemInRange)
             {
-                if (hit.collider.CompareTag(tag))
+                if (hit.gameObject == obj)
                 {
-                    Debug.Log("Mouse hovering on: " + hit.collider.name + " with tag: " + tag);
-                    break; // Stop after first match
+                    animator.Play("OnItem_ControllerCursor");
+                    return false;
                 }
             }
         }
+
+        // No hit, reset cursor
+        animator.Play("Normal_ControllerCursor");
+        return true;
     }
 }
