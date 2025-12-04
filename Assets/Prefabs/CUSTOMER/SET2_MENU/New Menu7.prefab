@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -848394684, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
+  m_Sprite: {fileID: -2061360826, guid: 2a205ec4d4e8e5544b49180b33afe5c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -743,7 +743,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -1767247674, guid: 3ea0347d7dd80f2468979d740eb9517d, type: 3}
+  m_Sprite: {fileID: -1346143254, guid: 3ea0347d7dd80f2468979d740eb9517d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1362,7 +1362,7 @@ GameObject:
   - component: {fileID: 8735954798891381949}
   - component: {fileID: 718809174604738212}
   m_Layer: 0
-  m_Name: New Menu3
+  m_Name: New Menu7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   foodIcons:
   - itemID: 3
     iconObject: {fileID: 7036445641566334221}
-  - itemID: 11
+  - itemID: 12
     iconObject: {fileID: 632407094128304952}
   - itemID: 42
     iconObject: {fileID: 4251880050286260966}
