@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -42,7 +43,7 @@ public class ScoreManager : MonoBehaviour
 
         if (levelData != null) levelData.willUnlockNextLevel = willUnlockNextLevel;
 
-        if (ConfettiEffect != null)
+        if (ConfettiEffect != null && ConfettiEffect.Count() > 0)
         {
             foreach (GameObject confetti in ConfettiEffect)
             {

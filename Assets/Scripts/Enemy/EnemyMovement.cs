@@ -42,6 +42,7 @@ public class EnemyMovement : MonoBehaviour
 
     public bool isMoving;
     public bool isAttacking;
+    public bool pauseAttackAni;
     public bool TargetFound;
 
     public NavMeshAgent agent;
@@ -212,10 +213,10 @@ public class EnemyMovement : MonoBehaviour
             rb2d.angularVelocity = 0f; 
         }
 
-        if (transform.localScale.x < 0) //make sure the gameObject Scale.x won't get minus
-        {
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-        }
+        //if (transform.localScale.x < 0) //make sure the gameObject Scale.x won't get minus
+        //{
+        //    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        //}
     }
 
     private void FixedUpdate()
@@ -352,7 +353,11 @@ public class EnemyMovement : MonoBehaviour
         if (enemyMovePoint == null || Target == null) return;
 
         Vector2 direction = Target.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(direction.y, Mathf.Abs(direction.x)) * Mathf.Rad2Deg;
+
+        if (direction.x < 0)
+            angle = 180f - angle;
+
         Quaternion Rotation = Quaternion.Euler(0, 0, angle);
         enemyMovePoint.transform.rotation = Rotation;
     }
@@ -493,9 +498,12 @@ public class EnemyMovement : MonoBehaviour
         if (Hitbox != null) Hitbox.SetActive(false);
         if (jiggleForSprite != null) jiggleForSprite.StopJiggle();
 
+        pauseAttackAni = true;
         attackCoroutine = null;
-        yield return new WaitForSeconds(recoverFrame);  
 
+        yield return new WaitForSeconds(recoverFrame);
+
+        pauseAttackAni = false;
         isAttacking = false;
     }
 
