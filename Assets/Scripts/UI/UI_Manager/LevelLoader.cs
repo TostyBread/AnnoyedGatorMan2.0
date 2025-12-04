@@ -49,9 +49,12 @@ public class LevelLoader : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !isLoading && !transitionManager.isTransitioning)
         {
-            if (!isShowingSettingScreen && !pregameUI.isShowing)
+            if (!isShowingSettingScreen)
             {
-                ShowSettingScreen();
+                if (pregameUI == null || !pregameUI.isShowing)
+                {
+                    ShowSettingScreen();
+                }
             }
             else if (isShowingSettingScreen)
             {
