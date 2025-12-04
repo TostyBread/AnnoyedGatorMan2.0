@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-using Unity.VisualScripting;
 
 public class PregameUI : MonoBehaviour
 {
@@ -34,10 +32,13 @@ public class PregameUI : MonoBehaviour
 
     [Header("References")]
     private WeatherManager weatherManager;
+    private CinematicBar cinematicSystem; // for cinematic bar
 
     void Awake()
     {
         weatherManager = FindObjectOfType<WeatherManager>();
+        // Find by type (if there's only one in the scene)
+        cinematicSystem = FindObjectOfType<CinematicBar>();
 
         EnemySpawner spawner = FindAnyObjectByType<EnemySpawner>();
         if (spawner != null)
@@ -82,6 +83,11 @@ public class PregameUI : MonoBehaviour
 
         if (weatherManager == null) yield break;
 
+        if (cinematicSystem != null)
+        {
+            cinematicSystem.ShowBars();
+        }
+
         isShowing = true;
 
         PregameScreen.SetActive(true);
@@ -118,5 +124,9 @@ public class PregameUI : MonoBehaviour
 
         isShowing = false;
         PregameScreen.SetActive(false);
+        if (cinematicSystem != null)
+        {
+            cinematicSystem.HideBars();
+        }
     }
 }
