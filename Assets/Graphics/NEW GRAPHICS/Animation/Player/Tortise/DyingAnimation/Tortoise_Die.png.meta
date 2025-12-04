@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59eb53b99b19ec745b0d820477bb72d0
+guid: 59120325feecef142918574b3c3e8d62
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,22 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Turtle_Die-3_0
+      name: Tortoise_Die_0
       rect:
         serializedVersion: 2
-        x: 1357
-        y: 343
-        width: 1612
-        height: 771
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 685
+        y: 1238
+        width: 765
+        height: 1065
+      alignment: 9
+      pivot: {x: 0.43, y: 0.64}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5243d68ba4f409144b0c7da7c1c182a2
-      internalID: 1473231299
+      spriteID: 8841d818b76b3dd4aa4f24efe2ba79ad
+      internalID: 75788311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tortoise_Die_1
+      rect:
+        serializedVersion: 2
+        x: 1902
+        y: 1237
+        width: 701
+        height: 939
+      alignment: 9
+      pivot: {x: 0.43, y: 0.7}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea517b6803324c4438e24607b065828b
+      internalID: -1284855102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tortoise_Die_2
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 290
+        width: 1239
+        height: 598
+      alignment: 9
+      pivot: {x: 0.3, y: 1.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fdb5a5a7959a8e47b558209deeb0926
+      internalID: 1574122765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tortoise_Die_3
+      rect:
+        serializedVersion: 2
+        x: 1751
+        y: 292
+        width: 1536
+        height: 572
+      alignment: 9
+      pivot: {x: 0.24, y: 1.14}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 975c0b26090bec84eb341ec500262b37
+      internalID: -2057780029
       vertices: []
       indices: 
       edges: []
@@ -128,13 +191,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Turtle_Die-3_0: 1473231299
-      Turtle_Die-3_1: 1490349915
-      Turtle_Die-3_2: 1189105385
-      Turtle_Die-3_3: -1589453056
-      Turtle_Die-3_4: 1805665810
-      Turtle_Die-3_5: 1267560288
-      Turtle_Die-3_6: -226113023
+      Tortoise_Die_0: 75788311
+      Tortoise_Die_1: -1284855102
+      Tortoise_Die_10: 1265267219
+      Tortoise_Die_11: -700039173
+      Tortoise_Die_12: -317879789
+      Tortoise_Die_2: 1574122765
+      Tortoise_Die_3: -2057780029
+      Tortoise_Die_4: 611266862
+      Tortoise_Die_6: -1018806796
+      Tortoise_Die_8: 1823830987
+      Tortoise_Die_9: 774757888
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
