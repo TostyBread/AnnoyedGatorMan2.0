@@ -25,6 +25,8 @@ public class SpeedUpEnemySpawnerEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemySpawner.currentSpawnedEnemy == enemySpawner.MaxSpawnedEnemy) return;
+
         spawnSpeedTimer = enemySpawner.spawnSpeedTimer;
 
         if (itemDescriber != null)
