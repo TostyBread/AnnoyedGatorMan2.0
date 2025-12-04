@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     [Header("Score setting")]
     public int scoreToClear = 0;
     public int currentScore = 0;
+    public int serveCombo = 0;
 
     //Saparate variable to track who last added the score
     public GameObject lastHolder;
@@ -51,6 +52,7 @@ public class ScoreManager : MonoBehaviour
         
         gameOver = false;
         currentLevelPlayedTime = 0;
+        serveCombo = 0;
     }
 
     private void Update()
@@ -62,14 +64,18 @@ public class ScoreManager : MonoBehaviour
 
         CheckIfLevelCleared();
 
-        if (Input.GetKeyDown(KeyCode.Insert)) currentScore = scoreToClear; // For testing purposes
+        if (Input.GetKeyDown(KeyCode.Insert)) currentScore += scoreToClear; // For testing purposes
     }
 
     public void AddScore(int scoreToAdd, GameObject lastHolder)
     {
-        currentScore += scoreToAdd;
+        serveCombo += 1;
+        currentScore += scoreToAdd + serveCombo;
+
+        // Set holder
         this.lastHolder = lastHolder;
 
+        // Add score to last holder
         if (lastHolder.name == "Player1")
         {
             player1Score += scoreToAdd;
@@ -78,9 +84,6 @@ public class ScoreManager : MonoBehaviour
         {
             player2Score += scoreToAdd;
         }
-
-        Debug.Log("Current Player1 Score: " + player1Score);
-        Debug.Log("Current Player2 Score: " + player2Score);
     }
 
     private void CheckIfLevelCleared()

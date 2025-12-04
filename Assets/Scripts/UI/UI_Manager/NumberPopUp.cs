@@ -11,8 +11,11 @@ public class NumberPopUp : MonoBehaviour
 
     [Header("References")]
     public GameObject numberGameObject;
+    public GameObject bonusGameObject;
+
     private TMP_Text servedCustomerText;
-    private Animator animaator;
+    private TMP_Text bonusText;
+    private Animator animator;
 
     private float currentMoveTime;
     private Coroutine currentCoroutine;
@@ -26,10 +29,12 @@ public class NumberPopUp : MonoBehaviour
         jiggle = GetComponent<Jiggle>();
         scoreManager = FindObjectOfType<ScoreManager>();
         if (numberGameObject != null) { servedCustomerText = numberGameObject.GetComponentInChildren<TMP_Text>(); }
-        animaator = GetComponentInChildren<Animator>();
+        if (bonusGameObject != null) { bonusText = bonusGameObject.GetComponentInChildren<TMP_Text>(); }
+        animator = GetComponentInChildren<Animator>();
 
         initialPosition = transform.position;
         numberGameObject.gameObject.SetActive(false);
+        bonusGameObject.gameObject.SetActive(false);
     }
 
     void Update()
@@ -55,12 +60,19 @@ public class NumberPopUp : MonoBehaviour
         jiggle.StartJiggle();
 
         AudioManager.Instance.PlaySound("KaChing", transform.position); // Play SFX
+
         // Reset position and state
         initialPosition = transform.position;
         numberGameObject.transform.position = initialPosition;
+
+        // Update score into TMP_text
         servedCustomerText.text = scoreManager.currentScore.ToString();
+        bonusText.text = scoreManager.serveCombo.ToString();
+
+        // Show score
         numberGameObject.gameObject.SetActive(true);
-        animaator.SetTrigger("ScoreUp");
+        bonusGameObject.gameObject.SetActive(true);
+        animator.SetTrigger("ScoreUp");
 
         currentMoveTime = 0f;
 
@@ -78,5 +90,6 @@ public class NumberPopUp : MonoBehaviour
     {
         yield return new WaitForSeconds(moveDuration + fixedDisplayTime);
         numberGameObject.gameObject.SetActive(false);
+        bonusGameObject.gameObject.SetActive(false);
     }
 }

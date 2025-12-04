@@ -5,16 +5,18 @@ using UnityEngine;
 public class P1Cursor : MonoBehaviour
 {
     public SpriteRenderer defaultCursor;
-    public SpriteRenderer interactCursor;
 
     private LevelLoader levelLoader;
     private ScoreManager scoreManager;
+    private Animator animator;
     private bool shouldShowSystemCursor;
 
     private void Start()
     {
         levelLoader = FindObjectOfType<LevelLoader>();
         scoreManager = FindObjectOfType<ScoreManager>();
+
+        if (defaultCursor != null) animator = defaultCursor.gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -34,6 +36,5 @@ public class P1Cursor : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10f; // adjust based on camera distance
         defaultCursor.transform.position = ScreenToWorldPointMouse.Instance.GetMouseWorldPosition(); // Reference existing script to reduce redundancy.
-
     }
 }
