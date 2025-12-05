@@ -135,7 +135,7 @@ public class EnemySpawner : MonoBehaviour
             spawnSpeedTimer += Time.deltaTime;
         }
 
-        if( AnalyticManager.Instance == null)
+        if( AnalyticManager.Instance != null)
         AnalyticManager.Instance.TrackPestInterruption(currentSpawnedEnemy);
     }
 

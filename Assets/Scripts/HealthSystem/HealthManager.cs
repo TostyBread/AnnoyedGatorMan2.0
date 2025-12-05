@@ -268,6 +268,11 @@ public class HealthManager : MonoBehaviour
         if (Input.GetKeyDown(reviveBoostKey))
         {
             reviveTime += reviveSpeed / 2;
+
+            if (deformer != null)
+            {
+                deformer.TriggerShake(0.6f, 10f, 0.2f);
+            }
         }
 
         if (reviveTime >= Health)

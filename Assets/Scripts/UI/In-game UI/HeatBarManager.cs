@@ -3,67 +3,84 @@ using UnityEngine;
 
 public class HeatBarManager : MonoBehaviour
 {
-    public GameObject heatBarPrefab; // The prefab for the heat bar
-    public GameObject warningPrefab; // The prefab for the warning
+    public GameObject heatBarPrefab;   // Heat bar UI
+    public GameObject warningPrefab;   // Warning UI
 
     private Dictionary<GameObject, GameObject> spawnedBars = new Dictionary<GameObject, GameObject>();
+    private Dictionary<GameObject, GameObject> spawnedWarnings = new Dictionary<GameObject, GameObject>();
 
     void Update()
     {
-        // Find all cookable items
         GameObject[] cookableItems = GameObject.FindGameObjectsWithTag("FoodSmall");
 
         foreach (GameObject item in cookableItems)
         {
+            if (!spawnedBars.ContainsKey(item))
+                SpawnHeatBarForItem(item);
 
-            // Skip if this item already has a bar
-            if (spawnedBars.ContainsKey(item)) continue;
-
-            SpawnHeatBarForItem(item);
-
-            if (warningPrefab == null) return;
-            GameObject warningInstance = Instantiate(warningPrefab, transform);
-
-            Warning warning = warningInstance.GetComponent<Warning>();
-            warning.target = item.transform;
+            if (!spawnedWarnings.ContainsKey(item))
+                SpawnWarningForItem(item);
         }
 
-        RemoveHeatBar();
+        CleanupDestroyedItems();
     }
 
     private void SpawnHeatBarForItem(GameObject item)
     {
         if (heatBarPrefab == null) return;
 
-        // Instantiate heat bar as a child of HeatBarManager
         GameObject heatBarInstance = Instantiate(heatBarPrefab, transform);
 
-        // Configure HeatBar script
         HeatBar heatBar = heatBarInstance.GetComponent<HeatBar>();
-        heatBar.target = item.transform;             // The item it follows
+        heatBar.target = item.transform;
 
-        // Start empty
         if (heatBar.bar != null)
             heatBar.bar.fillAmount = 0f;
 
-        // Track it to avoid duplicates
         spawnedBars.Add(item, heatBarInstance);
     }
 
-    private void RemoveHeatBar()
+    private void SpawnWarningForItem(GameObject item)
     {
-        // Cleanup destroyed items
+        if (warningPrefab == null) return;
+
+        GameObject warningInstance = Instantiate(warningPrefab, transform);
+
+        Warning warning = warningInstance.GetComponent<Warning>();
+        warning.target = item.transform;
+
+        spawnedWarnings.Add(item, warningInstance);
+    }
+
+    private void CleanupDestroyedItems()
+    {
         List<GameObject> toRemove = new List<GameObject>();
 
+        // Find items that got destroyed
         foreach (var kvp in spawnedBars)
-            if (kvp.Key == null) toRemove.Add(kvp.Key);
-
-        foreach (var key in toRemove)
         {
-            if (spawnedBars[key] != null)
-                Destroy(spawnedBars[key]);
+            if (kvp.Key == null)
+                toRemove.Add(kvp.Key);
+        }
 
+        // Remove HeatBar + Warning
+        foreach (GameObject key in toRemove)
+        {
+            // Remove heat bar
+            if (spawnedBars.TryGetValue(key, out GameObject bar))
+            {
+                if (bar != null)
+                    Destroy(bar);
+            }
             spawnedBars.Remove(key);
+
+            // Remove warning
+            if (spawnedWarnings.TryGetValue(key, out GameObject warning))
+            {
+                if (warning != null)
+                    Destroy(warning);
+            }
+            spawnedWarnings.Remove(key);
         }
     }
 }

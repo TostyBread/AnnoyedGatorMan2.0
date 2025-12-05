@@ -91,5 +91,5 @@ MonoBehaviour:
   target: {fileID: 0}
   flashStartPercent: 0.5
   maxFlashInterval: 0.5
-  minFlashInterval: 0.1
+  minFlashInterval: 0.2
   flashInterval: 1

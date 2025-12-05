@@ -486,6 +486,7 @@ public class EnemyMovement : MonoBehaviour
     private IEnumerator Attack(float dba, float recoverFrame)
     {
         isAttacking = true;
+        pauseAttackAni = true;
 
         if (jiggleForSprite != null) jiggleForSprite.StartJiggle();
 
@@ -498,13 +499,12 @@ public class EnemyMovement : MonoBehaviour
         if (Hitbox != null) Hitbox.SetActive(false);
         if (jiggleForSprite != null) jiggleForSprite.StopJiggle();
 
-        pauseAttackAni = true;
-        attackCoroutine = null;
 
         yield return new WaitForSeconds(recoverFrame);
 
         pauseAttackAni = false;
         isAttacking = false;
+        attackCoroutine = null;
     }
 
     private void OnDrawGizmosSelected()
