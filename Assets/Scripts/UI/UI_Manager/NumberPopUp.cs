@@ -28,13 +28,21 @@ public class NumberPopUp : MonoBehaviour
     {
         jiggle = GetComponent<Jiggle>();
         scoreManager = FindObjectOfType<ScoreManager>();
-        if (numberGameObject != null) { servedCustomerText = numberGameObject.GetComponentInChildren<TMP_Text>(); }
-        if (bonusGameObject != null) { bonusText = bonusGameObject.GetComponentInChildren<TMP_Text>(); }
-        animator = GetComponentInChildren<Animator>();
 
+        if (numberGameObject != null) 
+        { 
+            servedCustomerText = numberGameObject.GetComponentInChildren<TMP_Text>();
+            numberGameObject.gameObject.SetActive(false);
+        }
+
+        if (bonusGameObject != null)
+        { 
+            bonusText = bonusGameObject.GetComponentInChildren<TMP_Text>();
+            bonusGameObject.gameObject.SetActive(false);
+        }
+
+        animator = GetComponentInChildren<Animator>();
         initialPosition = transform.position;
-        numberGameObject.gameObject.SetActive(false);
-        bonusGameObject.gameObject.SetActive(false);
     }
 
     void Update()
@@ -67,11 +75,11 @@ public class NumberPopUp : MonoBehaviour
 
         // Update score into TMP_text
         servedCustomerText.text = scoreManager.currentScore.ToString();
-        bonusText.text = scoreManager.serveCombo.ToString();
+        if (bonusText != null) bonusText.text = scoreManager.serveCombo.ToString();
 
         // Show score
         numberGameObject.gameObject.SetActive(true);
-        bonusGameObject.gameObject.SetActive(true);
+        if (bonusText != null) bonusGameObject.gameObject.SetActive(true);
         animator.SetTrigger("ScoreUp");
 
         currentMoveTime = 0f;
@@ -90,6 +98,6 @@ public class NumberPopUp : MonoBehaviour
     {
         yield return new WaitForSeconds(moveDuration + fixedDisplayTime);
         numberGameObject.gameObject.SetActive(false);
-        bonusGameObject.gameObject.SetActive(false);
+        if (bonusText != null) bonusGameObject.gameObject.SetActive(false);
     }
 }
