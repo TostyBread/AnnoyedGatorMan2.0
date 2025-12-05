@@ -14,7 +14,7 @@ public class Warning : MonoBehaviour
 
     [Header("Flash Speed")]
     [SerializeField] private float maxFlashInterval = 1f;   // slow flashing
-    [SerializeField] private float minFlashInterval = 0.1f; // fast flashing
+    [SerializeField] private float minFlashInterval = 1f; // fast flashing
 
     [Header("Reference")]
     public float flashInterval = 1f;
@@ -93,5 +93,4 @@ public class Warning : MonoBehaviour
             yield return new WaitForSeconds(flashDelay);         
         }
     }
-
 }
