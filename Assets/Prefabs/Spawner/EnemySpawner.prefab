@@ -548,7 +548,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 90
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &4819790973540233274
 MonoBehaviour:
@@ -741,6 +741,8 @@ MonoBehaviour:
   ChargeReadyTime: 0
   ChargeTimer: 0
   currentSpawnedEnemy: 0
+  spawnSpeedTimer: 0
+  timeDecreaseEverySec: 3
   spawner: {fileID: 0}
   weatherManager: {fileID: 0}
   EnemyForCurrentWeather: {fileID: 0}

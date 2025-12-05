@@ -16,6 +16,7 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private GameObject settingScreen;
     [SerializeField] private GameObject ShaderScreen;
     public bool isShowingSettingScreen = false;
+    private PregameUI pregameUI;
 
     [Header("Slider")]
     [SerializeField] private Slider loadingSlider;
@@ -34,6 +35,7 @@ public class LevelLoader : MonoBehaviour
         transitionManager = FindObjectOfType<TransitionManager>();
         //clickerDetector = FindObjectOfType<ClickerDetector>();
         pauseManager = FindObjectOfType<PauseManager>();
+        pregameUI = FindObjectOfType<PregameUI>();
 
         if (mainMenu) mainMenu.SetActive(true);
         if (loadingScreen) loadingScreen.SetActive(false);
@@ -45,17 +47,20 @@ public class LevelLoader : MonoBehaviour
 
     private void Update()
     {
-        if (settingScreen != null)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isLoading && !transitionManager.isTransitioning)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !isLoading && !transitionManager.isTransitioning && !isShowingSettingScreen)
+            if (!isShowingSettingScreen)
             {
-                ShowSettingScreen();
+                if (pregameUI == null || !pregameUI.isShowing)
+                {
+                    ShowSettingScreen();
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.Escape) && !isLoading && !transitionManager.isTransitioning && isShowingSettingScreen)
+            else if (isShowingSettingScreen)
             {
                 HideSettingtScreen();
             }
-        }      
+        }
     }
 
     public void LoadLevelButton(string levelToLoad)

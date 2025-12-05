@@ -127,9 +127,15 @@ public class EnemySpawner : MonoBehaviour
         }
 
         CountObstacleObjectInGame();
-        SpeedUpEnemySpawn();
         SpawnEnemyWithTimer();
 
+        //SpeedUpEnemySpawn();
+        if (currentSpawnedEnemy < MaxSpawnedEnemy)
+        {
+            spawnSpeedTimer += Time.deltaTime;
+        }
+
+        if( AnalyticManager.Instance == null)
         AnalyticManager.Instance.TrackPestInterruption(currentSpawnedEnemy);
     }
 
@@ -168,10 +174,10 @@ public class EnemySpawner : MonoBehaviour
         CountTotalObstacleObject = CountBurntFood + CountDeadBody + CountTrashbag;
     }
 
-    void SpeedUpEnemySpawn() //ChargeReadyTime will decrease every 3 second;
+    public void SpeedUpEnemySpawn() //ChargeReadyTime will decrease every 3 second;
     {
         if (currentSpawnedEnemy == MaxSpawnedEnemy)
-        return;
+            return;
 
         spawnSpeedTimer += Time.deltaTime;
         if (spawnSpeedTimer >= timeDecreaseEverySec)
@@ -185,6 +191,20 @@ public class EnemySpawner : MonoBehaviour
             spawnSpeedTimer = 0f;
         }
     }
+
+    public void EnemySpeedUpEnemySpawn()
+    {
+        ChargeReadyTime = ChargeReadyTime - 1;
+    }
+    public void TrashbagSpeedUpEnemySpawn()
+    {
+        ChargeReadyTime = ChargeReadyTime - 5;
+    }
+    public void BurntFoodSpeedUpEnemySpawn()
+    {
+        ChargeReadyTime = ChargeReadyTime - 2;
+    }
+
 
     void SpawnEnemyWithTimer()
     {

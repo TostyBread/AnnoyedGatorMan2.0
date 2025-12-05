@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346769112673174760}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.10000038, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -314,7 +314,7 @@ MonoBehaviour:
   - {x: -6.2044983, y: -2.5438144, z: 0}
   m_ShapePathHash: 365628945
   m_Mesh: {fileID: 0}
-  m_InstanceId: 98130
+  m_InstanceId: -466120
   m_LocalBounds:
     m_Center: {x: -0.048265457, y: 0.031505585, z: 0}
     m_Extent: {x: 8.45625, y: 8.453963, z: 0}
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3808879903531677094}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0358db4c61fa974a8af11be360f6d7d, type: 3}
   m_Name: 
@@ -543,6 +543,7 @@ MonoBehaviour:
   TargetedGrid: {fileID: 0}
   isMoving: 0
   isAttacking: 0
+  pauseAttackAni: 0
   TargetFound: 0
   agent: {fileID: 0}
   currentState: 0
@@ -635,6 +636,8 @@ MonoBehaviour:
   isPlayer2: 0
   isNotPlayer: 0
   isFood: 0
+  healthBarImages: []
+  reviveUI: {fileID: 0}
   isHurt: 0
   isHurtDur: 1
   enemy: 1
@@ -713,7 +716,7 @@ MonoBehaviour:
   - {x: 0.2035799, y: -0.4984796, z: 0}
   m_ShapePathHash: -855611483
   m_Mesh: {fileID: 0}
-  m_InstanceId: 98136
+  m_InstanceId: -466084
   m_LocalBounds:
     m_Center: {x: -0.117797375, y: -0.25698888, z: 0}
     m_Extent: {x: 0.784987, y: 0.25754726, z: 0}
@@ -745,8 +748,8 @@ Transform:
   m_GameObject: {fileID: 9176418919688273743}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.4, z: 1}
+  m_LocalPosition: {x: 0.7999996, y: 0, z: 0}
+  m_LocalScale: {x: 0.20000002, y: 0.40000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8215442991627920367}
