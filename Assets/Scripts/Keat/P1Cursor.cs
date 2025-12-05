@@ -7,13 +7,19 @@ public class P1Cursor : MonoBehaviour
     public SpriteRenderer defaultCursor;
 
     //Detact target reference
-    private GameObject player;
+    public GameObject targetPlayer;
+    public List<GameObject> childInTargetPlayer = new List<GameObject>();
+    public GameObject player;
+    public Transform playerWieldingHand;
+
+    private PlayerInputManager playerInputManager;
     private DetectTarget detectTarget;
 
     private LevelLoader levelLoader;
     private ScoreManager scoreManager;
     private bool shouldShowSystemCursor;
     private Animator animator;
+
 
     private void Start()
     {
@@ -23,9 +29,33 @@ public class P1Cursor : MonoBehaviour
         if (defaultCursor != null)
             animator = defaultCursor.gameObject.GetComponent<Animator>();
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        targetPlayer = transform.parent.gameObject;
+        if (targetPlayer != null)
+        {
+            foreach (Transform item in targetPlayer.transform.GetComponentsInChildren<Transform>())
+            {
+                if (item.name.Contains("New_"))
+                {
+                    player = item.gameObject;
+                    break;
+                }
+            }
+        }
+
         if (player != null)
+        {
             detectTarget = player.GetComponentInChildren<DetectTarget>();
+            playerInputManager = player.GetComponent<PlayerInputManager>();
+
+            foreach (Transform item in player.transform.GetComponentsInChildren<Transform>())
+            {
+                if (item.name == "Wielding_Hand")
+                {
+                    playerWieldingHand = item;
+                    break;
+                }
+            }
+        }
     }
 
     void Update()
@@ -62,6 +92,7 @@ public class P1Cursor : MonoBehaviour
     private bool CursorDetactItem()
     {
         if (detectTarget == null) return true;
+        if (playerInputManager.canThrow == false && playerWieldingHand.childCount > 0) { animator.Play("CannotThrow_Cursor"); return(true); }
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D[] hits = Physics2D.OverlapPointAll(mousePos);
