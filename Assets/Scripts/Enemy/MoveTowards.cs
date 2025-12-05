@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveTowards : MonoBehaviour
 {
+    private Dumpster dumpster;
     public Transform Target;
     private Jiggle dumpsterJiggle;
     private EnemySpawner enemySpawner;
@@ -21,13 +22,18 @@ public class MoveTowards : MonoBehaviour
     void Start()
     {
         transform.parent = null;
-
-        if (Target == null )
-        Target = FindAnyObjectByType<Dumpster>().transform;
-
-        dumpsterJiggle = Target.GetComponents<Jiggle>()[1];
-
+        dumpster = FindAnyObjectByType<Dumpster>(); 
         enemySpawner = FindObjectOfType<EnemySpawner>();
+
+        if (Target == null && dumpster != null) 
+        {
+            Target = dumpster.transform;
+            dumpsterJiggle = Target.GetComponents<Jiggle>()[1];
+        }
+
+
+        if (Target == null)
+            Destroy(gameObject);
     }
 
     // Update is called once per frame

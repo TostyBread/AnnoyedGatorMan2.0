@@ -12,20 +12,32 @@ public class SpeedUpEnemySpawnerEffect : MonoBehaviour
     private float timeDecreaseEverySec;
 
     private ItemDescriber itemDescriber;
+    private Dumpster Target;
     // Start is called before the first frame update
     void Start()
     {
         enemySpawner = FindObjectOfType<EnemySpawner>();
 
-        timeDecreaseEverySec = enemySpawner.timeDecreaseEverySec;
+        if (enemySpawner != null)
+        {
+            timeDecreaseEverySec = enemySpawner.timeDecreaseEverySec;
+        }
 
         itemDescriber = GetComponent<ItemDescriber>();
+
+        Target = FindAnyObjectByType<Dumpster>();
+
+        if (Target == null)
+        { 
+            this.gameObject.GetComponent<SpeedUpEnemySpawnerEffect>().enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemySpawner.currentSpawnedEnemy == enemySpawner.MaxSpawnedEnemy) return;
+        if (enemySpawner == null) return;
+        if(enemySpawner.currentSpawnedEnemy == enemySpawner.MaxSpawnedEnemy) return;
 
         spawnSpeedTimer = enemySpawner.spawnSpeedTimer;
 

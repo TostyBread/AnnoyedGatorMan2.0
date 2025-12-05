@@ -3369,7 +3369,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9204392779161731895}
@@ -4627,8 +4627,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 946634841463595952}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7368,7 +7368,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3455229110181704637}
@@ -8496,7 +8496,7 @@ MonoBehaviour:
   - {x: -0.69258785, y: -1.7510005, z: 0}
   m_ShapePathHash: -1165053405
   m_Mesh: {fileID: 0}
-  m_InstanceId: 282834
+  m_InstanceId: 98258
   m_LocalBounds:
     m_Center: {x: 0.019944191, y: -1.1731375, z: 0}
     m_Extent: {x: 0.8473654, y: 0.6094115, z: 0}
