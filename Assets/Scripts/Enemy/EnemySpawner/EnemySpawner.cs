@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject EnemyForCurrentWeather;
 
     [SerializeField] private bool stopAndHideUiBar;
-
+    private bool playSoundOnce;
  
     // Start is called before the first frame update
     void Start()
@@ -278,15 +278,34 @@ public class EnemySpawner : MonoBehaviour
             if (EnemySpawnEffectPos != null)
             { enemyeffect = Instantiate(EnemySpawnEffect, EnemySpawnEffectPos.position, EnemySpawnEffectPos.rotation); }
             else
-            { enemyeffect = Instantiate(EnemySpawnEffect, dumpsterPos.position, dumpsterPos.rotation); }
+            { enemyeffect = Instantiate(EnemySpawnEffect, dumpsterPos.position, dumpsterPos.rotation); } //spawn enemy spawn effect here
+
+            if (AudioManager.Instance != null && !playSoundOnce) //play audio here
+            {
+                playSoundOnce = true;
+
+                int a = Random.Range(0, 2);
+                if (a == 0)
+                    AudioManager.Instance.PlaySound("EnemySpawnSound");
+                else
+                    AudioManager.Instance.PlaySound("EnemySpawnSound1");
+
+                StartCoroutine(ResetPlaySound());
+            }
 
             EnemyEffect enemyEffectMoveTowards = enemyeffect.GetComponent<EnemyEffect>();
             enemyEffectMoveTowards.Target = targetSpawner;
         }
         else if (EnemySpawnEffect == null)
         {
-            GameObject enemy = Instantiate(EnemyForCurrentWeather, targetSpawner.position, targetSpawner.rotation);//Spawn enemy here
+            GameObject enemy = Instantiate(EnemyForCurrentWeather, targetSpawner.position, targetSpawner.rotation); //Spawn enemy here if EnemySpawnEffect == null
         }
+    }
+
+    private IEnumerator ResetPlaySound()
+    {
+        yield return new WaitForSeconds(0.2f);
+        playSoundOnce = false;
     }
 
     GameObject GetEnemyByWeather()
