@@ -76,7 +76,7 @@ MonoBehaviour:
     musicClip: {fileID: 8300000, guid: 769d9c0d02dac7e43a77e5e1301ccc85, type: 3}
     volume: 1
     fadeTime: 1
-  defaultMusicClip: {fileID: 0}
+  defaultMusicClip: {fileID: 8300000, guid: 769d9c0d02dac7e43a77e5e1301ccc85, type: 3}
   defaultVolume: 0
   defaultFadeTime: 0
   allowSceneToInterruptSpecial: 1
@@ -210,6 +210,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0969f44e9b8a7f244bbfee57cbe47263, type: 3}
   - {fileID: 8300000, guid: 436cc64e5002a2a489a34cb8458f960c, type: 3}
   - {fileID: 8300000, guid: 4f6af54df85358d499b7f9dc7f36c57e, type: 3}
+  - {fileID: 8300000, guid: 9fdd173a04948ee43b2408d3c0c010e9, type: 3}
   - {fileID: 8300000, guid: 18f7db5b3f838fd4c9c7b1f9f0ec2116, type: 3}
   - {fileID: 8300000, guid: f353536626f626441bacce51c3b2b3a3, type: 3}
   - {fileID: 8300000, guid: e5285ab44de69d642b70d54c9ce149e7, type: 3}
@@ -225,6 +226,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 25033f7199a0c7243855a47e61740933, type: 3}
   - {fileID: 8300000, guid: d90f4acf4e9921441bdafc7d4c93f241, type: 3}
   - {fileID: 8300000, guid: 651a9ea598537fb44833e40e7f4c640d, type: 3}
+  - {fileID: 8300000, guid: 2c113c1567d505340bf65fa9968b620c, type: 3}
+  - {fileID: 8300000, guid: 85b785f55e0641a4984b33aef2d56c03, type: 3}
+  - {fileID: 8300000, guid: 45c21b4deb7d375409b8c219db7e91d5, type: 3}
 --- !u!1 &7581074832765092307
 GameObject:
   m_ObjectHideFlags: 0
