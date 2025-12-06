@@ -28,6 +28,12 @@ public class NPCAngerBehavior : MonoBehaviour
     [Tooltip("How often to recalculate closest player during rapid fire (every N shots)")]
     public int targetUpdateFrequency = 3;
 
+    [Header("Shout Mode Weights (percent or relative weight)")]
+    [Range(0f, 1f)] public float singleWeight = 0.25f;
+    [Range(0f, 1f)] public float burstWeight = 0.25f;
+    [Range(0f, 1f)] public float rapidFireWeight = 0.25f;
+    [Range(0f, 1f)] public float bigProjectileWeight = 0.25f;
+
     private int hitCount = 0;
     private bool isAngry = false;
     private Coroutine shoutRoutine;
@@ -145,7 +151,7 @@ public class NPCAngerBehavior : MonoBehaviour
 
         if (!hasShoutModeSet)
         {
-            shoutMode = (ShoutMode)Random.Range(0, System.Enum.GetValues(typeof(ShoutMode)).Length);
+            shoutMode = GetWeightedShoutMode();
             hasShoutModeSet = true;
         }
 
@@ -157,6 +163,33 @@ public class NPCAngerBehavior : MonoBehaviour
         if (angerTimerRoutine != null)
             StopCoroutine(angerTimerRoutine);
         angerTimerRoutine = StartCoroutine(AngerTimerRoutine());
+    }
+
+    private ShoutMode GetWeightedShoutMode()
+    {
+        float total = singleWeight + burstWeight + rapidFireWeight + bigProjectileWeight;
+
+        if (total <= 0f)
+        {
+            // Fallback: avoid divide-by-zero, pick random
+            return (ShoutMode)Random.Range(0, 4);
+        }
+
+        // Normalize into 0–1 range
+        float roll = Random.value * total;
+
+        if (roll < singleWeight)
+            return ShoutMode.Single;
+
+        roll -= singleWeight;
+        if (roll < burstWeight)
+            return ShoutMode.Burst;
+
+        roll -= burstWeight;
+        if (roll < rapidFireWeight)
+            return ShoutMode.RapidFire;
+
+        return ShoutMode.BigProjectile;
     }
 
     public void RegisterHit(GameObject source)
