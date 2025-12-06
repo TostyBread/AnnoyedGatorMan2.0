@@ -106,6 +106,7 @@ public class ItemSpawner : MonoBehaviour
             return;
         }
 
+        AudioManager.Instance.PlaySound("weapondrop1", transform.position);
         GameObject spawned = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
 
         // STEP 3 — Hook trackedObject to the spawned instance:
