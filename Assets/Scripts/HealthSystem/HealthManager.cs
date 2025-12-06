@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +13,7 @@ public class HealthManager : MonoBehaviour
     public bool isPlayer2 = false;
     public bool isNotPlayer = false; // Condition to check whether its a fire instead of player (Chee Seng tolong pls dont ignore ah)
     public bool isFood = false; // Condition to check whether its a food instead of player
+    public bool isFire = false; // Condition to check whether its a fire instead of player
 
     [Header("Show / Hide Healthbar")]
     public Image[] healthBarImages;
@@ -392,7 +392,15 @@ public class HealthManager : MonoBehaviour
         {
             deformer.TriggerShake(0.9f, 10f, 0.2f);
         }
-        currentHealth -= damage;
+        
+        if (isFire && source.CompareTag("Fist")) // Reduced damage if fire is damage by fist
+        {
+            currentHealth -= damage / 40f;
+        }
+        else
+        {
+            currentHealth -= damage;
+        }
         damageReceived = damage;
     }
 }

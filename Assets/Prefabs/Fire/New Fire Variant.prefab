@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2704018642547204201, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.728569
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2704018642547204201, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.991338
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2704018642547204201, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2704018642547204201, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -51,14 +51,6 @@ PrefabInstance:
     - target: {fileID: 2803993938104900538, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
       propertyPath: m_Name
       value: New Fire Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 5845081187944691371, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073913075650183365, guid: 508cf71a1d5a52d4ca7d7aea29c62dd8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

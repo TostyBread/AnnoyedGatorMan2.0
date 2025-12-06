@@ -99,7 +99,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 85459464
+    m_Bits: 85459456
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -193,8 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d33743a5a8c41f43a7e09682b666a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 1
-  currentHealth: 0
+  Health: 2
+  currentHealth: 2
   reviveSpeed: 0
   damageReceived: 0
   HealthBar: {fileID: 0}
@@ -202,6 +202,9 @@ MonoBehaviour:
   isPlayer2: 0
   isNotPlayer: 1
   isFood: 0
+  isFire: 1
+  healthBarImages: []
+  reviveUI: {fileID: 0}
   isHurt: 0
   isHurtDur: 1
   enemy: 0

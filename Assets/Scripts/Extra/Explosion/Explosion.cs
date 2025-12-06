@@ -9,13 +9,13 @@ public class Explosion : MonoBehaviour
     [Header("Reference")]
     public Animator animator;
     public CapsuleCollider2D heatCollider;
-    private CapsuleCollider2D capsuleCollider2D;
+    public CapsuleCollider2D damageCollider;
     private bool soundPlayed;
 
     void Start()
     {
         initialScale = transform.localScale;
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        damageCollider = GetComponent<CapsuleCollider2D>();
         soundPlayed = false;
 
         if (animator != null)
@@ -31,11 +31,11 @@ public class Explosion : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
-        if (heatCollider != null) heatCollider.size = capsuleCollider2D.size;
+        if (heatCollider != null) heatCollider.size = damageCollider.size;
 
         // Linearly scale the collider instead of exponential growth
-        float scaleFactor = 1.2f * Time.deltaTime; // Adjust this as needed
-        capsuleCollider2D.size += new Vector2(scaleFactor, scaleFactor);
+        float scaleFactor = 15f * Time.deltaTime; // Adjust this as needed
+        damageCollider.size += new Vector2(scaleFactor, scaleFactor);
 
         if (currentTime >= animationLength)
         {
@@ -55,7 +55,7 @@ public class Explosion : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("AudioManager instance not found! Cannot play explosion sound.");
+            //Debug.LogWarning("AudioManager instance not found! Cannot play explosion sound.");
         }
     }
 }
