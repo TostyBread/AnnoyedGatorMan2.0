@@ -1928,7 +1928,7 @@ MonoBehaviour:
         m_MethodName: ChangeLevelImage
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 7aa1392e664cc934da036697bdb00990, type: 3}
+          m_ObjectArgument: {fileID: 21300000, guid: c65b42d731df872469a8987a1bc1d400, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1150095824, guid: 75e736c5f8aeb1b4aaa74a30318f5d58, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c65b42d731df872469a8987a1bc1d400, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2279,7 +2279,7 @@ MonoBehaviour:
         m_MethodName: ChangeLevelImage
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 7aa1392e664cc934da036697bdb00990, type: 3}
+          m_ObjectArgument: {fileID: 21300000, guid: c10442b580f136d4fa9d4eb5ff6cb12f, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2695,7 +2695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1150095824, guid: 75e736c5f8aeb1b4aaa74a30318f5d58, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c65b42d731df872469a8987a1bc1d400, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4435,6 +4435,10 @@ PrefabInstance:
       propertyPath: levelDatas.Array.data[1].isUnlocked
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
+      propertyPath: levelDatas.Array.data[1].levelImage
+      value: 
+      objectReference: {fileID: 21300000, guid: c10442b580f136d4fa9d4eb5ff6cb12f, type: 3}
     - target: {fileID: 3688964203402986160, guid: 96745b44770cc924a81acc58b5437a20, type: 3}
       propertyPath: levelDatas.Array.data[0].levelButton
       value: 

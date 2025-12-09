@@ -96,26 +96,26 @@ public class AnalyticManager : MonoBehaviour
         //Debug.Log($"[Analytics] Pest tracked: {pestCount}");
     }
 
-    public void TrackPestType(string weather, string pestName)
-    { 
-        if (!isInitialized)
-        {
-            Debug.LogWarning("Analytics Service is not initialized yet.");
-            return;
-        }
+    //public void TrackPestType(string weather, string pestName)
+    //{ 
+    //    if (!isInitialized)
+    //    {
+    //        Debug.LogWarning("Analytics Service is not initialized yet.");
+    //        return;
+    //    }
 
-        // Create event data payload
-        CustomEvent myEvent = new CustomEvent("GameOver")
-        {
-            { "Weather of current level", weather},
-            { "Pest name", pestName},
-        };
+    //    // Create event data payload
+    //    CustomEvent myEvent = new CustomEvent("GameOver")
+    //    {
+    //        { "Weather of current level", weather},
+    //        { "Pest name", pestName},
+    //    };
 
-        // Send event
-        AnalyticsService.Instance.RecordEvent(myEvent);
+    //    // Send event
+    //    AnalyticsService.Instance.RecordEvent(myEvent);
 
-        Debug.Log($"[Analytics] GameOver event sent: Level = {weather}, Win = {pestName}");
-    }
+    //    Debug.Log($"[Analytics] GameOver event sent: Level = {weather}, Win = {pestName}");
+    //}
 
     public void TrackPestSpawnPos(Transform pos)
     {

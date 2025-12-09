@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class LevelDatas
 {
     public Button levelButton;
+    public Sprite levelImage;
     public bool isUnlocked;
 }
 
@@ -21,6 +22,8 @@ public class LevelUnlockManager : MonoBehaviour
         {
             if (levelDatas[i].isUnlocked)
             {
+                if (levelDatas[i].levelImage != null) levelDatas[i].levelButton.image.sprite = levelDatas[i].levelImage;
+
                 levelDatas[i].levelButton.interactable = true;
                 levelDatas[i].levelButton.image.color = Color.white;
 
