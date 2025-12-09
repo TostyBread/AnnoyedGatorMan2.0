@@ -92,6 +92,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         EnemyForCurrentWeather = GetEnemyByWeather();
+        AnalyticManager.Instance.TrackPestType(weatherManager.weather.ToString(),EnemyForCurrentWeather.name);
     }
 
     // Update is called once per frame
