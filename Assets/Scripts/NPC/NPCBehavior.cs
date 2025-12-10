@@ -365,6 +365,7 @@ public class NPCBehavior : MonoBehaviour
             if (sanity != null) sanity.RemainSanity += sanity.MaxSanity;
             particleManager?.SpawnParticleOnce();
             AnalyticManager.Instance.RecordServeOrderData(attachedMenu.name, Mathf.RoundToInt(npcPatience.patienceDuration - npcPatience.currentPatience));
+            Debug.Log(attachedMenu.name);
             hasAcceptedPlate = true;
 
             if (angerBehavior != null && angerBehavior.IsAngry)
