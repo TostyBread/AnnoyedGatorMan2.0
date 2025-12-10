@@ -82,6 +82,7 @@ public class P2ThrowController : MonoBehaviour
         }
         else if (p2PickSystem.heldItem != null)
         {
+            Range.GetComponent<DetectTarget>().AllItemInRange.Clear();
             Range.SetActive(false);
 
             //reset the Hand Pos once

@@ -32,7 +32,7 @@ public class DoorHitBox : MonoBehaviour
             if (col.gameObject.TryGetComponent(out PlayerThrowManager colThrowManager) &&
                 col.gameObject.TryGetComponent(out HealthManager colHealthManager))
             {
-                colThrowManager.doorCauseThrow = true;
+                //colThrowManager.doorCauseThrow = true;
                 //colThrowManager.StartPreparingThrow(); Not using anymore
                 colThrowManager.Throw();
 
@@ -41,7 +41,7 @@ public class DoorHitBox : MonoBehaviour
 
                 colHealthManager.TryDamage(damage, this.gameObject);
 
-                colThrowManager.doorCauseThrow = false;
+                //colThrowManager.doorCauseThrow = false;
             }
         }
         else if (col.gameObject.CompareTag("Enemy"))
