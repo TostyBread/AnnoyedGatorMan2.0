@@ -64,7 +64,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 2015278406608990012}
   sceneMusicMap:
+  - sceneName: MainMenu
+    musicClip: {fileID: 8300000, guid: 769d9c0d02dac7e43a77e5e1301ccc85, type: 3}
+    volume: 1
+    fadeTime: 1
   - sceneName: Tutorial(Player1)
+    musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
+    volume: 1
+    fadeTime: 0.3
+  - sceneName: Level 1(Player1)
+    musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
+    volume: 1
+    fadeTime: 0.3
+  - sceneName: Level 2(Player1)
+    musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
+    volume: 1
+    fadeTime: 0.3
+  - sceneName: Level 3(Player1)
     musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
     volume: 1
     fadeTime: 0.3
@@ -72,10 +88,18 @@ MonoBehaviour:
     musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
     volume: 1
     fadeTime: 0.3
-  - sceneName: MainMenu
-    musicClip: {fileID: 8300000, guid: 769d9c0d02dac7e43a77e5e1301ccc85, type: 3}
+  - sceneName: Level 1(Player2)
+    musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
     volume: 1
-    fadeTime: 1
+    fadeTime: 0.3
+  - sceneName: Level 2(Player2)
+    musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
+    volume: 1
+    fadeTime: 0.3
+  - sceneName: Level 3(Player2)
+    musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
+    volume: 1
+    fadeTime: 0.3
   defaultMusicClip: {fileID: 0}
   defaultVolume: 0
   defaultFadeTime: 0
@@ -270,8 +294,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

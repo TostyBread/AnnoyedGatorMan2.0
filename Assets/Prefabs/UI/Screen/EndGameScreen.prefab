@@ -233,9 +233,7 @@ MonoBehaviour:
   AudioName:
   - Yay
   - Incredible
-  - GtaWin
   - Ez
-  - HappyWheelVictory
 --- !u!95 &8465683453751024616
 Animator:
   serializedVersion: 5
