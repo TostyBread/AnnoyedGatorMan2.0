@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 8386112985000615752}
   - component: {fileID: 8340864764056897516}
   - component: {fileID: 3790960439939366163}
+  - component: {fileID: 91010953514564192}
   m_Layer: 15
   m_Name: Enemy
   m_TagString: Enemy
@@ -296,6 +297,7 @@ MonoBehaviour:
   isPlayer2: 0
   isNotPlayer: 0
   isFood: 0
+  isFire: 0
   healthBarImages: []
   reviveUI: {fileID: 0}
   isHurt: 0
@@ -383,10 +385,24 @@ MonoBehaviour:
   - {x: -0.43972015, y: -0.46643138, z: 0}
   m_ShapePathHash: 29534519
   m_Mesh: {fileID: 0}
-  m_InstanceId: -635660
+  m_InstanceId: 248954
   m_LocalBounds:
     m_Center: {x: -0.11301756, y: -0.119362354, z: 0}
     m_Extent: {x: 0.7499299, y: 0.36123514, z: 0}
+--- !u!114 &91010953514564192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3427001040983821353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 4428291049713248267}
 --- !u!1 &4772615648063625120
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +560,6 @@ GameObject:
   - component: {fileID: 4428291049713248267}
   - component: {fileID: 7086022857959671930}
   - component: {fileID: 59117304590574981}
-  - component: {fileID: 7696283384587576927}
   - component: {fileID: 1223862078626159580}
   m_Layer: 0
   m_Name: Image
@@ -655,36 +670,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3427001040983821353}
---- !u!114 &7696283384587576927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7413520319535419976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 00000000
-  m_ShapePath:
-  - {x: -4.709999, y: -2.6202803, z: 0}
-  - {x: -4.709999, y: 2.6202807, z: 0}
-  - {x: 4.710003, y: 2.6202807, z: 0}
-  - {x: 4.710003, y: -2.6202803, z: 0}
-  m_ShapePathHash: 0
-  m_Mesh: {fileID: 0}
-  m_InstanceId: -635696
-  m_LocalBounds:
-    m_Center: {x: 0.0000019073486, y: 0.00000023841858, z: 0}
-    m_Extent: {x: 4.710001, y: 2.6202805, z: 0}
 --- !u!114 &1223862078626159580
 MonoBehaviour:
   m_ObjectHideFlags: 0

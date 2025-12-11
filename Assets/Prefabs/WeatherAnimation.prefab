@@ -67,7 +67,7 @@ MonoBehaviour:
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 1
-  m_ShadowIntensity: 0.3
+  m_ShadowIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 180
   m_PointLightOuterAngle: 180
   m_PointLightInnerRadius: 5
-  m_PointLightOuterRadius: 12
+  m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -113,7 +113,7 @@ MonoBehaviour:
   - {x: -136.5, y: 85, z: 0}
   m_ShapePathHash: -1579223787
   m_Mesh: {fileID: 0}
-  m_InstanceId: -473748
+  m_InstanceId: -396144
   m_LocalBounds:
     m_Center: {x: -186.75, y: 132.5, z: 0}
     m_Extent: {x: 50.25, y: 47.5, z: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 1
-  m_ShadowIntensity: 0.3
+  m_ShadowIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 180
   m_PointLightOuterAngle: 180
   m_PointLightInnerRadius: 5
-  m_PointLightOuterRadius: 12
+  m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 1
-  m_ShadowIntensity: 0.3
+  m_ShadowIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 180
   m_PointLightOuterAngle: 180
   m_PointLightInnerRadius: 5
-  m_PointLightOuterRadius: 12
+  m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -531,7 +531,7 @@ MonoBehaviour:
   - {x: -136, y: -18, z: 0}
   m_ShapePathHash: 780137749
   m_Mesh: {fileID: 0}
-  m_InstanceId: -471560
+  m_InstanceId: -396136
   m_LocalBounds:
     m_Center: {x: -176.5, y: 176.5, z: 0}
     m_Extent: {x: 40.5, y: 194.5, z: 0}

@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 5039677516606517252}
   - component: {fileID: 5468825189548583055}
   - component: {fileID: 5631952090950057616}
+  - component: {fileID: 4087947700376438928}
   m_Layer: 15
   m_Name: Enemy
   m_TagString: Enemy
@@ -304,6 +305,7 @@ MonoBehaviour:
   isPlayer2: 0
   isNotPlayer: 0
   isFood: 0
+  isFire: 0
   healthBarImages: []
   reviveUI: {fileID: 0}
   isHurt: 0
@@ -383,10 +385,24 @@ MonoBehaviour:
   - {x: -0.18581581, y: -0.24359751, z: 0}
   m_ShapePathHash: 1355788887
   m_Mesh: {fileID: 0}
-  m_InstanceId: -635510
+  m_InstanceId: 248706
   m_LocalBounds:
     m_Center: {x: -0.094779015, y: -0.06393361, z: 0}
     m_Extent: {x: 0.3220625, y: 0.1797936, z: 0}
+--- !u!114 &4087947700376438928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558668271278603332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 6413938268694708257}
 --- !u!1 &1605733860555913360
 GameObject:
   m_ObjectHideFlags: 0
