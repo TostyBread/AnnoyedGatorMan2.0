@@ -28,7 +28,7 @@ public class WeatherManager : MonoBehaviour
     public AudioClip WinterClip;
 
     [Header("References")]
-    public AudioManager audioManager; // Reference to the AudioManager
+    private AudioManager audioManager; // Reference to the AudioManager
     private AudioSource audioSource;
 
     void Awake()

@@ -1592,7 +1592,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 15 customers served
+          m_StringArgument: Get 20 score
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1753167867}
@@ -1604,7 +1604,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: Level2
+          m_StringArgument: Level 2(Player1)
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1753167867}
@@ -2307,7 +2307,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: Tutorial(Player1)
+          m_StringArgument: Level 1(Player1)
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1753167867}
@@ -3635,7 +3635,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 20 customers served
+          m_StringArgument: Get 30 score
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1753167867}
@@ -3647,7 +3647,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: Level3
+          m_StringArgument: Level 3(Player1)
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1753167867}
