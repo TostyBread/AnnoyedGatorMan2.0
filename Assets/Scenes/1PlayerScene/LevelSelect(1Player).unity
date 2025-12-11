@@ -1947,6 +1947,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1440927432}
+    - target: {fileID: 608695454131808762, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MoveTutorial(Player1)
+      objectReference: {fileID: 0}
     - target: {fileID: 764088004844519815, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2119,6 +2123,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1440927432}
+    - target: {fileID: 8766504685780980373, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MoveTutorial(Player1)
+      objectReference: {fileID: 0}
     - target: {fileID: 8858415384215273908, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
