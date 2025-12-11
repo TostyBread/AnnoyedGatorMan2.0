@@ -30,7 +30,9 @@ public class P2AimSystem : MonoBehaviour
 
     public bool P3;
     public GameObject P3Cursor;
-    
+
+    private P2PickupSystem p2PickupSystem;
+
     [Header("Input")]
     public KeyCode NextTarget;
     public KeyCode PreviousTarget;
@@ -84,11 +86,14 @@ public class P2AimSystem : MonoBehaviour
         // Cache Arrow's Animator if present
         if (Arrow != null)
             arrowAnimator = Arrow.GetComponent<Animator>();
+
+        p2PickupSystem = GetComponentInParent<P2PickupSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        P3Cursor.SetActive(p2PickupSystem.HasItemHeld); //P3Cursor will show and hide depend on either the player is holding item
 
         ChangeTarget();
 
@@ -168,14 +173,13 @@ public class P2AimSystem : MonoBehaviour
 
     public GameObject NearestTarget()
     {
+        // Clean destroyed objects from list
+        detectTarget.AllItemInRange.RemoveAll(item => item == null);
+
         if (detectTarget.AllItemInRange.Count == 0)
-        {
             return null;
-        }
 
-        //Ensure index is within bounds
         currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, detectTarget.AllItemInRange.Count - 1);
-
         return detectTarget.AllItemInRange[currentTargetIndex];
     }
 

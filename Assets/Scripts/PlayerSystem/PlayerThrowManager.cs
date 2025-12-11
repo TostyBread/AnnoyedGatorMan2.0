@@ -20,7 +20,7 @@ public class PlayerThrowManager : MonoBehaviour
     public HandSpriteManager handSpriteManager;
 
     private Vector2 storedThrowPosition;
-    public bool doorCauseThrow; // REMOVE doorCauseThrow, the door mechanic will not be implemented
+    //public bool doorCauseThrow; // REMOVE doorCauseThrow, the door mechanic will not be implemented
 
     public void Throw()
     {

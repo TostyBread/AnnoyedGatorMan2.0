@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public bool startThisSpawner;
     public List<GameObject> Enemies = new List<GameObject>();
     public GameObject UI;
 
@@ -53,6 +54,8 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private bool stopAndHideUiBar;
     private bool playSoundOnce;
+
+    private PregameUI pregameUI;
  
     // Start is called before the first frame update
     void Start()
@@ -93,6 +96,8 @@ public class EnemySpawner : MonoBehaviour
 
         EnemyForCurrentWeather = GetEnemyByWeather();
 
+        pregameUI = FindAnyObjectByType<PregameUI>();
+
         //if (AnalyticManager.Instance != null)
         //    AnalyticManager.Instance.TrackPestType(weatherManager.weather.ToString(),EnemyForCurrentWeather.name);
     }
@@ -100,6 +105,10 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
+        if (pregameUI != null) startThisSpawner = !pregameUI.isShowing;
+
+        if (startThisSpawner == false) return;
+
         if (EnemyRadiusbar != null)
         {
             EnemyRadiusbar.fillAmount = 1f - (ChargeTimer / ChargeReadyTime);

@@ -31,6 +31,16 @@ public class Jiggle : MonoBehaviour
         StopJiggle();
     }
 
+    private void Start()
+    {
+        Transform targetTransform = spriteGameobject != null ? spriteGameobject : transform;
+
+        // Store initial transform state
+        defaultPosition = targetTransform.position;
+        defaultRotation = targetTransform.rotation;
+        defaultScale = targetTransform.localScale;
+    }
+
     private void Update()
     {
         //everything that has jiggle script will jiggle when keycode pressed
@@ -46,13 +56,6 @@ public class Jiggle : MonoBehaviour
     public void StartJiggle()
     {
         StopJiggle(); // Ensure any existing jiggle is properly stopped
-
-        Transform targetTransform = spriteGameobject != null ? spriteGameobject : transform;
-
-        // Store initial transform state
-        defaultPosition = targetTransform.position;
-        defaultRotation = targetTransform.rotation;
-        defaultScale = targetTransform.localScale;
 
         PopUp(BiggerTheGameobjectBy);
         isJiggling = true;
