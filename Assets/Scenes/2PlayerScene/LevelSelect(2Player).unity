@@ -854,6 +854,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06e7ef8effb225149a93006ddedc4340, type: 3}
+--- !u!114 &467138293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 309312211394493059, guid: 06e7ef8effb225149a93006ddedc4340, type: 3}
+  m_PrefabInstance: {fileID: 467138292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffde74caaeb970a4bb6af38aedd0c3f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &505844370 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7977981434506746477, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
@@ -1263,6 +1274,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
       value: Level 1(Player2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3632458965010397867, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1440927432}
+    - target: {fileID: 3632458965010397867, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowSettingScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 4660754209806447259, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1466,6 +1485,18 @@ PrefabInstance:
     - target: {fileID: 8766504685780980373, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: MoveTutorial(Player1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8858415384215273908, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 467138293}
+    - target: {fileID: 8858415384215273908, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSceneWithTransition
+      objectReference: {fileID: 0}
+    - target: {fileID: 8858415384215273908, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 2CharacterSelect
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
