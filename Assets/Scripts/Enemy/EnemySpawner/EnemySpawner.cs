@@ -77,7 +77,11 @@ public class EnemySpawner : MonoBehaviour
         dumpsterPos = dumpster.gameObject.transform;
         dumpsterJiggle = dumpster.gameObject.GetComponents<Jiggle>()[1];
 
-        canvas.transform.position = new Vector2(dumpsterPos.position.x + offset.x, dumpsterPos.position.y + offset.y);
+        if (canvas != null)
+        {
+            canvas.SetActive(true);
+            canvas.transform.position = new Vector2(dumpsterPos.position.x + offset.x, dumpsterPos.position.y + offset.y);            
+        }
 
         if (Spawners.Count == 0)
         {
