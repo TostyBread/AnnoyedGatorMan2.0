@@ -71,4 +71,9 @@ public class DetectTarget : MonoBehaviour
         if (IsValidTag(collision.collider))
             RemoveObject(collision.gameObject);
     }
+
+    private void OnDisable()
+    {
+        AllItemInRange.Clear();
+    }
 }

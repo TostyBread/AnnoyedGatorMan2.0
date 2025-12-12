@@ -574,8 +574,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08839507, y: 0.09067032}
-  m_Size: {x: 8.785032, y: 4.9103885}
+  m_Offset: {x: 0.014495862, y: 0.090670355}
+  m_Size: {x: 9.228448, y: 4.9103985}
   m_Direction: 1
 --- !u!1 &816713530018347194
 GameObject:
@@ -1492,7 +1492,6 @@ MonoBehaviour:
   walkableArea: {fileID: 0}
   OffsetBetweenWall: 0
   targetPlayer: {fileID: 0}
-  p2PickupSystem: {fileID: 0}
 --- !u!1 &2240173346821189728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,7 +2268,7 @@ MonoBehaviour:
   - {x: 0.39584064, y: -1.1895097, z: 0}
   m_ShapePathHash: 1481524089
   m_Mesh: {fileID: 0}
-  m_InstanceId: 282980
+  m_InstanceId: 190448
   m_LocalBounds:
     m_Center: {x: 0.13837004, y: -0.5132316, z: 0}
     m_Extent: {x: 0.6261239, y: 0.6762782, z: 0}
@@ -5597,7 +5596,7 @@ MonoBehaviour:
   - {x: 0.7216635, y: -1.432608, z: 0}
   m_ShapePathHash: 1937035757
   m_Mesh: {fileID: 0}
-  m_InstanceId: 283338
+  m_InstanceId: 190818
   m_LocalBounds:
     m_Center: {x: -0.09108019, y: -0.7744708, z: 0}
     m_Extent: {x: 0.81274366, y: 0.6824254, z: 0}
@@ -5907,8 +5906,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.088394724, y: -2.4611866}
-  m_Size: {x: 8.78503, y: 5.1534147}
+  m_Offset: {x: 0.23715171, y: -2.461187}
+  m_Size: {x: 9.677599, y: 5.1534157}
   m_Direction: 1
 --- !u!1 &6633714504948520196
 GameObject:
@@ -8180,7 +8179,7 @@ MonoBehaviour:
   - {x: -0.69258785, y: -1.7510005, z: 0}
   m_ShapePathHash: -1165053405
   m_Mesh: {fileID: 0}
-  m_InstanceId: 379574
+  m_InstanceId: 190288
   m_LocalBounds:
     m_Center: {x: 0.019944191, y: -1.1731375, z: 0}
     m_Extent: {x: 0.8473654, y: 0.6094115, z: 0}
