@@ -41,7 +41,7 @@ public class LevelLoader : MonoBehaviour
         if (loadingScreen) loadingScreen.SetActive(false);
 
         if (playerNumberScreen) playerNumberScreen.SetActive(false);
-        if (settingScreen) settingScreen.SetActive(false); 
+        if (settingScreen) settingScreen.SetActive(false);
         if (ShaderScreen) ShaderScreen.SetActive(false);
     }
 
@@ -73,8 +73,18 @@ public class LevelLoader : MonoBehaviour
         if (levelSelectManager == null) StartCoroutine(LoadLevelSync(levelToLoad));
         else
         {
-             StartCoroutine(LoadLevelSync(levelSelectManager.levelSelected));
+            StartCoroutine(LoadLevelSync(levelSelectManager.levelSelected));
         }
+    }
+
+    public void RestartLevelButton()
+    {
+        Time.timeScale = 1f;
+        if (mainMenu) mainMenu.SetActive(false);
+        if (loadingScreen) loadingScreen.SetActive(true);
+
+        //Run Async
+        StartCoroutine(LoadLevelSync(SceneManager.GetActiveScene().name));
     }
 
     public void ShowPopUpScreen()
