@@ -333,7 +333,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator CannotMoveTimeout()
+    private IEnumerator CannotMoveTimeout() //don't trigger this when enemy is attacking
     {
         float delay = 3f;
         yield return new WaitForSeconds(delay);
