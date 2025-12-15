@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 2912337896578746821}
   - component: {fileID: 2469571722624404651}
   m_Layer: 6
-  m_Name: Plate8
+  m_Name: TPlate4
   m_TagString: FoodBig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,31 +226,19 @@ MonoBehaviour:
   rootPlateObject: {fileID: 1274844278774008693}
   plateRequirements:
   - itemID: 3
-    cookingState: 1
+    cookingState: 0
     condition: 0
     positionOffset: {x: 0, y: 0, z: 0}
     sortingOrder: 3
     isFilled: 0
-  - itemID: 222
+  - itemID: 11
     cookingState: 0
     condition: 0
     positionOffset: {x: 0, y: 0, z: 0}
     sortingOrder: 4
     isFilled: 0
-  - itemID: 222
-    cookingState: 0
-    condition: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-    sortingOrder: 5
-    isFilled: 0
-  - itemID: 3
-    cookingState: 1
-    condition: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-    sortingOrder: 6
-    isFilled: 0
-  menuDisplay: {fileID: 1993523855361044245, guid: b1f5029fed8d08544be8ecc37bdd6d12, type: 3}
-  plateScore: 6
+  menuDisplay: {fileID: 1993523855361044245, guid: b9929c56663e09d4c9ea9db72758aabb, type: 3}
+  plateScore: 1
   lastHolder: {fileID: 0}
 --- !u!1 &7959137826293649880
 GameObject:

@@ -255,7 +255,7 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
     sortingOrder: 7
     isFilled: 0
-  menuDisplay: {fileID: 6382982205964890766, guid: 2fbc1fa516678cf4a9b3d2c0e66d912f, type: 3}
+  menuDisplay: {fileID: 6382982205964890766, guid: e963fc5f8accc72479ee1881d99755ca, type: 3}
   plateScore: 4
   lastHolder: {fileID: 0}
 --- !u!1 &7959137826293649880
