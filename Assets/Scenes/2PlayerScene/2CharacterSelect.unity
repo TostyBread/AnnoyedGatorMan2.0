@@ -1212,6 +1212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 889614498}
+  - component: {fileID: 889614499}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -1244,6 +1245,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &889614499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889614497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4439255d10f774f43a55cd4e2e2f3580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftButton: {fileID: 1265811478}
+  rightButton: {fileID: 1677520555}
 --- !u!1001 &1061289934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1455,7 +1470,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: leftButton
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1265811479
