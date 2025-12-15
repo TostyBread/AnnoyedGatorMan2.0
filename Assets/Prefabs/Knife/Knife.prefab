@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3403330055485765263}
   - component: {fileID: 8552230069523773440}
+  - component: {fileID: 5256256204097168867}
   - component: {fileID: 3808243173582522151}
   - component: {fileID: 9036991212646575957}
   - component: {fileID: 2458728698113996335}
-  - component: {fileID: 7043701527958796220}
   - component: {fileID: 7907333980923819489}
+  - component: {fileID: 7482367124201228432}
   m_Layer: 6
   m_Name: Knife
   m_TagString: FoodSmall
@@ -59,6 +60,19 @@ MonoBehaviour:
   isUsable: 1
   isStabbing: 0
   isInUsableMode: 0
+--- !u!114 &5256256204097168867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706992943235291945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf42bae40cebbc4e95023f54514b920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCollider: {fileID: 5969985387475216021}
 --- !u!114 &3808243173582522151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +101,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1107365888
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -134,21 +148,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7043701527958796220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706992943235291945}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8dcbe5c244c074684860ba57e6f59e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpinningKnife: {fileID: 8859514281874207021, guid: 85c0c0167ddbfed47bf77c9f127d6fc9, type: 3}
-  isBeingHold: 0
-  spawnChance: 0.5
 --- !u!114 &7907333980923819489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,10 +180,24 @@ MonoBehaviour:
   - {x: -0.05373001, y: -0.7161453, z: 0}
   m_ShapePathHash: 2079343981
   m_Mesh: {fileID: 0}
-  m_InstanceId: 99820
+  m_InstanceId: 69422
   m_LocalBounds:
     m_Center: {x: -0.08882284, y: 0.4015987, z: 0}
     m_Extent: {x: 0.25239897, y: 1.1761997, z: 0}
+--- !u!114 &7482367124201228432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706992943235291945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 326783056799886028}
 --- !u!1 &7621144025468530422
 GameObject:
   m_ObjectHideFlags: 0

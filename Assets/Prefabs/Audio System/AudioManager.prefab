@@ -68,6 +68,10 @@ MonoBehaviour:
     musicClip: {fileID: 8300000, guid: 769d9c0d02dac7e43a77e5e1301ccc85, type: 3}
     volume: 1
     fadeTime: 1
+  - sceneName: LevelSelect(1Player)
+    musicClip: {fileID: 8300000, guid: 769d9c0d02dac7e43a77e5e1301ccc85, type: 3}
+    volume: 1
+    fadeTime: 1
   - sceneName: Tutorial(Player1)
     musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
     volume: 1
@@ -84,6 +88,10 @@ MonoBehaviour:
     musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
     volume: 1
     fadeTime: 0.3
+  - sceneName: LevelSelect(2Player)
+    musicClip: {fileID: 8300000, guid: 769d9c0d02dac7e43a77e5e1301ccc85, type: 3}
+    volume: 1
+    fadeTime: 1
   - sceneName: Tutorial(Player2)
     musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
     volume: 1
@@ -100,8 +108,8 @@ MonoBehaviour:
     musicClip: {fileID: 8300000, guid: aca991e2863aadb4ea1a57da94842598, type: 3}
     volume: 1
     fadeTime: 0.3
-  defaultMusicClip: {fileID: 0}
-  defaultVolume: 0
+  defaultMusicClip: {fileID: 8300000, guid: 769d9c0d02dac7e43a77e5e1301ccc85, type: 3}
+  defaultVolume: 1
   defaultFadeTime: 0
   allowSceneToInterruptSpecial: 1
 --- !u!1 &7128315412531526967

@@ -38,6 +38,19 @@ public class PlayerThrowManagerP2 : MonoBehaviour
             package.SetOwner(PackageOwner.None);
         }
         playerPickupSystemP2.DropItem();
+
+        // Enable damage for thrown knives
+        if (heldItem.TryGetComponent(out ThrownKnifeDamageActivator activator))
+        {
+            activator.EnableDamageDelayed();
+        }
+        // If the plate was destroyed during DropItem() due to inactive owner, exit early
+        if (isPlateWithInactiveOwner && heldItem == null)
+        {
+            Debug.LogWarning("Plate was destroyed during throw because customer ran away");
+            return;
+        }
+
         handSpriteManagerP2?.ShowThrowSprite(throwSpriteDuration);
         storedThrowPosition = PlayerAimController.Instance.GetCursorPosition(); // Get the virtual mouse position for Player 2
 
@@ -95,6 +108,10 @@ public class PlayerThrowManagerP2 : MonoBehaviour
         if (item.TryGetComponent(out Rigidbody2D rb))
         {
             rb.isKinematic = false;
+        }
+        if (item.TryGetComponent(out ThrownKnifeDamageActivator activator))
+        {
+            activator.DisableDamage();
         }
     }
 }
