@@ -16,9 +16,12 @@ public class KnifeController : MonoBehaviour, IUsable
     [SerializeField] private bool isUsable = true;
     [SerializeField] private bool isStabbing = false;
     [SerializeField] private bool isInUsableMode = false;
+    private SpriteDeformationController deformer;
 
     private void Start()
     {
+        deformer = GetComponent<SpriteDeformationController>();
+
         if (knifeCollider == null)
         {
             knifeCollider = GetComponent<Collider2D>();
@@ -47,6 +50,7 @@ public class KnifeController : MonoBehaviour, IUsable
 
     private IEnumerator PerformStab()
     {
+        deformer?.TriggerStretch(1f, 1.5f, 0.6f, true);
         isStabbing = true;
         isUsable = false;
         knifeCollider.enabled = true;

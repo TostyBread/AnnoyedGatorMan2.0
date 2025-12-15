@@ -21,16 +21,12 @@ public class FirearmCrazy : MonoBehaviour
     private float currentHeat = 0f;
     private float lastHeatTime = 0f;
     private bool isCrazy = false;
+    private SpriteDeformationController deformer;
 
     void Awake()
     {
+        deformer = GetComponent<SpriteDeformationController>();
         // Validation checks
-        if (firearmCollider == null)
-            Debug.LogWarning($"FirearmCollider not assigned on {gameObject.name}");
-        if (spriteRenderer == null)
-            Debug.LogWarning($"SpriteRenderer not assigned on {gameObject.name}");
-        if (firearmController == null)
-            Debug.LogWarning($"FirearmController not assigned on {gameObject.name}");
     }
 
     void Update()
@@ -50,6 +46,7 @@ public class FirearmCrazy : MonoBehaviour
     {
         if (isCrazy) return;
 
+        deformer?.TriggerJiggle(1f, 2f, 0.5f, true);
         currentHeat += heatAmount;
         lastHeatTime = Time.time;
         EffectPool.Instance.SpawnEffect("FoodSteam", transform.position, Quaternion.identity); // Deploy steam anim

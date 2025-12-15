@@ -58,6 +58,12 @@ public class PlayerThrowManager : MonoBehaviour
         if (P1FalseP2True) p2PickSystem.DropItem();
         else playerPickupSystem.DropItem();
 
+        // Enable damage for thrown knives
+        if (heldItem.TryGetComponent(out ThrownKnifeDamageActivator activator))
+        {
+            activator.EnableDamageDelayed();
+        }
+
         // If the plate was destroyed during DropItem() due to inactive owner, exit early
         if (isPlateWithInactiveOwner && heldItem == null)
         {
@@ -142,6 +148,10 @@ public class PlayerThrowManager : MonoBehaviour
         if (item.TryGetComponent(out Rigidbody2D rb))
         {
             rb.isKinematic = false;
+        }
+        if (item.TryGetComponent(out ThrownKnifeDamageActivator activator))
+        {
+            activator.DisableDamage();
         }
     }
 }

@@ -5,6 +5,7 @@ public class Fist : MonoBehaviour
     private Animator animator;
     private Collider2D hitbox;
     private DamageSource damageSource;
+    private SpriteDeformationController deformer;
 
     [Header("Do not touch")]
     public bool isPunching = false;
@@ -14,7 +15,7 @@ public class Fist : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         hitbox = GetComponent<Collider2D>();
-
+        deformer = GetComponent<SpriteDeformationController>();
         damageSource = GetComponent<DamageSource>();
         hitbox.enabled = false;
     }
@@ -25,6 +26,7 @@ public class Fist : MonoBehaviour
         if (!isPunching)
         {
             Punch();
+            deformer?.TriggerSquash(0.5f, 5f, 0.4f, true);
         }
     }
 

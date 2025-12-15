@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 4248429712091498661}
   - component: {fileID: 5290627373308498416}
   - component: {fileID: 4090508110360258601}
+  - component: {fileID: 932374470285716513}
   m_Layer: 6
   m_Name: Glock17
   m_TagString: WeaponShort
@@ -354,7 +355,21 @@ MonoBehaviour:
   - {x: -0.6261854, y: -0.39243984, z: 0}
   m_ShapePathHash: -79394483
   m_Mesh: {fileID: 0}
-  m_InstanceId: 60670
+  m_InstanceId: 48728
   m_LocalBounds:
     m_Center: {x: 0.004005432, y: -0.012600422, z: 0}
     m_Extent: {x: 0.6959944, y: 0.46260023, z: 0}
+--- !u!114 &932374470285716513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581290250098146382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d323afe900dfe442b286a6e8ebd5db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSpriteRenderers:
+  - {fileID: 6505837188610806185}
