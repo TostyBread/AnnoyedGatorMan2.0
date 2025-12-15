@@ -32,6 +32,7 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Next Dialogue Trigger")]
     public GameObject nextDialogue;
     public GameObject[] showGameObjects;
+    public GameObject[] hideGameObjects;
     private DialogueManager dialogueManager;
     public bool StayAtLastDialogue;
 
@@ -244,6 +245,12 @@ public class DialogueTrigger : MonoBehaviour
         {
             foreach (var showGameObject in showGameObjects)
                 showGameObject.SetActive(true);
+        }
+
+        if (hideGameObjects != null)
+        {
+            foreach (var hideGameObject in hideGameObjects)
+                hideGameObject.SetActive(true);
         }
     }
 
