@@ -364,7 +364,7 @@ public class NPCBehavior : MonoBehaviour
             scoreManager?.AddScore(plate.plateScore,plate.lastHolder.transform.parent.gameObject);
             if (sanity != null) sanity.RemainSanity += sanity.MaxSanity;
             particleManager?.SpawnParticleOnce();
-            AnalyticManager.Instance.RecordServeOrderData(attachedMenu.name, Mathf.RoundToInt(npcPatience.patienceDuration - npcPatience.currentPatience));
+            if (AnalyticManager.Instance != null) AnalyticManager.Instance.RecordServeOrderData(attachedMenu.name, Mathf.RoundToInt(npcPatience.patienceDuration - npcPatience.currentPatience));
             Debug.Log(attachedMenu.name);
             hasAcceptedPlate = true;
 

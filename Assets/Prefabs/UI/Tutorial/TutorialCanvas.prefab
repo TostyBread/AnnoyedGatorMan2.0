@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 2201017110303832039}
   - component: {fileID: 1401589461057038426}
   - component: {fileID: 1864181275960619629}
+  - component: {fileID: 3100139404937536988}
   m_Layer: 5
   m_Name: NextButton
   m_TagString: Untagged
@@ -369,3 +370,24 @@ MonoBehaviour:
           m_StringArgument: TomatoTutorial(Player1)
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &3100139404937536988
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880066823553898495}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff11a7842160b8849b61251f45dd7866, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

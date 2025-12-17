@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -34,6 +35,7 @@ public class DialogueTrigger : MonoBehaviour
     public GameObject[] showGameObjects;
     public GameObject[] hideGameObjects;
     private DialogueManager dialogueManager;
+    private ScoreManager scoreManager;
     public bool StayAtLastDialogue;
 
     [Header("Trigger Next Condition")]
@@ -48,7 +50,8 @@ public class DialogueTrigger : MonoBehaviour
         CheckItem, 
         CheckItemCooked, 
         CheckItemGone,
-        CheckItemOnStove
+        CheckItemOnStove,
+        CheckIsClear
     }
 
     private CookingStove stove;
@@ -81,6 +84,11 @@ public class DialogueTrigger : MonoBehaviour
             wieldingHand = player.transform.Find("HandControls/Wielding_Hand")?.gameObject;
         }
 
+        if (triggerCondition == DialogueConditionType.CheckIsClear)
+        {
+            scoreManager = FindObjectOfType<ScoreManager>();            
+        }
+
         dialogueManager.stayAtLastDialogue = StayAtLastDialogue;
     }
 
@@ -102,6 +110,9 @@ public class DialogueTrigger : MonoBehaviour
                 break;
             case DialogueConditionType.CheckItemOnStove:
                 CheckItemOnStove();
+                break;
+            case DialogueConditionType.CheckIsClear:
+                CheckIsClearCondition();
                 break;
         }
     }
@@ -228,6 +239,15 @@ public class DialogueTrigger : MonoBehaviour
                     break;
                 }
             }
+        }
+    }
+
+    private void CheckIsClearCondition()
+    {
+        if (scoreManager != null && scoreManager.isCleared && !nextTriggered)
+        {
+            nextTriggered = true;
+            TriggerNextDialogue();
         }
     }
 
