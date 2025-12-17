@@ -269,10 +269,7 @@ public class HealthManager : MonoBehaviour
         {
             reviveTime += reviveSpeed / 2;
 
-            if (deformer != null)
-            {
-                deformer.TriggerShake(0.6f, 10f, 0.2f);
-            }
+            deformer?.TriggerShake(0.6f, 10f, 0.2f, true);
         }
 
         if (reviveTime >= Health)
@@ -388,11 +385,8 @@ public class HealthManager : MonoBehaviour
             return;
         }
 
-        if (deformer != null)
-        {
-            deformer.TriggerShake(0.9f, 10f, 0.2f);
-        }
-        
+        deformer?.TriggerShake(0.9f, 10f, 0.2f, true);
+
         if (isFire && source.CompareTag("Fist")) // Reduced damage if fire is damage by fist
         {
             currentHealth -= damage / 40f;

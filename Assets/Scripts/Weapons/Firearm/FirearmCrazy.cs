@@ -26,7 +26,6 @@ public class FirearmCrazy : MonoBehaviour
     void Awake()
     {
         deformer = GetComponent<SpriteDeformationController>();
-        // Validation checks
     }
 
     void Update()

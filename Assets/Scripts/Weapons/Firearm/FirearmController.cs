@@ -38,10 +38,11 @@ public class FirearmController : MonoBehaviour, IUsable
 
     private bool isOutOfAmmo => currentAmmo <= 0;
     private bool hasPlayedDryFire = false;
-
+    private SpriteDeformationController deformer;
     void Awake()
     {
         currentAmmo = maxAmmo;
+        deformer = GetComponent<SpriteDeformationController>();
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (animator != null)
         {
@@ -95,6 +96,7 @@ public class FirearmController : MonoBehaviour, IUsable
             if (!hasPlayedDryFire)
             {
                 PlayAnimation("_Dry");
+                deformer?.TriggerJump(0.8f, 5f, 0.2f, true);
                 AudioManager.Instance.PlaySound("dryfire", transform.position);
                 hasPlayedDryFire = true;
             }
