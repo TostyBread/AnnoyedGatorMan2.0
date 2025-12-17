@@ -230,8 +230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCooked: 1
   canBreak: 0
-  canBash: 1
-  canCut: 1
+  canBash: 0
+  canCut: 0
   durabilityUncooked: 0
   durabilityCooked: 60
   cookThreshold: 99
@@ -335,6 +335,9 @@ MonoBehaviour:
   isPlayer2: 0
   isNotPlayer: 0
   isFood: 1
+  isFire: 0
+  healthBarImages: []
+  reviveUI: {fileID: 0}
   isHurt: 0
   isHurtDur: 1
   enemy: 0
