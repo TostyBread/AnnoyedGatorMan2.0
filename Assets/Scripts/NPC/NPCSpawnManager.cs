@@ -16,14 +16,18 @@ public class NPCSpawnManager : MonoBehaviour
     private readonly List<GameObject> activeNPCs = new List<GameObject>();
     private readonly Dictionary<GameObject, int> npcLineMap = new Dictionary<GameObject, int>();
     private bool[] lineOccupied;
+    private DialogueManager dialogueManager;
 
     void Start()
     {
         lineOccupied = new bool[spawner.lines.Length];
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     void Update()
     {
+        if (dialogueManager != null && dialogueManager.isDialogueActive) return;
+
         timer += Time.deltaTime;
 
         // Clean up null NPCs and free lines
