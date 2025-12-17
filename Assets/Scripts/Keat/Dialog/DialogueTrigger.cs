@@ -1,6 +1,4 @@
-using JetBrains.Annotations;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 #region Serializable Data Classes
@@ -55,8 +53,6 @@ public class DialogueTrigger : MonoBehaviour
     }
 
     private CookingStove stove;
-    private GameObject player;
-    private GameObject wieldingHand;
     private bool hasTriggered = false;
     private bool nextTriggered = false;
 
@@ -76,13 +72,6 @@ public class DialogueTrigger : MonoBehaviour
         if (triggerCondition == DialogueConditionType.OnStove || triggerCondition == DialogueConditionType.CheckItemCooked || triggerCondition == DialogueConditionType.CheckItemOnStove)
         { 
             stove = FindAnyObjectByType<CookingStove>();
-        }
-
-        if (triggerCondition == DialogueConditionType.OnItemPickup)
-        {
-            //player = GameObject.FindGameObjectWithTag("Player");
-            player = dialogueManager.currentPlayer;
-            wieldingHand = player.transform.Find("HandControls/Wielding_Hand")?.gameObject;
         }
 
         if (triggerCondition == DialogueConditionType.CheckIsClear)
@@ -166,34 +155,73 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
+    /// Checks if ANY active player is holding the specified item
+    /// Supports all three pickup systems: PlayerPickupSystem, P2PickupSystem, and PlayerPickupSystemP2
     private void CheckItemPickupCondition()
     {
-        if (nextTriggered || player == null) return;
+        if (nextTriggered || itemToTriggerNext == null)
+            return;
 
-        if (wieldingHand == null) return;
-
-        foreach (Transform child in wieldingHand.transform)
+        // Check P1 pickup system (PlayerPickupSystem)
+        foreach (var pickupSys in dialogueManager.GetPlayerPickupSystems())
         {
-            if (itemToTriggerNext != null)
+            if (pickupSys != null && pickupSys.HasItemHeld)
             {
-                if (child.name.Contains(itemToTriggerNext.name))
+                GameObject heldItem = pickupSys.GetHeldItem();
+                if (heldItem != null && heldItem.name.Contains(itemToTriggerNext.name))
                 {
                     nextTriggered = true;
                     TriggerNextDialogue();
                     itemToTriggerNext = null;
-                    break;
+                    Debug.Log($"P1 Player holding item: {heldItem.name}");
+                    return;
                 }
             }
+        }
 
-            Debug.Log("Holding item: " + child);
+        // Check P2/P3 pickup system (P2PickupSystem)
+        foreach (var pickupSys in dialogueManager.GetP2PickupSystems())
+        {
+            if (pickupSys != null && pickupSys.HasItemHeld)
+            {
+                GameObject heldItem = pickupSys.GetHeldItem();
+                if (heldItem != null && heldItem.name.Contains(itemToTriggerNext.name))
+                {
+                    nextTriggered = true;
+                    TriggerNextDialogue();
+                    itemToTriggerNext = null;
+                    Debug.Log($"P2/P3 Player holding item: {heldItem.name}");
+                    return;
+                }
+            }
+        }
+
+        // Check P2 pickup system (PlayerPickupSystemP2)
+        foreach (var pickupSys in dialogueManager.GetPlayerPickupSystemsP2())
+        {
+            if (pickupSys != null && pickupSys.HasItemHeld)
+            {
+                GameObject heldItem = pickupSys.GetHeldItem();
+                if (heldItem != null && heldItem.name.Contains(itemToTriggerNext.name))
+                {
+                    nextTriggered = true;
+                    TriggerNextDialogue();
+                    itemToTriggerNext = null;
+                    Debug.Log($"P2 Player holding item: {heldItem.name}");
+                    return;
+                }
+            }
         }
     }
 
     private void CheckItemCookedCondition()
     {
+        if (nextTriggered || itemToTriggerNext == null)
+            return;
+
         foreach (var item in GameObject.FindGameObjectsWithTag("FoodSmall"))
         {
-            if (itemToTriggerNext != null && item.name.Contains(itemToTriggerNext.name))
+            if (item.name.Contains(itemToTriggerNext.name))
             {
                 ItemSystem itemSystem = item.GetComponent<ItemSystem>();
                 if (itemSystem != null && itemSystem.isCooked && !itemSystem.isBurned)
@@ -217,6 +245,7 @@ public class DialogueTrigger : MonoBehaviour
                     }
 
                     itemToTriggerNext = null;
+                    return;
                 }
             }
         }
@@ -227,11 +256,11 @@ public class DialogueTrigger : MonoBehaviour
         if (stove == null) 
             stove = FindAnyObjectByType<CookingStove>();
 
-        if (itemToTriggerNext != null && stove != null)
+        if (itemToTriggerNext != null && stove != null && !nextTriggered)
         {
             foreach (var item in stove.itemsOnStove)
             {
-                if (item.name.Contains(itemToTriggerNext.name))
+                if (item != null && item.name.Contains(itemToTriggerNext.name))
                 {
                     Debug.Log("An item is on the stove: " + item.name);
                     nextTriggered = true;
@@ -271,7 +300,7 @@ public class DialogueTrigger : MonoBehaviour
         if (hideGameObjects != null)
         {
             foreach (var hideGameObject in hideGameObjects)
-                hideGameObject.SetActive(true);
+                hideGameObject.SetActive(false);
         }
     }
 
