@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 //Tutorial: https://www.youtube.com/watch?v=DOP_G5bsySA&t=6s
 public class DialogueManager : MonoBehaviour
@@ -25,8 +26,13 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Player Reference")]
     public GameObject player;
+
+    [Header("Reference Do Not Touch")]
+    public GameObject currentPlayer; //for DialogueTrigger.cs reference
     private PlayerInputManager playerInputManager;
+    private P3Input p3Input;
     private CharacterMovement characterMovement;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,17 +42,39 @@ public class DialogueManager : MonoBehaviour
 
         lines = new Queue<DialogueLine>();
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        //Get Player Reference
+        if (player == null) player = GameObject.Find("Player1");
         if (player != null)
         {
-            playerInputManager = player.GetComponent<PlayerInputManager>();
-            characterMovement = player.GetComponent<CharacterMovement>();
+            currentPlayer =FindChildWithTag(player, "Player");
         }
+        if (currentPlayer != null)
+        {
+            playerInputManager = currentPlayer.GetComponent<PlayerInputManager>();
+            p3Input = currentPlayer.GetComponent<P3Input>();
+
+            characterMovement = currentPlayer.GetComponent<CharacterMovement>();
+        }
+    }
+
+    GameObject FindChildWithTag(GameObject parent, string tag)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            if (child.CompareTag(tag))
+                return child.gameObject;
+
+            // Recursive search (if nested children)
+            GameObject result = FindChildWithTag(child.gameObject, tag);
+            if (result != null)
+                return result;
+        }
+        return null;
     }
 
     void Update()
     {
-        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
+        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space) || Gamepad.current.buttonSouth.wasPressedThisFrame)
         {
             DisplayNextDialogueLine();
         }
@@ -85,13 +113,22 @@ public class DialogueManager : MonoBehaviour
         if (canMove)
         {
             //Re-enable player movement and input
-            playerInputManager.isInputEnabled = true;
+            if (playerInputManager != null) 
+                playerInputManager.isInputEnabled = true;
+
+            if (p3Input != null)
+                p3Input.isInputEnabled = true;
         }
         else if (!canMove)
         {
             //Stop player movement and input
-            playerInputManager.isInputEnabled = false;
-            characterMovement.SetMovement(Vector2.zero);
+            if (playerInputManager != null)
+                playerInputManager.isInputEnabled = false;
+
+            if (p3Input != null)
+                p3Input.isInputEnabled = false;
+
+            if (characterMovement != null) characterMovement.SetMovement(Vector2.zero);
         }
     }
 
@@ -140,7 +177,11 @@ public class DialogueManager : MonoBehaviour
             animator.Play("DialogueHide");
 
         //Re-enable player movement and input
-        playerInputManager.isInputEnabled = true;
+        if (playerInputManager != null)
+            playerInputManager.isInputEnabled = true;
+
+        if (p3Input != null)
+            p3Input.isInputEnabled = true;
     }
 
     private IEnumerator WaitThenDisplayNext(float delay)

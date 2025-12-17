@@ -30,20 +30,41 @@ EditorBuildSettings:
     path: Assets/Scenes/CreditScene.unity
     guid: 5fafc0f71c525a941802d93b7116d346
   - enabled: 1
-    path: Assets/Scenes/Tutorial/MoveTutorial(Player1).unity
+    path: Assets/Scenes/Tutorial/Player1/MoveTutorial(Player1).unity
     guid: 27f0978b340232d46a01e3fa0b666567
   - enabled: 1
-    path: Assets/Scenes/Tutorial/BreadTutorial(Player1).unity
+    path: Assets/Scenes/Tutorial/Player1/BreadTutorial(Player1).unity
     guid: 3ea399a76d37df148922f349d3113823
   - enabled: 1
-    path: Assets/Scenes/Tutorial/CabbageTutorial(Player1).unity
+    path: Assets/Scenes/Tutorial/Player1/CabbageTutorial(Player1).unity
     guid: 9bcaf4c6da703444490159bccb67a4ed
   - enabled: 1
-    path: Assets/Scenes/Tutorial/TomatoTutorial(Player1).unity
+    path: Assets/Scenes/Tutorial/Player1/TomatoTutorial(Player1).unity
     guid: 8851133dc308a074cbb7c1fc2d9b46eb
   - enabled: 1
-    path: Assets/Scenes/Tutorial/EggTutorial(Player1).unity
+    path: Assets/Scenes/Tutorial/Player1/EggTutorial(Player1).unity
     guid: a526861def34d41478245e766b745eb6
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Player1/ServeTutorial(Player1).unity
+    guid: 1743f444c29b5bc47adff43f13aa28b0
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Player2/BreadTutorial(Player2).unity
+    guid: 7b13ea111e094374ca8e7535c5ff54dc
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Player2/CabbageTutorial(Player2).unity
+    guid: 7b38b89dfc947ff4d96fc43cebf63b31
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Player2/EggTutorial(Player2).unity
+    guid: c5b623d8bcec040498cdfd0b51b06d2e
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Player2/MoveTutorial(Player2).unity
+    guid: a966c39fa9cc0aa429af32502d1c71e4
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Player2/ServeTutorial(Player2).unity
+    guid: c5b4f5ca68f501c4f982867ccf097c2d
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/Player2/TomatoTutorial(Player2).unity
+    guid: 7f14e862ed2ac5343a1f46274db8e772
   - enabled: 1
     path: Assets/Scenes/1PlayerScene/Level/Level 1(Player1).unity
     guid: 38538d582146f934cbf38265d62c66f5
