@@ -338,7 +338,7 @@ public class EnemyMovement : MonoBehaviour
         float delay = 3f;
         yield return new WaitForSeconds(delay);
 
-        if (cmty != null && cmty.canMoveThisWay == false)
+        if (cmty != null && cmty.canMoveThisWay == false && isAttacking == false)
         {
             Debug.Log("Stuck too long, switching to new wander point...");
             currentState = EnemyState.Wandering;
@@ -498,11 +498,11 @@ public class EnemyMovement : MonoBehaviour
 
         if (Hitbox != null) Hitbox.SetActive(false);
         if (jiggleForSprite != null) jiggleForSprite.StopJiggle();
+        pauseAttackAni = false;
 
 
         yield return new WaitForSeconds(recoverFrame);
 
-        pauseAttackAni = false;
         isAttacking = false;
         attackCoroutine = null;
     }
