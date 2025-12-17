@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 //Tutorial: https://www.youtube.com/watch?v=DOP_G5bsySA&t=6s
 public class DialogueManager : MonoBehaviour
@@ -26,7 +27,9 @@ public class DialogueManager : MonoBehaviour
     [Header("Player Reference")]
     public GameObject player;
     private PlayerInputManager playerInputManager;
+    private P3Input p3Input;
     private CharacterMovement characterMovement;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,13 +43,16 @@ public class DialogueManager : MonoBehaviour
         if (player != null)
         {
             playerInputManager = player.GetComponent<PlayerInputManager>();
+            p3Input = player.GetComponent<P3Input>();
+
             characterMovement = player.GetComponent<CharacterMovement>();
         }
+
     }
 
     void Update()
     {
-        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
+        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space) || Gamepad.current.buttonSouth.wasPressedThisFrame)
         {
             DisplayNextDialogueLine();
         }
@@ -85,12 +91,21 @@ public class DialogueManager : MonoBehaviour
         if (canMove)
         {
             //Re-enable player movement and input
-            playerInputManager.isInputEnabled = true;
+            if (playerInputManager != null) 
+                playerInputManager.isInputEnabled = true;
+
+            if (p3Input != null)
+                p3Input.isInputEnabled = true;
         }
         else if (!canMove)
         {
             //Stop player movement and input
-            playerInputManager.isInputEnabled = false;
+            if (playerInputManager != null)
+                playerInputManager.isInputEnabled = false;
+
+            if (p3Input != null)
+                p3Input.isInputEnabled = false;
+
             characterMovement.SetMovement(Vector2.zero);
         }
     }
@@ -140,7 +155,11 @@ public class DialogueManager : MonoBehaviour
             animator.Play("DialogueHide");
 
         //Re-enable player movement and input
-        playerInputManager.isInputEnabled = true;
+        if (playerInputManager != null)
+            playerInputManager.isInputEnabled = true;
+
+        if (p3Input != null)
+            p3Input.isInputEnabled = true;
     }
 
     private IEnumerator WaitThenDisplayNext(float delay)

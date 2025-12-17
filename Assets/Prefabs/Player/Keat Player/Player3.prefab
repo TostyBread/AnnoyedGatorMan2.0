@@ -1503,7 +1503,7 @@ GameObject:
   - component: {fileID: 903649091048912837}
   m_Layer: 0
   m_Name: Wielding_Hand
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2148,6 +2148,7 @@ MonoBehaviour:
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
+  isFire: 0
   healthBarImages:
   - {fileID: 6778895589608347886}
   - {fileID: 39903767997615584}
@@ -3526,7 +3527,7 @@ GameObject:
   - component: {fileID: 3339990600250894280}
   m_Layer: 0
   m_Name: Wielding_Hand
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5482,6 +5483,7 @@ MonoBehaviour:
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
+  isFire: 0
   healthBarImages:
   - {fileID: 4663316333232686542}
   - {fileID: 7218068746287249636}
@@ -7142,7 +7144,7 @@ GameObject:
   - component: {fileID: 9085419782311384898}
   m_Layer: 0
   m_Name: Wielding_Hand
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8054,6 +8056,7 @@ MonoBehaviour:
   isPlayer2: 1
   isNotPlayer: 0
   isFood: 0
+  isFire: 0
   healthBarImages:
   - {fileID: 7090639100454540739}
   - {fileID: 5114915477596334313}
@@ -8179,7 +8182,7 @@ MonoBehaviour:
   - {x: -0.69258785, y: -1.7510005, z: 0}
   m_ShapePathHash: -1165053405
   m_Mesh: {fileID: 0}
-  m_InstanceId: 190288
+  m_InstanceId: 333078
   m_LocalBounds:
     m_Center: {x: 0.019944191, y: -1.1731375, z: 0}
     m_Extent: {x: 0.8473654, y: 0.6094115, z: 0}

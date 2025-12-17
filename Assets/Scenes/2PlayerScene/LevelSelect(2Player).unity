@@ -1033,7 +1033,7 @@ PrefabInstance:
       objectReference: {fileID: 505844370}
     - target: {fileID: 8513025423339890191, guid: 29602e3398eb78e4ebe5196158372428, type: 3}
       propertyPath: levelSelected
-      value: MoveTutorial(Player1)
+      value: MoveTutorial(Player2)
       objectReference: {fileID: 0}
     - target: {fileID: 8513025423339890191, guid: 29602e3398eb78e4ebe5196158372428, type: 3}
       propertyPath: clearConditionText
@@ -1224,7 +1224,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: a2e498677608a494ea0a2b0f900eb62f, type: 3}
     - target: {fileID: 764088004844519815, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
-      value: MoveTutorial(Player1)
+      value: MoveTutorial(Player2)
       objectReference: {fileID: 0}
     - target: {fileID: 2957740030819828911, guid: 8488838d756c15e4b90ff30af11930d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
