@@ -26,6 +26,9 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Player Reference")]
     public GameObject player;
+
+    [Header("Reference Do Not Touch")]
+    public GameObject currentPlayer; //for DialogueTrigger.cs reference
     private PlayerInputManager playerInputManager;
     private P3Input p3Input;
     private CharacterMovement characterMovement;
@@ -39,15 +42,34 @@ public class DialogueManager : MonoBehaviour
 
         lines = new Queue<DialogueLine>();
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        //Get Player Reference
+        if (player == null) player = GameObject.Find("Player1");
         if (player != null)
         {
-            playerInputManager = player.GetComponent<PlayerInputManager>();
-            p3Input = player.GetComponent<P3Input>();
-
-            characterMovement = player.GetComponent<CharacterMovement>();
+            currentPlayer =FindChildWithTag(player, "Player");
         }
+        if (currentPlayer != null)
+        {
+            playerInputManager = currentPlayer.GetComponent<PlayerInputManager>();
+            p3Input = currentPlayer.GetComponent<P3Input>();
 
+            characterMovement = currentPlayer.GetComponent<CharacterMovement>();
+        }
+    }
+
+    GameObject FindChildWithTag(GameObject parent, string tag)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            if (child.CompareTag(tag))
+                return child.gameObject;
+
+            // Recursive search (if nested children)
+            GameObject result = FindChildWithTag(child.gameObject, tag);
+            if (result != null)
+                return result;
+        }
+        return null;
     }
 
     void Update()
@@ -106,7 +128,7 @@ public class DialogueManager : MonoBehaviour
             if (p3Input != null)
                 p3Input.isInputEnabled = false;
 
-            characterMovement.SetMovement(Vector2.zero);
+            if (characterMovement != null) characterMovement.SetMovement(Vector2.zero);
         }
     }
 

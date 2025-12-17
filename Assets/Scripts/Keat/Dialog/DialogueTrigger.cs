@@ -80,7 +80,8 @@ public class DialogueTrigger : MonoBehaviour
 
         if (triggerCondition == DialogueConditionType.OnItemPickup)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            //player = GameObject.FindGameObjectWithTag("Player");
+            player = dialogueManager.currentPlayer;
             wieldingHand = player.transform.Find("HandControls/Wielding_Hand")?.gameObject;
         }
 

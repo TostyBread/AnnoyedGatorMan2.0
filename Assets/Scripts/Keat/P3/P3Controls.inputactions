@@ -145,17 +145,6 @@
                 },
                 {
                     "name": "",
-                    "id": "cb06d8a4-ddf2-4bd7-a537-26cd74fa2a79",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Toggle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "fc25bb7b-de41-40d5-befa-edd0e6695253",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
