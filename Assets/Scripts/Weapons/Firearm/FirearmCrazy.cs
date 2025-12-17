@@ -46,10 +46,13 @@ public class FirearmCrazy : MonoBehaviour
     {
         if (isCrazy) return;
 
-        deformer?.TriggerJiggle(1f, 2f, 0.5f, true);
+        if (heatAmount > 0f)
+        {
+            deformer?.TriggerJiggle(1f, 2f, 0.5f, true);
+            EffectPool.Instance.SpawnEffect("FoodSteam", transform.position, Quaternion.identity); // Deploy steam anim
+        }
         currentHeat += heatAmount;
         lastHeatTime = Time.time;
-        EffectPool.Instance.SpawnEffect("FoodSteam", transform.position, Quaternion.identity); // Deploy steam anim
         UpdateColor();
 
         if (currentHeat >= heatThreshold)
