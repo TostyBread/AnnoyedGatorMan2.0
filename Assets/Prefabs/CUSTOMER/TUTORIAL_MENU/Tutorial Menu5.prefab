@@ -985,7 +985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodIcons:
-  - itemID: 11
+  - itemID: 42
     iconObject: {fileID: 1933438222891035443}
   - itemID: 3
     iconObject: {fileID: 2292480104177734668}
