@@ -80,6 +80,12 @@ public class P2AimSystem : MonoBehaviour
     {
         detectTarget = Range.GetComponent<DetectTarget>();
 
+        // Ensure DetectTarget is found and has valid configuration
+        if (detectTarget == null)
+        {
+            Debug.LogError("DetectTarget component not found on Range GameObject!");
+        }
+
         if (Arrow != null)
             Arrow.transform.parent = null;
 
@@ -93,7 +99,13 @@ public class P2AimSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        P3Cursor.SetActive(p2PickupSystem.HasItemHeld); //P3Cursor will show and hide depend on either the player is holding item
+        // Ensure detectTarget reference is valid
+        if (detectTarget == null && Range != null)
+        {
+            detectTarget = Range.GetComponent<DetectTarget>();
+        }
+
+        P3Cursor.SetActive(p2PickupSystem.HasItemHeld);
 
         ChangeTarget();
 
@@ -202,17 +214,20 @@ public class P2AimSystem : MonoBehaviour
 
     private void ChangeTarget()
     {
-        if (detectTarget.AllItemInRange.Count > 0)
+        // Ensure detectTarget is initialized and has items before attempting to change targets
+        if (detectTarget == null || detectTarget.AllItemInRange.Count == 0)
         {
-            if (Input.GetKeyDown(NextTarget)) // Switch to the next enemy  
-            {
-                NextTargetMethod();
-            }
+            return;
+        }
 
-            if (Input.GetKeyDown(PreviousTarget)) // Switch to the previous enemy
-            {
-                PreviousTargetMethod();
-            }
+        if (Input.GetKeyDown(NextTarget)) // Switch to the next enemy  
+        {
+            NextTargetMethod();
+        }
+
+        if (Input.GetKeyDown(PreviousTarget)) // Switch to the previous enemy
+        {
+            PreviousTargetMethod();
         }
     }
 
@@ -225,7 +240,6 @@ public class P2AimSystem : MonoBehaviour
         }
         catch (DivideByZeroException) //might get Divide by 0 error, so remove the error
         { 
-        
         }
     }
 
